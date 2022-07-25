@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-nh-BXA">
+                    <rect key="frame" x="20" y="40" width="335" height="30"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIE-1O-p0C">
+                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azY-ws-nS0">
+                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="30"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1J3-RN-TWU">
+                    <rect key="frame" x="92" y="100" width="192" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrM-gl-yb5">
+                            <rect key="frame" x="0.0" y="0.0" width="96" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="5Bz-Dl-PvH"/>
+                                <constraint firstAttribute="width" constant="96" id="83l-En-4tI"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpQ-Za-JvG">
+                            <rect key="frame" x="96" y="0.0" width="96" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="96" id="0WN-3Y-wEd"/>
+                                <constraint firstAttribute="height" constant="45" id="lJa-DF-pnn"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="wpQ-Za-JvG" firstAttribute="top" secondItem="1J3-RN-TWU" secondAttribute="top" id="D05-b2-rBp"/>
+                        <constraint firstItem="MrM-gl-yb5" firstAttribute="top" secondItem="1J3-RN-TWU" secondAttribute="top" id="EC0-5K-amT"/>
+                        <constraint firstAttribute="bottom" secondItem="MrM-gl-yb5" secondAttribute="bottom" id="Edk-lY-SSZ"/>
+                        <constraint firstItem="wpQ-Za-JvG" firstAttribute="leading" secondItem="MrM-gl-yb5" secondAttribute="trailing" id="Xry-7H-ObT"/>
+                        <constraint firstItem="wpQ-Za-JvG" firstAttribute="leading" secondItem="MrM-gl-yb5" secondAttribute="trailing" id="aDO-D4-B6F"/>
+                        <constraint firstAttribute="trailing" secondItem="wpQ-Za-JvG" secondAttribute="trailing" id="cv4-3R-ied"/>
+                        <constraint firstAttribute="bottom" secondItem="wpQ-Za-JvG" secondAttribute="bottom" id="fu3-JW-g8A"/>
+                        <constraint firstItem="MrM-gl-yb5" firstAttribute="leading" secondItem="1J3-RN-TWU" secondAttribute="leading" id="xNu-tP-h7b"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dbJ-nh-BXA" secondAttribute="trailing" constant="20" id="1gU-1e-xvZ"/>
+                <constraint firstItem="1J3-RN-TWU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7W7-Vu-hts"/>
+                <constraint firstItem="dbJ-nh-BXA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="VFW-K1-xn4"/>
+                <constraint firstItem="1J3-RN-TWU" firstAttribute="top" secondItem="dbJ-nh-BXA" secondAttribute="bottom" constant="30" id="XQ9-Ac-PZM"/>
+                <constraint firstItem="dbJ-nh-BXA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="d8b-9Y-PZS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

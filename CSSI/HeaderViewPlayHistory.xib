@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SourceSansPro-Regular.otf">
+            <string>SourceSansPro-Regular</string>
+        </array>
+        <array key="SourceSansPro-Semibold.otf">
+            <string>SourceSansPro-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HeaderViewPlayHistory" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCW-hb-cFN">
+                    <rect key="frame" x="15" y="31" width="64.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="oAt-JC-Wav"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x57-cq-qa3">
+                    <rect key="frame" x="310" y="31" width="50" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="6aJ-SK-C80"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="14"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-vg-ICP">
+                    <rect key="frame" x="15" y="58" width="62.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="pfp-IZ-rGV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4q-Cr-ehG">
+                    <rect key="frame" x="15" y="80" width="62.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="fFY-ME-ryG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF4-Vx-6CR">
+                    <rect key="frame" x="15" y="102" width="62.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="a9A-Xe-VWN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzm-YZ-hm8">
+                    <rect key="frame" x="15" y="186" width="61" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="mPm-cK-7tb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.47843137250000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgQ-eb-iMn">
+                    <rect key="frame" x="10" y="10" width="355" height="1"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Dah-DD-Kzf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq1-7c-I0q">
+                    <rect key="frame" x="16" y="124" width="62.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="bjA-Sw-M7P"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Palmer I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLX-LF-91N">
+                    <rect key="frame" x="16" y="146" width="62.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="H4V-Em-Fdg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
+                    <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jq1-7c-I0q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="FB0-oT-LAH"/>
+                <constraint firstItem="gF4-Vx-6CR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="JkJ-dc-7si"/>
+                <constraint firstItem="jCW-hb-cFN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="O4P-no-Hkx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FgQ-eb-iMn" secondAttribute="trailing" constant="10" id="OLn-pv-QyF"/>
+                <constraint firstItem="jq1-7c-I0q" firstAttribute="top" secondItem="gF4-Vx-6CR" secondAttribute="bottom" id="Scf-AX-dSX"/>
+                <constraint firstItem="VLX-LF-91N" firstAttribute="top" secondItem="jq1-7c-I0q" secondAttribute="bottom" id="VTo-Hh-Eaz"/>
+                <constraint firstItem="L4q-Cr-ehG" firstAttribute="top" secondItem="Meg-vg-ICP" secondAttribute="bottom" id="Zui-fl-jq5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="x57-cq-qa3" secondAttribute="trailing" constant="15" id="a39-7b-9Xq"/>
+                <constraint firstItem="VLX-LF-91N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="aqV-0M-MCJ"/>
+                <constraint firstItem="Zzm-YZ-hm8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="d1k-yp-XCp"/>
+                <constraint firstItem="FgQ-eb-iMn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="dfc-pO-N3b"/>
+                <constraint firstItem="gF4-Vx-6CR" firstAttribute="top" secondItem="L4q-Cr-ehG" secondAttribute="bottom" id="fCQ-DP-19p"/>
+                <constraint firstItem="Meg-vg-ICP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="mY5-cy-Ggo"/>
+                <constraint firstItem="Meg-vg-ICP" firstAttribute="top" secondItem="jCW-hb-cFN" secondAttribute="bottom" constant="5" id="n04-Ck-bZu"/>
+                <constraint firstItem="L4q-Cr-ehG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="oHs-Je-2br"/>
+                <constraint firstItem="FgQ-eb-iMn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="w2r-Mb-wFW"/>
+                <constraint firstItem="jCW-hb-cFN" firstAttribute="top" secondItem="FgQ-eb-iMn" secondAttribute="bottom" constant="20" id="x8z-8H-rvF"/>
+                <constraint firstItem="Zzm-YZ-hm8" firstAttribute="top" secondItem="VLX-LF-91N" secondAttribute="bottom" constant="18" id="yfl-7J-aVe"/>
+                <constraint firstItem="x57-cq-qa3" firstAttribute="top" secondItem="FgQ-eb-iMn" secondAttribute="bottom" constant="20" id="yfo-jS-WmH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="lblCaptainName" destination="jCW-hb-cFN" id="3qj-Km-dZx"/>
+                <outlet property="lblConfirmedteeTime" destination="jq1-7c-I0q" id="L0N-bB-2IK"/>
+                <outlet property="lblCource" destination="Meg-vg-ICP" id="IjR-gu-N7i"/>
+                <outlet property="lblGroupNo" destination="Zzm-YZ-hm8" id="U7m-fD-bwh"/>
+                <outlet property="lblID" destination="x57-cq-qa3" id="ooK-tt-WcT"/>
+                <outlet property="lblLength" destination="gF4-Vx-6CR" id="3Uj-ME-cJS"/>
+                <outlet property="lblPlayDate" destination="VLX-LF-91N" id="L2l-oF-yX7"/>
+                <outlet property="lblTeeTimes" destination="L4q-Cr-ehG" id="tti-A1-A0n"/>
+                <outlet property="lblTopLine" destination="FgQ-eb-iMn" id="BU8-YB-alb"/>
+            </connections>
+        </view>
+    </objects>
+</document>

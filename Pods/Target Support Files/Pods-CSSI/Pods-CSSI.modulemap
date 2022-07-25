@@ -1,0 +1,6 @@
+framework module Pods_CSSI {
+  umbrella header "Pods-CSSI-umbrella.h"
+
+  export *
+  module * { export * }
+}

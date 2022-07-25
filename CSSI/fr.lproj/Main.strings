@@ -1,0 +1,606 @@
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "0yN-ik-7MV"; */
+"0yN-ik-7MV.normalTitle" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "11y-1E-Ke0"; */
+"11y-1E-Ke0.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "15u-PV-9PT"; */
+"15u-PV-9PT.text" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "1B6-0O-gKc"; */
+"1B6-0O-gKc.normalTitle" = "Visible";
+
+/* Class = "UIButton"; normalTitle = "Current"; ObjectID = "1Zg-ED-dh5"; */
+"1Zg-ED-dh5.normalTitle" = "Current";
+
+/* Class = "UILabel"; text = "Neque feugiat eleifend\nconsectetur, dolor odio\ncondiment augue…"; ObjectID = "1aD-sQ-yWy"; */
+"1aD-sQ-yWy.text" = "Neque feugiat eleifend\nconsectetur, dolor odio\ncondiment augue…";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2aq-dg-l3G"; */
+"2aq-dg-l3G.text" = "Label";
+
+/* Class = "UILabel"; text = "Offspring charges"; ObjectID = "2qR-HU-kHh"; */
+"2qR-HU-kHh.text" = "Offspring charges";
+
+/* Class = "UILabel"; text = "Total  "; ObjectID = "2zy-N5-DKa"; */
+"2zy-N5-DKa.text" = "Total  ";
+
+/* Class = "UILabel"; text = "Annette13310"; ObjectID = "3OM-xJ-TSG"; */
+"3OM-xJ-TSG.text" = "Annette13310";
+
+/* Class = "UIButton"; normalTitle = "Filter by Interest"; ObjectID = "3Qa-3z-59D"; */
+"3Qa-3z-59D.normalTitle" = "Filter by Interest";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "41R-Vw-qGR"; */
+"41R-Vw-qGR.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "Laura Burton"; ObjectID = "44I-Na-0jv"; */
+"44I-Na-0jv.text" = "Laura Burton";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4TP-wj-wbo"; */
+"4TP-wj-wbo.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Modify"; ObjectID = "4Z2-uF-dU4"; */
+"4Z2-uF-dU4.normalTitle" = "Modify";
+
+/* Class = "UILabel"; text = "Charges will not appear on your account until guest arrival."; ObjectID = "4aI-gv-ScI"; */
+"4aI-gv-ScI.text" = "Charges will not appear on your account until guest arrival.";
+
+/* Class = "UILabel"; text = "**********"; ObjectID = "4jh-Zb-WSq"; */
+"4jh-Zb-WSq.text" = "**********";
+
+/* Class = "UILabel"; text = "annette.landers@gmail.com"; ObjectID = "4kL-zi-dZf"; */
+"4kL-zi-dZf.text" = "annette.landers@gmail.com";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password ?"; ObjectID = "4vL-pY-Lo2"; */
+"4vL-pY-Lo2.normalTitle" = "Forgot Password ?";
+
+/* Class = "UILabel"; text = "Add Another Address"; ObjectID = "54p-0f-AgE"; */
+"54p-0f-AgE.text" = "Add Another Address";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "5Yj-a6-FYu"; */
+"5Yj-a6-FYu.normalTitle" = "<";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5uL-cc-Oda"; */
+"5uL-cc-Oda.text" = "Label";
+
+/* Class = "UILabel"; text = "SUB TOTAL  "; ObjectID = "64Y-JS-2on"; */
+"64Y-JS-2on.text" = "SUB TOTAL  ";
+
+/* Class = "UILabel"; text = "Add ons"; ObjectID = "6lS-WS-igl"; */
+"6lS-WS-igl.text" = "Add ons";
+
+/* Class = "UITabBarItem"; title = "More"; ObjectID = "73E-s8-18O"; */
+"73E-s8-18O.title" = "More";
+
+/* Class = "UILabel"; text = "Laura Burton"; ObjectID = "7F2-Ta-RSG"; */
+"7F2-Ta-RSG.text" = "Laura Burton";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7JV-tb-8L1"; */
+"7JV-tb-8L1.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7NJ-kx-98W"; */
+"7NJ-kx-98W.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Boca West\n"; ObjectID = "7Sx-wU-0bg"; */
+"7Sx-wU-0bg.text" = "Boca West\n";
+
+/* Class = "UIButton"; normalTitle = "Laura Burton’s guest card  activation has been…"; ObjectID = "7Yk-gL-iUq"; */
+"7Yk-gL-iUq.normalTitle" = "Laura Burton’s guest card  activation has been…";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "7hS-2q-jOU"; */
+"7hS-2q-jOU.text" = "Gender";
+
+/* Class = "UIButton"; normalTitle = "View All"; ObjectID = "7ve-ja-YUX"; */
+"7ve-ja-YUX.normalTitle" = "View All";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "8rx-Mp-7zC"; */
+"8rx-Mp-7zC.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "917-JL-yxE"; */
+"917-JL-yxE.text" = "Notifications";
+
+/* Class = "UIButton"; normalTitle = "Request"; ObjectID = "9R2-hA-CZy"; */
+"9R2-hA-CZy.normalTitle" = "Request";
+
+/* Class = "UILabel"; text = "1-541-754-3010"; ObjectID = "9ZX-Vk-13U"; */
+"9ZX-Vk-13U.text" = "1-541-754-3010";
+
+/* Class = "UILabel"; text = "Boca West"; ObjectID = "9cL-Fu-bUT"; */
+"9cL-Fu-bUT.text" = "Boca West";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "9ee-LR-cfL"; */
+"9ee-LR-cfL.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "April MTD"; ObjectID = "9fJ-ej-hOO"; */
+"9fJ-ej-hOO.text" = "April MTD";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "AUj-gn-XhT"; */
+"AUj-gn-XhT.text" = "Mobile";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "BVB-II-znJ"; */
+"BVB-II-znJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Laura Burton"; ObjectID = "Be1-kD-Pb3"; */
+"Be1-kD-Pb3.text" = "Laura Burton";
+
+/* Class = "UILabel"; text = "Chef’s Special"; ObjectID = "Bpw-2y-59p"; */
+"Bpw-2y-59p.text" = "Chef’s Special";
+
+/* Class = "UILabel"; text = "Set tableview scrolling to false because we don't want scolling behaviour.Set tableview scrolling to false because we don't want scolling behaviour."; ObjectID = "BrP-RW-RXT"; */
+"BrP-RW-RXT.text" = "Set tableview scrolling to false because we don't want scolling behaviour.Set tableview scrolling to false because we don't want scolling behaviour.";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "C3N-0c-EZi"; */
+"C3N-0c-EZi.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "Neque feugiat eleifend\nconsectetur, dolor odio\ncondiment augue…"; ObjectID = "Ckn-py-hos"; */
+"Ckn-py-hos.text" = "Neque feugiat eleifend\nconsectetur, dolor odio\ncondiment augue…";
+
+/* Class = "UIButton"; normalTitle = "All Request"; ObjectID = "DgL-l2-Wz3"; */
+"DgL-l2-Wz3.normalTitle" = "All Request";
+
+/* Class = "UILabel"; text = "SUB TOTAL  "; ObjectID = "DwA-cg-o4K"; */
+"DwA-cg-o4K.text" = "SUB TOTAL  ";
+
+/* Class = "UILabel"; text = "Do not show me in the online Member Directory"; ObjectID = "E7f-qe-eDT"; */
+"E7f-qe-eDT.text" = "Do not show me in the online Member Directory";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "EEb-5b-fL0"; */
+"EEb-5b-fL0.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "Interests"; ObjectID = "EMM-r2-Tfg"; */
+"EMM-r2-Tfg.text" = "Interests";
+
+/* Class = "UILabel"; text = "Laura Burton"; ObjectID = "ESR-Ff-t3J"; */
+"ESR-Ff-t3J.text" = "Laura Burton";
+
+/* Class = "UILabel"; text = "Aaron  Stanley"; ObjectID = "Edf-0Q-Fpe"; */
+"Edf-0Q-Fpe.text" = "Aaron  Stanley";
+
+/* Class = "UIButton"; normalTitle = "Request Card"; ObjectID = "Eiv-8S-A8z"; */
+"Eiv-8S-A8z.normalTitle" = "Request Card";
+
+/* Class = "UILabel"; text = "Anniversary"; ObjectID = "Eqv-f8-CdY"; */
+"Eqv-f8-CdY.text" = "Anniversary";
+
+/* Class = "UILabel"; text = "**********"; ObjectID = "FTz-ad-8dp"; */
+"FTz-ad-8dp.text" = "**********";
+
+/* Class = "UILabel"; text = "1-541-754-3010"; ObjectID = "FlF-wr-VfM"; */
+"FlF-wr-VfM.text" = "1-541-754-3010";
+
+/* Class = "UILabel"; text = "Boca West"; ObjectID = "Fuz-h2-M5g"; */
+"Fuz-h2-M5g.text" = "Boca West";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "Gab-0J-q1Q"; */
+"Gab-0J-q1Q.text" = "Gender";
+
+/* Class = "UILabel"; text = "Phone Number"; ObjectID = "H1o-IX-N3r"; */
+"H1o-IX-N3r.text" = "Phone Number";
+
+/* Class = "UIButton"; normalTitle = "View All"; ObjectID = "HIZ-cC-umv"; */
+"HIZ-cC-umv.normalTitle" = "View All";
+
+/* Class = "UILabel"; text = "$670.20"; ObjectID = "HvP-2S-qSp"; */
+"HvP-2S-qSp.text" = "$0.0";
+
+/* Class = "UILabel"; text = "Boca West\n"; ObjectID = "IpE-9h-fmx"; */
+"IpE-9h-fmx.text" = "Boca West\n";
+
+/* Class = "UILabel"; text = "Upcoming visits"; ObjectID = "JfL-UP-A82"; */
+"JfL-UP-A82.text" = "Upcoming visits";
+
+/* Class = "UILabel"; text = "Laura Burton"; ObjectID = "K8w-tX-k55"; */
+"K8w-tX-k55.text" = "Laura Burton";
+
+/* Class = "UILabel"; text = "TAX 7%"; ObjectID = "KKQ-9f-t6Q"; */
+"KKQ-9f-t6Q.text" = "TAX 7%";
+
+/* Class = "UILabel"; text = "$15.00"; ObjectID = "L38-ct-gB0"; */
+"L38-ct-gB0.text" = "$15.00";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "LGp-mI-NtF"; */
+"LGp-mI-NtF.text" = "Username";
+
+/* Class = "UILabel"; text = "First Name"; ObjectID = "LLt-Hs-hGT"; */
+"LLt-Hs-hGT.text" = "First Name";
+
+/* Class = "UILabel"; text = "*********"; ObjectID = "LVE-WW-wRI"; */
+"LVE-WW-wRI.text" = "*********";
+
+/* Class = "UILabel"; text = "#134567"; ObjectID = "Lcy-y5-76h"; */
+"Lcy-y5-76h.text" = "#134567";
+
+/* Class = "UIButton"; normalTitle = "Today at a Glance"; ObjectID = "Ltp-en-3P4"; */
+"Ltp-en-3P4.normalTitle" = "Today at a Glance";
+
+/* Class = "UILabel"; text = "Reset Password"; ObjectID = "Luh-ze-0rP"; */
+"Luh-ze-0rP.text" = "Reset Password";
+
+/* Class = "UILabel"; text = "04.17.2018"; ObjectID = "LxJ-r8-sXk"; */
+"LxJ-r8-sXk.text" = "04.17.2018";
+
+/* Class = "UILabel"; text = "1-541-754-3010"; ObjectID = "M2f-At-8vY"; */
+"M2f-At-8vY.text" = "1-541-754-3010";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "MA6-eR-HXl"; */
+"MA6-eR-HXl.text" = "Notifications";
+
+/* Class = "UIButton"; normalTitle = "Add to Phone"; ObjectID = "MhO-JR-ZFt"; */
+"MhO-JR-ZFt.normalTitle" = "Add to Phone";
+
+/* Class = "UITabBarItem"; title = "Statement"; ObjectID = "NLS-ia-cOo"; */
+"NLS-ia-cOo.title" = "Statement";
+
+/* Class = "UILabel"; text = "25 May"; ObjectID = "O6q-76-WXc"; */
+"O6q-76-WXc.text" = "25 May";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "O9Q-1n-Ka7"; */
+"O9Q-1n-Ka7.normalTitle" = "Visible";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "P2A-sE-HbM"; */
+"P2A-sE-HbM.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Street 1\n"; ObjectID = "Pzb-Xh-J43"; */
+"Pzb-Xh-J43.text" = "Street 1\n";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "Q5Y-xf-Eoy"; */
+"Q5Y-xf-Eoy.normalTitle" = "Visible";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "QBw-ll-t5g"; */
+"QBw-ll-t5g.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Add Guest"; ObjectID = "QDN-jq-JAT"; */
+"QDN-jq-JAT.normalTitle" = "Add Guest";
+
+/* Class = "UIButton"; normalTitle = "Previous"; ObjectID = "QLm-kR-fPU"; */
+"QLm-kR-fPU.normalTitle" = "Previous";
+
+/* Class = "UILabel"; text = "Street 1\n"; ObjectID = "Qze-k3-6XD"; */
+"Qze-k3-6XD.text" = "Street 1\n";
+
+/* Class = "UILabel"; text = "Street 1\n"; ObjectID = "RA2-q9-PQC"; */
+"RA2-q9-PQC.text" = "Street 1\n";
+
+/* Class = "UIButton"; normalTitle = "Add to Buddy List"; ObjectID = "Ra3-0l-YxY"; */
+"Ra3-0l-YxY.normalTitle" = "Add to Buddy List";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Rp5-Hn-vVh"; */
+"Rp5-Hn-vVh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Total  "; ObjectID = "SBY-hW-d3c"; */
+"SBY-hW-d3c.text" = "Total  ";
+
+/* Class = "UIButton"; normalTitle = "Female"; ObjectID = "SCQ-dy-Ka8"; */
+"SCQ-dy-Ka8.normalTitle" = "Female";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "SQf-5o-6Bc"; */
+"SQf-5o-6Bc.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "SfQ-eG-pn7"; */
+"SfQ-eG-pn7.text" = "Email";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "SgK-2s-EwU"; */
+"SgK-2s-EwU.text" = "Last Name";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "Sl8-cd-CGY"; */
+"Sl8-cd-CGY.normalTitle" = ">";
+
+/* Class = "UILabel"; text = "annette.landers@gmail.com"; ObjectID = "Sw1-wd-z7G"; */
+"Sw1-wd-z7G.text" = "annette.landers@gmail.com";
+
+/* Class = "UILabel"; text = "May 8 at 10:04 AM"; ObjectID = "SzQ-x3-zhG"; */
+"SzQ-x3-zhG.text" = "May 8 at 10:04 AM";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "T2F-Wm-ffG"; */
+"T2F-Wm-ffG.text" = "Last Name";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "T8K-oO-QoU"; */
+"T8K-oO-QoU.normalTitle" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "TTX-vj-3Bh"; */
+"TTX-vj-3Bh.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "Tdy-PG-L3X"; */
+"Tdy-PG-L3X.text" = "Notifications";
+
+/* Class = "UILabel"; text = "20583 BocaWest Drive,\nBoca Raton, Florida 33434"; ObjectID = "TpC-5u-XEi"; */
+"TpC-5u-XEi.text" = "20583 BocaWest Drive,\nBoca Raton, Florida 33434";
+
+/* Class = "UIButton"; normalTitle = "Male"; ObjectID = "U2L-iU-w2r"; */
+"U2L-iU-w2r.normalTitle" = "Male";
+
+/* Class = "UILabel"; text = "Charges will not appear on your account until guest arrival."; ObjectID = "UaE-qx-9K4"; */
+"UaE-qx-9K4.text" = "Charges will not appear on your account until guest arrival.";
+
+/* Class = "UILabel"; text = "$15.00"; ObjectID = "V2I-Y7-TIP"; */
+"V2I-Y7-TIP.text" = "$15.00";
+
+/* Class = "UILabel"; text = "Offspring charges"; ObjectID = "VOW-jW-s3T"; */
+"VOW-jW-s3T.text" = "Offspring charges";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "VUy-oF-Oje"; */
+"VUy-oF-Oje.normalTitle" = "Add";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "WfD-O2-6FE"; */
+"WfD-O2-6FE.normalTitle" = "Send";
+
+/* Class = "UIButton"; normalTitle = "Request Guest Card"; ObjectID = "WwF-wH-Cum"; */
+"WwF-wH-Cum.normalTitle" = "Request Guest Card";
+
+/* Class = "UILabel"; text = "$15.00"; ObjectID = "XDT-a1-Wbd"; */
+"XDT-a1-Wbd.text" = "$15.00";
+
+/* Class = "UIButton"; normalTitle = "Preferences >"; ObjectID = "XET-Q7-1FV"; */
+"XET-Q7-1FV.normalTitle" = "Preferences >";
+
+/* Class = "UILabel"; text = "Issued Date "; ObjectID = "Xbh-1e-6Lm"; */
+"Xbh-1e-6Lm.text" = "Issued Date ";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "Xoz-Ci-0xK"; */
+"Xoz-Ci-0xK.text" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "Y7g-dS-QDF"; */
+"Y7g-dS-QDF.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "Chef’s Special"; ObjectID = "YCj-IU-nV6"; */
+"YCj-IU-nV6.text" = "Chef’s Special";
+
+/* Class = "UILabel"; text = "Birthday"; ObjectID = "YHK-zb-5oD"; */
+"YHK-zb-5oD.text" = "Birthday";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YSA-Gx-3fu"; */
+"YSA-Gx-3fu.text" = "Label";
+
+/* Class = "UILabel"; text = "TAX 7%"; ObjectID = "Yog-0J-9jN"; */
+"Yog-0J-9jN.text" = "TAX 7%";
+
+/* Class = "UIButton"; normalTitle = ">"; ObjectID = "Yq7-A0-VWD"; */
+"Yq7-A0-VWD.normalTitle" = ">";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "YvQ-Aj-AzQ"; */
+"YvQ-Aj-AzQ.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "Member ID\n"; ObjectID = "Yxs-xM-e2o"; */
+"Yxs-xM-e2o.text" = "Member ID\n";
+
+/* Class = "UILabel"; text = "Anniversary"; ObjectID = "ZEl-Ps-YsR"; */
+"ZEl-Ps-YsR.text" = "Anniversary";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "aHe-tv-vdz"; */
+"aHe-tv-vdz.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Member ID\n"; ObjectID = "aUY-id-T9i"; */
+"aUY-id-T9i.text" = "Member ID\n";
+
+/* Class = "UILabel"; text = "Interests"; ObjectID = "b65-dH-HTN"; */
+"b65-dH-HTN.text" = "Interests";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bJ8-cb-5bT"; */
+"bJ8-cb-5bT.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = " 23 Dec"; ObjectID = "ben-cP-E3k"; */
+"ben-cP-E3k.normalTitle" = " 23 Dec";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "bku-Rz-pkS"; */
+"bku-Rz-pkS.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Address (Other)"; ObjectID = "cZk-jM-dGd"; */
+"cZk-jM-dGd.text" = "Address (Other)";
+
+/* Class = "UILabel"; text = "**********"; ObjectID = "cg0-f6-Nya"; */
+"cg0-f6-Nya.text" = "**********";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "d2B-ZO-38U"; */
+"d2B-ZO-38U.text" = "Mobile";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "d2L-uY-3dC"; */
+"d2L-uY-3dC.text" = "Label";
+
+/* Class = "UILabel"; text = "annette.landers@gmail.com"; ObjectID = "d6f-VS-yMC"; */
+"d6f-VS-yMC.text" = "annette.landers@gmail.com";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "d9T-Eh-rPj"; */
+"d9T-Eh-rPj.text" = "Last Name";
+
+/* Class = "UILabel"; text = "Street 1\n"; ObjectID = "dBY-Ze-3D2"; */
+"dBY-Ze-3D2.text" = "Street 1\n";
+
+/* Class = "UIButton"; normalTitle = "more"; ObjectID = "dwL-cg-f9X"; */
+"dwL-cg-f9X.normalTitle" = "more";
+
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "e4w-pv-DIU"; */
+"e4w-pv-DIU.normalTitle" = "Confirm";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "eCH-qr-7Hh"; */
+"eCH-qr-7Hh.text" = "Username";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "eRT-Ez-4Xs"; */
+"eRT-Ez-4Xs.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "egn-v7-WIW"; */
+"egn-v7-WIW.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "fCP-vK-Ral"; */
+"fCP-vK-Ral.text" = "Password";
+
+/* Class = "UILabel"; text = "Enter your primary email address to receive link to reset your password. "; ObjectID = "fTy-Ey-RXc"; */
+"fTy-Ey-RXc.text" = "Enter your primary email address to receive link to reset your password. ";
+
+/* Class = "UILabel"; text = "Filter by Interest"; ObjectID = "g9f-Kl-KTb"; */
+"g9f-Kl-KTb.text" = "Filter by Interest";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gXa-Z4-Jpn"; */
+"gXa-Z4-Jpn.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Hi, Annette Landers!"; ObjectID = "hms-S2-gvc"; */
+"hms-S2-gvc.text" = "Hi, Annette Landers!";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "i1e-jx-heg"; */
+"i1e-jx-heg.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "ihu-gw-DJo"; */
+"ihu-gw-DJo.text" = "Mobile";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "j3Y-fj-nxH"; */
+"j3Y-fj-nxH.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Ignore"; ObjectID = "jJU-eD-0PC"; */
+"jJU-eD-0PC.normalTitle" = "Ignore";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "kQ5-F9-l4O"; */
+"kQ5-F9-l4O.text" = "Username";
+
+/* Class = "UILabel"; text = "Anniversary"; ObjectID = "l4a-tc-z1P"; */
+"l4a-tc-z1P.text" = "Anniversary";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "l8t-zD-tEL"; */
+"l8t-zD-tEL.text" = "Mobile";
+
+/* Class = "UILabel"; text = "Annette Landers"; ObjectID = "lNI-ka-BIi"; */
+"lNI-ka-BIi.text" = "Annette Landers";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m5C-24-qyG"; */
+"m5C-24-qyG.text" = "Label";
+
+/* Class = "UILabel"; text = "Address (BocaWest)\n"; ObjectID = "mD7-NF-QrQ"; */
+"mD7-NF-QrQ.text" = "Address (BocaWest)\n";
+
+/* Class = "UILabel"; text = "Offspring charges"; ObjectID = "mSg-8m-8Cx"; */
+"mSg-8m-8Cx.text" = "Offspring charges";
+
+/* Class = "UIButton"; normalTitle = "Female"; ObjectID = "maJ-HK-X0k"; */
+"maJ-HK-X0k.normalTitle" = "Female";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mcT-2O-MeA"; */
+"mcT-2O-MeA.text" = "Label";
+
+/* Class = "UILabel"; text = "Annette13310"; ObjectID = "mnz-e3-gfF"; */
+"mnz-e3-gfF.text" = "Annette13310";
+
+/* Class = "UILabel"; text = "1-541-754-3010"; ObjectID = "mqb-kI-nRp"; */
+"mqb-kI-nRp.text" = "1-541-754-3010";
+
+/* Class = "UILabel"; text = "Set tableview scrolling to false because we don't want scolling behaviour.Set tableview scrolling to false because we don't want scolling behaviour."; ObjectID = "mxC-XF-myt"; */
+"mxC-XF-myt.text" = "Set tableview scrolling to false because we don't want scolling behaviour.Set tableview scrolling to false because we don't want scolling behaviour.";
+
+/* Class = "UIButton"; normalTitle = "Ignore"; ObjectID = "n6b-wP-y7P"; */
+"n6b-wP-y7P.normalTitle" = "Ignore";
+
+/* Class = "UIButton"; normalTitle = "< Go back to Login"; ObjectID = "nOG-N9-JXf"; */
+"nOG-N9-JXf.normalTitle" = "< Go back to Login";
+
+/* Class = "UILabel"; text = "27th May 2018"; ObjectID = "nv0-cV-N73"; */
+"nv0-cV-N73.text" = "27th May 2018";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "oYW-5M-Uj3"; */
+"oYW-5M-Uj3.normalTitle" = "Visible";
+
+/* Class = "UIButton"; normalTitle = "Guest List"; ObjectID = "ogH-AW-I8R"; */
+"ogH-AW-I8R.normalTitle" = "Guest List";
+
+/* Class = "UILabel"; text = "Annette13310"; ObjectID = "pTk-n8-dUr"; */
+"pTk-n8-dUr.text" = "Annette13310";
+
+/* Class = "UILabel"; text = "1-541-754-3010"; ObjectID = "q9f-Xf-HZO"; */
+"q9f-Xf-HZO.text" = "1-541-754-3010";
+
+/* Class = "UINavigationItem"; title = "Hi, Annette Landers!"; ObjectID = "qIS-q9-iYS"; */
+"qIS-q9-iYS.title" = "Hi, Annette Landers!";
+
+/* Class = "UILabel"; text = "Total"; ObjectID = "qIT-3e-OzG"; */
+"qIT-3e-OzG.text" = "Total";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "qdZ-YV-jhx"; */
+"qdZ-YV-jhx.text" = "Mobile";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "qps-rg-rbT"; */
+"qps-rg-rbT.normalTitle" = "<";
+
+/* Class = "UIViewController"; title = "Modal view"; ObjectID = "r06-fj-qed"; */
+"r06-fj-qed.title" = "Modal view";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rKG-xy-SRv"; */
+"rKG-xy-SRv.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Upcoming Events"; ObjectID = "rMz-oO-dH4"; */
+"rMz-oO-dH4.normalTitle" = "Upcoming Events";
+
+/* Class = "UILabel"; text = "Street 1\n"; ObjectID = "s8C-bY-d6h"; */
+"s8C-bY-d6h.text" = "Street 1\n";
+
+/* Class = "UILabel"; text = "Charges will not appear on your account until guest arrival."; ObjectID = "sB1-5c-A0d"; */
+"sB1-5c-A0d.text" = "Charges will not appear on your account until guest arrival.";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "sfI-Z2-DW1"; */
+"sfI-Z2-DW1.text" = "Profile";
+
+/* Class = "UILabel"; text = "Boca West"; ObjectID = "tP0-wc-L7L"; */
+"tP0-wc-L7L.text" = "Boca West";
+
+/* Class = "UILabel"; text = "Pending"; ObjectID = "tpz-9u-Fgr"; */
+"tpz-9u-Fgr.text" = "Pending";
+
+/* Class = "UIButton"; normalTitle = "Add Guest"; ObjectID = "ttK-vG-qW2"; */
+"ttK-vG-qW2.normalTitle" = "Add Guest";
+
+/* Class = "UIButton"; normalTitle = "Annette Landers"; ObjectID = "u0W-RJ-ilg"; */
+"u0W-RJ-ilg.normalTitle" = "Annette Landers";
+
+/* Class = "UIButton"; normalTitle = "Visible"; ObjectID = "u3w-Nv-8IU"; */
+"u3w-Nv-8IU.normalTitle" = "Visible";
+
+/* Class = "UILabel"; text = "$670.20"; ObjectID = "uNN-FO-4ee"; */
+"uNN-FO-4ee.text" = "$0.0";
+
+/* Class = "UILabel"; text = "Last Name"; ObjectID = "ucw-kL-CEg"; */
+"ucw-kL-CEg.text" = "Last Name";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "ulR-Gv-vd0"; */
+"ulR-Gv-vd0.title" = "Home";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uyz-ni-lX6"; */
+"uyz-ni-lX6.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Male"; ObjectID = "w3U-f0-ttT"; */
+"w3U-f0-ttT.normalTitle" = "Male";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wAa-gi-xo6"; */
+"wAa-gi-xo6.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Membership type"; ObjectID = "wDR-w0-aDa"; */
+"wDR-w0-aDa.text" = "Membership type";
+
+/* Class = "UILabel"; text = "1-541-754-3010"; ObjectID = "wbX-BJ-9hn"; */
+"wbX-BJ-9hn.text" = "1-541-754-3010";
+
+/* Class = "UILabel"; text = "07.15.18"; ObjectID = "whq-5O-DK4"; */
+"whq-5O-DK4.text" = "07.15.18";
+
+/* Class = "UILabel"; text = "Annette13310"; ObjectID = "x1T-N5-Uga"; */
+"x1T-N5-Uga.text" = "Annette13310";
+
+/* Class = "UILabel"; text = "04.17.2018"; ObjectID = "xSW-ZZ-eIx"; */
+"xSW-ZZ-eIx.text" = "04.17.2018";
+
+/* Class = "UILabel"; text = "Set tableview scrolling to false because we don't want scolling behaviour.Set tableview scrolling to false because we don't want scolling behaviour."; ObjectID = "xXJ-bH-Dyr"; */
+"xXJ-bH-Dyr.text" = "Set tableview scrolling to false because we don't want scolling behaviour.Set tableview scrolling to false because we don't want scolling behaviour.";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "xgI-4p-Qql"; */
+"xgI-4p-Qql.title" = "Item";
+
+/* Class = "UITabBarItem"; title = "Guest Card"; ObjectID = "xgh-Si-1K8"; */
+"xgh-Si-1K8.title" = "Guest Card";
+
+/* Class = "UILabel"; text = "Expiry Date "; ObjectID = "yXe-CF-41l"; */
+"yXe-CF-41l.text" = "Expiry Date ";
+
+/* Class = "UILabel"; text = "First Name"; ObjectID = "ybC-h5-uh7"; */
+"ybC-h5-uh7.text" = "First Name";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "zBK-6l-fua"; */
+"zBK-6l-fua.text" = "Email";
+
+/* Class = "UILabel"; text = "Filter by Interest"; ObjectID = "zP2-fb-Qf4"; */
+"zP2-fb-Qf4.text" = "Filter by Interest";

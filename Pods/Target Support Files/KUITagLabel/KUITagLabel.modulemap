@@ -1,0 +1,6 @@
+framework module KUITagLabel {
+  umbrella header "KUITagLabel-umbrella.h"
+
+  export *
+  module * { export * }
+}

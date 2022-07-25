@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InstructionVideoCollectionViewCell" id="gTV-IL-0wX" customClass="InstructionVideoCollectionViewCell" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="189" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="189" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0OR-pb-RlU">
+                        <rect key="frame" x="0.0" y="0.0" width="189" height="150"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wth-2U-yUo">
+                        <rect key="frame" x="0.0" y="0.0" width="189" height="150"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <wkWebViewConfiguration key="configuration">
+                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                            <wkPreferences key="preferences"/>
+                        </wkWebViewConfiguration>
+                    </wkWebView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wth-2U-yUo" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="8kb-Lh-w4S"/>
+                <constraint firstAttribute="bottom" secondItem="wth-2U-yUo" secondAttribute="bottom" id="Gsn-Er-wy8"/>
+                <constraint firstAttribute="trailing" secondItem="0OR-pb-RlU" secondAttribute="trailing" id="NJW-O5-G2m"/>
+                <constraint firstItem="0OR-pb-RlU" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="OPo-BR-GJS"/>
+                <constraint firstAttribute="bottom" secondItem="0OR-pb-RlU" secondAttribute="bottom" id="Occ-6i-lP3"/>
+                <constraint firstItem="wth-2U-yUo" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="S9O-cF-Lr2"/>
+                <constraint firstItem="wth-2U-yUo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="T28-42-D91"/>
+                <constraint firstAttribute="trailing" secondItem="wth-2U-yUo" secondAttribute="trailing" id="Ts0-fC-ogk"/>
+                <constraint firstItem="wth-2U-yUo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="YY2-eZ-1cU"/>
+                <constraint firstItem="0OR-pb-RlU" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="ka8-jp-YAG"/>
+                <constraint firstItem="0OR-pb-RlU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lRI-z4-nyU"/>
+                <constraint firstItem="0OR-pb-RlU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="men-FX-2iw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="189" height="150"/>
+            <connections>
+                <outlet property="imgViewBG" destination="0OR-pb-RlU" id="c9f-6L-ns8"/>
+                <outlet property="webViewVideo" destination="wth-2U-yUo" id="Hdq-Ra-rFZ"/>
+            </connections>
+            <point key="canvasLocation" x="31.159420289855074" y="149.33035714285714"/>
+        </collectionViewCell>
+    </objects>
+</document>

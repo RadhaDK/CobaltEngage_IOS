@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SourceSansPro-Regular.otf">
+            <string>SourceSansPro-Regular</string>
+        </array>
+        <array key="SourceSansPro-Semibold.otf">
+            <string>SourceSansPro-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentNewsTableViewCell" rowHeight="72" id="KGk-i7-Jjw" customClass="RecentNewsTableViewCell" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbF-SO-WI9">
+                        <rect key="frame" x="9" y="17" width="40.5" height="37.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="idJ-Px-AdH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
+                        <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1X-Mu-9sk">
+                        <rect key="frame" x="268.5" y="17" width="39.5" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="OeZ-kc-74M"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
+                        <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sV1-ab-UpE">
+                        <rect key="frame" x="12.5" y="71.5" width="295" height="0.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djb-he-84h">
+                                <rect key="frame" x="0.0" y="0.0" width="295" height="0.5"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.29999999999999999" id="IOO-Gj-QKn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZbF-SO-WI9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="3Bs-UK-cjf"/>
+                    <constraint firstAttribute="bottom" secondItem="sV1-ab-UpE" secondAttribute="bottom" id="4f0-pj-Ag6"/>
+                    <constraint firstAttribute="trailing" secondItem="C1X-Mu-9sk" secondAttribute="trailing" constant="12" id="AOY-zG-6Dr"/>
+                    <constraint firstItem="C1X-Mu-9sk" firstAttribute="top" secondItem="ZbF-SO-WI9" secondAttribute="top" id="KlS-MV-W3y"/>
+                    <constraint firstItem="C1X-Mu-9sk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZbF-SO-WI9" secondAttribute="trailing" constant="20" id="h29-kD-Nj5"/>
+                    <constraint firstItem="ZbF-SO-WI9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="iAL-sq-Mfp"/>
+                    <constraint firstItem="sV1-ab-UpE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12.5" id="iKz-4r-AIV"/>
+                    <constraint firstItem="sV1-ab-UpE" firstAttribute="top" secondItem="ZbF-SO-WI9" secondAttribute="bottom" priority="999" constant="17" id="toC-FA-Ol7"/>
+                    <constraint firstAttribute="trailing" secondItem="sV1-ab-UpE" secondAttribute="trailing" constant="12.5" id="u0c-39-N22"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblDate" destination="C1X-Mu-9sk" id="LGI-vk-fmz"/>
+                <outlet property="lblTitle" destination="ZbF-SO-WI9" id="AG3-sz-myd"/>
+                <outlet property="viewSeparator" destination="djb-he-84h" id="hTe-P6-zH7"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="155.35714285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

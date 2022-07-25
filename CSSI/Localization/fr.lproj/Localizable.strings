@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  CSSI
+
+  Created by MACMINI13 on 24/07/18.
+  Copyright © 2018 yujdesigns. All rights reserved.
+*/
+"Login" = "S'identifier";
+"Forgot Password ?" = "Mot de passe oublié ?";
+"Member ID" = "ID membres";
+"Password" = "Mot de passe";
+
+

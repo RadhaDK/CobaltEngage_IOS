@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SourceSansPro-Bold.otf">
+            <string>SourceSansPro-Bold</string>
+        </array>
+        <array key="SourceSansPro-Regular.otf">
+            <string>SourceSansPro-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FitnessGroupCollectionViewCell" id="gTV-IL-0wX" customClass="FitnessGroupCollectionViewCell" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="323" height="228"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="323" height="228"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JBj-BV-4rW">
+                        <rect key="frame" x="0.0" y="0.0" width="323" height="228"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXH-aK-f70">
+                        <rect key="frame" x="14" y="187" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hO-4k-T2N">
+                        <rect key="frame" x="14" y="187" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="gXH-aK-f70" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="1tz-Js-KuV"/>
+                <constraint firstAttribute="bottom" secondItem="gXH-aK-f70" secondAttribute="bottom" constant="41" id="FZb-Tz-65y"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gXH-aK-f70" secondAttribute="trailing" constant="17" id="J75-Rb-XVF"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4hO-4k-T2N" secondAttribute="trailing" constant="17" id="NEM-bD-sgZ"/>
+                <constraint firstItem="4hO-4k-T2N" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="OrQ-UM-p5J"/>
+                <constraint firstItem="JBj-BV-4rW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RyT-d2-GhJ"/>
+                <constraint firstItem="4hO-4k-T2N" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="41" id="Vzc-by-pvF"/>
+                <constraint firstAttribute="trailing" secondItem="JBj-BV-4rW" secondAttribute="trailing" id="bZo-nd-ey8"/>
+                <constraint firstItem="gXH-aK-f70" firstAttribute="top" secondItem="4hO-4k-T2N" secondAttribute="bottom" id="ebk-m1-xM9"/>
+                <constraint firstAttribute="bottom" secondItem="JBj-BV-4rW" secondAttribute="bottom" id="mx2-4j-op9"/>
+                <constraint firstItem="JBj-BV-4rW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xKr-Ay-Zpi"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="323" height="228"/>
+            <connections>
+                <outlet property="exercisesLbl" destination="gXH-aK-f70" id="aEl-mn-09f"/>
+                <outlet property="groupImgView" destination="JBj-BV-4rW" id="u58-IE-nTJ"/>
+                <outlet property="groupNameLbl" destination="4hO-4k-T2N" id="6Fm-F0-FVm"/>
+            </connections>
+            <point key="canvasLocation" x="70.28985507246378" y="119.86607142857142"/>
+        </collectionViewCell>
+    </objects>
+</document>

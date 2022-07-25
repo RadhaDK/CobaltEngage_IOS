@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SourceSansPro-Semibold.otf">
+            <string>SourceSansPro-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BMSHeaderCalendarViewSyncTVC" rowHeight="58" id="KGk-i7-Jjw" customClass="BMSHeaderCalendarViewSyncTVC" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iH-yu-Bg2">
+                        <rect key="frame" x="0.0" y="20" width="310" height="18"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                        <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zk-4r-hg7">
+                        <rect key="frame" x="320" y="29" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="14"/>
+                        <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HB1-MX-fPA">
+                        <rect key="frame" x="0.0" y="57" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.79607843137254897" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="s5l-oB-YSh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="2iH-yu-Bg2" secondAttribute="bottom" constant="20" id="2iB-59-jlN"/>
+                    <constraint firstAttribute="bottom" secondItem="HB1-MX-fPA" secondAttribute="bottom" id="3zl-ZT-Gtb"/>
+                    <constraint firstAttribute="trailing" secondItem="HB1-MX-fPA" secondAttribute="trailing" id="JwM-FY-w4N"/>
+                    <constraint firstAttribute="trailing" secondItem="7zk-4r-hg7" secondAttribute="trailing" id="MiB-63-2Lc"/>
+                    <constraint firstItem="HB1-MX-fPA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="O1E-DG-wAX"/>
+                    <constraint firstItem="7zk-4r-hg7" firstAttribute="leading" secondItem="2iH-yu-Bg2" secondAttribute="trailing" constant="10" id="O7N-3f-f5p"/>
+                    <constraint firstItem="2iH-yu-Bg2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="W34-Lo-evh"/>
+                    <constraint firstItem="2iH-yu-Bg2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="gXO-Qp-NXj"/>
+                    <constraint firstItem="7zk-4r-hg7" firstAttribute="centerY" secondItem="2iH-yu-Bg2" secondAttribute="centerY" id="oZr-8v-3Tn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblConfirmationNumber" destination="7zk-4r-hg7" id="Uoa-83-oBz"/>
+                <outlet property="lblName" destination="2iH-yu-Bg2" id="Tzk-H3-HFI"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="119.19642857142857"/>
+        </tableViewCell>
+    </objects>
+</document>

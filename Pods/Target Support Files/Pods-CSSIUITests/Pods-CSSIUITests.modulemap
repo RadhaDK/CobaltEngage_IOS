@@ -1,0 +1,6 @@
+framework module Pods_CSSIUITests {
+  umbrella header "Pods-CSSIUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

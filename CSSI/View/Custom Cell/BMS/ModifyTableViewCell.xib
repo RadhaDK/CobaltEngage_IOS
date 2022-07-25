@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SourceSansPro-Semibold.otf">
+            <string>SourceSansPro-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModifyTableViewCell" rowHeight="101" id="KGk-i7-Jjw" customClass="ModifyTableViewCell" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="101"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="458" height="101"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-SC-ofQ">
+                        <rect key="frame" x="44" y="23" width="217" height="55"/>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                        <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Awp-S5-16a">
+                        <rect key="frame" x="271" y="50.5" width="125" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="125" id="RcP-dI-wMy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                        <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xr1-0N-6ZE">
+                        <rect key="frame" x="406" y="29.5" width="42" height="42"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXG-TD-K3S">
+                                <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Nbe-SH-xG7"/>
+                                    <constraint firstAttribute="width" constant="42" id="emb-6y-kiB"/>
+                                </constraints>
+                                <state key="normal" image="close-dark"/>
+                                <connections>
+                                    <action selector="removeClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="brp-FI-xQK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Awp-S5-16a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4bK-MY-S4f"/>
+                    <constraint firstItem="Awp-S5-16a" firstAttribute="leading" secondItem="T3a-SC-ofQ" secondAttribute="trailing" constant="10" id="6fG-WQ-gku"/>
+                    <constraint firstItem="T3a-SC-ofQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="Gz1-dB-Sa3"/>
+                    <constraint firstItem="Xr1-0N-6ZE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="M5I-wQ-22I"/>
+                    <constraint firstAttribute="trailing" secondItem="Xr1-0N-6ZE" secondAttribute="trailing" constant="10" id="Zu6-Af-bZy"/>
+                    <constraint firstItem="Xr1-0N-6ZE" firstAttribute="leading" secondItem="Awp-S5-16a" secondAttribute="trailing" constant="10" id="f5L-v2-m8r"/>
+                    <constraint firstAttribute="bottom" secondItem="T3a-SC-ofQ" secondAttribute="bottom" constant="23" id="uuw-vu-RBF"/>
+                    <constraint firstItem="T3a-SC-ofQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="whL-P5-byp"/>
+                    <constraint firstItem="T3a-SC-ofQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zoN-r8-2XU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnRemove" destination="GXG-TD-K3S" id="JAF-T8-d8z"/>
+                <outlet property="lblID" destination="Awp-S5-16a" id="zEa-PS-B1f"/>
+                <outlet property="lblName" destination="T3a-SC-ofQ" id="32i-yi-qJK"/>
+            </connections>
+            <point key="canvasLocation" x="31.884057971014496" y="126.89732142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="close-dark" width="9" height="9"/>
+    </resources>
+</document>

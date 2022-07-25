@@ -1,0 +1,48 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'CSSI' do
+	pod 'Popover'
+        pod "KUITagLabel"
+        pod 'Alamofire', '~> 4.7.2'
+        pod 'AlamofireImage', '~> 3.3'
+        pod 'ScrollableSegmentedControl', '~> 1.3.0'
+        pod 'SwiftyJSON'
+        pod 'AlamofireObjectMapper', '~> 5.0.0'
+        pod 'IQKeyboardManagerSwift'
+        pod 'MBProgressHUD', '~> 1.1.0'
+        pod 'BiometricAuthentication'
+     	pod "MaterialCard"
+        pod 'TweeTextField'
+        pod 'SwiftDate'
+        pod 'PureLayout', '~> 3.0.1'
+        pod 'Firebase/Core'
+        pod 'Firebase/Messaging'
+        pod 'Toaster'
+        pod 'PINRemoteImage'
+        pod 'SQLite.swift', '~> 0.11.5'
+        pod 'Fabric', '~> 1.7.9'
+        pod 'Crashlytics', '~> 3.10.5'
+        pod 'BlueCatsSDK', :git => 'https://github.com/bluecats/bluecats-ios-sdk.git'
+
+#        pod 'Calendar-iOS'
+#      pod 'CalendarDateRangePickerViewController'
+
+ 
+        
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for CSSI
+
+  target 'CSSITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'CSSIUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

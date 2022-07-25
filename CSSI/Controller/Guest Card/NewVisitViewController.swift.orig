@@ -1,0 +1,233 @@
+//
+//  NewVisitViewController.swift
+//  CSSI
+//
+//  Created by Apple on 27/09/18.
+//  Copyright © 2018 yujdesigns. All rights reserved.
+//
+
+import UIKit
+
+class NewVisitViewController: UIViewController {
+
+    @IBOutlet weak var btnSwitch: UISwitch!
+    @IBOutlet weak var txtUpcomingEvent: UITextField!
+    @IBOutlet weak var txtSelectGuest: UITextField!
+    @IBOutlet weak var txtDuration: UITextField!
+    
+    @IBOutlet var lblBottm: UILabel!
+    
+    fileprivate let dateFormator = DateFormatter()
+    fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    fileprivate var dob:Date? = nil
+    fileprivate var durationPicker : UIPickerView? = nil;
+    fileprivate var guestsPicker: UIPickerView? = nil
+    fileprivate var selectedGuest: Guest? = nil
+    fileprivate var selectedWeek: Week? = nil
+    
+    var guets: [Guest]? = nil
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        
+        txtUpcomingEvent.setRightIcon(#imageLiteral(resourceName: "icon_calendar_event"))
+        dateFormator.dateFormat = "MM/dd/yyyy"
+
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.setDate(Date(), animated: true)
+        datePicker.minimumDate = Date()
+        datePicker.addTarget(self, action: #selector(didDOBDateChange(datePicker:)), for: .valueChanged)
+        txtUpcomingEvent.inputView = datePicker
+
+        guestsPicker = UIPickerView()
+        guestsPicker?.delegate = self
+        guestsPicker?.dataSource = self
+        txtSelectGuest.inputView = guestsPicker
+        
+        durationPicker = UIPickerView()
+        durationPicker?.delegate = self
+        durationPicker?.dataSource = self
+        txtDuration.inputView = durationPicker
+        
+        self.navigationItem.title = "New Visit"
+        let backButton = UIBarButtonItem()
+        
+        backButton.title = "Back"
+        
+        
+        self.lblBottm.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
+        
+        
+        self.navigationController!.navigationBar.topItem!.backBarButtonItem = backButton
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func didDOBDateChange(datePicker:UIDatePicker) {
+        dob = datePicker.date
+        txtUpcomingEvent.text = dateFormator.string(from: datePicker.date)
+        updateVisitDate()
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    fileprivate func updateVisitDate() {
+        if let date = dob {
+            var numberOfDaysToAdd = 0
+            if selectedWeek?.weak == "1 week" {
+                        numberOfDaysToAdd = 7
+                        } else if selectedWeek?.weak == "2 weeks" {
+                              numberOfDaysToAdd = 14
+                        }
+        
+                    if let dateFormatter = SharedUtlity.sharedHelper().dateFormatter,
+                        let toDate = Calendar.current.date(byAdding: .day , value: numberOfDaysToAdd, to: date, wrappingComponents: false),
+                        numberOfDaysToAdd != 0 {
+                            txtUpcomingEvent.text = "\(dateFormatter.string(from: date)) - \(dateFormatter.string(from: toDate))"
+                        }
+                }
+           }
+ 
+    
+    
+    @IBAction func switchClicked(_ sender: Any) {
+    }
+    @IBAction func saveClicked(_ sender: Any) {
+        
+        
+        guard let _ = dob  else {
+            SharedUtlity.sharedHelper().showToast(on: view, withMeassge: "Please select Visit date.", withDuration: Duration.kShortDuration)
+            return
+        }
+        
+        guard let _ = selectedWeek else {
+            SharedUtlity.sharedHelper().showToast(on: view, withMeassge: "Please select Duration.", withDuration: Duration.kShortDuration)
+            return
+        }
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+
+        let params: [String : Any] = [
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+            APIKeys.kdeviceInfo: APIHandler.devicedict,
+            APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+            APIKeys.kFromDate : txtUpcomingEvent.text ?? "",
+            APIKeys.kDuration : selectedWeek?.weakID ?? "",
+            "AccompanyWithMainMember": btnSwitch.isOn ? 1 : 0,
+            "SelectedNumbers":[
+                APIKeys.kID: "",
+                APIKeys.kTransactionID: "",
+                APIKeys.kLinkedMemberID : selectedGuest?.linkedMemberID
+            ],
+            "GuestID": "",
+            "ReceiptNumber": "",
+            "ExtendBy": "",
+            "LinkedMemberIds": ""
+        ]
+        
+        APIHandler.sharedInstance.addOrModifyGuestCard(paramater: params, onSuccess: {
+           // self.navigationController?.popViewController(animated: true)
+            if let addNewGuestViewController = UIStoryboard.init(name: "GuestCard", bundle: .main).instantiateViewController(withIdentifier: "ThanksUPdateViewController") as? ThanksUPdateViewController {
+                self.appDelegate.hideIndicator()
+
+                self.navigationController?.pushViewController(addNewGuestViewController, animated: true)
+            }
+            
+        }) { (error) in
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:error.localizedDescription, withDuration: Duration.kMediumDuration)
+            self.appDelegate.hideIndicator()
+
+        }
+        
+        
+    }
+
+    fileprivate func updateVisitDate() {
+        if let date = dob {
+            var numberOfDaysToAdd = 0
+            if selectedWeek?.weak == "1 week" {
+                numberOfDaysToAdd = 7
+            } else if selectedWeek?.weak == "2 weeks" {
+                numberOfDaysToAdd = 14
+            }
+            
+            if let dateFormatter = SharedUtlity.sharedHelper().dateFormatter,
+                let toDate = Calendar.current.date(byAdding: .day , value: numberOfDaysToAdd, to: date, wrappingComponents: false),
+                numberOfDaysToAdd != 0 {
+                txtUpcomingEvent.text = "\(dateFormatter.string(from: date)) - \(dateFormatter.string(from: toDate))"
+            }
+        }
+    }
+    
+    @IBAction func guestPolicyClicked(_ sender: Any) {
+        
+        if let addNewGuestViewController = UIStoryboard.init(name: "GuestCard", bundle: .main).instantiateViewController(withIdentifier: "GuestCardPolicyVC") as? GuestCardPolicyVC {
+            self.appDelegate.hideIndicator()
+            
+            self.navigationController?.pushViewController(addNewGuestViewController, animated: true)
+        }
+
+    }
+    
+}
+
+extension NewVisitViewController : UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == durationPicker {
+            return appDelegate.arrWeeks.count
+        }
+        return guets?.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == durationPicker {
+            return appDelegate.arrWeeks[row].weak
+        }
+        if let guest = guets?[row] {
+            return "\(guest.firstName) \(guest.lastName)"
+        }
+        return ""
+    }
+    
+}
+
+extension NewVisitViewController : UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == durationPicker {
+            selectedWeek = appDelegate.arrWeeks[row]
+            txtDuration.text = selectedWeek?.weak
+            updateVisitDate()
+<<<<<<< working copy
+    } else if pickerView == guestsPicker {
+            if let guest = guets?[row] {
+                selectedGuest = guest
+                txtSelectGuest.text = "\(guest.firstName) \(guest.lastName)"
+=======
+        } else if pickerView == guestsPicker {
+            if let guest = guets?[row] {
+                selectedGuest = guest
+                txtSelectGuest.text = "\(guest.firstName) \(guest.lastName)"
+            }
+>>>>>>> destination
+        }
+    }
+}
+}
+
+

@@ -1,0 +1,1946 @@
+
+import UIKit
+import Alamofire
+import AlamofireImage
+import FLAnimatedImage
+import ScrollableSegmentedControl
+
+protocol MemberViewControllerDelegate
+{
+    func requestMemberViewControllerResponse(selecteArray: [RequestData])
+    func memberViewControllerResponse(selecteArray: [MemberInfo])
+    func buddiesViewControllerResponse(selectedBuddy: [MemberInfo])
+    func AddGuestChildren(selecteArray: [RequestData])
+}
+
+class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate, UISearchBarDelegate,UISearchControllerDelegate, UIGestureRecognizerDelegate  {
+    var isReservation: String?
+    var isFrom : NSString!
+    var categoryForBuddy: String?
+    var isOnlyFrom : String!
+    var index : Int!
+    var type : NSString!
+    var locationIndex: Int!
+    var registerType: String?
+    var forDiningEvent: String?
+    var isFor: String?
+    var eventRegId: String?
+    var isFromDashBoard: Bool?
+    var isFirstTime: Bool?
+    var selectedAlphabet: String?
+    @IBOutlet weak var btnFiter: UIButton!
+    var searchController : UISearchController!
+    private var memDictSearchbar: UISearchBar!
+    
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var loadMoreView: UIView!
+    @IBOutlet weak var btnLoadMore: UIButton!
+    @IBOutlet weak var baseSaegmentView: UIView!
+    @IBOutlet weak var segmentViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var uiSegmentView: UIView!
+    @IBOutlet weak var uiViewMemberMybuddies: UIView!
+    @IBOutlet weak var btnMyBuddies: UIButton!
+    @IBOutlet weak var btnMembers: UIButton!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var btnAddToBuddies: UIButton!
+    @IBOutlet weak var boardofDireViewHight: NSLayoutConstraint!
+    @IBOutlet weak var heightSectionsView: NSLayoutConstraint!
+    @IBOutlet weak var boardOfDirectors: UIView!
+    @IBOutlet weak var viewSections: UIView!
+    @IBOutlet weak var tblMemberDirectory: UITableView!
+    @IBOutlet weak var lblBoardOfDirectory: UILabel!
+    @IBOutlet weak var memberSearchBar: UISearchBar!
+    @IBOutlet weak var btnBoardOfGoverners: UIButton!
+    var isDataLoading:Bool=false
+    var pageNo:Int = 1
+    var limit:Int = 20
+    var offset:Int = 0 //pageNo*limit
+    var didEndReached:Bool=false
+    var filter:String!
+    var strSearch = String()
+    var refreshControl = UIRefreshControl()
+    var Category: NSString!
+    var arrIndexSection: [String] = []
+    var arrVerticalIndexSection: [String] = []
+    var arrEmpty: [String] = []
+
+    var selectedSection:Int = -1
+    var selectedRow:Int = -1
+    var delegate: MemberViewControllerDelegate?
+    var delegateGuestChildren: AddGuestChildren?
+
+    var isAddToBuddy : Int?
+    var arrEventCategory = [ListEventCategory]()
+    var segmentedController = ScrollableSegmentedControl()
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    let collation = UILocalizedIndexedCollation.current()
+    
+    var contacts = [MemberInfo]()
+    var contactsWithSections = [[MemberInfo]]()
+    var dictgiftcardInfo = MemberInfo()
+    var eventCategory: String?
+    var eventCategoryForActionSheet: String?
+    var isOnlyFor : String?
+    
+    var sectionTitles = [String]()
+    var rightSearchbarButton = UIBarButtonItem()
+    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    var filterTapped: String?
+    var arrMemberList = [MemberInfo]()
+    var filterBarButtonItem: UIBarButtonItem!
+    
+    var categoryType: String?
+    var categoryType2: String?
+    var categoryType3: String?
+    var totalNumberofTickets: Int?
+    var showGuest: Int?
+    var showKids: Int?
+    var showSpouse: Int?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.initController()
+        self.appDelegate.arrSelectedTagg.removeAll()
+   //     self.refreshControls()
+        self.setColorCode()
+        
+        
+        if (isFrom == "Registration"){
+            memberSearchBar.placeholder = self.appDelegate.masterLabeling.search_memberName_id ?? "" as String
+        }
+        else if (isFrom == "BuddyList"){
+            memberSearchBar.placeholder = self.appDelegate.masterLabeling.search_buddyname_Id ?? "" as String
+        }
+        else{
+        memberSearchBar.placeholder = self.appDelegate.masterLabeling.search_memberName_id ?? "" as String
+        }
+        btnBoardOfGoverners.setTitle(self.appDelegate.masterLabeling.board_of_governers ?? "" as String, for: UIControlState.normal)
+        
+        self.btnBoardOfGoverners.layer.borderWidth = 1
+        self.btnBoardOfGoverners.layer.borderColor = hexStringToUIColor(hex: "C1C1C1").cgColor
+        self.btnBoardOfGoverners.layer.cornerRadius = 15
+
+      
+        self.btnMembers.layer.cornerRadius = 17
+        self.btnMembers.layer.masksToBounds = true
+     
+        self.uiViewMemberMybuddies.layer.borderWidth = 1
+        self.uiViewMemberMybuddies.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+        self.uiViewMemberMybuddies.layer.cornerRadius = 17
+        self.uiViewMemberMybuddies.layer.masksToBounds = true
+        
+
+        self.btnMyBuddies.layer.cornerRadius = 17
+        self.btnMyBuddies.layer.masksToBounds = true
+        self.btnMyBuddies.backgroundColor = UIColor.clear
+        
+        self.btnLoadMore.isHidden = true
+        if isFromDashBoard == true{
+        self.isFirstTime = true
+        self.baseSaegmentView.isHidden = false
+        self.segmentViewHeight.constant = 62
+        }else{
+            self.baseSaegmentView.isHidden = true
+            self.segmentViewHeight.constant = 0
+        }
+        
+        self.navigationItem.backBarButtonItem?.title = ""
+
+        memberSearchBar.searchBarStyle = .default
+        
+        memberSearchBar.layer.borderWidth = 1
+        memberSearchBar.layer.borderColor = hexStringToUIColor(hex: "F5F5F5").cgColor
+        
+        isAddToBuddy = 1
+
+        arrIndexSection = ["All","A", "B", "C", "D", "E",  "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        
+        arrVerticalIndexSection = ["A", "B", "C", "D", "E",  "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+        
+       if self.isFromDashBoard == true {
+           // self.membersButtonClicked()
+            self.myBuddiesClicked(self.btnMyBuddies)
+            self.membersClicked(self.btnMembers)
+        }
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+//
+//    func refreshControls()
+//    {
+//
+//        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+//        self.refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+//        self.tblMemberDirectory.addSubview(refreshControl) // not required when using UITableViewController
+//
+//    }
+//
+//    @objc func refresh(sender:AnyObject) {
+//
+//        // Code to refresh table view
+//        self.arrMemberList.removeAll()
+//        self.tblMemberDirectory.reloadData()
+//        self.pageNo = 1
+//        if (isFrom == "Registration"){
+//            self.getMemberSpouseList(searchWithString: (strSearch))
+//        }
+//        else if (isFrom == "BuddyList") || type == "MyBuddies"{
+//            self.getBuddyList(searchWithString: (strSearch))
+//        }
+//        else{
+//        }
+//        self.memDictSearchbar.text = ""
+//        self.refreshControl.endRefreshing()
+//    }
+//
+    
+    //Mark- Go to Filter menu
+    @objc func onTapFilter() {
+
+        filterTapped = "Yes"
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
+        
+        pvc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.present(pvc, animated: true, completion: nil)
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+//        FilterFrom = ""
+    }
+    @IBAction func previousClicked(_ sender: Any) {
+        if type == "MyBuddies"{
+        if self.arrEventCategory.count == 0 {
+            
+        }else{
+        var selectedSegment =  self.segmentedController.selectedSegmentIndex  - 1
+        if selectedSegment <= 0  {
+            selectedSegment = 0
+        }
+        self.appDelegate.selectedEventsCategory = self.arrEventCategory[selectedSegment]
+        self.segmentedController.selectedSegmentIndex = selectedSegment
+            }
+        }else{
+            var selectedSegment =  self.segmentedController.selectedSegmentIndex  - 1
+            if selectedSegment <= 0  {
+                selectedSegment = 0
+            }
+            selectedAlphabet = self.arrIndexSection [selectedSegment]
+            self.segmentedController.selectedSegmentIndex = selectedSegment
+        }
+    }
+    @IBAction func nextClicked(_ sender: Any) {
+        if type == "MyBuddies"{
+        if self.arrEventCategory.count == 0 {
+            
+        }else{
+        var selectedSegment =  self.segmentedController.selectedSegmentIndex  + 1
+        
+        
+        if selectedSegment >= self.segmentedController.numberOfSegments  {
+            selectedSegment = self.segmentedController.numberOfSegments - 1
+        }
+        
+        
+        self.appDelegate.selectedEventsCategory = self.arrEventCategory[selectedSegment]
+        
+        
+        self.segmentedController.selectedSegmentIndex = selectedSegment
+            }}else{
+            var selectedSegment =  self.segmentedController.selectedSegmentIndex  + 1
+            
+            
+            if selectedSegment >= self.segmentedController.numberOfSegments  {
+                selectedSegment = self.segmentedController.numberOfSegments - 1
+            }
+            
+            
+            selectedAlphabet = self.arrIndexSection[selectedSegment]
+            
+            self.segmentedController.selectedSegmentIndex = selectedSegment
+        }
+    }
+    //MARK:- Segment Controller Selected
+    @objc func segmentSelected(sender:ScrollableSegmentedControl) {
+        self.scrollToFirstRow()
+
+        self.arrMemberList.removeAll()
+        
+        self.pageNo = 1
+        if type == "MyBuddies"{
+
+        self.appDelegate.selectedEventsCategory = self.arrEventCategory[sender.selectedSegmentIndex]
+
+       
+        eventCategory = self.appDelegate.selectedEventsCategory.categoryValue ?? ""
+        
+        if self.appDelegate.selectedEventsCategory.categoryValue == "MyGroups" {
+            let myGroup = storyboard!.instantiateViewController(withIdentifier: "MyGroupsVC")
+            //            previousStatementVC.title =  self.appDelegate.masterLabeling.tAB_PREVIOUS
+            self.tblMemberDirectory.isHidden = true
+            configureChildViewControllerForstatenents(childController: myGroup, onView: self.mainView)
+        }else{
+            self.tblMemberDirectory.isHidden = false
+            if self.childViewControllers.count > 0{
+                let viewControllers:[UIViewController] = self.childViewControllers
+                for viewContoller in viewControllers{
+                    viewContoller.willMove(toParentViewController: nil)
+                    viewContoller.view.removeFromSuperview()
+                    viewContoller.removeFromParentViewController()
+                }
+            }
+        self.getBuddyList(searchWithString: (strSearch))
+
+        }
+        }else{
+            selectedAlphabet = self.arrIndexSection[sender.selectedSegmentIndex]
+            
+            self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+
+        }
+    }
+    
+    
+    func loadsegmentController()  {
+        
+        self.segmentedController = ScrollableSegmentedControl.init(frame: self.uiSegmentView.bounds)
+        self.uiSegmentView.addSubview(self.segmentedController)
+        self.segmentedController.segmentStyle = .textOnly
+        
+       // self.segmentedController.segmentStyle = .imageOnLeft
+        
+        
+        self.segmentedController.underlineSelected = true
+        self.segmentedController.backgroundColor = hexStringToUIColor(hex: "F5F5F5")
+        
+        self.segmentedController.tintColor = APPColor.loginBackgroundButtonColor.loginBtnBGColor
+        
+        self.segmentedController.addTarget(self, action: #selector(CalendarOfEventsViewController.segmentSelected(sender:)), for: .valueChanged)
+        self.segmentedController.contentMode = .center
+        // self.segmentedController.removeFromSuperview()
+        if type == "MyBuddies"{
+        for i in 0 ..< self.arrEventCategory.count {
+            let statementData = self.arrEventCategory[i]
+            
+            self.segmentedController.insertSegment(withTitle: statementData.categoryName, image: nil, at: i)
+
+        }
+        }else{
+            self.segmentedController.segmentContentColor = hexStringToUIColor(hex: "40B2E6")
+            self.segmentedController.selectedSegmentContentColor = UIColor.orange
+            self.segmentedController.widthPadding = 25
+            for i in 0 ..< self.arrIndexSection.count {
+                
+                self.segmentedController.insertSegment(withTitle: self.arrIndexSection[i], image: nil, at: i)
+                
+            }
+        }
+        
+        self.segmentedController.selectedSegmentIndex = 0
+        
+    }
+//    func membersButtonClicked(){
+//        self.arrMemberList.removeAll()
+//        type = "Member"
+//        self.navigationItem.rightBarButtonItem = filterBarButtonItem;
+//
+//        self.btnMembers.layer.cornerRadius = 17
+//        self.btnMembers.layer.masksToBounds = true
+//        self.btnMembers.backgroundColor = hexStringToUIColor(hex: "F37D4A")
+//        self.btnMembers.setTitleColor(.white, for: .normal)
+//
+//        self.btnMyBuddies.layer.cornerRadius = 17
+//        self.btnMyBuddies.layer.masksToBounds = true
+//        self.btnMyBuddies.backgroundColor = UIColor.clear
+//        self.btnMyBuddies.setTitleColor(hexStringToUIColor(hex: "F37D4A"), for: .normal)
+//        if isFromDashBoard == true{
+//            self.baseSaegmentView.isHidden = false
+//            self.segmentViewHeight.constant = 62
+//        }else{
+//            self.baseSaegmentView.isHidden = true
+//            self.segmentViewHeight.constant = 0
+//        }
+//
+//
+//        self.tblMemberDirectory.isHidden = false
+//        if self.childViewControllers.count > 0{
+//            let viewControllers:[UIViewController] = self.childViewControllers
+//            for viewContoller in viewControllers{
+//                viewContoller.willMove(toParentViewController: nil)
+//                viewContoller.view.removeFromSuperview()
+//                viewContoller.removeFromParentViewController()
+//            }
+//        }
+//        self.loadsegmentController()
+//
+//    }
+    
+    @IBAction func membersClicked(_ sender: Any) {
+        self.arrMemberList.removeAll()
+        type = "Member"
+        self.navigationItem.rightBarButtonItem = filterBarButtonItem;
+        
+        self.btnMembers.layer.cornerRadius = 17
+        self.btnMembers.layer.masksToBounds = true
+        self.btnMembers.backgroundColor = hexStringToUIColor(hex: "F37D4A")
+        self.btnMembers.setTitleColor(.white, for: .normal)
+        
+        self.btnMyBuddies.layer.cornerRadius = 17
+        self.btnMyBuddies.layer.masksToBounds = true
+        self.btnMyBuddies.backgroundColor = UIColor.clear
+        self.btnMyBuddies.setTitleColor(hexStringToUIColor(hex: "F37D4A"), for: .normal)
+        if isFromDashBoard == true{
+            self.baseSaegmentView.isHidden = false
+            self.segmentViewHeight.constant = 62
+        }else{
+            self.baseSaegmentView.isHidden = true
+            self.segmentViewHeight.constant = 0
+        }
+        
+        
+        self.tblMemberDirectory.isHidden = false
+        if self.childViewControllers.count > 0{
+            let viewControllers:[UIViewController] = self.childViewControllers
+            for viewContoller in viewControllers{
+                viewContoller.willMove(toParentViewController: nil)
+                viewContoller.view.removeFromSuperview()
+                viewContoller.removeFromParentViewController()
+            }
+        }
+        self.loadsegmentController()
+        
+    }
+    @IBAction func myBuddiesClicked(_ sender: Any) {
+       // self.arrMemberList.removeAll()
+         self.btnLoadMore.isHidden = true
+        type = "MyBuddies"
+        self.navigationItem.rightBarButtonItem = nil;
+
+
+        self.btnMembers.layer.cornerRadius = 17
+        self.btnMembers.layer.masksToBounds = true
+        self.btnMembers.backgroundColor = UIColor.clear
+        self.btnMembers.setTitleColor(hexStringToUIColor(hex: "F37D4A"), for: .normal)
+
+        self.btnMyBuddies.layer.cornerRadius = 17
+        self.btnMyBuddies.layer.masksToBounds = true
+        self.btnMyBuddies.backgroundColor = hexStringToUIColor(hex: "F37D4A")
+        self.btnMyBuddies.setTitleColor(.white, for: .normal)
+        
+        self.baseSaegmentView.isHidden = false
+        self.segmentViewHeight.constant = 62
+        if self.isFirstTime == true {
+            self.isFirstTime = false
+        }else{
+        self.getMemberDirectoryCategoriesApi(strSearch : "")
+        }
+
+    //    self.getBuddyList(searchWithString: (strSearch))
+        
+
+    }
+    @IBAction func boardOfGovernersClicked(_ sender: Any) {
+        
+        let restarantpdfDetailsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDfViewController") as! PDfViewController
+        if self.appDelegate.arrBoardofGovernors.count == 0 {
+          restarantpdfDetailsVC.pdfUrl = ""
+        }else{
+        restarantpdfDetailsVC.pdfUrl = self.appDelegate.arrBoardofGovernors[0].url ?? ""
+        }
+        restarantpdfDetailsVC.restarantName = self.appDelegate.masterLabeling.board_of_governers ?? "" as String
+        
+        self.navigationController?.pushViewController(restarantpdfDetailsVC, animated: true)
+        
+    }
+   
+  
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        isDataLoading = false
+    }
+    
+
+    
+    //MARK:- Scroll to first row
+    func scrollToFirstRow() {
+        if(self.arrMemberList.count > 0){
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tblMemberDirectory.scrollToRow(at: indexPath, at: .top, animated: true)
+            
+            
+        }
+    }
+    
+    
+    //MARK:- Token Api
+//    func getAuthToken(){
+//
+//        if (Network.reachability?.isReachable) == true{
+//            APIHandler.sharedInstance.getTokenApi(paramater: nil , onSuccess: { tokenList in
+//                let access_token = tokenList.access_token
+//                let expires_in = tokenList.expires_in
+//                let token_type = tokenList.token_type
+//                let jointToken = (token_type ?? "") + " " + (access_token ?? "")
+//
+//                //                print(jointToken)
+//
+//                UserDefaults.standard.set(access_token, forKey: UserDefaultsKeys.access_token.rawValue)
+//                UserDefaults.standard.set(expires_in, forKey: UserDefaultsKeys.expires_in.rawValue)
+//                UserDefaults.standard.set(token_type, forKey: UserDefaultsKeys.token_type.rawValue)
+//                UserDefaults.standard.set(jointToken, forKey: UserDefaultsKeys.apiauthtoken.rawValue)
+//                UserDefaults.standard.synchronize()
+//                //                print(UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "")
+//
+//
+//
+//            },onFailure: { error  in
+//
+//                print(error)
+//                SharedUtlity.sharedHelper().showToast(on:
+//                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+//            })
+//        }
+//    }
+    
+  
+    //MARK:- Search bar logic
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.contactsWithSections.removeAll()
+        self.sectionTitles.removeAll()
+            self.arrMemberList.removeAll()
+            self.pageNo = 1
+            self.appDelegate.memberDictSearchText = searchBar.text ?? ""
+            strSearch = memberSearchBar.text ?? ""
+            if (isFrom == "Registration"){
+                self.getMemberSpouseList(searchWithString: (strSearch))
+            }
+            else if (isFrom == "BuddyList"){
+                self.getBuddyList(searchWithString: (strSearch))
+            }else if type == "MyBuddies"{
+                 self.getBuddyList(searchWithString: (strSearch))
+            }
+            else{
+            self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+            }
+            self.scrollToFirstRow()
+            self.tblMemberDirectory.reloadData()
+            NotificationCenter.default.post(name: NSNotification.Name("searchData"), object: nil, userInfo:nil )
+
+            searchBar.resignFirstResponder()
+
+        
+        
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        
+        if searchText.count == 0 {
+            self.contactsWithSections.removeAll()
+            self.sectionTitles.removeAll()
+            self.arrMemberList.removeAll()
+            self.pageNo = 1
+            self.appDelegate.memberDictSearchText = searchBar.text ?? ""
+            strSearch = memberSearchBar.text ?? ""
+            
+            if (isFrom == "Registration"){
+                self.getMemberSpouseList(searchWithString: (strSearch))
+            }
+            else if (isFrom == "BuddyList"){
+                self.getBuddyList(searchWithString: (strSearch))
+            }
+            else if type == "MyBuddies"{
+                self.getBuddyList(searchWithString: (strSearch))
+            }
+            else{
+                self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+            }
+            self.tblMemberDirectory.reloadData()
+            self.scrollToFirstRow()
+            searchBar.resignFirstResponder()
+        }
+        NotificationCenter.default.post(name: NSNotification.Name("searchData"), object: nil, userInfo:nil )
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func loadMoreClicked(_ sender: Any) {
+        
+        
+        self.pageNo=self.pageNo+1
+        self.limit=self.limit+10
+        self.offset=self.limit * self.pageNo
+        if (isFrom == "Registration"){
+            self.getMemberSpouseList(searchWithString: (strSearch))
+        }
+        else if (isFrom == "BuddyList") || (type == "MyBuddies"){
+            self.getBuddyList(searchWithString: (strSearch))
+        }
+        else{
+            self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+        }
+    }
+    
+    
+    
+//    Mark- Pagination Logic
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        // print("scrollViewDidEndDecelerating")
+    }
+    //Pagination
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if isFromDashBoard == true && type == "Member"{
+            
+        }else{
+        if !decelerate {
+            //didEndDecelerating will be called for sure
+            return
+        }
+        else {
+            if ((tblMemberDirectory.contentOffset.y + tblMemberDirectory.frame.size.height) >= tblMemberDirectory.contentSize.height)
+            {
+                if filterTapped == "Yes"{
+
+                }else{
+                if !isDataLoading{
+                    isDataLoading = true
+                    self.pageNo=self.pageNo+1
+                    self.limit=self.limit+10
+                    self.offset=self.limit * self.pageNo
+                    if (isFrom == "Registration"){
+                        self.getMemberSpouseList(searchWithString: (strSearch))
+                    }
+                    else if (isFrom == "BuddyList") || (type == "MyBuddies"){
+                        self.getBuddyList(searchWithString: (strSearch))
+                    }
+                    else{
+                        self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+                    }
+                }
+            }
+            }
+        }
+        }
+
+
+
+
+
+    }
+    
+    //Mark- Common Color Code
+    func setColorCode()
+    {
+        self.view.backgroundColor = APPColor.viewBackgroundColor.viewbg
+        
+        
+    }
+    
+    //MARK:- verify url exist or not
+    func verifyUrl(urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = URL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url)
+            }
+        }
+        return false
+    }
+  
+    func initController()
+    {
+        self.memDictSearchbar = UISearchBar()
+        filter = "All"
+//        if(self.appDelegate.strFilterSting == nil ||  self.appDelegate.strFilterSting.count == 0 ){
+//            self.appDelegate.strFilterSting = "All"
+//        }
+        
+        self.appDelegate.strFilterSting = "All"
+        btnAdd.backgroundColor = .clear
+        btnAdd.layer.cornerRadius = 18
+        btnAdd.layer.borderWidth = 1
+        btnAdd.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+        
+        
+        btnLoadMore.backgroundColor = .clear
+        btnLoadMore.layer.cornerRadius = 18
+        btnLoadMore.layer.borderWidth = 1
+        btnLoadMore.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+
+        btnCancel.backgroundColor = .clear
+        btnCancel.layer.cornerRadius = 18
+        btnCancel.layer.borderWidth = 1
+        btnCancel.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+
+        btnAddToBuddies.backgroundColor = .clear
+        btnAddToBuddies.layer.cornerRadius = 22
+        btnAddToBuddies.layer.borderWidth = 1
+        btnAddToBuddies.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+
+        self.pageNo = 1
+        self.appDelegate.memberDictSearchText = ""
+        if (isFrom == "Registration"){
+            self.getMemberSpouseList(searchWithString: (strSearch))
+        }
+        else if (isFrom == "BuddyList"){
+            eventCategory = self.categoryForBuddy
+            self.getBuddyList(searchWithString: (strSearch))
+
+        }
+        else{
+        }
+        
+        self.tblMemberDirectory.separatorInset = .zero
+        self.tblMemberDirectory.layoutMargins = .zero
+        self.tblMemberDirectory.rowHeight = 68
+        self.tblMemberDirectory.separatorColor = APPColor.celldividercolor.divider
+        
+//        //search icons
+//        self.rightSearchbarButton = UIBarButtonItem(image: UIImage(named: "Icon_SearchNavBar"), style: .plain, target: self, action: #selector(searchBarButtonPressed))
+//        self.navigationItem.rightBarButtonItem = self.rightSearchbarButton
+//        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(self.bextButtonPressedfromOtherViewController) , name:Notification.Name("NotificationIdentifier") , object: nil)
+        
+    }
+    @objc func onTapHome() {
+        
+        self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+    
+    
+    @objc func bextButtonPressedfromOtherViewController(notification: NSNotification){
+        
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        guard (notification.userInfo?["SelectedItems"] as? String) != nil else { return }
+        let list = self.appDelegate.arrSelectedTagg.joined(separator: ",")
+        filter = list
+        self.pageNo = 1
+        self.appDelegate.strFilterSting = list
+        self.arrMemberList.removeAll()
+        
+        if (isFrom == "Registration"){
+            self.getMemberSpouseList(searchWithString: (strSearch))
+        }
+        else if (isFrom == "BuddyList"){
+            self.getBuddyList(searchWithString: (strSearch))
+        }
+        else{
+            self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+        }
+        
+    }
+    
+    
+    //MARK:- Set cardview
+    func setCardView(view : UIView){
+        
+        view.layer.masksToBounds = false
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.cornerRadius = 1;
+        view.layer.shadowRadius = 2;
+        view.layer.shadowOpacity = 0.5;
+        
+    }
+  
+    //MARK:- Member Directory Api
+    func getMemberDirectory(withFilter: String,searchWithString: String){
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        
+        if isFrom == "TeeTimes"{
+            Category = "Golf"
+        }
+        else if isFrom == "CourtTimes"{
+            Category = "Tennis"
+        }
+        else{
+            Category = ""
+        }
+
+        if (Network.reachability?.isReachable) == true{
+            
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kinterest: self.appDelegate.strFilterSting,
+                APIKeys.kpagecount:self.pageNo,
+                APIKeys.krecordperpage:25,
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+                APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+                APIKeys.ksearchby : searchWithString,
+                APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                APIKeys.kCategory: Category ?? "",
+                "SearchChar": selectedAlphabet ?? "All"
+            ]
+            print(paramaterDict)
+            APIHandler.sharedInstance.getMemberList(paramaterDict: paramaterDict, onSuccess: { memberLists in
+                self.appDelegate.hideIndicator()
+                
+                if(memberLists.responseCode == InternetMessge.kSuccess)
+                {
+                    
+                    if(memberLists.memberList == nil){
+                        self.appDelegate.hideIndicator()
+                        
+
+                        self.tblMemberDirectory.setEmptyMessage(InternetMessge.kNoData)
+                    }
+                    else{
+                        if self.filterTapped == "Yes"{
+                            self.arrMemberList.removeAll()
+
+                        }
+                      //  self.arrMemberList.removeAll()
+
+                        for membberInfo in memberLists.memberList!{
+                            self.arrMemberList.append(membberInfo)
+                        }
+                        
+                        let (arrContacts, arrTitles) = self.collation.partitionObjects(array: self.arrMemberList, collationStringSelector: #selector(getter: MemberInfo.lastName))
+                        if self.isFromDashBoard == true{
+                            
+                            self.btnLoadMore.isHidden = false
+                        }else{
+                            self.btnLoadMore.isHidden = true
+                       }
+                        if memberLists.isLoadMore == 0{
+                            self.btnLoadMore.isHidden = true
+                            
+                        }else{
+                            self.btnLoadMore.isHidden = false
+                        }
+                        self.contactsWithSections = arrContacts as! [[MemberInfo]]
+                       
+                        self.sectionTitles = arrTitles
+                        
+                        if(arrTitles.count == 0)
+                        {
+                           self.tblMemberDirectory.setEmptyMessage(InternetMessge.kNoData)
+                            self.btnLoadMore.isHidden = true
+                        }
+                        else{
+                            self.tblMemberDirectory.restore()
+                        }
+                            
+                        
+                        
+                        if(self.tblMemberDirectory == nil)
+                        {
+                            self.tblMemberDirectory.reloadData()
+                            
+                        }else{
+                            if(self.appDelegate.strFilterSting == "All" || self.strSearch == "")
+                            {
+                                  self.tblMemberDirectory.reloadData()
+
+                            }
+                            else{
+                                
+                            
+                            self.tblMemberDirectory.reloadData()
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                }else{
+                    self.appDelegate.hideIndicator()
+                    if(((memberLists.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: memberLists.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                }
+            },onFailure: { error  in
+                self.appDelegate.hideIndicator()
+                print(error)
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+            
+            
+        }else{
+            
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+            
+        }
+        
+    }
+    
+    //MARK:- Member Spouse Api
+    func getMemberSpouseList(searchWithString: String){
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        
+        if (Network.reachability?.isReachable) == true{
+            
+            
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kpagecount:self.pageNo,
+                APIKeys.krecordperpage:100,
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+                APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+                APIKeys.ksearchby : searchWithString,
+                APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict]
+            ]
+            
+            print("memberdict \(paramaterDict)")
+            APIHandler.sharedInstance.getMemberSpouseList(paramaterDict: paramaterDict, onSuccess: { memberLists in
+                self.appDelegate.hideIndicator()
+                
+                
+                if(memberLists.responseCode == InternetMessge.kSuccess)
+                {
+                    
+                    if(memberLists.memberList == nil){
+                        self.appDelegate.hideIndicator()
+                        self.tblMemberDirectory.setEmptyMessage(InternetMessge.kNoData)
+                    }
+                    else{
+                        // self.arrMemberList.removeAll()
+                        for membberInfo in memberLists.memberList!{
+                            self.arrMemberList.append(membberInfo)
+                        }
+                        
+                     //   if MemberInfo
+                        let (arrContacts, arrTitles) = self.collation.partitionObjects(array: self.arrMemberList, collationStringSelector: #selector(getter: MemberInfo.lastName))
+                        
+                        self.contactsWithSections = arrContacts as! [[MemberInfo]]
+                        self.sectionTitles = arrTitles
+                        
+                        if(arrTitles.count == 0)
+                        {
+                            self.tblMemberDirectory.setEmptyMessage(InternetMessge.kNoData)
+                        }
+                        else{
+                            self.tblMemberDirectory.restore()
+                        }
+                        
+                        if(self.tblMemberDirectory == nil)
+                        {
+                            self.tblMemberDirectory.reloadData()
+                            
+                        }else{
+                            if(self.appDelegate.strFilterSting == "All" || self.strSearch == "")
+                            {
+                                self.tblMemberDirectory.reloadData()
+                            }
+                            else{
+                                
+                                self.tblMemberDirectory.reloadData()
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                }else{
+                    self.appDelegate.hideIndicator()
+                    if(((memberLists.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: memberLists.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                }
+            },onFailure: { error  in
+                self.appDelegate.hideIndicator()
+                print(error)
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+            
+            
+        }else{
+            
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+            
+        }
+        
+    }
+    
+    //MARK:-  Get Buddy List Api
+    func getBuddyList(searchWithString: String){
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        
+        if (Network.reachability?.isReachable) == true{
+            
+            
+            for i in 0 ..< self.arrEventCategory.count {
+                let statementData = self.arrEventCategory[i]
+                if statementData.categoryName == eventCategory {
+                    self.segmentedController.selectedSegmentIndex = i
+                }
+            }
+            
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+             let paramaterDict:[String: Any]
+                 paramaterDict = [
+                    "Content-Type":"application/json",
+                    APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+                    APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+                    "FirstNameFilter" : "",
+                    "LastNameFilter" : "",
+                    APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+                    APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                    "Category" : eventCategory ?? "",
+                    "Action" : self.registerType ?? "",
+                    APIKeys.ksearchby : searchWithString
+                ]
+            print(paramaterDict)
+            
+            APIHandler.sharedInstance.getBuddyList(paramaterDict: paramaterDict, onSuccess: { memberLists in
+               // self.appDelegate.hideIndicator()
+                
+                if(memberLists.responseCode == InternetMessge.kSuccess)
+                {
+                    if(memberLists.memberList == nil){
+                        self.appDelegate.hideIndicator()
+                        self.tblMemberDirectory.setEmptyMessage(InternetMessge.kNoData)
+                    }
+                    else{
+                        self.arrMemberList.removeAll()
+                        for membberInfo in memberLists.memberList!{
+                            self.arrMemberList.append(membberInfo)
+                            self.appDelegate.hideIndicator()
+                        }
+                        //   if MemberInfo
+                        let (arrContacts, arrTitles) = self.collation.partitionObjects(array: self.arrMemberList, collationStringSelector: #selector(getter: MemberInfo.lastName))
+                        
+                        self.contactsWithSections = arrContacts as! [[MemberInfo]]
+                        self.sectionTitles = arrTitles
+                        
+                        
+                        
+                        if(arrTitles.count == 0)
+                        {
+                            self.tblMemberDirectory.setEmptyMessage(InternetMessge.kNoData)
+                            self.appDelegate.hideIndicator()
+                        }
+                        else{
+                            self.tblMemberDirectory.restore()
+                        }
+                        if(self.tblMemberDirectory == nil)
+                        {
+                            self.tblMemberDirectory.reloadData()
+                            
+                        }else{
+                            if(self.appDelegate.strFilterSting == "All" || self.strSearch == "")
+                            {
+                                self.tblMemberDirectory.reloadData()
+
+                            }
+                            else{
+                                
+                                self.tblMemberDirectory.reloadData()
+                            }
+                        }
+                    }
+                }else{
+                    self.appDelegate.hideIndicator()
+                    if(((memberLists.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: memberLists.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                }
+            }) { error  in
+                self.appDelegate.hideIndicator()
+                print(error)
+            }
+        }else{
+            
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contact = contactsWithSections[indexPath.section][indexPath.row]
+        if(isOnlyFor == "DiningRequest") {
+            if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC {
+                
+                regGuest.SelectedMemberInfo = [contactsWithSections[indexPath.section][indexPath.row]]
+                regGuest.selectedData = String(format: "%@, %@", contactsWithSections[indexPath.section][indexPath.row].lastName!, contactsWithSections[indexPath.section][indexPath.row].firstName!)
+                regGuest.delegateAddMember = self.delegate as? AddMemberDelegate
+                if(isFrom == "BuddyList"){
+                    
+                }
+                else{
+                    regGuest.isAddToBuddy = self.isAddToBuddy
+                }
+                regGuest.type = contactsWithSections[indexPath.section][indexPath.row].buddyType
+                if contactsWithSections[indexPath.section][indexPath.row].buddyType == "Guest"{
+                    
+                    regGuest.guestName = contactsWithSections[indexPath.section][indexPath.row].guestName
+                    regGuest.guestEmail = contactsWithSections[indexPath.section][indexPath.row].guestEmail
+                    regGuest.guestContact = contactsWithSections[indexPath.section][indexPath.row].guestContact
+                    regGuest.guetType = contactsWithSections[indexPath.section][indexPath.row].guestType
+                    
+                }else {
+                    
+                    regGuest.memberID = contactsWithSections[indexPath.section][indexPath.row].memberID
+                    regGuest.iD = contactsWithSections[indexPath.section][indexPath.row].id
+                    regGuest.parentID = contactsWithSections[indexPath.section][indexPath.row].parentid
+                    regGuest.memberName = String(format: "%@, %@", contactsWithSections[indexPath.section][indexPath.row].lastName!, contactsWithSections[indexPath.section][indexPath.row].firstName!)
+                }
+                self.appDelegate.categoryForBuddy = self.categoryForBuddy ?? ""
+                
+                regGuest.forDiningEvent = self.forDiningEvent
+                navigationController?.pushViewController(regGuest, animated: true)
+            }
+        }
+        else if (isFrom == "Registration") || (isFrom == "BuddyList"){
+            
+            if self.isFor == "OnlyMembers"{
+                selectedRow = indexPath.row
+                selectedSection = indexPath.section
+                
+            }else{
+                if (contactsWithSections[indexPath.section][indexPath.row].isSpouse == 1 && self.showGuest == 0 && self.showKids == 0) {
+                    selectedRow = indexPath.row
+                    selectedSection = indexPath.section
+                    showSpouse = 1
+                
+                    self.bottomView.isHidden = false
+                    self.bottomViewHeight.constant = 78
+                }else{
+                    self.bottomView.isHidden = true
+                    self.bottomViewHeight.constant = 0
+
+            if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GuestOrChildrenVC") as? GuestOrChildrenVC {
+                
+                regGuest.totalNumberofTickets = self.totalNumberofTickets
+                regGuest.delegateGuestChildren = delegate as? AddGuestChildren
+                regGuest.memberID = contactsWithSections[indexPath.section][indexPath.row].memberID
+                regGuest.iD = contactsWithSections[indexPath.section][indexPath.row].id
+                regGuest.parentID = contactsWithSections[indexPath.section][indexPath.row].parentid
+                regGuest.isSpousePresent = self.showSpouse
+                regGuest.showGuest = self.showGuest
+                regGuest.showKids = self.showKids
+                regGuest.categoryForBuddy = self.categoryForBuddy
+                regGuest.isAddToBuddy = self.isAddToBuddy
+                regGuest.eventRegId = self.eventRegId
+                if isFrom == "BuddyList"{
+                    regGuest.isFrom = "BuddyList"
+                }else{
+                    regGuest.isFrom = ""
+                }
+                regGuest.memberName = String(format: "%@, %@", contactsWithSections[indexPath.section][indexPath.row].lastName!, contactsWithSections[indexPath.section][indexPath.row].firstName!)
+
+                
+                regGuest.isSpousePresent = contactsWithSections[indexPath.section][indexPath.row].isSpouse
+                   
+                
+                navigationController?.pushViewController(regGuest, animated: true)
+            }
+                }
+                
+            }
+        }
+            
+        else{
+            if  (type == "MyBuddies"){
+                
+                
+                
+                 self.appDelegate.typeOfCalendar = eventCategory ?? ""
+                
+                if(self.appDelegate.typeOfCalendar == "Tennis"){
+                    
+                    eventCategoryForActionSheet = self.appDelegate.masterLabeling.upcoming_court_times
+                }
+                else if(self.appDelegate.typeOfCalendar == "Dining"){
+                    
+                    eventCategoryForActionSheet = self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION
+                    
+                }
+                else if(self.appDelegate.typeOfCalendar == "Golf"){
+                    
+                    eventCategoryForActionSheet = self.appDelegate.masterLabeling.upcoming_teetimes
+                    
+                }else{
+                    eventCategoryForActionSheet = ""
+                }
+                
+                categoryType = ""
+                categoryType2 = ""
+                categoryType3 = ""
+
+                if contact.categories?.count == 1 {
+                        if(contact.categories?[0].category?.lowercased() == "tennis"){
+                            
+                            categoryType3 = self.appDelegate.masterLabeling.upcoming_court_times
+                        }
+                        else if(contact.categories?[0].category?.lowercased() == "dining"){
+                            
+                            categoryType3 = self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION
+
+                        }
+                        else if(contact.categories?[0].category?.lowercased() == "golf"){
+                            
+                            categoryType3 = self.appDelegate.masterLabeling.upcoming_teetimes
+
+                        }
+                    
+                    categoryType = ""
+                    categoryType2 = ""
+
+                }
+                if contact.categories?.count == 2 {
+                        if (contact.categories?[0].category?.lowercased() == "tennis" && contact.categories?[1].category?.lowercased() == "golf") || (contact.categories?[1].category?.lowercased() == "tennis" && contact.categories?[0].category?.lowercased() == "golf"){
+                            
+                            categoryType3 = self.appDelegate.masterLabeling.upcoming_court_times
+                            categoryType = self.appDelegate.masterLabeling.upcoming_teetimes
+                        }
+                        else if (contact.categories?[0].category?.lowercased() == "dining" && contact.categories?[1].category?.lowercased() == "tennis") || (contact.categories?[1].category?.lowercased() == "dining" && contact.categories?[0].category?.lowercased() == "tennis") {
+                            
+                            categoryType3 = self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION
+                            categoryType = self.appDelegate.masterLabeling.upcoming_court_times
+
+                        }
+                        else if(contact.categories?[0].category?.lowercased() == "golf" && contact.categories?[1].category?.lowercased() == "dining") || (contact.categories?[1].category?.lowercased() == "golf" && contact.categories?[0].category?.lowercased() == "dining"){
+                            
+                            categoryType3 = self.appDelegate.masterLabeling.upcoming_teetimes
+                            categoryType = self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION
+
+                        }
+                    
+                    categoryType2 = ""
+
+                }
+                 if contact.categories?.count == 3 {
+                    categoryType3 = self.appDelegate.masterLabeling.upcoming_teetimes
+                    categoryType = self.appDelegate.masterLabeling.upcoming_court_times
+                    categoryType2 = self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION
+
+                }
+                
+                let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                actionSheet.view.tintColor = hexStringToUIColor(hex: "40B2E6")
+                
+                let profileView = UIAlertAction(title: self.appDelegate.masterLabeling.pROFILE,
+                                                style: .default) { (action) in
+                                                    
+                                                    if let profile = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "MyBuddiesProfileVC") as? MyBuddiesProfileVC {
+                                                        profile.modalTransitionStyle   = .crossDissolve;
+                                                        profile.modalPresentationStyle = .overCurrentContext
+                                                        
+                                                        profile.memberType = contact.buddyType ?? ""
+                                                        profile.buddyListID = contact.buddyListID ?? ""
+
+                                                        profile.selectedMemberId = contact.memberID ?? ""
+                                                        profile.iD = contact.id ?? ""
+                                                        profile.parentId = contact.parentid ?? ""
+                                                        
+                                                        self.present(profile, animated: true, completion: nil)
+                                                    }
+                                                    
+                }
+                let upComingAll = UIAlertAction(title: eventCategoryForActionSheet,
+                                                     style: .default) { (action) in
+                                                        
+                                                        if let profile = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "UpcomingTeeTimesVC") as? UpcomingTeeTimesVC {
+                                                            profile.modalTransitionStyle   = .crossDissolve;
+                                                            profile.modalPresentationStyle = .overCurrentContext
+                                                            profile.memberType = contact.buddyType ?? ""
+                                                            profile.memberID = contact.id ?? ""
+                                                            profile.title = self.eventCategoryForActionSheet
+                            
+                                                            self.present(profile, animated: true, completion: nil)
+                                                        }
+                                                        
+                }
+                let upComingTeeTimes = UIAlertAction(title: categoryType3,
+                                                     style: .default) { (action) in
+                                                        
+                                                        if let profile = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "UpcomingTeeTimesVC") as? UpcomingTeeTimesVC {
+                                                            profile.modalTransitionStyle   = .crossDissolve;
+                                                            profile.modalPresentationStyle = .overCurrentContext
+                                                            profile.memberType = contact.buddyType ?? ""
+                                                            profile.memberID = contact.id ?? ""
+                                                            profile.title = self.categoryType3
+                                                            if self.categoryType3 == self.appDelegate.masterLabeling.upcoming_teetimes{
+                                                                self.appDelegate.typeOfCalendar = "Golf"
+                                                            }else if self.categoryType3 == self.appDelegate.masterLabeling.upcoming_court_times{
+                                                                self.appDelegate.typeOfCalendar = "Tennis"
+                                                            }else{
+                                                                    self.appDelegate.typeOfCalendar = "Dining"
+                                                            }
+                                                            self.present(profile, animated: true, completion: nil)
+                                                        }
+                                                        
+                }
+                let upComingTennis = UIAlertAction(title: categoryType,
+                                                     style: .default) { (action) in
+
+                                                        if let profile = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "UpcomingTeeTimesVC") as? UpcomingTeeTimesVC {
+                                                            profile.modalTransitionStyle   = .crossDissolve;
+                                                            profile.modalPresentationStyle = .overCurrentContext
+                                                            profile.memberType = contact.buddyType ?? ""
+                                                            profile.memberID = contact.id ?? ""
+                                                            profile.title = self.categoryType ?? ""
+                                                            if self.categoryType == self.appDelegate.masterLabeling.upcoming_teetimes{
+                                                                self.appDelegate.typeOfCalendar = "Golf"
+                                                            }else if self.categoryType == self.appDelegate.masterLabeling.upcoming_court_times{
+                                                                self.appDelegate.typeOfCalendar = "Tennis"
+                                                            }else if self.categoryType == self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION{
+                                                                self.appDelegate.typeOfCalendar = "Dining"
+                                                            }
+                                                            self.present(profile, animated: true, completion: nil)
+                                                        }
+
+                }
+                let upComingDining = UIAlertAction(title: categoryType2,
+                                                      style: .default) { (action) in
+
+                                                        if let profile = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "UpcomingTeeTimesVC") as? UpcomingTeeTimesVC {
+                                                            profile.modalTransitionStyle   = .crossDissolve;
+                                                            profile.modalPresentationStyle = .overCurrentContext
+                                                            profile.memberType = contact.buddyType ?? ""
+                                                            profile.memberID = contact.id ?? ""
+                                                            profile.title = self.categoryType2 ?? ""
+                                                            if self.categoryType2 == self.appDelegate.masterLabeling.upcoming_teetimes{
+                                                                self.appDelegate.typeOfCalendar = "Golf"
+                                                            }else if self.categoryType2 == self.appDelegate.masterLabeling.upcoming_court_times{
+                                                                self.appDelegate.typeOfCalendar = "Tennis"
+                                                            }else if self.categoryType2 == self.appDelegate.masterLabeling.uPCOMING_DINING_RESERVATION{
+                                                                self.appDelegate.typeOfCalendar = "Dining"
+                                                            }
+                                                            self.present(profile, animated: true, completion: nil)
+                                                        }
+
+                }
+                let removeFromBuddyList = UIAlertAction(title: self.appDelegate.masterLabeling.remove_from_mybuddylist,
+                                                        style: .default) { (action) in
+                                                            
+                                                            if let removeFromBuddyList = UIStoryboard.init(name: "GuestCard", bundle: .main).instantiateViewController(withIdentifier: "CancelPopUpViewController") as? CancelPopUpViewController {
+                                                                removeFromBuddyList.isFrom = "MemberRemoveBuddy"
+                                                                removeFromBuddyList.parentID = contact.parentid ?? ""
+                                                                removeFromBuddyList.memberID = contact.memberID ?? ""
+                                                                removeFromBuddyList.ID = contact.id ?? ""
+                                                                removeFromBuddyList.guestID = contact.buddyListID ?? ""
+                                                                self.navigationController?.pushViewController(removeFromBuddyList, animated: true)
+                                                            }
+                                                            
+                }
+                let cancelAction = UIAlertAction(title: "Cancel",
+                                                 style: .cancel,
+                                                 handler: nil)
+                actionSheet.addAction(profileView)
+                
+                if contact.categories?.count == 3 {
+                    actionSheet.addAction(upComingTeeTimes)
+                    actionSheet.addAction(upComingTennis)
+
+                    actionSheet.addAction(upComingDining)
+
+
+                }else if contact.categories?.count == 2 {
+                    actionSheet.addAction(upComingTeeTimes)
+                    actionSheet.addAction(upComingTennis)
+
+                    
+                }else if contact.categories?.count == 1 {
+                    
+                    if self.appDelegate.typeOfCalendar.lowercased() == "tennis" || self.appDelegate.typeOfCalendar.lowercased() == "dining" || self.appDelegate.typeOfCalendar.lowercased() == "golf" {
+                        actionSheet.addAction(upComingAll)
+
+                    }else{
+                    
+                    actionSheet.addAction(upComingTeeTimes)
+                    }
+                    
+                }else if contact.categories?.count == 0 {
+                   // actionSheet.addAction(upComingAll)
+
+                    
+                }else if contact.buddyType?.lowercased() == "guest"{
+                    
+                }
+                 
+                else{
+                actionSheet.addAction(upComingAll)
+                }
+
+                actionSheet.addAction(removeFromBuddyList)
+
+
+                actionSheet.addAction(cancelAction)
+                
+                present(actionSheet, animated: true, completion: nil)
+            }
+            self.tblMemberDirectory.reloadData()
+        let transactionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemberDirectoryDetailsViewController") as! MemberDirectoryDetailsViewController
+        transactionVC.selectedMemberId = contact.memberID ?? ""
+        transactionVC.iD = contact.id ?? ""
+        transactionVC.parentId = contact.parentid ?? ""
+        
+        self.navigationController?.pushViewController(transactionVC, animated: true)
+        
+        }
+        
+       
+    }
+    
+    @IBAction func addClicked(_ sender: Any) {
+      
+        if (selectedSection == -1){
+            SharedUtlity.sharedHelper().showToast(on:
+            self.view, withMeassge: self.appDelegate.masterLabeling.please_select_Member, withDuration: Duration.kMediumDuration)
+        }
+        else{
+            if(isAddToBuddy == 1){
+                if(isFrom == "BuddyList"){
+                    
+                }
+                else{
+                self.AddtoBuddyList()
+                }
+            }
+            else{
+        
+            }
+            
+            if(isOnlyFor == "DiningRequest"){
+                if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC {
+                   
+                    regGuest.SelectedMemberInfo = [contactsWithSections[selectedSection][selectedRow]]
+                    regGuest.delegateAddMember = self.delegate as? AddMemberDelegate
+                    navigationController?.pushViewController(regGuest, animated: true)
+                }
+            }
+            else if showSpouse == 1{
+                let guestChildrenInfo = GuestChildren.init()
+                let memberData = contactsWithSections[selectedSection][selectedRow]
+                guestChildrenInfo.setGuestChildrenInfo(MemberId: memberData.memberID ?? "", Name: memberData.memberName ?? "", id: memberData.id ?? "", parentId: memberData.parentid ?? "", guest: 0, kid3Above: 0, kids3Below: 0, isInclude: 1, isSpouse: showSpouse ?? 0)
+                delegateGuestChildren?.AddGuestChildren(selecteArray: [guestChildrenInfo])
+                
+                for controller in self.navigationController!.viewControllers as Array {
+                    
+                    if controller.isKind(of: RegisterEventVC.self) {
+                        // delegateGuestChildren?.AddGuestChildren(selecteArray: [guestChildrenInfo])
+                        
+                        self.navigationController!.popToViewController(controller, animated: true)
+                        break
+                    }
+                    
+                    
+                }
+            }
+            else if (isOnlyFrom == "RegistrationCourt" || isOnlyFrom == "BuddyListCourt" || isOnlyFrom == "GolfCourt") {
+                
+                let guestInfo = GuestInfo.init()
+                let guestDetails = contactsWithSections[selectedSection][selectedRow]
+                if guestDetails.buddyType == "Guest" {
+                    guestInfo.setGuestDetails(name: guestDetails.guestName ?? "" , type: guestDetails.guestType ?? "", phone: guestDetails.guestContact ?? "", primaryemail: guestDetails.guestEmail ?? "", highChair: 0, booster: 0, dietary: "", addGuestAsBuddy: isAddToBuddy!, otherNo: 0 , otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0)
+                    delegate?.requestMemberViewControllerResponse(selecteArray: [guestInfo])
+
+                }else{
+                    delegate?.requestMemberViewControllerResponse(selecteArray: [contactsWithSections[selectedSection][selectedRow]])
+
+                }
+                self.navigationController?.popViewController(animated: true)
+
+            } else{
+           // delegate?.memberViewControllerResponse(selecteArray: [contactsWithSections[selectedSection][selectedRow]])
+                delegate?.requestMemberViewControllerResponse(selecteArray: [contactsWithSections[selectedSection][selectedRow]])
+
+                self.navigationController?.popViewController(animated: true)
+
+            }
+        }
+    }
+    @IBAction func cancelClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+
+    }
+    @IBAction func addToBuddiesClicked(_ sender: Any) {
+        
+        
+        if let button = sender as? UIButton {
+            
+            if button.isSelected {
+                button.isSelected = false
+                btnAddToBuddies.setImage(UIImage(named:"Group 2130"), for: UIControlState.normal)
+                isAddToBuddy = 1
+                
+            } else {
+                
+                btnAddToBuddies.setImage(UIImage(named:"CheckBox_uncheck"), for: UIControlState.normal)
+                isAddToBuddy = 0
+
+                button.isSelected = true
+            }
+        }
+        
+        
+            
+        
+    }
+    
+    //MARK:- AddToBuddy List Api
+    func AddtoBuddyList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            
+            let buddyInfo:[String: Any] = [
+                APIKeys.kMemberId : contactsWithSections[selectedSection][selectedRow].memberID ?? "",
+                APIKeys.kid :  contactsWithSections[selectedSection][selectedRow].id ?? "",
+                APIKeys.kParentId : contactsWithSections[selectedSection][selectedRow].parentid ?? "",
+                "Category": self.categoryForBuddy ?? ""
+            ]
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+                APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+                APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+                "AddBuddy" : buddyInfo,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict]
+            ]
+            
+            print("memberdict \(paramaterDict)")
+            APIHandler.sharedInstance.addToBuddyList(paramaterDict: paramaterDict, onSuccess: { memberLists in
+                self.appDelegate.hideIndicator()
+                
+                
+                if(memberLists.responseCode == InternetMessge.kSuccess)
+                {
+                    self.appDelegate.hideIndicator()
+                    
+                    
+                }else{
+                    self.appDelegate.hideIndicator()
+                    if(((memberLists.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: memberLists.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                }
+            },onFailure: { error  in
+                self.appDelegate.hideIndicator()
+                print(error)
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+            
+            
+        }else{
+            
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+
+        
+//        self.getAuthToken()
+        
+        UIApplication.shared.isStatusBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationController?.navigationBar.isHidden = false
+        //navigation item labelcolor
+        let textAttributes = [NSAttributedStringKey.foregroundColor:APPColor.navigationColor.navigationitemcolor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        
+        
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        if(isFrom == "Registration") || (isFrom == "BuddyList"){
+
+        }
+        else{
+            self.isAppAlreadyLaunchedOnce()
+
+        }
+        
+        if (isFrom == "Registration") && isOnlyFor == "DiningRequest"{
+            self.boardOfDirectors.backgroundColor = UIColor.white
+            self.boardofDireViewHight.constant = 74
+            self.btnAddToBuddies.isHidden = false
+            self.btnBoardOfGoverners.isHidden = true
+            self.btnAddToBuddies.setTitle(appDelegate.masterLabeling.add_to_buddylist, for: UIControlState.normal)
+            // self.btnAddToBuddies.setImage(UIImage(named: "CheckBox_uncheck"), for: UIControlState.normal)
+            
+            self.bottomView.isHidden = true
+            self.bottomViewHeight.constant = 0
+            self.heightSectionsView.constant = 0
+            self.viewSections.isHidden = true
+
+            self.navigationItem.title = appDelegate.masterLabeling.add_member
+            let homeBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Path 398"), style: .plain, target: self, action: #selector(onTapHome))
+            navigationItem.rightBarButtonItem = homeBarButton
+        }
+            
+        else if (isFrom == "Registration")  {
+            self.boardOfDirectors.backgroundColor = UIColor.white
+            self.boardofDireViewHight.constant = 74
+            self.btnAddToBuddies.isHidden = false
+            self.btnBoardOfGoverners.isHidden = true
+            self.btnAddToBuddies.setTitle(appDelegate.masterLabeling.add_to_buddylist, for: UIControlState.normal)
+            // self.btnAddToBuddies.setImage(UIImage(named: "CheckBox_uncheck"), for: UIControlState.normal)
+            if self.isFor == "OnlyMembers"{
+                self.bottomView.isHidden = false
+                self.bottomViewHeight.constant = 78
+                
+            }else{
+            self.bottomView.isHidden = true
+            self.bottomViewHeight.constant = 0
+            }
+            self.heightSectionsView.constant = 0
+            
+            self.viewSections.isHidden = true
+            
+            self.navigationItem.title = appDelegate.masterLabeling.add_member
+            let homeBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Path 398"), style: .plain, target: self, action: #selector(onTapHome))
+            navigationItem.rightBarButtonItem = homeBarButton
+        }
+        else if (isFrom == "BuddyList") && isOnlyFor == "DiningRequest" {
+            self.boardofDireViewHight.constant = 0
+            self.btnAddToBuddies.isHidden = true
+            self.btnBoardOfGoverners.isHidden = true
+            self.bottomView.isHidden = true
+            self.bottomViewHeight.constant = 0
+            self.heightSectionsView.constant = 0
+            self.viewSections.isHidden = true
+
+            self.navigationItem.title = appDelegate.masterLabeling.add_mybuddy
+            let homeBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Path 398"), style: .plain, target: self, action: #selector(onTapHome))
+            navigationItem.rightBarButtonItem = homeBarButton
+        }
+        else if (isFrom == "BuddyList"){
+            self.boardofDireViewHight.constant = 0
+            self.btnAddToBuddies.isHidden = true
+            self.btnBoardOfGoverners.isHidden = true
+            if self.isFor == "OnlyMembers"{
+                self.bottomView.isHidden = false
+                self.bottomViewHeight.constant = 78
+                
+            }else{
+                self.bottomView.isHidden = true
+                self.bottomViewHeight.constant = 0
+            }
+            self.heightSectionsView.constant = 0
+            self.viewSections.isHidden = true
+            
+            self.navigationItem.title = appDelegate.masterLabeling.add_mybuddy
+            let homeBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Path 398"), style: .plain, target: self, action: #selector(onTapHome))
+            navigationItem.rightBarButtonItem = homeBarButton
+        }
+        else if type == "MyBuddies"{
+            
+            self.getBuddyList(searchWithString: (strSearch))
+            self.navigationItem.title = self.appDelegate.masterLabeling.tT_MEMBER_DIRECTORY
+
+        }
+        else{
+            self.boardOfDirectors.backgroundColor = hexStringToUIColor(hex: "F5F5F5")
+            self.boardofDireViewHight.constant = 47
+            self.btnAddToBuddies.isHidden = true
+            self.btnBoardOfGoverners.isHidden = false
+            self.bottomView.isHidden = true
+            self.bottomViewHeight.constant = 0
+            self.heightSectionsView.constant = 74
+            self.viewSections.isHidden = false
+
+            self.navigationItem.title = self.appDelegate.masterLabeling.tT_MEMBER_DIRECTORY
+            filterBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Filter"), style: .plain, target: self, action: #selector(onTapFilter))
+            navigationItem.rightBarButtonItem = filterBarButtonItem
+            
+        }
+        
+        
+      
+
+    }
+    
+    func isAppAlreadyLaunchedOnce()->Bool{
+        let defaults = UserDefaults.standard
+        
+        if let isAppAlreadyLaunchedOnce = defaults.string(forKey: "isAppAlreadyLaunchedOnceMD"){
+            print("App already launched : \(isAppAlreadyLaunchedOnce)")
+            return true
+        }else{
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnceMD")
+            if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "PopUpForCategoryVC") as? PopUpForCategoryVC {
+                 impVC.isFrom = "MemberDir"
+              
+                impVC.modalTransitionStyle   = .crossDissolve;
+                impVC.modalPresentationStyle = .overCurrentContext
+                self.present(impVC, animated: true, completion: nil)
+            }
+            print("App launched first time")
+            return false
+        }
+    }
+    
+    //MARK:- Member Directory Categories Api
+    func getMemberDirectoryCategoriesApi(strSearch :String) -> Void {
+        
+        
+        if (Network.reachability?.isReachable) == true{
+            
+            arrEventCategory = [ListEventCategory]()
+            self.arrEventCategory.removeAll()
+            
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+                "IsAdmin": "1",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict]
+            ]
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            
+            APIHandler.sharedInstance.getGolfCalendarCategory(paramater: paramaterDict, onSuccess: { categoriesList in
+                self.appDelegate.hideIndicator()
+                if(categoriesList.responseCode == InternetMessge.kSuccess){
+                    self.arrEventCategory.removeAll()
+                    
+                    if(categoriesList.myBuddiesCategory == nil){
+                        self.arrEventCategory.removeAll()
+                        
+                        // self.appDelegate.hideIndicator()
+                    }
+                    else{
+                        self.arrEventCategory.removeAll()
+                        
+                        self.arrEventCategory = categoriesList.myBuddiesCategory!
+                        
+                        self.appDelegate.selectedEventsCategory = self.arrEventCategory[0]
+                        
+                        self.loadsegmentController()
+                        //eventCategory = self.appDelegate.selectedEventsCategory.categoryName! as NSString
+                    }
+                }else{
+                    if(((categoriesList.responseMessage!.count) )>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: categoriesList.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                }
+            },onFailure: { error  in
+                self.appDelegate.hideIndicator()
+                print(error)
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+            
+        }else{
+            
+            //self.tableViewStatement.setEmptyMessage(InternetMessge.kInternet_not_available)
+            
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+        
+    }
+    
+    //MARK:- Tableview methods
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionTitles.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contactsWithSections[section].count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MemberDirectoryTableViewCell") as! MemberDirectoryTableViewCell
+        let contact = contactsWithSections[indexPath.section][indexPath.row]
+       
+        cell.lblMemberName.text = contact.memberName ?? ""
+      
+        cell.lblMemberID.text = contact.memberID ?? ""
+
+        cell.imgMemberprofilepic.layer.cornerRadius = cell.imgMemberprofilepic.frame.size.width/2
+        cell.imgMemberprofilepic.layer.masksToBounds = true
+
+        
+        let placeHolderImage = UIImage(named: "avtar")
+        cell.imgMemberprofilepic.image = placeHolderImage
+        
+        let imageURLString = contact.profilePic ?? ""
+        print(imageURLString)
+        if(imageURLString.count>0){
+            let validUrl = self.verifyUrl(urlString: imageURLString)
+            if(validUrl == true){
+                DispatchQueue.global(qos: .background).async {
+                    do
+                    {
+                        let data = try Data.init(contentsOf: URL.init(string:imageURLString)!)
+                        DispatchQueue.main.async {
+                            let image = UIImage(data: data as Data)
+                            cell.imgMemberprofilepic.image = image
+                        }
+                    }
+                    catch {
+                    }
+                }
+            }
+        }
+   
+        
+        cell.lblMemberName.font = SFont.SourceSansPro_Semibold17
+        cell.lblMemberName.textAlignment = .left
+        cell.lblMemberName.textColor = APPColor.textColor.textNewColor
+        
+        return cell
+    }
+//        arrIndexSection =
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        if isFromDashBoard == true && type == "Member"{
+            return arrEmpty
+        }else{
+        return arrVerticalIndexSection
+        }
+    }
+    func tableView(_ tableView: UITableView,
+                   sectionForSectionIndexTitle title: String,
+                   at index: Int) -> Int{
+        if index > sectionTitles.count {
+
+                if !isDataLoading{
+                    isDataLoading = false
+                    self.pageNo=self.pageNo+1
+                    self.limit=self.limit+10
+                    self.offset=self.limit * self.pageNo
+                    if (isFrom == "Registration"){
+                      self.getMemberSpouseList(searchWithString: (strSearch))
+                    }
+                    else if (isFrom == "BuddyList") || type == "MyBuddies"{
+                        self.getBuddyList(searchWithString: (strSearch))
+                    }
+
+                    else{
+                    self.getMemberDirectory(withFilter: self.appDelegate.strFilterSting,searchWithString: (strSearch ))
+                    }
+                }
+
+        }
+
+
+
+        return index
+    }
+ 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: self.tblMemberDirectory.frame.size.width, height: 24)) //set these values as necessary
+        returnedView.backgroundColor = APPColor.viewBackgroundColor.viewbg
+        returnedView.layer.cornerRadius = 12
+        returnedView.layer.masksToBounds = true
+        
+        let label = UILabel(frame: CGRect(x: 35, y: 0, width: self.tblMemberDirectory.frame.size.width - 32, height: 24))
+        label.textColor = APPColor.solidbgColor.solidbg
+        label.font = SFont.SourceSansPro_Semibold16
+        label.text = sectionTitles[section]
+        
+        returnedView.addSubview(label)
+        
+        return returnedView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        
+        // Gets the header view as a UITableViewHeaderFooterView and changes the text colour
+        var headerView: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        headerView.textLabel?.textColor = APPColor.viewBackgroundColor.viewbg
+        
+        
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        if identifier == "ModalViewController" &&  self.appDelegate.arrRequest.count > 0 { // you define it in the storyboard (click on the segue, then Attributes' inspector > Identifier
+            
+            return true
+        }
+        if (self.searchController == nil){
+        }
+        else{
+            self.searchController.isActive = false
+        }
+        
+        return false
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (self.searchController == nil){
+        }
+        else{
+            self.searchController.isActive = false
+        }
+        
+        super.prepare(for: segue, sender: sender)
+        
+        self.halfModalTransitioningDelegate = HalfModalTransitioningDelegate(viewController: self, presentingViewController: segue.destination)
+        
+        segue.destination.modalPresentationStyle = .custom
+        segue.destination.transitioningDelegate = self.halfModalTransitioningDelegate
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+}
+
+extension UILocalizedIndexedCollation {
+    //func for partition array in sections
+    //func for partition array in sections
+    func partitionObjects(array:[AnyObject], collationStringSelector:Selector) -> ([AnyObject], [String]) {
+        var unsortedSections = [[AnyObject]]()
+        //1. Create a array to hold the data for each section
+        for _ in self.sectionTitles {
+            unsortedSections.append([]) //appending an empty array
+        }
+        //2. Put each objects into a section
+        for item in array {
+            let index:Int = self.section(for: item, collationStringSelector:collationStringSelector)
+            unsortedSections[index].append(item)
+        }
+        //3. sorting the array of each sections
+        var sectionTitles = [String]()
+        var sections = [AnyObject]()
+        for index in 0 ..< unsortedSections.count { if unsortedSections[index].count > 0 {
+            sectionTitles.append(self.sectionTitles[index])
+            sections.append(self.sortedArray(from: unsortedSections[index], collationStringSelector: collationStringSelector) as AnyObject)
+            }
+        }
+        return (sections, sectionTitles)
+    }
+}
+
+
