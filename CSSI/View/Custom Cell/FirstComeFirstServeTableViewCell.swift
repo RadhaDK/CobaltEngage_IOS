@@ -25,6 +25,7 @@ class FirstComeFirstServeTableViewCell: UITableViewCell
     
     private var selectedTimeIndex : IndexPath?
     var scheduleType = ""
+    var slotType = ""
     var selectedSlots: [[String:Any]] = []
     
     override func awakeFromNib() {
@@ -113,11 +114,12 @@ extension FirstComeFirstServeTableViewCell : UICollectionViewDelegate,UICollecti
                 
                 if foundSlotTime.count > 0 {
                     for i in foundSlotTime {
-                        if self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "" == "" {
+                        if self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "" == "" || self.slotType == "Single Tee" {
                             colorHex = APPColor.MainColours.primary2
                         } else {
                             if i["TeeBox"] as! String == self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "" {
                                 colorHex = APPColor.MainColours.primary2
+                                break
                             } else {
                                 colorHex = hexStringToUIColor(hex: "#818181")
                             }
@@ -168,7 +170,8 @@ extension FirstComeFirstServeTableViewCell : UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if scheduleType == "FCFS" {
-            let selectedDict = ["AdapterPositin": indexPath.row, "CourseDetailId": self.timeSlotsDetails.id ?? "", "CourseName": self.timeSlotsDetails.courseName!, "DisplayOrder": self.timeSlotsDetails.displayType ?? 0, "G_StartingHole": self.timeSlotsDetails.timeIntervals?[indexPath.row].startingHole ?? "1", "TeeBox": self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "","Time": self.timeSlotsDetails.timeIntervals?[indexPath.row].time! ?? ""] as [String : Any]
+            let selectedDict = ["AdapterPositin": indexPath.row, "CourseDetailId": self.timeSlotsDetails.id ?? "", "CourseName": self.timeSlotsDetails.courseName!, "DisplayOrder": self.timeSlotsDetails.displayType ?? 0, "G_StartingHole": self.timeSlotsDetails.timeIntervals?[indexPath.row].startingHole ?? "1", "TeeBox": self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "","Time": self.timeSlotsDetails.timeIntervals?[indexPath.row].time! ?? "", "slotType": self.slotType] as [String : Any]
+            
             
             if let slots = delegate?.timeSlotSelected(slotDetails: selectedDict) {
                 self.selectedSlots = slots
