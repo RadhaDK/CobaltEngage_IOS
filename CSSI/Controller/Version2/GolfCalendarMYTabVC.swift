@@ -1221,6 +1221,11 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             }else{
                 cell.lblLocation.text = ""
             }
+            if let teeBox = eventobj.eventTeeBox {
+                if teeBox != "" {
+                    cell.lblEventTime.text = (cell.lblEventTime.text ?? "") + "(\(teeBox))"
+                }
+            }
         }else{
             
             if (self.appDelegate.selectedSegment == "0") && eventobj.eventCategory?.lowercased() == "dining"{
@@ -1242,6 +1247,13 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
             cell.lblLocation.text = eventobj.eventVenue ?? ""
+            if let teeBox = eventobj.eventTeeBox {
+                if teeBox != "" {
+                    cell.lblEventTime.text = (cell.lblEventTime.text ?? "") + "(\(teeBox))"
+                }
+            }
+        }
+        if self.appDelegate.typeOfCalendar == "Golf" {
             
         }
         

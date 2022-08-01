@@ -514,6 +514,13 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             headerView.btnStatus.setTitle(self.arrTeeTimeDetails[0].groupDetails?[section].status ?? "", for: UIControlState.normal)
             }
             headerView.lblGroup.textColor = APPColor.textColor.secondary
+            
+            if let teeBox = self.arrTeeTimeDetails[0].groupDetails?[section].teeBox {
+                if teeBox != "" {
+                    headerView.lblTeeTime.text = (headerView.lblTeeTime.text ?? "") + "(\(teeBox))"
+                }
+            }
+            
           }else if(self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)) {
             if(self.arrTeeTimeDetails.count == 0){
                 
@@ -669,6 +676,17 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 //                            else{
 //                                self.lblLinkGroupsValue.text = self.appDelegate.masterLabeling.Yes
 //                            }
+                            if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
+                                self.lblEarliestTeeTime.isHidden = true
+                                self.lblEarliestTeetimeValue.isHidden = true
+                                self.lblLinkGroups.isHidden = true
+                                self.lblLinkGroupsValue.isHidden = true
+                                if let teeBox = self.arrTeeTimeDetails[0].teeBox {
+                                    if teeBox != "" {
+                                        self.lblPreferredTeetimeValue.text = (self.lblPreferredTeetimeValue.text ?? "") + "(\(teeBox))"
+                                    }
+                                }
+                            }
                         }
                         
                     }

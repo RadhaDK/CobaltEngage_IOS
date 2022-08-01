@@ -170,12 +170,12 @@ extension FirstComeFirstServeTableViewCell : UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if scheduleType == "FCFS" {
-            let selectedDict = ["AdapterPositin": indexPath.row, "CourseDetailId": self.timeSlotsDetails.id ?? "", "CourseName": self.timeSlotsDetails.courseName!, "DisplayOrder": self.timeSlotsDetails.displayType ?? 0, "G_StartingHole": self.timeSlotsDetails.timeIntervals?[indexPath.row].startingHole ?? "1", "TeeBox": self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "","Time": self.timeSlotsDetails.timeIntervals?[indexPath.row].time! ?? "", "slotType": self.slotType] as [String : Any]
+            let selectedDict = ["AdapterPositin": indexPath.row, "CourseDetailId": self.timeSlotsDetails.id ?? "", "CourseName": self.timeSlotsDetails.courseName!, "DisplayOrder": indexPath.row, "G_StartingHole": self.timeSlotsDetails.timeIntervals?[indexPath.row].startingHole ?? "1", "TeeBox": self.timeSlotsDetails.timeIntervals?[indexPath.row].teeBox ?? "","Time": self.timeSlotsDetails.timeIntervals?[indexPath.row].time! ?? "", "slotType": self.slotType] as [String : Any]
             
             
             if let slots = delegate?.timeSlotSelected(slotDetails: selectedDict) {
                 self.selectedSlots = slots
-                print(slots)
+//                print(slots)
                 collectionView.reloadData()
             }
             

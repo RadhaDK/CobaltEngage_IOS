@@ -295,7 +295,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         lblEventTitle.text = arrEventDetails[0].eventName
         lblFromTime.text = arrEventDetails[0].eventTime
         lblToTime.text = arrEventDetails[0].eventendtime
-
+        
         lblMoreinfo.text = self.appDelegate.masterLabeling.moreInfo
 
         
@@ -889,6 +889,11 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
             headerView.btnStatus.layer.cornerRadius = 13
             headerView.lblCourse.text = String(format: "%@ %@", self.appDelegate.masterLabeling.course_time_colon ?? "" ,self.arrTeeTimeDetails[0].groupDetails?[section].allocatedCourse ?? "")
             headerView.lblTeeTime.text = String(format: "%@ %@", self.appDelegate.masterLabeling.tee_time_colon ?? "" ,self.arrTeeTimeDetails[0].groupDetails?[section].allocatedTime ?? "")
+            if let teeBox = self.arrTeeTimeDetails[0].groupDetails?[section].teeBox {
+                if teeBox != "" {
+                    headerView.lblTeeTime.text = (headerView.lblTeeTime.text ?? "") + "(\(teeBox))"
+                }
+            }
             headerView.lblStatusText.text = self.appDelegate.masterLabeling.status
             headerView.btnStatus.backgroundColor = hexStringToUIColor(hex: self.arrTeeTimeDetails[0].groupDetails?[section].color ?? "")
             headerView.btnStatus.setTitle(self.arrTeeTimeDetails[0].groupDetails?[section].status ?? "", for: UIControlState.normal)
@@ -976,7 +981,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                                 self.lblConfirmedTime.text = self.arrEventDetails[0].eventName!
                             }
                             else{
-                            self.lblConfirmedTime.text = String(format: "%@   %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
+//                            self.lblConfirmedTime.text = String(format: "%@   %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
  
                             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
                             attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
@@ -994,6 +999,22 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                                 }
                                 else{
                                     self.lblLinkGroupvalue.text = "Yes"
+                                }
+                            }
+                            if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
+                                self.lblEarlierTeeTime.isHidden = true
+                                self.lblEarlierTeeTimeValue.isHidden = true
+                                self.lblLinkGroup.isHidden = true
+                                self.lblLinkGroupvalue.isHidden = true
+                                if let teeBox = self.arrTeeTimeDetails[0].teeBox {
+                                    if teeBox != "" {
+                                        self.lblPreferredTeetimevalue.text = (self.lblPreferredTeetimevalue.text ?? "") + "(\(teeBox))"
+//                                        self.lblConfirmedTime.text = (self.lblConfirmedTime.text ?? "") + "(\(teeBox))"
+                                        self.lblFromTime.text = (self.lblFromTime.text ?? "") + "(\(teeBox))"
+                                        self.lblConfirmedTime.text = String(format: "%@ (%@)  %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "", teeBox, self.arrEventDetails[0].eventName!)
+                                    } else {
+                                        self.lblConfirmedTime.text = String(format: "%@   %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
+                                    }
                                 }
                             }
                         }
@@ -1080,6 +1101,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                             self.lblEventName.text = self.arrTeeTimeDetails[0].syncCalendarTitle ?? " "
                             self.lblEarlierTeeTimeValue.text = self.arrTeeTimeDetails[0].playType ?? ""
                             self.lblPreferredTeetimevalue.text = self.arrTeeTimeDetails[0].durationText ?? ""
+                            
                             self.lblRoundLengthvalue.text = self.arrTeeTimeDetails[0].reservationRequestTime
                             self.lblConfirmedTime.text = String(format: "%@  %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
                             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)

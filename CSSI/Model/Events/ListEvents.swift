@@ -97,6 +97,8 @@ class ListEvents: NSObject, Mappable  {
     var showViewButton : Bool?
     var showCancelButton : Bool?
     
+    var eventTeeBox: String?
+    
     //Added on 11th August 2020
     var providerName : String?
     //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes
@@ -159,6 +161,7 @@ class ListEvents: NSObject, Mappable  {
         //GATHER0000700 - Start
         self.departmentType <- map["Departmenttype"]
         //GATHER0000700 - End
+        self.eventTeeBox <- map["EventTeeBox"]
     }
     
     

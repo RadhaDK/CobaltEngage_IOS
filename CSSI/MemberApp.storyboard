@@ -2195,22 +2195,22 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="yMy-Hk-tzq">
-                                                        <rect key="frame" x="20" y="10" width="214" height="29"/>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="22"/>
+                                                        <rect key="frame" x="20" y="10" width="214" height="25"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="19"/>
                                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" image="Icon_Calendar">
                                                             <color key="titleColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                     </button>
-                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2VQ-0Y-gBS">
+                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2VQ-0Y-gBS">
                                                         <rect key="frame" x="244" y="10" width="150" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="29" id="GdT-nd-6xh"/>
                                                             <constraint firstAttribute="width" constant="150" id="OPD-WI-8Xx"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="22"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="19"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="10" maxY="3"/>
-                                                        <state key="normal" title="09:30 PM" image="Icon_feather_clock">
+                                                        <state key="normal" title="09:30 PM (F)" image="Icon_feather_clock">
                                                             <color key="titleColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                     </button>
@@ -16532,7 +16532,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ol2-MH-wKb">
                                                 <rect key="frame" x="20" y="60" width="374" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:38 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osM-N3-n77">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:38 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="osM-N3-n77">
                                                         <rect key="frame" x="10" y="22" width="68" height="16.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="68" id="o0s-69-GBs"/>

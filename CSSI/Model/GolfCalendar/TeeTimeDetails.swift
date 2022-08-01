@@ -75,6 +75,7 @@ class RequestTeeTimeDetail: NSObject, Mappable  {
     var golfRequestType: String?
     var btnValue: Int?
     var preferredTimeSlots: [PreferredFCFSCoursesWithTime]?
+    var teeBox: String?
     
     convenience required init?(map: Map) {
         self.init()
@@ -120,7 +121,8 @@ class RequestTeeTimeDetail: NSObject, Mappable  {
         durationText <- map["DurationText"]
         gameTypeTitle <- map["GameTypeTitle"]
         golfRequestType <- map["GolfRequestType"]
-        preferredTimeSlots <- map["PreferredFCFSCoursesWithTime"]        
+        preferredTimeSlots <- map["PreferredFCFSCoursesWithTime"]
+        teeBox <- map["TeeBox"]
     }
     
 }
