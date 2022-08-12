@@ -430,12 +430,18 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
             textToShare = [ shareText,partyList.joined(separator: "")]
         }
         else{
-            
-            if self.arrTeeTimeDetails[0].groupDetails?.count == 1{
-                 shareTextGolf = String(format: "Additional Details \n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@ \n\n%@ \nMore Info: %@", self.lblRoundLengthvalue.text ?? "",self.lblPreferredTeetimevalue.text ?? "",self.lblEarlierTeeTimeValue.text!,self.lblConfirmedTime.text ?? "",lblUrl.text ?? "")
-            }else{
-                 shareTextGolf = String(format: "Additional Details \n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@ \nLink Groups regardless of time?: %@  \n\n%@ \nMore Info: %@", self.lblRoundLengthvalue.text ?? "",self.lblPreferredTeetimevalue.text ?? "",self.lblEarlierTeeTimeValue.text!,self.lblLinkGroupvalue.text ?? "",self.lblConfirmedTime.text ?? "",lblUrl.text ?? "")
+            if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
+                
+                shareTextGolf = String(format: "Additional Details \n\nRound Length: %@ \nPreferred Tee Time: %@ \n\n%@ \nMore Info: %@", self.lblRoundLengthvalue.text ?? "",self.lblPreferredTeetimevalue.text ?? "",self.lblConfirmedTime.text ?? "",lblUrl.text ?? "")
+                
+            } else {
+                if self.arrTeeTimeDetails[0].groupDetails?.count == 1{
+                     shareTextGolf = String(format: "Additional Details \n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@ \n\n%@ \nMore Info: %@", self.lblRoundLengthvalue.text ?? "",self.lblPreferredTeetimevalue.text ?? "",self.lblEarlierTeeTimeValue.text!,self.lblConfirmedTime.text ?? "",lblUrl.text ?? "")
+                }else{
+                     shareTextGolf = String(format: "Additional Details \n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@ \nLink Groups regardless of time?: %@  \n\n%@ \nMore Info: %@", self.lblRoundLengthvalue.text ?? "",self.lblPreferredTeetimevalue.text ?? "",self.lblEarlierTeeTimeValue.text!,self.lblLinkGroupvalue.text ?? "",self.lblConfirmedTime.text ?? "",lblUrl.text ?? "")
+                }
             }
+            
            
             let shareText2 =  String(format: "\n\nPreferred Course: %@\nExclude this Course: %@", self.arrTeeTimeDetails[0].preferredCourse ?? "", self.arrTeeTimeDetails[0].excludedCourse ?? "")
 
@@ -454,10 +460,12 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
 
                     }
                 }
-
             }
-            textToShare = [shareTextGolf ?? "",partyList.joined(separator: ""),shareText2]
-
+            if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
+                textToShare = [shareTextGolf ?? "",partyList.joined(separator: "")]
+            } else {
+                textToShare = [shareTextGolf ?? "",partyList.joined(separator: ""),shareText2]
+            }
         }
         
         let dateFormatter = DateFormatter()
@@ -1006,6 +1014,10 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                                 self.lblEarlierTeeTimeValue.isHidden = true
                                 self.lblLinkGroup.isHidden = true
                                 self.lblLinkGroupvalue.isHidden = true
+                                self.lblPrefferedCource.isHidden = true
+                                self.lblPrefferedCourcevalue.isHidden = true
+                                self.lblNotPreferred.isHidden = true
+                                self.lblNotPrefferedValue.isHidden = true
                                 if let teeBox = self.arrTeeTimeDetails[0].teeBox {
                                     if teeBox != "" {
                                         self.lblPreferredTeetimevalue.text = (self.lblPreferredTeetimevalue.text ?? "") + "(\(teeBox))"
@@ -1015,6 +1027,10 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                                     } else {
                                         self.lblConfirmedTime.text = String(format: "%@   %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
                                     }
+                                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
+                                    attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
+                                    
+                                    self.lblConfirmedTime.attributedText = attributeString
                                 }
                             }
                         }

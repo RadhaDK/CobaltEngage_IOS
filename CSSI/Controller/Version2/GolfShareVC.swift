@@ -316,11 +316,18 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             self.present(activityViewController, animated: true, completion: nil)
         }
         else{
-            if self.arrTeeTimeDetails[0].groupDetails?.count == 1{
-                shareTextGolf = String(format: "%@\n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@",self.arrTeeTimeDetails[0].syncCalendarTitle!, self.lblRoundLengthValue.text ?? "",self.lblPreferredTeetimeValue.text ?? "",self.lblEarliestTeetimeValue.text ?? "")
-            }else{
-                shareTextGolf = String(format: "%@\n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@ \nLink Groups regardless of time?: %@",self.arrTeeTimeDetails[0].syncCalendarTitle!, self.lblRoundLengthValue.text!,self.lblPreferredTeetimeValue.text!,self.lblEarliestTeetimeValue.text!,self.lblLinkGroupsValue.text!)
+            if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
+                
+                shareTextGolf = String(format: "%@\n\nRound Length: %@ \nPreferred Tee Time: %@ \n", self.arrTeeTimeDetails[0].syncCalendarTitle!, self.lblRoundLengthValue.text ?? "",self.lblPreferredTeetimeValue.text ?? "")
+               
+            } else {
+                if self.arrTeeTimeDetails[0].groupDetails?.count == 1{
+                    shareTextGolf = String(format: "%@\n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@",self.arrTeeTimeDetails[0].syncCalendarTitle!, self.lblRoundLengthValue.text ?? "",self.lblPreferredTeetimeValue.text ?? "",self.lblEarliestTeetimeValue.text ?? "")
+                }else{
+                    shareTextGolf = String(format: "%@\n\nRound Length: %@ \nPreferred Tee Time: %@ \nEarliest Tee Time: %@ \nLink Groups regardless of time?: %@",self.arrTeeTimeDetails[0].syncCalendarTitle!, self.lblRoundLengthValue.text!,self.lblPreferredTeetimeValue.text!,self.lblEarliestTeetimeValue.text!,self.lblLinkGroupsValue.text!)
+                }
             }
+            
             
             
             let shareText2 =  String(format: "\n\nPreferred Course: %@\nExclude this Course: %@", self.arrTeeTimeDetails[0].preferredCourse ?? "", self.arrTeeTimeDetails[0].excludedCourse ?? "")
@@ -343,7 +350,11 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     }
                 }
             }
-            let textToShare = [ shareTextGolf ?? "",partyList.joined(separator: ""), shareText2] as [Any]
+
+            var textToShare = [ shareTextGolf ?? "",partyList.joined(separator: "")] as [Any]
+            if self.arrTeeTimeDetails[0].golfRequestType != "FCFS Request" {
+                textToShare.append(shareText2)
+            }
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
             activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
@@ -681,6 +692,10 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                                 self.lblEarliestTeetimeValue.isHidden = true
                                 self.lblLinkGroups.isHidden = true
                                 self.lblLinkGroupsValue.isHidden = true
+                                self.lblPreferresCourse.isHidden = true
+                                self.lblPreferredCourseValue.isHidden = true
+                                self.lblNPC.isHidden = true
+                                self.lblNPCValue.isHidden = true
                                 if let teeBox = self.arrTeeTimeDetails[0].teeBox {
                                     if teeBox != "" {
                                         self.lblPreferredTeetimeValue.text = (self.lblPreferredTeetimeValue.text ?? "") + "(\(teeBox))"

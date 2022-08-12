@@ -677,31 +677,36 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                 self.modifyTableview.reloadData()
                 returnObj = self.selectedSlotsList
             }
-        }
-        var sortedDict: [String: [[String: Any]]] = [:]
-        var existingKeys:[String] = []
-        for i in self.selectedSlotsList {
-            if let id = i["CourseDetailId"] as? String {
-                if sortedDict[id] != nil {
-                    sortedDict[id]?.append(i)
-                } else {
-                    sortedDict[id] = [i]
-                    existingKeys.append(id)
+            
+            if self.isFrom != "Modify" {
+                // Sorting Time slots based upon ascending order
+                var sortedDict: [String: [[String: Any]]] = [:]
+                var existingKeys:[String] = []
+                for i in self.selectedSlotsList {
+                    if let id = i["CourseDetailId"] as? String {
+                        if sortedDict[id] != nil {
+                            sortedDict[id]?.append(i)
+                        } else {
+                            sortedDict[id] = [i]
+                            existingKeys.append(id)
+                        }
+                    }
                 }
+        //        print(sortedDict)
+        //        print(existingKeys)
+                var finalArr: [[String: Any]] = []
+                for i in existingKeys {
+                    var sortArr = sortedDict[i]!
+        //            print(sortArr[0]["DisplayOrder"] as! Int)
+                    sortArr.sort{
+                        ((($0 )["DisplayOrder"] as? Int) ?? 0 ) < ((($1 )["DisplayOrder"] as? Int) ?? 0)
+                    }
+                    finalArr += sortArr
+                }
+                self.selectedSlotsList = finalArr
             }
         }
-//        print(sortedDict)
-//        print(existingKeys)
-        var finalArr: [[String: Any]] = []
-        for i in existingKeys {
-            var sortArr = sortedDict[i]!
-//            print(sortArr[0]["DisplayOrder"] as! Int)
-            sortArr.sort{
-                ((($0 )["DisplayOrder"] as? Int)!) < ((($1 )["DisplayOrder"] as? Int)!)
-            }
-            finalArr += sortArr
-        }
-        self.selectedSlotsList = finalArr
+        
         return returnObj
     }
     
@@ -761,9 +766,17 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
 //                } else {
                 if let selectedSlots = self.arrTeeTimeDetails[0].toJSON()["PreferredFCFSCoursesWithTime"] as? [[String : Any]] {
                     self.selectedSlotsList = selectedSlots
+                    for i in 0...self.selectedSlotsList.count-1 {
+                        if self.selectedSlotsList[i]["TeeBox"] as! String == "B" {
+                            self.selectedSlotsList[i]["G_StartingHole"] = "10"
+                        } else {
+                            self.selectedSlotsList[i]["G_StartingHole"] = "1"
+                        }
+                    }
                 } else {
                     self.selectedSlotsList = []
                 }
+                
 //                }
             }
             self.modifyTableview.reloadData()
@@ -784,12 +797,12 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                 heightViewGroups.constant = 132
                 self.lblLinkGroupsReg.isHidden = true
                 self.switchLinkGroup.isHidden = true
-                self.switchLinkGroup.isOn = false
+//                self.switchLinkGroup.isOn = false
             } else {
                 heightViewGroups.constant = 268
                 self.lblLinkGroupsReg.isHidden = false
                 self.switchLinkGroup.isHidden = false
-                self.switchLinkGroup.isOn = true
+//                self.switchLinkGroup.isOn = true
             }
         }
     }
@@ -1287,7 +1300,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             self.btnModifyTime.isHidden = false
                             var timeString = self.arrTeeTimeDetails[0].reservationRequestTime ?? ""
                             let teeBox = self.arrTeeTimeDetails[0].teeBox ?? ""
-                            if self.arrTeeTimeDetails[0].playType == "Double Tee" && teeBox != "" {
+                            if self.arrTeeTimeDetails[0].playType == "Double Tee" && teeBox != "" && self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
                                 timeString = (timeString) + " (\(teeBox))"
                             }
                             self.btnModifyTime.setTitle(timeString, for: UIControlState.normal)
@@ -2081,7 +2094,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
 //                    self.btnRequest.isHidden = true
                     self.btnCancelRequest.isHidden = true
                     self.heightCancelRequest.constant = -20
-                    self.heightRules.constant = -20
+//                    self.heightRules.constant = -20
                     
                 }
                
@@ -2853,7 +2866,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             headerView.lblCaptainName.text = String(format: "%@ %@",self.appDelegate.masterLabeling.captain!, UserDefaults.standard.string(forKey: UserDefaultsKeys.captainName.rawValue)!)
-            if arrTeeTimeDetails.count == 0{
+            if arrTeeTimeDetails.count == 0 {
                 
             }else{
                 if arrTeeTimeDetails[0].buttonTextValue == "1" && self.arrTeeTimeDetails[0].golfRequestType != "FCFS Request"  {
@@ -2862,12 +2875,10 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                     headerView.lblCourseValue.isHidden = true
                     headerView.lblStatus.isHidden = true
                     headerView.lblStatusValue.isHidden = true
-                    headerView.btnDelete.isHidden = true
-                    headerView.lblRoundLength.isHidden = true
-                    headerView.btnDelete.isHidden = true
-    
-                }else{
                     headerView.btnDelete.isHidden = false
+                    headerView.lblRoundLength.isHidden = true
+                }else{
+//                    headerView.btnDelete.isHidden = false
                     headerView.heightBWGroup.constant = 114
                 if self.arrTeeTimeDetails[0].groupDetails!.count-1 >= section {
                     headerView.lblCourseValue.text = String(format: "%@ %@", self.appDelegate.masterLabeling.course_time_colon ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].allocatedCourse ?? "")
@@ -2884,13 +2895,25 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                     headerView.lblStatus.text = self.appDelegate.masterLabeling.status ?? ""
                     headerView.lblStatusValue.layer.cornerRadius = 12
                     headerView.lblStatusValue.layer.masksToBounds = true
-                    headerView.btnDelete.isHidden = false
+//                    headerView.btnDelete.isHidden = false
                     
                     if arrGroupList.count == 1 || self.isFrom == "View" {
                         headerView.btnDelete.isHidden = true
                     }else{
                         headerView.btnDelete.isHidden = false
                     }
+                    if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
+                        headerView.btnDelete.isHidden = true
+                    }
+                }
+                if self.arrTeeTimeDetails[0].groupDetails?.count ?? 99 <= section {
+                    headerView.heightBWGroup.constant = 8
+                    headerView.lblTimeValue.isHidden = true
+                    headerView.lblCourseValue.isHidden = true
+                    headerView.lblStatus.isHidden = true
+                    headerView.lblStatusValue.isHidden = true
+                    headerView.btnDelete.isHidden = false
+                    headerView.lblRoundLength.isHidden = true
                 }
                    
             }
@@ -3268,6 +3291,12 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                 if isFirstComeFirstServe {
                     increment = 70.0
                 }
+                if self.arrTeeTimeDetails.count != 0 {
+                    if self.arrTeeTimeDetails[0].groupDetails?.count ?? 99 <= section {
+                        return 172 + increment + (section < (self.arrTeeTimeDetails.first?.groupDetails?.count ?? 0) ? (self.arrTeeTimeDetails.first?.groupDetails?[section].buttonTextValue == "3" ? 38 : 0) : 0)
+                    }
+                }
+                
                 
                 if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
                     return 260 + increment + (section < (self.arrTeeTimeDetails.first?.groupDetails?.count ?? 0) ? (self.arrTeeTimeDetails.first?.groupDetails?[section].buttonTextValue == "3" ? 38 : 0) : 0)

@@ -987,7 +987,11 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
             self.eventsTableview.allowsSelection = false
             if eventobj.type == "2" {
-                cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                if eventobj.eventTeeBox ?? "" != "" {
+                    cell.lblTime.text = String(format: "%@(%@)", eventobj.eventTime ?? "", eventobj.eventTeeBox ?? "")
+                } else {
+                    cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                }
                 cell.lblConfirmationID.isHidden = false
                 cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
                 cell.lblLocation.text = eventobj.location
@@ -2511,13 +2515,14 @@ extension CalendarOfEventsViewController : MyCalendarCellDelegate
             }
             else{
                 let golfRequest = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "GolfRequestTeeTimeVC") as! GolfRequestTeeTimeVC
-                if eventobj.buttontextvalue == "4"{
-                    golfRequest.isFrom = "View"
-                    
-                }else{
-                    golfRequest.isFrom = "Modify"
-                    
-                }
+//                if eventobj.buttontextvalue == "4"{
+//                    golfRequest.isFrom = "View"
+//
+//                }else{
+//                    golfRequest.isFrom = "Modify"
+//
+//                }
+                golfRequest.isFrom = "View"
                 golfRequest.isOnlyFrom = "EventsModify"
                 golfRequest.requestType = .reservation
                 var eventobj =  ListEvents()
