@@ -1037,15 +1037,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             self.switchLinkGroup.isOn = false
         }
         
-        if (self.isFrom == "Modify" || self.isFrom == "View") && self.isFirstTime == 1{
-            self.getTeeTimeRequestDetailsApi()
-            self.isFirstTime = 0
-        }else{
-            // Modified by Zeeshan
-            if let fcfsStatus = self.appDelegate.arrGolfSettings?.isFCFSGolfRequestEnable {
-                self.enableFirstComeFirstServe(fcfsStatus)
-            }
-        }
+        
         if self.isFrom == "Modify" || self.isFrom == "View" {
             
         }else{
@@ -1072,6 +1064,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             self.arrGroup1.append(RequestData())
             
         }
+            
+            
             
         //Removed this to prevent double records in groups when group count is increased
         /*for _ in 0 ..< (value ?? 0) {
@@ -1107,6 +1101,15 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             //TODO:- remove after V2.9 is approved in testing
             //self.updateSettings(success: {})
             //Cobalt Pha0010644 -- End
+        }
+        if (self.isFrom == "Modify" || self.isFrom == "View") && self.isFirstTime == 1{
+            self.getTeeTimeRequestDetailsApi()
+            self.isFirstTime = 0
+        }else{
+            // Modified by Zeeshan
+            if let fcfsStatus = self.appDelegate.arrGolfSettings?.isFCFSGolfRequestEnable {
+                self.enableFirstComeFirstServe(fcfsStatus)
+            }
         }
         self.groupsTableview.reloadData()
         self.appDelegate.hideIndicator()
@@ -1748,7 +1751,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             
                         }
                         
-                        if playObj.memberRequestHoles == "9 Holes" {
+                        if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1766,7 +1769,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         cell.lblname.text = String(format: "%@", memberObj.memberName!)
                         cell.lblID.text = memberObj.memberID
                         
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1799,7 +1802,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             //ENGAGE0011843 -- End
                         }
                         
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1836,7 +1839,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.lblID.text = playObj.memberId
                             
                         }
-                        if playObj.memberRequestHoles == "9 Holes" {
+                        if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1852,7 +1855,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup2[indexPath.row] as! MemberInfo
                         cell.lblname.text = String(format: "%@", memberObj.memberName!)
                         cell.lblID.text = memberObj.memberID
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1885,7 +1888,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             //ENGAGE0011843 -- End
                         }
                         //ENGAGE0011784 -- End
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1920,7 +1923,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.lblID.text = playObj.memberId
                             
                         }
-                        if playObj.memberRequestHoles == "9 Holes" {
+                        if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1937,7 +1940,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup3[indexPath.row] as! MemberInfo
                         cell.lblname.text = String(format: "%@", memberObj.memberName!)
                         cell.lblID.text = memberObj.memberID
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -1970,7 +1973,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             //ENGAGE0011843 -- End
                         }
                         //ENGAGE0011784 -- End
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2005,7 +2008,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.lblID.text = playObj.memberId
                             
                         }
-                        if playObj.memberRequestHoles == "9 Holes" {
+                        if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2023,7 +2026,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup4[indexPath.row] as! MemberInfo
                         cell.lblname.text = String(format: "%@", memberObj.memberName!)
                         cell.lblID.text = memberObj.memberID
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2057,7 +2060,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         }
                        
                         //ENGAGE0011784 -- End
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2249,7 +2252,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             let memberObj = arrGroup1[indexPath.row] as! CaptaineInfo
                             cell.txtSearchField.text = String(format: "%@", memberObj.captainName!)
                             cell.btnThreeDots.isEnabled = true
-                            if memberObj.memberRequestHoles == "9 Holes" {
+                            if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                                 cell.btnNineHoles.isSelected = true
                             } else {
                                 cell.btnNineHoles.isSelected = false
@@ -2268,7 +2271,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup1[indexPath.row] as! MemberInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.memberName!)
                             cell.btnThreeDots.isEnabled = true
-                       if memberObj.memberRequestHoles == "9 Holes" {
+                       if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                            cell.btnNineHoles.isSelected = true
                        } else {
                            cell.btnNineHoles.isSelected = false
@@ -2286,7 +2289,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let guestObj = arrGroup1[indexPath.row] as! GuestInfo
                         cell.txtSearchField.text = guestObj.guestName
                             cell.btnThreeDots.isEnabled = true
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2311,7 +2314,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup2[indexPath.row] as! CaptaineInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.captainName!)
                         cell.btnThreeDots.isEnabled = true
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2330,7 +2333,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup2[indexPath.row] as! MemberInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.memberName!)
                         cell.btnThreeDots.isEnabled = true
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2348,7 +2351,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let guestObj = arrGroup2[indexPath.row] as! GuestInfo
                         cell.txtSearchField.text = guestObj.guestName
                         cell.btnThreeDots.isEnabled = true
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2374,7 +2377,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup3[indexPath.row] as! CaptaineInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.captainName!)
                         cell.btnThreeDots.isEnabled = true
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2393,7 +2396,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup3[indexPath.row] as! MemberInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.memberName!)
                         cell.btnThreeDots.isEnabled = true
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2411,7 +2414,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let guestObj = arrGroup3[indexPath.row] as! GuestInfo
                         cell.txtSearchField.text = guestObj.guestName
                         cell.btnThreeDots.isEnabled = true
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2436,7 +2439,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup4[indexPath.row] as! CaptaineInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.captainName!)
                         cell.btnThreeDots.isEnabled = true
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2455,7 +2458,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let memberObj = arrGroup4[indexPath.row] as! MemberInfo
                         cell.txtSearchField.text = String(format: "%@", memberObj.memberName!)
                         cell.btnThreeDots.isEnabled = true
-                        if memberObj.memberRequestHoles == "9 Holes" {
+                        if memberObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2473,7 +2476,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         let guestObj = arrGroup4[indexPath.row] as! GuestInfo
                         cell.txtSearchField.text = guestObj.guestName
                         cell.btnThreeDots.isEnabled = true
-                        if guestObj.memberRequestHoles == "9 Holes" {
+                        if guestObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
                             cell.btnNineHoles.isSelected = true
                         } else {
                             cell.btnNineHoles.isSelected = false
@@ -2877,15 +2880,20 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                     headerView.lblStatusValue.isHidden = true
                     headerView.btnDelete.isHidden = false
                     headerView.lblRoundLength.isHidden = true
+                    if arrGroupList.count == 1 || self.isFrom == "View" {
+                        headerView.btnDelete.isHidden = true
+                    }else{
+                        headerView.btnDelete.isHidden = false
+                    }
                 }else{
 //                    headerView.btnDelete.isHidden = false
                     headerView.heightBWGroup.constant = 114
                 if self.arrTeeTimeDetails[0].groupDetails!.count-1 >= section {
                     headerView.lblCourseValue.text = String(format: "%@ %@", self.appDelegate.masterLabeling.course_time_colon ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].allocatedCourse ?? "")
-                    headerView.lblTimeValue.text = String(format: "%@ %@", self.appDelegate.masterLabeling.time_colon ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].allocatedTime ?? "")
+                    headerView.lblTimeValue.text = String(format: "%@ %@", self.appDelegate.masterLabeling.tee_time_colon ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].allocatedTime ?? "")
 //                    if self.getSlotType(courseId: self.arrTeeTimeDetails[0].groupDetails?[section].id ?? "") == "Double Tee" {
                     if self.arrTeeTimeDetails[0].groupDetails?[section].teeBox ?? "" != "" {
-                        headerView.lblTimeValue.text = String(format: "%@ %@ (%@)", self.appDelegate.masterLabeling.time_colon ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].allocatedTime ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].teeBox ?? "")
+                        headerView.lblTimeValue.text = String(format: "%@ %@ (%@)", self.appDelegate.masterLabeling.tee_time_colon ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].allocatedTime ?? "", self.arrTeeTimeDetails[0].groupDetails?[section].teeBox ?? "")
                     }
                     
                     headerView.lblRoundLength.text = String(format: "%@ %@", "Round Length:", self.arrTeeTimeDetails[0].groupDetails?[section].gameTypeTitle ?? "")
@@ -2897,7 +2905,16 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                     headerView.lblStatusValue.layer.masksToBounds = true
 //                    headerView.btnDelete.isHidden = false
                     
-                    if arrGroupList.count == 1 || self.isFrom == "View" {
+                    if self.arrTeeTimeDetails[0].groupDetails?.count ?? 99 <= section {
+                        headerView.heightBWGroup.constant = 8
+                        headerView.lblTimeValue.isHidden = true
+                        headerView.lblCourseValue.isHidden = true
+                        headerView.lblStatus.isHidden = true
+                        headerView.lblStatusValue.isHidden = true
+                        headerView.btnDelete.isHidden = false
+                        headerView.lblRoundLength.isHidden = true
+                    }
+                    if arrGroupList.count == 1 || self.isFrom == "View" || arrTeeTimeDetails[0].buttonTextValue == "1" {
                         headerView.btnDelete.isHidden = true
                     }else{
                         headerView.btnDelete.isHidden = false
@@ -2905,16 +2922,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                     if self.arrTeeTimeDetails[0].golfRequestType == "FCFS Request" {
                         headerView.btnDelete.isHidden = true
                     }
+                    
                 }
-                if self.arrTeeTimeDetails[0].groupDetails?.count ?? 99 <= section {
-                    headerView.heightBWGroup.constant = 8
-                    headerView.lblTimeValue.isHidden = true
-                    headerView.lblCourseValue.isHidden = true
-                    headerView.lblStatus.isHidden = true
-                    headerView.lblStatusValue.isHidden = true
-                    headerView.btnDelete.isHidden = false
-                    headerView.lblRoundLength.isHidden = true
-                }
+                
                    
             }
             if(section == 0){
@@ -5772,6 +5782,21 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         {
             self.navigationController?.popViewController(animated: true)
             return
+        }
+        
+        if !self.isFirstComeFirstServe {
+            var lotteryAvailable = false
+            if let coursesDetails = self.courseDetailsResponse.courseDetails {
+                for i in coursesDetails {
+                    if i.scheduleType != "FCFS" {
+                        lotteryAvailable = true
+                    }
+                }
+            }
+            if lotteryAvailable == false {
+                SharedUtlity.sharedHelper()?.showToast(on: self.view, withMeassge: "No Courses are available for Lottery for selected date", withDuration: Duration.kMediumDuration)
+                return
+            }
         }
         
         //Added on 4th July 2020 V2.2

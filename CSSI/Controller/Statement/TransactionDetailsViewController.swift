@@ -32,6 +32,8 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     @IBOutlet weak var statementDetailTable: UITableView!
     @IBOutlet weak var heighttableView: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblQtyText: UILabel!
+    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var transactionDetailsDict = StatementDetails()
     var arrItemList = [ListStatementDetails]()
@@ -43,12 +45,12 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     var strmemberno = String()
     var strno = String()
     
-    var category = String()
-    var descriptions = String()
-    var purchaseDate = String()
-    var purchaseTime = String()
-    var amount = String()
-    var statementID = String()
+    var category = ""
+    var descriptions = ""
+    var purchaseDate = ""
+    var purchaseTime = ""
+    var amount = ""
+    var statementID = ""
     
     var stritems = String()
     var stramount = String()
@@ -239,7 +241,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         strtax = (self.appDelegate.masterLabeling.tAX)!
         strtotal = (self.appDelegate.masterLabeling.tOTAL)!
         strtip = (self.appDelegate.masterLabeling.tIP)!
-        
+        lblQtyText.text = self.appDelegate.masterLabeling.qTY ?? ""
         
     }
     
@@ -279,7 +281,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         cell.lblNo.text = String(format: "%02d", indexPath.row + 1)
 
        // cell.lblNo.text = "\(indexPath.row + 1)"
-        cell.lblQty.text = "\(String(describing: self.appDelegate.masterLabeling.qTY ?? "")) \(itemDict.quntity ?? 0)"
+        cell.lblQty.text = "\(itemDict.quntity ?? 0)"
         cell.lblItemName.text = itemDict.name
         cell.lblSKUNo.text = itemDict.sku
 //        cell.lblAmount.text =  self.appDelegate.masterLabeling.cURRENCY!  + String(format: "%.2f",itemDict.price ?? 0.0)
@@ -296,7 +298,11 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 200
+        if self.arrItemList.count != 0 {
+            return 200
+        } else {
+            return 0
+        }
     }
     //44
     

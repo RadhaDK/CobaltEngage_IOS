@@ -351,9 +351,15 @@
 		74C6BBCD20D1978700842A77 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCA20D1978600842A77 /* CheckBox.swift */; };
 		74C6BBCE20D1978700842A77 /* FormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCB20D1978700842A77 /* FormValidation.swift */; };
 		74C6BBCF20D1978700842A77 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCC20D1978700842A77 /* EventList.swift */; };
+		848F5F5C28BCED5E00BA4C81 /* TemplateHistoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F5F5B28BCED5E00BA4C81 /* TemplateHistoryDetail.swift */; };
 		84960DE228351A1D007C8031 /* GolfCourseTimeSlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84960DE128351A1D007C8031 /* GolfCourseTimeSlots.swift */; };
+		849F425628AB658900941F8E /* MinimumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F425528AB658900941F8E /* MinimumViewController.swift */; };
+		849F425828AB715100941F8E /* MinimumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F425728AB715100941F8E /* MinimumTableViewCell.swift */; };
+		84ADB50D28B8B7D500CCECD1 /* MinimumDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADB50C28B8B7D400CCECD1 /* MinimumDetails.swift */; };
 		84BE45D5282D704700087561 /* SwitchToLotteryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE45D3282D704700087561 /* SwitchToLotteryCollectionViewCell.swift */; };
 		84BE45D6282D704700087561 /* SwitchToLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE45D4282D704700087561 /* SwitchToLotteryCollectionViewCell.xib */; };
+		84BF2E0928ACBA8400A1D692 /* TransactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */; };
+		84BF2E0B28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF2E0A28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift */; };
 		86D55A1086FD8ED9B2B1696B /* Pods_CSSI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD40404E39B8A7387F55B9D /* Pods_CSSI.framework */; };
 		8F434E4F49A1EAA9880F171E /* Pods_CSSIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BADE7CC2A967E2AEDC403F /* Pods_CSSIUITests.framework */; };
 		93EE3414BA14CB0A9C6F3748 /* Pods_CSSITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D6892D7B796CAC34002D45 /* Pods_CSSITests.framework */; };
@@ -989,9 +995,15 @@
 		74C6BBCB20D1978700842A77 /* FormValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValidation.swift; sourceTree = "<group>"; };
 		74C6BBCC20D1978700842A77 /* EventList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		7ED5DE5D8042AA11AFBA8AC8 /* Pods-CSSITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSSITests/Pods-CSSITests.debug.xcconfig"; sourceTree = "<group>"; };
+		848F5F5B28BCED5E00BA4C81 /* TemplateHistoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateHistoryDetail.swift; sourceTree = "<group>"; };
 		84960DE128351A1D007C8031 /* GolfCourseTimeSlots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfCourseTimeSlots.swift; sourceTree = "<group>"; };
+		849F425528AB658900941F8E /* MinimumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumViewController.swift; sourceTree = "<group>"; };
+		849F425728AB715100941F8E /* MinimumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumTableViewCell.swift; sourceTree = "<group>"; };
+		84ADB50C28B8B7D400CCECD1 /* MinimumDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumDetails.swift; sourceTree = "<group>"; };
 		84BE45D3282D704700087561 /* SwitchToLotteryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToLotteryCollectionViewCell.swift; sourceTree = "<group>"; };
 		84BE45D4282D704700087561 /* SwitchToLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchToLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
+		84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryViewController.swift; sourceTree = "<group>"; };
+		84BF2E0A28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewCell.swift; sourceTree = "<group>"; };
 		9F2AD65E24126B500061C47D /* ImageDownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadTask.swift; sourceTree = "<group>"; };
 		9F2CC5E325AC6D920033877B /* CustomFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunctions.swift; sourceTree = "<group>"; };
 		9F2CC5E525AC7F830033877B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -1742,6 +1754,10 @@
 				59244E7C20D22E9800657B54 /* PreviousStatementDetailsViewController.swift */,
 				598DEEAA20D12C43000326DB /* CurrentStatementViewController.swift */,
 				18E1C6C521CB7D480022145D /* CustomStatmentTableViewCell.swift */,
+				849F425528AB658900941F8E /* MinimumViewController.swift */,
+				849F425728AB715100941F8E /* MinimumTableViewCell.swift */,
+				84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */,
+				84BF2E0A28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift */,
 			);
 			path = Statement;
 			sourceTree = "<group>";
@@ -1869,6 +1885,8 @@
 				5F85D8AA20DCEF4E003F9477 /* ListCurrentStatement.swift */,
 				5F85D8AC20DCF65D003F9477 /* StatementDetails.swift */,
 				5F85D8AE20DCF813003F9477 /* ListStatementDetails.swift */,
+				84ADB50C28B8B7D400CCECD1 /* MinimumDetails.swift */,
+				848F5F5B28BCED5E00BA4C81 /* TemplateHistoryDetail.swift */,
 			);
 			path = Statement;
 			sourceTree = "<group>";
@@ -3053,6 +3071,7 @@
 				18FF84AB221FFF4C009DB970 /* VideoViewController.swift in Sources */,
 				5F85D8B720DD0AA5003F9477 /* UIView+Toast.m in Sources */,
 				9F6620F824AE58550061BB9C /* ServiceTypeViewController.swift in Sources */,
+				848F5F5C28BCED5E00BA4C81 /* TemplateHistoryDetail.swift in Sources */,
 				18DE586821886AFC003EF0C1 /* CustomDashBoardCell.swift in Sources */,
 				1869D53D225603F700F02F1B /* ProfileViewOnlyVC.swift in Sources */,
 				18DE586E218899F7003EF0C1 /* LandingMenus.swift in Sources */,
@@ -3077,6 +3096,7 @@
 				5FBEEE2120F8A3FA0010516B /* ModifyGuest.swift in Sources */,
 				9F2E3DD72696C51D00F3F347 /* OTPTextField.swift in Sources */,
 				9FB20008254B27A100003176 /* AlertDetailsViewController.swift in Sources */,
+				849F425828AB715100941F8E /* MinimumTableViewCell.swift in Sources */,
 				9F6620EA24AE57EF0061BB9C /* ServiceDetails.swift in Sources */,
 				74874F2220ED47D400C654B7 /* ActionSheetDatePicker.m in Sources */,
 				59D1A40520CA76E700E92C86 /* ProfileViewsController.swift in Sources */,
@@ -3122,6 +3142,7 @@
 				9FB84714250BC4390065DB8A /* FitnessAppSettingsViewController.swift in Sources */,
 				5F713A562133D27700A56CE3 /* SDWebImageCodersManager.m in Sources */,
 				5FCD05E52119BDCE00F42C2F /* DatabaseHandler.swift in Sources */,
+				84BF2E0B28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift in Sources */,
 				5FBFFBDC20EB7BA2004D31D9 /* Guest.swift in Sources */,
 				9FB7876C250CCFAD0067004F /* FitnessVideo.swift in Sources */,
 				5F17741420FF0BC1003E5529 /* SlideMenus.swift in Sources */,
@@ -3132,6 +3153,7 @@
 				9F612251250F7EF800506A8B /* FitnessGroupsViewController.swift in Sources */,
 				1834D1FA235F385E007E0FF9 /* GuestOrChildrenVC.swift in Sources */,
 				18ACDB14222544FA00D13903 /* EventDetail.swift in Sources */,
+				84BF2E0928ACBA8400A1D692 /* TransactionHistoryViewController.swift in Sources */,
 				1825EA152227E12400C5A361 /* AddGuestRegVC.swift in Sources */,
 				9FB78760250CB5CC0067004F /* FitnessVideosViewController.swift in Sources */,
 				5F85D8AD20DCF65D003F9477 /* StatementDetails.swift in Sources */,
@@ -3179,6 +3201,7 @@
 				18439289227847A600A15365 /* DiningPlayHistoryDetailVC.swift in Sources */,
 				5F9B839820E4A61400A20EAF /* MemberDirectoryViewController.swift in Sources */,
 				18683783219178F3004FDB63 /* TodayAtGlanceVC.swift in Sources */,
+				84ADB50D28B8B7D500CCECD1 /* MinimumDetails.swift in Sources */,
 				5F85D8A520DCD4BA003F9477 /* ListEvents.swift in Sources */,
 				9FB78763250CB6070067004F /* FitnessVideoFilterCollectionViewCell.swift in Sources */,
 				9F2DF5CB23FD6874003E65F1 /* SelfSizingTableView.swift in Sources */,
@@ -3430,6 +3453,7 @@
 				5F06DC1220E62E00007137C7 /* YLTagsChooser.m in Sources */,
 				9F6620D224AE578E0061BB9C /* BMSHeaderCalendarViewSyncTVC.swift in Sources */,
 				5FD6592B20E757EF0033CD5B /* HalfModalPresentationController.swift in Sources */,
+				849F425628AB658900941F8E /* MinimumViewController.swift in Sources */,
 				188BDFCD21FCA56900927817 /* StatementDetailCell.swift in Sources */,
 				5F06DC1620E62E00007137C7 /* YLWaterFlowLayout.m in Sources */,
 				9FE085E4250FDDB5005FDF55 /* FitnessGroupHeaderCollectionViewCell.swift in Sources */,

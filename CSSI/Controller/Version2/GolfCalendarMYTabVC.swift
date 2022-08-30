@@ -1211,7 +1211,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
         cell.delegate = self
         
         cell.btnViewOnly.setTitle("", for: .normal)
-        
+        print(eventobj.buttontextvalue)
         
         if (eventobj.type == "2") {
             cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")

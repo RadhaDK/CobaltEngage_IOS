@@ -151,6 +151,8 @@ class APIHandler: NSObject
     static let getStatementCategory = "Member/GetStatementCategory"
     static let getStatement = "Member/GetStatement"
     static let getStatementDetail = "Member/GetStatementDetail"
+    static let getMinimumDetail = "Member/GetMinimumDetail"
+    static let getMinimumTransactionHistory = "Member/GetMinimumTransactionHistory"
     static let getMemberInfo = "Member/GetMemberInfo"
     static let getMemberDirectoryApp = "Member/GetMemberDirectoryApp"
     static let getMemberSpouseList = "Member/GetMemberSpouseList"
@@ -1848,7 +1850,7 @@ class APIHandler: NSObject
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
-                //print("responseString = \(String(describing: responseString))")
+                print("responseString = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
@@ -3754,6 +3756,7 @@ class APIHandler: NSObject
 //                print("responseStringcategory = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -3850,6 +3853,7 @@ class APIHandler: NSObject
 //                print("getStatementDetails:\(responseString)")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             let currentViewController = UIApplication.topViewController()
@@ -3873,6 +3877,104 @@ class APIHandler: NSObject
             }
             
         }
+        
+    }
+    
+    func getMinimumDetails(paramater: [String: Any]?, onSuccess: @escaping(MinimumDetails) -> Void, onFailure: @escaping(Error) -> Void) {
+        
+        let url : String = baseURL + APIHandler.getMinimumDetail
+        
+        let headers: HTTPHeaders = [
+            APIHeader.kusername: APIHeader.kusernamevalue,
+            APIHeader.kpassword: APIHeader.kpasswordvalue,
+            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
+            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
+            
+        ]
+        
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+//                print("responseStringcategory = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<MinimumDetails>().map(JSONObject: jsonDict)
+                            //print("getStatement")
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+        
+        
+    }
+    
+    func getMinimumTransactionHistory(paramater: [String: Any]?, onSuccess: @escaping(TemplateHistoryDetails) -> Void, onFailure: @escaping(Error) -> Void) { // TemplateHistory
+        
+        let url : String = baseURL + APIHandler.getMinimumTransactionHistory
+        
+        let headers: HTTPHeaders = [
+            APIHeader.kusername: APIHeader.kusernamevalue,
+            APIHeader.kpassword: APIHeader.kpasswordvalue,
+            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
+            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
+            
+        ]
+        
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+//                print("responseStringcategory = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<TemplateHistoryDetails>().map(JSONObject: jsonDict)
+                            //print("getStatement")
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+        
         
     }
  

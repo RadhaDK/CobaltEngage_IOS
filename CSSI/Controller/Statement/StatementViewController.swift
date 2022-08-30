@@ -4,7 +4,9 @@ import UIKit
 import ScrollableSegmentedControl
 import DTCalendarView
 
-class StatementViewController: UIViewController, UISearchBarDelegate,UISearchControllerDelegate {
+class StatementViewController: UIViewController, UISearchBarDelegate,UISearchControllerDelegate, MinimumsDetailsDelegate {
+    
+    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     fileprivate let now = Date()
@@ -34,7 +36,12 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBOutlet weak var btnPrevious: UIButton!
     var calendarRangeStartDate : NSString!
     var calendarRangeEndDate : NSString!
-
+    @IBOutlet weak var btnMinimum: UIButton!
+    @IBOutlet weak var viewBottomHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewMinimumIndication: UIView!
+    @IBOutlet weak var lblMinimumIndication: UILabel!
+    @IBOutlet weak var btnMinimumIndication: UIButton!
+    
     
     @IBOutlet weak var eventDateRangeView: DTCalendarView!{
         didSet {
@@ -75,6 +82,13 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         btnDownloadStatement.layer.borderWidth = 1.0
         btnDownloadStatement.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
         self.btnDownloadStatement.setStyle(style: .outlined, type: .primary)
+        
+        btnMinimum .setTitle(self.appDelegate.masterLabeling.mINIMUMS_TITLE, for: .normal)
+        btnMinimum.titleLabel?.font = SFont.SourceSansPro_Semibold18
+        btnMinimum.layer.borderWidth = 1.0
+        btnMinimum.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnMinimum.setStyle(style: .outlined, type: .primary)
+        self.btnMinimumIndication.tintColor = APPColor.MainColours.primary1
 
         self.lblMemberNameID  .text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
         
@@ -138,7 +152,8 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         let dateAndMonth: String = dateFormat.string(from: date)
         
         lblMonthName.text = dateAndMonth
-        let currentStatementVC = storyboard!.instantiateViewController(withIdentifier: "CurrentStatementViewController")
+        let currentStatementVC = storyboard!.instantiateViewController(withIdentifier: "CurrentStatementViewController") as! CurrentStatementViewController
+        currentStatementVC.minimumDelegate = self
         configureChildViewControllerForstatenents(childController: currentStatementVC, onView: self.uiContainerView)
         
         self.uiViewCurrent.backgroundColor = APPColor.SegmentController.selectedSegmentBGColor
@@ -149,6 +164,22 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         
         
     }
+    
+    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int) {
+        if enableMinimumTemplate == 1 {
+            self.viewBottomHeight.constant = 125.0
+            self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
+            self.viewMinimumIndication.layer.cornerRadius = 5
+            if showMinimumDesignator == 1 {
+                self.btnMinimumIndication.isHidden = false
+            } else {
+                self.btnMinimumIndication.isHidden = true
+            }
+        } else {
+            self.viewBottomHeight.constant = 94.0
+        }
+    }
+    
     fileprivate func currentDate(matchesMonthAndYearOf date: Date) -> Bool {
         let nowMonth = calendar.component(.month, from: now)
         let nowYear = calendar.component(.year, from: now)
@@ -406,7 +437,16 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         configureChildViewControllerForstatenents(childController: previousStatementVC, onView: self.uiContainerView)
     }
     
+    @IBAction func btnMinimumClicked(_ sender: Any) {
+        
+        let minimumVC = self.storyboard?.instantiateViewController(withIdentifier: "MinimumViewController") as! MinimumViewController
+        self.navigationController?.pushViewController(minimumVC, animated: true)
+    }
     
+    @IBAction func btnMinimumIndicationClicked(_ sender: Any) {
+        
+        self.viewMinimumIndication.isHidden = !self.viewMinimumIndication.isHidden
+    }
     
     
     //Mark- Token Api
