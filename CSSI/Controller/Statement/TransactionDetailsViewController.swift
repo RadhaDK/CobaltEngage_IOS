@@ -220,8 +220,8 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     
     func setLocalizedString(){
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.backItem?.title = self.appDelegate.masterLabeling.bACK
-        self.navigationController?.navigationBar.topItem?.title = self.appDelegate.masterLabeling.bACK
+//        self.navigationController?.navigationBar.backItem?.title = self.appDelegate.masterLabeling.bACK
+//        self.navigationController?.navigationBar.topItem?.title = self.appDelegate.masterLabeling.bACK
         navigationController!.interactivePopGestureRecognizer!.isEnabled = true
         let textAttributes = [NSAttributedStringKey.foregroundColor:APPColor.navigationColor.navigationitemcolor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes

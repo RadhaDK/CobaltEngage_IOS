@@ -16,6 +16,7 @@ class CustomStatementTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var imgArrow: UIImageView!
+    @IBOutlet weak var lblDesignator: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

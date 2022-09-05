@@ -19,7 +19,7 @@ class ListCurrentStatement: NSObject,Mappable {
     var purchaseTime: String?
     var amount: String?
     var id: String?
-
+    var designator: String?
 
     
     
@@ -36,6 +36,7 @@ class ListCurrentStatement: NSObject,Mappable {
         purchaseTime <- map["PurchaseTime"]
         amount <- map["Amount"]
         id <- map["ID"]
+        designator <- map["Designator"]
         
     }
     

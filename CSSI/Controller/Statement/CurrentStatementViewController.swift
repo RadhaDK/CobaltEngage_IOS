@@ -563,6 +563,7 @@ class CurrentStatementViewController: UIViewController, UITableViewDelegate, UIT
         cell.lblCategory.text = statementDict.category
         cell.lblReceipt.text = statementDict.receiptNo ?? ""
         cell.lblDescription.text = statementDict.descriptions ?? ""
+        cell.lblDesignator.text = statementDict.designator ?? ""
         
 //        if((statementDict.amount ?? 0.00) < 0){
 //            let temp = -(statementDict.amount ?? 0.00)

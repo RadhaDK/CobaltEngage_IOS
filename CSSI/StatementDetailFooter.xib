@@ -25,26 +25,26 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCi-oe-PZ2">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcn-P9-6aw">
-                            <rect key="frame" x="90" y="164" width="43" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcn-P9-6aw">
+                            <rect key="frame" x="427" y="164" width="43" height="24"/>
                             <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2St-mj-TfL">
-                            <rect key="frame" x="90" y="20" width="40" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2St-mj-TfL">
+                            <rect key="frame" x="430" y="20" width="40" height="22"/>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eno-18-71v">
-                            <rect key="frame" x="90" y="53" width="40" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eno-18-71v">
+                            <rect key="frame" x="430" y="53" width="40" height="22"/>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwF-jN-JYp">
-                            <rect key="frame" x="90" y="86" width="40" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwF-jN-JYp">
+                            <rect key="frame" x="430" y="86" width="40" height="22"/>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -60,31 +60,46 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQx-bf-edL">
-                            <rect key="frame" x="537" y="20" width="43" height="22"/>
+                            <rect key="frame" x="490" y="20" width="90" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="fk0-un-Sb0"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4N-cm-Up9">
-                            <rect key="frame" x="537" y="53" width="43" height="22"/>
+                            <rect key="frame" x="490" y="53" width="90" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="woZ-EF-7RK"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4a-e2-vl3">
-                            <rect key="frame" x="537" y="86" width="43" height="22"/>
+                            <rect key="frame" x="490" y="86" width="90" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="bL8-lk-TaP"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTY-HS-pc8">
-                            <rect key="frame" x="537" y="119" width="43" height="22"/>
+                            <rect key="frame" x="490" y="119" width="90" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="fpz-3U-073"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugq-S7-Ub9">
-                            <rect key="frame" x="533.5" y="164" width="46.5" height="24"/>
+                            <rect key="frame" x="490" y="164" width="90" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="jQS-1J-NpC"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -99,8 +114,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaS-d3-La3">
-                            <rect key="frame" x="90" y="119" width="40" height="22"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaS-d3-La3">
+                            <rect key="frame" x="430" y="119" width="40" height="22"/>
                             <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                             <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -111,28 +126,28 @@
                         <constraint firstAttribute="trailing" secondItem="uTY-HS-pc8" secondAttribute="trailing" constant="20" id="1wb-Lu-2Ld"/>
                         <constraint firstItem="2St-mj-TfL" firstAttribute="top" secondItem="EQx-bf-edL" secondAttribute="top" id="8FC-2V-j4q"/>
                         <constraint firstItem="uTY-HS-pc8" firstAttribute="top" secondItem="s4a-e2-vl3" secondAttribute="bottom" constant="11" id="9J7-bn-MqY"/>
+                        <constraint firstItem="s4a-e2-vl3" firstAttribute="leading" secondItem="uwF-jN-JYp" secondAttribute="trailing" constant="20" id="9ka-FQ-4PJ"/>
                         <constraint firstItem="CEd-jA-Jcp" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="20" id="AXI-uc-0T7"/>
                         <constraint firstItem="uwF-jN-JYp" firstAttribute="top" secondItem="s4a-e2-vl3" secondAttribute="top" id="AtV-Sz-Y9z"/>
                         <constraint firstAttribute="trailing" secondItem="EQx-bf-edL" secondAttribute="trailing" constant="20" id="DQp-Dp-48r"/>
                         <constraint firstItem="Eno-18-71v" firstAttribute="top" secondItem="a4N-cm-Up9" secondAttribute="top" id="DiN-gu-ekI"/>
-                        <constraint firstItem="Lcn-P9-6aw" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="90" id="Huw-cT-eGX"/>
                         <constraint firstItem="EQx-bf-edL" firstAttribute="top" secondItem="TCi-oe-PZ2" secondAttribute="top" constant="20" id="Lom-Pf-dw6"/>
                         <constraint firstItem="s4a-e2-vl3" firstAttribute="top" secondItem="a4N-cm-Up9" secondAttribute="bottom" constant="11" id="Nuf-co-VPy"/>
                         <constraint firstAttribute="trailing" secondItem="CEd-jA-Jcp" secondAttribute="trailing" constant="20" id="ROh-Hy-Hyy"/>
                         <constraint firstItem="a4N-cm-Up9" firstAttribute="top" secondItem="EQx-bf-edL" secondAttribute="bottom" constant="11" id="WuX-69-mP8"/>
+                        <constraint firstItem="a4N-cm-Up9" firstAttribute="leading" secondItem="Eno-18-71v" secondAttribute="trailing" constant="20" id="XNf-NA-OOF"/>
                         <constraint firstAttribute="trailing" secondItem="lHW-Oq-oZp" secondAttribute="trailing" constant="20" id="Xu2-cz-ByY"/>
-                        <constraint firstItem="Eno-18-71v" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="90" id="YYC-cs-BSe"/>
+                        <constraint firstItem="EQx-bf-edL" firstAttribute="leading" secondItem="2St-mj-TfL" secondAttribute="trailing" constant="20" id="aOJ-W9-hln"/>
                         <constraint firstAttribute="trailing" secondItem="ugq-S7-Ub9" secondAttribute="trailing" constant="20" id="duc-I0-696"/>
                         <constraint firstItem="ugq-S7-Ub9" firstAttribute="top" secondItem="lHW-Oq-oZp" secondAttribute="bottom" constant="11" id="eEN-Td-fr1"/>
                         <constraint firstItem="Lcn-P9-6aw" firstAttribute="top" secondItem="ugq-S7-Ub9" secondAttribute="top" id="fDo-pt-VCv"/>
-                        <constraint firstItem="uwF-jN-JYp" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="90" id="fTd-HH-Jb8"/>
                         <constraint firstItem="CEd-jA-Jcp" firstAttribute="top" secondItem="TCi-oe-PZ2" secondAttribute="top" id="hV6-Bi-qmi"/>
                         <constraint firstAttribute="trailing" secondItem="a4N-cm-Up9" secondAttribute="trailing" constant="20" id="ioP-Xc-xuY"/>
                         <constraint firstItem="XaS-d3-La3" firstAttribute="top" secondItem="uTY-HS-pc8" secondAttribute="top" id="jYk-0C-g5t"/>
                         <constraint firstAttribute="trailing" secondItem="s4a-e2-vl3" secondAttribute="trailing" constant="20" id="kT0-Wq-G36"/>
-                        <constraint firstItem="2St-mj-TfL" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="90" id="kt3-rm-9eu"/>
-                        <constraint firstItem="XaS-d3-La3" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="90" id="oD9-xB-QTW"/>
                         <constraint firstItem="lHW-Oq-oZp" firstAttribute="leading" secondItem="TCi-oe-PZ2" secondAttribute="leading" constant="20" id="sTq-ki-g14"/>
+                        <constraint firstItem="ugq-S7-Ub9" firstAttribute="leading" secondItem="Lcn-P9-6aw" secondAttribute="trailing" constant="20" id="tX7-sv-vt2"/>
+                        <constraint firstItem="uTY-HS-pc8" firstAttribute="leading" secondItem="XaS-d3-La3" secondAttribute="trailing" constant="20" id="ugu-l1-PII"/>
                         <constraint firstItem="lHW-Oq-oZp" firstAttribute="top" secondItem="uTY-HS-pc8" secondAttribute="bottom" constant="11" id="yaF-UQ-LOS"/>
                     </constraints>
                 </view>

@@ -65,11 +65,11 @@ class APIHandler: NSObject
     //let preProductionURL = "https://api.mycobaltsoftware.com/App.Wrapper.PreProd/api/"
     
     //Added on 20th August 2020
-    let UATURL = "https://api.mycobaltsoftware.com/App.Wrapper.BW/api/"
-    
-    let testURL = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.test/api/"
-    
-    let devURL = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.dev/api/"
+//    let UATURL = "https://api.mycobaltsoftware.com/App.Wrapper.BW/api/"
+//
+//    let testURL = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.test/api/"
+//
+//    let devURL = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.dev/api/"
     
     //Added on 4th September 2020
     //Demo Links
@@ -3807,6 +3807,7 @@ class APIHandler: NSObject
 //                print("responseStringcurrent = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
