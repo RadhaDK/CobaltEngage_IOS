@@ -527,6 +527,9 @@
 		9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */; };
 		9FFF66D8246EB5EA009BCA41 /* viewContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */; };
 		9FFF66D9246EB5EA009BCA41 /* viewContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */; };
+		A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */; };
+		A869CD4428C6720200727EA1 /* EditMembershipTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */; };
+		A869CD4528C6720200727EA1 /* EditMembershipTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */; };
 		C70E34B4215AA3E70076935C /* GuestCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C70E34B3215AA3E70076935C /* GuestCard.storyboard */; };
 		C70E34B6215AB1390076935C /* GuestCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E34B5215AB1390076935C /* GuestCardsViewController.swift */; };
 		C70E34B8215AB2580076935C /* GuestCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E34B7215AB2580076935C /* GuestCardTableViewCell.swift */; };
@@ -1168,6 +1171,9 @@
 		9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = viewContentCollectionViewCell.xib; sourceTree = "<group>"; };
+		A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeVC.swift; sourceTree = "<group>"; };
+		A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeTableViewCell.swift; sourceTree = "<group>"; };
+		A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditMembershipTypeTableViewCell.xib; sourceTree = "<group>"; };
 		B97D0ED64FE9E0515C2C716F /* Pods-CSSIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CSSIUITests/Pods-CSSIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C70E34B3215AA3E70076935C /* GuestCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuestCard.storyboard; sourceTree = "<group>"; };
 		C70E34B5215AB1390076935C /* GuestCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardsViewController.swift; sourceTree = "<group>"; };
@@ -1520,6 +1526,7 @@
 				5F70BBAD20ED07AD00A950BE /* GuestDateSelection.xib */,
 				5FC89E4C2122BCBF007B4E65 /* FooterView.xib */,
 				C79EA8E021610F99008AB18C /* SegmentControlle.swift */,
+				A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1811,6 +1818,8 @@
 				18AA4922221ED6CA005F2DE8 /* SettingsViewController.swift */,
 				18AA4924221ED7AA005F2DE8 /* SettingsCustomCell.swift */,
 				181FF64C221D271A009D57F8 /* CheckBoxCustomCell.swift */,
+				A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */,
+				A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2791,6 +2800,7 @@
 				9FC4F2EF2543214D00E7DB80 /* FitnessGoalChallangeTableViewCell.xib in Resources */,
 				9F3D08D12421EE99001FFA5F /* RecentNewsTableViewCell.xib in Resources */,
 				5F9FEBDC2106F31D00DAA459 /* Localizable.strings in Resources */,
+				A869CD4528C6720200727EA1 /* EditMembershipTypeTableViewCell.xib in Resources */,
 				5FA174CD20D7917A0049D0BA /* SourceSansPro-Regular.otf in Resources */,
 				187AA7CF22A2BA8F004F04D2 /* AddBuddyHeaderView.xib in Resources */,
 				185746F72276DB5200F69E12 /* HeaderViewEventDetails.xib in Resources */,
@@ -3329,6 +3339,7 @@
 				18AA4923221ED6CA005F2DE8 /* SettingsViewController.swift in Sources */,
 				5F47195620D90189002EFBB1 /* Club_news.swift in Sources */,
 				18659DC721F1925C00AEBF5D /* PopUpForCategoryVC.swift in Sources */,
+				A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */,
 				5F9D76F520DA59A100728446 /* AddOnType.swift in Sources */,
 				9F6620DA24AE578E0061BB9C /* AppointmentHistoryHeaderView.swift in Sources */,
 				18E1C6C621CB7D480022145D /* CustomStatmentTableViewCell.swift in Sources */,
@@ -3437,6 +3448,7 @@
 				9F62E8732549AA44000307DB /* CheckinRecordTableViewCell.swift in Sources */,
 				5F15A60721255CA600F8D14E /* TokenDetails.swift in Sources */,
 				185A6298228037BE00C368FF /* MyGroupsList.swift in Sources */,
+				A869CD4428C6720200727EA1 /* EditMembershipTypeTableViewCell.swift in Sources */,
 				9FA4192C2578D2A500964199 /* BeaconDetails.swift in Sources */,
 				5F33C29B2140F79100EFC661 /* FontConstant.swift in Sources */,
 				5F713A512133D27700A56CE3 /* SDAnimatedImageRep.m in Sources */,
