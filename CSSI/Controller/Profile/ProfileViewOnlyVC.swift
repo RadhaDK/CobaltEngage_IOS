@@ -273,9 +273,28 @@ class ProfileViewOnlyVC: UIViewController {
     }
     
     @IBAction func btnTappedHistoryMembership(_ sender: Any) {
+        if let HistoryVc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberShipHistoryVC") as? MemberShipHistoryVC {
+            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+            self.navigationController?.pushViewController(HistoryVc, animated: true)
+            
+        }
     }
     @IBAction func btnTappedCancelMemberRequest(_ sender: Any) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CancelMembershipRequestPopUpVC") as? CancelMembershipRequestPopUpVC{
+            self.present(vc, animated: true, completion: nil)
+        }
+    
     }
+    
+    @IBAction func editDueBillFrequencyBtnTapped(_ sender: Any) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
+            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+           
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
+    
     private func openUrl(url : URL)
     {
         //Modified by kiran V2.5 -- ENGAGE0011419 --

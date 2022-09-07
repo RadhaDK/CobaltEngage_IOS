@@ -527,6 +527,12 @@
 		9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */; };
 		9FFF66D8246EB5EA009BCA41 /* viewContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */; };
 		9FFF66D9246EB5EA009BCA41 /* viewContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */; };
+		A863E22028C79D0700CF9993 /* ThankYouMemberShipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */; };
+		A863E22328C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */; };
+		A863E22628C7B98400CF9993 /* MemberShipHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */; };
+		A863E22928C7B9B700CF9993 /* MembershipHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */; };
+		A863E22A28C7B9B700CF9993 /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */; };
+		A863E22D28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22C28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift */; };
 		A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */; };
 		A869CD4428C6720200727EA1 /* EditMembershipTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */; };
 		A869CD4528C6720200727EA1 /* EditMembershipTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */; };
@@ -1171,6 +1177,12 @@
 		9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = viewContentCollectionViewCell.xib; sourceTree = "<group>"; };
+		A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouMemberShipVC.swift; sourceTree = "<group>"; };
+		A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelMembershipRequestPopUpVC.swift; sourceTree = "<group>"; };
+		A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberShipHistoryVC.swift; sourceTree = "<group>"; };
+		A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipHistoryCell.swift; sourceTree = "<group>"; };
+		A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
+		A863E22C28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberEditBillingFrequencyVC.swift; sourceTree = "<group>"; };
 		A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeVC.swift; sourceTree = "<group>"; };
 		A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeTableViewCell.swift; sourceTree = "<group>"; };
 		A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditMembershipTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -1489,6 +1501,10 @@
 		59FEC41120B6B71400FF2DB0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A863E22B28C8BD5200CF9993 /* MemberEditBillingFrequencyVC */,
+				A863E22428C7B94400CF9993 /* MemberShipHistoryVC */,
+				A863E22128C7A6AD00CF9993 /* CancelMembershipRequestPopUpVC */,
+				A863E21E28C79CC100CF9993 /* ThankYouMemberShipVC */,
 				5F1A4513210F2E4C00D8348B /* Restaurent */,
 				5F8B2CC8210AEA470028B774 /* Event Pop UP */,
 				5F3AAC082101E1780031103A /* Tab bar */,
@@ -2606,6 +2622,40 @@
 			path = "Activity Share";
 			sourceTree = "<group>";
 		};
+		A863E21E28C79CC100CF9993 /* ThankYouMemberShipVC */ = {
+			isa = PBXGroup;
+			children = (
+				A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */,
+			);
+			path = ThankYouMemberShipVC;
+			sourceTree = "<group>";
+		};
+		A863E22128C7A6AD00CF9993 /* CancelMembershipRequestPopUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */,
+			);
+			path = CancelMembershipRequestPopUpVC;
+			sourceTree = "<group>";
+		};
+		A863E22428C7B94400CF9993 /* MemberShipHistoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */,
+				A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */,
+				A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */,
+			);
+			path = MemberShipHistoryVC;
+			sourceTree = "<group>";
+		};
+		A863E22B28C8BD5200CF9993 /* MemberEditBillingFrequencyVC */ = {
+			isa = PBXGroup;
+			children = (
+				A863E22C28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift */,
+			);
+			path = MemberEditBillingFrequencyVC;
+			sourceTree = "<group>";
+		};
 		C5F611C3BCD0E07FDB029C8B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2820,6 +2870,7 @@
 				9FCCE2962508F7D40080C559 /* FitnessApp.storyboard in Resources */,
 				9F4B5AEC273BAF7100FAB043 /* FirstComeFirstServeTableViewCell.xib in Resources */,
 				9FC4F2EB25430B4100E7DB80 /* FitnessCategoryCollectionViewCell.xib in Resources */,
+				A863E22A28C7B9B700CF9993 /* MembershipHistoryCell.xib in Resources */,
 				9F5A1A1E250B810D00AADE80 /* HamburgerMenuTableViewCell.xib in Resources */,
 				9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */,
 				9FB78768250CB6490067004F /* FitnessVideoTableViewCell.xib in Resources */,
@@ -3159,6 +3210,7 @@
 				9FDCA07B2538CD8900EABD7B /* FitnessActivityCollectionViewCell.swift in Sources */,
 				18D2ED27215D0C9D00EDFF9C /* NewVisitViewController.swift in Sources */,
 				C70E34B8215AB2580076935C /* GuestCardTableViewCell.swift in Sources */,
+				A863E22928C7B9B700CF9993 /* MembershipHistoryCell.swift in Sources */,
 				5FD6592920E757EF0033CD5B /* HalfModalTransitioningDelegate.swift in Sources */,
 				9F612251250F7EF800506A8B /* FitnessGroupsViewController.swift in Sources */,
 				1834D1FA235F385E007E0FF9 /* GuestOrChildrenVC.swift in Sources */,
@@ -3226,6 +3278,7 @@
 				5F2E85342137E36A00530F3D /* SharedUtlity.m in Sources */,
 				9F8BC34425D265E6007F2D52 /* SuccessPopupDetails.swift in Sources */,
 				74874F2820ED47D400C654B7 /* DistancePickerView.m in Sources */,
+				A863E22328C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift in Sources */,
 				5FD6591720E752D50033CD5B /* AllRequestTableViewCell.swift in Sources */,
 				5F713A5D2133D27700A56CE3 /* SDWebImageManager.m in Sources */,
 				9F6620EF24AE57EF0061BB9C /* AppointmentDetails.swift in Sources */,
@@ -3294,6 +3347,7 @@
 				5F3E182320D2A563009E3EB6 /* AuthenticateUser.swift in Sources */,
 				5FCBE9CE20F5D98A00EC747C /* ForgotPassword.swift in Sources */,
 				1848143221FB1D0A000F50D5 /* GiftCardTableViewCell.swift in Sources */,
+				A863E22028C79D0700CF9993 /* ThankYouMemberShipVC.swift in Sources */,
 				9FE085DC250FC667005FDF55 /* FitnessGroupCollectionViewCell.swift in Sources */,
 				59D1A40620CA76E700E92C86 /* ForgotViewController.swift in Sources */,
 				187AA7D122A2BAE2004F04D2 /* AddBuddyHeaderView.swift in Sources */,
@@ -3314,6 +3368,7 @@
 				18B6036622685D520045FAE5 /* PlayHistoryDetailVC.swift in Sources */,
 				5F713A552133D27700A56CE3 /* SDWebImageCoderHelper.m in Sources */,
 				5F79F20D21131A90008DC5D2 /* ResetPassword.swift in Sources */,
+				A863E22628C7B98400CF9993 /* MemberShipHistoryVC.swift in Sources */,
 				1811B4402385174000A08ACF /* GolfLeaguesTableViewCell.swift in Sources */,
 				C71537BA215D745E00007FFB /* AppDelegate.swift in Sources */,
 				18FB8158219D49BA006F0F78 /* TeeTimesViewController.swift in Sources */,
@@ -3446,6 +3501,7 @@
 				5F1A4512210F186E00D8348B /* RestaurentsDetails.swift in Sources */,
 				5FA636AF20EE1BC100797D77 /* MemberInfo.swift in Sources */,
 				9F62E8732549AA44000307DB /* CheckinRecordTableViewCell.swift in Sources */,
+				A863E22D28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift in Sources */,
 				5F15A60721255CA600F8D14E /* TokenDetails.swift in Sources */,
 				185A6298228037BE00C368FF /* MyGroupsList.swift in Sources */,
 				A869CD4428C6720200727EA1 /* EditMembershipTypeTableViewCell.swift in Sources */,
