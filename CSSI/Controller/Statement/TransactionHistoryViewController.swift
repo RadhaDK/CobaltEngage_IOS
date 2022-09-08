@@ -134,16 +134,15 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
                     
                     self.transactionHistoryList = TemplateHistoryDetails.minimumTemplateHistoryDetails!
                     if self.transactionHistoryList.count != 0 {
-                        self.noRecordsFoundLbl.isHidden = true
-                        self.transactionDetailTableView.isHidden = false
+//                        self.noRecordsFoundLbl.isHidden = true
+//                        self.transactionDetailTableView.isHidden = false
                         self.transactionDetailTableView.reloadData()
                     } else {
-                        self.noRecordsFoundLbl.isHidden = false
-                        self.transactionDetailTableView.isHidden = true
+//                        self.noRecordsFoundLbl.isHidden = false
+                        self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoData)
                     }
                 } else {
-                    self.noRecordsFoundLbl.isHidden = false
-                    self.transactionDetailTableView.isHidden = true
+                    self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoData)
                 }
                 self.appDelegate.hideIndicator()
                 
@@ -153,8 +152,7 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
                 print(error)
                 SharedUtlity.sharedHelper().showToast(on:
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
-                self.noRecordsFoundLbl.isHidden = false
-                self.transactionDetailTableView.isHidden = true
+                self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoData)
             })
             
             

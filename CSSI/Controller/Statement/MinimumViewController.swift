@@ -111,7 +111,14 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if(minimumDetails.responseCode == InternetMessge.kSuccess)
                 {
                     self.minimumTamplateList = minimumDetails.minimumTemplateHistory!
-                    self.minimumTableView.reloadData()
+                    if self.minimumTamplateList.count != 0 {
+                        self.minimumTableView.reloadData()
+                    } else {
+                        self.minimumTableView.setEmptyMessage(InternetMessge.kNoData)
+                    }
+                    
+                } else {
+                    self.minimumTableView.setEmptyMessage(InternetMessge.kNoData)
                 }
                 self.appDelegate.hideIndicator()
                 
@@ -121,6 +128,8 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error)
                 SharedUtlity.sharedHelper().showToast(on:
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+                self.minimumTableView.setEmptyMessage(InternetMessge.kNoData)
+                
             })
             
             
