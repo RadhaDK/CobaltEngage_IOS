@@ -100,6 +100,16 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var btnTermsOfUse: UIButton!
     
     @IBOutlet weak var viewDivider: UIView!
+    @IBOutlet weak var btnEditMembershipType: UIButton!
+    @IBOutlet weak var viewMemberShipType: UIView!
+    @IBOutlet weak var btnHistoryMembershipType: UIButton!
+    @IBOutlet weak var btnCancelMemberShipRequest: UIButton!
+    @IBOutlet weak var viewDueBilles: UIView!
+    @IBOutlet weak var btnEditDueBill: UIButton!
+    @IBOutlet weak var btnDuebillHistory: UIButton!
+    
+    
+    
     var arrMarketOptions :[String] = []
     var arrSelectedMarketOptions  = [TargetedMarketingOption]()
 
@@ -123,6 +133,18 @@ class ProfileViewOnlyVC: UIViewController {
         //PROD0000036 -- Start
         self.imgProfilePic.image = nil
         //PROD0000036 -- End
+        viewMemberShipType.layer.cornerRadius = viewMemberShipType.frame.height/2
+        viewMemberShipType.layer.borderColor = UIColor.lightGray.cgColor
+        viewMemberShipType.layer.borderWidth = 1
+        btnEditMembershipType.setTitle("", for: .normal)
+        btnHistoryMembershipType.setTitle("", for: .normal)
+        btnCancelMemberShipRequest.setTitle("", for: .normal)
+        
+        viewDueBilles.layer.cornerRadius = viewMemberShipType.frame.height/2
+        viewDueBilles.layer.borderColor = UIColor.lightGray.cgColor
+        viewDueBilles.layer.borderWidth = 1
+        btnEditDueBill.setTitle("", for: .normal)
+        btnDuebillHistory.setTitle("", for: .normal)
     }
     
     override func viewWillLayoutSubviews() {
@@ -130,8 +152,8 @@ class ProfileViewOnlyVC: UIViewController {
         
         
         
-            self.profileViewHeight.constant = 1790 + lblTargettingON.frame.height + lblIntresetList.frame.height
-            uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
+//            self.profileViewHeight.constant = 1790 + lblTargettingON.frame.height + lblIntresetList.frame.height
+//            uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
             
         }
     override func viewWillAppear(_ animated: Bool) {
@@ -238,6 +260,38 @@ class ProfileViewOnlyVC: UIViewController {
         if let url = URL.init(string: self.appDelegate.termsOfUsageLink ?? CommonURL.termsOfUse)
         {
              self.openUrl(url: url)
+        }
+    }
+    
+    
+    @IBAction func btnTappedEditMembership(_ sender: Any) {
+        if let settingsVC = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "EditMembershipTypeVC") as? EditMembershipTypeVC {
+            
+            self.navigationController?.pushViewController(settingsVC, animated: true)
+            
+        }
+    }
+    
+    @IBAction func btnTappedHistoryMembership(_ sender: Any) {
+        if let HistoryVc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberShipHistoryVC") as? MemberShipHistoryVC {
+            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+            self.navigationController?.pushViewController(HistoryVc, animated: true)
+            
+        }
+    }
+    @IBAction func btnTappedCancelMemberRequest(_ sender: Any) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CancelMembershipRequestPopUpVC") as? CancelMembershipRequestPopUpVC{
+            self.present(vc, animated: true, completion: nil)
+        }
+    
+    }
+    
+    @IBAction func editDueBillFrequencyBtnTapped(_ sender: Any) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
+            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+           
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
@@ -624,8 +678,8 @@ class ProfileViewOnlyVC: UIViewController {
                 
                 self.view.layoutIfNeeded()
 
-                self.profileViewHeight.constant = 1790 + self.lblTargettingON.frame.height + self.lblIntresetList.frame.height
-                self.uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
+              //  self.profileViewHeight.constant = 1790 + self.lblTargettingON.frame.height + self.lblIntresetList.frame.height
+             //   self.uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
                 
                 //
             },onFailure: { error  in
