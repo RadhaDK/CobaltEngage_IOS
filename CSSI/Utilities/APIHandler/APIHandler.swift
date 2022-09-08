@@ -229,6 +229,13 @@ class APIHandler: NSObject
     static let getVersion = "Member/GetAppVersion"
     static let getLeagueURL = "Member/ExternalRedirect"
     
+ 
+    //Dues renewal
+    static let getMembershiplistURL = "Member/GetPickListData"
+    static let saveMembershipURL = "Member/SaveMemberDues"
+    static let MembershipHistoryURL = "Member/GetMemberDuesHistory"
+
+
     // Added by Zeeshan
     static let getFCFSCourseAvailabilityTimeList = "Member/GetFCFSCourcesAvailabilityTimeList"
     
@@ -4797,6 +4804,9 @@ class APIHandler: NSObject
             
         ]
         
+        print(url)
+        print(paramater)
+        print(headers)
         
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
             switch response.result {
@@ -6744,8 +6754,160 @@ class APIHandler: NSObject
         
         
     }
+    
+    
+    //MARK:- MembershipType Listing
+    func getMembershipListing(paramater: [String: Any]?, onSuccess: @escaping(MembershipList) -> Void, onFailure: @escaping(Error) -> Void) {
+        
+        
+        let url : String = baseURL + APIHandler.getMembershiplistURL
+        print(url)
+        let headers: HTTPHeaders = [
+            APIHeader.kusername: APIHeader.kusernamevalue,
+            APIHeader.kpassword: APIHeader.kpasswordvalue,
+            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
+            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
+            
+        ]
+        print(headers)
+        
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<MembershipList>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+        
+        
+    }
     //PROD0000019 -- End
     
+    
+    
+    //MARK:- SaveMembershipType Listing
+    func saveMembershipListing(paramater: [String: Any]?, onSuccess: @escaping(SaveMembership) -> Void, onFailure: @escaping(Error) -> Void) {
+        
+        
+        let url : String = baseURL + APIHandler.saveMembershipURL
+        print(url)
+        let headers: HTTPHeaders = [
+            APIHeader.kusername: APIHeader.kusernamevalue,
+            APIHeader.kpassword: APIHeader.kpasswordvalue,
+            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
+            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
+            
+        ]
+        print(headers)
+        
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<SaveMembership>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+        
+        
+    }
+    
+    //MARK:- SaveMembershipType Listing
+    func MembershipHistoryListing(paramater: [String: Any]?, onSuccess: @escaping(MembershipHistoryList) -> Void, onFailure: @escaping(Error) -> Void) {
+        
+        
+        let url : String = baseURL + APIHandler.MembershipHistoryURL
+        print(url)
+        let headers: HTTPHeaders = [
+            APIHeader.kusername: APIHeader.kusernamevalue,
+            APIHeader.kpassword: APIHeader.kpasswordvalue,
+            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
+            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
+            
+        ]
+        print(headers)
+        
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<MembershipHistoryList>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+        
+        
+    }
 }
 
 

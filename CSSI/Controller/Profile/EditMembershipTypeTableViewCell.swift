@@ -31,7 +31,7 @@ class EditMembershipTypeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func btnOpenCell(_ sender: Any) {
+    @IBAction func btnOpenCell(_ sender: UIButton) {
         self.openClose?()
     }
     

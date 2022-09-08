@@ -15,9 +15,13 @@ class ThankYouMemberShipVC: UIViewController {
     @IBOutlet weak var btnRemovePopUp: UIButton!
 
 
+    var thankYouDesc : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if thankYouDesc != nil{
+        descriptionLbl.text = thankYouDesc
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +34,17 @@ class ThankYouMemberShipVC: UIViewController {
     }
     
     @IBAction func removePopUpBtnTapped(sender:UIButton){
-        self.dismiss(animated: true, completion: nil)
+        if((self.presentingViewController) != nil){
+            
+            self.dismiss(animated: false, completion: nil)
+          
+          //  MemberDirectoryViewController().refresh()
+
+            
+            
+            
+        }
+       // self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -536,6 +536,9 @@
 		A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */; };
 		A869CD4428C6720200727EA1 /* EditMembershipTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */; };
 		A869CD4528C6720200727EA1 /* EditMembershipTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */; };
+		A8DEF83A28C9BC28000DCBDF /* MembershipListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DEF83928C9BC28000DCBDF /* MembershipListModel.swift */; };
+		A8DEF83D28CA4F10000DCBDF /* saveMembershipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DEF83C28CA4F10000DCBDF /* saveMembershipModel.swift */; };
+		A8DEF83F28CA7255000DCBDF /* membershipHistoryModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DEF83E28CA7255000DCBDF /* membershipHistoryModal.swift */; };
 		C70E34B4215AA3E70076935C /* GuestCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C70E34B3215AA3E70076935C /* GuestCard.storyboard */; };
 		C70E34B6215AB1390076935C /* GuestCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E34B5215AB1390076935C /* GuestCardsViewController.swift */; };
 		C70E34B8215AB2580076935C /* GuestCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70E34B7215AB2580076935C /* GuestCardTableViewCell.swift */; };
@@ -1186,6 +1189,9 @@
 		A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeVC.swift; sourceTree = "<group>"; };
 		A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeTableViewCell.swift; sourceTree = "<group>"; };
 		A869CD4328C6720200727EA1 /* EditMembershipTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditMembershipTypeTableViewCell.xib; sourceTree = "<group>"; };
+		A8DEF83928C9BC28000DCBDF /* MembershipListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipListModel.swift; sourceTree = "<group>"; };
+		A8DEF83C28CA4F10000DCBDF /* saveMembershipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveMembershipModel.swift; sourceTree = "<group>"; };
+		A8DEF83E28CA7255000DCBDF /* membershipHistoryModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = membershipHistoryModal.swift; sourceTree = "<group>"; };
 		B97D0ED64FE9E0515C2C716F /* Pods-CSSIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CSSIUITests/Pods-CSSIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C70E34B3215AA3E70076935C /* GuestCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GuestCard.storyboard; sourceTree = "<group>"; };
 		C70E34B5215AB1390076935C /* GuestCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardsViewController.swift; sourceTree = "<group>"; };
@@ -1550,6 +1556,7 @@
 		59FEC41320B6B72F00FF2DB0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A8DEF83B28C9BC39000DCBDF /* MembershipList */,
 				18BB25C821ABCCED00E12504 /* SendUsFeedback */,
 				5F79F20921131A30008DC5D2 /* ResetPassword */,
 				5F15A60521255C6A00F8D14E /* Token */,
@@ -2656,6 +2663,16 @@
 			path = MemberEditBillingFrequencyVC;
 			sourceTree = "<group>";
 		};
+		A8DEF83B28C9BC39000DCBDF /* MembershipList */ = {
+			isa = PBXGroup;
+			children = (
+				A8DEF83928C9BC28000DCBDF /* MembershipListModel.swift */,
+				A8DEF83C28CA4F10000DCBDF /* saveMembershipModel.swift */,
+				A8DEF83E28CA7255000DCBDF /* membershipHistoryModal.swift */,
+			);
+			path = MembershipList;
+			sourceTree = "<group>";
+		};
 		C5F611C3BCD0E07FDB029C8B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3211,6 +3228,7 @@
 				18D2ED27215D0C9D00EDFF9C /* NewVisitViewController.swift in Sources */,
 				C70E34B8215AB2580076935C /* GuestCardTableViewCell.swift in Sources */,
 				A863E22928C7B9B700CF9993 /* MembershipHistoryCell.swift in Sources */,
+				A8DEF83F28CA7255000DCBDF /* membershipHistoryModal.swift in Sources */,
 				5FD6592920E757EF0033CD5B /* HalfModalTransitioningDelegate.swift in Sources */,
 				9F612251250F7EF800506A8B /* FitnessGroupsViewController.swift in Sources */,
 				1834D1FA235F385E007E0FF9 /* GuestOrChildrenVC.swift in Sources */,
@@ -3310,6 +3328,7 @@
 				5F79F20B21131A6F008DC5D2 /* ProfileUpdate.swift in Sources */,
 				84960DE228351A1D007C8031 /* GolfCourseTimeSlots.swift in Sources */,
 				18A0B8C4215E13C600315FA7 /* CancelPopUpViewController.swift in Sources */,
+				A8DEF83A28C9BC28000DCBDF /* MembershipListModel.swift in Sources */,
 				C740FD28215C0E580017C7ED /* GuestCardV2.swift in Sources */,
 				18574E37226DDE7A008C1C5E /* MyGroupCustomCell.swift in Sources */,
 				18050573218C315700BFBA0D /* EventsCategoryList.swift in Sources */,
@@ -3431,6 +3450,7 @@
 				5F757C3D212BF44C006AC0AA /* RequestCardViewController.swift in Sources */,
 				5F06DC1520E62E00007137C7 /* YLCollectionReusableView.m in Sources */,
 				9F6620C424AE573F0061BB9C /* FitnessProvidersTableViewCell.swift in Sources */,
+				A8DEF83D28CA4F10000DCBDF /* saveMembershipModel.swift in Sources */,
 				5F713A642133D27700A56CE3 /* UIImage+MultiFormat.m in Sources */,
 				9FDBB1372472BA9E0099D6E9 /* BodyStringItem.swift in Sources */,
 				18D2ED2A215D128900EDFF9C /* File.swift in Sources */,

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class EditMembershipTypeVC: UIViewController {
     
     //MARK:- outlets
@@ -18,6 +18,10 @@ class EditMembershipTypeVC: UIViewController {
     
     var thereIsCellTapped = false
        var expanded:[IndexPath] = []
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var arrMembershipType = [MembershipTypeData]()
+    var expandedIndexSet : IndexSet = []
+    var selectedMemberShip : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +48,7 @@ class EditMembershipTypeVC: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnAction(sender:)))
-        
+        membershipTypeList()
     }
     
     //MARK:- register Nib
@@ -67,9 +71,20 @@ class EditMembershipTypeVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSave(_ sender: Any) {
-        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC{
-            self.present(vc, animated: true, completion: nil)
+        if selectedMemberShip != nil{
+            SavemembershipTypeList()
         }
+        else{
+          //  if let message = self.appDelegate.masterLabeling.role_Validation2 , message.count > 0
+          //  {
+                SharedUtlity.sharedHelper()?.showToast(on: self.view, withMeassge: "Please select Membership type", withDuration: Duration.kMediumDuration)
+          //  }
+        }
+        
+//
+//        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC{
+//            self.present(vc, animated: true, completion: nil)
+//        }
         
            
     }
@@ -81,47 +96,175 @@ class EditMembershipTypeVC: UIViewController {
 extension EditMembershipTypeVC : UITableViewDelegate, UITableViewDataSource{
     //MARK:- Table delegate & datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        
+        return arrMembershipType.count
     }
-    
+
+            
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblMembershipType.dequeueReusableCell(withIdentifier: "EditMembershipTypeTableViewCell", for: indexPath) as! EditMembershipTypeTableViewCell
-      
-        self.expanded.append(IndexPath(row:indexPath.row, section:1))
-        cell.openClose = {
-                
-                  let checkPath = IndexPath(row:indexPath.row, section:1)
-
-                  if (self.expanded.contains(checkPath)) {
-                      print ("is expanded")
-                      if cell.lblMembershipDescription.isHidden == true{
-                         
-                        //  cell?.imgExpandCollapse.image = UIImage(named: "ic_MinusBlack")
-                        //  cell?.bottomView.isHidden = true
-                          cell.lblMembershipDescription.isHidden = false
-                         // cell?.bottomView.isHidden = false
-                          self.tblMembershipType.beginUpdates()
-                          self.tblMembershipType.endUpdates()
-                          
-                      }
-                      else{
-                        //  cell?.imgExpandCollapse.image = UIImage(named: "ic_plusBlack")
-                        //  cell?.bottomView.isHidden = false
-                          cell.lblMembershipDescription.isHidden = true
-                        //  cell?.bottomView.isHidden = true
-                          self.tblMembershipType.beginUpdates()
-                          self.tblMembershipType.endUpdates()
-                          print("kjhgsDhjk")
-                      }
-                  }
-              }
-              
         
-        return cell
+        let notifyobj: MembershipTypeData
+        if arrMembershipType.count != 0{
+            notifyobj = arrMembershipType[indexPath.row]
+            cell.lblMembershipType.text =  notifyobj.Text
+            cell.lblMembershipDescription.text =  notifyobj.Description
+            
+            let color = UIColor(hexString: notifyobj.ColorCode ?? "")
+            cell.ViewBack.layer.backgroundColor = color.cgColor
+            cell.btnPlus.setImage(UIImage(named: "AddGuest"), for: .normal)
+               // self.expanded.append(IndexPath(row:indexPath.row, section:1))
+            if expandedIndexSet.contains(indexPath.row) {
+                    cell.lblMembershipDescription.isHidden = false
+
+            }
+            else{
+                        cell.lblMembershipDescription.isHidden = true
+
+            }
+            return cell
+        }
+        return UITableViewCell()
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 70
-//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+       
+        let memberobj = arrMembershipType[indexPath.row]
+        selectedMemberShip =  memberobj.Value
+        if(expandedIndexSet.contains(indexPath.row)){
+            expandedIndexSet.remove(indexPath.row)
+        } else {
+            expandedIndexSet.insert(indexPath.row)
+        }
+        
+        tblMembershipType.reloadData()
+    }
+}
+extension EditMembershipTypeVC{
+    //MARK:- Membershiptype Api
+    func membershipTypeList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kIsAdmin: "0",
+                APIKeys.kUserID: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+                APIKeys.kRole: "Full Access",
+                APIKeys.kCategory: "MemberShipType"
+                
+                ]
+            
+            
+            APIHandler.sharedInstance.getMembershipListing(paramater: paramaterDict, onSuccess: { membershipList in
+                self.appDelegate.hideIndicator()
+
+                self.arrMembershipType.removeAll()
+                if(membershipList.MembershipType == nil){
+                        self.appDelegate.hideIndicator()
+                        
+                        self.tblMembershipType.setEmptyMessage(InternetMessge.kNoData)
+                    }
+                    else{
+                        
+                        self.arrMembershipType = membershipList.MembershipType!
+                        if(self.arrMembershipType.count == 0)
+                        {
+                            self.appDelegate.hideIndicator()
+                            self.tblMembershipType.setEmptyMessage("No new notification")
+                        }else{
+                            self.tblMembershipType.restore()
+                            self.arrMembershipType = membershipList.MembershipType!
+                            self.appDelegate.hideIndicator()
+                        }
+                    }
+                self.tblMembershipType.reloadData()
+//                }else{
+//                    self.appDelegate.hideIndicator()
+//                    if(((notificationList.responseMessage?.count) ?? 0)>0){
+//                        SharedUtlity.sharedHelper().showToast(on:
+//                            self.view, withMeassge: notificationList.responseMessage, withDuration: Duration.kMediumDuration)
+//                    }
+//                }
+//
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            //    self.tableView.setEmptyMessage(InternetMessge.kInternet_not_available)
+            
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
     
     
+    
+    //MARK:- SaveMembershiptype Api
+    func SavemembershipTypeList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kIsAdmin: "0",
+                APIKeys.kUserID: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+                APIKeys.kRole: "Full Access",
+                APIKeys.kCategory: "MemberShipType",
+                APIKeys.kNewBaseMemberTypeID: selectedMemberShip ?? ""
+                ]
+            
+            
+            APIHandler.sharedInstance.saveMembershipListing(paramater: paramaterDict, onSuccess: { membershipSavedData in
+                self.appDelegate.hideIndicator()
+                if membershipSavedData.IsMTAutoApproved == 0{
+                    if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                        
+                      //  self.navigationController?.popToViewController(vc, animated: true)
+
+                        thankyouMembershipViewController.thankYouDesc = "Your request has been submitted for approval. We will notify your once the process is complete."
+                    self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        for /*(index,vc)*/ vc in self.navigationController!.viewControllers{
+                        if let vc = vc as? TeeTimesViewController
+                        {
+                            _ = self.navigationController?.popToViewController(vc, animated: true)
+                            return
+                        }
+                    }
+                }
+                else{
+                    
+                  //                self.dismiss(animated: true, completion: nil)
+                }
+                }
+
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            //    self.tableView.setEmptyMessage(InternetMessge.kInternet_not_available)
+            
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
 }

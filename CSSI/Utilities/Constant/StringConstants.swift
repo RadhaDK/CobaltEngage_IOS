@@ -263,6 +263,11 @@ struct APIKeys
     //PROD0000019 -- Start
     static let kOTP = "OTP"
     //PROD0000019 -- End
+    
+    
+    
+    //Dues renewal
+    static let kNewBaseMemberTypeID = "NewBaseMemberTypeID"
 }
 
 struct APIHeader
