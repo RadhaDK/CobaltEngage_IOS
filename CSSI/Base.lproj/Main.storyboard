@@ -5707,7 +5707,7 @@
                                     <color key="baseForegroundColor" red="0.20392156859999999" green="0.82538980250000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="closeBtnTappedWithSender:" destination="ian-U5-Pew" eventType="touchUpInside" id="awO-sa-pWK"/>
+                                    <action selector="closeBtnTappedWithSender:" destination="ian-U5-Pew" eventType="touchUpInside" id="YDd-Ir-XW3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -5748,12 +5748,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PO-uK-Kyf">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="48"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="PickerBtnTappedWithSender:" destination="4X0-6m-HK0" eventType="touchUpInside" id="BnT-M5-QAY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6PO-uK-Kyf" secondAttribute="bottom" id="8Hv-5c-vKa"/>
                                     <constraint firstItem="3vH-5O-OQ1" firstAttribute="centerY" secondItem="7Gs-4R-FPt" secondAttribute="centerY" id="8hx-aX-9dd"/>
                                     <constraint firstItem="3vH-5O-OQ1" firstAttribute="leading" secondItem="7Gs-4R-FPt" secondAttribute="leading" constant="15" id="UFP-2X-MOn"/>
+                                    <constraint firstItem="6PO-uK-Kyf" firstAttribute="leading" secondItem="7Gs-4R-FPt" secondAttribute="leading" id="ZS9-vG-4eq"/>
+                                    <constraint firstAttribute="trailing" secondItem="6PO-uK-Kyf" secondAttribute="trailing" id="fPT-V3-vwE"/>
                                     <constraint firstAttribute="height" constant="48" id="pRd-qF-Oc1"/>
+                                    <constraint firstItem="6PO-uK-Kyf" firstAttribute="top" secondItem="7Gs-4R-FPt" secondAttribute="top" id="vpW-Oh-v8b"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvh-eG-Ur6">
@@ -5778,7 +5790,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
-                                            <action selector="cancelBtnTappedWithSender:" destination="4X0-6m-HK0" eventType="touchUpInside" id="HAV-pn-JyZ"/>
+                                            <action selector="cancelBtnTappedWithSender:" destination="4X0-6m-HK0" eventType="touchUpInside" id="gA1-ES-ioZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5810,7 +5822,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                         <connections>
-                                            <action selector="saveBtnTappedWithSender:" destination="4X0-6m-HK0" eventType="touchUpInside" id="Urf-C1-927"/>
+                                            <action selector="saveBtnTappedWithSender:" destination="4X0-6m-HK0" eventType="touchUpInside" id="J1K-01-xpn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5860,6 +5872,7 @@
                         <outlet property="billingAmountLbl" destination="3vH-5O-OQ1" id="JhN-Cb-zCg"/>
                         <outlet property="billingAmountView" destination="7Gs-4R-FPt" id="9k0-ex-IqB"/>
                         <outlet property="btnCancel" destination="YC1-jj-pi8" id="8Wp-5a-qiE"/>
+                        <outlet property="btnPicker" destination="6PO-uK-Kyf" id="OEm-ct-1qG"/>
                         <outlet property="btnSave" destination="TRr-em-xdE" id="2Fc-DG-KYS"/>
                         <outlet property="cancelbtnbgView" destination="9tF-m0-bH4" id="F7K-HF-u9h"/>
                         <outlet property="savebtnbgView" destination="Er9-he-2zL" id="YaY-3M-zA4"/>
@@ -6796,7 +6809,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vq4-3v-2Av" customClass="TagView" customModule="CSSI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="54" width="414" height="46"/>
+                                        <rect key="frame" x="0.0" y="54" width="414" height="400"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="750" constant="400" id="itb-D7-BSF"/>
@@ -12877,35 +12890,35 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dues Billing Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FCE-Xw-Gg4">
-                                                        <rect key="frame" x="22" y="299.66666666666669" width="218" height="22"/>
+                                                        <rect key="frame" x="22" y="299.66666666666669" width="168" height="22"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Annual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcX-NF-KI1">
-                                                        <rect key="frame" x="22" y="325.66666666666669" width="218" height="20.666666666666686"/>
+                                                        <rect key="frame" x="22" y="325.66666666666669" width="168" height="20.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
                                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3Y-Xa-j1h">
-                                                        <rect key="frame" x="255" y="289.66666666666669" width="100" height="40"/>
+                                                        <rect key="frame" x="205" y="289.66666666666669" width="150" height="40"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rpJ-fc-zuQ">
-                                                                <rect key="frame" x="1" y="0.0" width="98" height="40"/>
+                                                                <rect key="frame" x="1" y="0.0" width="148" height="40"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49y-vY-OIN">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="49.333333333333336" height="40"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 927" translatesAutoresizingMaskIntoConstraints="NO" id="WmC-9c-UWA">
-                                                                                <rect key="frame" x="12" y="7.6666666666666288" width="25" height="25"/>
+                                                                                <rect key="frame" x="12.333333333333343" y="7.6666666666666288" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="25" id="OzE-YL-UGF"/>
                                                                                     <constraint firstAttribute="width" constant="25" id="YK9-rQ-eDn"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdY-Gz-0yw">
-                                                                                <rect key="frame" x="1" y="1" width="47" height="38"/>
+                                                                                <rect key="frame" x="1" y="1" width="47.333333333333336" height="38"/>
                                                                                 <state key="normal" title="Button"/>
                                                                                 <buttonConfiguration key="configuration" style="plain"/>
                                                                                 <connections>
@@ -12924,19 +12937,22 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ku-3o-J2S">
-                                                                        <rect key="frame" x="49" y="0.0" width="49" height="40"/>
+                                                                        <rect key="frame" x="49.333333333333343" y="0.0" width="49.333333333333343" height="40"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1256" translatesAutoresizingMaskIntoConstraints="NO" id="BfJ-qs-QR3">
-                                                                                <rect key="frame" x="12" y="7.6666666666666288" width="25" height="25"/>
+                                                                                <rect key="frame" x="12.333333333333343" y="7.6666666666666288" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="a2P-A4-R28"/>
                                                                                     <constraint firstAttribute="height" constant="25" id="xYM-Tc-LUY"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uc5-qM-6pB">
-                                                                                <rect key="frame" x="1" y="1" width="47" height="38"/>
+                                                                                <rect key="frame" x="0.99999999999997158" y="1" width="47.333333333333336" height="38"/>
                                                                                 <state key="normal" title="Button"/>
                                                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                                                <connections>
+                                                                                    <action selector="HistoryDueBillFrequencyBtnTapped:" destination="kba-Sa-Elb" eventType="touchUpInside" id="2rc-hm-k6L"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -12949,12 +12965,41 @@
                                                                             <constraint firstItem="BfJ-qs-QR3" firstAttribute="centerX" secondItem="2ku-3o-J2S" secondAttribute="centerX" id="qzz-sY-jS5"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plu-JB-sTH">
+                                                                        <rect key="frame" x="98.666666666666686" y="0.0" width="49.333333333333343" height="40"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 927" translatesAutoresizingMaskIntoConstraints="NO" id="iXA-yW-Cdb">
+                                                                                <rect key="frame" x="12.333333333333314" y="7.6666666666666288" width="25" height="25"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="25" id="RfV-3j-sA2"/>
+                                                                                    <constraint firstAttribute="width" constant="25" id="pIr-9C-XCn"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSZ-cd-eXq">
+                                                                                <rect key="frame" x="1" y="1" width="47.333333333333336" height="38"/>
+                                                                                <state key="normal" title="Button"/>
+                                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                                <connections>
+                                                                                    <action selector="cancelDueBillFrequencyBtnTapped:" destination="kba-Sa-Elb" eventType="touchUpInside" id="V2l-6Z-tsr"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="oSZ-cd-eXq" firstAttribute="leading" secondItem="Plu-JB-sTH" secondAttribute="leading" constant="1" id="DCS-8m-Peg"/>
+                                                                            <constraint firstItem="iXA-yW-Cdb" firstAttribute="centerY" secondItem="Plu-JB-sTH" secondAttribute="centerY" id="Iee-rF-Suf"/>
+                                                                            <constraint firstItem="iXA-yW-Cdb" firstAttribute="centerX" secondItem="Plu-JB-sTH" secondAttribute="centerX" id="PBQ-mh-hpn"/>
+                                                                            <constraint firstItem="oSZ-cd-eXq" firstAttribute="top" secondItem="Plu-JB-sTH" secondAttribute="top" constant="1" id="RE8-uZ-62b"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="oSZ-cd-eXq" secondAttribute="trailing" constant="1" id="u7M-QF-1K0"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="oSZ-cd-eXq" secondAttribute="bottom" constant="1" id="uzU-0K-Fh6"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="linkColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="100" id="Bgg-GK-Zxh"/>
+                                                            <constraint firstAttribute="width" constant="150" id="Bgg-GK-Zxh"/>
                                                             <constraint firstAttribute="bottom" secondItem="rpJ-fc-zuQ" secondAttribute="bottom" id="Iw2-XQ-WDA"/>
                                                             <constraint firstAttribute="height" constant="40" id="NH9-4f-zXL"/>
                                                             <constraint firstAttribute="trailing" secondItem="rpJ-fc-zuQ" secondAttribute="trailing" constant="1" id="SHT-Yk-GnL"/>
@@ -13132,7 +13177,13 @@
                         <outlet property="editView" destination="hrL-8Y-GMq" id="tmn-Jt-Bp3"/>
                         <outlet property="imgAnniverseryIcon" destination="6wr-pS-gL8" id="8VA-dY-DDr"/>
                         <outlet property="imgBdayIcon" destination="MDa-G7-f1P" id="7ad-Zd-fv8"/>
+                        <outlet property="imgCancelBillingIcon" destination="iXA-yW-Cdb" id="jhA-tx-T34"/>
+                        <outlet property="imgCancelMembershipIcon" destination="tWs-gW-fvg" id="vr2-eD-kws"/>
                         <outlet property="imgCellNumber" destination="jAK-Ko-1fo" id="f6b-Ip-J9m"/>
+                        <outlet property="imgEditBillingIcon" destination="WmC-9c-UWA" id="G1A-XR-Zp0"/>
+                        <outlet property="imgEditMembershipIcon" destination="yPC-Cc-CAc" id="9UD-L3-et0"/>
+                        <outlet property="imgHitoryBillingIcon" destination="BfJ-qs-QR3" id="sfY-cr-ZSP"/>
+                        <outlet property="imgHitoryMembershipIcon" destination="t1c-FJ-n1J" id="17I-Sk-Jxo"/>
                         <outlet property="imgHomePhone" destination="1Uz-Ci-AtQ" id="38d-iO-8an"/>
                         <outlet property="imgOtherNumber" destination="A6a-IG-vct" id="vXg-Sr-2Tp"/>
                         <outlet property="imgPrimaryIcon" destination="4bS-XT-FC4" id="tKf-kp-xvc"/>
@@ -13158,17 +13209,20 @@
                         <outlet property="lblAddressType2" destination="EQM-2C-r5l" id="h53-iE-QzW"/>
                         <outlet property="lblAnnDate" destination="I3B-wV-SYZ" id="kNf-I5-2yh"/>
                         <outlet property="lblAnniversary" destination="iMG-S8-bsR" id="kiV-ts-BC3"/>
+                        <outlet property="lblBillingType" destination="TcX-NF-KI1" id="IWy-0Y-ie9"/>
                         <outlet property="lblBirthday" destination="s14-ia-JVW" id="feM-rk-wqN"/>
                         <outlet property="lblCellNumber" destination="FMQ-c8-d7B" id="WEp-Zs-dKd"/>
                         <outlet property="lblCellNumberNo" destination="bNd-S2-kNq" id="bYT-ns-acR"/>
                         <outlet property="lblDate" destination="iJT-g4-xxc" id="dNO-dt-QFg"/>
                         <outlet property="lblDisplayUserName" destination="E5U-qn-192" id="KZT-8H-BED"/>
+                        <outlet property="lblDuration" destination="Nny-sh-OMd" id="Cyq-Ol-T8O"/>
                         <outlet property="lblHome" destination="Euk-ey-TeI" id="fHE-jE-YAl"/>
                         <outlet property="lblHomePhoneNumber" destination="04s-3P-LSM" id="n2K-NX-7wT"/>
                         <outlet property="lblIntresetList" destination="r86-Wf-29m" id="4TB-x6-RQW"/>
                         <outlet property="lblLogout" destination="dCo-Y8-cxa" id="5yg-VP-mCh"/>
                         <outlet property="lblMemberIDAndName" destination="P6K-EB-C4X" id="RUP-9n-9ec"/>
                         <outlet property="lblMemberId" destination="an5-uO-7Xh" id="HTK-4m-Ris"/>
+                        <outlet property="lblMemberShipType" destination="EyW-sV-TkV" id="ee4-lI-moV"/>
                         <outlet property="lblMyIntrest" destination="7LO-Bl-bbi" id="2Ko-Ij-NCO"/>
                         <outlet property="lblOtherNumber" destination="ffj-io-mDb" id="j0R-rV-sLJ"/>
                         <outlet property="lblOtherTest" destination="W9l-co-qy3" id="JQU-i7-hQa"/>
@@ -13188,12 +13242,18 @@
                         <outlet property="txtSendStatement" destination="b3H-Iu-wPX" id="lwL-SJ-Pif"/>
                         <outlet property="txtUserName" destination="lso-K0-lWH" id="X4f-GO-TBu"/>
                         <outlet property="uiScrollView" destination="vp1-rJ-bx7" id="Jyj-Rq-a09"/>
+                        <outlet property="viewCancelBillingIcon" destination="Plu-JB-sTH" id="xxG-xn-ruc"/>
+                        <outlet property="viewCancelMembershipIcon" destination="SpN-HL-jb9" id="pSF-fy-ExA"/>
                         <outlet property="viewDivider" destination="1Ca-DS-S99" id="rMP-g7-1cZ"/>
                         <outlet property="viewDueBilles" destination="w3Y-Xa-j1h" id="Fbs-NZ-HEp"/>
+                        <outlet property="viewEditBillingIcon" destination="49y-vY-OIN" id="8i2-EY-9LB"/>
+                        <outlet property="viewEditMembershipIcon" destination="fS9-lM-04p" id="Kol-Qc-cTG"/>
+                        <outlet property="viewHitoryBillingIcon" destination="2ku-3o-J2S" id="qRi-Sv-LuX"/>
                         <outlet property="viewLogout" destination="bDW-Mg-40g" id="NbE-TB-9Jj"/>
                         <outlet property="viewMemberShipType" destination="JGl-kw-Den" id="Ksm-WK-nrN"/>
                         <outlet property="viewProfileTopView" destination="8wI-lt-Bzk" id="08J-Y2-cEo"/>
                         <outlet property="viewSettings" destination="rPz-hn-Ykq" id="qQQ-AJ-WPp"/>
+                        <outlet property="viewiHtoryMembershipIcon" destination="PaK-38-xqX" id="9VQ-Bi-G1B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ul2-BC-Kfx" userLabel="First Responder" sceneMemberID="firstResponder"/>

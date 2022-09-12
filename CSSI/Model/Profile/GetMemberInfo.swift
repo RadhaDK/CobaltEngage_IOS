@@ -94,6 +94,16 @@ class GetMemberInfo: NSObject, Mappable {
     //Modified by kiran V2.7 -- ENGAGE0011559 -- international Number change
     //ENGAGE0011559 -- Start
     var isOutSideUSPhone : Int?
+    var MemberShipType : String?
+    var Duration : String?
+    var BillingFrequency : String?
+    var AllowToChangeDuesMembershipType : Int?
+    var AllowToChangeDuesBillingFrequency : Int?
+    var AllowToCancelMTPendingRequest : Int?
+    var AllowToCancelBFPendingRequest : Int?
+    var IsAvailableBFApprovedRequest : Int?
+    var IsAvailableMTApprovedRequest : Int?
+    
     //ENGAGE0011559 -- End
     override init() {
         super.init()
@@ -180,6 +190,15 @@ class GetMemberInfo: NSObject, Mappable {
         //Modified by kiran V2.7 -- ENGAGE0011559 -- international Number change
         //ENGAGE0011559 -- Start
         self.isOutSideUSPhone <- map["IsOutSideUSPhone"]
+        self.MemberShipType <- map["MemberShipType"]
+        self.Duration <- map["Duration"]
+        self.BillingFrequency <- map["BillingFrequency"]
+        self.AllowToChangeDuesMembershipType <- map["AllowToChangeDuesMembershipType"]
+        self.AllowToChangeDuesBillingFrequency <- map["AllowToChangeDuesBillingFrequency"]
+        self.AllowToCancelMTPendingRequest <- map["AllowToCancelMTPendingRequest"]
+        self.AllowToCancelBFPendingRequest <- map["AllowToCancelBFPendingRequest"]
+        self.IsAvailableBFApprovedRequest <- map["IsAvailableBFApprovedRequest"]
+        self.IsAvailableMTApprovedRequest <- map["IsAvailableMTApprovedRequest"]
         //ENGAGE0011559 -- End
         
 

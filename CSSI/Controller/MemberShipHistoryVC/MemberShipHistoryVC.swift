@@ -16,7 +16,7 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var arrMembershipHistory = [MembershipHistoryData]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblMemHistory.delegate = self
@@ -24,9 +24,17 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnClose.layer.cornerRadius = 15
         btnClose.layer.borderWidth = 1
         btnClose.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
+        self.navigationItem.title = "Membership History"
+
         registerNibs()
         // Do any additional setup after loading the view.
         membershipHistoryList()
+    }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnAction(sender:)))
     }
     
     func registerNibs(){
@@ -34,9 +42,14 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
            self.tblMemHistory.register(homeNib, forCellReuseIdentifier: "MembershipHistoryCell")
        }
     
+    @objc private func backBtnAction(sender : UIBarButtonItem)
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func closeBtnTapped(sender:UIButton){
 //        btnClose.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
 
@@ -67,9 +80,25 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
             
             if historyobj.Status == "Pending" || historyobj.Status == "Approved"{
                 cell.reasonHeadingLbl.isHidden = true
+                cell.reasonLbl.isHidden = true
+                cell.viewReason.isHidden = true
             }
             else{
                 cell.reasonHeadingLbl.isHidden = false
+                cell.reasonLbl.isHidden = false
+                cell.viewReason.isHidden = false
+
+            }
+            
+            if historyobj.Status == "Pending"{
+                cell.statusLbl.backgroundColor = UIColor(red: 247/255, green: 140/255, blue: 37/255, alpha: 1)
+            }
+            else if  historyobj.Status == "Approved"{
+                cell.statusLbl.backgroundColor = UIColor(red: 47/255, green: 140/255, blue: 7/255, alpha: 1)
+
+            }
+            else{
+                cell.statusLbl.backgroundColor = UIColor(hexString: "FF3B30")
             }
             
             return cell

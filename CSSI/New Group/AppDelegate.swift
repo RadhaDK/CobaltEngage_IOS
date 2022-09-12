@@ -660,6 +660,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // With swizzling disabled you must set the APNs token here.
         Messaging.messaging().apnsToken = deviceToken
     }
+    func gotoViewController(viewController: UIViewController, transition: UIViewAnimationOptions)
+    {
+        if transition != UIViewAnimationOptions.transitionCurlUp
+        {
+            UIView.transition(with: self.window!, duration: 0.5, options: transition, animations: { () -> Void in
+                self.window!.rootViewController = viewController
+            }, completion: { (finished: Bool) -> Void in
+                // do nothing
+            })
+        } else {
+            window!.rootViewController = viewController
+        }
+    }
     
 }
 

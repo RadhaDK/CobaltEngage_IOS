@@ -107,6 +107,23 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var viewDueBilles: UIView!
     @IBOutlet weak var btnEditDueBill: UIButton!
     @IBOutlet weak var btnDuebillHistory: UIButton!
+    @IBOutlet weak var lblMemberShipType: UILabel!
+    @IBOutlet weak var lblDuration: UILabel!
+    @IBOutlet weak var lblBillingType: UILabel!
+
+    @IBOutlet weak var imgEditMembershipIcon: UIImageView!
+    @IBOutlet weak var imgHitoryMembershipIcon: UIImageView!
+    @IBOutlet weak var imgCancelMembershipIcon: UIImageView!
+    @IBOutlet weak var imgEditBillingIcon: UIImageView!
+    @IBOutlet weak var imgHitoryBillingIcon: UIImageView!
+    @IBOutlet weak var imgCancelBillingIcon: UIImageView!
+    
+    @IBOutlet weak var viewEditMembershipIcon: UIView!
+    @IBOutlet weak var viewiHtoryMembershipIcon: UIView!
+    @IBOutlet weak var viewCancelMembershipIcon: UIView!
+    @IBOutlet weak var viewEditBillingIcon: UIView!
+    @IBOutlet weak var viewHitoryBillingIcon: UIView!
+    @IBOutlet weak var viewCancelBillingIcon: UIView!
     
     
     
@@ -274,7 +291,7 @@ class ProfileViewOnlyVC: UIViewController {
     
     @IBAction func btnTappedHistoryMembership(_ sender: Any) {
         if let HistoryVc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberShipHistoryVC") as? MemberShipHistoryVC {
-            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+         //   self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
             self.navigationController?.pushViewController(HistoryVc, animated: true)
             
         }
@@ -287,6 +304,23 @@ class ProfileViewOnlyVC: UIViewController {
     }
     
     @IBAction func editDueBillFrequencyBtnTapped(_ sender: Any) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
+            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+           
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
+    
+    @IBAction func HistoryDueBillFrequencyBtnTapped(_ sender: Any) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
+            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
+           
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
+    @IBAction func cancelDueBillFrequencyBtnTapped(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
             self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
            
@@ -682,6 +716,31 @@ class ProfileViewOnlyVC: UIViewController {
              //   self.uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
                 
                 //
+                
+                self.lblMemberShipType.text = arrgetMemberInfo.MemberShipType
+                self.lblDuration.text = arrgetMemberInfo.Duration
+                self.lblBillingType.text = arrgetMemberInfo.BillingFrequency
+              
+                
+                if arrgetMemberInfo.IsAvailableMTApprovedRequest == 1{
+                    self.btnEditMembershipType.isHidden = true
+                }
+                else{
+                    self.btnEditMembershipType.isHidden = true
+                }
+                if arrgetMemberInfo.AllowToCancelMTPendingRequest == 1{
+                    self.btnCancelMemberShipRequest.isHidden = true
+                }
+                else{
+                    self.btnCancelMemberShipRequest.isHidden = true
+                }
+//                if arrgetMemberInfo.AllowToCancelBFPendingRequest == 1{
+//                    
+//                }
+//                else{
+//                    btnb
+//                }
+                
             },onFailure: { error  in
                 self.appDelegate.hideIndicator()
                 print(error)

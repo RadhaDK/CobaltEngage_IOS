@@ -21,6 +21,8 @@ class MembershipHistoryCell: UITableViewCell {
     @IBOutlet weak var requestedOnLbl: UILabel!
     @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var reasonLbl: UILabel!
+    @IBOutlet weak var viewReason: UIView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

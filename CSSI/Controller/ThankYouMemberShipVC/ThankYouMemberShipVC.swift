@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol segueFromController : class {
+func segueFromController()
+}
 class ThankYouMemberShipVC: UIViewController {
     
     @IBOutlet weak var thankYouLbl: UILabel!
@@ -16,6 +18,10 @@ class ThankYouMemberShipVC: UIViewController {
 
 
     var thankYouDesc : String?
+    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    weak var segueDelegate: segueFromController?
+    var segmentIndex: Int?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +40,19 @@ class ThankYouMemberShipVC: UIViewController {
     }
     
     @IBAction func removePopUpBtnTapped(sender:UIButton){
-        if((self.presentingViewController) != nil){
-            
-            self.dismiss(animated: false, completion: nil)
-          
-          //  MemberDirectoryViewController().refresh()
-
-            
-            
-            
+        self.dismiss(animated: true) {
+           // let yourViewController = DashBoardViewController()
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeController =  mainStoryboard.instantiateViewController(withIdentifier: "TabbarViewController") as! TabbarViewController
+            appDelegate?.window?.rootViewController = homeController
+         
+//            let yourViewController = DashBoardViewController()
+//            yourViewController.performWillApperAction()
+//
+//           // yourViewController.view.backgroundColor = .red
+//            guard let navigationController = self.navigationController else {return}
+//            navigationController.pushViewController(yourViewController, animated: true)
         }
-       // self.navigationController?.dismiss(animated: true, completion: nil)
     }
-
 }
