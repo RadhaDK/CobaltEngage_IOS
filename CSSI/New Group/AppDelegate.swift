@@ -192,6 +192,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var addRequestOpt_Tennis_MultiSelect = [BWOption]()
     //GATHER0000606 -- End
     
+    // Added by Zeeshan -- Adding Trans types for Golf FCFS
+    var transType_Golf = [TransTypes]()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
