@@ -6809,7 +6809,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vq4-3v-2Av" customClass="TagView" customModule="CSSI" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="54" width="414" height="400"/>
+                                        <rect key="frame" x="0.0" y="54" width="414" height="46"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="750" constant="400" id="itb-D7-BSF"/>
@@ -13166,7 +13166,6 @@
                     </view>
                     <size key="freeformSize" width="375" height="2322"/>
                     <connections>
-                        <outlet property="btnCancelMemberShipRequest" destination="bxF-Kq-m1g" id="fQc-2W-IBm"/>
                         <outlet property="btnDuebillHistory" destination="uc5-qM-6pB" id="tll-7o-g9Z"/>
                         <outlet property="btnEdit" destination="AAK-JE-1xs" id="cJ6-QH-FAR"/>
                         <outlet property="btnEditDueBill" destination="hdY-Gz-0yw" id="0l8-VL-zLc"/>
@@ -13174,6 +13173,7 @@
                         <outlet property="btnHistoryMembershipType" destination="lwZ-nk-jQj" id="z9a-ZR-8ku"/>
                         <outlet property="btnPrivacyPolicy" destination="A0w-bv-8Xy" id="G49-mE-czg"/>
                         <outlet property="btnTermsOfUse" destination="asD-YS-L22" id="umJ-BG-KH7"/>
+                        <outlet property="btncancelDueBill" destination="bxF-Kq-m1g" id="DBV-LM-aab"/>
                         <outlet property="editView" destination="hrL-8Y-GMq" id="tmn-Jt-Bp3"/>
                         <outlet property="imgAnniverseryIcon" destination="6wr-pS-gL8" id="8VA-dY-DDr"/>
                         <outlet property="imgBdayIcon" destination="MDa-G7-f1P" id="7ad-Zd-fv8"/>

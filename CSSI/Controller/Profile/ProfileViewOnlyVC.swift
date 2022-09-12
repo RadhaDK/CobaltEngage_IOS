@@ -110,6 +110,7 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var lblMemberShipType: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblBillingType: UILabel!
+    @IBOutlet weak var btncancelDueBill: UIButton!
 
     @IBOutlet weak var imgEditMembershipIcon: UIImageView!
     @IBOutlet weak var imgHitoryMembershipIcon: UIImageView!
@@ -723,16 +724,17 @@ class ProfileViewOnlyVC: UIViewController {
               
                 
                 if arrgetMemberInfo.IsAvailableMTApprovedRequest == 1{
-                    self.btnEditMembershipType.isHidden = true
+                    self.viewEditMembershipIcon.isHidden = false
+                    
                 }
                 else{
-                    self.btnEditMembershipType.isHidden = true
+                    self.viewEditMembershipIcon.isHidden = true
                 }
                 if arrgetMemberInfo.AllowToCancelMTPendingRequest == 1{
-                    self.btnCancelMemberShipRequest.isHidden = true
+                    self.viewCancelMembershipIcon.isHidden = false
                 }
                 else{
-                    self.btnCancelMemberShipRequest.isHidden = true
+                    self.viewCancelMembershipIcon.isHidden = true
                 }
 //                if arrgetMemberInfo.AllowToCancelBFPendingRequest == 1{
 //                    
