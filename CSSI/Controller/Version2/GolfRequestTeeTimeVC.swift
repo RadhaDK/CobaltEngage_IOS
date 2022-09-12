@@ -291,7 +291,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
     //PROD0000202 -- Start
     private var isFirstComeFirstServe = false
     private var transPopupTableView : UITableView?
-    private let transOptions : [String] = ["WLK","MCT","CT"]
+//    private let transOptions : [String] = ["WLK","MCT","CT"]
     //PROD0000202 -- End
     
     // Written by Zeeshan
@@ -1668,7 +1668,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         }
         else if tableView == self.transPopupTableView
         {
-            return self.transOptions.count
+            return self.appDelegate.transType_Golf.count
         }
         //PROD0000202 -- End
         else
@@ -1756,13 +1756,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if playObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if playObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        
+                        cell.textFieldTrans.text = self.getTransText(value: playObj.memberTransType ?? 0)
+
 
                     }else if arrGroup1[indexPath.row] is MemberInfo {
                         let memberObj = arrGroup1[indexPath.row] as! MemberInfo
@@ -1774,13 +1770,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup1[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup1[indexPath.row] as! GuestInfo
@@ -1807,13 +1799,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                        
                         //ENGAGE0011784 -- End
                     } else {
@@ -1844,13 +1831,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if playObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if playObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        
+                        cell.textFieldTrans.text = self.getTransText(value: playObj.memberTransType ?? 0)
+
                     }else if arrGroup2[indexPath.row] is MemberInfo {
                         let memberObj = arrGroup2[indexPath.row] as! MemberInfo
                         cell.lblname.text = String(format: "%@", memberObj.memberName!)
@@ -1860,13 +1843,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup2[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup2[indexPath.row] as! GuestInfo
@@ -1893,13 +1872,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                     } else {
                         cell.lblname.text = ""
                         cell.lblID.text = ""
@@ -1928,13 +1903,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if playObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if playObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: playObj.memberTransType ?? 0)
+
 
                     }else if arrGroup3[indexPath.row] is MemberInfo {
                         let memberObj = arrGroup3[indexPath.row] as! MemberInfo
@@ -1945,13 +1915,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup3[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup3[indexPath.row] as! GuestInfo
@@ -1978,13 +1944,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                     } else {
                         cell.lblname.text = ""
                         cell.lblID.text = ""
@@ -2014,13 +1975,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if playObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if playObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: playObj.memberTransType ?? 0)
 
                     }else if arrGroup4[indexPath.row] is MemberInfo {
                         let memberObj = arrGroup4[indexPath.row] as! MemberInfo
@@ -2031,13 +1986,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup4[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup4[indexPath.row] as! GuestInfo
@@ -2065,13 +2015,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
                     } else {
                         cell.lblname.text = ""
                         cell.lblID.text = ""
@@ -2198,12 +2142,12 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             
             let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: 142, height: 34))
             cell.selectionStyle = .none
-            cell.textLabel?.text = self.transOptions[indexPath.row]
+            cell.textLabel?.text = self.appDelegate.transType_Golf[indexPath.row].name ?? ""
             cell.textLabel?.font =  SFont.SourceSansPro_Semibold18
             cell.textLabel?.textColor = hexStringToUIColor(hex: "64575A")
             tableView.separatorStyle = .none
             
-            if indexPath.row < (self.transOptions.count - 1)
+            if indexPath.row < (self.appDelegate.transType_Golf.count - 1)
             {
                 let shapeLayer:CAShapeLayer = CAShapeLayer()
                 let frameSize = cell.frame.size
@@ -2258,13 +2202,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                                 cell.btnNineHoles.isSelected = false
                             }
                             
-                            if memberObj.memberTransType == TransportType.mct.rawValue {
-                                cell.textFieldTrans.text = self.transOptions[1]
-                            } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                                cell.textFieldTrans.text = self.transOptions[2]
-                            } else {
-                                cell.textFieldTrans.text = self.transOptions[0]
-                            }
+                            cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                         }
 
                    else if arrGroup1[indexPath.row] is MemberInfo {
@@ -2277,13 +2216,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                            cell.btnNineHoles.isSelected = false
                        }
                        
-                       if memberObj.memberTransType == TransportType.mct.rawValue {
-                           cell.textFieldTrans.text = self.transOptions[1]
-                       } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                           cell.textFieldTrans.text = self.transOptions[2]
-                       } else {
-                           cell.textFieldTrans.text = self.transOptions[0]
-                       }
+                       cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup1[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup1[indexPath.row] as! GuestInfo
@@ -2295,13 +2229,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                     } else {
                         cell.txtSearchField.text = ""
                         cell.btnThreeDots.isEnabled = false
@@ -2320,13 +2249,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                         
                     else if arrGroup2[indexPath.row] is MemberInfo {
@@ -2339,13 +2263,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup2[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup2[indexPath.row] as! GuestInfo
@@ -2356,14 +2275,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         } else {
                             cell.btnNineHoles.isSelected = false
                         }
-                        
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                     } else {
                         cell.txtSearchField.text = ""
                         cell.btnThreeDots.isEnabled = false
@@ -2383,13 +2296,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                         
                     else if arrGroup3[indexPath.row] is MemberInfo {
@@ -2402,13 +2310,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup3[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup3[indexPath.row] as! GuestInfo
@@ -2420,13 +2323,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                     } else {
                         cell.txtSearchField.text = ""
                         cell.btnThreeDots.isEnabled = false
@@ -2445,13 +2343,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                         
                     else if arrGroup4[indexPath.row] is MemberInfo {
@@ -2464,13 +2357,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if memberObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if memberObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: memberObj.memberTransType ?? 0)
+
                     }
                     else if arrGroup4[indexPath.row] is GuestInfo {
                         let guestObj = arrGroup4[indexPath.row] as! GuestInfo
@@ -2482,13 +2370,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             cell.btnNineHoles.isSelected = false
                         }
                         
-                        if guestObj.memberTransType == TransportType.mct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[1]
-                        } else if guestObj.memberTransType == TransportType.ct.rawValue {
-                            cell.textFieldTrans.text = self.transOptions[2]
-                        } else {
-                            cell.textFieldTrans.text = self.transOptions[0]
-                        }
+                        cell.textFieldTrans.text = self.getTransText(value: guestObj.memberTransType ?? 0)
+
                     } else {
                         cell.txtSearchField.text = ""
                         cell.btnThreeDots.isEnabled = false
@@ -2526,7 +2409,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                 //GATHER0000606 -- End
                 
                 if cell.textFieldTrans.text == "" {
-                    cell.textFieldTrans.text = self.transOptions[0]
+                    cell.textFieldTrans.text = self.appDelegate.transType_Golf[0].name ?? "WLK"
                 }
                 self.view.setNeedsLayout()
                 return cell
@@ -2828,12 +2711,12 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             let selectedIndex = IndexPath.init(row: selectedItemRow, section: selectedItemSection)
             if isFrom == "Modify" {
                 let cell = self.modifyTableview.cellForRow(at: selectedIndex) as? ModifyRegCustomCell
-                cell?.textFieldTrans.text = self.transOptions[indexPath.row]
+                cell?.textFieldTrans.text = self.appDelegate.transType_Golf[indexPath.row].name ?? ""
             } else {
                 let cell = self.groupsTableview.cellForRow(at: selectedIndex) as? CustomNewRegCell
-                cell?.textFieldTrans.text = self.transOptions[indexPath.row]
+                cell?.textFieldTrans.text = self.appDelegate.transType_Golf[indexPath.row].name ?? ""
             }
-            self.selectedTrans(index: selectedItemRow, section: selectedItemSection, trans: self.transOptions[indexPath.row])
+            self.selectedTrans(index: selectedItemRow, section: selectedItemSection, trans: self.appDelegate.transType_Golf[indexPath.row].name ?? "")
         }
         //PROD0000202 -- End
         else{
@@ -4058,14 +3941,15 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
     
     func selectedTrans(index: Int, section: Int, trans: String) {
         
-        var transInt = 0
-        if trans == self.transOptions[1] {
-            transInt = TransportType.mct.rawValue
-        } else if trans == self.transOptions[2] {
-            transInt = TransportType.ct.rawValue
-        } else {
-            transInt = TransportType.wlk.rawValue
-        }
+//        var transInt = 0
+//        if trans == self.transOptions[1] {
+//            transInt = TransportType.mct.rawValue
+//        } else if trans == self.transOptions[2] {
+//            transInt = TransportType.ct.rawValue
+//        } else {
+//            transInt = TransportType.wlk.rawValue
+//        }
+        let transInt = self.getTransValue(text: trans)
         if section == 0 {
             self.updateValueInGroupArr(arr: &arrGroup1, index: index, trans: transInt)
         } else if section == 1 {
@@ -4795,6 +4679,24 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func getTransText(value: Int) -> String {
+        
+        for i in self.appDelegate.transType_Golf {
+            if value == i.Id {
+                return i.name ?? "WLK"
+            }
+        }
+        return self.appDelegate.transType_Golf[0].name ?? "WLK"
+    }
+    
+    func getTransValue(text: String) -> Int{
+        for i in self.appDelegate.transType_Golf {
+            if text == i.name {
+                return i.Id ?? 0
+            }
+        }
+        return self.appDelegate.transType_Golf[0].Id ?? 0
+    }
  
     func getNextMonth(date:Date)->Date {
         
@@ -4934,7 +4836,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     
@@ -4970,7 +4872,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             APIKeys.kGuestGender : playObj.guestGender ?? "",
                             //ENGAGE0011784 -- End
                             "MemberRequestHoles": playObj.memberRequestHoles ?? "",
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0
                         ]
                         groupList.append(memberInfo)
                     }
@@ -4989,7 +4891,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? "",
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0
                         ]
                         //TODO:- Remove after approval
                         /* Remove after approval
@@ -5027,7 +4929,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? "",
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0
                         ]
                         groupList.append(memberInfo)
                     }
@@ -5048,7 +4950,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5079,7 +4981,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                         APIKeys.kGuestGender : playObj.guestGender ?? "",
                         //ENGAGE0011784 -- End
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5119,7 +5021,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5153,7 +5055,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                             APIKeys.kGuestGender : playObj.guestGender ?? "",
                             //ENGAGE0011784 -- End
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         groupList.append(memberInfo)
@@ -5172,7 +5074,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestEmail": "",
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         //TODO:- Reove after approval
@@ -5210,7 +5112,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestEmail": "",
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         groupList.append(memberInfo)
@@ -5232,7 +5134,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5262,7 +5164,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                         APIKeys.kGuestGender : playObj.guestGender ?? "",
                         //ENGAGE0011784 -- End
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5301,7 +5203,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     
@@ -5335,7 +5237,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                             APIKeys.kGuestGender : playObj.guestGender ?? "",
                             //ENGAGE0011784 -- End
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         groupList.append(memberInfo)
@@ -5353,7 +5255,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestEmail": "",
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         //TODO:- Remove after approval
@@ -5389,7 +5291,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestEmail": "",
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         groupList.append(memberInfo)
@@ -5409,7 +5311,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5439,7 +5341,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                         APIKeys.kGuestGender : playObj.guestGender ?? "",
                         //ENGAGE0011784 -- End
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5477,7 +5379,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     
@@ -5513,7 +5415,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                             APIKeys.kGuestGender : playObj.guestGender ?? "",
                             //ENGAGE0011784 -- End
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         groupList.append(memberInfo)
@@ -5532,7 +5434,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestEmail": "",
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                         ]
                         //TODO:- Remove after approval
@@ -5572,7 +5474,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             "GuestEmail": "",
                             "GuestContact": "",
                             "AddBuddy": playObj.addBuddy ?? 0,
-                            "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                            "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                             "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                             
                         ]
@@ -5595,7 +5497,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         "GuestEmail": "",
                         "GuestContact": "",
                         "AddBuddy": 0,
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)
@@ -5625,7 +5527,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                         APIKeys.kGuestDOB : playObj.guestDOB ?? "",
                         APIKeys.kGuestGender : playObj.guestGender ?? "",
                         //ENGAGE0011784 -- End
-                        "MemberTransType": playObj.memberTransType ?? TransportType.wlk.rawValue,
+                        "MemberTransType": playObj.memberTransType ?? self.appDelegate.transType_Golf[0].Id ?? 0,
                         "MemberRequestHoles": playObj.memberRequestHoles ?? ""
                     ]
                     groupList.append(memberInfo)

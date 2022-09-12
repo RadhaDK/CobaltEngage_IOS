@@ -5244,6 +5244,7 @@ class APIHandler: NSObject
                 
                 do {
                     if let jsonArray = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+//                        print(jsonArray)
                         let getmemberDict = Mapper<MemberDirectoryInterest>().map(JSONObject: jsonArray)
                         
                         onSuccess(getmemberDict!)

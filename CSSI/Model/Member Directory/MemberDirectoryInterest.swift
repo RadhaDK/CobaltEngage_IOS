@@ -115,6 +115,10 @@ class MemberDirectoryInterest: NSObject, Mappable {
     //GATHER0001167 -- Start
     var MB_AddRequestOpt_GolfLesson : [BWOption]?
     //GATHER0001167 -- End
+    
+    // Added by Zeeshan -- Adding Trans types for Golf FCFS
+    var MB_TransType : [TransTypes]?
+    
     convenience required init?(map: Map) {
         self.init()
     }
@@ -225,6 +229,7 @@ class MemberDirectoryInterest: NSObject, Mappable {
         //GATHER0001167 -- Start
         self.MB_AddRequestOpt_GolfLesson <- map["MB_AddRequestOpt_GolfLesson"]
         //GATHER0001167 -- End
+        self.MB_TransType <- map["MB_TransType"]
     }
     
 }
@@ -803,6 +808,25 @@ class BWOption : NSObject , Mappable
     var name : String?
     ///Value
     var Id : String?
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map)
+    {
+        name <- map["Text"]
+        Id <- map["Value"]
+    }
+    
+    
+}
+
+class TransTypes : NSObject , Mappable
+{
+    ///Display Name
+    var name : String?
+    ///Value
+    var Id : Int?
     required convenience init?(map: Map) {
         self.init()
     }
