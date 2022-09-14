@@ -13,7 +13,7 @@ class MembershipList: NSObject, Mappable {
     var responseCode: String?
     var responseMessage: String?
     var MembershipType: [MembershipTypeData]?
-    
+    var BillingFrequncy : [MembershipTypeData]?
     convenience required init?(map: Map) {
         self.init()
     }
@@ -21,6 +21,7 @@ class MembershipList: NSObject, Mappable {
         responseCode <- map["ResponseCode"]
         responseMessage <- map["ResponseMessage"]
         MembershipType <- map["MembershipType"]
+        BillingFrequncy <- map["BillingFrequncy"]
     }
 }
 
@@ -46,5 +47,3 @@ class MembershipTypeData: NSObject, Mappable  {
     }
 }
 
-    
-   

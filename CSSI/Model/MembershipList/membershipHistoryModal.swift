@@ -13,7 +13,9 @@ class MembershipHistoryList: NSObject, Mappable {
     var responseCode: String?
     var responseMessage: String?
     var MembershipTypeHistory: [MembershipHistoryData]?
-    
+    var BillingFrequncyHistory : [MembershipHistoryData]?
+    var BillingStatusList : [statusListing]?
+    var MembershipStatusList : [statusListing]?
     convenience required init?(map: Map) {
         self.init()
     }
@@ -21,6 +23,9 @@ class MembershipHistoryList: NSObject, Mappable {
         responseCode <- map["ResponseCode"]
         responseMessage <- map["ResponseMessage"]
         MembershipTypeHistory <- map["MembershipTypeHistory"]
+        BillingFrequncyHistory <- map["BillingFrequncyHistory"]
+        BillingStatusList <- map["BillingStatusList"]
+        MembershipStatusList <- map["MembershipStatusList"]
     }
 }
 
@@ -31,6 +36,9 @@ class MembershipHistoryData: NSObject, Mappable  {
     var RequestedOn: String?
     var Status: String?
     var Comment : String?
+    var NewBilingFrequency : String?
+    var OldBilingFrequency : String?
+    
     convenience required init?(map: Map) {
         self.init()
     }
@@ -42,6 +50,24 @@ class MembershipHistoryData: NSObject, Mappable  {
         RequestedOn <- map["RequestedOn"]
         Status <- map["Status"]
         Comment <- map["Comment"]
+        NewBilingFrequency <- map["NewBilingFrequency"]
+        OldBilingFrequency <- map["OldBilingFrequency"]
+    }
+}
 
+class statusListing: NSObject, Mappable  {
+    
+    var Text: String?
+    var Value: String?
+    
+    convenience required init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+      //  notificatonID <- map["NotificatonID"]
+        Text <- map["Text"]  //changes on 27/07/2018
+        Value <- map["Value"]
+        
     }
 }

@@ -33,8 +33,8 @@ class EditMembershipTypeVC: UIViewController {
         super.viewDidLoad()
         tblMembershipType.delegate = self
         tblMembershipType.dataSource = self
-        // self.navigationItem.title = self.appDelegate.masterLabeling.tT_PREFERENCES
-        self.navigationItem.title = "Update Membership Type"
+        
+        self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_UPDATE_MEMBERSHIP_TYPE_TITLE
         btnCancelPendingrequest.layer.cornerRadius = btnCancelPendingrequest.frame.height/2
         btnCancelPendingrequest.layer.borderWidth = 1
         btnCancelPendingrequest.layer.borderColor = UIColor(red: 52/255, green: 210/255, blue: 255/255, alpha: 1).cgColor
@@ -80,7 +80,7 @@ class EditMembershipTypeVC: UIViewController {
             SavemembershipTypeList()
         }
         else{
-            SharedUtlity.sharedHelper()?.showToast(on: self.view, withMeassge: "Please select Membership type", withDuration: Duration.kMediumDuration)
+            SharedUtlity.sharedHelper()?.showToast(on: self.view, withMeassge: self.appDelegate.masterLabeling.PLEASE_SELECT_TYPE_MESSAGE, withDuration: Duration.kMediumDuration)
         }
     }
     @IBAction func btnCancel(_ sender: Any) {
@@ -216,14 +216,28 @@ extension EditMembershipTypeVC{
                 if membershipSavedData.IsMTAutoApproved == 0{
                     if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
                         if self.actionrequestButton == .cancel{
-                            thankyouMembershipViewController.thankYouDesc = "Your request has been cancelled"
+                            
+                            thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_CANCELLED_MESSAGE
                             self.present(thankyouMembershipViewController, animated: true, completion: nil)
                         }
                         else if self.actionrequestButton == .save{
-                            thankyouMembershipViewController.thankYouDesc = "Your request has been submitted for approval. We will notify your once the process is complete."
+                            thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_UPDATE_REQUEST_MESSAGE
                             thankyouMembershipViewController.modalPresentationStyle = .fullScreen
                             //  thankyouMembershipViewController.delegateThankMembership = self
                             
+                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                    }
+                }
+                else{
+                    if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                        if self.actionrequestButton == .cancel{
+                            thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_CANCELLED_MESSAGE
+                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                        else if self.actionrequestButton == .save{
+                            thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.AUTO_APPROVED_MESSAGE
+                            thankyouMembershipViewController.modalPresentationStyle = .fullScreen
                             self.present(thankyouMembershipViewController, animated: true, completion: nil)
                         }
                     }

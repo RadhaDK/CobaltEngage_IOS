@@ -18,18 +18,26 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var cancelbtnbgView: UIView!
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnPicker: UIButton!
-
+    @IBOutlet weak var lblSave: UILabel!
+    @IBOutlet weak var lblCancel: UILabel!
     
-    let arrBillingType = ["Approved", "Pending", "Rejected"]
+    
+    var arrBillingType = [MembershipTypeData]()
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var selectedBillingFrequency : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         btnSave.setTitle("", for: .normal)
         btnCancel.setTitle("", for: .normal)
-        self.navigationItem.title = "Update Billing Frequency"
-        
+
+        self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_UPDATE_BILLING_FREQUENCY_TITLE
+        lblSave.text = self.appDelegate.masterLabeling.Save
+        lblCancel.text = self.appDelegate.masterLabeling.cANCEL
+
         billingAmountView.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
         billingAmountView.layer.borderWidth = 1
         
@@ -50,7 +58,7 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
         super.viewWillAppear(animated)
         
         self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnAction(sender:)))
-        
+        billingTypeList()
     }
     @objc private func backBtnAction(sender : UIBarButtonItem)
     {
@@ -58,7 +66,12 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     @IBAction func saveBtnTapped(sender:UIButton){
-        
+        if selectedBillingFrequency != nil{
+            SavebillingTypeList()
+        }
+        else{
+            SharedUtlity.sharedHelper()?.showToast(on: self.view, withMeassge: self.appDelegate.masterLabeling.PLEASE_SELECT_TYPE_MESSAGE, withDuration: Duration.kMediumDuration)
+        }
     }
     
     @IBAction func cancelBtnTapped(sender:UIButton){
@@ -77,7 +90,7 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
         self.view.addSubview(picker)
                 
         toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.barStyle = .blackTranslucent
+        toolBar.barStyle = .default
         toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
         self.view.addSubview(toolBar)
     }
@@ -94,6 +107,9 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
                 
         toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
         toolBar.barStyle = .blackTranslucent
+        toolBar.barTintColor = UIColor(red: 42/255, green: 78/255, blue: 125/255, alpha: 1)
+        toolBar.tintColor = .white
+        
         toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
         self.view.addSubview(toolBar)
     }
@@ -112,15 +128,109 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
     }
         
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return arrBillingType[row]
+        return "\(arrBillingType[row].Value ?? "")"
     }
         
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(arrBillingType[row])
-        billingAmountLbl.text = arrBillingType[row]
+        billingAmountLbl.text = "\(arrBillingType[row].Text ?? "")"
+        selectedBillingFrequency = "\(arrBillingType[row].Value ?? "")"
     }
     
 
 }
 
 
+extension MemberEditBillingFrequencyVC{
+    //MARK:- Membershiptype Api
+    func billingTypeList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kIsAdmin: "0",
+                APIKeys.kUserID: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+                APIKeys.kRole: "Full Access",
+                APIKeys.kCategory: "BillingFrequncy"
+            ]
+            APIHandler.sharedInstance.getMembershipListing(paramater: paramaterDict, onSuccess: { BillingList in
+                self.appDelegate.hideIndicator()
+               
+                if(BillingList.BillingFrequncy == nil){
+                    self.appDelegate.hideIndicator()
+                    
+                }
+                else{
+                    self.arrBillingType = BillingList.BillingFrequncy!
+                    
+                }
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                                                        self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            //    self.tableView.setEmptyMessage(InternetMessge.kInternet_not_available)
+            
+            SharedUtlity.sharedHelper().showToast(on:
+                                                    self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
+    
+    func SavebillingTypeList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            var paramaterDict:[String: Any]?
+            paramaterDict = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kIsAdmin: "0",
+                APIKeys.kUserID: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+                APIKeys.kRole: "Full Access",
+                APIKeys.kCategory: "BillingFrequncy",
+                APIKeys.kBillingFrequency: selectedBillingFrequency ?? ""
+                
+            ] as [String : Any]
+
+            APIHandler.sharedInstance.saveMembershipListing(paramater: paramaterDict, onSuccess: { membershipSavedData in
+                self.appDelegate.hideIndicator()
+
+                if membershipSavedData.IsBFAutoApproved == 0{
+                    if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                        thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_UPDATE_REQUEST_MESSAGE
+                            thankyouMembershipViewController.modalPresentationStyle = .fullScreen
+                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        
+                    }
+                }
+                else{
+                    if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                        thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.AUTO_APPROVED_MESSAGE
+                            thankyouMembershipViewController.modalPresentationStyle = .fullScreen
+                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        
+                    }
+                }
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                                                        self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            SharedUtlity.sharedHelper().showToast(on:
+                                                    self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
+}

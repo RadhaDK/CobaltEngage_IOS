@@ -28,6 +28,9 @@ class ThankYouMemberShipVC: UIViewController {
         if thankYouDesc != nil{
         descriptionLbl.text = thankYouDesc
         }
+        
+        thankYouLbl.text = self.appDelegate.masterLabeling.thank_You
+
         // Do any additional setup after loading the view.
     }
     

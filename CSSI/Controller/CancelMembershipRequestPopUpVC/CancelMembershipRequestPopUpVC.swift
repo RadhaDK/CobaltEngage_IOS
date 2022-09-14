@@ -7,6 +7,9 @@
 //
 
 import UIKit
+enum canceltypeRequestBillOrMember{
+    case Membership,Billing
+}
 
 class CancelMembershipRequestPopUpVC: UIViewController {
     
@@ -16,7 +19,9 @@ class CancelMembershipRequestPopUpVC: UIViewController {
     @IBOutlet weak var btnNo: UIButton!
 
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
+    var typeCancelPoppupfrombillormember : canceltypeRequestBillOrMember?
+    var CategoryType : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         btnNo.layer.cornerRadius = 15
@@ -25,9 +30,18 @@ class CancelMembershipRequestPopUpVC: UIViewController {
         btnYes.layer.borderWidth = 1
         btnYes.layer.borderColor = UIColor.darkGray.cgColor
         btnNo.layer.borderColor = UIColor.darkGray.cgColor
-     
+        descriptionLbl.text = self.appDelegate.masterLabeling.DUES_RENEWAL_CANCEL_PENDING_REQUEST_MESSAGE ?? ""
+
+        btnYes.setTitle(self.appDelegate.masterLabeling.Yes ?? "", for: .normal)
+        btnNo.setTitle(self.appDelegate.masterLabeling.No ?? "", for: .normal)
 
         // Do any additional setup after loading the view.
+        if typeCancelPoppupfrombillormember == .Membership{
+            CategoryType = "MemberShipType"
+        }
+        else{
+            CategoryType = "BillingFrequncy"
+        }
     }
     
   
@@ -61,17 +75,46 @@ extension CancelMembershipRequestPopUpVC{
                 APIKeys.kUserID: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
                 APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
                 APIKeys.kRole: "Full Access",
-                APIKeys.kCategory: "MemberShipType"
+                APIKeys.kCategory: CategoryType ?? ""
             ] as [String : Any]
             APIHandler.sharedInstance.saveMembershipListing(paramater: paramaterDict, onSuccess: { membershipSavedData in
                 self.appDelegate.hideIndicator()
                 
-                if membershipSavedData.IsMTAutoApproved == 0{
-                    if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
-                            thankyouMembershipViewController.thankYouDesc = "Your request has been cancelled"
-                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                if self.typeCancelPoppupfrombillormember == .Membership{
+                    if membershipSavedData.IsMTAutoApproved == 0{
+                        if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                                thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_CANCELLED_MESSAGE ?? ""
+                            
+                                self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                    }
+                    else{
+                        if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                                thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.AUTO_APPROVED_MESSAGE ?? ""
+                            
+                                self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                        
                     }
                 }
+                else{
+                    if membershipSavedData.IsBFAutoApproved == 0{
+                        if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                                thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_CANCELLED_MESSAGE ?? ""
+                            
+                                self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                    }
+                    else{
+                        if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
+                                thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.AUTO_APPROVED_MESSAGE ?? ""
+                            
+                                self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                    }
+                }
+                
+             
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()

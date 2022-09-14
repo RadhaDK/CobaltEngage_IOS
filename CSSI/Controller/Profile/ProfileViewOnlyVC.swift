@@ -125,6 +125,9 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var viewEditBillingIcon: UIView!
     @IBOutlet weak var viewHitoryBillingIcon: UIView!
     @IBOutlet weak var viewCancelBillingIcon: UIView!
+    @IBOutlet weak var lblMembershipHeading: UILabel!
+    @IBOutlet weak var lblDurationHeading: UILabel!
+    @IBOutlet weak var lblDueBBillHeading: UILabel!
     
     
     
@@ -163,6 +166,8 @@ class ProfileViewOnlyVC: UIViewController {
         viewDueBilles.layer.borderWidth = 1
         btnEditDueBill.setTitle("", for: .normal)
         btnDuebillHistory.setTitle("", for: .normal)
+        btncancelDueBill.setTitle("", for: .normal)
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -292,6 +297,7 @@ class ProfileViewOnlyVC: UIViewController {
     
     @IBAction func btnTappedHistoryMembership(_ sender: Any) {
         if let HistoryVc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberShipHistoryVC") as? MemberShipHistoryVC {
+            HistoryVc.typeOfHistory = .Membership
          //   self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
             self.navigationController?.pushViewController(HistoryVc, animated: true)
             
@@ -299,6 +305,7 @@ class ProfileViewOnlyVC: UIViewController {
     }
     @IBAction func btnTappedCancelMemberRequest(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CancelMembershipRequestPopUpVC") as? CancelMembershipRequestPopUpVC{
+            vc.typeCancelPoppupfrombillormember = .Membership
             self.present(vc, animated: true, completion: nil)
         }
     
@@ -314,19 +321,17 @@ class ProfileViewOnlyVC: UIViewController {
     }
     
     @IBAction func HistoryDueBillFrequencyBtnTapped(_ sender: Any) {
-        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberShipHistoryVC") as? MemberShipHistoryVC {
             self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
-           
+            vc.typeOfHistory = .Billing
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
     }
     @IBAction func cancelDueBillFrequencyBtnTapped(_ sender: Any) {
-        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
-            self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
-           
-            self.navigationController?.pushViewController(vc, animated: true)
-            
+        if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CancelMembershipRequestPopUpVC") as? CancelMembershipRequestPopUpVC{
+            vc.typeCancelPoppupfrombillormember = .Billing
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -717,31 +722,56 @@ class ProfileViewOnlyVC: UIViewController {
              //   self.uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
                 
                 //
-                
+                self.lblMembershipHeading.text = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE ?? ""
+                self.lblDurationHeading.text = self.appDelegate.masterLabeling.DUES_RENEWAL_DURATION
                 self.lblMemberShipType.text = arrgetMemberInfo.MemberShipType
                 self.lblDuration.text = arrgetMemberInfo.Duration
                 self.lblBillingType.text = arrgetMemberInfo.BillingFrequency
-              
+                self.lblDueBBillHeading.text = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY
                 
-                if arrgetMemberInfo.IsAvailableMTApprovedRequest == 1{
+                if arrgetMemberInfo.AllowToChangeDuesMembershipType == 1{
                     self.viewEditMembershipIcon.isHidden = false
-                    
                 }
                 else{
                     self.viewEditMembershipIcon.isHidden = true
                 }
+
+                if arrgetMemberInfo.IsAvailableMTApprovedRequest == 1{
+                    self.viewiHtoryMembershipIcon.isHidden = false
+                }
+                else{
+                    self.viewiHtoryMembershipIcon.isHidden = true
+                }
+                
                 if arrgetMemberInfo.AllowToCancelMTPendingRequest == 1{
                     self.viewCancelMembershipIcon.isHidden = false
                 }
                 else{
                     self.viewCancelMembershipIcon.isHidden = true
                 }
-//                if arrgetMemberInfo.AllowToCancelBFPendingRequest == 1{
-//                    
-//                }
-//                else{
-//                    btnb
-//                }
+                
+                
+                if arrgetMemberInfo.AllowToChangeDuesBillingFrequency == 1{
+                    self.viewEditBillingIcon.isHidden = false
+                }
+                else{
+                    self.viewEditBillingIcon.isHidden = true
+                }
+
+                if arrgetMemberInfo.IsAvailableBFApprovedRequest == 1{
+                    self.viewHitoryBillingIcon.isHidden = false
+                }
+                else{
+                    self.viewHitoryBillingIcon.isHidden = true
+                }
+                
+                if arrgetMemberInfo.AllowToCancelBFPendingRequest == 1{
+                    self.viewCancelBillingIcon.isHidden = false
+                }
+                else{
+                    self.viewCancelBillingIcon.isHidden = true
+                }
+                
                 
             },onFailure: { error  in
                 self.appDelegate.hideIndicator()

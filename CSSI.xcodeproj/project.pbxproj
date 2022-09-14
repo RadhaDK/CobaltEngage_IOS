@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */; };
+		099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */; };
+		099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */; };
 		1800E8C5225CA9C20041E95D /* HtmlTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800E8C4225CA9C10041E95D /* HtmlTextConverter.swift */; };
 		1801B39C230ED8BE00E7ECC2 /* NewSuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B39B230ED8BE00E7ECC2 /* NewSuccessPopupView.swift */; };
 		1801B39E230F03C600E7ECC2 /* NewSuccessUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B39D230F03C600E7ECC2 /* NewSuccessUpdateView.swift */; };
@@ -591,6 +594,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterPopupVC.swift; sourceTree = "<group>"; };
+		099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		0C5C799CAE16FDF3A560EEF4 /* Pods-CSSITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CSSITests/Pods-CSSITests.release.xcconfig"; sourceTree = "<group>"; };
 		14421ACCD9ACF27860990504 /* Pods-CSSIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSSIUITests/Pods-CSSIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1800E8C4225CA9C10041E95D /* HtmlTextConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTextConverter.swift; sourceTree = "<group>"; };
@@ -2651,6 +2657,9 @@
 				A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */,
 				A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */,
 				A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */,
+				099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */,
+				099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */,
+				099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */,
 			);
 			path = MemberShipHistoryVC;
 			sourceTree = "<group>";
@@ -2859,6 +2868,7 @@
 				9F3D08D5242222E7001FFA5F /* FitnessEventTableViewCell.xib in Resources */,
 				9F67DCF12629926300830D24 /* GuestNameSuggestionTableViewCell.xib in Resources */,
 				9F2DF5C923FD61FF003E65F1 /* InstructionsTableViewCell.xib in Resources */,
+				099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */,
 				9F6620D724AE578E0061BB9C /* ProviderDetailsHeaderView.xib in Resources */,
 				18E1C6D021CBAD470022145D /* AllNewsHeaderView.xib in Resources */,
 				9F6620DC24AE578E0061BB9C /* AppointmentHistoryHeaderView.xib in Resources */,
@@ -3224,6 +3234,7 @@
 				5FBFFBDC20EB7BA2004D31D9 /* Guest.swift in Sources */,
 				9FB7876C250CCFAD0067004F /* FitnessVideo.swift in Sources */,
 				5F17741420FF0BC1003E5529 /* SlideMenus.swift in Sources */,
+				099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */,
 				9FDCA07B2538CD8900EABD7B /* FitnessActivityCollectionViewCell.swift in Sources */,
 				18D2ED27215D0C9D00EDFF9C /* NewVisitViewController.swift in Sources */,
 				C70E34B8215AB2580076935C /* GuestCardTableViewCell.swift in Sources */,
@@ -3555,6 +3566,7 @@
 				18690C7222719114009263F8 /* GolfShareVC.swift in Sources */,
 				5F713A602133D27700A56CE3 /* SDWebImageWebPCoder.m in Sources */,
 				5F9D76F320DA58B300728446 /* GetMemberInfo.swift in Sources */,
+				099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */,
 				9F4B5AF0273BC5C500FAB043 /* FirstComeFirstServeHeaderView.swift in Sources */,
 				9F6620EE24AE57EF0061BB9C /* AvailableDates.swift in Sources */,
 				59FEC41B20B6B78600FF2DB0 /* MenuViewController.swift in Sources */,
@@ -3803,6 +3815,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.9;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycobaltsoftware.cobaltengage;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:cssibocawestapp)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3836,6 +3849,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.9;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycobaltsoftware.cobaltengage;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:cssibocawestapp)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

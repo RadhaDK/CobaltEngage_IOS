@@ -107,7 +107,7 @@ struct APIKeys
     static let ksecondaryPhone = "SecondaryPhone"
     static let kprimaryEmail = "PrimaryEmail"
     static let ksecondaryEmail = "SecondaryEmail"
-    
+    static let kBillingFrequency = "NewBillingFrequency"
     
     static let kmonthCount = "MonthCount"
     

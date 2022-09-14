@@ -13,6 +13,7 @@ class SaveMembership: NSObject, Mappable {
     var responseCode: String?
     var responseMessage: String?
     var IsMTAutoApproved: Int?
+    var IsBFAutoApproved: Int?
     
     convenience required init?(map: Map) {
         self.init()
@@ -21,6 +22,7 @@ class SaveMembership: NSObject, Mappable {
         responseCode <- map["ResponseCode"]
         responseMessage <- map["ResponseMessage"]
         IsMTAutoApproved <- map["IsMTAutoApproved"]
+        IsBFAutoApproved <- map["IsBFAutoApproved"]
     }
 }
 
