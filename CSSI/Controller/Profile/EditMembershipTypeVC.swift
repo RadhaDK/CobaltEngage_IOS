@@ -110,14 +110,17 @@ extension EditMembershipTypeVC : UITableViewDelegate, UITableViewDataSource{
             
             let color = UIColor(hexString: notifyobj.ColorCode ?? "")
             cell.ViewBack.layer.backgroundColor = color.cgColor
-            cell.btnPlus.setImage(UIImage(named: "AddGuest"), for: .normal)
+          //  cell.btnPlus.setImage(UIImage(named: "AddGuest"), for: .normal)
             // self.expanded.append(IndexPath(row:indexPath.row, section:1))
             if expandedIndexSet.contains(indexPath.row) {
                 cell.lblMembershipDescription.isHidden = false
+                cell.imgExpand.image = #imageLiteral(resourceName: "icon-tickMark-dark")
                 
             }
             else{
                 cell.lblMembershipDescription.isHidden = true
+                cell.imgExpand.image = #imageLiteral(resourceName: "dues-icon-expand")
+
             }
             return cell
         }

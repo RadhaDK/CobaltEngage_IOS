@@ -12858,7 +12858,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fS9-lM-04p">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 927" translatesAutoresizingMaskIntoConstraints="NO" id="yPC-Cc-CAc">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dues-edit" translatesAutoresizingMaskIntoConstraints="NO" id="yPC-Cc-CAc">
                                                                                 <rect key="frame" x="2.6666666666666572" y="7.6666666666666856" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="S3x-wU-MOR"/>
@@ -12889,7 +12889,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaK-38-xqX">
                                                                         <rect key="frame" x="42" y="0.0" width="30" height="40"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1256" translatesAutoresizingMaskIntoConstraints="NO" id="t1c-FJ-n1J">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dues-history" translatesAutoresizingMaskIntoConstraints="NO" id="t1c-FJ-n1J">
                                                                                 <rect key="frame" x="2.6666666666666856" y="7.6666666666666856" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="FOv-Yu-leI"/>
@@ -12918,7 +12918,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SpN-HL-jb9">
                                                                         <rect key="frame" x="84" y="0.0" width="30" height="40"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddGuest" translatesAutoresizingMaskIntoConstraints="NO" id="tWs-gW-fvg">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dues-calendar" translatesAutoresizingMaskIntoConstraints="NO" id="tWs-gW-fvg">
                                                                                 <rect key="frame" x="2.6666666666666856" y="7.6666666666666856" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="2Ha-7m-bCw"/>
@@ -12991,7 +12991,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49y-vY-OIN">
                                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 927" translatesAutoresizingMaskIntoConstraints="NO" id="WmC-9c-UWA">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dues-edit" translatesAutoresizingMaskIntoConstraints="NO" id="WmC-9c-UWA">
                                                                                 <rect key="frame" x="2.6666666666666572" y="7.6666666666666856" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="25" id="OzE-YL-UGF"/>
@@ -13022,7 +13022,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ku-3o-J2S">
                                                                         <rect key="frame" x="42" y="0.0" width="30" height="40"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1256" translatesAutoresizingMaskIntoConstraints="NO" id="BfJ-qs-QR3">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dues-history" translatesAutoresizingMaskIntoConstraints="NO" id="BfJ-qs-QR3">
                                                                                 <rect key="frame" x="2.6666666666666856" y="7.6666666666666856" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="a2P-A4-R28"/>
@@ -13051,7 +13051,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plu-JB-sTH">
                                                                         <rect key="frame" x="84" y="0.0" width="30" height="40"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 927" translatesAutoresizingMaskIntoConstraints="NO" id="iXA-yW-Cdb">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dues-calendar" translatesAutoresizingMaskIntoConstraints="NO" id="iXA-yW-Cdb">
                                                                                 <rect key="frame" x="2.6666666666666856" y="7.6666666666666856" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="25" id="RfV-3j-sA2"/>
@@ -13400,6 +13400,9 @@
         <image name="Thumbprint" width="58.666667938232422" height="58.666667938232422"/>
         <image name="avtar" width="40" height="40"/>
         <image name="close-dark" width="9" height="9"/>
+        <image name="dues-calendar" width="426.66665649414062" height="385.33334350585938"/>
+        <image name="dues-edit" width="426.66665649414062" height="423"/>
+        <image name="dues-history" width="426.66665649414062" height="405.33334350585938"/>
         <image name="eventPlaceholder" width="105" height="139"/>
         <image name="ic_cross" width="14" height="14"/>
         <image name="ic_filter" width="17" height="18"/>

@@ -11,7 +11,8 @@ import UIKit
 class EditMembershipTypeTableViewCell: UITableViewCell {
     @IBOutlet weak var ViewBack: UIView!
     @IBOutlet weak var btnPlus: UIButton!
- 
+    @IBOutlet weak var imgExpand: UIImageView!
+
     @IBOutlet weak var lblMembershipType: UILabel!
     @IBOutlet weak var lblMembershipDescription: UILabel!
 
@@ -21,7 +22,7 @@ class EditMembershipTypeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        btnPlus.setTitle("", for: .normal)
+       // btnPlus.setTitle("", for: .normal)
         lblMembershipDescription.isHidden = true
     }
 
