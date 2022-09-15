@@ -354,6 +354,7 @@
 		74C6BBCD20D1978700842A77 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCA20D1978600842A77 /* CheckBox.swift */; };
 		74C6BBCE20D1978700842A77 /* FormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCB20D1978700842A77 /* FormValidation.swift */; };
 		74C6BBCF20D1978700842A77 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCC20D1978700842A77 /* EventList.swift */; };
+		8463A8E128D3462E002E8F6E /* ModifyRegCustomGolfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463A8E028D3462E002E8F6E /* ModifyRegCustomGolfCell.swift */; };
 		848F5F5C28BCED5E00BA4C81 /* TemplateHistoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F5F5B28BCED5E00BA4C81 /* TemplateHistoryDetail.swift */; };
 		84960DE228351A1D007C8031 /* GolfCourseTimeSlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84960DE128351A1D007C8031 /* GolfCourseTimeSlots.swift */; };
 		849F425628AB658900941F8E /* MinimumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F425528AB658900941F8E /* MinimumViewController.swift */; };
@@ -1013,6 +1014,7 @@
 		74C6BBCB20D1978700842A77 /* FormValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValidation.swift; sourceTree = "<group>"; };
 		74C6BBCC20D1978700842A77 /* EventList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		7ED5DE5D8042AA11AFBA8AC8 /* Pods-CSSITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSSITests/Pods-CSSITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8463A8E028D3462E002E8F6E /* ModifyRegCustomGolfCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyRegCustomGolfCell.swift; sourceTree = "<group>"; };
 		848F5F5B28BCED5E00BA4C81 /* TemplateHistoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateHistoryDetail.swift; sourceTree = "<group>"; };
 		84960DE128351A1D007C8031 /* GolfCourseTimeSlots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfCourseTimeSlots.swift; sourceTree = "<group>"; };
 		849F425528AB658900941F8E /* MinimumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumViewController.swift; sourceTree = "<group>"; };
@@ -1385,6 +1387,7 @@
 				184F5AC4222665C000240C02 /* CustomNewRegCell.swift */,
 				18F5DF922190485400E64309 /* EventCustomTableViewCell.swift */,
 				184F5AC82226963E00240C02 /* ModifyRegCustomCell.swift */,
+				8463A8E028D3462E002E8F6E /* ModifyRegCustomGolfCell.swift */,
 				1825EA142227E12400C5A361 /* AddGuestRegVC.swift */,
 				18DE58712189D42B003EF0C1 /* AllClubNewsViewController.swift */,
 				18E8581621D0EDFD00AC18D5 /* ViewNewsViewController.swift */,
@@ -3408,6 +3411,7 @@
 				5F15A6042125351800F8D14E /* Labelling.swift in Sources */,
 				180505672189DE0A00BFBA0D /* AllNewsCustomTableViewCell.swift in Sources */,
 				5F9FEBE12106F74C00DAA459 /* String.swift in Sources */,
+				8463A8E128D3462E002E8F6E /* ModifyRegCustomGolfCell.swift in Sources */,
 				186FA6C923746C1600546C9D /* AlphaDetails.swift in Sources */,
 				5F47195020D90038002EFBB1 /* Dashboard.swift in Sources */,
 				9FC4F2EE2543214D00E7DB80 /* FitnessGoalChallangeTableViewCell.swift in Sources */,
