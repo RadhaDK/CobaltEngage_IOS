@@ -205,7 +205,7 @@ class DashBoardViewController: UIViewController, UICollectionViewDelegate, UICol
                 APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
                 APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? ""
             ]
-            
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             APIHandler.sharedInstance.getLocalizationData(paramater: paramaterDict, onSuccess: { (localizeinfo, responseString, localizeinfoDict) in
                 if(localizeinfo.responseCode == InternetMessge.kSuccess){
                     //                    self.masterLabeling = localizeinfo
@@ -232,9 +232,10 @@ class DashBoardViewController: UIViewController, UICollectionViewDelegate, UICol
                     UserDefaults.standard.synchronize()
                     
                 }
-                
+                self.appDelegate.hideIndicator()
             },onFailure: { error  in
                 print(error)
+                self.appDelegate.hideIndicator()
                 SharedUtlity.sharedHelper().showToast(on:
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
             })
@@ -1834,7 +1835,7 @@ class DashBoardViewController: UIViewController, UICollectionViewDelegate, UICol
                 //                APIKeys.kdeviceInfo: APIHandler.devicedict
             ]
             
-            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+//            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             
             APIHandler.sharedInstance.getMasterList(paramater: paramaterDict , onSuccess: { masterList in
                 self.appDelegate.hideIndicator()

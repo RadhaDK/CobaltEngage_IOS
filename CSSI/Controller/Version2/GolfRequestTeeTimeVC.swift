@@ -9,7 +9,7 @@ import FSCalendar
 import Popover
 import PDFKit
 
-class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, guestViewControllerDelegate, RequestCellDelegate,MemberViewControllerDelegate, RegistrationCell, ModifyRegistration, closeModalView, UIActionSheetDelegate, UITextFieldDelegate,closeUpdateSuccesPopup, FCFSCellDelegate {
+class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDataSource,  UICollectionViewDelegate, UICollectionViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, guestViewControllerDelegate, RequestCellDelegate,MemberViewControllerDelegate, RegistrationCell, ModifyRegistrationGolf, closeModalView, UIActionSheetDelegate, UITextFieldDelegate,closeUpdateSuccesPopup, FCFSCellDelegate {
     
     
     func AddGuestChildren(selecteArray: [RequestData]) {
@@ -1729,7 +1729,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             return cell
         }
         else if (tableView == modifyTableview){
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ModifyCell", for: indexPath) as? ModifyRegCustomCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ModifyRegCustomGolfCell", for: indexPath) as? ModifyRegCustomGolfCell {
                 cell.delegate = self
                 if(isFrom == "Modify" || isFrom == "View"){
                 if(indexPath.section == 0){
@@ -2076,15 +2076,16 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                 if let imageLink = instruction.image , let url = URL.init(string: imageLink)
                 {
                     cell.imageViewInstruction.isHidden = false
-                    DispatchQueue.global(qos: .userInteractive).async {
-                        guard let data = try? Data.init(contentsOf: url) else{
-                            return
-                        }
-                        DispatchQueue.main.async {
-                            cell.imageViewInstruction.image = UIImage.init(data: data)
-                            
-                        }
-                    }
+                    cell.imageViewInstruction.image = UIImage(named: "AddGuest")
+//                    DispatchQueue.global(qos: .userInteractive).async {
+//                        guard let data = try? Data.init(contentsOf: url) else{
+//                            return
+//                        }
+//                        DispatchQueue.main.async {
+//                            cell.imageViewInstruction.image = UIImage.init(data: data)
+//
+//                        }
+//                    }
                 }
                 else
                 {
@@ -2710,7 +2711,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             }
             let selectedIndex = IndexPath.init(row: selectedItemRow, section: selectedItemSection)
             if isFrom == "Modify" {
-                let cell = self.modifyTableview.cellForRow(at: selectedIndex) as? ModifyRegCustomCell
+                let cell = self.modifyTableview.cellForRow(at: selectedIndex) as? ModifyRegCustomGolfCell
                 cell?.textFieldTrans.text = self.appDelegate.transType_Golf[indexPath.row].name ?? ""
             } else {
                 let cell = self.groupsTableview.cellForRow(at: selectedIndex) as? CustomNewRegCell
@@ -3563,7 +3564,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
       
     }
     
-    func ModifyClicked(cell: ModifyRegCustomCell) {
+    func ModifyClicked(cell: ModifyRegCustomGolfCell) {
         let indexPath = self.modifyTableview.indexPath(for: cell)
         selectedIndex = indexPath?.row
         selectedSection = indexPath?.section
@@ -3792,7 +3793,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         actionSheet.show(in: self.view)
    
     }
-    func ModifyThreeDotsClicked(cell: ModifyRegCustomCell){
+    func ModifyThreeDotsClicked(cell: ModifyRegCustomGolfCell){
         let indexPath = self.modifyTableview.indexPath(for: cell)
         
         selectedIndex = indexPath?.row
@@ -3883,14 +3884,14 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         self.selectHole(index: self.groupsTableview.indexPath(for: cell)!, status: status)
     }
     
-    func transTextFieldSelected(textField : UITextField , cell : ModifyRegCustomCell)
+    func transTextFieldSelected(textField : UITextField , cell : ModifyRegCustomGolfCell)
     {
         if self.isFrom != "View" {
             self.showModifyTransDropDown(cell: cell)
         }
     }
     
-    func selectedNineHoles(status : Bool , cell : ModifyRegCustomCell) -> Bool
+    func selectedNineHoles(status : Bool , cell : ModifyRegCustomGolfCell) -> Bool
     {
         //TODO:- Need to save the status in array and reload tableview.
         if self.isFrom != "View" {
@@ -4026,7 +4027,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     //PROD0000202 -- End
     
-    private func showModifyTransDropDown(cell : ModifyRegCustomCell)
+    private func showModifyTransDropDown(cell : ModifyRegCustomGolfCell)
     {
         let indexPath = self.modifyTableview.indexPath(for: cell)
         

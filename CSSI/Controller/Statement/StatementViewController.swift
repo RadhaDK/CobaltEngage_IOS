@@ -88,7 +88,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         btnMinimum.layer.borderWidth = 1.0
         btnMinimum.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
         self.btnMinimum.setStyle(style: .outlined, type: .primary)
-        self.btnMinimumIndication.tintColor = APPColor.MainColours.primary1
+//        self.btnMinimumIndication.tintColor = APPColor.MainColours.primary1
 
         self.lblMemberNameID  .text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
         

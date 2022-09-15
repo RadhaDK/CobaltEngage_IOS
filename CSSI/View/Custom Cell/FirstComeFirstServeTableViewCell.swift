@@ -104,6 +104,7 @@ extension FirstComeFirstServeTableViewCell : UICollectionViewDelegate,UICollecti
         if scheduleType == "FCFS" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeCollectionViewCell", for: indexPath) as! TimeCollectionViewCell
             
+            cell.lblHoleType.isHidden = false
             let timeString = self.timeSlotsDetails.timeIntervals?[indexPath.row].time ?? ""
             var colorHex = UIColor.clear
             

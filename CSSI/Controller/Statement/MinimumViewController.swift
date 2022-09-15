@@ -13,8 +13,12 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var minimumTableView: UITableView!
     @IBOutlet weak var noRecordsFoundLbl: UILabel!
     
+    @IBOutlet weak var btnRules: UIButton!
+    @IBOutlet weak var lblUserNameId: UILabel!
+    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var minimumTamplateList: [MinimumTemplate] = []
+    var pdfPath = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +52,14 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    @IBAction func btnRulesAction(_ sender: Any) {
+        let rulesPdfDetailsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDfViewController") as! PDfViewController
+        rulesPdfDetailsVC.pdfUrl = self.pdfPath
+        rulesPdfDetailsVC.restarantName = self.appDelegate.masterLabeling.MB_GiftCard!
+
+        self.navigationController?.pushViewController(rulesPdfDetailsVC, animated: true)
+    }
+    
     // MARK: - Functions
     func initialSetup() {
         self.navigationController?.navigationBar.isHidden = false
@@ -57,6 +69,10 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
         let textAttributes = [NSAttributedStringKey.foregroundColor:APPColor.navigationColor.navigationitemcolor]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationItem.title = self.appDelegate.masterLabeling.mINIMUMS_TITLE ?? ""
+        
+        self.lblUserNameId.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
+        self.btnRules.setTitle(self.appDelegate.masterLabeling.MB_GiftCard ?? "", for: .normal)
+        
         self.getMinimumDetails()
     }
     
@@ -110,7 +126,8 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 if(minimumDetails.responseCode == InternetMessge.kSuccess)
                 {
-                    self.minimumTamplateList = minimumDetails.minimumTemplateHistory!
+                    self.minimumTamplateList = minimumDetails.minimumTemplateHistory
+                    self.pdfPath = minimumDetails.PDFPathWeb
                     if self.minimumTamplateList.count != 0 {
                         self.minimumTableView.reloadData()
                     } else {
