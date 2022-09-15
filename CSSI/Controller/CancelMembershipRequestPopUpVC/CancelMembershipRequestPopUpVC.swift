@@ -24,12 +24,17 @@ class CancelMembershipRequestPopUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnNo.layer.cornerRadius = 15
-        btnYes.layer.cornerRadius = 15
-        btnNo.layer.borderWidth = 1
-        btnYes.layer.borderWidth = 1
-        btnYes.layer.borderColor = UIColor.darkGray.cgColor
-        btnNo.layer.borderColor = UIColor.darkGray.cgColor
+        btnYes.layer.cornerRadius = btnYes.bounds.size.height / 2
+        btnYes.layer.borderWidth = 1.0
+        btnYes.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnYes.setStyle(style: .outlined, type: .primary)
+        
+        btnNo.layer.cornerRadius = btnNo.bounds.size.height / 2
+        btnNo.layer.borderWidth = 1.0
+        btnNo.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnNo.setStyle(style: .outlined, type: .primary)
+        
+        
         descriptionLbl.text = self.appDelegate.masterLabeling.DUES_RENEWAL_CANCEL_PENDING_REQUEST_MESSAGE ?? ""
 
         btnYes.setTitle(self.appDelegate.masterLabeling.Yes ?? "", for: .normal)

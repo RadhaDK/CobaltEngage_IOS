@@ -26,6 +26,7 @@ class EditMembershipTypeVC: UIViewController {
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var arrMembershipType = [MembershipTypeData]()
     var expandedIndexSet : IndexSet = []
+    var expandedIndexSetClose : IndexSet = []
     var selectedMemberShip : String?
     var actionrequestButton : requestAction?
     
@@ -34,18 +35,13 @@ class EditMembershipTypeVC: UIViewController {
         tblMembershipType.delegate = self
         tblMembershipType.dataSource = self
         
+        
         self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_UPDATE_MEMBERSHIP_TYPE_TITLE
-        btnCancelPendingrequest.layer.cornerRadius = btnCancelPendingrequest.frame.height/2
-        btnCancelPendingrequest.layer.borderWidth = 1
-        btnCancelPendingrequest.layer.borderColor = UIColor(red: 52/255, green: 210/255, blue: 255/255, alpha: 1).cgColor
-        
-        btnSave.layer.cornerRadius = btnCancelPendingrequest.frame.height/2
-        btnSave.layer.borderWidth = 1
-        btnSave.layer.borderColor = UIColor(red: 52/255, green: 210/255, blue: 255/255, alpha: 1).cgColor
-        btnCancel.layer.cornerRadius = btnCancelPendingrequest.frame.height/2
-        btnCancel.layer.borderWidth = 1
-        btnCancel.layer.borderColor = UIColor(red: 52/255, green: 210/255, blue: 255/255, alpha: 1).cgColor
-        
+       
+        btnSave.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
+        btnCancel.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
+        btnCancelPendingrequest.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
+
         registerNibs()
         
     }
@@ -112,15 +108,32 @@ extension EditMembershipTypeVC : UITableViewDelegate, UITableViewDataSource{
             cell.ViewBack.layer.backgroundColor = color.cgColor
           //  cell.btnPlus.setImage(UIImage(named: "AddGuest"), for: .normal)
             // self.expanded.append(IndexPath(row:indexPath.row, section:1))
+            
             if expandedIndexSet.contains(indexPath.row) {
+                if UserDefaults.standard.integer(forKey: "selectedCell") == indexPath.row{
+                    if cell.lblMembershipDescription.isHidden == true{
+                        cell.lblMembershipDescription.isHidden = false
+                        cell.imgExpand.image = #imageLiteral(resourceName: "icon-tickMark-dark")
+                        
+                    }
+                    else{
+                        cell.lblMembershipDescription.isHidden = true
+                        cell.imgExpand.image = #imageLiteral(resourceName: "dues-icon-expand")
+                    }
+           
+                }
+                else{
                 cell.lblMembershipDescription.isHidden = false
                 cell.imgExpand.image = #imageLiteral(resourceName: "icon-tickMark-dark")
+                }
                 
             }
             else{
+              
+              
                 cell.lblMembershipDescription.isHidden = true
                 cell.imgExpand.image = #imageLiteral(resourceName: "dues-icon-expand")
-
+                
             }
             return cell
         }
@@ -136,6 +149,7 @@ extension EditMembershipTypeVC : UITableViewDelegate, UITableViewDataSource{
             expandedIndexSet.remove(indexPath.row)
         } else {
             expandedIndexSet.insert(indexPath.row)
+            UserDefaults.standard.set(indexPath.row, forKey: "selectedCell")
         }
         tblMembershipType.reloadData()
     }
@@ -225,7 +239,7 @@ extension EditMembershipTypeVC{
                         }
                         else if self.actionrequestButton == .save{
                             thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_UPDATE_REQUEST_MESSAGE
-                            thankyouMembershipViewController.modalPresentationStyle = .fullScreen
+                           // thankyouMembershipViewController.modalPresentationStyle = .fullScreen
                             //  thankyouMembershipViewController.delegateThankMembership = self
                             
                             self.present(thankyouMembershipViewController, animated: true, completion: nil)

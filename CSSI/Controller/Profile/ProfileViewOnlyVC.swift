@@ -128,6 +128,7 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var lblMembershipHeading: UILabel!
     @IBOutlet weak var lblDurationHeading: UILabel!
     @IBOutlet weak var lblDueBBillHeading: UILabel!
+    @IBOutlet weak var viewBack: UIView!
     
     
     
@@ -167,7 +168,18 @@ class ProfileViewOnlyVC: UIViewController {
         btnEditDueBill.setTitle("", for: .normal)
         btnDuebillHistory.setTitle("", for: .normal)
         btncancelDueBill.setTitle("", for: .normal)
+        
+        
+        viewMemberShipType.isHidden = true
+        viewDueBilles.isHidden = true
 
+        viewEditMembershipIcon.isHidden = true
+        viewiHtoryMembershipIcon.isHidden = true
+        viewCancelMembershipIcon.isHidden = true
+        viewEditBillingIcon.isHidden = true
+        viewHitoryBillingIcon.isHidden = true
+        viewCancelBillingIcon.isHidden = true
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -198,8 +210,8 @@ class ProfileViewOnlyVC: UIViewController {
        // self.imgProfilePic.layer.borderColor = borderColor.withAlphaComponent(opacity).cgColor
         
         
-        self.btnEdit.backgroundColor = .clear
-        self.btnEdit.layer.cornerRadius = 17
+        self.btnEdit.backgroundColor = .white
+        self.btnEdit.layer.cornerRadius = self.btnEdit.frame.size.height / 2
         self.btnEdit.layer.borderWidth = 1
         self.btnEdit.layer.borderColor = hexStringToUIColor(hex: "67aac9").cgColor
         
@@ -214,7 +226,7 @@ class ProfileViewOnlyVC: UIViewController {
         self.viewSettings.addGestureRecognizer(settingsgesture)
         
         
-        self.navigationController!.interactivePopGestureRecognizer!.isEnabled = true
+        self.navigationController?.interactivePopGestureRecognizer!.isEnabled = true
         
         self.navigationItem.title = self.appDelegate.masterLabeling.tT_PROFILE
         
@@ -314,7 +326,7 @@ class ProfileViewOnlyVC: UIViewController {
     @IBAction func editDueBillFrequencyBtnTapped(_ sender: Any) {
         if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
             self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
-           
+            vc.currentFrequency = lblBillingType.text
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -431,6 +443,7 @@ class ProfileViewOnlyVC: UIViewController {
             
         }
     }
+   
     func resetDefaults() {
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
@@ -442,7 +455,8 @@ class ProfileViewOnlyVC: UIViewController {
 
     func getMemberInfoApi() -> Void {
         if (Network.reachability?.isReachable) == true{
-            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            Indicator.sharedInstance.showIndicator()
+            //self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
 //            let deviceInfo:[String: Any] = [
 //                APIKeys.kDeviceType: DeviceInfo.iosType,
 //                APIKeys.kOSVersion:  DeviceInfo.iosVersion,
@@ -458,7 +472,8 @@ class ProfileViewOnlyVC: UIViewController {
             
             
             APIHandler.sharedInstance.getMemberInfoApi(paramater: dict, onSuccess: { arrgetMemberInfo in
-                self.appDelegate.hideIndicator()
+                Indicator.sharedInstance.hideIndicator()
+
                 print(arrgetMemberInfo)
                 self.dictmemberInfo = arrgetMemberInfo
                 
@@ -728,45 +743,51 @@ class ProfileViewOnlyVC: UIViewController {
                 self.lblDuration.text = arrgetMemberInfo.Duration
                 self.lblBillingType.text = arrgetMemberInfo.BillingFrequency
                 self.lblDueBBillHeading.text = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY
-                
+
                 if arrgetMemberInfo.AllowToChangeDuesMembershipType == 1{
                     self.viewEditMembershipIcon.isHidden = false
+                    self.viewMemberShipType.isHidden = false
                 }
                 else{
                     self.viewEditMembershipIcon.isHidden = true
                 }
 
-                if arrgetMemberInfo.IsAvailableMTApprovedRequest == 1{
+                if arrgetMemberInfo.AllowToChangeDuesMembershipType == 1{
                     self.viewiHtoryMembershipIcon.isHidden = false
+                    self.viewMemberShipType.isHidden = false
                 }
                 else{
                     self.viewiHtoryMembershipIcon.isHidden = true
                 }
-                
+
                 if arrgetMemberInfo.AllowToCancelMTPendingRequest == 1{
                     self.viewCancelMembershipIcon.isHidden = false
+                    self.viewMemberShipType.isHidden = false
                 }
                 else{
                     self.viewCancelMembershipIcon.isHidden = true
                 }
-                
-                
+
+
                 if arrgetMemberInfo.AllowToChangeDuesBillingFrequency == 1{
                     self.viewEditBillingIcon.isHidden = false
+                    self.viewDueBilles.isHidden = false
                 }
                 else{
                     self.viewEditBillingIcon.isHidden = true
                 }
 
-                if arrgetMemberInfo.IsAvailableBFApprovedRequest == 1{
+                if arrgetMemberInfo.AllowToChangeDuesBillingFrequency == 1{
                     self.viewHitoryBillingIcon.isHidden = false
+                    self.viewDueBilles.isHidden = false
                 }
                 else{
                     self.viewHitoryBillingIcon.isHidden = true
                 }
-                
+
                 if arrgetMemberInfo.AllowToCancelBFPendingRequest == 1{
                     self.viewCancelBillingIcon.isHidden = false
+                    self.viewDueBilles.isHidden = false
                 }
                 else{
                     self.viewCancelBillingIcon.isHidden = true
@@ -774,7 +795,8 @@ class ProfileViewOnlyVC: UIViewController {
                 
                 
             },onFailure: { error  in
-                self.appDelegate.hideIndicator()
+                Indicator.sharedInstance.hideIndicator()
+
                 print(error)
                 SharedUtlity.sharedHelper().showToast(on:
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)

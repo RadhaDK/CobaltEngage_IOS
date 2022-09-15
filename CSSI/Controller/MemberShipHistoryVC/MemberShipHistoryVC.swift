@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Popover
+
 enum typeRequestBillOrMember{
     case Membership,Billing
 }
@@ -30,15 +32,21 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
     var filterBarButtonItem: UIBarButtonItem!
     var filterTapped: Bool?
     var filteredValue : String?
-
     
+    var filterPopover: Popover? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tblMemHistory.delegate = self
         tblMemHistory.dataSource  = self
-        btnClose.layer.cornerRadius = 15
-        btnClose.layer.borderWidth = 1
-        btnClose.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
+//        btnClose.layer.cornerRadius = 15
+//        btnClose.layer.borderWidth = 1
+//        btnClose.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
+        btnClose.layer.cornerRadius = btnClose.bounds.size.height / 2
+        btnClose.layer.borderWidth = 1.0
+        btnClose.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnClose.setStyle(style: .outlined, type: .primary)
+        
         if typeOfHistory == .Membership{
             self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_HISTORY_TITLE
 
@@ -52,12 +60,12 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
         // Do any additional setup after loading the view.
     }
     //Mark- Go to Filter menu
-    @objc func onTapFilter() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let pvc = storyboard.instantiateViewController(withIdentifier: "HistoryFilterPopupVC") as! HistoryFilterPopupVC
-        pvc.delegateHistoryFilter = self
-        pvc.arrForFilterOption = arrForFilterOption
-        self.present(pvc, animated: true, completion: nil)
+    @objc func onTapFilterr() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let pvc = storyboard.instantiateViewController(withIdentifier: "HistoryFilterPopupVC") as! HistoryFilterPopupVC
+//        pvc.delegateHistoryFilter = self
+//        pvc.arrForFilterOption = arrForFilterOption
+//        self.present(pvc, animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -290,4 +298,40 @@ extension MemberShipHistoryVC{
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
     }
+}
+
+
+extension MemberShipHistoryVC
+{
+    @objc private func onTapFilter()
+    {
+        guard let filterView = UINib(nibName: "MembershiphHistoryFilterPopUpView", bundle: Bundle.main).instantiate(withOwner: MembershiphHistoryFilterPopUpView.self, options: nil).first as? MembershiphHistoryFilterPopUpView else
+        {
+            return
+        }
+        
+        let screenSize = UIScreen.main.bounds
+        filterView.frame = CGRect(x:4, y: 88, width:screenSize.width - 8, height:250)
+        filterPopover = Popover()
+        filterPopover?.arrowSize = CGSize(width: 28.0, height: 13.0)
+        filterPopover?.sideEdge = 4.0
+        filterView.arrForFilterOption = arrForFilterOption
+        filterView.delegateHistoryFilter = self
+        filterView.delegate = self
+        let point = CGPoint(x: self.view.bounds.width - 35, y: 70)
+        filterPopover?.show(filterView, point: point)
+    }
+    
+}
+extension MemberShipHistoryVC : GuestListFilterViewDelegate {
+    func guestCardFilterApply(filter: GuestCardFilter) {
+//        getGuestList(strSearch: searchBar.text, filter: filter)
+//        filterPopover?.dismiss()
+    }
+    
+    func guestCardFilterClose() {
+        filterPopover?.dismiss()
+    }
+    
+    
 }

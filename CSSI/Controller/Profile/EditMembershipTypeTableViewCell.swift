@@ -23,7 +23,7 @@ class EditMembershipTypeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
        // btnPlus.setTitle("", for: .normal)
-        lblMembershipDescription.isHidden = true
+      //  lblMembershipDescription.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

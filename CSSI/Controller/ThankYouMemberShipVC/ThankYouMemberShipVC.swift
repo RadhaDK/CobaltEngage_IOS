@@ -43,19 +43,17 @@ class ThankYouMemberShipVC: UIViewController {
     }
     
     @IBAction func removePopUpBtnTapped(sender:UIButton){
+        let presentingController = self.presentingViewController
         self.dismiss(animated: true) {
-           // let yourViewController = DashBoardViewController()
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeController =  mainStoryboard.instantiateViewController(withIdentifier: "TabbarViewController") as! TabbarViewController
-            appDelegate?.window?.rootViewController = homeController
-         
-//            let yourViewController = DashBoardViewController()
-//            yourViewController.performWillApperAction()
-//
-//           // yourViewController.view.backgroundColor = .red
-//            guard let navigationController = self.navigationController else {return}
-//            navigationController.pushViewController(yourViewController, animated: true)
+            if let navigationController = presentingController as? UINavigationController,
+               let myDownloadsViewController = navigationController.viewControllers.first(
+                   where: { viewController in
+                       viewController is ProfileViewOnlyVC
+                   }
+               ) {
+               navigationController.popToViewController(myDownloadsViewController, animated: true)
+            }
         }
     }
+    
 }

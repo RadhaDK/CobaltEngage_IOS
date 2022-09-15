@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class MemberEditBillingFrequencyVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var billingAmountView: UIView!
     @IBOutlet weak var billingAmountLbl: UILabel!
@@ -20,14 +20,15 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var btnPicker: UIButton!
     @IBOutlet weak var lblSave: UILabel!
     @IBOutlet weak var lblCancel: UILabel!
-    
+    @IBOutlet weak var txtTypeBilling: UITextField!
+
     
     var arrBillingType = [MembershipTypeData]()
-    var toolBar = UIToolbar()
-    var picker  = UIPickerView()
+    fileprivate var durationPicker : UIPickerView? = nil;
+
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var selectedBillingFrequency : String?
-    
+    var currentFrequency : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +50,12 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
         cancelbtnbgView.layer.borderWidth = 1.5
         cancelbtnbgView.layer.cornerRadius = 20
         btnPicker.setTitle("", for: .normal)
-      
+        txtTypeBilling.delegate = self
+        durationPicker = UIPickerView()
+        durationPicker?.delegate = self
+        durationPicker?.dataSource = self
+        txtTypeBilling.inputView = durationPicker
+        txtTypeBilling.text = currentFrequency
         // Do any additional setup after loading the view.
     }
     
@@ -79,63 +85,21 @@ class MemberEditBillingFrequencyVC: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     @IBAction func btnChoosBilling(_ sender: UIButton) {
-        picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        picker.backgroundColor = UIColor.white
-        picker.setValue(UIColor.black, forKey: "textColor")
-        picker.autoresizingMask = .flexibleWidth
-        picker.contentMode = .center
-        picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        self.view.addSubview(picker)
-                
-        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.barStyle = .default
-        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-        self.view.addSubview(toolBar)
+        
     }
     @IBAction func PickerBtnTapped(sender:UIButton){
-        picker = UIPickerView.init()
-        picker.delegate = self
-        picker.dataSource = self
-        picker.backgroundColor = UIColor.white
-        picker.setValue(UIColor.black, forKey: "textColor")
-        picker.autoresizingMask = .flexibleWidth
-        picker.contentMode = .center
-        picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        self.view.addSubview(picker)
-                
-        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.barStyle = .blackTranslucent
-        toolBar.barTintColor = UIColor(red: 42/255, green: 78/255, blue: 125/255, alpha: 1)
-        toolBar.tintColor = .white
-        
-        toolBar.items = [UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-        self.view.addSubview(toolBar)
     }
     
-    @objc func onDoneButtonTapped() {
-        toolBar.removeFromSuperview()
-        picker.removeFromSuperview()
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-        
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrBillingType.count
-    }
-        
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(arrBillingType[row].Value ?? "")"
-    }
-        
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(arrBillingType[row])
-        billingAmountLbl.text = "\(arrBillingType[row].Text ?? "")"
-        selectedBillingFrequency = "\(arrBillingType[row].Value ?? "")"
-    }
+   
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == txtTypeBilling{
+            if arrBillingType.count != 0{
+            self.txtTypeBilling.text = arrBillingType[0].Text
+            selectedBillingFrequency = arrBillingType[0].Text
+            self.durationPicker?.selectRow(0, inComponent: 0, animated: true)
+            self.pickerView(durationPicker!, didSelectRow: 0, inComponent: 0)
+        }
+        }}
     
 
 }
@@ -209,7 +173,7 @@ extension MemberEditBillingFrequencyVC{
                 if membershipSavedData.IsBFAutoApproved == 0{
                     if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
                         thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_UPDATE_REQUEST_MESSAGE
-                            thankyouMembershipViewController.modalPresentationStyle = .fullScreen
+                            //thankyouMembershipViewController.modalPresentationStyle = .fullScreen
                             self.present(thankyouMembershipViewController, animated: true, completion: nil)
                         
                     }
@@ -217,7 +181,7 @@ extension MemberEditBillingFrequencyVC{
                 else{
                     if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
                         thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.AUTO_APPROVED_MESSAGE
-                            thankyouMembershipViewController.modalPresentationStyle = .fullScreen
+                           // thankyouMembershipViewController.modalPresentationStyle = .fullScreen
                             self.present(thankyouMembershipViewController, animated: true, completion: nil)
                         
                     }
@@ -232,5 +196,27 @@ extension MemberEditBillingFrequencyVC{
             SharedUtlity.sharedHelper().showToast(on:
                                                     self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
+    }
+}
+extension MemberEditBillingFrequencyVC : UIPickerViewDelegate {
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+            selectedBillingFrequency = arrBillingType[row].Value
+            txtTypeBilling.text = arrBillingType[row].Text
+            
+        }
+    
+}
+extension MemberEditBillingFrequencyVC : UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+        
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrBillingType.count
+    }
+        
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(arrBillingType[row].Value ?? "")"
     }
 }

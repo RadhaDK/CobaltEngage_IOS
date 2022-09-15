@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		097DCAB528D36E2200389C75 /* ¸ in Resources */ = {isa = PBXBuildFile; fileRef = 097DCAB428D36E2200389C75 /* ¸ */; };
+		097DCAB728D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */; };
+		097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */; };
+		097DCABD28D3BD5C00389C75 /* loaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097DCABC28D3BD5B00389C75 /* loaderHelper.swift */; };
 		099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */; };
 		099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */; };
 		099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */; };
@@ -595,6 +599,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		097DCAB428D36E2200389C75 /* ¸ */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "¸"; sourceTree = "<group>"; };
+		097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembershiphHistoryFilterPopUpView.xib; sourceTree = "<group>"; };
+		097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershiphHistoryFilterPopUpView.swift; sourceTree = "<group>"; };
+		097DCABC28D3BD5B00389C75 /* loaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loaderHelper.swift; sourceTree = "<group>"; };
 		099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterPopupVC.swift; sourceTree = "<group>"; };
 		099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -1542,6 +1550,7 @@
 				18D58A9E226702A900F26390 /* Version2 */,
 				59FEC41920B6B76E00FF2DB0 /* Menu view controller */,
 				9FCE25A7250A755A00E6B5B9 /* FitnessApp */,
+				097DCABC28D3BD5B00389C75 /* loaderHelper.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2657,12 +2666,15 @@
 		A863E22428C7B94400CF9993 /* MemberShipHistoryVC */ = {
 			isa = PBXGroup;
 			children = (
+				097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */,
+				097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */,
 				A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */,
 				A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */,
 				A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */,
 				099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */,
 				099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */,
 				099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */,
+				097DCAB428D36E2200389C75 /* ¸ */,
 			);
 			path = MemberShipHistoryVC;
 			sourceTree = "<group>";
@@ -2891,6 +2903,7 @@
 				598DE06220D3E7A1009AFEF0 /* SFUIDisplay-Semibold.otf in Resources */,
 				9F6620C024AE573F0061BB9C /* RequestTableViewCell.xib in Resources */,
 				9FDCA07C2538CD8900EABD7B /* FitnessActivityCollectionViewCell.xib in Resources */,
+				097DCAB728D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib in Resources */,
 				9F6620C324AE573F0061BB9C /* ModifyTableViewCell.xib in Resources */,
 				59FEC3EE20B6A65100FF2DB0 /* LaunchScreen.storyboard in Resources */,
 				59FEC3EB20B6A65100FF2DB0 /* Assets.xcassets in Resources */,
@@ -2899,6 +2912,7 @@
 				18FA22032382AA6A002B82DB /* MyCalendarXib.xib in Resources */,
 				9FCCE2962508F7D40080C559 /* FitnessApp.storyboard in Resources */,
 				9F4B5AEC273BAF7100FAB043 /* FirstComeFirstServeTableViewCell.xib in Resources */,
+				097DCAB528D36E2200389C75 /* ¸ in Resources */,
 				9FC4F2EB25430B4100E7DB80 /* FitnessCategoryCollectionViewCell.xib in Resources */,
 				A863E22A28C7B9B700CF9993 /* MembershipHistoryCell.xib in Resources */,
 				9F5A1A1E250B810D00AADE80 /* HamburgerMenuTableViewCell.xib in Resources */,
@@ -3428,6 +3442,7 @@
 				18AA4923221ED6CA005F2DE8 /* SettingsViewController.swift in Sources */,
 				5F47195620D90189002EFBB1 /* Club_news.swift in Sources */,
 				18659DC721F1925C00AEBF5D /* PopUpForCategoryVC.swift in Sources */,
+				097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */,
 				A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */,
 				5F9D76F520DA59A100728446 /* AddOnType.swift in Sources */,
 				9F6620DA24AE578E0061BB9C /* AppointmentHistoryHeaderView.swift in Sources */,
@@ -3457,6 +3472,7 @@
 				5FE537F120EA410200CC3FBF /* TagView.swift in Sources */,
 				5FD6592620E757EF0033CD5B /* SampleViewController.swift in Sources */,
 				1801B39E230F03C600E7ECC2 /* NewSuccessUpdateView.swift in Sources */,
+				097DCABD28D3BD5C00389C75 /* loaderHelper.swift in Sources */,
 				1816407A2280751D00A3E9E9 /* MyGroupDetails.swift in Sources */,
 				9F2E3DD82696C51D00F3F347 /* OTPStack.swift in Sources */,
 				18EF0C5A2379D3C6005771FA /* AppVersion.swift in Sources */,
