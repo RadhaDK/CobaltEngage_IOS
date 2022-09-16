@@ -34,21 +34,16 @@ class EditMembershipTypeVC: UIViewController {
         super.viewDidLoad()
         tblMembershipType.delegate = self
         tblMembershipType.dataSource = self
-        
-        
         self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_UPDATE_MEMBERSHIP_TYPE_TITLE
-       
         btnSave.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
         btnCancel.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
         btnCancelPendingrequest.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
-
         registerNibs()
         
     }
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        
         self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnAction(sender:)))
         membershipTypeList()
     }
@@ -68,11 +63,12 @@ class EditMembershipTypeVC: UIViewController {
     }
     @objc private func backBtnAction(sender : UIBarButtonItem)
     {
+        UserDefaults.standard.removeObject(forKey: "selectedCell")
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSave(_ sender: Any) {
         actionrequestButton = .save
-        if selectedMemberShip != nil{
+        if selectedMemberShip != nil && selectedMemberShip != ""{
             SavemembershipTypeList()
         }
         else{
@@ -110,30 +106,16 @@ extension EditMembershipTypeVC : UITableViewDelegate, UITableViewDataSource{
             // self.expanded.append(IndexPath(row:indexPath.row, section:1))
             
             if expandedIndexSet.contains(indexPath.row) {
-                if UserDefaults.standard.integer(forKey: "selectedCell") == indexPath.row{
-                    if cell.lblMembershipDescription.isHidden == true{
-                        cell.lblMembershipDescription.isHidden = false
-                        cell.imgExpand.image = #imageLiteral(resourceName: "icon-tickMark-dark")
-                        
-                    }
-                    else{
-                        cell.lblMembershipDescription.isHidden = true
-                        cell.imgExpand.image = #imageLiteral(resourceName: "dues-icon-expand")
-                    }
-           
-                }
-                else{
                 cell.lblMembershipDescription.isHidden = false
                 cell.imgExpand.image = #imageLiteral(resourceName: "icon-tickMark-dark")
-                }
-                
+                cell.stackData.layer.borderColor = UIColor(red: 23/255, green: 70/255, blue: 76/255, alpha: 1).cgColor
+                cell.stackData.layer.borderWidth = 1
             }
             else{
-              
-              
                 cell.lblMembershipDescription.isHidden = true
                 cell.imgExpand.image = #imageLiteral(resourceName: "dues-icon-expand")
-                
+                cell.stackData.layer.borderColor = UIColor.clear.cgColor
+                cell.stackData.layer.borderWidth = 1
             }
             return cell
         }
@@ -142,13 +124,18 @@ extension EditMembershipTypeVC : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        expandedIndexSet = []
+        
         let memberobj = arrMembershipType[indexPath.row]
-        selectedMemberShip =  memberobj.Value
+
         if(expandedIndexSet.contains(indexPath.row)){
             expandedIndexSet.remove(indexPath.row)
+            selectedMemberShip = ""
+
         } else {
+            expandedIndexSet = []
             expandedIndexSet.insert(indexPath.row)
+            selectedMemberShip =  memberobj.Value
+
             UserDefaults.standard.set(indexPath.row, forKey: "selectedCell")
         }
         tblMembershipType.reloadData()

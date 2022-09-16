@@ -120,6 +120,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="WeA-sS-u54" secondAttribute="trailing" constant="10" id="PqE-zD-jbJ"/>
                     <constraint firstItem="WeA-sS-u54" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Reh-3t-IT0"/>
@@ -133,6 +134,7 @@
                 <outlet property="imgExpand" destination="RjZ-WC-gCC" id="HOs-3N-Aye"/>
                 <outlet property="lblMembershipDescription" destination="dD7-0E-2y2" id="gZ9-Sx-QFM"/>
                 <outlet property="lblMembershipType" destination="hWT-y9-OCt" id="IoS-Io-Mn0"/>
+                <outlet property="stackData" destination="atT-U2-bmn" id="Klt-PL-wD1"/>
             </connections>
             <point key="canvasLocation" x="225.36231884057972" y="115.17857142857142"/>
         </tableViewCell>

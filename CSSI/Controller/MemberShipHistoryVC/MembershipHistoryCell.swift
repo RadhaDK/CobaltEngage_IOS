@@ -24,7 +24,7 @@ class MembershipHistoryCell: UITableViewCell {
     @IBOutlet weak var viewReason: UIView!
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         statusLbl.layer.cornerRadius = 4

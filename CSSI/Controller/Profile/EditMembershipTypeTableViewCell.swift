@@ -12,6 +12,7 @@ class EditMembershipTypeTableViewCell: UITableViewCell {
     @IBOutlet weak var ViewBack: UIView!
     @IBOutlet weak var btnPlus: UIButton!
     @IBOutlet weak var imgExpand: UIImageView!
+    @IBOutlet weak var stackData: UIStackView!
 
     @IBOutlet weak var lblMembershipType: UILabel!
     @IBOutlet weak var lblMembershipDescription: UILabel!
