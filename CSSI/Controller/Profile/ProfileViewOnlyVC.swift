@@ -138,6 +138,10 @@ class ProfileViewOnlyVC: UIViewController {
 
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var dictmemberInfo = GetMemberInfo()
+    
+    var AllowToCancePendingRequest : Int?
+    var AllowtocancelMTRequest : Int?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +157,7 @@ class ProfileViewOnlyVC: UIViewController {
         
         //Added by kiran V1.3 -- PROD0000036 -- removing place holder image set in storyboard
         //PROD0000036 -- Start
-        self.imgProfilePic.image = nil
+        self.imgProfilePic.image = UIImage(named: "provider_Male")
         //PROD0000036 -- End
         viewMemberShipType.layer.cornerRadius = viewMemberShipType.frame.height/2
         viewMemberShipType.layer.borderColor = UIColor.lightGray.cgColor
@@ -301,7 +305,7 @@ class ProfileViewOnlyVC: UIViewController {
     
     @IBAction func btnTappedEditMembership(_ sender: Any) {
         if let settingsVC = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "EditMembershipTypeVC") as? EditMembershipTypeVC {
-            
+            settingsVC.AllowtocancelMTRequest = AllowtocancelMTRequest
             self.navigationController?.pushViewController(settingsVC, animated: true)
             
         }
@@ -327,6 +331,7 @@ class ProfileViewOnlyVC: UIViewController {
         if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberEditBillingFrequencyVC") as? MemberEditBillingFrequencyVC {
             self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
             vc.currentFrequency = lblBillingType.text
+            vc.AllowToCancePendingRequest = AllowToCancePendingRequest
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -743,6 +748,8 @@ class ProfileViewOnlyVC: UIViewController {
                 self.lblDuration.text = arrgetMemberInfo.Duration
                 self.lblBillingType.text = arrgetMemberInfo.BillingFrequency
                 self.lblDueBBillHeading.text = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY
+                
+                self.AllowToCancePendingRequest = arrgetMemberInfo.AllowToCancelBFPendingRequest
 
                 if arrgetMemberInfo.AllowToChangeDuesMembershipType == 1{
                     self.viewEditMembershipIcon.isHidden = false
@@ -763,6 +770,7 @@ class ProfileViewOnlyVC: UIViewController {
                 if arrgetMemberInfo.AllowToCancelMTPendingRequest == 1{
                     self.viewCancelMembershipIcon.isHidden = false
                     self.viewMemberShipType.isHidden = false
+                    self.AllowtocancelMTRequest = 1
                 }
                 else{
                     self.viewCancelMembershipIcon.isHidden = true

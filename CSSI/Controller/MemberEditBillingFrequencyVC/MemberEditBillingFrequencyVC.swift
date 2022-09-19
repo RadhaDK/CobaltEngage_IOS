@@ -7,20 +7,25 @@
 //
 
 import UIKit
+enum requestActionBilling{
+    case save,cancel
+}
 
-
-class MemberEditBillingFrequencyVC: UIViewController, UITextFieldDelegate {
+class MemberEditBillingFrequencyVC: UIViewController {
     
-    @IBOutlet weak var billingAmountView: UIView!
-    @IBOutlet weak var billingAmountLbl: UILabel!
+    @IBOutlet weak var billingFrequencyTbl: UITableView!
     @IBOutlet weak var savebtnbgView: UIView!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var cancelbtnbgView: UIView!
     @IBOutlet weak var btnCancel: UIButton!
-    @IBOutlet weak var btnPicker: UIButton!
     @IBOutlet weak var lblSave: UILabel!
     @IBOutlet weak var lblCancel: UILabel!
-    @IBOutlet weak var txtTypeBilling: UITextField!
+    @IBOutlet weak var CancelPendingRequestbgView: UIView!
+    @IBOutlet weak var CancelPendingRequestbgViewHeight: NSLayoutConstraint!
+
+    @IBOutlet weak var btnCancelPendingRequest: UIButton!
+    @IBOutlet weak var lblCancelPendingRequest: UILabel!
+    @IBOutlet weak var btnCancelPendingRequestTopConstraint: NSLayoutConstraint!
 
     
     var arrBillingType = [MembershipTypeData]()
@@ -29,34 +34,56 @@ class MemberEditBillingFrequencyVC: UIViewController, UITextFieldDelegate {
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var selectedBillingFrequency : String?
     var currentFrequency : String?
+    var AllowToCancePendingRequest : Int?
+    var expandedIndexSet : IndexSet = []
+    var selectedMemberShip : String?
+    var actionrequestButton : requestActionBilling?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         btnSave.setTitle("", for: .normal)
         btnCancel.setTitle("", for: .normal)
-
+        btnCancelPendingRequest.setTitle("", for: .normal)
+        
+        
+     
         self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_UPDATE_BILLING_FREQUENCY_TITLE
         lblSave.text = self.appDelegate.masterLabeling.Save
         lblCancel.text = self.appDelegate.masterLabeling.cANCEL
 
-        billingAmountView.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
-        billingAmountView.layer.borderWidth = 1
+       
         
         savebtnbgView.layer.borderColor = UIColor(red: 42/255, green: 78/255, blue: 127/255, alpha: 1).cgColor
         savebtnbgView.layer.borderWidth = 1.5
-        savebtnbgView.layer.cornerRadius = 23
+        savebtnbgView.layer.cornerRadius = savebtnbgView.frame.height/2
         
         cancelbtnbgView.layer.borderColor = UIColor(red: 42/255, green: 78/255, blue: 127/255, alpha: 1).cgColor
         cancelbtnbgView.layer.borderWidth = 1.5
         cancelbtnbgView.layer.cornerRadius = 20
-        btnPicker.setTitle("", for: .normal)
-        txtTypeBilling.delegate = self
-        durationPicker = UIPickerView()
-        durationPicker?.delegate = self
-        durationPicker?.dataSource = self
-        txtTypeBilling.inputView = durationPicker
-        txtTypeBilling.text = currentFrequency
+        
+        CancelPendingRequestbgView.layer.borderColor = UIColor(red: 42/255, green: 78/255, blue: 127/255, alpha: 1).cgColor
+        CancelPendingRequestbgView.layer.borderWidth = 1.5
+        CancelPendingRequestbgView.layer.cornerRadius = CancelPendingRequestbgView.frame.height/2
+       
+    
         // Do any additional setup after loading the view.
+        registerNibs()
+        
+        if AllowToCancePendingRequest == 1{
+            CancelPendingRequestbgView.isHidden = false
+            CancelPendingRequestbgViewHeight.constant = 40
+            btnCancelPendingRequestTopConstraint.constant = 25
+        }else{
+            CancelPendingRequestbgView.isHidden = true
+            CancelPendingRequestbgViewHeight.constant = 0
+            btnCancelPendingRequestTopConstraint.constant = 0
+        }
+    }
+    func registerNibs(){
+        let menuNib = UINib(nibName: "MemberBillingFrequencyCell" , bundle: nil)
+        self.billingFrequencyTbl.register(menuNib, forCellReuseIdentifier: "MemberBillingFrequencyCell")
+        self.billingFrequencyTbl.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -72,7 +99,8 @@ class MemberEditBillingFrequencyVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveBtnTapped(sender:UIButton){
-        if selectedBillingFrequency != nil{
+        actionrequestButton = .save
+        if selectedBillingFrequency != nil && selectedBillingFrequency != ""{
             SavebillingTypeList()
         }
         else{
@@ -84,22 +112,16 @@ class MemberEditBillingFrequencyVC: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnChoosBilling(_ sender: UIButton) {
+    @IBAction func cancelPendingRequestBtnTapped(_ sender: UIButton) {
+        actionrequestButton = .cancel
+        SavebillingTypeList()
         
     }
     @IBAction func PickerBtnTapped(sender:UIButton){
     }
     
    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == txtTypeBilling{
-            if arrBillingType.count != 0{
-            self.txtTypeBilling.text = arrBillingType[0].Text
-            selectedBillingFrequency = arrBillingType[0].Text
-            self.durationPicker?.selectRow(0, inComponent: 0, animated: true)
-            self.pickerView(durationPicker!, didSelectRow: 0, inComponent: 0)
-        }
-        }}
+
     
 
 }
@@ -125,6 +147,7 @@ extension MemberEditBillingFrequencyVC{
             ]
             APIHandler.sharedInstance.getMembershipListing(paramater: paramaterDict, onSuccess: { BillingList in
                 self.appDelegate.hideIndicator()
+                
                
                 if(BillingList.BillingFrequncy == nil){
                     self.appDelegate.hideIndicator()
@@ -134,6 +157,7 @@ extension MemberEditBillingFrequencyVC{
                     self.arrBillingType = BillingList.BillingFrequncy!
                     
                 }
+                self.billingFrequencyTbl.reloadData()
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()
@@ -162,20 +186,29 @@ extension MemberEditBillingFrequencyVC{
                 APIKeys.kUserID: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
                 APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
                 APIKeys.kRole: "Full Access",
-                APIKeys.kCategory: "BillingFrequncy",
-                APIKeys.kBillingFrequency: selectedBillingFrequency ?? ""
+                APIKeys.kCategory: "BillingFrequncy"
                 
             ] as [String : Any]
-
+            if actionrequestButton == .save{
+                paramaterDict?["NewBillingFrequency"] = selectedBillingFrequency ?? ""
+            }
+            
             APIHandler.sharedInstance.saveMembershipListing(paramater: paramaterDict, onSuccess: { membershipSavedData in
                 self.appDelegate.hideIndicator()
 
                 if membershipSavedData.IsBFAutoApproved == 0{
                     if let thankyouMembershipViewController = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ThankYouMemberShipVC") as? ThankYouMemberShipVC {
-                        thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_UPDATE_REQUEST_MESSAGE
-                            //thankyouMembershipViewController.modalPresentationStyle = .fullScreen
-                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
                         
+                        if self.actionrequestButton == .cancel{
+                            
+                            thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_CANCELLED_MESSAGE
+                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
+                        else if self.actionrequestButton == .save{
+                            thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_UPDATE_REQUEST_MESSAGE
+                            
+                            self.present(thankyouMembershipViewController, animated: true, completion: nil)
+                        }
                     }
                 }
                 else{
@@ -198,25 +231,56 @@ extension MemberEditBillingFrequencyVC{
         }
     }
 }
-extension MemberEditBillingFrequencyVC : UIPickerViewDelegate {
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            selectedBillingFrequency = arrBillingType[row].Value
-            txtTypeBilling.text = arrBillingType[row].Text
-            
-        }
-    
-}
-extension MemberEditBillingFrequencyVC : UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-        
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+
+extension MemberEditBillingFrequencyVC : UITableViewDelegate, UITableViewDataSource{
+    //MARK:- Table delegate & datasource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      
         return arrBillingType.count
     }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = billingFrequencyTbl.dequeueReusableCell(withIdentifier: "MemberBillingFrequencyCell", for: indexPath) as! MemberBillingFrequencyCell
+        if arrBillingType.count != 0{
+            let dict = arrBillingType[indexPath.row]
+            cell.txtTypeBilling.text = dict.Text
+            cell.billingAmountView.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            cell.billingAmountView.layer.borderWidth = 1
+
+        }
         
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(arrBillingType[row].Value ?? "")"
+        if expandedIndexSet.contains(indexPath.row) {
+            cell.billingAmountView.layer.borderColor = UIColor(red: 23/255, green: 70/255, blue: 76/255, alpha: 1).cgColor
+            cell.billingAmountView.layer.borderWidth = 1
+        }
+        else{
+            cell.billingAmountView.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+            cell.billingAmountView.layer.borderWidth = 1
+        }
+        return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let memberobj = arrBillingType[indexPath.row]
+
+        if(expandedIndexSet.contains(indexPath.row)){
+            expandedIndexSet.remove(indexPath.row)
+            selectedBillingFrequency = ""
+
+        } else {
+            expandedIndexSet = []
+            expandedIndexSet.insert(indexPath.row)
+            
+            selectedBillingFrequency = memberobj.Value
+
+            UserDefaults.standard.set(indexPath.row, forKey: "selectedCell")
+        }
+        billingFrequencyTbl.reloadData()
+    }
+   
+
+    
+    
 }

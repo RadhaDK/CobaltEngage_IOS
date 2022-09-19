@@ -14,6 +14,8 @@
 		099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */; };
 		099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */; };
 		099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */; };
+		09C3F81728D76F3600D307CF /* MemberBillingFrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */; };
+		09C3F81828D76F3600D307CF /* MemberBillingFrequencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */; };
 		1800E8C5225CA9C20041E95D /* HtmlTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800E8C4225CA9C10041E95D /* HtmlTextConverter.swift */; };
 		1801B39C230ED8BE00E7ECC2 /* NewSuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B39B230ED8BE00E7ECC2 /* NewSuccessPopupView.swift */; };
 		1801B39E230F03C600E7ECC2 /* NewSuccessUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B39D230F03C600E7ECC2 /* NewSuccessUpdateView.swift */; };
@@ -606,6 +608,8 @@
 		099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterPopupVC.swift; sourceTree = "<group>"; };
 		099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBillingFrequencyCell.swift; sourceTree = "<group>"; };
+		09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberBillingFrequencyCell.xib; sourceTree = "<group>"; };
 		0C5C799CAE16FDF3A560EEF4 /* Pods-CSSITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CSSITests/Pods-CSSITests.release.xcconfig"; sourceTree = "<group>"; };
 		14421ACCD9ACF27860990504 /* Pods-CSSIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSSIUITests/Pods-CSSIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1800E8C4225CA9C10041E95D /* HtmlTextConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTextConverter.swift; sourceTree = "<group>"; };
@@ -2683,6 +2687,8 @@
 			isa = PBXGroup;
 			children = (
 				A863E22C28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift */,
+				09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */,
+				09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */,
 			);
 			path = MemberEditBillingFrequencyVC;
 			sourceTree = "<group>";
@@ -2957,6 +2963,7 @@
 				9FB78764250CB6070067004F /* FitnessVideoFilterCollectionViewCell.xib in Resources */,
 				186B49B822CCB3B00024F105 /* BW_iOS-Loader-1.gif in Resources */,
 				C79EA8DF2160FE09008AB18C /* GuestListFilterView.xib in Resources */,
+				09C3F81828D76F3600D307CF /* MemberBillingFrequencyCell.xib in Resources */,
 				9F302A91254C2048003EC5C4 /* AlertDetailCollectionViewCell.xib in Resources */,
 				598DE05D20D3E7A1009AFEF0 /* PlayfairDisplay-Regular.otf in Resources */,
 				9F6620D424AE578E0061BB9C /* HorizontalFilterView.xib in Resources */,
@@ -3465,6 +3472,7 @@
 				5F8BBD3720EE4DA200FD6E38 /* ImportantNumber.swift in Sources */,
 				5F70BB9C20ECAAB200A950BE /* GuestCardList.swift in Sources */,
 				5999C5DF20CAB3E500B0382A /* PreferencesViewController.swift in Sources */,
+				09C3F81728D76F3600D307CF /* MemberBillingFrequencyCell.swift in Sources */,
 				9F62E86E2549A6B4000307DB /* FitnessCheckin.swift in Sources */,
 				5FDEF69620F3885400426067 /* NotificationDetails.swift in Sources */,
 				1869D537225493AC00F02F1B /* GetSettingsValues.swift in Sources */,

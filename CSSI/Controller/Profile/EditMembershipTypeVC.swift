@@ -20,6 +20,7 @@ class EditMembershipTypeVC: UIViewController {
     @IBOutlet weak var btnCancelPendingrequest: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var btnSave: UIButton!
+    @IBOutlet weak var heightBottom: NSLayoutConstraint!
     
     var thereIsCellTapped = false
     var expanded:[IndexPath] = []
@@ -29,6 +30,8 @@ class EditMembershipTypeVC: UIViewController {
     var expandedIndexSetClose : IndexSet = []
     var selectedMemberShip : String?
     var actionrequestButton : requestAction?
+    var AllowtocancelMTRequest : Int?
+    @IBOutlet weak var heightCancel: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,20 @@ class EditMembershipTypeVC: UIViewController {
         btnCancel.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
         btnCancelPendingrequest.setStyle(style: .outlined, type: .primary, cornerRadius: 20)
         registerNibs()
+        if AllowtocancelMTRequest == 1{
+            btnCancelPendingrequest.isHidden = false
+            heightBottom.constant = 128
+            heightCancel.constant = 40
+
+        }
+        else{
+           
+            
+            btnCancelPendingrequest.isHidden = true
+            heightBottom.constant = 85
+            heightCancel.constant = 0
+
+        }
         
     }
     override func viewWillAppear(_ animated: Bool)
@@ -226,8 +243,6 @@ extension EditMembershipTypeVC{
                         }
                         else if self.actionrequestButton == .save{
                             thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_UPDATE_REQUEST_MESSAGE
-                           // thankyouMembershipViewController.modalPresentationStyle = .fullScreen
-                            //  thankyouMembershipViewController.delegateThankMembership = self
                             
                             self.present(thankyouMembershipViewController, animated: true, completion: nil)
                         }
