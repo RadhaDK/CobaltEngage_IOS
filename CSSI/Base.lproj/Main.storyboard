@@ -14,6 +14,12 @@
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
         </array>
+        <array key="SFProText-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+        <array key="SourceSansPro-Bold.otf">
+            <string>SourceSansPro-Bold</string>
+        </array>
         <array key="SourceSansPro-Regular.otf">
             <string>SourceSansPro-Regular</string>
         </array>
@@ -5795,7 +5801,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CcN-Lf-G4Q">
                                         <rect key="frame" x="5" y="1" width="110" height="38"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="17"/>
                                         <color key="textColor" red="0.1655900776" green="0.30561992529999998" blue="0.49656116960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -5827,7 +5833,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qDS-m6-qYW">
                                         <rect key="frame" x="5" y="1" width="110" height="38"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="17"/>
                                         <color key="textColor" red="0.1655900776" green="0.30561992529999998" blue="0.49656116960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -5877,7 +5883,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Pending Request" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9xV-Ie-hb2">
                                         <rect key="frame" x="5" y="1" width="304" height="38"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="17"/>
                                         <color key="textColor" red="0.1655900776" green="0.30561992529999998" blue="0.49656116960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -11991,7 +11997,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0w-bv-8Xy">
                                                         <rect key="frame" x="0.0" y="0.0" width="109" height="20"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="0.0"/>
                                                         <state key="normal">
                                                             <color key="titleColor" red="0.95686274510000002" green="0.49019607840000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
@@ -12095,7 +12101,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="8ks-07-42y"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -12121,7 +12127,7 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -13387,12 +13393,12 @@
                         <outlet property="viewDueBilles" destination="w3Y-Xa-j1h" id="Fbs-NZ-HEp"/>
                         <outlet property="viewEditBillingIcon" destination="49y-vY-OIN" id="8i2-EY-9LB"/>
                         <outlet property="viewEditMembershipIcon" destination="fS9-lM-04p" id="Kol-Qc-cTG"/>
-                        <outlet property="viewHitoryBillingIcon" destination="2ku-3o-J2S" id="qRi-Sv-LuX"/>
+                        <outlet property="viewHistoryBillingIcon" destination="2ku-3o-J2S" id="YQo-K2-1JC"/>
                         <outlet property="viewLogout" destination="bDW-Mg-40g" id="NbE-TB-9Jj"/>
                         <outlet property="viewMemberShipType" destination="JGl-kw-Den" id="Ksm-WK-nrN"/>
                         <outlet property="viewProfileTopView" destination="8wI-lt-Bzk" id="08J-Y2-cEo"/>
                         <outlet property="viewSettings" destination="rPz-hn-Ykq" id="qQQ-AJ-WPp"/>
-                        <outlet property="viewiHtoryMembershipIcon" destination="PaK-38-xqX" id="9VQ-Bi-G1B"/>
+                        <outlet property="viewiHistoryMembershipIcon" destination="PaK-38-xqX" id="lDg-SS-Azr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ul2-BC-Kfx" userLabel="First Responder" sceneMemberID="firstResponder"/>

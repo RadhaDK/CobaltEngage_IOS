@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09535EFD28D85A970078246E /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09535EFC28D85A970078246E /* MembershipHistoryCell.xib */; };
 		097DCAB528D36E2200389C75 /* ¸ in Resources */ = {isa = PBXBuildFile; fileRef = 097DCAB428D36E2200389C75 /* ¸ */; };
 		097DCAB728D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */; };
 		097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */; };
@@ -541,7 +542,6 @@
 		A863E22328C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */; };
 		A863E22628C7B98400CF9993 /* MemberShipHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */; };
 		A863E22928C7B9B700CF9993 /* MembershipHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */; };
-		A863E22A28C7B9B700CF9993 /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */; };
 		A863E22D28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22C28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift */; };
 		A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */; };
 		A869CD4428C6720200727EA1 /* EditMembershipTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */; };
@@ -601,6 +601,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		09535EFC28D85A970078246E /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
 		097DCAB428D36E2200389C75 /* ¸ */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "¸"; sourceTree = "<group>"; };
 		097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembershiphHistoryFilterPopUpView.xib; sourceTree = "<group>"; };
 		097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershiphHistoryFilterPopUpView.swift; sourceTree = "<group>"; };
@@ -1204,7 +1205,6 @@
 		A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelMembershipRequestPopUpVC.swift; sourceTree = "<group>"; };
 		A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberShipHistoryVC.swift; sourceTree = "<group>"; };
 		A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipHistoryCell.swift; sourceTree = "<group>"; };
-		A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
 		A863E22C28C8BD8E00CF9993 /* MemberEditBillingFrequencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberEditBillingFrequencyVC.swift; sourceTree = "<group>"; };
 		A869CD4028C66BC300727EA1 /* EditMembershipTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeVC.swift; sourceTree = "<group>"; };
 		A869CD4228C6720200727EA1 /* EditMembershipTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembershipTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -2673,8 +2673,8 @@
 				097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */,
 				097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */,
 				A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */,
+				09535EFC28D85A970078246E /* MembershipHistoryCell.xib */,
 				A863E22728C7B9B700CF9993 /* MembershipHistoryCell.swift */,
-				A863E22828C7B9B700CF9993 /* MembershipHistoryCell.xib */,
 				099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */,
 				099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */,
 				099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */,
@@ -2913,6 +2913,7 @@
 				9F6620C324AE573F0061BB9C /* ModifyTableViewCell.xib in Resources */,
 				59FEC3EE20B6A65100FF2DB0 /* LaunchScreen.storyboard in Resources */,
 				59FEC3EB20B6A65100FF2DB0 /* Assets.xcassets in Resources */,
+				09535EFD28D85A970078246E /* MembershipHistoryCell.xib in Resources */,
 				598DE06120D3E7A1009AFEF0 /* SFUIDisplay-Regular.otf in Resources */,
 				9F5A1A18250B7EF200AADE80 /* SourceSansPro-It.otf in Resources */,
 				18FA22032382AA6A002B82DB /* MyCalendarXib.xib in Resources */,
@@ -2920,7 +2921,6 @@
 				9F4B5AEC273BAF7100FAB043 /* FirstComeFirstServeTableViewCell.xib in Resources */,
 				097DCAB528D36E2200389C75 /* ¸ in Resources */,
 				9FC4F2EB25430B4100E7DB80 /* FitnessCategoryCollectionViewCell.xib in Resources */,
-				A863E22A28C7B9B700CF9993 /* MembershipHistoryCell.xib in Resources */,
 				9F5A1A1E250B810D00AADE80 /* HamburgerMenuTableViewCell.xib in Resources */,
 				9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */,
 				9FB78768250CB6490067004F /* FitnessVideoTableViewCell.xib in Resources */,

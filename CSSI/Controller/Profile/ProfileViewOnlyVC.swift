@@ -94,9 +94,7 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var uiScrollView: UIScrollView!
 
     @IBOutlet weak var profileViewHeight: NSLayoutConstraint!
-
     @IBOutlet weak var btnPrivacyPolicy: UIButton!
-    
     @IBOutlet weak var btnTermsOfUse: UIButton!
     
     @IBOutlet weak var viewDivider: UIView!
@@ -120,10 +118,10 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var imgCancelBillingIcon: UIImageView!
     
     @IBOutlet weak var viewEditMembershipIcon: UIView!
-    @IBOutlet weak var viewiHtoryMembershipIcon: UIView!
+    @IBOutlet weak var viewiHistoryMembershipIcon: UIView!
     @IBOutlet weak var viewCancelMembershipIcon: UIView!
     @IBOutlet weak var viewEditBillingIcon: UIView!
-    @IBOutlet weak var viewHitoryBillingIcon: UIView!
+    @IBOutlet weak var viewHistoryBillingIcon: UIView!
     @IBOutlet weak var viewCancelBillingIcon: UIView!
     @IBOutlet weak var lblMembershipHeading: UILabel!
     @IBOutlet weak var lblDurationHeading: UILabel!
@@ -165,7 +163,6 @@ class ProfileViewOnlyVC: UIViewController {
         btnEditMembershipType.setTitle("", for: .normal)
         btnHistoryMembershipType.setTitle("", for: .normal)
         btnCancelMemberShipRequest.setTitle("", for: .normal)
-        
         viewDueBilles.layer.cornerRadius = viewMemberShipType.frame.height/2
         viewDueBilles.layer.borderColor = UIColor.lightGray.cgColor
         viewDueBilles.layer.borderWidth = 1
@@ -176,50 +173,34 @@ class ProfileViewOnlyVC: UIViewController {
         
         viewMemberShipType.isHidden = true
         viewDueBilles.isHidden = true
-
         viewEditMembershipIcon.isHidden = true
-        viewiHtoryMembershipIcon.isHidden = true
+        viewiHistoryMembershipIcon.isHidden = true
         viewCancelMembershipIcon.isHidden = true
         viewEditBillingIcon.isHidden = true
-        viewHitoryBillingIcon.isHidden = true
+        viewHistoryBillingIcon.isHidden = true
         viewCancelBillingIcon.isHidden = true
-        
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        
-        
-//            self.profileViewHeight.constant = 1790 + lblTargettingON.frame.height + lblIntresetList.frame.height
-//            uiScrollView.contentSize = CGSize(width: UIScreen.main.bounds.size.width, height: self.profileViewHeight.constant)
-            
         }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.getMemberInfoApi()
         self.arrSelectedMarketOptions.removeAll()
         self.arrMarketOptions.removeAll()
-        
         lblLogout.text = (self.appDelegate.masterLabeling.lOGOUT ?? "")
-        
-        
         
         self.imgProfilePic.layer.cornerRadius = self.imgProfilePic.frame.size.width / 2
         self.imgProfilePic.layer.masksToBounds = true
         self.imgProfilePic.layer.borderColor = UIColor.white.cgColor
         self.imgProfilePic.layer.borderWidth = 1.0
 
-       // let opacity:CGFloat =  0.4
-       // let borderColor = UIColor.white
-       // self.imgProfilePic.layer.borderColor = borderColor.withAlphaComponent(opacity).cgColor
-        
         
         self.btnEdit.backgroundColor = .white
         self.btnEdit.layer.cornerRadius = self.btnEdit.frame.size.height / 2
         self.btnEdit.layer.borderWidth = 1
         self.btnEdit.layer.borderColor = hexStringToUIColor(hex: "67aac9").cgColor
-        
-        
         self.btnEdit.setTitleColor(hexStringToUIColor(hex: "67aac9"), for: .normal)
         
         
@@ -228,12 +209,8 @@ class ProfileViewOnlyVC: UIViewController {
         
         let settingsgesture = UITapGestureRecognizer(target: self, action:  #selector(settings(sender:)))
         self.viewSettings.addGestureRecognizer(settingsgesture)
-        
-        
         self.navigationController?.interactivePopGestureRecognizer!.isEnabled = true
-        
         self.navigationItem.title = self.appDelegate.masterLabeling.tT_PROFILE
-        
         self.btnPrivacyPolicy.setTitle(self.appDelegate.masterLabeling.PRIVACY_POLICY ?? CommonString.kprivacypolicy, for: .normal)
         self.btnTermsOfUse.setTitle(self.appDelegate.masterLabeling.TERMS_of_Use ?? CommonString.kTerms, for: .normal)
         
@@ -250,8 +227,6 @@ class ProfileViewOnlyVC: UIViewController {
         //navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        
-        
     }
     
     //Added by kiran V2.5 11/30 -- ENGAGE0011297 --
@@ -273,21 +248,14 @@ class ProfileViewOnlyVC: UIViewController {
     //ENGAGE0011419 -- End
 
     @IBAction func editClicked(_ sender: Any) {
-        
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
-
-        
         if let profileDetails = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ProfileViewsController") as? ProfileViewsController {
-
             self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
             self.navigationController?.pushViewController(profileDetails, animated: true)
-
         }
     }
     
     @IBAction func privacyPolicyClicked(_ sender: UIButton) {
-        
-        
         if let url = URL.init(string: self.appDelegate.privacyPolicyLink ?? CommonURL.privacyPolicy)
         {
             self.openUrl(url: url)
@@ -307,16 +275,13 @@ class ProfileViewOnlyVC: UIViewController {
         if let settingsVC = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "EditMembershipTypeVC") as? EditMembershipTypeVC {
             settingsVC.AllowtocancelMTRequest = AllowtocancelMTRequest
             self.navigationController?.pushViewController(settingsVC, animated: true)
-            
         }
     }
     
     @IBAction func btnTappedHistoryMembership(_ sender: Any) {
         if let HistoryVc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberShipHistoryVC") as? MemberShipHistoryVC {
             HistoryVc.typeOfHistory = .Membership
-         //   self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
             self.navigationController?.pushViewController(HistoryVc, animated: true)
-            
         }
     }
     @IBAction func btnTappedCancelMemberRequest(_ sender: Any) {
@@ -324,7 +289,6 @@ class ProfileViewOnlyVC: UIViewController {
             vc.typeCancelPoppupfrombillormember = .Membership
             self.present(vc, animated: true, completion: nil)
         }
-    
     }
     
     @IBAction func editDueBillFrequencyBtnTapped(_ sender: Any) {
@@ -342,7 +306,6 @@ class ProfileViewOnlyVC: UIViewController {
             self.navigationController?.navigationBar.tintColor = APPColor.viewNews.backButtonColor
             vc.typeOfHistory = .Billing
             self.navigationController?.pushViewController(vc, animated: true)
-            
         }
     }
     @IBAction func cancelDueBillFrequencyBtnTapped(_ sender: Any) {
@@ -367,8 +330,6 @@ class ProfileViewOnlyVC: UIViewController {
     
     @objc func logout(sender : UITapGestureRecognizer) {
         self.userLogOut()
-
-        
         let prefs = UserDefaults.standard
         
         //            let keyValue = prefs.string(forKey:UserDefaultsKeys.userID)
@@ -381,7 +342,6 @@ class ProfileViewOnlyVC: UIViewController {
         prefs.removeObject(forKey: "masterList")
         
         UserDefaults.standard.synchronize()
-        
         
         self.resetDefaults()
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -401,7 +361,6 @@ class ProfileViewOnlyVC: UIViewController {
 
     func userLogOut(){
         if (Network.reachability?.isReachable) == true{
-            
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             
             let paramaterDict:[String: Any] = [
@@ -748,23 +707,18 @@ class ProfileViewOnlyVC: UIViewController {
                 self.lblDuration.text = arrgetMemberInfo.Duration
                 self.lblBillingType.text = arrgetMemberInfo.BillingFrequency
                 self.lblDueBBillHeading.text = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY
-                
                 self.AllowToCancePendingRequest = arrgetMemberInfo.AllowToCancelBFPendingRequest
 
+
                 if arrgetMemberInfo.AllowToChangeDuesMembershipType == 1{
+                    self.viewiHistoryMembershipIcon.isHidden = false
                     self.viewEditMembershipIcon.isHidden = false
                     self.viewMemberShipType.isHidden = false
                 }
                 else{
                     self.viewEditMembershipIcon.isHidden = true
-                }
-
-                if arrgetMemberInfo.AllowToChangeDuesMembershipType == 1{
-                    self.viewiHtoryMembershipIcon.isHidden = false
-                    self.viewMemberShipType.isHidden = false
-                }
-                else{
-                    self.viewiHtoryMembershipIcon.isHidden = true
+                    self.viewiHistoryMembershipIcon.isHidden = true
+                    
                 }
 
                 if arrgetMemberInfo.AllowToCancelMTPendingRequest == 1{
@@ -786,11 +740,11 @@ class ProfileViewOnlyVC: UIViewController {
                 }
 
                 if arrgetMemberInfo.AllowToChangeDuesBillingFrequency == 1{
-                    self.viewHitoryBillingIcon.isHidden = false
+                    self.viewHistoryBillingIcon.isHidden = false
                     self.viewDueBilles.isHidden = false
                 }
                 else{
-                    self.viewHitoryBillingIcon.isHidden = true
+                    self.viewHistoryBillingIcon.isHidden = true
                 }
 
                 if arrgetMemberInfo.AllowToCancelBFPendingRequest == 1{

@@ -16,6 +16,7 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
     func selectedFilterHistory(type: String) {
         filterTapped = true
         filteredValue = type
+        arrMembershipHistory = []
         membershipHistoryList()
     }
     
@@ -23,7 +24,6 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
     
     @IBOutlet weak var tblMemHistory:UITableView!
     @IBOutlet weak var btnClose:UIButton!
-    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var arrMembershipHistory = [MembershipHistoryData]()
     var arrForFilterOption : [statusListing]?
@@ -32,16 +32,12 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
     var filterBarButtonItem: UIBarButtonItem!
     var filterTapped: Bool?
     var filteredValue : String?
-    
     var filterPopover: Popover? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tblMemHistory.delegate = self
         tblMemHistory.dataSource  = self
-//        btnClose.layer.cornerRadius = 15
-//        btnClose.layer.borderWidth = 1
-//        btnClose.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
         btnClose.layer.cornerRadius = btnClose.bounds.size.height / 2
         btnClose.layer.borderWidth = 1.0
         btnClose.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
@@ -49,29 +45,18 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
         
         if typeOfHistory == .Membership{
             self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_HISTORY_TITLE
-
         }
         else if typeOfHistory == .Billing{
             self.navigationItem.title = self.appDelegate.masterLabeling.DUES_RENEWAL_BILLING_FREQUENCY_HISTORY_TITLE
-
         }
 
         registerNibs()
         // Do any additional setup after loading the view.
     }
-    //Mark- Go to Filter menu
-    @objc func onTapFilterr() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let pvc = storyboard.instantiateViewController(withIdentifier: "HistoryFilterPopupVC") as! HistoryFilterPopupVC
-//        pvc.delegateHistoryFilter = self
-//        pvc.arrForFilterOption = arrForFilterOption
-//        self.present(pvc, animated: true, completion: nil)
-    }
+
     override func viewWillAppear(_ animated: Bool)
     {
-        
         super.viewWillAppear(animated)
-        
         self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnAction(sender:)))
         if typeOfHistory == .Membership{
             categoryHistory = "MemberShipType"
@@ -88,6 +73,8 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
            self.tblMemHistory.register(homeNib, forCellReuseIdentifier: "MembershipHistoryCell")
        }
     
+    
+    // MARK: - IBActions
     @objc private func backBtnAction(sender : UIBarButtonItem)
     {
         self.navigationController?.popViewController(animated: true)
@@ -98,10 +85,9 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrMembershipHistory.count
-
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,60 +95,28 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
         let historyobj: MembershipHistoryData
         if arrMembershipHistory.count != 0{
             historyobj = arrMembershipHistory[indexPath.row]
+            cell.viewReason.layer.borderColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1).cgColor
+            cell.viewReason.layer.borderWidth = 1
 
             if typeOfHistory == .Membership{
                 cell.currentMemTypeHeadingLbl.text = "\(self.appDelegate.masterLabeling.OLD_MEMBERSHIP_TYPE_TITLE ?? ""):"
                 cell.newMemTypeHeadingLbl.text = "\(self.appDelegate.masterLabeling.NEW_MEMBERSHIP_TYPE_TITLE ?? ""):"
-                cell.requestedOnHeadingLbl.text = "\(self.appDelegate.masterLabeling.REQUESTED_ON_TITLE ?? ""):"
-                cell.statusHeadingLbl.text = "\(self.appDelegate.masterLabeling.STATUS_TYPE_TITLE ?? ""):"
-                cell.reasonHeadingLbl.text = "\(self.appDelegate.masterLabeling.COMMENT_TITLE ?? ""):"
-                
             cell.currentMemTypeLbl.text =  historyobj.OldMembershipType
             cell.newMemTypeLbl.text =  historyobj.NewMembershipType
-            cell.requestedOnLbl.text = historyobj.RequestedOn
-            cell.statusLbl.text = historyobj.Status
-            cell.reasonLbl.text = historyobj.Comment
-
-            if historyobj.Status == "Pending" || historyobj.Status == "Approved"{
-                cell.reasonHeadingLbl.isHidden = true
-                cell.reasonLbl.isHidden = true
-                cell.reasonHeadingLbl.isHidden = true
-            }
-            else{
-                cell.reasonHeadingLbl.isHidden = false
-                cell.reasonLbl.isHidden = false
-                cell.reasonHeadingLbl.isHidden = false
-
-            }
             }
             else if typeOfHistory == .Billing{
                 cell.currentMemTypeHeadingLbl.text = "\(self.appDelegate.masterLabeling.CURRENT_MEM_TYPE_TITLE ?? ""):"
                 cell.newMemTypeHeadingLbl.text = "\(self.appDelegate.masterLabeling.NEW_MEM_TYPE_TITLE ?? ""):"
-                cell.requestedOnHeadingLbl.text = "\(self.appDelegate.masterLabeling.REQUESTED_ON_TITLE ?? ""):"
-                cell.statusHeadingLbl.text = "\(self.appDelegate.masterLabeling.STATUS_TYPE_TITLE ?? ""):"
-                cell.reasonHeadingLbl.text = "\(self.appDelegate.masterLabeling.COMMENT_TITLE ?? ""):"
-                
-                
-                
                 cell.currentMemTypeLbl.text =  historyobj.OldBilingFrequency
                 cell.newMemTypeLbl.text =  historyobj.NewBilingFrequency
-                cell.requestedOnLbl.text = historyobj.RequestedOn
-                cell.statusLbl.text = historyobj.Status
-                cell.reasonLbl.text = historyobj.Comment
-
-                if historyobj.Status == "Pending" || historyobj.Status == "Approved"{
-                    cell.reasonHeadingLbl.isHidden = true
-                    cell.reasonLbl.isHidden = true
-                    cell.reasonHeadingLbl.isHidden = true
-                }
-                else{
-                    cell.reasonHeadingLbl.isHidden = false
-                    cell.reasonLbl.isHidden = false
-                    cell.reasonHeadingLbl.isHidden = false
-
-                }
             }
             
+            cell.requestedOnHeadingLbl.text = "\(self.appDelegate.masterLabeling.REQUESTED_ON_TITLE ?? ""):"
+            cell.statusHeadingLbl.text = "\(self.appDelegate.masterLabeling.STATUS_TYPE_TITLE ?? ""):"
+            cell.reasonHeadingLbl.text = "\(self.appDelegate.masterLabeling.COMMENT_TITLE ?? ""):"
+            cell.requestedOnLbl.text = historyobj.RequestedOn
+            cell.statusLbl.text = historyobj.Status
+            cell.reasonLbl.text = historyobj.Comment
             if historyobj.Status == "Pending"{
                 cell.statusLbl.backgroundColor = UIColor(red: 247/255, green: 140/255, blue: 37/255, alpha: 1)
             }
@@ -173,15 +127,21 @@ class MemberShipHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataS
             else{
                 cell.statusLbl.backgroundColor = UIColor(hexString: "FF3B30")
             }
+            if historyobj.Status == "Pending" || historyobj.Status == "Approved"{
+                cell.viewReasonBack.isHidden = true
+              
+            }
+            else{
+               cell.viewReasonBack.isHidden = false
+            }
             
             return cell
         }
         return UITableViewCell()
     }
-    
-  
-    
 }
+
+// MARK: - API CALLING
 extension MemberShipHistoryVC{
     func membershipHistoryList(){
         if (Network.reachability?.isReachable) == true{
@@ -212,18 +172,12 @@ extension MemberShipHistoryVC{
                 }
             }
             
-            
-            
             APIHandler.sharedInstance.MembershipHistoryListing(paramater: paramaterDict, onSuccess: { membershipHistory in
                 self.appDelegate.hideIndicator()
-
                 self.arrMembershipHistory.removeAll()
-                
-              
                 if self.typeOfHistory == .Membership{
                 if(membershipHistory.MembershipTypeHistory == nil){
                         self.appDelegate.hideIndicator()
-                        
                         self.tblMemHistory.setEmptyMessage(InternetMessge.kNoData)
                     }
                     else{
@@ -232,7 +186,7 @@ extension MemberShipHistoryVC{
                         if(self.arrMembershipHistory.count == 0)
                         {
                             self.appDelegate.hideIndicator()
-                            self.tblMemHistory.setEmptyMessage("No new notification")
+                            self.tblMemHistory.setEmptyMessage(InternetMessge.kNoData)
                         }else{
                             self.tblMemHistory.restore()
                             self.arrMembershipHistory = membershipHistory.MembershipTypeHistory!
@@ -260,7 +214,7 @@ extension MemberShipHistoryVC{
                             if(self.arrMembershipHistory.count == 0)
                             {
                                 self.appDelegate.hideIndicator()
-                                self.tblMemHistory.setEmptyMessage("No new notification")
+                                self.tblMemHistory.setEmptyMessage(InternetMessge.kNoData)
                             }else{
                                 self.tblMemHistory.restore()
                                 self.arrMembershipHistory = membershipHistory.BillingFrequncyHistory!
@@ -276,14 +230,6 @@ extension MemberShipHistoryVC{
                         }
                 }
                 self.tblMemHistory.reloadData()
-//                }else{
-//                    self.appDelegate.hideIndicator()
-//                    if(((notificationList.responseMessage?.count) ?? 0)>0){
-//                        SharedUtlity.sharedHelper().showToast(on:
-//                            self.view, withMeassge: notificationList.responseMessage, withDuration: Duration.kMediumDuration)
-//                    }
-//                }
-//
                 
             },onFailure: { error  in
                 print(error)
@@ -292,8 +238,6 @@ extension MemberShipHistoryVC{
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
             })
         }else{
-            //    self.tableView.setEmptyMessage(InternetMessge.kInternet_not_available)
-            
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
@@ -321,17 +265,12 @@ extension MemberShipHistoryVC
         let point = CGPoint(x: self.view.bounds.width - 35, y: 70)
         filterPopover?.show(filterView, point: point)
     }
-    
 }
 extension MemberShipHistoryVC : GuestListFilterViewDelegate {
     func guestCardFilterApply(filter: GuestCardFilter) {
-//        getGuestList(strSearch: searchBar.text, filter: filter)
-//        filterPopover?.dismiss()
     }
     
     func guestCardFilterClose() {
         filterPopover?.dismiss()
     }
-    
-    
 }

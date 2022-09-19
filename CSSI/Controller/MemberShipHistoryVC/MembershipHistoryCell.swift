@@ -23,6 +23,9 @@ class MembershipHistoryCell: UITableViewCell {
     @IBOutlet weak var reasonLbl: UILabel!
     @IBOutlet weak var viewReason: UIView!
     
+    @IBOutlet weak var viewReasonBack: UIView!
+
+    
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
   
     override func awakeFromNib() {

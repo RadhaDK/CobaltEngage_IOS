@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SourceSansPro-Bold.otf">
+            <string>SourceSansPro-Bold</string>
+        </array>
         <array key="SourceSansPro-Regular.otf">
             <string>SourceSansPro-Regular</string>
         </array>
@@ -247,7 +250,7 @@
                                                                 <constraint firstAttribute="height" constant="16" id="91b-QI-2RJ"/>
                                                                 <constraint firstAttribute="width" constant="16" id="OyA-1d-49j"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
@@ -552,7 +555,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="41K-Z5-ggd"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="aQo-js-zZb"/>
@@ -574,7 +577,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="K62-h7-9Oc"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="KUm-bN-VtF"/>
@@ -596,7 +599,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="p7M-lU-4KY"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="WWr-Lw-dWl"/>
@@ -618,7 +621,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="RvB-Z1-TqY"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="vkY-qn-D50"/>
@@ -640,7 +643,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="qVW-cM-RaP"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="fFc-kY-k3Z"/>
@@ -662,7 +665,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="Ehe-HQ-ncQ"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="2ro-pN-5cD"/>
@@ -684,7 +687,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="DqE-Bx-iya"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="z5C-we-X1L"/>
@@ -706,7 +709,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="h5J-Uq-FGP"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="Gj3-cs-wD2" id="O66-Oj-Uk1"/>
@@ -1195,7 +1198,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="aJo-j6-cIN"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="tH1-Ns-YAD" id="NVx-yP-Cnh"/>
@@ -1218,7 +1221,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="Cp8-RH-IW4"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="tH1-Ns-YAD" id="AQm-pU-8yi"/>
@@ -1241,7 +1244,7 @@
                                                             <constraint firstAttribute="height" constant="42" id="8a3-Cb-6M2"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="tH1-Ns-YAD" id="82Q-V0-JFR"/>
@@ -1514,7 +1517,7 @@
                                                         <constraint firstAttribute="height" constant="42" id="tih-Y1-AnC"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="hbt-EO-BhF" id="9Qa-3Z-Cgw"/>
@@ -1537,7 +1540,7 @@
                                                         <constraint firstAttribute="height" constant="42" id="arY-z0-FFU"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="hbt-EO-BhF" id="N61-jb-HZ0"/>
@@ -1550,7 +1553,7 @@
                                                         <constraint firstAttribute="height" constant="42" id="q1d-0k-zSM"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="hbt-EO-BhF" id="oCh-kS-fVL"/>
@@ -1875,7 +1878,7 @@
                                                         <constraint firstAttribute="height" constant="42" id="QRJ-o2-Hu7"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ZLx-Rl-lSu" id="OB6-2X-LIy"/>
@@ -1898,7 +1901,7 @@
                                                         <constraint firstAttribute="height" constant="42" id="6QW-4x-4AD"/>
                                                     </constraints>
                                                     <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ZLx-Rl-lSu" id="snJ-nr-mXe"/>
@@ -2260,7 +2263,7 @@
                                                     <constraint firstAttribute="height" constant="15" id="cFI-FM-LGH"/>
                                                     <constraint firstAttribute="width" constant="12" id="jlh-vw-TAT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="15"/>
                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -2270,7 +2273,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="mIF-Yh-2b4"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -2413,13 +2416,13 @@
                                 <rect key="frame" x="32.5" y="223.5" width="310" height="220"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to cancel this Guest card?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Th-Au-0lb">
-                                        <rect key="frame" x="8" y="0.0" width="294" height="57.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <rect key="frame" x="8" y="0.0" width="294" height="60.5"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcD-DT-c1A">
-                                        <rect key="frame" x="0.0" y="87.5" width="145" height="36"/>
+                                        <rect key="frame" x="0.0" y="90.5" width="145" height="36"/>
                                         <color key="backgroundColor" red="0.7843137255" green="0.60392156860000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="JfE-Z6-W59"/>
@@ -2442,7 +2445,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPr-2r-uhM">
-                                        <rect key="frame" x="165" y="87.5" width="145" height="36"/>
+                                        <rect key="frame" x="165" y="90.5" width="145" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="145" id="mmr-Y4-BBV"/>
@@ -2653,7 +2656,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="fEc-4r-Pod"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2662,7 +2665,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="pcj-Ki-nf1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2671,7 +2674,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="hit-29-jo3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2785,7 +2788,7 @@
                                 <rect key="frame" x="57.5" y="233.5" width="260" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will have to visit the membership office within 24 – 48 hours of guest arrival" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKd-MS-9eX">
-                                        <rect key="frame" x="10" y="108" width="240" height="63.5"/>
+                                        <rect key="frame" x="10" y="110.5" width="240" height="63.5"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -2801,11 +2804,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Guest Card has been Updated Successfully." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrY-9H-Deq">
-                                        <rect key="frame" x="9" y="45" width="240" height="43"/>
+                                        <rect key="frame" x="9" y="45" width="240" height="45.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="iep-as-75X"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2884,7 +2887,7 @@
                                         <rect key="frame" x="47.5" y="166.5" width="260" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will have to visit the membership office within 24 – 48 hours of guest arrival" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOn-tY-2oH">
-                                                <rect key="frame" x="10" y="108" width="240" height="63.5"/>
+                                                <rect key="frame" x="10" y="112.5" width="240" height="63.5"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="16"/>
                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2900,11 +2903,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Guest Card has been Updated Successfully." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wb9-M5-dS6">
-                                                <rect key="frame" x="9" y="45" width="240" height="43"/>
+                                                <rect key="frame" x="9" y="45" width="240" height="47.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="Ebl-J7-Lsr"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.41176470588235292" green="0.35686274509803922" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -3021,7 +3024,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="bNc-Ir-E0Z"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -3030,7 +3033,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="MnY-T3-W4Q"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -3039,7 +3042,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="prh-mE-GhN"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="18"/>
                                                 <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>

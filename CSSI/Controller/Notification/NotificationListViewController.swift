@@ -227,7 +227,7 @@ class NotificationListViewController: UIViewController , UITableViewDataSource, 
                         if(self.arrNotifications.count == 0)
                         {
                             self.appDelegate.hideIndicator()
-                            self.tableView.setEmptyMessage("No new notification")
+                            self.tableView.setEmptyMessage(InternetMessge.kNoData)
                         }else{
                             self.tableView.restore()
                             self.arrNotifications = notificationList.data!
