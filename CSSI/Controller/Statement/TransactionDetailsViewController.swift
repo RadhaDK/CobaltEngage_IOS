@@ -33,6 +33,17 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     @IBOutlet weak var heighttableView: NSLayoutConstraint!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblQtyText: UILabel!
+    @IBOutlet weak var lblTableNo: UILabel!
+    @IBOutlet weak var lblTableNoValue: UILabel!
+    @IBOutlet weak var lblTableNoHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblTableNoValueHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblTableNoTop: NSLayoutConstraint!
+    @IBOutlet weak var lblTableNoValueTop: NSLayoutConstraint!
+    @IBOutlet weak var lblCover: UILabel!
+    @IBOutlet weak var lblCoverValue: UILabel!
+    @IBOutlet weak var lblCoverHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblCoverValueHeight: NSLayoutConstraint!
+    @IBOutlet weak var viewReciptTopHeight: NSLayoutConstraint!
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var transactionDetailsDict = StatementDetails()
@@ -60,7 +71,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     var strtip = String()
     
     var clubName = String()
-    
+    var isFromMinimums = false
     override func viewDidLoad() {
         super.viewDidLoad()
         //  self.extendedLayoutIncludesOpaqueBars = false
@@ -170,6 +181,29 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         //  self.extendedLayoutIncludesOpaqueBars = true
     }
     
+    func showTableAndCoverLbl(hidden: Bool) {
+        if hidden {
+            self.lblTableNoTop.constant = 0
+            self.lblTableNoHeight.constant = 0
+            self.lblTableNoValueTop.constant = 0
+            self.lblTableNoValueHeight.constant = 0
+            self.lblCoverHeight.constant = 0
+            self.lblCoverValueHeight.constant = 0
+            self.viewReciptTopHeight.constant = 254
+        } else {
+            self.lblTableNoTop.constant = 7
+            self.lblTableNoHeight.constant = 22
+            self.lblTableNoValueTop.constant = 7
+            self.lblTableNoValueHeight.constant = 22
+            self.lblCoverHeight.constant = 22
+            self.lblCoverValueHeight.constant = 22
+            self.viewReciptTopHeight.constant = 312
+        }
+        self.lblTableNo.isHidden = hidden
+        self.lblTableNoValue.isHidden = hidden
+        self.lblCover.isHidden = hidden
+        self.lblCoverValue.isHidden = hidden
+    }
     
     //Mark- Common Color Code
     func commomColorCode()
@@ -212,7 +246,14 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         self.lblMemberName.text = strmembername
         self.lblMemberNo.text = strmemberno
         self.lblMemberNoValue.text = self.transactionDetailsDict.memberId ?? ""
+        self.lblTableNoValue.text = self.transactionDetailsDict.tableNo ?? ""
+        self.lblCoverValue.text = self.transactionDetailsDict.cover ?? ""
         
+        if self.transactionDetailsDict.category == "F&B" && self.isFromMinimums == true {
+            showTableAndCoverLbl(hidden: false)
+        } else {
+            showTableAndCoverLbl(hidden: true)
+        }
 
     }
     
@@ -242,6 +283,8 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         strtotal = (self.appDelegate.masterLabeling.tOTAL)!
         strtip = (self.appDelegate.masterLabeling.tIP)!
         lblQtyText.text = self.appDelegate.masterLabeling.qTY ?? ""
+        lblTableNo.text = "Table #"
+        lblCover.text = "Cover"
         
     }
     

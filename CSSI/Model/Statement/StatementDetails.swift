@@ -31,7 +31,8 @@ class StatementDetails: NSObject, Mappable {
     var Tip: String?
     var total: String?
 
-
+    var tableNo: String?
+    var cover: String?
     
     var responseCode: String?
     var responseMessage: String?
@@ -71,8 +72,8 @@ class StatementDetails: NSObject, Mappable {
         Tip <- map["Tip"]
         total <- map["Total"]
 
-
-    
+        tableNo <- map["TableNumber"]
+        cover <- map["Cover"]
         
         
         responseCode <- map["ResponseCode"]

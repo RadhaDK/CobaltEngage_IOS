@@ -102,6 +102,7 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
         transactionDetailVC.receiptno = self.transactionHistoryList[indexPath.row].receiptNumber ?? ""
         transactionDetailVC.purchaseDate = self.transactionHistoryList[indexPath.row].date ?? ""
         transactionDetailVC.amount = self.transactionHistoryList[indexPath.row].amount ?? ""
+        transactionDetailVC.isFromMinimums = true
         self.navigationController?.pushViewController(transactionDetailVC, animated: true)
         self.transactionDetailTableView.reloadData()
     }
