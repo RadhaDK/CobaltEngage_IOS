@@ -248,6 +248,8 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         self.lblMemberNoValue.text = self.transactionDetailsDict.memberId ?? ""
         self.lblTableNoValue.text = self.transactionDetailsDict.tableNo ?? ""
         self.lblCoverValue.text = self.transactionDetailsDict.cover ?? ""
+        self.lblTableNo.text = self.appDelegate.masterLabeling.mINIMUMS_TABLE_COLUMNTITLE ?? ""
+        self.lblCover.text = self.appDelegate.masterLabeling.mINIMUMS_COVER_COLUMNTITLE ?? ""
         
         if self.transactionDetailsDict.category == "F&B" && self.isFromMinimums == true {
             showTableAndCoverLbl(hidden: false)
@@ -282,9 +284,8 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         strtax = (self.appDelegate.masterLabeling.tAX)!
         strtotal = (self.appDelegate.masterLabeling.tOTAL)!
         strtip = (self.appDelegate.masterLabeling.tIP)!
-        lblQtyText.text = self.appDelegate.masterLabeling.qTY ?? ""
-        lblTableNo.text = "Table #"
-        lblCover.text = "Cover"
+        lblQtyText.text = self.appDelegate.masterLabeling.mINIMUMS_QTY_COLUMNTITLE ?? ""
+        
         
     }
     
