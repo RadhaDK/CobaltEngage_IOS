@@ -385,8 +385,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -436,8 +437,9 @@ class APIHandler: NSObject
             APIHeader.kContentType : "application/json"
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -491,8 +493,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
 //                print(response)
@@ -538,8 +541,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
 //                print(response)
@@ -547,7 +551,7 @@ class APIHandler: NSObject
                 //                print("responseString = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print("\(APIHandler.getFCFSCourseAvailabilityTimeList) ==== \(jsonDict)")
+//                        print("\(APIHandler.getFCFSCourseAvailabilityTimeList) ==== \(jsonDict)")
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -586,8 +590,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success(let result):
@@ -635,8 +640,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -684,8 +690,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -730,14 +737,16 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
                 //print("responseString eventlist= \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -776,8 +785,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -821,8 +831,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -865,8 +876,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -909,9 +921,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
-            
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -955,8 +967,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1002,8 +1015,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1048,8 +1062,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
 
         ]
-
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1143,8 +1158,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1188,9 +1204,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1234,8 +1250,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1282,8 +1299,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1333,8 +1351,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1381,8 +1400,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1428,8 +1448,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1475,8 +1496,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1522,8 +1544,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1570,8 +1593,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1618,8 +1642,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1666,8 +1691,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
 
             switch response.result {
             case .success:
@@ -1715,8 +1741,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1759,8 +1786,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1805,8 +1833,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1852,8 +1881,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time GetMemberValidation \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time GetMemberValidation \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1903,8 +1933,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1950,8 +1981,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -1999,8 +2031,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2046,8 +2079,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2091,8 +2125,10 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json",
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.SessionManager.default.session.configuration.timeoutIntervalForResource = 150
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers) .responseJSON { (response) in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2194,8 +2230,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2243,8 +2280,9 @@ class APIHandler: NSObject
             APIHeader.kContentType : "application/json"
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2299,9 +2337,9 @@ class APIHandler: NSObject
 
         ]
         //print("lang\(headers)")
-
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
-
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2455,8 +2493,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2508,7 +2547,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2558,7 +2599,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2658,8 +2701,9 @@ class APIHandler: NSObject
             
         ]
         
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2715,7 +2759,9 @@ class APIHandler: NSObject
         
         
         let url : String = baseURL + APIHandler.getIcon
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:parameterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2776,8 +2822,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2825,8 +2872,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2875,8 +2923,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2923,8 +2972,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -2973,7 +3023,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3022,8 +3074,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3069,8 +3122,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3117,8 +3171,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3165,8 +3220,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3214,8 +3270,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3264,8 +3321,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3314,8 +3372,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3364,8 +3423,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3411,8 +3471,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3459,12 +3520,13 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        print("Params are - \(paramaterDict)")
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
-                print("responseStringmemberdirect = \(String(describing: responseString))")
+//                print("responseStringmemberdirect = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
@@ -3507,7 +3569,9 @@ class APIHandler: NSObject
         ]
         
         let url : String = baseURL + APIHandler.getGiftCard
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3556,8 +3620,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3604,8 +3669,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3701,8 +3767,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3755,8 +3822,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3803,8 +3871,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
 
             case.success(let result):
@@ -3853,8 +3922,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3899,8 +3969,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3948,8 +4019,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -3996,8 +4068,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4050,8 +4123,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4102,7 +4176,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4153,8 +4229,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4200,7 +4277,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4249,7 +4328,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4294,7 +4375,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4343,7 +4426,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4390,7 +4475,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4438,8 +4525,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4493,8 +4581,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4540,8 +4629,9 @@ class APIHandler: NSObject
     func postAuthenticateUserApi(paramaterDict: [String: Any]?, onSuccess: @escaping(ParentMemberInfo) -> Void, onFailure: @escaping(Error,  HTTPURLResponse) -> Void) {
         
         let url : String = baseURL + APIHandler.postauthenticateUser
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:loginheaders).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             // print(response.response?.statusCode)
             switch response.result {
             case .success:
@@ -4602,8 +4692,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             // print(response.response?.statusCode)
             switch response.result {
             case .success:
@@ -4703,8 +4794,9 @@ class APIHandler: NSObject
             APIHeader.kpassword: APIHeader.kpasswordvalue
         ]
         
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             // print(response.response?.statusCode)
             switch response.result {
             case .success:
@@ -4752,8 +4844,9 @@ class APIHandler: NSObject
             APIHeader.kpassword: APIHeader.kpasswordvalue
         ]
         
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url, method:.post, parameters:paramaterDict, encoding: JSONEncoding.default, headers:headers).responseJSON { response in
+            print("============End Time -- \(url) -- \(Date())========")
             // print(response.response?.statusCode)
             switch response.result {
             case .success:
@@ -4807,8 +4900,9 @@ class APIHandler: NSObject
         print(url)
         print(paramater)
         print(headers)
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4854,8 +4948,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4901,8 +4996,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -4947,8 +5043,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 //print(response)
@@ -4994,8 +5091,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 //print(response)
@@ -5040,8 +5138,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 //print(response)
@@ -5087,8 +5186,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 //print(response)
@@ -5134,8 +5234,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 //print(response)
@@ -5182,8 +5283,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 //print(response)
@@ -5230,7 +5332,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
         
             case.success(let result):
@@ -5284,8 +5388,9 @@ class APIHandler: NSObject
         ]
         
         //print("headers:\(headers)")
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -5389,8 +5494,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5436,8 +5542,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5483,8 +5590,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5528,8 +5636,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5573,8 +5682,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5618,8 +5728,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5664,8 +5775,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(let result):
                  
@@ -5709,8 +5821,9 @@ class APIHandler: NSObject
               APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
               
           ]
-          
+          print("============Start Time -- \(url) -- \(Date())========")
           Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+              print("============End Time -- \(url) -- \(Date())========")
               switch response.result {
               case.success(let result):
                   
@@ -5756,8 +5869,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(_):
                  
@@ -5801,8 +5915,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success(_):
                  
@@ -5845,8 +5960,9 @@ class APIHandler: NSObject
              APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
              
          ]
-         
+         print("============Start Time -- \(url) -- \(Date())========")
          Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+             print("============End Time -- \(url) -- \(Date())========")
              switch response.result {
              case.success( _):
                  let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -5893,8 +6009,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -5948,8 +6065,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6003,8 +6121,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6058,8 +6177,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6114,8 +6234,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6170,8 +6291,9 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6223,8 +6345,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6278,8 +6401,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6333,8 +6457,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6388,8 +6513,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6443,8 +6569,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6499,8 +6626,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6554,8 +6682,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6608,8 +6737,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6663,8 +6793,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6714,8 +6845,9 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
         ]
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramaterDict,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result
             {
             case.success( _):
@@ -6771,8 +6903,9 @@ class APIHandler: NSObject
             
         ]
         print(headers)
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -6824,8 +6957,9 @@ class APIHandler: NSObject
             
         ]
         print(headers)
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -6874,8 +7008,9 @@ class APIHandler: NSObject
             
         ]
         print(headers)
-        
+        print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
