@@ -367,6 +367,7 @@
 		849F425628AB658900941F8E /* MinimumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F425528AB658900941F8E /* MinimumViewController.swift */; };
 		849F425828AB715100941F8E /* MinimumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849F425728AB715100941F8E /* MinimumTableViewCell.swift */; };
 		84ADB50D28B8B7D500CCECD1 /* MinimumDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADB50C28B8B7D400CCECD1 /* MinimumDetails.swift */; };
+		84BE13B128E6A53E00110324 /* DiningStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BE13B028E6A53E00110324 /* DiningStoryboard.storyboard */; };
 		84BE45D5282D704700087561 /* SwitchToLotteryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE45D3282D704700087561 /* SwitchToLotteryCollectionViewCell.swift */; };
 		84BE45D6282D704700087561 /* SwitchToLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE45D4282D704700087561 /* SwitchToLotteryCollectionViewCell.xib */; };
 		84BF2E0928ACBA8400A1D692 /* TransactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */; };
@@ -1033,6 +1034,7 @@
 		849F425528AB658900941F8E /* MinimumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumViewController.swift; sourceTree = "<group>"; };
 		849F425728AB715100941F8E /* MinimumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumTableViewCell.swift; sourceTree = "<group>"; };
 		84ADB50C28B8B7D400CCECD1 /* MinimumDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumDetails.swift; sourceTree = "<group>"; };
+		84BE13B028E6A53E00110324 /* DiningStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiningStoryboard.storyboard; sourceTree = "<group>"; };
 		84BE45D3282D704700087561 /* SwitchToLotteryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToLotteryCollectionViewCell.swift; sourceTree = "<group>"; };
 		84BE45D4282D704700087561 /* SwitchToLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchToLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryViewController.swift; sourceTree = "<group>"; };
@@ -1485,6 +1487,7 @@
 				9F73A6A12740EA3400CCD6FF /* CustomNavigationController.swift */,
 				59FEC41220B6B71D00FF2DB0 /* View */,
 				59FEC41120B6B71400FF2DB0 /* Controller */,
+				84BE13AC28E6A46000110324 /* Dining */,
 				59FEC3E720B6A64F00FF2DB0 /* Main.storyboard */,
 				59FEC3EA20B6A65100FF2DB0 /* Assets.xcassets */,
 				59FEC3EC20B6A65100FF2DB0 /* LaunchScreen.storyboard */,
@@ -2382,6 +2385,38 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
+		84BE13AC28E6A46000110324 /* Dining */ = {
+			isa = PBXGroup;
+			children = (
+				84BE13AD28E6A47900110324 /* Model */,
+				84BE13AE28E6A48800110324 /* View */,
+				84BE13AF28E6A4F300110324 /* Controller */,
+			);
+			path = Dining;
+			sourceTree = "<group>";
+		};
+		84BE13AD28E6A47900110324 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84BE13AE28E6A48800110324 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84BE13B028E6A53E00110324 /* DiningStoryboard.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84BE13AF28E6A4F300110324 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		9F2E3DCB2696C47F00F3F347 /* OTP Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2922,6 +2957,7 @@
 				097DCAB528D36E2200389C75 /* ¸ in Resources */,
 				9FC4F2EB25430B4100E7DB80 /* FitnessCategoryCollectionViewCell.xib in Resources */,
 				9F5A1A1E250B810D00AADE80 /* HamburgerMenuTableViewCell.xib in Resources */,
+				84BE13B128E6A53E00110324 /* DiningStoryboard.storyboard in Resources */,
 				9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */,
 				9FB78768250CB6490067004F /* FitnessVideoTableViewCell.xib in Resources */,
 				9F2E3DD22696C4D000F3F347 /* OTPView.xib in Resources */,

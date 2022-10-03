@@ -2051,7 +2051,7 @@ class DashBoardViewController: UIViewController, UICollectionViewDelegate, UICol
                 screenCodeName = "TST_DINRESCON"
                 pageName = "Dining Resv & Conf"
                 self.userActivity()
-                    if let diningReservations = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationViewController") as? DiningReservationViewController {
+                if let diningReservations = UIStoryboard.init(name: Storyboards.dining.rawValue, bundle: .main).instantiateViewController(withIdentifier: "DiningReservationViewController") as? DiningReservationViewController {
                         self.appDelegate.golfEventsSearchText = ""
                         self.appDelegate.categoryForBuddy = "Dining"
                         diningReservations.diningSettings = self.diningSettingsDetail

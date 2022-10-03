@@ -451,10 +451,13 @@ enum GolfRequestType : String
     case fcfs = "FCFS Request"
 }
 
-enum TransportType : Int
+// Storyboard List
+enum Storyboards : String
 {
-    case wlk = 10018
-    case mct = 10019
-    case ct = 10020
+    case main = "Main"
+    case member = "MemberApp"
+    case dining = "DiningStoryboard"
 }
+
+
 
