@@ -708,12 +708,9 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     }
     
     func diningRequestClicked(){
-        if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestVC") as? DiningRequestVC {
-            
-           // impVC.diningSettings = self.diningSettings
+        if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
             
             self.navigationController?.pushViewController(impVC, animated: true)
-            
         }
     }
 }

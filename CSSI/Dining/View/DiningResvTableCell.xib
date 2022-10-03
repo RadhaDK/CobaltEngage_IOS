@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SourceSansPro-Semibold.otf">
+            <string>SourceSansPro-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DiningResvTableCell" rowHeight="128" id="KGk-i7-Jjw" customClass="DiningResvTableCell" customModule="CSSI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="427" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="427" height="128"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bec-9T-haZ">
+                        <rect key="frame" x="8" y="8" width="411" height="112"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM to 11:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-nY-J4j">
+                                <rect key="frame" x="8" y="34" width="111" height="17.333333333333329"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJL-n6-ENf">
+                                <rect key="frame" x="7.9999999999999929" y="8" width="127.33333333333331" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="zCu-7s-db5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="e0A-MJ-Q9Z">
+                                <rect key="frame" x="8" y="59.333333333333329" width="395" height="44.666666666666671"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tgl-9z-R76">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, Aug - Party Size:6" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfX-A6-vAd">
+                                <rect key="frame" x="285.66666666666669" y="34" width="117.33333333333331" height="17.333333333333329"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="13"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="e0A-MJ-Q9Z" firstAttribute="top" secondItem="ooK-nY-J4j" secondAttribute="bottom" constant="8" id="FwD-Rj-4dZ"/>
+                            <constraint firstItem="e0A-MJ-Q9Z" firstAttribute="top" secondItem="nfX-A6-vAd" secondAttribute="bottom" constant="8" id="KNr-lD-gHT"/>
+                            <constraint firstAttribute="bottom" secondItem="e0A-MJ-Q9Z" secondAttribute="bottom" constant="8" id="Ro8-4S-PGN"/>
+                            <constraint firstItem="ooK-nY-J4j" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="TsL-v3-B3x"/>
+                            <constraint firstItem="ZJL-n6-ENf" firstAttribute="top" secondItem="Bec-9T-haZ" secondAttribute="top" constant="8" id="Z4t-Il-Qmt"/>
+                            <constraint firstItem="ZJL-n6-ENf" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="fR1-AZ-RG7"/>
+                            <constraint firstAttribute="trailing" secondItem="e0A-MJ-Q9Z" secondAttribute="trailing" constant="8" id="gP2-4N-8a3"/>
+                            <constraint firstAttribute="trailing" secondItem="nfX-A6-vAd" secondAttribute="trailing" constant="8" id="gVF-3w-Qi0"/>
+                            <constraint firstItem="ooK-nY-J4j" firstAttribute="top" secondItem="ZJL-n6-ENf" secondAttribute="bottom" constant="3" id="nEL-mV-UXl"/>
+                            <constraint firstItem="e0A-MJ-Q9Z" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="ncg-jK-yrG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Bec-9T-haZ" secondAttribute="bottom" constant="8" id="8Ur-xB-qy2"/>
+                    <constraint firstItem="Bec-9T-haZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="NFK-y8-8fm"/>
+                    <constraint firstItem="Bec-9T-haZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="U1R-aw-Xa5"/>
+                    <constraint firstAttribute="trailing" secondItem="Bec-9T-haZ" secondAttribute="trailing" constant="8" id="g8y-Ye-MlC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="collectionTimeSlot" destination="e0A-MJ-Q9Z" id="TgU-H8-vKs"/>
+            </connections>
+            <point key="canvasLocation" x="65.384615384615387" y="18.48341232227488"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
