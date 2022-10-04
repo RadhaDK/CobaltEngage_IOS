@@ -8,23 +8,42 @@
 
 import UIKit
 
-class DinningDetailRestuarantVC: UIViewController {
+class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
+    
+    var showNavigationBar = true
+    @IBOutlet weak var tblGuest: UITableView!
+    @IBOutlet weak var imgRestuarant: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tblGuest.delegate = self
+        tblGuest.dataSource  = self
+        imgRestuarant.layer.cornerRadius = 8
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
     }
-    */
 
+    
+    // MARK: - Table Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
+       
+        
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+        
+    }
 }
