@@ -14,13 +14,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var showNavigationBar = true
     @IBOutlet weak var tblGuest: UITableView!
     @IBOutlet weak var imgRestuarant: UIImageView!
+    @IBOutlet weak var btnBack: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tblGuest.delegate = self
         tblGuest.dataSource  = self
         imgRestuarant.layer.cornerRadius = 8
-        
+        btnBack.setTitle("", for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -30,6 +31,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
     }
 
+    @IBAction func btnBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
