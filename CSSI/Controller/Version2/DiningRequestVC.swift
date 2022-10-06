@@ -131,6 +131,7 @@ func addMemberDelegate() {
     @IBOutlet weak var laterThanPickerCollectionView: UICollectionView!
     
     /// Indicates if multi selection button is clicked
+   
     private var isMultiSelectClicked = false
     
     fileprivate var dob:Date? = nil

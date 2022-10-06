@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0917089928EE80370033B925 /* DiningRequestConfirmedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */; };
+		0917089B28EF13DE0033B925 /* DinningReservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */; };
+		0917089D28EF70820033B925 /* DinningAddSpecialRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */; };
 		09506AD728EAFF3C005BE4F7 /* DiningResvTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */; };
 		09506AD828EAFF3C005BE4F7 /* DiningResvTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09506AD628EAFF3C005BE4F7 /* DiningResvTableCell.xib */; };
 		09506ADB28EB3DD7005BE4F7 /* DiningReservationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506ADA28EB3DD7005BE4F7 /* DiningReservationVC.swift */; };
@@ -14,6 +17,9 @@
 		09506ADF28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09506ADD28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.xib */; };
 		09506AE128EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */; };
 		09535EFD28D85A970078246E /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09535EFC28D85A970078246E /* MembershipHistoryCell.xib */; };
+		097BAF5D28EDF40300AFDD8B /* PartySizePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */; };
+		097BAF6128EDF52300AFDD8B /* PartySizeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */; };
+		097BAF6328EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */; };
 		097DCAB528D36E2200389C75 /* ¸ in Resources */ = {isa = PBXBuildFile; fileRef = 097DCAB428D36E2200389C75 /* ¸ */; };
 		097DCAB728D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */; };
 		097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */; };
@@ -609,6 +615,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningRequestConfirmedVC.swift; sourceTree = "<group>"; };
+		0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningReservedTableViewCell.swift; sourceTree = "<group>"; };
+		0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningAddSpecialRequestVC.swift; sourceTree = "<group>"; };
 		09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningResvTableCell.swift; sourceTree = "<group>"; };
 		09506AD628EAFF3C005BE4F7 /* DiningResvTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiningResvTableCell.xib; sourceTree = "<group>"; };
 		09506ADA28EB3DD7005BE4F7 /* DiningReservationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningReservationVC.swift; sourceTree = "<group>"; };
@@ -616,6 +625,9 @@
 		09506ADD28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DinningReservationTimeSlotCollectionCell.xib; sourceTree = "<group>"; };
 		09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningDetailRestuarantVC.swift; sourceTree = "<group>"; };
 		09535EFC28D85A970078246E /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
+		097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizePopUpVC.swift; sourceTree = "<group>"; };
+		097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizeCollectionCell.swift; sourceTree = "<group>"; };
+		097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningAddMemberGuestPopUpVC.swift; sourceTree = "<group>"; };
 		097DCAB428D36E2200389C75 /* ¸ */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "¸"; sourceTree = "<group>"; };
 		097DCAB628D36F4E00389C75 /* MembershiphHistoryFilterPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MembershiphHistoryFilterPopUpView.xib; sourceTree = "<group>"; };
 		097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershiphHistoryFilterPopUpView.swift; sourceTree = "<group>"; };
@@ -2441,6 +2453,12 @@
 				09506ADC28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.swift */,
 				09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */,
 				09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */,
+				097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */,
+				097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */,
+				097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */,
+				0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */,
+				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
+				0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3248,6 +3266,7 @@
 				09EAAF9528EC26ED009011EF /* AddGuestTableCell.swift in Sources */,
 				74874F2620ED47D400C654B7 /* SWActionSheet.m in Sources */,
 				181CC2B0226DD8C20033ABC8 /* MyGroupsVC.swift in Sources */,
+				0917089D28EF70820033B925 /* DinningAddSpecialRequestVC.swift in Sources */,
 				18FF84AB221FFF4C009DB970 /* VideoViewController.swift in Sources */,
 				5F85D8B720DD0AA5003F9477 /* UIView+Toast.m in Sources */,
 				9F6620F824AE58550061BB9C /* ServiceTypeViewController.swift in Sources */,
@@ -3371,6 +3390,7 @@
 				9FCE25AB250A761C00E6B5B9 /* FitnessGoalsAndChallengesViewController.swift in Sources */,
 				5F3E182120D2A320009E3EB6 /* Reachability.swift in Sources */,
 				5F3E181220D22B0F009E3EB6 /* DeviceInfo.swift in Sources */,
+				097BAF5D28EDF40300AFDD8B /* PartySizePopUpVC.swift in Sources */,
 				74874F2920ED47D400C654B7 /* ActionSheetMultipleStringPicker.m in Sources */,
 				189E8F112279877A00B286E9 /* TeeTimeDetails.swift in Sources */,
 				5FB08FFB2110399900B97DA9 /* PDfViewController.swift in Sources */,
@@ -3381,6 +3401,7 @@
 				5FD6592F20E757EF0033CD5B /* HalfModalInteractiveTransition.swift in Sources */,
 				5F713A692133D27700A56CE3 /* UIView+WebCacheOperation.m in Sources */,
 				84BE45D5282D704700087561 /* SwitchToLotteryCollectionViewCell.swift in Sources */,
+				097BAF6328EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift in Sources */,
 				18B60373226895E70045FAE5 /* PlayHistory.swift in Sources */,
 				18439289227847A600A15365 /* DiningPlayHistoryDetailVC.swift in Sources */,
 				5F9B839820E4A61400A20EAF /* MemberDirectoryViewController.swift in Sources */,
@@ -3644,6 +3665,7 @@
 				9F62DA1524B08FDD0079D41E /* AccessManager.swift in Sources */,
 				18D12551226ED9A600E34D07 /* GroupDetailVC.swift in Sources */,
 				18A0B8C0215E052500315FA7 /* ThankYouViewController.swift in Sources */,
+				097BAF6128EDF52300AFDD8B /* PartySizeCollectionCell.swift in Sources */,
 				5F713A502133D27700A56CE3 /* NSImage+WebCache.m in Sources */,
 				74874F2320ED47D400C654B7 /* ActionSheetLocalePicker.m in Sources */,
 				181FF64D221D271A009D57F8 /* CheckBoxCustomCell.swift in Sources */,
@@ -3652,6 +3674,7 @@
 				5F06DC1220E62E00007137C7 /* YLTagsChooser.m in Sources */,
 				9F6620D224AE578E0061BB9C /* BMSHeaderCalendarViewSyncTVC.swift in Sources */,
 				5FD6592B20E757EF0033CD5B /* HalfModalPresentationController.swift in Sources */,
+				0917089B28EF13DE0033B925 /* DinningReservedTableViewCell.swift in Sources */,
 				849F425628AB658900941F8E /* MinimumViewController.swift in Sources */,
 				188BDFCD21FCA56900927817 /* StatementDetailCell.swift in Sources */,
 				5F06DC1620E62E00007137C7 /* YLWaterFlowLayout.m in Sources */,
@@ -3682,6 +3705,7 @@
 				5F9D76F920DA5C6D00728446 /* Address.swift in Sources */,
 				9F2AD65F24126B500061C47D /* ImageDownloadTask.swift in Sources */,
 				5F70BBA420ED041200A950BE /* CustomBorderUIButton.swift in Sources */,
+				0917089928EE80370033B925 /* DiningRequestConfirmedVC.swift in Sources */,
 				9FCA143A23CDAA95005A725A /* Enums.swift in Sources */,
 				18FB9E0821B106820099805C /* MonthList.swift in Sources */,
 				18D2ED25215CF02C00EDFF9C /* AddNewGuestViewController.swift in Sources */,
