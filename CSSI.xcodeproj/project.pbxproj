@@ -374,7 +374,6 @@
 		74C6BBCD20D1978700842A77 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCA20D1978600842A77 /* CheckBox.swift */; };
 		74C6BBCE20D1978700842A77 /* FormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCB20D1978700842A77 /* FormValidation.swift */; };
 		74C6BBCF20D1978700842A77 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6BBCC20D1978700842A77 /* EventList.swift */; };
-		8442D83028EC4ACB00727677 /* RestaurantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442D82F28EC4ACB00727677 /* RestaurantDetailsViewController.swift */; };
 		8463A8E128D3462E002E8F6E /* ModifyRegCustomGolfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463A8E028D3462E002E8F6E /* ModifyRegCustomGolfCell.swift */; };
 		848F5F5C28BCED5E00BA4C81 /* TemplateHistoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F5F5B28BCED5E00BA4C81 /* TemplateHistoryDetail.swift */; };
 		84960DE228351A1D007C8031 /* GolfCourseTimeSlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84960DE128351A1D007C8031 /* GolfCourseTimeSlots.swift */; };
@@ -386,7 +385,7 @@
 		84BE45D6282D704700087561 /* SwitchToLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BE45D4282D704700087561 /* SwitchToLotteryCollectionViewCell.xib */; };
 		84BF2E0928ACBA8400A1D692 /* TransactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */; };
 		84BF2E0B28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF2E0A28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift */; };
-		84C7A79C28EFDED500C41DAC /* RestaurantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C7A79B28EFDED500C41DAC /* RestaurantDetailsViewController.swift */; };
+		84C7A79E28EFDFC600C41DAC /* RestaurantDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C7A79D28EFDFC600C41DAC /* RestaurantDetailsViewController.swift */; };
 		86D55A1086FD8ED9B2B1696B /* Pods_CSSI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD40404E39B8A7387F55B9D /* Pods_CSSI.framework */; };
 		8F434E4F49A1EAA9880F171E /* Pods_CSSIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BADE7CC2A967E2AEDC403F /* Pods_CSSIUITests.framework */; };
 		93EE3414BA14CB0A9C6F3748 /* Pods_CSSITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D6892D7B796CAC34002D45 /* Pods_CSSITests.framework */; };
@@ -1068,7 +1067,7 @@
 		84BE45D4282D704700087561 /* SwitchToLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchToLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryViewController.swift; sourceTree = "<group>"; };
 		84BF2E0A28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailTableViewCell.swift; sourceTree = "<group>"; };
-		84C7A79B28EFDED500C41DAC /* RestaurantDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsViewController.swift; sourceTree = "<group>"; };
+		84C7A79D28EFDFC600C41DAC /* RestaurantDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailsViewController.swift; sourceTree = "<group>"; };
 		9F2AD65E24126B500061C47D /* ImageDownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadTask.swift; sourceTree = "<group>"; };
 		9F2CC5E325AC6D920033877B /* CustomFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFunctions.swift; sourceTree = "<group>"; };
 		9F2CC5E525AC7F830033877B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -2464,7 +2463,7 @@
 				0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */,
 				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
 				0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */,
-				84C7A79B28EFDED500C41DAC /* RestaurantDetailsViewController.swift */,
+				84C7A79D28EFDFC600C41DAC /* RestaurantDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3279,7 +3278,6 @@
 				9FDBB13B2472BC820099D6E9 /* URLItem.swift in Sources */,
 				09EAAF9528EC26ED009011EF /* AddGuestTableCell.swift in Sources */,
 				74874F2620ED47D400C654B7 /* SWActionSheet.m in Sources */,
-				8442D83028EC4ACB00727677 /* RestaurantDetailsViewController.swift in Sources */,
 				181CC2B0226DD8C20033ABC8 /* MyGroupsVC.swift in Sources */,
 				0917089D28EF70820033B925 /* DinningAddSpecialRequestVC.swift in Sources */,
 				18FF84AB221FFF4C009DB970 /* VideoViewController.swift in Sources */,
@@ -3320,7 +3318,7 @@
 				1856015422D8DC3E00CA458A /* PickerDateFormate.swift in Sources */,
 				74874F2520ED47D400C654B7 /* ActionSheetCustomPicker.m in Sources */,
 				18D945C82286CE69008BE907 /* ThanksVC.swift in Sources */,
-				84C7A79C28EFDED500C41DAC /* RestaurantDetailsViewController.swift in Sources */,
+				84C7A79E28EFDFC600C41DAC /* RestaurantDetailsViewController.swift in Sources */,
 				5FD6593020E757EF0033CD5B /* ModalViewController.swift in Sources */,
 				9F6620E924AE57EF0061BB9C /* ProductionClassDetails.swift in Sources */,
 				18F7B067238589070060A257 /* LeagueFiles.swift in Sources */,

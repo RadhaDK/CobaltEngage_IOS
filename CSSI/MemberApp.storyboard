@@ -14730,10 +14730,10 @@
             </objects>
             <point key="canvasLocation" x="7561" y="-160"/>
         </scene>
-        <!--Restaurants View Controller-->
+        <!--View Controller-->
         <scene sceneID="UKH-JK-Fq3">
             <objects>
-                <viewController storyboardIdentifier="RestaurantDetailsViewController" id="5vJ-X4-XGo" customClass="RestaurantsViewController" customModule="CSSI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5vJ-X4-XGo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ANW-XB-Li5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
