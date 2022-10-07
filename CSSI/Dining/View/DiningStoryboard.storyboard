@@ -630,7 +630,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected Date, Aug 26| Any Resturant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exJ-8b-vWE">
-                                                <rect key="frame" x="8" y="93" width="157.66666666666666" height="19"/>
+                                                <rect key="frame" x="8" y="93" width="168.66666666666666" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="aR7-RO-Yvv"/>
                                                 </constraints>
@@ -849,17 +849,17 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="81"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwb-vm-Fcy">
+                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gwb-vm-Fcy">
                                                                     <rect key="frame" x="5" y="5" width="380" height="71"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_cross" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-sO-bjv">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_cross" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-sO-bjv">
                                                                             <rect key="frame" x="345" y="25.666666666666671" width="20" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="20" id="4a3-h3-zkq"/>
                                                                                 <constraint firstAttribute="width" constant="20" id="uEO-ZT-UVY"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcT-k5-K6X">
+                                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LcT-k5-K6X">
                                                                             <rect key="frame" x="336" y="0.0" width="1" height="71"/>
                                                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
@@ -867,7 +867,7 @@
                                                                                 <constraint firstAttribute="width" constant="1" id="OIJ-G4-XFa"/>
                                                                             </constraints>
                                                                         </view>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lia Little" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8v-Rc-CJd">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Lia Little" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8v-Rc-CJd">
                                                                             <rect key="frame" x="20" y="26" width="308" height="19"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="19" id="ObD-1W-jMj"/>

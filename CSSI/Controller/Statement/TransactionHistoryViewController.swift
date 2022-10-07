@@ -16,6 +16,7 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var lblTotalHeader: UILabel!
     @IBOutlet weak var transactionDetailTableView: UITableView!
     @IBOutlet weak var noRecordsFoundLbl: UILabel!
+    @IBOutlet weak var lblDateHeader: UILabel!
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var minimumTamplateID = ""
@@ -65,7 +66,8 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationItem.title = self.appDelegate.masterLabeling.mINIMUMS_TRANSACTION_HISTORY_TITLE ?? ""
         
-        self.lblReceiptHeader.text = "\(self.appDelegate.masterLabeling.tRANSACTION_HISTORY_RECEIPT ?? "")\n\(self.appDelegate.masterLabeling.tRANSACTION_HISTORY_DATE ?? "")"
+        self.lblReceiptHeader.text = self.appDelegate.masterLabeling.tRANSACTION_HISTORY_RECEIPT ?? ""
+        self.lblDateHeader.text = self.appDelegate.masterLabeling.tRANSACTION_HISTORY_DATE ?? ""
         self.lblLocationHeader.text = self.appDelegate.masterLabeling.tRANSACTION_HISTORY_LOCATION ?? ""
         self.lblTotalHeader.text = self.appDelegate.masterLabeling.tRANSACTION_HISTORY_TOTAL ?? ""
         self.lblMinimumHeader.text = templateName

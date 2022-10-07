@@ -71,7 +71,7 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.title = self.appDelegate.masterLabeling.mINIMUMS_TITLE ?? ""
         
         self.lblUserNameId.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
-        self.btnRules.setTitle(self.appDelegate.masterLabeling.MB_GiftCard ?? "", for: .normal)
+        self.btnRules.setTitle(self.appDelegate.masterLabeling.mINIMUMS_TITLE ?? "", for: .normal)
         
         self.getMinimumDetails()
     }
