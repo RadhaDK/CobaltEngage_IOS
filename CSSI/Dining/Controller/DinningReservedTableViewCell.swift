@@ -1,21 +1,18 @@
 //
-//  AddGuestTableCell.swift
+//  DinningReservedTableViewCell.swift
 //  CSSI
 //
-//  Created by Aks on 04/10/22.
+//  Created by Aks on 06/10/22.
 //  Copyright © 2022 yujdesigns. All rights reserved.
 //
 
 import UIKit
 
-class AddGuestTableCell: UITableViewCell {
+class DinningReservedTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var viewBack: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        viewBack.layer.cornerRadius = 5
-        viewBack.layer.borderColor = UIColor.lightGray.cgColor
-        viewBack.layer.borderWidth = 1
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

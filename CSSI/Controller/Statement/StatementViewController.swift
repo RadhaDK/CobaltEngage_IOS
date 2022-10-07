@@ -46,7 +46,6 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBOutlet weak var eventDateRangeView: DTCalendarView!{
         didSet {
             eventDateRangeView.delegate = self
-            
             eventDateRangeView.displayStartDate = Date(timeIntervalSince1970: 1513228704)
             eventDateRangeView.displayEndDate = Date()
             eventDateRangeView.previewDaysInPreviousAndMonth = false
