@@ -105,7 +105,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
    
     
-    // MARK:- My order Table  Height
+    // MARK:- Slot Table  Height
           func configSlotMemberTblHeight(){
               if arrBookedSlotMember.count == 0{
                   heightTblGuest.constant = 0
@@ -117,7 +117,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                   tblGuest.reloadData()
               }
           }
-    // MARK:- My order Table  Height
+    // MARK:- Special Request Collection  Height
           func configSlotMemberCollectionHeight(){
               if arrSpecialRequest.count == 0{
                   heightSpecialRequestCollection.constant = 0
@@ -126,8 +126,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
               }
               else{
                   let numberOfLines = (arrSpecialRequest.count/2)+1
-                  heightSpecialRequestCollection.constant = CGFloat(60*numberOfLines)
-                  heightViewBackSpecialRequest.constant = 49 + CGFloat(60*numberOfLines)
+                  heightSpecialRequestCollection.constant = CGFloat(50*numberOfLines)
+                  heightViewBackSpecialRequest.constant = 49 + CGFloat(40*numberOfLines)
                   collectionAddSpecialRequest.reloadData()
               }
           }

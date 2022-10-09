@@ -7,8 +7,22 @@
 //
 
 import UIKit
+import DTCalendarView
+import FSCalendar
 
-class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime {
+    func SelectedPartysizeTme(PartySize: String, Time: String) {
+        if PartySize != ""{
+            lblSelectedSizeTime.text = "\(PartySize) * "
+            selectedPartySize = PartySize
+        }
+        if Time != ""{
+            lblSelectedSizeTime.text = "\(Time)"
+
+        }
+        tblResturat.reloadData()
+    }
+    
     
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var viewTime: UIView!
@@ -21,9 +35,19 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var viewDate: UIView!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnHome: UIButton!
-
+    @IBOutlet weak var btnPartySize: UIButton!
+    @IBOutlet weak var lblSelectedSizeTime: UILabel!
+    
+    
     var showNavigationBar = true
-
+    var nameOfMonth : String?
+    var currentMonth : Date?
+    var isDateChanged : String?
+    var isDateSelected : Bool?
+    var myCalendar: FSCalendar!
+    var currentDate = Date()
+    var selectedPartySize : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblResturat.delegate = self
@@ -35,7 +59,15 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         shadowView(viewName: viewNext)
         btnBack.setTitle("", for: .normal)
         btnHome.setTitle("", for: .normal)
-
+        
+        let date = Date()
+        currentDate = date
+        let format = DateFormatter()
+        format.dateFormat = "MM/dd/yyyy"
+        let formattedDate = format.string(from: date)
+        print(formattedDate)
+        lblSelectedDate.text = formattedDate
+        btnPartySize.setTitle("", for: .normal)
         registerNibs()
     }
     func registerNibs(){
@@ -45,9 +77,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
+        
+       // self.myCalendar.reloadData()
     }
+    
     func shadowView(viewName : UIView){
         viewName.layer.shadowColor = UIColor.black.cgColor
         viewName.layer.shadowOpacity = 0.12
@@ -58,14 +92,40 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func btnSelectPartySize(_ sender: Any) {
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
+        vc?.delegateSelectedTimePatySize = self
+        self.navigationController?.present(vc!, animated: true, completion: nil)
+    }
     
     @IBAction func btnHome(_ sender: Any) {
         let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
         self.navigationController?.present(vc!, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnNextPrevious(_ sender: UIButton) {
+        if sender.tag == 1{
+            let previousMonth = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)
+            currentDate = previousMonth!
+            let format = DateFormatter()
+            format.dateFormat = "MM/dd/yyyy"
+            let formattedDate = format.string(from: previousMonth!)
+            print(formattedDate)
+            lblSelectedDate.text = formattedDate
+        }
+        else{
+            let nextMonth = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)
+            currentDate = nextMonth!
+            let format = DateFormatter()
+            format.dateFormat = "MM/dd/yyyy"
+            let formattedDate = format.string(from: nextMonth!)
+            print(formattedDate)
+            lblSelectedDate.text = formattedDate
+        }
     }
     
     // MARK: - Table Methods
@@ -75,6 +135,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
+        cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize ?? "")"
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

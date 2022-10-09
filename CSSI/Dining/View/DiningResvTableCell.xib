@@ -83,6 +83,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionTimeSlot" destination="e0A-MJ-Q9Z" id="TgU-H8-vKs"/>
+                <outlet property="lblPartySize" destination="nfX-A6-vAd" id="4ra-ED-90D"/>
             </connections>
             <point key="canvasLocation" x="65.384615384615387" y="18.48341232227488"/>
         </tableViewCell>
