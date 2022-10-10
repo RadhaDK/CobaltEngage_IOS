@@ -13,13 +13,22 @@ import FSCalendar
 class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime {
     func SelectedPartysizeTme(PartySize: String, Time: String) {
         if PartySize != ""{
-            lblSelectedSizeTime.text = "\(PartySize) * "
+            lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
             selectedPartySize = PartySize
+            lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
         }
-        if Time != ""{
-            lblSelectedSizeTime.text = "\(Time)"
-
+       else if Time != ""{
+            lblSelectedSizeTime.text = "\(selectedPartySize) * \(Time)"
+           lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
+           selectedTime = Time
         }
+        else if PartySize != "" && Time != ""{
+            lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
+            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
+            selectedPartySize = PartySize
+            selectedTime = Time
+        }
+ 
         tblResturat.reloadData()
     }
     
@@ -37,6 +46,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var btnPartySize: UIButton!
     @IBOutlet weak var lblSelectedSizeTime: UILabel!
+    @IBOutlet weak var lblDatePartySize: UILabel!
+    
     
     
     var showNavigationBar = true
@@ -46,7 +57,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var isDateSelected : Bool?
     var myCalendar: FSCalendar!
     var currentDate = Date()
-    var selectedPartySize : String?
+    var selectedPartySize = "6"
+    var selectedTime = "0:00 PM Wed"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +80,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         print(formattedDate)
         lblSelectedDate.text = formattedDate
         btnPartySize.setTitle("", for: .normal)
+        
         registerNibs()
     }
     func registerNibs(){
@@ -145,7 +158,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC {
             impVC.showNavigationBar = false
-
+            impVC.selectedTime = selectedTime
+            impVC.selectedPartySize = selectedPartySize
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }

@@ -51,7 +51,7 @@ class PartySizePopUpVC: UIViewController {
             let dateformatter = DateFormatter()
             dateformatter.dateFormat = "dd/MM/yyyy"
             selectedDate = dateformatter.string(from: datePicker.date)
-            datePicker.isHidden = true
+            //datePicker.isHidden = true
         }
 
     @IBAction func doneBtnTapped(sender:UIButton){
