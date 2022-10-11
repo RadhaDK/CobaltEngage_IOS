@@ -15,6 +15,8 @@ class StatementDetailCell: UITableViewCell {
     @IBOutlet weak var lblSKUNo: UILabel!
     @IBOutlet weak var lblQty: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
+    @IBOutlet weak var lblDesignator: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

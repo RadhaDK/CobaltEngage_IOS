@@ -249,7 +249,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         }
         
         //Modified on 26th June 2020 BMS
-        var range = NSMakeRange(0, 7)
+        var range = NSMakeRange(0, 8)
         //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Add BMS comparision as fitness & spa and tennis book a lession should work the same way and both are of BMS type.
         //GATHER0000700 - Start
         //Replace fitness & spa with only BMS when possible.
@@ -992,7 +992,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
 //                            self.lblConfirmedTime.text = String(format: "%@   %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
  
                             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
-                            attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
+                            attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
                             
                             self.lblConfirmedTime.attributedText = attributeString
                             }
@@ -1028,7 +1028,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                                         self.lblConfirmedTime.text = String(format: "%@   %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
                                     }
                                     let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
-                                    attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
+                                    attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
                                     
                                     self.lblConfirmedTime.attributedText = attributeString
                                 }
@@ -1121,7 +1121,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                             self.lblRoundLengthvalue.text = self.arrTeeTimeDetails[0].reservationRequestTime
                             self.lblConfirmedTime.text = String(format: "%@  %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
                             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
-                            attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
+                            attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
                             
                             self.lblConfirmedTime.attributedText = attributeString
                         }
@@ -1222,7 +1222,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                             }
                             self.lblConfirmedTime.text = String(format: "%@  %@", self.arrTeeTimeDetails[0].reservationRequestTime ?? "",self.arrEventDetails[0].eventName!)
                             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
-                            attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
+                            attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
                             
                             self.lblConfirmedTime.attributedText = attributeString
                             
@@ -1371,7 +1371,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                     
                     self.lblConfirmedTime.text = String(format: "%@  %@", self.arrAppointmentDetails[0].appointmentTime ?? "" ,self.arrEventDetails[0].eventName!)
                     let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
-                    attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 7))
+                    attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
                     
                     self.lblConfirmedTime.attributedText = attributeString
                     

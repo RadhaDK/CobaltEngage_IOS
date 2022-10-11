@@ -15,7 +15,7 @@ class ListStatementDetails: NSObject,Mappable {
     var sku: String?
     var quntity: Int?
     var price: String?
-    
+    var designator: String?
     
     
     convenience required init?(map: Map) {
@@ -27,7 +27,7 @@ class ListStatementDetails: NSObject,Mappable {
         sku <- map["SkuCode"]
         quntity <- map["Qty"]
         price <- map["Price"]
-      
+        designator <- map["Designator"]
         
         
     }
