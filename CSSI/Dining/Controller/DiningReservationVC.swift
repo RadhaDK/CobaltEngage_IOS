@@ -80,7 +80,6 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         print(formattedDate)
         lblSelectedDate.text = formattedDate
         btnPartySize.setTitle("", for: .normal)
-        
         registerNibs()
     }
     func registerNibs(){
@@ -149,6 +148,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
         cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize ?? "")"
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,11 +156,18 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC {
-            impVC.showNavigationBar = false
-            impVC.selectedTime = selectedTime
-            impVC.selectedPartySize = selectedPartySize
+//        if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC {
+//            impVC.showNavigationBar = false
+//            impVC.selectedTime = selectedTime
+//            impVC.selectedPartySize = selectedPartySize
+//            self.navigationController?.pushViewController(impVC, animated: true)
+//        }
+        if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
+//            impVC.showNavigationBar = false
+//            impVC.selectedTime = selectedTime
+//            impVC.selectedPartySize = selectedPartySize
             self.navigationController?.pushViewController(impVC, animated: true)
         }
+        
     }
 }

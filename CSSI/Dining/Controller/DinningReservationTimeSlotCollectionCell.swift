@@ -10,11 +10,17 @@ import UIKit
 
 class DinningReservationTimeSlotCollectionCell: UICollectionViewCell {
     @IBOutlet weak var viewTimeSlotBack: UIView!
-    
+    @IBOutlet weak var btnTime: UIButton!
+    var addToSlotClosure:(()->())?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         viewTimeSlotBack.layer.cornerRadius = 4
+        btnTime.setTitle("", for: .normal)
     }
-
+    @IBAction func btnTime(_ sender: Any) {
+        addToSlotClosure?()
+    }
+    
 }
