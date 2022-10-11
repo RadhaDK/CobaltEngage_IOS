@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol selectedPartySizeTime{
+    func SelectedPartysizeTme(PartySize : String, Time : String)
+}
 
 class PartySizePopUpVC: UIViewController {
     
@@ -18,8 +21,10 @@ class PartySizePopUpVC: UIViewController {
     @IBOutlet weak var DateTimeDinningResrvation: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     let dateFormatter = DateFormatter()
-
-
+    var delegateSelectedTimePatySize : selectedPartySizeTime?
+    var selectedPartySize : String?
+    var selectedDate : String?
+    var arrPartySize = ["1","2","3","4","5","6"]
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedBgView.clipsToBounds = true
@@ -32,27 +37,39 @@ class PartySizePopUpVC: UIViewController {
         self.btnDone.setStyle(style: .outlined, type: .primary)
         // Do any additional setup after loading the view.
         
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-      //  DateTimeDinningResrvation.inputView = datePicker
-              datePicker.datePickerMode = .date
-             //  inputTextField.text = dateFormatter.string(from: datePicker.date)
-        
+        dateFormatter.dateFormat = "EEE,MMM dd 'T'HH:mm a"
+              datePicker.datePickerMode = .dateAndTime
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
+
     }
-    
+    @objc func dateSelected(){
+            let dateformatter = DateFormatter()
+            dateformatter.dateFormat = "dd/MM/yyyy"
+            selectedDate = dateformatter.string(from: datePicker.date)
+            //datePicker.isHidden = true
+        }
 
     @IBAction func doneBtnTapped(sender:UIButton){
         self.dismiss(animated: true, completion: nil)
+        delegateSelectedTimePatySize?.SelectedPartysizeTme(PartySize: selectedPartySize ?? "", Time: selectedDate ?? "")
     }
 }
 
 
 extension PartySizePopUpVC : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return arrPartySize.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = partySizeCollectionView.dequeueReusableCell(withReuseIdentifier: "PartySizeCollectionCell", for: indexPath) as! PartySizeCollectionCell
+        let dict = arrPartySize[indexPath.row]
+        cell.partySizeCountLbl.text = dict
         return cell
     }
     
@@ -60,6 +77,9 @@ extension PartySizePopUpVC : UICollectionViewDelegateFlowLayout, UICollectionVie
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let dict = arrPartySize[indexPath.row]
+        selectedPartySize = dict
         
     }
     

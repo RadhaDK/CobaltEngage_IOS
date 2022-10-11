@@ -11,11 +11,17 @@ import UIKit
 class AddGuestTableCell: UITableViewCell {
 
     @IBOutlet weak var viewBack: UIView!
+    @IBOutlet weak var lblSlotMember: UILabel!
+    @IBOutlet weak var btnAdd: UIButton!
+    var addToSlotClosure:(()->())?
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         viewBack.layer.cornerRadius = 5
         viewBack.layer.borderColor = UIColor.lightGray.cgColor
         viewBack.layer.borderWidth = 1
+        btnAdd.setTitle("", for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,4 +30,8 @@ class AddGuestTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func btnAdd(_ sender: Any) {
+        addToSlotClosure?()
+
+    }
 }

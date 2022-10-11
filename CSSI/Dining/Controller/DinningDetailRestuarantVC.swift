@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor{
     func addingMemberType(value: String) {
         if value == "Member"{
@@ -15,15 +17,6 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             {
                
                 memberDirectory.isFrom = "Registration"
-//                memberDirectory.isOnlyFrom = "GolfCourt"
-//                memberDirectory.categoryForBuddy = "Golf"
-//                memberDirectory.isFor = "OnlyMembers"
-//                memberDirectory.showSegmentController = true
-//                memberDirectory.requestID = requestID
-//                memberDirectory.selectedDate = self.reservationRequestDate
-//                memberDirectory.selectedTime = self.txtPreferredTeeTime.text
-                
-               // memberDirectory.delegate = self
 
                 navigationController?.pushViewController(memberDirectory, animated: true)
             }
@@ -68,14 +61,23 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var txtReservationComment: UITextView!
     @IBOutlet weak var heightTblGuest: NSLayoutConstraint!
     @IBOutlet weak var heightViewBackSpecialRequest: NSLayoutConstraint!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblPartySize: UILabel!
+    @IBOutlet weak var btnAddMultiple: UIButton!
+    @IBOutlet weak var imgRestaurantImage: UIImageView!
+    
+    
     
     var arrBookedSlotMember = ["Lia Little"]
     var arrSpecialRequest = ["Behind lounge area","Close to enterance","Outside","On the Perimeter"]
+    var selectedTime : String?
+    var selectedPartySize : String?
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tblGuest.delegate = self
-        tblGuest.dataSource  = self
+      print(selectedPartySize)
         collectionAddSpecialRequest.delegate = self
         collectionAddSpecialRequest.dataSource  = self
         imgRestuarant.layer.cornerRadius = 8
@@ -83,9 +85,21 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         txtReservationComment.layer.borderColor = UIColor.lightGray.cgColor
         txtReservationComment.layer.cornerRadius = 8
         btnSubmit.layer.cornerRadius = btnSubmit.layer.frame.height/2
+        btnAddMultiple.layer.cornerRadius = btnAddMultiple.layer.frame.height/2
+        btnAddMultiple.layer.borderWidth = 1
+        btnAddMultiple.layer.borderColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1).cgColor
         btnHome.setTitle("", for: .normal)
+        btnBack.setTitle("", for: .normal)
+        lblPartySize.text = selectedPartySize
+        lblTime.text = selectedTime
+        tblGuest.delegate = self
+        tblGuest.dataSource  = self
+        let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgRestaurantImage.frame.size.width, height: imgRestaurantImage.frame.size.height))
+        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
+        imgRestaurantImage.addSubview(overlay)
         configSlotMemberCollectionHeight()
         configSlotMemberTblHeight()
+     
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -99,25 +113,39 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 self.navigationController?.present(confirmDinningRequest, animated: true)
         }
     }
+    
+    @IBAction func btnAddMultiple(_ sender: Any) {
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
+        vc?.delegateSelectedMemberType = self
+        vc?.checkPopupOpenFrom = .multiple
+        self.navigationController?.present(vc!, animated: false, completion: nil)
+
+    }
+    
     @IBAction func btnHome(_ sender: Any) {
         let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
-   
+    @IBAction func btnBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
-    // MARK:- My order Table  Height
+    
+    // MARK:- Slot Table  Height
           func configSlotMemberTblHeight(){
-              if arrBookedSlotMember.count == 0{
+              if selectedPartySize?.count == 0{
                   heightTblGuest.constant = 0
                   tblGuest.reloadData()
               }
               else{
-                  let numberOfLines = (arrBookedSlotMember.count)+1
-                  heightTblGuest.constant = CGFloat(40*numberOfLines)
+                  let NumberOfSlot = Int(selectedPartySize ?? "0")
+                  let numberOfLines = NumberOfSlot ?? 0 + 1
+                  heightTblGuest.constant = CGFloat(60*numberOfLines)
+                  print(heightTblGuest.constant)
                   tblGuest.reloadData()
               }
           }
-    // MARK:- My order Table  Height
+    // MARK:- Special Request Collection  Height
           func configSlotMemberCollectionHeight(){
               if arrSpecialRequest.count == 0{
                   heightSpecialRequestCollection.constant = 0
@@ -126,8 +154,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
               }
               else{
                   let numberOfLines = (arrSpecialRequest.count/2)+1
-                  heightSpecialRequestCollection.constant = CGFloat(60*numberOfLines)
-                  heightViewBackSpecialRequest.constant = 49 + CGFloat(60*numberOfLines)
+                  heightSpecialRequestCollection.constant = CGFloat(35*numberOfLines)
+                  heightViewBackSpecialRequest.constant = 70 + CGFloat(35*numberOfLines)
                   collectionAddSpecialRequest.reloadData()
               }
           }
@@ -135,12 +163,21 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrBookedSlotMember.count
+        let NumberOfSlot = Int(selectedPartySize ?? "0")
+        return NumberOfSlot ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
-        
+        if indexPath.row == 0{
+            cell.lblSlotMember.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!
+        }
+        cell.addToSlotClosure = {
+            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
+            vc?.delegateSelectedMemberType = self
+            vc?.checkPopupOpenFrom = .addSlot
+            self.navigationController?.present(vc!, animated: false, completion: nil)
+        }
         
         return cell
     }
@@ -149,11 +186,11 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
-        vc?.delegateSelectedMemberType = self
-        self.navigationController?.present(vc!, animated: true, completion: nil)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
+//        vc?.delegateSelectedMemberType = self
+//        self.navigationController?.present(vc!, animated: false, completion: nil)
+//    }
     
     
     // MARK: - Collection Methods
@@ -178,6 +215,15 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)//here your custom value for spacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let lay = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
+        
+        return CGSize(width:widthPerItem, height:50)
+    }
 }
  

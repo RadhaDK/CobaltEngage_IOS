@@ -12,6 +12,8 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     
 
     @IBOutlet weak var collectionTimeSlot: UICollectionView!
+    @IBOutlet weak var lblPartySize: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionTimeSlot.delegate = self
