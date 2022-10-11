@@ -49,7 +49,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var viewNext: UIView!
     @IBOutlet weak var viewDate: UIView!
     @IBOutlet weak var viewTime: UIView!
-
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblPartySize: UILabel!
     var currentDate = Date()
     var selectedPartySize = 3
     var dropDownIsOpen = false
@@ -78,6 +79,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
         shadowView(viewName: viewNext)
+        lblPartySize.text = selectedPartySize
+        lblTime.text = selectedTime
         registerNibs()
        
     }

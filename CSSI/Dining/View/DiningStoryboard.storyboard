@@ -1410,19 +1410,19 @@
                                                             <constraint firstAttribute="width" constant="170" id="oXh-YQ-VYw"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your Dining Reservation has been confirmed for Friday, August 26, 2022" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4d-jQ-y8K">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Dining Reservation has been confirmed for Friday, August 26, 2022" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4d-jQ-y8K">
                                                         <rect key="frame" x="40" y="125" width="282" height="79.333333333333314"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="20"/>
                                                         <color key="textColor" red="0.2031491399" green="0.34034940600000002" blue="0.51420485969999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Party Size (6)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ne-n6-dyW">
-                                                        <rect key="frame" x="40" y="261.33333333333326" width="282" height="26.666666666666686"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size (6)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ne-n6-dyW">
+                                                        <rect key="frame" x="40" y="261.33333333333331" width="282" height="26.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="20"/>
                                                         <color key="textColor" red="0.2031491399" green="0.34034940600000002" blue="0.51420485969999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Preferred Reservation: 7:30" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCU-1Q-ocB">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preferred Reservation: 7:30" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCU-1Q-ocB">
                                                         <rect key="frame" x="40" y="224.33333333333331" width="282" height="22"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1924,7 +1924,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qph-v9-wnS">
-                                        <rect key="frame" x="25" y="25" width="90" height="23"/>
+                                        <rect key="frame" x="24.999999999999993" y="25" width="85.333333333333314" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="NuD-ch-KBQ"/>
                                         </constraints>
@@ -2478,6 +2478,42 @@
                                                     <constraint firstAttribute="height" constant="160" id="Ne6-QW-nNK"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restuarant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vY4-xR-xv0">
+                                                <rect key="frame" x="167.33333333333334" y="348.66666666666669" width="47.666666666666657" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="6Ru-fY-ZMo"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&amp;:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4t-qV-vid">
+                                                <rect key="frame" x="167.66666666666666" y="370.66666666666669" width="46.666666666666657" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="gTM-ww-ryB"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="13"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prime Cut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax6-OI-WoJ">
+                                                <rect key="frame" x="12" y="370.66666666666669" width="57" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="2O1-P7-oPp"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="13"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restuarant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9b-G8-p0b">
+                                                <rect key="frame" x="11.999999999999996" y="348.66666666666669" width="47.666666666666657" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="rGa-yS-3Lx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Party Size : 6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNR-vy-Mq9">
                                                 <rect key="frame" x="11.999999999999993" y="419.66666666666669" width="120.33333333333331" height="19"/>
                                                 <constraints>
@@ -2544,6 +2580,24 @@
                                                     <constraint firstItem="q03-7v-c32" firstAttribute="leading" secondItem="iU6-s2-4XI" secondAttribute="leading" constant="5" id="xTd-Ps-ZeW"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktr-WW-bLo">
+                                                <rect key="frame" x="350" y="370.66666666666669" width="14" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="93W-d6-Mdz"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="13"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohd-O9-iDS">
+                                                <rect key="frame" x="321.33333333333331" y="348.66666666666669" width="42.666666666666686" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="19" id="8lV-Px-3az"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -2557,12 +2611,17 @@
                                             <constraint firstItem="LbE-jz-AV1" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="8" id="BLU-0Y-xkG"/>
                                             <constraint firstItem="Mxi-fH-YlD" firstAttribute="top" secondItem="OtY-zW-QKr" secondAttribute="bottom" constant="8" symbolic="YES" id="Chr-mN-7ax"/>
                                             <constraint firstItem="Qv9-0z-gJD" firstAttribute="top" secondItem="iU6-s2-4XI" secondAttribute="bottom" id="E77-Fc-IP7"/>
+                                            <constraint firstItem="j4t-qV-vid" firstAttribute="top" secondItem="vY4-xR-xv0" secondAttribute="bottom" constant="3" id="F9r-nh-heh"/>
                                             <constraint firstItem="Ttg-fK-3gB" firstAttribute="leading" secondItem="QuM-Xt-hCp" secondAttribute="leading" id="Fga-yN-i9f"/>
                                             <constraint firstAttribute="trailing" secondItem="Mxi-fH-YlD" secondAttribute="trailing" constant="8" id="Fsl-eL-h5Y"/>
                                             <constraint firstItem="Yyk-aG-yP6" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="12" id="HBH-TY-fM7"/>
                                             <constraint firstItem="QuM-Xt-hCp" firstAttribute="centerY" secondItem="LbE-jz-AV1" secondAttribute="centerY" id="ICj-oF-4sN"/>
+                                            <constraint firstItem="vY4-xR-xv0" firstAttribute="centerX" secondItem="R6h-bd-prY" secondAttribute="centerX" id="Iep-oA-ZMf"/>
+                                            <constraint firstItem="b9b-G8-p0b" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="12" id="JJs-M1-KBJ"/>
+                                            <constraint firstItem="j4t-qV-vid" firstAttribute="top" secondItem="ax6-OI-WoJ" secondAttribute="top" id="JZk-Rg-0RE"/>
                                             <constraint firstItem="Mxi-fH-YlD" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="8" id="KIE-nU-0Ze"/>
                                             <constraint firstItem="cKY-jc-v9m" firstAttribute="top" secondItem="eQN-ej-aGZ" secondAttribute="bottom" constant="8" symbolic="YES" id="KUZ-B0-7PU"/>
+                                            <constraint firstItem="ax6-OI-WoJ" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="12" id="MIm-Cm-VAy"/>
                                             <constraint firstItem="Ttg-fK-3gB" firstAttribute="top" secondItem="QuM-Xt-hCp" secondAttribute="bottom" constant="3" id="PR8-7m-hSk"/>
                                             <constraint firstItem="iU6-s2-4XI" firstAttribute="top" secondItem="Yyk-aG-yP6" secondAttribute="bottom" constant="8" id="Pts-8u-cFy"/>
                                             <constraint firstItem="ygb-Hz-nOP" firstAttribute="centerY" secondItem="LbE-jz-AV1" secondAttribute="centerY" id="QGw-hl-JUQ"/>
@@ -2577,15 +2636,22 @@
                                             <constraint firstItem="RNR-vy-Mq9" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="12" id="fXH-gx-4uO"/>
                                             <constraint firstAttribute="trailing" secondItem="exm-EL-IKx" secondAttribute="trailing" constant="8" id="fty-uT-Aav"/>
                                             <constraint firstItem="exm-EL-IKx" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="8" id="fz1-iw-GFH"/>
+                                            <constraint firstItem="Ktr-WW-bLo" firstAttribute="top" secondItem="ohd-O9-iDS" secondAttribute="bottom" constant="3" id="glD-tw-kdZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="ohd-O9-iDS" secondAttribute="trailing" constant="18" id="h1s-s6-FWF"/>
                                             <constraint firstAttribute="bottom" secondItem="Qv9-0z-gJD" secondAttribute="bottom" constant="8" id="jJm-fW-ARi"/>
                                             <constraint firstItem="Qv9-0z-gJD" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" id="jPm-4O-xrV"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ktr-WW-bLo" secondAttribute="trailing" constant="18" id="nYQ-me-aH9"/>
                                             <constraint firstItem="R6h-bd-prY" firstAttribute="top" secondItem="Mxi-fH-YlD" secondAttribute="bottom" constant="12" id="oes-3d-Le2"/>
+                                            <constraint firstItem="RNR-vy-Mq9" firstAttribute="top" secondItem="ax6-OI-WoJ" secondAttribute="bottom" constant="30" id="pHP-XG-jXH"/>
                                             <constraint firstItem="eQN-ej-aGZ" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="8" id="pew-gL-T55"/>
                                             <constraint firstItem="OtY-zW-QKr" firstAttribute="leading" secondItem="GV8-LT-Sgz" secondAttribute="leading" constant="8" id="qVX-rF-MxM"/>
+                                            <constraint firstItem="ax6-OI-WoJ" firstAttribute="top" secondItem="b9b-G8-p0b" secondAttribute="bottom" constant="3" id="sgE-e0-lvs"/>
                                             <constraint firstItem="OtY-zW-QKr" firstAttribute="top" secondItem="exm-EL-IKx" secondAttribute="bottom" constant="3" id="xt7-rV-AKX"/>
                                             <constraint firstItem="Yyk-aG-yP6" firstAttribute="top" secondItem="RNR-vy-Mq9" secondAttribute="bottom" constant="8" id="xva-Z6-jxa"/>
                                             <constraint firstAttribute="trailing" secondItem="Yyk-aG-yP6" secondAttribute="trailing" constant="8" id="y4d-tY-d5l"/>
                                             <constraint firstItem="eQN-ej-aGZ" firstAttribute="top" secondItem="Ttg-fK-3gB" secondAttribute="bottom" constant="30" id="y6b-9i-0gr"/>
+                                            <constraint firstItem="j4t-qV-vid" firstAttribute="centerX" secondItem="R6h-bd-prY" secondAttribute="centerX" id="yNn-Sh-rOS"/>
+                                            <constraint firstItem="Ktr-WW-bLo" firstAttribute="top" secondItem="j4t-qV-vid" secondAttribute="top" id="zVk-rS-H0n"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2623,8 +2689,10 @@
                         <outlet property="imgDrop" destination="DUL-Sx-cbh" id="q1h-0e-766"/>
                         <outlet property="imgRestaurent" destination="R6h-bd-prY" id="1ln-tD-5bi"/>
                         <outlet property="lblDatePartySize" destination="exm-EL-IKx" id="w9b-aY-9cN"/>
+                        <outlet property="lblPartySize" destination="Ktr-WW-bLo" id="R7y-hy-bDg"/>
                         <outlet property="lblSelectedDate" destination="IE9-92-FXh" id="j4a-4u-BhX"/>
                         <outlet property="lblSelectedSizeTime" destination="4ON-h2-vaF" id="Zhl-dR-pC1"/>
+                        <outlet property="lblTime" destination="j4t-qV-vid" id="5y7-9J-m0b"/>
                         <outlet property="tblAvailability" destination="Qv9-0z-gJD" id="fG7-ow-37f"/>
                         <outlet property="viewDate" destination="cDW-GW-9An" id="BTU-AP-or1"/>
                         <outlet property="viewNext" destination="fT7-Ex-DPi" id="RXV-PZ-6QB"/>
