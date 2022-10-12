@@ -328,7 +328,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         cell.lblQty.text = "\(itemDict.quntity ?? 0)"
         cell.lblItemName.text = itemDict.name
         cell.lblSKUNo.text = itemDict.sku
-        cell.lblDesignator.text = itemDict.designator ?? "*"
+        cell.lblDesignator.text = itemDict.designator ?? ""
 //        cell.lblAmount.text =  self.appDelegate.masterLabeling.cURRENCY!  + String(format: "%.2f",itemDict.price ?? 0.0)
         
 //        if((itemDict.price ?? 0.00) < 0){
