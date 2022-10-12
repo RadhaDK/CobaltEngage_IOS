@@ -73,7 +73,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var arrSpecialRequest = ["Behind lounge area","Close to enterance","Outside","On the Perimeter"]
     var selectedTime : String?
     var selectedPartySize : String?
- 
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

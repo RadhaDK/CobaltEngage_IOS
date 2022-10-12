@@ -17,6 +17,7 @@
 		09506ADF28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09506ADD28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.xib */; };
 		09506AE128EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */; };
 		09535EFD28D85A970078246E /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09535EFC28D85A970078246E /* MembershipHistoryCell.xib */; };
+		0953612528F55DCC007283DA /* RestaurantSpecificDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */; };
 		097BAF5D28EDF40300AFDD8B /* PartySizePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */; };
 		097BAF6128EDF52300AFDD8B /* PartySizeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */; };
 		097BAF6328EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */; };
@@ -628,6 +629,7 @@
 		09506ADD28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DinningReservationTimeSlotCollectionCell.xib; sourceTree = "<group>"; };
 		09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningDetailRestuarantVC.swift; sourceTree = "<group>"; };
 		09535EFC28D85A970078246E /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
+		0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSpecificDetailVC.swift; sourceTree = "<group>"; };
 		097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizePopUpVC.swift; sourceTree = "<group>"; };
 		097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizeCollectionCell.swift; sourceTree = "<group>"; };
 		097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningAddMemberGuestPopUpVC.swift; sourceTree = "<group>"; };
@@ -2470,6 +2472,7 @@
 				84C7A79D28EFDFC600C41DAC /* RestaurantDetailsViewController.swift */,
 				0985E3E128EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift */,
 				09A0D05F28F4927500FC38F2 /* Helper.swift */,
+				0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3355,6 +3358,7 @@
 				188BDFD321FCB51500927817 /* StatementDetailFooter.swift in Sources */,
 				598DEEAD20D12C59000326DB /* PreviousStatementViewController.swift in Sources */,
 				9F67DCEC26297EFC00830D24 /* LoadMoreFooterTableViewCell.swift in Sources */,
+				0953612528F55DCC007283DA /* RestaurantSpecificDetailVC.swift in Sources */,
 				74874F2A20ED47D400C654B7 /* AbstractActionSheetPicker.m in Sources */,
 				9F6620B624AE573F0061BB9C /* FitnessRequestTableViewCell.swift in Sources */,
 				5F85D8AF20DCF813003F9477 /* ListStatementDetails.swift in Sources */,

@@ -73,6 +73,8 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         self.myCalendar.dataSource = self
         self.myCalendar.appearance.selectionColor = APPColor.MainColours.primary2
         self.myCalendar.appearance.headerTitleColor = .white
+        self.myCalendar.appearance.titleDefaultColor = .white
+        self.myCalendar.appearance.titleWeekendColor = .white
         // Do any additional setup after loading the view.
     }
     ///Chanegs the color of today based on isAvailable

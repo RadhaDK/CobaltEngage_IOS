@@ -13,6 +13,9 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
 
     @IBOutlet weak var collectionTimeSlot: UICollectionView!
     @IBOutlet weak var lblPartySize: UILabel!
+    @IBOutlet weak var lblUpcomingEvent: UILabel!
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var heightUpcoming: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +45,12 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
+        cell.addToSlotClosure = {
+            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+            vc!.showNavigationBar = false
+            self.parentViewController?.navigationController?.pushViewController(vc!, animated: true)
+
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
