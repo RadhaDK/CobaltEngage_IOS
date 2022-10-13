@@ -79,7 +79,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
         shadowView(viewName: viewNext)
-        lblPartySize.text = selectedPartySize
+//        lblPartySize.text = selectedPartySize
         lblTime.text = selectedTime
         registerNibs()
        
