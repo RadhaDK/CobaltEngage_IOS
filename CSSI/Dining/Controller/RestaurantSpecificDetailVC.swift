@@ -30,6 +30,9 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         tblAvailability.reloadData()
     }
     
+    
+//MARK: - IButlets
+    
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var lblSelectedDate: UILabel!
@@ -51,10 +54,12 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var viewTime: UIView!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPartySize: UILabel!
+    
+
+    //MARK: - variables
     var currentDate = Date()
     var selectedPartySize = 3
     var dropDownIsOpen = false
-  
     var selectedTime = "0:00 PM Wed"
 
     override func viewDidLoad() {
@@ -79,7 +84,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
         shadowView(viewName: viewNext)
-        lblPartySize.text = selectedPartySize
+        lblPartySize.text = "\(selectedPartySize)"
         lblTime.text = selectedTime
         registerNibs()
        
@@ -90,6 +95,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         let homeNib = UINib(nibName: "DiningResvTableCell" , bundle: nil)
         self.tblAvailability.register(homeNib, forCellReuseIdentifier: "DiningResvTableCell")
     }
+    
     func shadowView(viewName : UIView){
         viewName.layer.shadowColor = UIColor.black.cgColor
         viewName.layer.shadowOpacity = 0.12

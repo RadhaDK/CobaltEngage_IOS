@@ -10,6 +10,8 @@ import UIKit
 
 class DinningAddSpecialRequestVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    
+    //MARK: - IBOutlets
     @IBOutlet weak var collectionAddSpecialRequest: UICollectionView!
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var btnBack: UIButton!
@@ -20,31 +22,33 @@ class DinningAddSpecialRequestVC: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var txtComment: UITextView!
     @IBOutlet weak var collectionSpecialOccasion: UICollectionView!
     
+    
+    //MARK: - variables
     var arrSpecialRequest = ["Behind lounge area","Close to enterance","Outside","On the Perimeter"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnAdd.buttonUI(button: btnAdd)
+        btnCancel.buttonUI(button: btnCancel)
+    }
+    
+    //MARK: - setUpUI
+    func setUpUi(){
         btnHome.setTitle("", for: .normal)
         btnBack.setTitle("", for: .normal)
-
+        txtComment.layer.cornerRadius = 8
+        txtComment.layer.borderColor = UIColor.lightGray.cgColor
+        txtComment.layer.borderWidth = 1
+    }
+    func setUpUiInitialization(){
         collectionAddSpecialRequest.delegate = self
         collectionAddSpecialRequest.dataSource  = self
         collectionSpecialOccasion.delegate = self
         collectionSpecialOccasion.dataSource  = self
-        btnAdd.layer.cornerRadius = btnAdd.bounds.size.height / 2
-        btnAdd.layer.borderWidth = 1.0
-        btnAdd.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
-        self.btnAdd.setStyle(style: .outlined, type: .primary)
-        btnCancel.layer.cornerRadius = btnCancel.bounds.size.height / 2
-        btnCancel.layer.borderWidth = 1.0
-        btnCancel.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
-        self.btnCancel.setStyle(style: .outlined, type: .primary)
-        txtComment.layer.cornerRadius = 8
-        txtComment.layer.borderColor = UIColor.lightGray.cgColor
-        txtComment.layer.borderWidth = 1
         configSlotMemberCollectionHeight()
-
     }
+    
+    //MARK: - IBActions
     @IBAction func btnHome(_ sender: Any) {
         let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
@@ -52,9 +56,11 @@ class DinningAddSpecialRequestVC: UIViewController, UICollectionViewDelegate, UI
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+
    
 
-    // MARK:- My order Table  Height
+    // MARK: - My order Table  Height
           func configSlotMemberCollectionHeight(){
               if arrSpecialRequest.count == 0{
                   heightSpecialRequestCollection.constant = 0
@@ -80,15 +86,7 @@ class DinningAddSpecialRequestVC: UIViewController, UICollectionViewDelegate, UI
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CheckboxCell", for: indexPath as IndexPath) as! CheckBoxCustomCell
         cell.btnCheckBox.setTitle("testing", for: .normal)
-//        if  self.arrSpecialRequest[indexPath.row].isChecked == 1{
-//          cell.btnMarketCheckBox.setImage(UIImage(named: "Group 2130"), for: UIControlState.normal)
-//          }
-//      else{
-//          cell.btnMarketCheckBox.setImage(UIImage(named: "CheckBox_uncheck"), for: UIControlState.normal)
-//
-//
-//      }
-        
+
         return cell
     }
 }

@@ -15,21 +15,28 @@ protocol  selectedSlotFor{
 }
 class DiningAddMemberGuestPopUpVC: UIViewController {
     
+    
+    //MARK: - IBActions
     @IBOutlet weak var roundedBgView: UIView!
     @IBOutlet weak var btnMemberType: UIButton!
     @IBOutlet weak var viewBackground: UIView!
-    
     @IBOutlet weak var btnMember: UIButton!
     @IBOutlet weak var bottomCont: NSLayoutConstraint!
     @IBOutlet weak var btnGuest: UIButton!
     @IBOutlet weak var btnMyBuddy: UIButton!
     @IBOutlet weak var heightBottomPopup: NSLayoutConstraint!
     
+    //MARK: - Variables
     var delegateSelectedMemberType : selectedSlotFor?
     var checkPopupOpenFrom : poupOpenFrom?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+setUpUi()
+    }
+    
+    //MARK: - setUpUI
+    func setUpUi(){
         roundedBgView.clipsToBounds = true
         roundedBgView.layer.cornerRadius = 15
         roundedBgView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -37,26 +44,26 @@ class DiningAddMemberGuestPopUpVC: UIViewController {
         btnGuest.layer.cornerRadius = 6
         btnMyBuddy.layer.cornerRadius = 6
         viewBackground.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside)))
-       // roundedBgView.animShow()
-showToastViewWithAnimation(viewController: self)
-        
+        showToastViewWithAnimation(viewController: self)
         if checkPopupOpenFrom == .multiple{
             btnGuest.isHidden = true
             heightBottomPopup.constant = 170
         }
     }
+
+    
     @objc func showToastViewWithAnimation(viewController: Any) {
              if let vc = viewController as? ViewController {
-                 //vc.view.layoutIfNeeded() - this is not required before updating constraint value
-                 self.bottomCont.constant = -20 //update contstraint outside of the animation block
+                 self.bottomCont.constant = -20
                  UIView.animate(withDuration: 3) {
-                   
                  }
              }
          }
     @objc func dismissOnTapOutside(){
        self.dismiss(animated: false, completion: nil)
     }
+    
+    //MARK: - IBActions
     @IBAction func MemberTypeSelectBtnTapped(sender:UIButton){
         if sender.tag == 1{
             delegateSelectedMemberType?.addingMemberType(value: "Member")
