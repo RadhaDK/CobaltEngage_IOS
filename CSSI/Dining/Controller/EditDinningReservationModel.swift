@@ -14,40 +14,52 @@ import ObjectMapper
 class EditDinningDetail: NSObject, Mappable {
     
     
-    var responseCode            : String!
-    var responseMessage         : String!
-    var MembershipType  : [MembershipTypeData]!
-    var BillingFrequncy              : [MembershipTypeData]!
-    
+    var ConfirmationNumber            : String!
+    var EventName         : String!
+    var PartySize  : Int!
+    var RequestID              : String!
+    var ReservationStatus : Int!
+    var RestaurantName : String!
+    var SelectedTime : String!
+    var StatusColor : String!
+    var UI : EditDinningDetailData!
     override init() {
         super.init()
     }
     
     convenience required init?(map: Map) {
         self.init()
-        responseCode            = ""
-        responseMessage         = ""
-        MembershipType  = []
-        BillingFrequncy         = []
+        ConfirmationNumber            = ""
+        EventName         = ""
+        PartySize  = 0
+        RequestID         = ""
+        ReservationStatus = 0
+        RestaurantName = ""
+        SelectedTime = ""
+        StatusColor = ""
     }
     
     func mapping(map: Map) {
         
         
-        responseCode            <- map["ResponseCode"]
-        responseMessage         <- map["ResponseMessage"]
-        MembershipType  <- map["MembershipType"]
-        BillingFrequncy              <- map["BillingFrequncy"]
+        ConfirmationNumber            <- map["ConfirmationNumber"]
+        EventName         <- map["EventName"]
+        PartySize  <- map["PartySize"]
+        RequestID              <- map["RequestID"]
+        ReservationStatus <- map["ReservationStatus"]
+        RestaurantName <- map["RestaurantName"]
+        SelectedTime <- map["SelectedTime"]
+        StatusColor <- map["StatusColor"]
+        UI <- map["UI"]
     }
 }
 
 class EditDinningDetailData: NSObject, Mappable {
     
-    var Text         : String!
-    var Value       : String!
-    var Description              : String!
-    var ColorCode         : String!
-    
+    var View         : Int!
+    var Modify       : Int!
+    var Cancel              : Int!
+ 
     
     override init() {
         super.init()
@@ -55,19 +67,18 @@ class EditDinningDetailData: NSObject, Mappable {
     
     convenience required init?(map: Map) {
         self.init()
-        Text         = ""
-        Value       = ""
-        Description              = ""
-        ColorCode         = ""
+        View         = 0
+        Modify       = 0
+        Cancel              = 0
         
     }
     
     func mapping(map: Map) {
         
-        Text         <- map["Text"]
-        Value       <- map["Value"]
-        Description              <- map["Description"]
-        ColorCode         <- map["ColorCode"]
+        View         <- map["View"]
+        Modify       <- map["Modify"]
+        Cancel              <- map["Cancel"]
+     
         
     }
 }
