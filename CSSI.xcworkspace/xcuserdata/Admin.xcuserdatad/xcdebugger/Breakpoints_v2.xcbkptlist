@@ -30,8 +30,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3972"
-            endingLineNumber = "3972"
+            startingLineNumber = "3973"
+            endingLineNumber = "3973"
             landmarkName = "getMinimumDetails(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>

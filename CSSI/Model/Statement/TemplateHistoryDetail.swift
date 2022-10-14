@@ -45,6 +45,7 @@ class TemplateHistory: NSObject, Mappable {
     var ID: String!
     var location: String!
     var receiptNumber: String!
+    var category: String!
     
     override init() {
         super.init()
@@ -58,6 +59,7 @@ class TemplateHistory: NSObject, Mappable {
         ID = ""
         location = ""
         receiptNumber = ""
+        category = ""
     }
     
     func mapping(map: Map) {
@@ -67,5 +69,6 @@ class TemplateHistory: NSObject, Mappable {
         ID <- map["ID"]
         location <- map["Location"]
         receiptNumber <- map["ReceiptNumber"]
+        category <- map["Category"]
     }
 }

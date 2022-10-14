@@ -44,6 +44,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
     @IBOutlet weak var lblCoverHeight: NSLayoutConstraint!
     @IBOutlet weak var lblCoverValueHeight: NSLayoutConstraint!
     @IBOutlet weak var viewReciptTopHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblQtyWidth: NSLayoutConstraint!
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var transactionDetailsDict = StatementDetails()
@@ -90,7 +91,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
      //   self.statementDetailTable.separatorColor = UIColor.clear
         self.statementDetailTable.rowHeight = UITableViewAutomaticDimension
         self.statementDetailTable.estimatedRowHeight = 101
-        
+        self.setupMinimums()
     }
     
     override func viewWillLayoutSubviews() {
@@ -205,6 +206,15 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         self.lblCoverValue.isHidden = hidden
     }
     
+    func setupMinimums() {
+        if isFromMinimums {
+            self.lblQtyText.isHidden = false
+            self.lblQtyWidth.constant = 40.0
+        } else {
+            self.lblQtyText.isHidden = true
+            self.lblQtyWidth.constant = 0
+        }
+    }
     //Mark- Common Color Code
     func commomColorCode()
     {
@@ -325,20 +335,33 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         cell.lblNo.text = String(format: "%02d", indexPath.row + 1)
 
        // cell.lblNo.text = "\(indexPath.row + 1)"
-        cell.lblQty.text = "\(itemDict.quntity ?? 0)"
+        
         cell.lblItemName.text = itemDict.name
-        cell.lblSKUNo.text = itemDict.sku
-        cell.lblDesignator.text = itemDict.designator ?? ""
+        if itemDict.sku == "" {
+            cell.lblSKUNo.isHidden = true
+            cell.lblSKUNoHeight.constant = 0
+        } else {
+            cell.lblSKUNo.isHidden = false
+            cell.lblSKUNo.text = itemDict.sku
+            cell.lblSKUNoHeight.constant = 22.0
+        }
+        
+//        cell.lblDesignator.text = itemDict.designator ?? ""
 //        cell.lblAmount.text =  self.appDelegate.masterLabeling.cURRENCY!  + String(format: "%.2f",itemDict.price ?? 0.0)
-        
-//        if((itemDict.price ?? 0.00) < 0){
-//            let temp = -(itemDict.price ?? 0.00)
-//            let firstchar = String(format: "%.2f",itemDict.price ?? 0.00).prefix(1)
-//            cell.lblAmount.text = firstchar + self.appDelegate.masterLabeling.cURRENCY!  + String(format: "%.2f",temp)
-//        }else{
-        
-            cell.lblAmount.text = itemDict.price ?? ""
-//        }
+        if isFromMinimums == true {
+            cell.lblQty.text = "\(itemDict.quntity ?? 0)"
+            cell.lblQtyWidth.constant = 40.0
+            cell.lblQtyRowHeight.constant = 0
+            cell.lblQtyRow.isHidden = true
+            cell.lblQty.isHidden = false
+        } else {
+            cell.lblQtyRow.text = "\(self.appDelegate.masterLabeling.qTY ?? "") \(itemDict.quntity ?? 0)"
+            cell.lblQtyWidth.constant = 0
+            cell.lblQtyRowHeight.constant = 22.0
+            cell.lblQtyRow.isHidden = false
+            cell.lblQty.isHidden = true
+        }
+        cell.lblAmount.text = itemDict.price ?? ""
         return cell
     }
     
