@@ -992,6 +992,7 @@ class Label: NSObject, Mappable  {
     var mINIMUMS_TABLE_COLUMNTITLE : String?
     var mINIMUMS_COVER_COLUMNTITLE : String?
     var mINIMUMS_QTY_COLUMNTITLE: String?
+    var mINIMUMS_RULES_DISPLAYTEXT: String?
     
     convenience required init?(map: Map)
     {
@@ -1889,6 +1890,7 @@ class Label: NSObject, Mappable  {
         mINIMUMS_QTY_COLUMNTITLE <- map["MINIMUMS_QTY_COLUMNTITLE"]
         mINIMUMS_COVER_COLUMNTITLE <- map["MINIMUMS_COVER_COLUMNTITLE"]
         mINIMUMS_TABLE_COLUMNTITLE <- map["MINIMUMS_TABLE_COLUMNTITLE"]
+        mINIMUMS_RULES_DISPLAYTEXT <- map["MINIMUMS_RULES_DISPLAYTEXT"]
     }
     
     

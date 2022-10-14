@@ -16,6 +16,11 @@ class StatementDetailCell: UITableViewCell {
     @IBOutlet weak var lblQty: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDesignator: UILabel!
+    @IBOutlet weak var lblQtyRow: UILabel!
+    @IBOutlet weak var lblQtyWidth: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblQtyRowHeight: NSLayoutConstraint!
+    @IBOutlet weak var lblSKUNoHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

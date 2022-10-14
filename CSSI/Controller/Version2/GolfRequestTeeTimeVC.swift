@@ -5739,7 +5739,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                        "GroupDetails": self.groupList,
                        "GroupCount": Int(self.lblGroupNumber.text!) ?? 0,
                        "GameType": self.gameType ?? 9,
-                       "LinkGroup": self.switchLinkGroup.isOn ? 1 : 0,
+                       "LinkGroup": 1,
                        "Earliest": self.txtEarliestTeeTime.text ?? "",
                        "PreferedSpaceDetailId": self.preferenceList,
                        "NotPreferedSpaceDetailId": self.notPreferenceList,
@@ -5787,7 +5787,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
                 paramaterDict.updateValue(arrWaitlistGroupDetails, forKey: "GroupStatusDetails")
-                
+                print(paramaterDict)
                 APIHandler.sharedInstance.saveTeeTime(paramaterDict: paramaterDict, onSuccess: { memberLists in
                     
                     self.appDelegate.hideIndicator()

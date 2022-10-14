@@ -101,10 +101,11 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let transactionDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "TransactionDetailsViewController") as! TransactionDetailsViewController
         transactionDetailVC.statementID = self.transactionHistoryList[indexPath.row].ID
-        transactionDetailVC.receiptno = self.transactionHistoryList[indexPath.row].receiptNumber ?? ""
-        transactionDetailVC.purchaseDate = self.transactionHistoryList[indexPath.row].date ?? ""
-        transactionDetailVC.amount = self.transactionHistoryList[indexPath.row].amount ?? ""
+        transactionDetailVC.receiptno = self.transactionHistoryList[indexPath.row].receiptNumber
+        transactionDetailVC.purchaseDate = self.transactionHistoryList[indexPath.row].date
+        transactionDetailVC.amount = self.transactionHistoryList[indexPath.row].amount
         transactionDetailVC.isFromMinimums = true
+        transactionDetailVC.category = self.transactionHistoryList[indexPath.row].category
         self.navigationController?.pushViewController(transactionDetailVC, animated: true)
         self.transactionDetailTableView.reloadData()
     }
@@ -137,11 +138,9 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
                     
                     self.transactionHistoryList = TemplateHistoryDetails.minimumTemplateHistoryDetails!
                     if self.transactionHistoryList.count != 0 {
-//                        self.noRecordsFoundLbl.isHidden = true
-//                        self.transactionDetailTableView.isHidden = false
+
                         self.transactionDetailTableView.reloadData()
                     } else {
-//                        self.noRecordsFoundLbl.isHidden = false
                         self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoData)
                     }
                 } else {
@@ -163,7 +162,6 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
             
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
-            //  self.tableViewHeroes.setEmptyMessage(InternetMessge.kInternet_not_available)
             
         }
         

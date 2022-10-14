@@ -1,8 +1,9 @@
 import UIKit
+import WebKit
 
-class PDfViewController: UIViewController,UIWebViewDelegate {
+class PDfViewController: UIViewController,UIWebViewDelegate, WKNavigationDelegate {
     
-    @IBOutlet weak var pdfView: UIWebView!
+    @IBOutlet weak var pdfView: WKWebView!
     var pdfUrl = String()
     var restarantName = String()
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -132,9 +133,9 @@ class PDfViewController: UIViewController,UIWebViewDelegate {
     
     func initController()
     {
-        pdfView.delegate = self ;
-        pdfView.scalesPageToFit = true;
-        
+//        pdfView.delegate = self ;
+//        pdfView.scalesPageToFit = true;
+        pdfView.navigationDelegate = self
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.backItem?.title = self.appDelegate.masterLabeling.bACK
         //Commented by kiran V2.9 -- ENGAGE0011898 -- Commented as this is setting navigation bar title as back for a few seconds before nagivating to the PDF screen.
@@ -164,7 +165,7 @@ class PDfViewController: UIViewController,UIWebViewDelegate {
             {
                 let url = URL(string: pdfUrl)
                 let nsurl = NSURL(string: "")
-                pdfView.loadRequest(URLRequest(url: url ?? nsurl! as URL))
+                pdfView.load(URLRequest(url: url ?? nsurl! as URL))
                 
             }
             else
@@ -207,7 +208,7 @@ class PDfViewController: UIViewController,UIWebViewDelegate {
                                 
                                 
                                 let url = URL(string: self.arrRestarantDetails[0].pdf!)
-                                self.pdfView.loadRequest(URLRequest(url: url!))
+                                self.pdfView.load(URLRequest(url: url!))
                                 self.navigationItem.title = self.arrRestarantDetails[0].restaurentMenu
 
                                 
@@ -282,7 +283,7 @@ class PDfViewController: UIViewController,UIWebViewDelegate {
                                 
                                 
                                 self.downloadStatementURL = URL(string: downloadStatementDetails.downloadStatement![0].filePath ?? "")
-                                self.pdfView.loadRequest(URLRequest(url: self.downloadStatementURL!))
+                                self.pdfView.load(URLRequest(url: self.downloadStatementURL!))
                                 self.navigationItem.title = self.appDelegate.masterLabeling.download_statement
                                 
                                 
@@ -329,6 +330,24 @@ class PDfViewController: UIViewController,UIWebViewDelegate {
         self.pdfView.backgroundColor = APPColor.viewBackgroundColor.viewbg
         
         
+    }
+    
+
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.appDelegate.hideIndicator()
+        if(!pdfView.isLoading){
+            self.appDelegate.hideIndicator()
+            
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.appDelegate.hideIndicator()
     }
     
     //Mark- Webview Method

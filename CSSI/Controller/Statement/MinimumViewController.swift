@@ -55,7 +55,7 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func btnRulesAction(_ sender: Any) {
         let rulesPdfDetailsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDfViewController") as! PDfViewController
         rulesPdfDetailsVC.pdfUrl = self.pdfPath
-        rulesPdfDetailsVC.restarantName = self.appDelegate.masterLabeling.MB_GiftCard!
+        rulesPdfDetailsVC.restarantName = self.appDelegate.masterLabeling.mINIMUMS_RULES_DISPLAYTEXT!
 
         self.navigationController?.pushViewController(rulesPdfDetailsVC, animated: true)
     }
@@ -71,7 +71,7 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.title = self.appDelegate.masterLabeling.mINIMUMS_TITLE ?? ""
         
         self.lblUserNameId.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
-        self.btnRules.setTitle(self.appDelegate.masterLabeling.mINIMUMS_TITLE ?? "", for: .normal)
+        self.btnRules.setTitle(self.appDelegate.masterLabeling.mINIMUMS_RULES_DISPLAYTEXT ?? "", for: .normal)
         
         self.getMinimumDetails()
     }
