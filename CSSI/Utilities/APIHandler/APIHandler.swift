@@ -58,6 +58,8 @@ class APIHandler: NSObject
     let engageDevURL : String = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.EngDev/api/"
     let engageTestURL : String = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.Eng.Test/api/"
     
+    let dinningDevURL : String  = "https://cssi-mhh-devweb.ecssi.local/COBALT/Dev/P1.0/CSSI.COBALT.MemberFCFSDining.Service/api/dining"
+    
     //Boca West App
     
     //let productionURL = "https://api.bocawestcc.org/app.wrapper/api/"
@@ -82,6 +84,7 @@ class APIHandler: NSObject
     //Note:- Use for internal only. User below code for production/Users/Admin/Desktop/Zeeshan/Cobalt/Code/V1.5/CSSI/AppDelegate
     //when using this comment generateBaseURL() method call in app delegate applicationWillFinishLaunching with options method.
     lazy var baseURL : String = self.engageTestURL
+    lazy var dinningBaseURL : String = self.dinningDevURL
     
     //MARK:- API Switch Variable
     //This is only implemented only for Boca West app as of now.
@@ -313,6 +316,9 @@ class APIHandler: NSObject
     static let generateOTP = "Member/GenerateAuthenticationOTP"
     static let validateOTP = "Member/GetValidateTwoStepAuthenticationOTP"
     //PROD0000019 -- End
+    
+    static let dinningGetReservation = "/GetDiningReservationDetails"
+    
     
     //Added on 17th October 2020 V2.3
     //MARK:- BASE URL Handler
@@ -7041,8 +7047,54 @@ class APIHandler: NSObject
             }
             
         }
-        
-        
+    }
+    
+    //MARK:- SaveMembershipType Listing
+    func GetDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(GetDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
+        let url : String = dinningDevURL + APIHandler.dinningGetReservation
+        print(url)
+        let headers: HTTPHeaders = [
+            APIHeader.kusername: APIHeader.kusernamevalue,
+            APIHeader.kpassword: APIHeader.kpasswordvalue,
+            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
+            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
+            
+        ]
+        print(headers)
+        print(paramater)
+        print("============Start Time -- \(url) -- \(Date())========")
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<GetDinningDetail>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
     }
 }
 

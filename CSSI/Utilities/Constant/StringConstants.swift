@@ -268,6 +268,9 @@ struct APIKeys
     
     //Dues renewal
     static let kNewBaseMemberTypeID = "NewBaseMemberTypeID"
+    static let kPartySize = "PartySize"
+    static let kFilterDate = "FilterDate"
+    static let kFilterTime = "FilterTime"
 }
 
 struct APIHeader

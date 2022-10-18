@@ -40,7 +40,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var currentDate = Date()
     var selectedPartySize = "6"
     var selectedTime = "0:00 PM Wed"
-    
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         let dateString = self.getDateString(givenDate: date)
         lblSelectedDate.text = dateString
         setUpUiInitialization()
+        reservationList()
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -162,6 +164,38 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
             self.navigationController?.pushViewController(impVC, animated: true)
+        }
+    }
+}
+
+
+// MARK: - API CALLING
+extension DiningReservationVC{
+    func reservationList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            var paramaterDict:[String: Any]?
+            
+             paramaterDict = [
+                "Content-Type":"application/json",
+                APIKeys.kPartySize : "5",
+                APIKeys.kFilterDate: "2022-10-14",
+                APIKeys.kFilterTime: ""]
+            
+            APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
+                self.appDelegate.hideIndicator()
+              
+        print(reservationDinningListing)
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
     }
 }
