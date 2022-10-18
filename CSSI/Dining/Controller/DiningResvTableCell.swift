@@ -10,7 +10,9 @@ import UIKit
 
 class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-
+    
+    
+    //MARK: - IBOutlets
     @IBOutlet weak var collectionTimeSlot: UICollectionView!
     @IBOutlet weak var lblPartySize: UILabel!
     @IBOutlet weak var lblUpcomingEvent: UILabel!
@@ -22,26 +24,25 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
         collectionTimeSlot.delegate = self
         collectionTimeSlot.dataSource = self
         registerNibs()
-        // Initialization code
     }
     
+    
+    //MARK: - xib registration
     func registerNibs(){
         let menuNib = UINib(nibName: "DinningReservationTimeSlotCollectionCell" , bundle: nil)
         self.collectionTimeSlot.register(menuNib, forCellWithReuseIdentifier: "DinningReservationTimeSlotCollectionCell")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     
     
-    //MARK:- Collectioniew Methods
+    //MARK: - Collectionview Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
@@ -49,7 +50,6 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
             vc!.showNavigationBar = false
             self.parentViewController?.navigationController?.pushViewController(vc!, animated: true)
-
         }
         return cell
     }

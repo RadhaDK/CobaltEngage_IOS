@@ -23,8 +23,6 @@ class PartySizeCollectionCell: UICollectionViewCell {
         partySizeCountLbl.layer.cornerRadius = partySizeCountLbl.frame.width/2
         partySizeCountLbl.layer.borderColor = hexStringToUIColor(hex: "5773A2").cgColor
         partySizeCountLbl.layer.borderWidth = 1.0
-
-    
     }
     
 }

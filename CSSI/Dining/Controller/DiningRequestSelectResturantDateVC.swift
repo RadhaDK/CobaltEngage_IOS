@@ -15,32 +15,11 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
 
     
     @IBOutlet weak var roundedBgView: UIView!
-
     @IBOutlet weak var btnDone: UIButton!
+    @IBOutlet weak var myCalendar: FSCalendar!
     var calendarRangeStartDate : NSString!
     var calendarRangeEndDate : NSString!
-    @IBOutlet weak var myCalendar: FSCalendar!
-
-//    @IBOutlet weak var eventDateRangeView: DTCalendarView!{
-//        didSet {
-//            eventDateRangeView.delegate = self
-//
-//            eventDateRangeView.displayEndDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 30 * 12 * 40)
-//            eventDateRangeView.previewDaysInPreviousAndMonth = false
-//
-//            let lastYear = Calendar.current.date(byAdding: .year, value: -20, to: Date())
-//
-//            let currentTimeStamp = lastYear!.toMillis()
-//                //  now = lastYear!
-//
-//            let intValue = NSNumber(value: currentTimeStamp!).intValue
-//
-//            eventDateRangeView.displayStartDate =  Date(timeIntervalSince1970: TimeInterval(intValue))
-//        }
-//    }
     fileprivate let monthYearFormatter: DateFormatter = {
-        
-        
         let formatter = DateFormatter()
         formatter.timeStyle = .none
         
@@ -56,9 +35,23 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         
         return formatter
     }()
-    
+    fileprivate func currentDate(matchesMonthAndYearOf date: Date) -> Bool {
+        let nowMonth = calendar.component(.month, from: now)
+        let nowYear = calendar.component(.year, from: now)
+        
+        let askMonth = calendar.component(.month, from: date)
+        let askYear = calendar.component(.year, from: date)
+        
+        if nowMonth == askMonth && nowYear == askYear {
+            return true
+        }
+        
+        return false
+    }
     fileprivate let now = Date()
     fileprivate let calendar = Calendar.current
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,22 +72,7 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     }
     ///Chanegs the color of today based on isAvailable
 
-
-    
-    fileprivate func currentDate(matchesMonthAndYearOf date: Date) -> Bool {
-        let nowMonth = calendar.component(.month, from: now)
-        let nowYear = calendar.component(.year, from: now)
-        
-        let askMonth = calendar.component(.month, from: date)
-        let askYear = calendar.component(.year, from: date)
-        
-        if nowMonth == askMonth && nowYear == askYear {
-            return true
-        }
-        
-        return false
-    }
-
+    //MARK: - IBActions
     @IBAction func btnDone(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -124,7 +102,6 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
 //    }
 }
 extension DiningRequestSelectResturantDateVC: DTCalendarViewDelegate {
-    
     func calendarView(_ calendarView: DTCalendarView, dragFromDate fromDate: Date, toDate: Date) {
         
         if let nowDayOfYear = calendar.ordinality(of: .day, in: .year, for: now),
@@ -158,9 +135,6 @@ extension DiningRequestSelectResturantDateVC: DTCalendarViewDelegate {
     }
     
     func calendarView(_ calendarView: DTCalendarView, viewForMonth month: Date) -> UIView {
-        
-        
-        
         let myview = UIView()
         let label = UILabel(frame: CGRect(x: 0, y: 40, width: 200, height: 28))
         
@@ -176,8 +150,6 @@ extension DiningRequestSelectResturantDateVC: DTCalendarViewDelegate {
         label2.font = UIFont.boldSystemFont(ofSize: 28)
         label2.backgroundColor = UIColor.white
         myview.addSubview(label2)
-        
-        
         return myview
     }
     

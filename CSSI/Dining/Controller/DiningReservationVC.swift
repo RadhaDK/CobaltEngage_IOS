@@ -11,28 +11,9 @@ import DTCalendarView
 import FSCalendar
 
 class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime {
-    func SelectedPartysizeTme(PartySize: String, Time: String) {
-        if PartySize != ""{
-            lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
-            selectedPartySize = PartySize
-            lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
-        }
-       else if Time != ""{
-            lblSelectedSizeTime.text = "\(selectedPartySize) * \(Time)"
-           lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
-           selectedTime = Time
-        }
-        else if PartySize != "" && Time != ""{
-            lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
-            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
-            selectedPartySize = PartySize
-            selectedTime = Time
-        }
- 
-        tblResturat.reloadData()
-    }
+
     
-    
+//MARK:- Iboutlets
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var viewTime: UIView!
     @IBOutlet weak var btnPrevious: UIButton!
@@ -49,7 +30,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var lblDatePartySize: UILabel!
     
     
-    
+    //MARK:- variables
     var showNavigationBar = true
     var nameOfMonth : String?
     var currentMonth : Date?
@@ -60,47 +41,48 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var selectedPartySize = "6"
     var selectedTime = "0:00 PM Wed"
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tblResturat.delegate = self
-        tblResturat.dataSource  = self
-        self.btnSelectedDate.setTitle("", for: UIControlState.normal)
-        shadowView(viewName: viewTime)
-        shadowView(viewName: viewPrevious)
-        shadowView(viewName: viewDate)
-        shadowView(viewName: viewNext)
-        btnBack.setTitle("", for: .normal)
-        btnHome.setTitle("", for: .normal)
-        
         let date = Date()
         currentDate = date
-        let format = DateFormatter()
-        format.dateFormat = "MM/dd/yyyy"
-        let formattedDate = format.string(from: date)
-        print(formattedDate)
-        lblSelectedDate.text = formattedDate
-        btnPartySize.setTitle("", for: .normal)
-        registerNibs()
-    }
-    func registerNibs(){
-        let homeNib = UINib(nibName: "DiningResvTableCell" , bundle: nil)
-        self.tblResturat.register(homeNib, forCellReuseIdentifier: "DiningResvTableCell")
+        let dateString = self.getDateString(givenDate: date)
+        lblSelectedDate.text = dateString
+        setUpUiInitialization()
     }
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
-        
        // self.myCalendar.reloadData()
     }
     
-    func shadowView(viewName : UIView){
-        viewName.layer.shadowColor = UIColor.black.cgColor
-        viewName.layer.shadowOpacity = 0.12
-        viewName.layer.shadowOffset = CGSize(width: 3, height: 3)
-        viewName.layer.shadowRadius = 6
+    //MARK: - setUpUI
+    func setUpUi(){
+        shadowView(viewName: viewTime)
+        shadowView(viewName: viewPrevious)
+        shadowView(viewName: viewDate)
+        shadowView(viewName: viewNext)
+        btnSelectedDate.setTitle("", for: .normal)
+        btnBack.setTitle("", for: .normal)
+        btnHome.setTitle("", for: .normal)
+        btnPartySize.setTitle("", for: .normal)
     }
     
+    func setUpUiInitialization(){
+        tblResturat.delegate = self
+        tblResturat.dataSource  = self
+        registerNibs()
+        setUpUi()
+    }
+    
+    //MARK: - Xib Registration
+    func registerNibs(){
+        let homeNib = UINib(nibName: "DiningResvTableCell" , bundle: nil)
+        self.tblResturat.register(homeNib, forCellReuseIdentifier: "DiningResvTableCell")
+    }
+
+    //MARK: - IBActions
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -121,25 +103,48 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
-            let previousMonth = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)
-            currentDate = previousMonth!
-            let format = DateFormatter()
-            format.dateFormat = "MM/dd/yyyy"
-            let formattedDate = format.string(from: previousMonth!)
-            print(formattedDate)
-            lblSelectedDate.text = formattedDate
+            currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
         }
         else{
-            let nextMonth = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)
-            currentDate = nextMonth!
-            let format = DateFormatter()
-            format.dateFormat = "MM/dd/yyyy"
-            let formattedDate = format.string(from: nextMonth!)
-            print(formattedDate)
-            lblSelectedDate.text = formattedDate
+            currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
         }
+        let dateString = self.getDateString(givenDate: currentDate)
+        lblSelectedDate.text = dateString
+    }
+    //MARK: - date Formatter
+    func getDateString(givenDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: givenDate)
     }
     
+    func shadowView(viewName : UIView){
+        viewName.layer.shadowColor = UIColor.black.cgColor
+        viewName.layer.shadowOpacity = 0.12
+        viewName.layer.shadowOffset = CGSize(width: 3, height: 3)
+        viewName.layer.shadowRadius = 6
+    }
+
+    //MARK: - Custom Delgates Functions
+    func SelectedPartysizeTme(PartySize: String, Time: String) {
+        if PartySize != ""{
+            lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
+            selectedPartySize = PartySize
+            lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
+        }
+       else if Time != ""{
+            lblSelectedSizeTime.text = "\(selectedPartySize) * \(Time)"
+           lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
+           selectedTime = Time
+        }
+        else if PartySize != "" && Time != ""{
+            lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
+            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
+            selectedPartySize = PartySize
+            selectedTime = Time
+        }
+        tblResturat.reloadData()
+    }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -147,8 +152,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
-        cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize ?? "")"
-        
+        cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize)"
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,18 +160,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC {
-//            impVC.showNavigationBar = false
-//            impVC.selectedTime = selectedTime
-//            impVC.selectedPartySize = selectedPartySize
-//            self.navigationController?.pushViewController(impVC, animated: true)
-//        }
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
-//            impVC.showNavigationBar = false
-//            impVC.selectedTime = selectedTime
-//            impVC.selectedPartySize = selectedPartySize
             self.navigationController?.pushViewController(impVC, animated: true)
         }
-        
     }
 }

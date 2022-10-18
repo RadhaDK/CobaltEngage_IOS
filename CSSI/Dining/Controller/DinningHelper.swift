@@ -40,3 +40,18 @@ extension UIView {
         return nil
     }
 }
+extension UIButton{
+    func buttonUI(button : UIButton){
+        button.layer.cornerRadius = button.bounds.size.height / 2
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+//        self.btnAdd.setStyle(style: .outlined, type: .primary)
+//        btnCancel.layer.cornerRadius = btnCancel.bounds.size.height / 2
+//        btnCancel.layer.borderWidth = 1.0
+//        btnCancel.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+//        self.btnCancel.setStyle(style: .outlined, type: .primary)
+//        txtComment.layer.cornerRadius = 8
+//        txtComment.layer.borderColor = UIColor.lightGray.cgColor
+//        txtComment.layer.borderWidth = 1
+    }
+}

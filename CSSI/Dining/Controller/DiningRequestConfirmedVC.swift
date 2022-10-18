@@ -9,7 +9,9 @@
 import UIKit
 
 class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
+
     
+    //MARK: - IBOutlets
     @IBOutlet weak var roundedBgView: UIView!
     @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var reservationConfirmedDateLbl: UILabel!
@@ -20,38 +22,42 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
     @IBOutlet weak var heightTblGuest: NSLayoutConstraint!
     @IBOutlet weak var heightBackReservationpopup: NSLayoutConstraint!
     
+    
+    //MARK: - Variables
     var showNavigationBar = true
     var arrBookedSlotMember = ["Lia Little"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedBgView.clipsToBounds = true
         roundedBgView.layer.cornerRadius = 15
-//        roundedBgView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         tblReservedGuest.delegate = self
         tblReservedGuest.dataSource  = self
         btnHome.setTitle("", for: .normal)
         configSlotMemberTblHeight()
-
     }
 
+    
+    //MARK: - IBActions
     @IBAction func homeBtnTapped(sender:UIButton){
         self.dismiss(animated: true, completion: nil)
         let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
-    // MARK:- My order Table  Height
+    
+    // MARK: - My order Table  Height
           func configSlotMemberTblHeight(){
               if arrBookedSlotMember.count == 0{
                   heightTblGuest.constant = 0
                   heightBackReservationpopup.constant = 386
-                  tblReservedGuest.reloadData()
               }
               else{
                   let numberOfLines = (arrBookedSlotMember.count)+1
                   heightTblGuest.constant = CGFloat(40*numberOfLines)
                   heightBackReservationpopup.constant = (386+heightTblGuest.constant)-40
-                  tblReservedGuest.reloadData()
               }
+              tblReservedGuest.reloadData()
+
           }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
