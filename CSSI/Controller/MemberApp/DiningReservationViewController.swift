@@ -423,7 +423,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     @IBAction func calendarOfEventsClicked(_ sender: Any) {
         
         
-        if let calendar = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfCalendarVC") as? GolfCalendarVC
+        if let calendar = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningCalederVC") as? DinningCalederVC
         {
             self.appDelegate.buddyType = "First"
             self.appDelegate.typeOfCalendar = "Dining"

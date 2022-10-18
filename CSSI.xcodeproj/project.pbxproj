@@ -29,6 +29,7 @@
 		099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */; };
 		099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */; };
 		099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */; };
+		09995A0E28FEFA57007FFCEB /* DinningCalederVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */; };
 		099C851028F97ADB00959E9E /* GetDinningReservationDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C850F28F97ADB00959E9E /* GetDinningReservationDetailModel.swift */; };
 		099C851228F97B2200959E9E /* GetRestaurantDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851128F97B2200959E9E /* GetRestaurantDetailModel.swift */; };
 		099C851628F97BB000959E9E /* EditDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851528F97BB000959E9E /* EditDinningReservationModel.swift */; };
@@ -645,6 +646,7 @@
 		099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterPopupVC.swift; sourceTree = "<group>"; };
 		099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningCalederVC.swift; sourceTree = "<group>"; };
 		099C850F28F97ADB00959E9E /* GetDinningReservationDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetDinningReservationDetailModel.swift; path = CSSI/Dining/Controller/GetDinningReservationDetailModel.swift; sourceTree = SOURCE_ROOT; };
 		099C851128F97B2200959E9E /* GetRestaurantDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetRestaurantDetailModel.swift; path = CSSI/Dining/Controller/GetRestaurantDetailModel.swift; sourceTree = SOURCE_ROOT; };
 		099C851528F97BB000959E9E /* EditDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDinningReservationModel.swift; path = CSSI/Dining/Controller/EditDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
@@ -2485,6 +2487,7 @@
 				0985E3E128EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift */,
 				09A0D05F28F4927500FC38F2 /* DinningHelper.swift */,
 				0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */,
+				09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3643,6 +3646,7 @@
 				5F17741320FF0BC1003E5529 /* MemberApp.swift in Sources */,
 				5FD6593720E7AEC90033CD5B /* RequestCardAccountTableViewCell.swift in Sources */,
 				9F6620B724AE573F0061BB9C /* ServiceTypeCollectionViewCell.swift in Sources */,
+				09995A0E28FEFA57007FFCEB /* DinningCalederVC.swift in Sources */,
 				09506AD728EAFF3C005BE4F7 /* DiningResvTableCell.swift in Sources */,
 				5F1246C221269A9400A1D48F /* NotificationRead.swift in Sources */,
 				1862245321A6A7CA00A83023 /* VimeoVideoID.swift in Sources */,
