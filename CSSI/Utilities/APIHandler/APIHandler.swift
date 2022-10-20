@@ -58,7 +58,7 @@ class APIHandler: NSObject
     let engageDevURL : String = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.EngDev/api/"
     let engageTestURL : String = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.Eng.Test/api/"
     
-    let dinningDevURL : String  = "https://cssi-mhh-devweb.ecssi.local/COBALT/Dev/P1.0/CSSI.COBALT.MemberFCFSDining.Service/api/dining"
+    let dinningDevURL : String  = "https://cobaltportal.mycobaltsoftware.com/CSSI.Cobalt.Member.Wrapper.FCFS.Dev/api/dining/"
     
     //Boca West App
     
@@ -317,10 +317,10 @@ class APIHandler: NSObject
     static let validateOTP = "Member/GetValidateTwoStepAuthenticationOTP"
     //PROD0000019 -- End
     
-    static let dinningGetReservation = "/GetDiningReservationDetails"
-    static let dinningGetRestaurantDetail = "/GetRestaurantDetails"
-    static let dinningSaveReservation = "/SaveDiningReservation"
-    static let dinningEditReservation = "/EditDiningReservation"
+    static let dinningGetReservation = "GetDiningReservationDetails"
+    static let dinningGetRestaurantDetail = "GetRestaurantDetails"
+    static let dinningSaveReservation = "SaveDiningReservation"
+    static let dinningEditReservation = "EditDiningReservation"
 
     
     //Added on 17th October 2020 V2.3
@@ -7170,6 +7170,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()

@@ -24,7 +24,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrG-A6-Ect">
                         <rect key="frame" x="2" y="2" width="77" height="21"/>
-                        <color key="backgroundColor" red="0.3411764705882353" green="0.45036464929999998" blue="0.63615494969999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.3411764705882353" green="0.45098039215686275" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWS-yd-qoI">
                         <rect key="frame" x="0.0" y="0.0" width="81" height="25"/>

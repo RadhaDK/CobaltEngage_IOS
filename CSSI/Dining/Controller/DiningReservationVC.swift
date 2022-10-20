@@ -158,7 +158,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return 120
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -178,14 +178,13 @@ extension DiningReservationVC{
             
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kPartySize : "5",
-                APIKeys.kFilterDate: "2022-10-14",
+                APIKeys.kPartySize : "",
+                APIKeys.kFilterDate: "",
                 APIKeys.kFilterTime: ""]
             
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-              
-        print(reservationDinningListing)
+                print(reservationDinningListing)
                 
             },onFailure: { error  in
                 print(error)
@@ -194,6 +193,7 @@ extension DiningReservationVC{
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
             })
         }else{
+            self.appDelegate.hideIndicator()
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }

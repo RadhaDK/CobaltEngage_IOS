@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SourceSansPro-Regular.otf">
+            <string>SourceSansPro-Regular</string>
+        </array>
         <array key="SourceSansPro-Semibold.otf">
             <string>SourceSansPro-Semibold</string>
         </array>
@@ -27,22 +30,22 @@
                         <rect key="frame" x="8" y="8" width="411" height="112"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM to 11:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-nY-J4j">
-                                <rect key="frame" x="7.9999999999999929" y="34" width="123.33333333333331" height="15.333333333333336"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="8" y="34" width="90.666666666666671" height="14.333333333333336"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.41176470588235292" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming Events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJL-n6-ENf">
-                                <rect key="frame" x="8" y="8" width="135" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJL-n6-ENf">
+                                <rect key="frame" x="8" y="8" width="134.66666666666666" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="zCu-7s-db5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="17"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                                <color key="textColor" red="0.29411764709999999" green="0.31764705879999999" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="e0A-MJ-Q9Z">
-                                <rect key="frame" x="8" y="57.333333333333329" width="395" height="46.666666666666671"/>
+                                <rect key="frame" x="8" y="56.333333333333329" width="403" height="47.666666666666671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Tgl-9z-R76">
                                     <size key="itemSize" width="128" height="128"/>
@@ -52,9 +55,9 @@
                                 </collectionViewFlowLayout>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, Aug - Party Size:6" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfX-A6-vAd">
-                                <rect key="frame" x="276.33333333333331" y="34" width="126.66666666666669" height="15.333333333333336"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="13"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="301.66666666666669" y="33.666666666666664" width="99.333333333333314" height="14.666666666666664"/>
+                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="11"/>
+                                <color key="textColor" red="0.29411764705882354" green="0.31764705882352939" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -66,8 +69,8 @@
                             <constraint firstItem="ooK-nY-J4j" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="TsL-v3-B3x"/>
                             <constraint firstItem="ZJL-n6-ENf" firstAttribute="top" secondItem="Bec-9T-haZ" secondAttribute="top" constant="8" id="Z4t-Il-Qmt"/>
                             <constraint firstItem="ZJL-n6-ENf" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="fR1-AZ-RG7"/>
-                            <constraint firstAttribute="trailing" secondItem="e0A-MJ-Q9Z" secondAttribute="trailing" constant="8" id="gP2-4N-8a3"/>
-                            <constraint firstAttribute="trailing" secondItem="nfX-A6-vAd" secondAttribute="trailing" constant="8" id="gVF-3w-Qi0"/>
+                            <constraint firstAttribute="trailing" secondItem="e0A-MJ-Q9Z" secondAttribute="trailing" id="gP2-4N-8a3"/>
+                            <constraint firstAttribute="trailing" secondItem="nfX-A6-vAd" secondAttribute="trailing" constant="10" id="gVF-3w-Qi0"/>
                             <constraint firstItem="ooK-nY-J4j" firstAttribute="top" secondItem="ZJL-n6-ENf" secondAttribute="bottom" constant="3" id="nEL-mV-UXl"/>
                             <constraint firstItem="e0A-MJ-Q9Z" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="ncg-jK-yrG"/>
                         </constraints>

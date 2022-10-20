@@ -49,6 +49,7 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
             vc!.showNavigationBar = false
+            vc?.selectedPartySize = 4
             self.parentViewController?.navigationController?.pushViewController(vc!, animated: true)
         }
         return cell

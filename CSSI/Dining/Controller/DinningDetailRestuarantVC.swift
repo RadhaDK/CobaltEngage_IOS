@@ -28,13 +28,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var btnAddMultiple: UIButton!
     @IBOutlet weak var imgRestaurantImage: UIImageView!
     
+    @IBOutlet weak var lblCaptainName: UILabel!
     
     
     //MARK: - variables
     var arrBookedSlotMember = ["Lia Little"]
     var arrSpecialRequest = ["Behind lounge area","Close to enterance","Outside","On the Perimeter"]
     var selectedTime : String?
-    var selectedPartySize : String?
+    var selectedPartySize = 0
     var showNavigationBar = true
     
     override func viewDidLoad() {
@@ -50,7 +51,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     //MARK: - setUpUI
     func setUpUi(){
-        imgRestuarant.layer.cornerRadius = 8
+//        imgRestuarant.layer.cornerRadius = 8
         txtReservationComment.layer.borderWidth = 1
         txtReservationComment.layer.borderColor = UIColor.lightGray.cgColor
         txtReservationComment.layer.cornerRadius = 8
@@ -60,7 +61,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         btnAddMultiple.layer.borderColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1).cgColor
         btnHome.setTitle("", for: .normal)
         btnBack.setTitle("", for: .normal)
-        lblPartySize.text = selectedPartySize
+        lblPartySize.text = String(format: "%02d", selectedPartySize)
         lblTime.text = selectedTime
         let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgRestaurantImage.frame.size.width, height: imgRestaurantImage.frame.size.height))
         overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
@@ -100,11 +101,11 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     // MARK: - Slot Table  Height
     func configSlotMemberTblHeight(){
-        if selectedPartySize?.count == 0{
+        if selectedPartySize == 0{
             heightTblGuest.constant = 0
         }
         else{
-            let NumberOfSlot = Int(selectedPartySize ?? "0")
+            let NumberOfSlot = selectedPartySize
             let numberOfLines = NumberOfSlot ?? 0 + 1
             heightTblGuest.constant = CGFloat(60*numberOfLines)
         }
@@ -158,15 +159,20 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let NumberOfSlot = Int(selectedPartySize ?? "0")
-        return NumberOfSlot ?? 0
+    
+        return selectedPartySize
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
         if indexPath.row == 0{
             cell.lblSlotMember.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!
+            self.lblCaptainName.text = "Captain: " + (cell.lblSlotMember.text ?? "")
+        } else {
+            cell.lblSlotMember.text = "Reservation"
+            cell.lblSlotMember.textColor = .gray
         }
+        
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
             vc?.delegateSelectedMemberType = self

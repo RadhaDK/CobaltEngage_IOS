@@ -52,8 +52,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var viewNext: UIView!
     @IBOutlet weak var viewDate: UIView!
     @IBOutlet weak var viewTime: UIView!
-    @IBOutlet weak var lblTime: UILabel!
-    @IBOutlet weak var lblPartySize: UILabel!
+
     
 
     //MARK: - variables
@@ -84,8 +83,6 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
         shadowView(viewName: viewNext)
-        lblPartySize.text = "\(selectedPartySize)"
-        lblTime.text = selectedTime
         registerNibs()
        
     }
@@ -162,9 +159,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
                   tblAvailability.reloadData()
               }
               else{
-                  let NumberOfSlot = Int(selectedPartySize)
-                  let numberOfLines = NumberOfSlot
-                  heightTblAvailability.constant = CGFloat(120*numberOfLines)
+             
+                  heightTblAvailability.constant = CGFloat(100*selectedPartySize)
                   tblAvailability.reloadData()
               }
           }
@@ -181,6 +177,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
             vc!.showNavigationBar = false
+            vc?.selectedPartySize = 4
             self.navigationController?.pushViewController(vc!, animated: true)
 
         }
@@ -204,7 +201,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 100
         
     }
 }
