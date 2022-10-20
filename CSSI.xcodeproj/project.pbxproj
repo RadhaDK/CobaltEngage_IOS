@@ -26,6 +26,7 @@
 		097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */; };
 		097DCABD28D3BD5C00389C75 /* loaderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097DCABC28D3BD5B00389C75 /* loaderHelper.swift */; };
 		0985E3E228EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0985E3E128EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift */; };
+		098A3925290059B800D22855 /* getDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098A3924290059B800D22855 /* getDinningReservationModel.swift */; };
 		099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */; };
 		099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */; };
 		099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */; };
@@ -643,6 +644,7 @@
 		097DCAB828D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershiphHistoryFilterPopUpView.swift; sourceTree = "<group>"; };
 		097DCABC28D3BD5B00389C75 /* loaderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loaderHelper.swift; sourceTree = "<group>"; };
 		0985E3E128EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningRequestSelectResturantDateVC.swift; sourceTree = "<group>"; };
+		098A3924290059B800D22855 /* getDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = getDinningReservationModel.swift; path = CSSI/Dining/Controller/getDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
 		099428D328D24EA000678965 /* HistoryFilterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterPopupVC.swift; sourceTree = "<group>"; };
 		099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -2455,6 +2457,7 @@
 				099C851128F97B2200959E9E /* GetRestaurantDetailModel.swift */,
 				099C851528F97BB000959E9E /* EditDinningReservationModel.swift */,
 				099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */,
+				098A3924290059B800D22855 /* getDinningReservationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3451,6 +3454,7 @@
 				84ADB50D28B8B7D500CCECD1 /* MinimumDetails.swift in Sources */,
 				5F85D8A520DCD4BA003F9477 /* ListEvents.swift in Sources */,
 				9FB78763250CB6070067004F /* FitnessVideoFilterCollectionViewCell.swift in Sources */,
+				098A3925290059B800D22855 /* getDinningReservationModel.swift in Sources */,
 				9F2DF5CB23FD6874003E65F1 /* SelfSizingTableView.swift in Sources */,
 				5F757C3B212BF44C006AC0AA /* RequestCardAccountSummaryViewController.swift in Sources */,
 				9FFF66D8246EB5EA009BCA41 /* viewContentCollectionViewCell.swift in Sources */,
