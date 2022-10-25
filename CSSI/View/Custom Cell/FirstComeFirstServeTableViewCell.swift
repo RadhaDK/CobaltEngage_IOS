@@ -43,10 +43,13 @@ class FirstComeFirstServeTableViewCell: UITableViewCell
         self.collectionViewCourseTimes.register(UINib.init(nibName: "SwitchToLotteryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SwitchToLotteryCollectionViewCell")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.collectionViewCourseTimes.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.scrollToSelectedTime()
+            }
         }
     }
     
-
+    
     override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
@@ -58,6 +61,38 @@ class FirstComeFirstServeTableViewCell: UITableViewCell
     {
         sender.isSelected = !sender.isSelected
         self.imgCheckBox.image = UIImage(named: sender.isSelected ? "Group 2130" : "CheckBox_uncheck")
+    }
+    
+    func scrollToSelectedTime() {
+        guard self.timeSlotsDetails.timeIntervals != nil else {
+            return
+        }
+        if self.timeSlotsDetails.timeIntervals?.count == 0 {
+            return
+        }
+    outerLoop:  for j in 0...(self.timeSlotsDetails.timeIntervals?.count ?? 0) - 1 {
+            let timeString = self.timeSlotsDetails.timeIntervals?[j].time ?? ""
+            let foundCourse = self.selectedSlots.filter { $0["CourseDetailId"] as! String == self.timeSlotsDetails.id ?? ""}
+    //            print(foundCourse)
+            if foundCourse.count > 0 {
+                let foundSlotTime = foundCourse.filter { $0["Time"] as! String == timeString}
+                
+                if foundSlotTime.count > 0 {
+                    for i in foundSlotTime {
+                        if self.timeSlotsDetails.timeIntervals?[j].teeBox ?? "" == "" || self.slotType == "Single Tee" {
+                            self.collectionViewCourseTimes.scrollToItem(at: IndexPath(row: j, section: 0), at: .left, animated: false)
+                            break outerLoop
+                        } else {
+                            if i["TeeBox"] as! String == self.timeSlotsDetails.timeIntervals?[j].teeBox ?? "" {
+                                self.collectionViewCourseTimes.scrollToItem(at: IndexPath(row: j, section: 0), at: .left, animated: false)
+                                break outerLoop
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 
 }

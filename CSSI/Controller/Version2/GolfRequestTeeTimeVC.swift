@@ -2762,13 +2762,13 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                     headerView.lblCourseValue.isHidden = true
                     headerView.lblStatus.isHidden = true
                     headerView.lblStatusValue.isHidden = true
-                    headerView.btnDelete.isHidden = false
+                    headerView.btnDelete.isHidden = true
                     headerView.lblRoundLength.isHidden = true
-                    if arrGroupList.count == 1 || self.isFrom == "View" {
-                        headerView.btnDelete.isHidden = true
-                    }else{
-                        headerView.btnDelete.isHidden = false
-                    }
+//                    if arrGroupList.count == 1 || self.isFrom == "View" {
+//                        headerView.btnDelete.isHidden = true
+//                    }else{
+//                        headerView.btnDelete.isHidden = false
+//                    }
                 }else{
 //                    headerView.btnDelete.isHidden = false
                     headerView.heightBWGroup.constant = 114
