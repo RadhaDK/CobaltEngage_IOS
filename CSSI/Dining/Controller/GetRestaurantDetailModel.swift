@@ -81,78 +81,57 @@ import ObjectMapper
 class GetRestaurantDetail: NSObject, Mappable {
     
     
-    var responseCode            : String!
-    var responseMessage         : String!
-    var RestaurantName  : String!
-    var RestaurantID              : String!
-    var RestaurantImage : String!
-    var IsAllowGuest : Int!
-    var Timings : [DiningTimmingsData]!
-    var RestaurantSettings : DiningSettingData!
-    var SelectedDate : GetRestaurantSelectedDateDetail!
-    var OtherAvailableDates : [GetRestaurantSelectedDateDetail]!
+    var result            : String!
+    var Restaurants : [GetRestaurantDetailData]!
     override init() {
         super.init()
     }
     
     convenience required init?(map: Map) {
         self.init()
-        responseCode            = ""
-        responseMessage         = ""
-        RestaurantName  = ""
-        RestaurantID         = ""
-        RestaurantImage = ""
-        IsAllowGuest = 0
-        Timings = []
-        RestaurantSettings = nil
-        SelectedDate = nil
-        OtherAvailableDates = []
+        result            = ""
+        Restaurants = []
     }
     
     func mapping(map: Map) {
-        
-        
-        responseCode            <- map["ResponseCode"]
-        responseMessage         <- map["ResponseMessage"]
-        RestaurantName  <- map["RestaurantName"]
-        RestaurantID              <- map["RestaurantID"]
-        RestaurantImage <- map["RestaurantImage"]
-        IsAllowGuest <- map["IsAllowGuest"]
-        Timings <- map["Timings"]
-        RestaurantSettings <- map["RestaurantSettings"]
-        SelectedDate <- map["SelectedDate"]
-        OtherAvailableDates <- map["OtherAvailableDates"]
+        result            <- map["result"]
+        Restaurants <- map["Restaurants"]
     }
 }
 
 class GetRestaurantDetailData: NSObject, Mappable {
     
-    var Text         : String!
-    var Value       : String!
-    var Description              : String!
-    var ColorCode         : String!
-    
-    
+    var RestaurantID              : String!
+    var RestaurantName  : String!
+    var TimeInterval : Int!
+    var Timings : [DiningTimmingsData]!
+    var SelectedDate : GetRestaurantSelectedDateDetail!
+    var OtherAvailableDates : [GetRestaurantSelectedDateDetail]!
+    var RestaurantSettings : [DiningSettingData]!
     override init() {
         super.init()
     }
     
     convenience required init?(map: Map) {
         self.init()
-        Text         = ""
-        Value       = ""
-        Description              = ""
-        ColorCode         = ""
-        
+        RestaurantID         = ""
+        RestaurantName  = ""
+        TimeInterval = 0
+        Timings = []
+        SelectedDate = nil
+        OtherAvailableDates = []
+        RestaurantSettings = []
     }
     
     func mapping(map: Map) {
         
-        Text         <- map["Text"]
-        Value       <- map["Value"]
-        Description              <- map["Description"]
-        ColorCode         <- map["ColorCode"]
-        
+        RestaurantID              <- map["RestaurantID"]
+        RestaurantName  <- map["RestaurantName"]
+        TimeInterval <- map["TimeInterval"]
+        Timings <- map["Timings"]
+        SelectedDate <- map["SelectedDate"]
+        OtherAvailableDates <- map["OtherAvailableDates"]
+        RestaurantSettings <- map["RestaurantSettings"]
     }
 }
 

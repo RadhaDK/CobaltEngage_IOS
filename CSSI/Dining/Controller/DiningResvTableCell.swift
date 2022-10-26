@@ -19,6 +19,8 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var heightUpcoming: NSLayoutConstraint!
     
+    var arrTimeSlot = [DiningTimmingsTimeSlotData]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionTimeSlot.delegate = self
@@ -41,11 +43,13 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     
     //MARK: - Collectionview Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return arrTimeSlot.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
+        let dict = arrTimeSlot[indexPath.row]
+        cell.lblTime.text = dict.TimeSlot
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
             vc!.showNavigationBar = false

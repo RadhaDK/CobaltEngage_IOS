@@ -12,11 +12,10 @@ import Foundation
 import ObjectMapper
 
 class GetDinningDetail: NSObject, Mappable {
-    
-    var responseCode            : String!
+    var result            : String!
     var responseMessage         : String!
     var Response  : GetDinningDetailData!
-   
+    var Restaurants       : [DiningRestaurantsData]!
     
     override init() {
         super.init()
@@ -24,23 +23,22 @@ class GetDinningDetail: NSObject, Mappable {
     
     convenience required init?(map: Map) {
         self.init()
-        responseCode            = ""
+        result            = ""
         responseMessage         = ""
         Response = nil
+        Restaurants       = []
     }
     
     func mapping(map: Map) {
-        responseCode            <- map["ResponseCode"]
+        result            <- map["result"]
         responseMessage         <- map["ResponseMessage"]
         Response  <- map["Response"]
+        Restaurants       <- map["Restaurants"]
     }
 }
 
 class GetDinningDetailData: NSObject, Mappable {
-    
     var DiningSettings         : DiningSettingData!
-    var Restaurants       : [DiningRestaurantsData]!
-
     override init() {
         super.init()
     }
@@ -48,13 +46,12 @@ class GetDinningDetailData: NSObject, Mappable {
     convenience required init?(map: Map) {
         self.init()
         DiningSettings = nil
-        Restaurants       = []
     }
     
     func mapping(map: Map) {
         
         DiningSettings         <- map["DiningSettings"]
-        Restaurants       <- map["Restaurants"]
+       
     }
 }
 
@@ -104,8 +101,9 @@ class DiningRestaurantsData: NSObject, Mappable {
     var IsAllowGuest : Int!
     var RestaurantImage : String!
     var TablePreference : [DiningTablePrefenceData]!
-    var TimeSlots : [String]!
+    var TimeSlots : [DiningTimmingsTimeSlotData]!
     var Timings : [DiningTimmingsData]!
+    var MaxPartySize : Int!
     
     override init() {
         super.init()
@@ -121,6 +119,7 @@ class DiningRestaurantsData: NSObject, Mappable {
         TablePreference = []
         TimeSlots = []
         Timings = []
+        MaxPartySize = 0
     }
     
     func mapping(map: Map) {
@@ -133,6 +132,7 @@ class DiningRestaurantsData: NSObject, Mappable {
         TablePreference <- map["TablePreference"]
         TimeSlots <- map["TimeSlots"]
         Timings <- map["Timings"]
+        MaxPartySize <- map["MaxPartySize"]
     }
 }
 
@@ -183,5 +183,25 @@ class DiningTablePrefenceData: NSObject, Mappable {
         
         PreferenceName         <- map["PreferenceName"]
         TablePreferenceID       <- map["TablePreferenceID"]
+    }
+}
+
+class DiningTimmingsTimeSlotData: NSObject, Mappable {
+    
+    var TimeSlot         : String!
+    
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience required init?(map: Map) {
+        self.init()
+        TimeSlot         = ""
+        
+    }
+    func mapping(map: Map) {
+        
+        TimeSlot         <- map["TimeSlot"]
     }
 }

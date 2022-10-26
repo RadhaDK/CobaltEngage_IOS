@@ -2615,6 +2615,7 @@
                         <outlet property="imgDrop" destination="DUL-Sx-cbh" id="q1h-0e-766"/>
                         <outlet property="imgRestaurent" destination="R6h-bd-prY" id="1ln-tD-5bi"/>
                         <outlet property="lblDatePartySize" destination="exm-EL-IKx" id="w9b-aY-9cN"/>
+                        <outlet property="lblRestaurentName" destination="ax6-OI-WoJ" id="Ohy-4V-PeH"/>
                         <outlet property="lblSelectedDate" destination="IE9-92-FXh" id="j4a-4u-BhX"/>
                         <outlet property="lblSelectedSizeTime" destination="4ON-h2-vaF" id="Zhl-dR-pC1"/>
                         <outlet property="tblAvailability" destination="Qv9-0z-gJD" id="fG7-ow-37f"/>

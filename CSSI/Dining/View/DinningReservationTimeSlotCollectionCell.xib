@@ -60,6 +60,7 @@
             <size key="customSize" width="81" height="25"/>
             <connections>
                 <outlet property="btnTime" destination="FVK-IA-dAv" id="8AG-Hn-rk7"/>
+                <outlet property="lblTime" destination="JWS-yd-qoI" id="Set-K0-m38"/>
                 <outlet property="viewTimeSlotBack" destination="WrG-A6-Ect" id="ydv-XD-EUA"/>
             </connections>
             <point key="canvasLocation" x="60.769230769230766" y="-20.260663507109005"/>

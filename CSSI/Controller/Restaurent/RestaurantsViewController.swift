@@ -6,18 +6,14 @@ class RestaurantsViewController: UIViewController ,UICollectionViewDelegate, UIC
     @IBOutlet weak var restaurantCollectionView: UICollectionView!
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    
     private var minItemSpacing: CGFloat = 4
     private var itemWidth: CGFloat      = 150
     private let itemHeight: CGFloat      = 150
     private let headerHeight: CGFloat   = 0
     var arrRestaurtentList = [Restaurents]()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setColorCode()
         self.initController()
     }
@@ -27,16 +23,12 @@ class RestaurantsViewController: UIViewController ,UICollectionViewDelegate, UIC
     {
         self.restaurantCollectionView.delegate = self
         self.restaurantCollectionView.dataSource = self
-        
         if(self.view.frame.size.width <= 320){
             minItemSpacing = 4
             itemWidth = 154
             itemWidth = (self.view.frame.size.width - 16) / 2
         }
         itemWidth = (self.view.frame.size.width - 32) / 2
-        
-        
-        
         
         // Create our custom flow layout that evenly space out the items, and have them in the center
         let layout = UICollectionViewFlowLayout()
@@ -62,9 +54,7 @@ class RestaurantsViewController: UIViewController ,UICollectionViewDelegate, UIC
         // Setting this section inset will manipulate the items such that they will all be aligned horizontally center.
         let inset = max(minItemSpacing, floor( (containerWidth - (n*itemWidth) - (n-1)*minItemSpacing) / 2 ) )
         layout.sectionInset = UIEdgeInsets(top: minItemSpacing, left: minItemSpacing, bottom: minItemSpacing, right: minItemSpacing)
-        
         self.restaurantCollectionView.collectionViewLayout = layout
-        
         self.getRestaurentDetails()
         
         //Added by kiran V2.5 -- ENGAGE0011372 -- Custom method to dismiss screen when left edge swipe.
@@ -164,7 +154,6 @@ class RestaurantsViewController: UIViewController ,UICollectionViewDelegate, UIC
                 self.appDelegate.hideIndicator()
                 if(restaurentList.responseCode == InternetMessge.kSuccess){
                     if(restaurentList.restaurentMenus == nil){
-                        
                         self.appDelegate.hideIndicator()
                     }
                     else{

@@ -78,7 +78,7 @@ struct APIKeys
     static let kfirstName = "FirstName"
     static let klastName = "LastName"
     static let krelation = "Relation"
-    static let krestaurentID = "RestaurentID"
+    static let krestaurentID = "RestaurantID"
     
     static let kprimaryphone = "PrimaryPhone"
     static let kGuests = "Guests"
@@ -271,6 +271,7 @@ struct APIKeys
     static let kPartySize = "PartySize"
     static let kFilterDate = "FilterDate"
     static let kFilterTime = "FilterTime"
+    static let kRestaurantID = "RestaurantID"
 }
 
 struct APIHeader

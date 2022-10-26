@@ -41,7 +41,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var selectedPartySize = "6"
     var selectedTime = "0:00 PM Wed"
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
+var arrRestaurant = [DiningRestaurantsData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,12 +149,16 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return arrRestaurant.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
-        cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize)"
+        let dict = arrRestaurant[indexPath.row]
+        cell.lblUpcomingEvent.text = dict.RestaurantName
+        print(dict.MaxPartySize)
+        cell.lblPartySize.text = "Fri, Aug - Party Size:\(dict.MaxPartySize ?? 0)"
+        cell.arrTimeSlot = dict.TimeSlots
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -162,7 +166,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dict = arrRestaurant[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
+            impVC.selectedRestaurentId = dict.RestaurantID
+            print(dict.RestaurantID)
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
@@ -178,14 +185,15 @@ extension DiningReservationVC{
             
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kPartySize : "",
-                APIKeys.kFilterDate: "",
+                APIKeys.kPartySize : "5",
+                APIKeys.kFilterDate: "2022-10-14",
                 APIKeys.kFilterTime: ""]
             
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                print(reservationDinningListing)
-                
+                print(reservationDinningListing.Restaurants.count)
+                self.arrRestaurant = reservationDinningListing.Restaurants
+                self.tblResturat.reloadData()
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()

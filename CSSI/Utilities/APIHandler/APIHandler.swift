@@ -7104,14 +7104,6 @@ class APIHandler: NSObject
     func GetRestaurentDetail(paramater: [String: Any]?, onSuccess: @escaping(GetRestaurantDetail) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = dinningDevURL + APIHandler.dinningGetRestaurantDetail
         print(url)
-        let headers: HTTPHeaders = [
-            APIHeader.kusername: APIHeader.kusernamevalue,
-            APIHeader.kpassword: APIHeader.kpasswordvalue,
-            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
-            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
-            
-        ]
-        print(headers)
         print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7152,14 +7144,6 @@ class APIHandler: NSObject
     func GetDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(GetDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = dinningDevURL + APIHandler.dinningGetReservation
         print(url)
-        let headers: HTTPHeaders = [
-            APIHeader.kusername: APIHeader.kusernamevalue,
-            APIHeader.kpassword: APIHeader.kpasswordvalue,
-            APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
-            APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
-            
-        ]
-        print(headers)
         print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
