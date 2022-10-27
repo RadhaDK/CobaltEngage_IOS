@@ -2440,6 +2440,18 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
+		845432A02908176600EF103D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */,
+				09506ADC28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.swift */,
+				09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */,
+				097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */,
+				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		84BE13AC28E6A46000110324 /* Dining */ = {
 			isa = PBXGroup;
 			children = (
@@ -2475,16 +2487,12 @@
 		84BE13AF28E6A4F300110324 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				845432A02908176600EF103D /* Cells */,
 				09506ADA28EB3DD7005BE4F7 /* DiningReservationVC.swift */,
-				09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */,
-				09506ADC28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.swift */,
 				09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */,
-				09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */,
 				097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */,
-				097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */,
 				097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */,
 				0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */,
-				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
 				0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */,
 				84C7A79D28EFDFC600C41DAC /* RestaurantDetailsViewController.swift */,
 				0985E3E128EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift */,

@@ -756,6 +756,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             self.courseView.isHidden = true
             self.viewfirstComeFirstServce.isHidden = false
             self.timeViewHeight.constant = 0
+//            self.dummyHeight.constant = 0
             self.eighteennHolesViewHeight.constant = 0
             self.lblLegendInfoHeight.constant = 40
             self.lblTransDeatilsHeight.constant = 40
@@ -789,6 +790,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             self.courseView.isHidden = false
             self.viewfirstComeFirstServce.isHidden = true
             self.timeViewHeight.constant = 105
+//            self.dummyHeight.constant = 20
             self.eighteennHolesViewHeight.constant = 67
             self.lblLegendInfoHeight.constant = 0
             self.lblTransDeatilsHeight.constant = 0
@@ -1234,7 +1236,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             if self.arrTeeTimeDetails[0].buttonTextValue == "3" || self.arrTeeTimeDetails[0].buttonTextValue == "4" || self.arrTeeTimeDetails[0].buttonTextValue == "5"{
 //                                self.timeView.isHidden = true
 //                                self.heightTimeView.constant = 0
-                                self.dummyHeight.constant = 0
+//                                self.dummyHeight.constant = 0
 //                                if self.arrTeeTimeDetails[0].golfRequestType != "FCFS Request" {
                                     self.calenderView.isHidden = true
                                     self.heightCalendarView.constant = 0

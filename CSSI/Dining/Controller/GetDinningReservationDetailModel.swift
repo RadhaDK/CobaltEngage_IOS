@@ -15,8 +15,8 @@ class GetDinningDetail: NSObject, Mappable {
     
     var responseCode            : String!
     var responseMessage         : String!
-    var Response  : GetDinningDetailData!
-   
+    var restaurants             : [DiningRestaurantsData]!
+    var diningSettings          : DiningSettingData!
     
     override init() {
         super.init()
@@ -26,35 +26,15 @@ class GetDinningDetail: NSObject, Mappable {
         self.init()
         responseCode            = ""
         responseMessage         = ""
-        Response = nil
+        restaurants             = []
+        diningSettings          = DiningSettingData()
     }
     
     func mapping(map: Map) {
         responseCode            <- map["ResponseCode"]
         responseMessage         <- map["ResponseMessage"]
-        Response  <- map["Response"]
-    }
-}
-
-class GetDinningDetailData: NSObject, Mappable {
-    
-    var DiningSettings         : DiningSettingData!
-    var Restaurants       : [DiningRestaurantsData]!
-
-    override init() {
-        super.init()
-    }
-    
-    convenience required init?(map: Map) {
-        self.init()
-        DiningSettings = nil
-        Restaurants       = []
-    }
-    
-    func mapping(map: Map) {
-        
-        DiningSettings         <- map["DiningSettings"]
-        Restaurants       <- map["Restaurants"]
+        diningSettings          <- map["DiningSetting"]
+        restaurants             <- map["Restaurants"]
     }
 }
 
@@ -62,12 +42,12 @@ class GetDinningDetailData: NSObject, Mappable {
 
 class DiningSettingData: NSObject, Mappable {
     
-    var TimeInterval         : Int!
-    var MaxDaysInAdvanceTime       : String!
-    var MaxDaysInAdvance : Int!
-    var MinDaysInAdvance : Int!
-    var MinDaysInAdvanceTime : String!
-    var MaxPartySize : Int!
+    var TimeInterval            : Int!
+    var MaxDaysInAdvanceTime    : String!
+    var MaxDaysInAdvance        : Int!
+    var MinDaysInAdvance        : Int!
+    var MinDaysInAdvanceTime    : String!
+    var MaxPartySize            : Int!
  
     
     override init() {
@@ -76,36 +56,36 @@ class DiningSettingData: NSObject, Mappable {
     
     convenience required init?(map: Map) {
         self.init()
-        TimeInterval         = 0
-        MaxDaysInAdvanceTime  = ""
-        MaxDaysInAdvance = 0
-        MinDaysInAdvance = 0
-        MinDaysInAdvanceTime = ""
-        MaxPartySize = 0
+        TimeInterval            = 0
+        MaxDaysInAdvanceTime    = ""
+        MaxDaysInAdvance        = 0
+        MinDaysInAdvance        = 0
+        MinDaysInAdvanceTime    = ""
+        MaxPartySize            = 0
        
     }
     
     func mapping(map: Map) {
         
-        TimeInterval         <- map["TimeInterval"]
-        MaxDaysInAdvanceTime       <- map["MaxDaysInAdvanceTime"]
-        MaxDaysInAdvance <- map["MaxDaysInAdvance"]
-        MinDaysInAdvance <- map["MinDaysInAdvance"]
-        MinDaysInAdvanceTime <- map["MinDaysInAdvanceTime"]
-        MaxPartySize <- map["MaxPartySize"]
+        TimeInterval            <- map["TimeInterval"]
+        MaxDaysInAdvanceTime    <- map["MaxDaysInAdvanceTime"]
+        MaxDaysInAdvance        <- map["MaxDaysInAdvance"]
+        MinDaysInAdvance        <- map["MinDaysInAdvance"]
+        MinDaysInAdvanceTime    <- map["MinDaysInAdvanceTime"]
+        MaxPartySize            <- map["MaxPartySize"]
     }
 }
 
 class DiningRestaurantsData: NSObject, Mappable {
     
-    var RestaurantName         : String!
-    var RestaurantID       : String!
-    var DinningPolicy : String!
-    var IsAllowGuest : Int!
-    var RestaurantImage : String!
-    var TablePreference : [DiningTablePrefenceData]!
-    var TimeSlots : [String]!
-    var Timings : [DiningTimmingsData]!
+    var RestaurantName      : String!
+    var RestaurantID        : String!
+    var DinningPolicy       : String!
+    var IsAllowGuest        : Int!
+    var RestaurantImage     : String!
+    var TablePreference     : [DiningTablePrefenceData]!
+    var TimeSlots           : [DiningTimeSlots]!
+    var Timings             : [DiningTimmingsData]!
     
     override init() {
         super.init()
@@ -113,26 +93,26 @@ class DiningRestaurantsData: NSObject, Mappable {
     
     convenience required init?(map: Map) {
         self.init()
-        RestaurantName         = ""
-        RestaurantID       = ""
-        DinningPolicy = ""
-        IsAllowGuest = 0
-        RestaurantImage = ""
-        TablePreference = []
-        TimeSlots = []
-        Timings = []
+        RestaurantName      = ""
+        RestaurantID        = ""
+        DinningPolicy       = ""
+        IsAllowGuest        = 0
+        RestaurantImage     = ""
+        TablePreference     = []
+        TimeSlots           = []
+        Timings             = []
     }
     
     func mapping(map: Map) {
         
-        RestaurantName         <- map["RestaurantName"]
-        RestaurantID       <- map["RestaurantID"]
-        DinningPolicy <- map["DinningPolicy"]
-        IsAllowGuest <- map["IsAllowGuest"]
-        RestaurantImage <- map["RestaurantImage"]
-        TablePreference <- map["TablePreference"]
-        TimeSlots <- map["TimeSlots"]
-        Timings <- map["Timings"]
+        RestaurantName      <- map["RestaurantName"]
+        RestaurantID        <- map["RestaurantID"]
+        DinningPolicy       <- map["DinningPolicy"]
+        IsAllowGuest        <- map["IsAllowGuest"]
+        RestaurantImage     <- map["RestaurantImage"]
+        TablePreference     <- map["TablePreference"]
+        TimeSlots           <- map["TimeSlots"]
+        Timings             <- map["Timings"]
     }
 }
 
@@ -161,6 +141,29 @@ class DiningTimmingsData: NSObject, Mappable {
    
     }
 }
+
+class DiningTimeSlots: NSObject, Mappable {
+    
+    var timeSlot    : String!
+
+   
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience required init?(map: Map) {
+        self.init()
+        timeSlot         = ""
+    }
+    
+    func mapping(map: Map) {
+        
+        timeSlot         <- map["TimeSlot"]
+   
+    }
+}
+
 
 
 class DiningTablePrefenceData: NSObject, Mappable {

@@ -8,7 +8,7 @@
 
 import UIKit
 protocol selectedPartySizeTime{
-    func SelectedPartysizeTme(PartySize : String, Time : String)
+    func SelectedPartysizeTme(PartySize : Int, Time : String)
 }
 
 class PartySizePopUpVC: UIViewController {
@@ -26,7 +26,7 @@ class PartySizePopUpVC: UIViewController {
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let dateFormatter = DateFormatter()
     var delegateSelectedTimePatySize : selectedPartySizeTime?
-    var selectedPartySize : String?
+    var selectedPartySize : Int?
     var selectedDate : String?
     var arrPartySize = ["1","2","3","4","5","6"]
     
@@ -66,7 +66,7 @@ class PartySizePopUpVC: UIViewController {
     //MARK: - IBActions
     @IBAction func doneBtnTapped(sender:UIButton){
         self.dismiss(animated: true, completion: nil)
-        delegateSelectedTimePatySize?.SelectedPartysizeTme(PartySize: selectedPartySize ?? "", Time: selectedDate ?? "")
+        delegateSelectedTimePatySize?.SelectedPartysizeTme(PartySize: selectedPartySize ?? 0, Time: selectedDate ?? "")
     }
 }
 
@@ -83,6 +83,6 @@ extension PartySizePopUpVC : UICollectionViewDelegateFlowLayout, UICollectionVie
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dict = arrPartySize[indexPath.row]
-        selectedPartySize = dict
+        selectedPartySize = indexPath.row + 1
     }
 }

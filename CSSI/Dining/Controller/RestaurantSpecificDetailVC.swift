@@ -9,8 +9,8 @@
 import UIKit
 
 class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime {
-    func SelectedPartysizeTme(PartySize: String, Time: String) {
-        if PartySize != ""{
+    func SelectedPartysizeTme(PartySize: Int, Time: String) {
+        if PartySize != 0 {
             lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
             selectedPartySize = Int(PartySize) ?? 6
             lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
@@ -20,7 +20,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
            selectedTime = Time
         }
-        else if PartySize != "" && Time != ""{
+        else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
             lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
             selectedPartySize = Int(PartySize) ?? 6

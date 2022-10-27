@@ -38,10 +38,13 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var isDateSelected : Bool?
     var myCalendar: FSCalendar!
     var currentDate = Date()
-    var selectedPartySize = "6"
-    var selectedTime = "0:00 PM Wed"
+    var selectedPartySize = 0
+    var selectedTime = ""
+    var selectedDateString = ""
+    var diningReservation = DinningReservationFCFS()
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
+    var restaurantsList: [DiningRestaurantsData] = []
+    var diningSetting = DiningSettingData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         tblResturat.dataSource  = self
         registerNibs()
         setUpUi()
+    }
+    
+    func updateUI() {
+        self.tblResturat.reloadData()
     }
     
     //MARK: - Xib Registration
@@ -113,23 +120,37 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         let dateString = self.getDateString(givenDate: currentDate)
         lblSelectedDate.text = dateString
     }
-    //MARK: - date Formatter
-    func getDateString(givenDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.string(from: givenDate)
-    }
     
+    //MARK: - Functions
     func shadowView(viewName : UIView){
         viewName.layer.shadowColor = UIColor.black.cgColor
         viewName.layer.shadowOpacity = 0.12
         viewName.layer.shadowOffset = CGSize(width: 3, height: 3)
         viewName.layer.shadowRadius = 6
     }
+    
+    
+    //MARK: - Date Formatter
+    func getDateString(givenDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: givenDate)
+    }
+    
+    func getDayOfWeek(givenDate: Date) -> String {
+        
+        return ""
+    }
+    
+    func getmonthOfYear(givenDate: Date) -> String {
+        
+        return ""
+    }
+    
 
     //MARK: - Custom Delgates Functions
-    func SelectedPartysizeTme(PartySize: String, Time: String) {
-        if PartySize != ""{
+    func SelectedPartysizeTme(PartySize: Int, Time: String) {
+        if PartySize != 0 {
             lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
             selectedPartySize = PartySize
             lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
@@ -139,7 +160,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
            selectedTime = Time
         }
-        else if PartySize != "" && Time != ""{
+        else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
             lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
             selectedPartySize = PartySize
@@ -149,12 +170,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.restaurantsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
         cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize)"
+        cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
+        cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -178,13 +201,17 @@ extension DiningReservationVC{
             
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kPartySize : "",
-                APIKeys.kFilterDate: "",
-                APIKeys.kFilterTime: ""]
-            
+                APIKeys.kPartySize : self.diningReservation.PartySize,
+                APIKeys.kFilterDate: self.diningReservation.SelectedDate,
+                APIKeys.kFilterTime: self.diningReservation.SelectedTime,
+                APIKeys.kCompanyCode: "00"
+             ]
+            print(paramaterDict)
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                print(reservationDinningListing)
+                self.restaurantsList = reservationDinningListing.restaurants!
+                self.diningSetting = reservationDinningListing.diningSettings!
+                self.updateUI()
                 
             },onFailure: { error  in
                 print(error)

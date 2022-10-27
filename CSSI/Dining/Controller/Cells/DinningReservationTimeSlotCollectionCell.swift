@@ -12,15 +12,13 @@ class DinningReservationTimeSlotCollectionCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
     @IBOutlet weak var viewTimeSlotBack: UIView!
-    @IBOutlet weak var btnTime: UIButton!
+    @IBOutlet weak var lblTime: UILabel!
+    
     var addToSlotClosure:(()->())?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         viewTimeSlotBack.layer.cornerRadius = 4
-        btnTime.setTitle("", for: .normal)
     }
-    @IBAction func btnTime(_ sender: Any) {
-        addToSlotClosure?()
-    }
+
 }

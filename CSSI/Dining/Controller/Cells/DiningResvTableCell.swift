@@ -19,6 +19,8 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var heightUpcoming: NSLayoutConstraint!
     
+    var timeSlots: [DiningTimeSlots] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionTimeSlot.delegate = self
@@ -41,21 +43,25 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     
     //MARK: - Collectionview Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return timeSlots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
-        cell.addToSlotClosure = {
-            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-            vc!.showNavigationBar = false
-            vc?.selectedPartySize = 4
-            self.parentViewController?.navigationController?.pushViewController(vc!, animated: true)
-        }
+        
+        cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: 80, height: 40)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+        vc!.showNavigationBar = false
+        vc?.selectedPartySize = 4
+        self.parentViewController?.navigationController?.pushViewController(vc!, animated: true)
     }
 }

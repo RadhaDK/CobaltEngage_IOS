@@ -1891,6 +1891,7 @@ class APIHandler: NSObject
             APIHeader.kContentType : "application/json"
         ]
         print("============Start Time GetMemberValidation \(Date())========")
+        print(paramater)
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
             print("============End Time GetMemberValidation \(Date())========")
             switch response.result {

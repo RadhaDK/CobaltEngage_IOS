@@ -98,7 +98,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         initController()
-        
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = self.appDelegate.masterLabeling.dining_reservations ?? "" as String
         self.lblRecentNews.text = self.appDelegate.masterLabeling.recent_news ?? "" as String
         self.lblInstructionalVideos.text = self.appDelegate.masterLabeling.instructional_videos_dining ?? "" as String

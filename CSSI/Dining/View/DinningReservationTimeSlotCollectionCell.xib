@@ -32,14 +32,6 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVK-IA-dAv">
-                        <rect key="frame" x="0.0" y="0.0" width="81" height="25"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
-                        <connections>
-                            <action selector="btnTime:" destination="gTV-IL-0wX" eventType="touchUpInside" id="f98-ay-wtG"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -47,19 +39,15 @@
                 <constraint firstItem="JWS-yd-qoI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1bH-Ym-rXf"/>
                 <constraint firstItem="WrG-A6-Ect" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="5xQ-jM-eAP"/>
                 <constraint firstAttribute="trailing" secondItem="WrG-A6-Ect" secondAttribute="trailing" constant="2" id="92k-5q-Lo5"/>
-                <constraint firstAttribute="bottom" secondItem="FVK-IA-dAv" secondAttribute="bottom" id="Kb5-Zm-ElZ"/>
-                <constraint firstItem="FVK-IA-dAv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Lsm-rZ-RhV"/>
                 <constraint firstAttribute="bottom" secondItem="JWS-yd-qoI" secondAttribute="bottom" id="PGX-eX-VNi"/>
                 <constraint firstAttribute="trailing" secondItem="JWS-yd-qoI" secondAttribute="trailing" id="Pbb-T7-cAQ"/>
-                <constraint firstAttribute="trailing" secondItem="FVK-IA-dAv" secondAttribute="trailing" id="XCL-dQ-VSF"/>
                 <constraint firstItem="WrG-A6-Ect" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="lGM-AY-4um"/>
                 <constraint firstAttribute="bottom" secondItem="WrG-A6-Ect" secondAttribute="bottom" constant="2" id="lc0-7e-TSB"/>
                 <constraint firstItem="JWS-yd-qoI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ooT-SV-iJX"/>
-                <constraint firstItem="FVK-IA-dAv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="scw-K3-Ke8"/>
             </constraints>
             <size key="customSize" width="81" height="25"/>
             <connections>
-                <outlet property="btnTime" destination="FVK-IA-dAv" id="8AG-Hn-rk7"/>
+                <outlet property="lblTime" destination="JWS-yd-qoI" id="Gey-8f-df4"/>
                 <outlet property="viewTimeSlotBack" destination="WrG-A6-Ect" id="ydv-XD-EUA"/>
             </connections>
             <point key="canvasLocation" x="60.769230769230766" y="-20.260663507109005"/>
