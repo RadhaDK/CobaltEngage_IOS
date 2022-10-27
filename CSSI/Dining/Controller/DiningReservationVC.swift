@@ -185,7 +185,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dict = arrRestaurant[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
+            impVC.selectedRestaurentId = dict.RestaurantID
+            print(dict.RestaurantID)
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }

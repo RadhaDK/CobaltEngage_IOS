@@ -12,6 +12,7 @@ class DinningReservationTimeSlotCollectionCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
     @IBOutlet weak var viewTimeSlotBack: UIView!
+    @IBOutlet weak var btnTime: UIButton!
     @IBOutlet weak var lblTime: UILabel!
     
     var addToSlotClosure:(()->())?

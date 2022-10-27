@@ -78,7 +78,7 @@ struct APIKeys
     static let kfirstName = "FirstName"
     static let klastName = "LastName"
     static let krelation = "Relation"
-    static let krestaurentID = "RestaurentID"
+    static let krestaurentID = "RestaurantID"
     
     static let kprimaryphone = "PrimaryPhone"
     static let kGuests = "Guests"

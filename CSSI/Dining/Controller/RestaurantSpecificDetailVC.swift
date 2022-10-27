@@ -52,6 +52,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var viewNext: UIView!
     @IBOutlet weak var viewDate: UIView!
     @IBOutlet weak var viewTime: UIView!
+    @IBOutlet weak var lblRestaurentName: UILabel!
 
     
 
@@ -60,6 +61,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var selectedPartySize = 3
     var dropDownIsOpen = false
     var selectedTime = "0:00 PM Wed"
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var selectedRestaurentId : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +87,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewDate)
         shadowView(viewName: viewNext)
         registerNibs()
-       
+        restaurentDetail()
     }
     func registerNibs(){
         let menuNib = UINib(nibName: "DinningReservationTimeSlotCollectionCell" , bundle: nil)
@@ -203,5 +206,39 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
         
+    }
+}
+
+
+// MARK: - API CALLING
+extension RestaurantSpecificDetailVC{
+    func restaurentDetail(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            var paramaterDict:[String: Any]?
+            
+             paramaterDict = [
+                "Content-Type":"application/json",
+                APIKeys.kPartySize : "5",
+                APIKeys.kFilterDate: "2022-10-14",
+                APIKeys.kFilterTime: "10:00 PM",
+                APIKeys.krestaurentID: selectedRestaurentId ?? ""
+             ]
+            
+            APIHandler.sharedInstance.GetRestaurentDetail(paramater: paramaterDict, onSuccess: { reservationDinningListing in
+                self.appDelegate.hideIndicator()
+                print(reservationDinningListing.Restaurants[0].RestaurantName)
+                self.lblRestaurentName.text = reservationDinningListing.Restaurants[0].RestaurantName
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            self.appDelegate.hideIndicator()
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
     }
 }

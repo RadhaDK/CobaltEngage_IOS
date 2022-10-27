@@ -12,8 +12,7 @@ import Foundation
 import ObjectMapper
 
 class GetDinningDetail: NSObject, Mappable {
-    
-    var responseCode            : String!
+    var result            : String!
     var responseMessage         : String!
     var restaurants             : [DiningRestaurantsData]!
     var diningSettings          : DiningSettingData!
@@ -24,14 +23,14 @@ class GetDinningDetail: NSObject, Mappable {
     
     convenience required init?(map: Map) {
         self.init()
-        responseCode            = ""
+        result            = ""
         responseMessage         = ""
         restaurants             = []
         diningSettings          = DiningSettingData()
     }
     
     func mapping(map: Map) {
-        responseCode            <- map["ResponseCode"]
+        result            <- map["result"]
         responseMessage         <- map["ResponseMessage"]
         diningSettings          <- map["DiningSetting"]
         restaurants             <- map["Restaurants"]
@@ -186,5 +185,25 @@ class DiningTablePrefenceData: NSObject, Mappable {
         
         PreferenceName         <- map["PreferenceName"]
         TablePreferenceID       <- map["TablePreferenceID"]
+    }
+}
+
+class DiningTimmingsTimeSlotData: NSObject, Mappable {
+    
+    var TimeSlot         : String!
+    
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience required init?(map: Map) {
+        self.init()
+        TimeSlot         = ""
+        
+    }
+    func mapping(map: Map) {
+        
+        TimeSlot         <- map["TimeSlot"]
     }
 }
