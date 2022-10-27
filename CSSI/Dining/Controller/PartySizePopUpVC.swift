@@ -28,7 +28,8 @@ class PartySizePopUpVC: UIViewController {
     var delegateSelectedTimePatySize : selectedPartySizeTime?
     var selectedPartySize : Int?
     var selectedDate : String?
-    var arrPartySize = ["1","2","3","4","5","6"]
+//    var arrPartySize = ["1","2","3","4","5","6"]
+    var maxPartySize = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,16 +74,16 @@ class PartySizePopUpVC: UIViewController {
 //MARK: - Collectionview methods
 extension PartySizePopUpVC : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrPartySize.count
+        return maxPartySize
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = partySizeCollectionView.dequeueReusableCell(withReuseIdentifier: "PartySizeCollectionCell", for: indexPath) as! PartySizeCollectionCell
-        let dict = arrPartySize[indexPath.row]
-        cell.partySizeCountLbl.text = dict
+//        let dict = arrPartySize[indexPath.row]
+        cell.partySizeCountLbl.text = "\(indexPath.row + 1)"
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let dict = arrPartySize[indexPath.row]
+//        let dict = arrPartySize[indexPath.row]
         selectedPartySize = indexPath.row + 1
     }
 }

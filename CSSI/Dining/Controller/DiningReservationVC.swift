@@ -98,6 +98,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func btnSelectPartySize(_ sender: Any) {
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
         vc?.delegateSelectedTimePatySize = self
+        vc?.maxPartySize = self.diningSetting.MaxPartySize ?? 5
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     
