@@ -10,6 +10,9 @@ import UIKit
 import DTCalendarView
 import FSCalendar
 
+protocol dateSelection{
+    func dateSelection(date : String)
+}
 
 class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
 
@@ -50,8 +53,8 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     }
     fileprivate let now = Date()
     fileprivate let calendar = Calendar.current
-    
-    
+    var selectedDate : String?
+    var delegateSelectedDateCalendar : dateSelection?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +77,7 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
 
     //MARK: - IBActions
     @IBAction func btnDone(_ sender: Any) {
+        delegateSelectedDateCalendar?.dateSelection(date: selectedDate ?? "")
         self.dismiss(animated: true)
     }
     @objc func calander(sender : UITapGestureRecognizer) {
@@ -197,6 +201,7 @@ extension DiningRequestSelectResturantDateVC: DTCalendarViewDelegate {
             
         }
         calendarRangeStartDate = SharedUtlity.sharedHelper().dateFormatter.string(from: calendarView.selectionStartDate!) as NSString
+        print(calendarRangeStartDate)
     }
     
     func calendarViewHeightForWeekRows(_ calendarView: DTCalendarView) -> CGFloat {
@@ -209,5 +214,13 @@ extension DiningRequestSelectResturantDateVC: DTCalendarViewDelegate {
     
     func calendarViewHeightForMonthView(_ calendarView: DTCalendarView) -> CGFloat {
         return 80
+    }
+    // This delegate call when date is selected
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+             print(date)
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY/MM/dd"
+        selectedDate = dateFormatter.string(from: date)
     }
 }

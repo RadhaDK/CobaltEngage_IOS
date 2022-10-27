@@ -10,7 +10,9 @@ import UIKit
 import DTCalendarView
 import FSCalendar
 
-class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime {
+class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection {
+   
+    
 
     
 //MARK:- Iboutlets
@@ -108,6 +110,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
+        vc?.delegateSelectedDateCalendar = self
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     
@@ -155,19 +158,28 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
             selectedPartySize = PartySize
             lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
+            self.diningReservation.PartySize = PartySize
         }
        else if Time != ""{
             lblSelectedSizeTime.text = "\(selectedPartySize) * \(Time)"
            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
            selectedTime = Time
+           self.diningReservation.SelectedTime = Time
         }
         else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
             lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
             selectedPartySize = PartySize
             selectedTime = Time
+            self.diningReservation.PartySize = PartySize
+            self.diningReservation.SelectedTime = Time
+
         }
-        tblResturat.reloadData()
+        reservationList()
+    }
+    func dateSelection(date: String) {
+        self.diningReservation.SelectedDate = date
+        reservationList()
     }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

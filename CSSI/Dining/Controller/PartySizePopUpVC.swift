@@ -59,7 +59,7 @@ class PartySizePopUpVC: UIViewController {
     
     @objc func dateSelected(){
             let dateformatter = DateFormatter()
-            dateformatter.dateFormat = "dd/MM/yyyy"
+            dateformatter.dateFormat = "yyyy-MM-dd"
             selectedDate = dateformatter.string(from: datePicker.date)
         }
 

@@ -1875,7 +1875,7 @@
         <!--Party Size Pop UpVC-->
         <scene sceneID="cvx-zO-RAT">
             <objects>
-                <viewController storyboardIdentifier="PartySizePopUpVC" id="x9o-3O-TdX" customClass="PartySizePopUpVC" customModule="CSSI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PartySizePopUpVC" modalPresentationStyle="overCurrentContext" id="x9o-3O-TdX" customClass="PartySizePopUpVC" customModule="CSSI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w4w-X8-0mB">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

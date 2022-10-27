@@ -162,7 +162,6 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
                   tblAvailability.reloadData()
               }
               else{
-             
                   heightTblAvailability.constant = CGFloat(100*selectedPartySize)
                   tblAvailability.reloadData()
               }
@@ -182,7 +181,6 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             vc!.showNavigationBar = false
             vc?.selectedPartySize = 4
             self.navigationController?.pushViewController(vc!, animated: true)
-
         }
         return cell
     }
@@ -227,8 +225,11 @@ extension RestaurantSpecificDetailVC{
             
             APIHandler.sharedInstance.GetRestaurentDetail(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                print(reservationDinningListing.Restaurants[0].RestaurantName)
-                self.lblRestaurentName.text = reservationDinningListing.Restaurants[0].RestaurantName
+                if reservationDinningListing.Restaurants.count != 0{
+                    print(reservationDinningListing.Restaurants[0].RestaurantName)
+                    self.lblRestaurentName.text = reservationDinningListing.Restaurants[0].RestaurantName
+                }
+
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()
