@@ -2443,6 +2443,11 @@
 		845432A02908176600EF103D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */,
+				09506ADC28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.swift */,
+				09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */,
+				097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */,
+				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2494,11 +2499,6 @@
 				09A0D05F28F4927500FC38F2 /* DinningHelper.swift */,
 				0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */,
 				09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */,
-				09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */,
-				09506ADC28EB48F3005BE4F7 /* DinningReservationTimeSlotCollectionCell.swift */,
-				09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */,
-				097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */,
-				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
