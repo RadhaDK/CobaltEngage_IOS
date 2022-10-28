@@ -185,7 +185,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize)"
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
-        
+        cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
