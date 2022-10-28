@@ -48,7 +48,15 @@ class PartySizePopUpVC: UIViewController {
     }
     func setUpUiInitialization(){
         dateFormatter.dateFormat = "EEE,MMM dd 'T'HH:mm a"
-              datePicker.datePickerMode = .dateAndTime
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.minuteInterval = 15
+        
+        if #available(iOS 15.0, *) {
+            datePicker.roundsToMinuteInterval = true
+            datePicker.minimumDate = .now
+        } else {
+            // Fallback on earlier versions
+        }
         if #available(iOS 13.4, *) {
             datePicker.preferredDatePickerStyle = .wheels
         } else {
