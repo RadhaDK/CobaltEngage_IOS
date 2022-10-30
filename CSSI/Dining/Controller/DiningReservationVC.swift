@@ -115,18 +115,29 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
         vc?.delegateSelectedDateCalendar = self
+        vc?.selectedDate = lblSelectedDate.text
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
+            print(currentDate)
+            let TodayDate =  Date()
+            let cDate = changeDateFormateFromDate(dateIs: currentDate)
+            let tDate = changeDateFormateFromDate(dateIs: TodayDate)
+            if cDate == tDate{
+                
+            }
+            else{
             currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+            }
         }
         else{
             currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
         }
         let dateString = self.getDateString(givenDate: currentDate)
         lblSelectedDate.text = dateString
+        reservationList()
     }
     
     //MARK: - Functions
@@ -303,5 +314,33 @@ extension  DiningReservationVC{
         dateFormatter.dateFormat = "MMM dd"
         var dateString = dateFormatter.string(from: dateString)
         return dateString
+    }
+    func changeDateFormateFromDate(dateIs : Date)-> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss Z"
+        let strDate = dateFormatter.string(from: dateIs)
+       // let date = dateFormatter.date(from: strDate)
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "MM/dd/yyyy"
+        let showDate = inputFormatter.date(from: "07/21/2016")
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        
+        dateFormatter.dateFormat = "DD-MMM-YYYY"
+        let goodDate = dateFormatter.date(from: strDate)
+        return goodDate!
+    }
+}
+extension Date {
+
+ static func getCurrentDate() -> String {
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
+
+        return dateFormatter.string(from: Date())
+
     }
 }
