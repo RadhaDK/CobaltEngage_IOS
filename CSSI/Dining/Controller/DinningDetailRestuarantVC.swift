@@ -10,7 +10,9 @@ import UIKit
 
 
 
-class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor{
+class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate {
+
+    
     
     //MARK: - IBOutlets
     @IBOutlet weak var tblGuest: UITableView!
@@ -37,6 +39,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var selectedTime : String?
     var selectedPartySize = 0
     var showNavigationBar = true
+    var diningReservation = DinningReservationFCFS()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,32 +130,48 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     
     //MARK: - Custom delegate methods
-    func addingMemberType(value: String) {
-        
-        if let memberDirectory = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberDirectoryViewController") as? MemberDirectoryViewController
-        {
-            if value == "Member"{
-                memberDirectory.isFrom = "Registration"
-            }
-            else {
-                memberDirectory.isFrom = "BuddyList"
-            }
-            navigationController?.pushViewController(memberDirectory, animated: true)
-        }
-        
-        else if value == "Guest"{
+    func addingMemberType(value: String, type: poupOpenFrom) {
+        if value == "Guest" {
             if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddGuestRegVC") as? AddGuestRegVC
             {
-                //regGuest.memberDelegate = self
-                regGuest.usedForModule = .golf
                 regGuest.screenType = .add
+                regGuest.usedForModule = .dining
                 regGuest.showExistingGuestsOption = true
                 regGuest.isDOBHidden = false
                 regGuest.isGenderHidden = false
-                regGuest.enableGuestNameSuggestions = false
-                regGuest.hideAddtoBuddy = true
-                regGuest.hideExistingGuestAddToBuddy = true
+                regGuest.enableGuestNameSuggestions = true
+                regGuest.hideAddtoBuddy = false
+                regGuest.hideExistingGuestAddToBuddy = false
+//                regGuest.requestTime = self.txtReservationtime.text ?? ""
+//                regGuest.requestDates = [self.reservationRequestDate ?? ""]
+//                regGuest.preferedSpaceDetailId = self.preferedSpaceDetailID ?? ""
+//                regGuest.requestID = self.requestID ?? ""
+//                regGuest.arrAddedMembers = [self.arrTotalList]
                 navigationController?.pushViewController(regGuest, animated: true)
+            }
+        } else {
+            if let memberDirectory = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MemberDirectoryViewController") as? MemberDirectoryViewController
+            {
+                if value == "Member"{
+                    memberDirectory.isFrom = "Registration"
+                } else {
+                    memberDirectory.isFrom = "BuddyList"
+                }
+                
+                if type == .multiple {
+                    memberDirectory.totalNumberofTickets = self.selectedPartySize - 1
+                    memberDirectory.shouldEnableMultiSelect = true
+                    memberDirectory.shouldEnableSkipping = true
+                    var partyDetailsArray :[RequestData] = []
+                    for _ in 1...selectedPartySize-1 {
+                        partyDetailsArray.append(RequestData())
+                    }
+                    memberDirectory.arrMultiSelectedMembers.append(partyDetailsArray)
+                }
+                memberDirectory.categoryForBuddy = "Dining"
+                memberDirectory.isOnlyFor = "DiningRequest"
+                memberDirectory.delegate = self
+                navigationController?.pushViewController(memberDirectory, animated: true)
             }
         }
     }
@@ -206,6 +225,32 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         let lay = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
         return CGSize(width:widthPerItem, height:50)
+    }
+    
+    // MARK: - Member selection delegates
+    
+    func requestMemberViewControllerResponse(selecteArray: [RequestData]) {
+        print(selecteArray)
+    }
+    
+    func memberViewControllerResponse(selecteArray: [MemberInfo]) {
+        print(selecteArray)
+    }
+    
+    func buddiesViewControllerResponse(selectedBuddy: [MemberInfo]) {
+        print(selectedBuddy)
+    }
+    
+    func AddGuestChildren(selecteArray: [RequestData]) {
+        print(selecteArray)
+    }
+    
+    func multiSelectRequestMemberViewControllerResponse (selectedArray : [[RequestData]]) {
+        print(selectedArray)
+    }
+    
+    func addMemberDelegate(selecteArray: [RequestData]) {
+        print(selecteArray)
     }
 }
 

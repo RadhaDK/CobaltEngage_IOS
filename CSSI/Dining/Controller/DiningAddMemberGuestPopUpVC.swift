@@ -11,7 +11,7 @@ enum poupOpenFrom {
     case addSlot,multiple
 }
 protocol  selectedSlotFor{
-    func addingMemberType(value : String)
+    func addingMemberType(value : String, type: poupOpenFrom)
 }
 class DiningAddMemberGuestPopUpVC: UIViewController {
     
@@ -66,13 +66,13 @@ setUpUi()
     //MARK: - IBActions
     @IBAction func MemberTypeSelectBtnTapped(sender:UIButton){
         if sender.tag == 1{
-            delegateSelectedMemberType?.addingMemberType(value: "Member")
+            delegateSelectedMemberType?.addingMemberType(value: "Member", type: checkPopupOpenFrom ?? .addSlot)
         }
         else if sender.tag == 2{
-            delegateSelectedMemberType?.addingMemberType(value: "Guest")
+            delegateSelectedMemberType?.addingMemberType(value: "Guest", type: checkPopupOpenFrom ?? .addSlot)
         }
         else {
-            delegateSelectedMemberType?.addingMemberType(value: "My Buddy")
+            delegateSelectedMemberType?.addingMemberType(value: "My Buddy", type: checkPopupOpenFrom ?? .addSlot)
         }
         self.dismiss(animated: true, completion: nil)
     }

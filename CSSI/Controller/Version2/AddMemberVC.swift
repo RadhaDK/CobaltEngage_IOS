@@ -699,12 +699,12 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                         break
                     }
                 }else{
-                if controller.isKind(of: DiningRequestVC.self) {
-                    delegateAddMember?.addMemberDelegate(selecteArray: [guestInfo])
-                    
-                    self.navigationController!.popToViewController(controller, animated: true)
-                    break
-                }
+                    if controller.isKind(of: DiningRequestVC.self) {
+                        delegateAddMember?.addMemberDelegate(selecteArray: [guestInfo])
+                        
+                        self.navigationController!.popToViewController(controller, animated: true)
+                        break
+                    }
                 }
             }
         }else{
@@ -978,7 +978,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                 
             ]
          
-            print("memberdict \(paramaterDict)")
+//            print("memberdict \(paramaterDict)")
             APIHandler.sharedInstance.getMemberValidation(paramater: paramaterDict, onSuccess: { (response) in
                 
                 self.appDelegate.hideIndicator()
@@ -992,7 +992,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                     }
                 for controller in self.navigationController!.viewControllers as Array {
                     
-                        if controller.isKind(of: DiningEventRegistrationVC.self) {
+                    if controller.isKind(of: DiningEventRegistrationVC.self) || controller.isKind(of: DinningDetailRestuarantVC.self) {
                             self.delegateAddMember?.addMemberDelegate(selecteArray: [self.diningInfo])
                             self.navigationController!.popToViewController(controller, animated: true)
                             break
@@ -1245,7 +1245,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                 for controller in self.navigationController!.viewControllers as Array {
                     
                   
-                        if controller.isKind(of: DiningRequestVC.self) {
+                        if controller.isKind(of: DiningRequestVC.self) || controller.isKind(of: DinningDetailRestuarantVC.self) {
                             self.delegateAddMember?.addMemberDelegate(selecteArray: [self.diningInfo])
                             self.navigationController!.popToViewController(controller, animated: true)
                             break
