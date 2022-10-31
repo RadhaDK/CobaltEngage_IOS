@@ -7,237 +7,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C1158349-E20E-4418-9CFC-16AFC9D7C2B3"
+            uuid = "52120B20-4C49-4438-A8B2-00323A43FCB4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "SelectedPartysizeTme(PartySize:Time:)"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A8024ACC-20F8-4D10-AD61-9B723B8E1356"
+            uuid = "1D89FDF3-8929-43EA-908D-83383A2A7140"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "SelectedPartysizeTme(PartySize:Time:)"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "configSlotMemberTblHeight()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "17F03D72-1340-4D4D-B59A-345406589996"
+            uuid = "76DD5EFC-540D-4551-B3D5-19BED2839482"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "calendarView(_:didSelectDate:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "17F03D72-1340-4D4D-B59A-345406589996 - b0ec0100425a1a8a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, didSelectDate: Foundation.Date) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "179"
-                  endingLineNumber = "179"
-                  offsetFromSymbolStart = "486">
-               </Location>
-               <Location
-                  uuid = "17F03D72-1340-4D4D-B59A-345406589996 - b0ec0100425a1a8a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, didSelectDate: Foundation.Date) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "179"
-                  endingLineNumber = "179"
-                  offsetFromSymbolStart = "816">
-               </Location>
-               <Location
-                  uuid = "17F03D72-1340-4D4D-B59A-345406589996 - b0ec0100425a1a8a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, didSelectDate: Foundation.Date) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "179"
-                  endingLineNumber = "179"
-                  offsetFromSymbolStart = "1404">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BE477654-BF19-4CFE-A0A7-C545A8CB3951"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "calendarView(_:dragFromDate:toDate:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BE477654-BF19-4CFE-A0A7-C545A8CB3951 - 1d9a0c6f9a1c8885"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, dragFromDate: Foundation.Date, toDate: Foundation.Date) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "111"
-                  endingLineNumber = "111"
-                  offsetFromSymbolStart = "547">
-               </Location>
-               <Location
-                  uuid = "BE477654-BF19-4CFE-A0A7-C545A8CB3951 - 1d9a0c6f9a1c8885"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, dragFromDate: Foundation.Date, toDate: Foundation.Date) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "111"
-                  endingLineNumber = "111"
-                  offsetFromSymbolStart = "907">
-               </Location>
-               <Location
-                  uuid = "BE477654-BF19-4CFE-A0A7-C545A8CB3951 - 1d9a0c6f9a1c8885"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, dragFromDate: Foundation.Date, toDate: Foundation.Date) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "111"
-                  endingLineNumber = "111"
-                  offsetFromSymbolStart = "1190">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F2207477-D824-4066-80CD-BD86A725B840"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "calendarView(_:viewForMonth:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D1F153C8-2652-498C-A99F-E6462CB17006"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "calendarView(_:disabledDaysInMonth:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "12BD35AC-4A73-4F77-8C8B-B029646C0519"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "180"
             endingLineNumber = "180"
-            landmarkName = "calendarView(_:didSelectDate:)"
+            landmarkName = "configSlotMemberTblHeight()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF9BBB94-5E51-4D48-9B38-B62940773DFF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "restaurentDetail()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E967B5F1-D810-4DBF-B43C-F55C6112CD74"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
+            landmarkName = "restaurentDetail()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "612C9B5F-F06D-4EB0-B70B-D9B67ECDD05F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "restaurentDetail()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "12BD35AC-4A73-4F77-8C8B-B029646C0519 - b0ec0100425a1a6d"
+                  uuid = "612C9B5F-F06D-4EB0-B70B-D9B67ECDD05F - 8ce4c0983136463f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, didSelectDate: Foundation.Date) -&gt; ()"
+                  symbolName = "closure #1 (CSSI.GetRestaurantDetail) -&gt; () in CSSI.RestaurantSpecificDetailVC.restaurentDetail() -&gt; ()"
                   moduleName = "CSSI"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
-                  offsetFromSymbolStart = "861">
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "4697">
                </Location>
                <Location
-                  uuid = "12BD35AC-4A73-4F77-8C8B-B029646C0519 - b0ec0100425a1a6d"
+                  uuid = "612C9B5F-F06D-4EB0-B70B-D9B67ECDD05F - 8ce4c0983136463f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DiningRequestSelectResturantDateVC.calendarView(_: DTCalendarView.DTCalendarView, didSelectDate: Foundation.Date) -&gt; ()"
+                  symbolName = "closure #1 (CSSI.GetRestaurantDetail) -&gt; () in CSSI.RestaurantSpecificDetailVC.restaurentDetail() -&gt; ()"
                   moduleName = "CSSI"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "180"
-                  endingLineNumber = "180"
-                  offsetFromSymbolStart = "1042">
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "4942">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -245,81 +135,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4081C611-49DF-4730-BD23-6F2F9F5A1B68"
+            uuid = "D88B8DFE-A69B-4A70-9EA3-AA9CEA00558C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningRequestSelectResturantDateVC.swift"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "calendar(_:didSelect:at:)"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "restaurentDetail()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "65906FCA-DE30-45F6-9C90-5A4DCAF0361F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7114"
-            endingLineNumber = "7114"
-            landmarkName = "GetRestaurentDetail(paramater:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "19D9CB0A-64DC-46C1-AB55-3F9920F698FD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7117"
-            endingLineNumber = "7117"
-            landmarkName = "GetRestaurentDetail(paramater:onSuccess:onFailure:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "19D9CB0A-64DC-46C1-AB55-3F9920F698FD - 92aa18619770843"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in CSSI.APIHandler.GetRestaurentDetail(paramater: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, onSuccess: (CSSI.GetRestaurantDetail) -&gt; (), onFailure: (Swift.Error) -&gt; ()) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Utilities/APIHandler/APIHandler.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "7117"
-                  endingLineNumber = "7117"
-                  offsetFromSymbolStart = "1502">
-               </Location>
-               <Location
-                  uuid = "19D9CB0A-64DC-46C1-AB55-3F9920F698FD - 92aa18619770843"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in CSSI.APIHandler.GetRestaurentDetail(paramater: Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;, onSuccess: (CSSI.GetRestaurantDetail) -&gt; (), onFailure: (Swift.Error) -&gt; ()) -&gt; ()"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Utilities/APIHandler/APIHandler.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "7117"
-                  endingLineNumber = "7117"
-                  offsetFromSymbolStart = "2231">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

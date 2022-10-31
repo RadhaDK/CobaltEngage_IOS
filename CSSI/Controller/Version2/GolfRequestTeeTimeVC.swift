@@ -492,12 +492,12 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    func getDateString(givenDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.string(from: givenDate)
-    }
-    
+//    func getDateString(givenDate: Date) -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MM/dd/yyyy"
+//        return dateFormatter.string(from: givenDate)
+//    }
+//    
     func minimumDate(for calendar: FSCalendar) -> Date {
         
         let dateDiff = findDateDiff(time1Str: self.minTime ?? "", time2Str: currentTime ?? "")
