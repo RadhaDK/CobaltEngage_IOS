@@ -40,7 +40,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var isDateSelected : Bool?
     var myCalendar: FSCalendar!
     var currentDate = Date()
-    var selectedPartySize = 0
+    var selectedPartySize = 6
     var selectedTime = ""
     var selectedDateString = ""
     var diningReservation = DinningReservationFCFS()
@@ -54,6 +54,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         currentDate = date
         let dateString = self.getDateString(givenDate: date)
         lblSelectedDate.text = dateString
+        
+       let currentTime =  getMonthDateFromDate(dateString: currentDate)
+        lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(selectedPartySize) | Any Resturant"
+
         setUpUiInitialization()
         reservationList()
     }
@@ -111,18 +115,29 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
         vc?.delegateSelectedDateCalendar = self
+        vc?.selectedDate = lblSelectedDate.text
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
+            print(currentDate)
+            let TodayDate =  Date()
+            let cDate = changeDateFormateFromDate(dateIs: currentDate)
+            let tDate = changeDateFormateFromDate(dateIs: TodayDate)
+            if cDate == tDate{
+                
+            }
+            else{
             currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+            }
         }
         else{
             currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
         }
         let dateString = self.getDateString(givenDate: currentDate)
         lblSelectedDate.text = dateString
+        reservationList()
     }
     
     //MARK: - Functions
@@ -134,22 +149,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     
-    //MARK: - Date Formatter
-    func getDateString(givenDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.string(from: givenDate)
-    }
-    
-    func getDayOfWeek(givenDate: Date) -> String {
-        
-        return ""
-    }
-    
-    func getmonthOfYear(givenDate: Date) -> String {
-        
-        return ""
-    }
+
     
 
     //MARK: - Custom Delgates Functions
@@ -161,8 +161,13 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             self.diningReservation.PartySize = PartySize
         }
        else if Time != ""{
-            lblSelectedSizeTime.text = "\(selectedPartySize) * \(Time)"
-           lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
+           self.diningReservation.SelectedDate = changeDateFormate(dateString: Time)
+           let FormattedTime = changeTimeFormate(dateString: Time)
+            lblSelectedSizeTime.text = "\(selectedPartySize) * \(FormattedTime)"
+           
+           let dateString = self.getMonthDate(dateString: Time)
+           
+           lblDatePartySize.text = "Selected Date, \(dateString)|  Party size \(selectedPartySize) | Any Resturant"
            selectedTime = Time
            self.diningReservation.SelectedTime = Time
         }
@@ -191,6 +196,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize)"
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
+        cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -227,6 +233,15 @@ extension DiningReservationVC{
                 self.appDelegate.hideIndicator()
                 self.restaurantsList = reservationDinningListing.restaurants!
                 self.diningSetting = reservationDinningListing.diningSettings!
+                print(reservationDinningListing.diningSettings.MinDaysInAdvance)
+                if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
+                    self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
+                }
+                if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
+                    
+                }
+              
+                
                 self.updateUI()
                 
             },onFailure: { error  in
@@ -240,5 +255,92 @@ extension DiningReservationVC{
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
+    }
+}
+
+//MARK: - Date Formatter
+extension  DiningReservationVC{
+    func getDateString(givenDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: givenDate)
+    }
+    
+    func getDayOfWeek(givenDate: Date) -> String {
+        
+        return ""
+    }
+    
+    func getmonthOfYear(givenDate: Date) -> String {
+        
+        return ""
+    }
+    func changeDateFormate(dateString : String)-> String{
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        let showDate = inputFormatter.date(from: dateString)
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+    }
+    func changeTimeFormate(dateString : String)-> String{
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        let showDate = inputFormatter.date(from: dateString)
+        inputFormatter.dateFormat = "hh:mm a E"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+    }
+    func getMonthDate(dateString : String)-> String{
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        let showDate = inputFormatter.date(from: dateString)
+        inputFormatter.dateFormat = "MMM dd"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+        
+//        let date = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMM dd"
+//        var dateString = dateFormatter.string(from: dateString)
+//        return dateString
+    }
+    func getMonthDateFromDate(dateString : Date)-> String{
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd"
+        var dateString = dateFormatter.string(from: dateString)
+        return dateString
+    }
+    func changeDateFormateFromDate(dateIs : Date)-> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss Z"
+        let strDate = dateFormatter.string(from: dateIs)
+       // let date = dateFormatter.date(from: strDate)
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "MM/dd/yyyy"
+        let showDate = inputFormatter.date(from: "07/21/2016")
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        
+        dateFormatter.dateFormat = "DD-MMM-YYYY"
+        let goodDate = dateFormatter.date(from: strDate)
+        return goodDate!
+    }
+}
+extension Date {
+
+ static func getCurrentDate() -> String {
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
+
+        return dateFormatter.string(from: Date())
+
     }
 }
