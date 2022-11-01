@@ -55,7 +55,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var lblRestaurentName: UILabel!
     @IBOutlet weak var lblDefaultTime: UILabel!
     @IBOutlet weak var lblAvailablePartySize: UILabel!
-    
+    @IBOutlet weak var lblAvailableTime: UILabel!
+
 
     //MARK: - variables
     var currentDate = Date()
@@ -66,11 +67,11 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var selectedRestaurentId : String?
     var selectedDate : String?
     var currentTime : String?
-    var restaurantDefaultSlots : [DiningTimmingsData]!
+    var restaurantDefaultSlots : [DiningTimeSlots]!
     var selectedTimeSlots : [DiningTimeSlots]!
     var arrSelectedSlotsAre = [String]()
-    var arrOtherDates = [DiningTimeSlots]()
-    
+    var arrOtherDates = [GetRestaurantSelectedDateDetail]()
+    var availableTime : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUiInitialization()
@@ -98,6 +99,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         lblSelectedDate.text = selectedDate
         lblDatePartySize.text = "Selected Date, \(currentTime ?? "")|  Party size \(selectedPartySize ?? 0) | Any Resturant"
         lblAvailablePartySize.text = "Available Party Size : \(selectedPartySize ?? 0)"
+        lblAvailableTime.text = availableTime
         restaurentDetail()
     }
     
@@ -175,7 +177,14 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             
         }
     }
-    
+    @IBAction func dinningClicked(_ sender: Any) {
+        
+        let restarantpdfDetailsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDfViewController") as! PDfViewController
+        restarantpdfDetailsVC.pdfUrl = self.dinningPolicy.dinningSettings?.diningURl ?? ""
+        restarantpdfDetailsVC.restarantName = self.appDelegate.masterLabeling.dining_policy!
+
+        self.navigationController?.pushViewController(restarantpdfDetailsVC, animated: true)
+    }
     // MARK: - MARK:- Slot Table  Height
           func configSlotMemberTblHeight(){
               if arrOtherDates.count == 0{
@@ -201,13 +210,14 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         let dict = restaurantDefaultSlots[indexPath.row]
-        cell.lblTime.text = dict.StartTime
-        if arrSelectedSlotsAre.contains(dict.StartTime){
-            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1)
-        }
-        else{
-            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 29/255, green: 66/255, blue: 122/255, alpha: 1)
-        }
+        cell.lblTime.text = dict.timeSlot
+        
+//        if arrSelectedSlotsAre.contains(dict.StartTime){
+//            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1)
+//        }
+//        else{
+//            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 29/255, green: 66/255, blue: 122/255, alpha: 1)
+//        }
             
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
@@ -224,15 +234,17 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return arrOtherDates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblAvailability.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
+        let dict = arrOtherDates[indexPath.row]
+        cell.lblPartySize.isHidden = true
         cell.lblUpcomingEvent.isHidden = true
         cell.heightUpcoming.constant = 0
-      //  cell.timeSlots = arrOtherDates[indexPath.row].timeSlot
-    //    cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize ?? "")"
+        cell.timeSlots = dict.TimeSlot
+        cell.lblTime.text = getDateFromDetailAvailability(givenDate: dict.Date)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -255,7 +267,8 @@ extension RestaurantSpecificDetailVC{
                 APIKeys.kPartySize : "2",
                 APIKeys.kFilterDate: "2022-10-28",
                 APIKeys.kFilterTime: "07:00 AM",
-                APIKeys.krestaurentID: selectedRestaurentId ?? "18A98F91-44AA-4777-9BE6-24F4D517FEC4"
+                APIKeys.krestaurentID: selectedRestaurentId ?? "18A98F91-44AA-4777-9BE6-24F4D517FEC4",
+                APIKeys.kOtherAvailableDate : "5"
              ]
             
             APIHandler.sharedInstance.GetRestaurentDetail(paramater: paramaterDict, onSuccess: { restaurntDetails in
@@ -265,19 +278,20 @@ extension RestaurantSpecificDetailVC{
                     self.lblRestaurentName.text = restaurntDetails.Restaurants[0].RestaurantName
                     self.imgRestaurent.image = self.convertBase64StringToImage(imageBase64String: restaurntDetails.Restaurants[0].RestaurantImage)
                     self.lblDefaultTime.text = "\(restaurntDetails.Restaurants[0].RestaurantSettings[0].DefaultStartTime ?? "") \(restaurntDetails.Restaurants[0].RestaurantSettings[0].DefaultEndTime ?? "")"
-                    if let defaultSlots = restaurntDetails.Restaurants[0].RestaurantSettings[0].DefaultTimeSlots{
+                    if let defaultSlots = restaurntDetails.Restaurants[0].SelectedDate[0].TimeSlot{
                     
                         print(restaurntDetails)
-                        if let otherAvailableDates = restaurntDetails.Restaurants[0].OtherAvailableDates{
-                           // self.arrOtherDates = otherAvailableDates
-                            print(self.arrOtherDates)
-                            self.tblAvailability.reloadData()
-                        }
+                      
                         print(self.arrSelectedSlotsAre)
                         self.collectionTimeSlot.delegate = self
                         self.collectionTimeSlot.dataSource = self
                         self.restaurantDefaultSlots = defaultSlots
                         self.collectionTimeSlot.reloadData()
+                    }
+                    if let otherAvailableDates = restaurntDetails.Restaurants[0].OtherAvailableDates{
+                        self.arrOtherDates = otherAvailableDates
+                        print(self.arrOtherDates.count)
+                        self.tblAvailability.reloadData()
                     }
                     
                 }

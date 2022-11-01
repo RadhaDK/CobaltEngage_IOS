@@ -52,6 +52,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var currentTime = ""
     var timeString = ""
     var arrTimeSttart = [[String:Any]]()
+    var availableTime : String?
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -264,6 +265,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             impVC.selectedDate = lblSelectedDate.text ?? ""
             impVC.selectedPartySize = self.diningReservation.PartySize
             impVC.currentTime = currentTime
+            let day = getDateTableCell(givenDate: selectedTime)
+            impVC.availableTime = "\(day) - Party Size:\(self.diningReservation.PartySize)"
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }

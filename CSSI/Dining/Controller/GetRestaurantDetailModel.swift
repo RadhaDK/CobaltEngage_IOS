@@ -142,7 +142,7 @@ class GetRestaurantDetailData: NSObject, Mappable {
 class GetRestaurantSelectedDateDetail: NSObject, Mappable {
     
     var Date         : String!
-    var TimeSlot       : [RestaurantDetailTimeSlots]!
+    var TimeSlot       : [DiningTimeSlots]!
     var TablePreferences              : [DiningTablePrefenceData]!
  
     
@@ -163,29 +163,9 @@ class GetRestaurantSelectedDateDetail: NSObject, Mappable {
     func mapping(map: Map) {
         
         Date         <- map["Date"]
-        TimeSlot       <- map["TimeSlot"]
+        TimeSlot       <- map["TimeSlots"]
         TablePreferences              <- map["TablePreferences"]
         
     }
 }
-class RestaurantDetailTimeSlots: NSObject, Mappable {
-    
-    var TimeSlot    : String!
 
-   
-    
-    override init() {
-        super.init()
-    }
-    
-    convenience required init?(map: Map) {
-        self.init()
-        TimeSlot         = ""
-    }
-    
-    func mapping(map: Map) {
-        
-        TimeSlot         <- map["TimeSlot"]
-   
-    }
-}

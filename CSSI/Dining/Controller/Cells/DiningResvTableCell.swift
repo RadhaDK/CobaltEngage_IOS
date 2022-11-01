@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 protocol DiningTimeSlotsDelegate {
     func SelectedDiningTimeSlot(timeSlot : String, row: Int)
 }
@@ -26,11 +27,13 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     var timeSlots: [DiningTimeSlots] = []
     var timeSlotsDelegate: DiningTimeSlotsDelegate?
     var row = 0
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionTimeSlot.delegate = self
         collectionTimeSlot.dataSource = self
+        print(timeSlots)
         registerNibs()
     }
     
@@ -57,6 +60,7 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         
         cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
+     
         
         return cell
     }

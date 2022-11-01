@@ -159,6 +159,15 @@ extension UIViewController{
             let goodDate = dateFormatter.date(from: strDate)
             return goodDate!
         }
+    func getDateFromDetailAvailability(givenDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let showDate = inputFormatter.date(from: givenDate)
+        inputFormatter.dateFormat = "EEEE MMM, dd"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+    }
     
 }
 extension Date {
