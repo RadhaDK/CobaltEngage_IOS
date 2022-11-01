@@ -43,13 +43,14 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     
     //MARK: - Collectionview Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return timeSlots.count
+        return 1
+       // return timeSlots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         
-        cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
+        //cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
         
         return cell
     }

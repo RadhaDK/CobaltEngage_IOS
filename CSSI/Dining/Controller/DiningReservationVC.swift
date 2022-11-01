@@ -40,24 +40,19 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var isDateSelected : Bool?
     var myCalendar: FSCalendar!
     var currentDate = Date()
-    var selectedPartySize = 6
+   
     var selectedTime = ""
     var selectedDateString = ""
     var diningReservation = DinningReservationFCFS()
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var restaurantsList: [DiningRestaurantsData] = []
     var diningSetting = DiningSettingData()
-    
+    var dinningPolicy = RequestSettings()
+    var selectedDateForTable = ""
+    var currentTime = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        let date = Date()
-        currentDate = date
-        let dateString = self.getDateString(givenDate: date)
-        lblSelectedDate.text = dateString
-        
-       let currentTime =  getMonthDateFromDate(dateString: currentDate)
-        lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(selectedPartySize) | Any Resturant"
-
+       
         setUpUiInitialization()
         reservationList()
     }
@@ -78,6 +73,16 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnBack.setTitle("", for: .normal)
         btnHome.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
+        let date = Date()
+        currentDate = date
+        let dateString = self.getDateString(givenDate: date)
+        lblSelectedDate.text = dateString
+        let timeString = self.getTimeString(givenDate: date)
+        self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(timeString)"
+        
+        currentTime =  getMonthDateFromDate(dateString: currentDate)
+        lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
+        selectedTime = getTimeStringTable(givenDate: currentDate)
     }
     
     func setUpUiInitialization(){
@@ -123,14 +128,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         if sender.tag == 1{
             print(currentDate)
             let TodayDate =  Date()
-            let cDate = changeDateFormateFromDate(dateIs: currentDate)
-            let tDate = changeDateFormateFromDate(dateIs: TodayDate)
-            if cDate == tDate{
-                
-            }
-            else{
+//            let cDate = changeDateFormateFromDate(dateIs: currentDate)
+//            let tDate = changeDateFormateFromDate(dateIs: TodayDate)
+//            if cDate == tDate{
+//
+//            }
+//            else{
             currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
-            }
+            //}
         }
         else{
             currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
@@ -138,6 +143,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         let dateString = self.getDateString(givenDate: currentDate)
         lblSelectedDate.text = dateString
         reservationList()
+    }
+    @IBAction func dinningClicked(_ sender: Any) {
+        
+        let restarantpdfDetailsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDfViewController") as! PDfViewController
+        restarantpdfDetailsVC.pdfUrl = self.dinningPolicy.dinningSettings?.diningURl ?? ""
+        restarantpdfDetailsVC.restarantName = self.appDelegate.masterLabeling.dining_policy!
+
+        self.navigationController?.pushViewController(restarantpdfDetailsVC, animated: true)
     }
     
     //MARK: - Functions
@@ -156,25 +169,25 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func SelectedPartysizeTme(PartySize: Int, Time: String) {
         if PartySize != 0 {
             lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
-            selectedPartySize = PartySize
+            self.diningReservation.PartySize = PartySize
             lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
             self.diningReservation.PartySize = PartySize
         }
        else if Time != ""{
            self.diningReservation.SelectedDate = changeDateFormate(dateString: Time)
            let FormattedTime = changeTimeFormate(dateString: Time)
-            lblSelectedSizeTime.text = "\(selectedPartySize) * \(FormattedTime)"
+            lblSelectedSizeTime.text = "\(self.diningReservation.PartySize) * \(FormattedTime)"
            
            let dateString = self.getMonthDate(dateString: Time)
            
-           lblDatePartySize.text = "Selected Date, \(dateString)|  Party size \(selectedPartySize) | Any Resturant"
+           lblDatePartySize.text = "Selected Date, \(dateString)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
            selectedTime = Time
            self.diningReservation.SelectedTime = Time
         }
         else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
             lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
-            selectedPartySize = PartySize
+            self.diningReservation.PartySize = PartySize
             selectedTime = Time
             self.diningReservation.PartySize = PartySize
             self.diningReservation.SelectedTime = Time
@@ -188,14 +201,16 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.restaurantsList.count
+        return 1
+       // return self.restaurantsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
-        cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize)"
-        cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
-        cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
+        let day = getDateTableCell(givenDate: selectedTime)
+        cell.lblPartySize.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+//        cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
+//        cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
 //        cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
         return cell
     }
@@ -204,13 +219,18 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dict = restaurantsList[indexPath.row]
+//        let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
-            impVC.selectedRestaurentId = dict.RestaurantID
-            print(dict.RestaurantID)
+//            impVC.selectedRestaurentId = dict.RestaurantID
+//            print(dict.RestaurantID)
+            impVC.selectedTime = lblSelectedSizeTime.text ?? ""
+            impVC.selectedDate = lblSelectedDate.text ?? ""
+            impVC.selectedPartySize = self.diningReservation.PartySize
+            impVC.currentTime = currentTime
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
+
 }
 
 
@@ -233,15 +253,17 @@ extension DiningReservationVC{
                 self.appDelegate.hideIndicator()
                 self.restaurantsList = reservationDinningListing.restaurants!
                 self.diningSetting = reservationDinningListing.diningSettings!
-                print(reservationDinningListing.diningSettings.MinDaysInAdvance)
+                print(self.diningReservation.SelectedDate)
+                self.diningSetting.MaxPartySize = reservationDinningListing.diningSettings.MaxPartySize
                 if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
                     self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
                 }
                 if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
                     
                 }
-              
-                
+                if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
+                    self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
+                }
                 self.updateUI()
                 
             },onFailure: { error  in
@@ -258,89 +280,4 @@ extension DiningReservationVC{
     }
 }
 
-//MARK: - Date Formatter
-extension  DiningReservationVC{
-    func getDateString(givenDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.string(from: givenDate)
-    }
-    
-    func getDayOfWeek(givenDate: Date) -> String {
-        
-        return ""
-    }
-    
-    func getmonthOfYear(givenDate: Date) -> String {
-        
-        return ""
-    }
-    func changeDateFormate(dateString : String)-> String{
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        let showDate = inputFormatter.date(from: dateString)
-        inputFormatter.dateFormat = "yyyy-MM-dd"
-        let resultString = inputFormatter.string(from: showDate!)
-        print(resultString)
-        return resultString
-    }
-    func changeTimeFormate(dateString : String)-> String{
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        let showDate = inputFormatter.date(from: dateString)
-        inputFormatter.dateFormat = "hh:mm a E"
-        let resultString = inputFormatter.string(from: showDate!)
-        print(resultString)
-        return resultString
-    }
-    func getMonthDate(dateString : String)-> String{
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        let showDate = inputFormatter.date(from: dateString)
-        inputFormatter.dateFormat = "MMM dd"
-        let resultString = inputFormatter.string(from: showDate!)
-        print(resultString)
-        return resultString
-        
-//        let date = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMM dd"
-//        var dateString = dateFormatter.string(from: dateString)
-//        return dateString
-    }
-    func getMonthDateFromDate(dateString : Date)-> String{
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd"
-        var dateString = dateFormatter.string(from: dateString)
-        return dateString
-    }
-    func changeDateFormateFromDate(dateIs : Date)-> Date{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss Z"
-        let strDate = dateFormatter.string(from: dateIs)
-       // let date = dateFormatter.date(from: strDate)
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "MM/dd/yyyy"
-        let showDate = inputFormatter.date(from: "07/21/2016")
-        inputFormatter.dateFormat = "yyyy-MM-dd"
-        let resultString = inputFormatter.string(from: showDate!)
-        print(resultString)
-        
-        dateFormatter.dateFormat = "DD-MMM-YYYY"
-        let goodDate = dateFormatter.date(from: strDate)
-        return goodDate!
-    }
-}
-extension Date {
 
- static func getCurrentDate() -> String {
-
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
-
-        return dateFormatter.string(from: Date())
-
-    }
-}

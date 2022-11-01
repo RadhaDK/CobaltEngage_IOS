@@ -55,3 +55,112 @@ extension UIButton{
 //        txtComment.layer.borderWidth = 1
     }
 }
+
+extension UIViewController{
+    //MARK: - Date Formatter
+   
+        func getDateString(givenDate: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            return dateFormatter.string(from: givenDate)
+        }
+        func getTimeString(givenDate: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "hh:mm a E"
+            return dateFormatter.string(from: givenDate)
+        }
+        func getTimeStringTable(givenDate: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+            return dateFormatter.string(from: givenDate)
+        }
+        
+        func getDateTableCell(givenDate: String) -> String {
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+            let showDate = inputFormatter.date(from: givenDate)
+            inputFormatter.dateFormat = "E, MMM"
+            let resultString = inputFormatter.string(from: showDate!)
+            print(resultString)
+            return resultString
+        }
+        
+        func getDayOfWeek(givenDate: Date) -> String {
+            
+            return ""
+        }
+        
+        func getmonthOfYear(givenDate: Date) -> String {
+            
+            return ""
+        }
+        func changeDateFormate(dateString : String)-> String{
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+            let showDate = inputFormatter.date(from: dateString)
+            inputFormatter.dateFormat = "yyyy-MM-dd"
+            let resultString = inputFormatter.string(from: showDate!)
+            print(resultString)
+            return resultString
+        }
+        func changeTimeFormate(dateString : String)-> String{
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+            let showDate = inputFormatter.date(from: dateString)
+            inputFormatter.dateFormat = "hh:mm a E"
+            let resultString = inputFormatter.string(from: showDate!)
+            print(resultString)
+            return resultString
+        }
+        func getMonthDate(dateString : String)-> String{
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+            let showDate = inputFormatter.date(from: dateString)
+            inputFormatter.dateFormat = "MMM dd"
+            let resultString = inputFormatter.string(from: showDate!)
+            print(resultString)
+            return resultString
+            
+    //        let date = Date()
+    //        let dateFormatter = DateFormatter()
+    //        dateFormatter.dateFormat = "MMM dd"
+    //        var dateString = dateFormatter.string(from: dateString)
+    //        return dateString
+        }
+        func getMonthDateFromDate(dateString : Date)-> String{
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd"
+            var dateString = dateFormatter.string(from: dateString)
+            return dateString
+        }
+        func changeDateFormateFromDate(dateIs : Date)-> Date{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss Z"
+            let strDate = dateFormatter.string(from: dateIs)
+           // let date = dateFormatter.date(from: strDate)
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "MM/dd/yyyy"
+            let showDate = inputFormatter.date(from: "07/21/2016")
+            inputFormatter.dateFormat = "yyyy-MM-dd"
+            let resultString = inputFormatter.string(from: showDate!)
+            print(resultString)
+            
+            dateFormatter.dateFormat = "DD-MMM-YYYY"
+            let goodDate = dateFormatter.date(from: strDate)
+            return goodDate!
+        }
+    
+}
+extension Date {
+
+ static func getCurrentDate() -> String {
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
+
+        return dateFormatter.string(from: Date())
+
+    }
+}

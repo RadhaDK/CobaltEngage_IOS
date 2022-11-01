@@ -47,8 +47,11 @@ class DiningSettingData: NSObject, Mappable {
     var MinDaysInAdvance        : Int!
     var MinDaysInAdvanceTime    : String!
     var MaxPartySize            : Int!
- 
-    
+    var DefaultPartySize : Int!
+    var DefaultStartTime : String!
+    var DefaultEndTime : String!
+    var DefaultTimeInterval : Int!
+    var DefaultTimeSlots : [DiningTimmingsData]!
     override init() {
         super.init()
     }
@@ -61,7 +64,11 @@ class DiningSettingData: NSObject, Mappable {
         MinDaysInAdvance        = 0
         MinDaysInAdvanceTime    = ""
         MaxPartySize            = 0
-       
+        DefaultPartySize = 0
+        DefaultStartTime = ""
+        DefaultEndTime = ""
+        DefaultTimeInterval = 0
+        DefaultTimeSlots = []
     }
     
     func mapping(map: Map) {
@@ -72,6 +79,11 @@ class DiningSettingData: NSObject, Mappable {
         MinDaysInAdvance        <- map["MinDaysInAdvance"]
         MinDaysInAdvanceTime    <- map["MinDaysInAdvanceTime"]
         MaxPartySize            <- map["MaxPartySize"]
+        DefaultPartySize <- map["DefaultPartySize"]
+        DefaultStartTime <- map["DefaultStartTime"]
+        DefaultEndTime <- map["DefaultEndTime"]
+        DefaultTimeInterval  <- map["DefaultTimeInterval"]
+        DefaultTimeSlots <- map["DefaultTimeSlots"]
     }
 }
 

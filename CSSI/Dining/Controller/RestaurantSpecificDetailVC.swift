@@ -53,32 +53,39 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var viewDate: UIView!
     @IBOutlet weak var viewTime: UIView!
     @IBOutlet weak var lblRestaurentName: UILabel!
+    @IBOutlet weak var lblDefaultTime: UILabel!
 
     
 
     //MARK: - variables
     var currentDate = Date()
-    var selectedPartySize = 3
+    var selectedPartySize : Int?
     var dropDownIsOpen = false
-    var selectedTime = "0:00 PM Wed"
+    var selectedTime : String?
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var selectedRestaurentId : String?
-
+    var selectedDate : String?
+    var currentTime : String?
+    var restaurantDefaultSlots : [DiningTimmingsData]!
+    var selectedTimeSlots : [DiningTimeSlots]!
+var arrSelectedSlotsAre = [String]()
+    var arrOtherDates = [DiningTimeSlots]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUiInitialization()
+    }
+    //MARK: - setUpUI
+    func setUpUi(){
         self.btnSelectedDate.setTitle("", for: UIControlState.normal)
         btnBack.setTitle("", for: .normal)
         btnHome.setTitle("", for: .normal)
         btnDropdown.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
         let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgRestaurent.frame.size.width, height: imgRestaurent.frame.size.height))
-        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
+        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5)
         imgRestaurent.addSubview(overlay)
         // Do any additional setup after loading the view.
-        collectionTimeSlot.delegate = self
-        collectionTimeSlot.dataSource = self
-        tblAvailability.delegate = self
-        tblAvailability.dataSource  = self
+      
         tblAvailability.isHidden = true
         heightTblAvailability.constant = 0
         imgDrop.image = UIImage(named: "Icon_Down")
@@ -86,9 +93,20 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
         shadowView(viewName: viewNext)
-        registerNibs()
+        lblSelectedSizeTime.text = selectedTime
+        lblSelectedDate.text = selectedDate
+        lblDatePartySize.text = "Selected Date, \(currentTime ?? "")|  Party size \(selectedPartySize ?? 0) | Any Resturant"
         restaurentDetail()
     }
+    
+    func setUpUiInitialization(){
+       
+        tblAvailability.delegate = self
+        tblAvailability.dataSource  = self
+        registerNibs()
+        setUpUi()
+    }
+    
     func registerNibs(){
         let menuNib = UINib(nibName: "DinningReservationTimeSlotCollectionCell" , bundle: nil)
         self.collectionTimeSlot.register(menuNib, forCellWithReuseIdentifier: "DinningReservationTimeSlotCollectionCell")
@@ -155,27 +173,40 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             
         }
     }
-    // MARK:- Slot Table  Height
+    
+    // MARK: - MARK:- Slot Table  Height
           func configSlotMemberTblHeight(){
-              if selectedPartySize == 0{
+              if arrOtherDates.count == 0{
                   heightTblAvailability.constant = 0
-                  tblAvailability.reloadData()
+                  
               }
               else{
-                  heightTblAvailability.constant = CGFloat(100*selectedPartySize)
-                  tblAvailability.reloadData()
+                  let numberOfLines = (arrOtherDates.count)+1
+                  heightTblAvailability.constant = CGFloat(100*(numberOfLines))
+                 
               }
+              tblAvailability.reloadData()
+
           }
+
     
     //MARK:- Collectioniew Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+            return restaurantDefaultSlots.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
-        
+        let dict = restaurantDefaultSlots[indexPath.row]
+        cell.lblTime.text = dict.StartTime
+        if arrSelectedSlotsAre.contains(dict.StartTime){
+            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1)
+        }
+        else{
+            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 29/255, green: 66/255, blue: 122/255, alpha: 1)
+        }
+            
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
             vc!.showNavigationBar = false
@@ -198,6 +229,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         let cell = tblAvailability.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
         cell.lblUpcomingEvent.isHidden = true
         cell.heightUpcoming.constant = 0
+      //  cell.timeSlots = arrOtherDates[indexPath.row].timeSlot
     //    cell.lblPartySize.text = "Fri, Aug - Party Size:\(selectedPartySize ?? "")"
         return cell
     }
@@ -217,17 +249,35 @@ extension RestaurantSpecificDetailVC{
             
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kPartySize : "5",
-                APIKeys.kFilterDate: "2022-10-14",
-                APIKeys.kFilterTime: "10:00 PM",
-                APIKeys.krestaurentID: selectedRestaurentId ?? ""
+                APIKeys.kCompanyCode: "00",
+                APIKeys.kPartySize : "2",
+                APIKeys.kFilterDate: "2022-10-28",
+                APIKeys.kFilterTime: "07:00 AM",
+                APIKeys.krestaurentID: selectedRestaurentId ?? "18A98F91-44AA-4777-9BE6-24F4D517FEC4"
              ]
             
-            APIHandler.sharedInstance.GetRestaurentDetail(paramater: paramaterDict, onSuccess: { reservationDinningListing in
+            APIHandler.sharedInstance.GetRestaurentDetail(paramater: paramaterDict, onSuccess: { restaurntDetails in
                 self.appDelegate.hideIndicator()
-                if reservationDinningListing.Restaurants.count != 0{
-                    print(reservationDinningListing.Restaurants[0].RestaurantName)
-                    self.lblRestaurentName.text = reservationDinningListing.Restaurants[0].RestaurantName
+                if restaurntDetails.Restaurants.count != 0{
+                    print(restaurntDetails.Restaurants[0].RestaurantName)
+                    self.lblRestaurentName.text = restaurntDetails.Restaurants[0].RestaurantName
+                    self.imgRestaurent.image = self.convertBase64StringToImage(imageBase64String: restaurntDetails.Restaurants[0].RestaurantImage)
+                    self.lblDefaultTime.text = "\(restaurntDetails.Restaurants[0].RestaurantSettings[0].DefaultStartTime ?? "") \(restaurntDetails.Restaurants[0].RestaurantSettings[0].DefaultEndTime ?? "")"
+                    if let defaultSlots = restaurntDetails.Restaurants[0].RestaurantSettings[0].DefaultTimeSlots{
+                    
+                        print(restaurntDetails)
+                        if let otherAvailableDates = restaurntDetails.Restaurants[0].OtherAvailableDates{
+                           // self.arrOtherDates = otherAvailableDates
+                            print(self.arrOtherDates)
+                            self.tblAvailability.reloadData()
+                        }
+                        print(self.arrSelectedSlotsAre)
+                        self.collectionTimeSlot.delegate = self
+                        self.collectionTimeSlot.dataSource = self
+                        self.restaurantDefaultSlots = defaultSlots
+                        self.collectionTimeSlot.reloadData()
+                    }
+                    
                 }
 
             },onFailure: { error  in
@@ -241,5 +291,14 @@ extension RestaurantSpecificDetailVC{
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
+    }
+}
+
+extension RestaurantSpecificDetailVC{
+    func convertBase64StringToImage (imageBase64String:String) -> UIImage? {
+        if let url = URL(string: imageBase64String), let data = try? Data(contentsOf: url) {
+            return UIImage(data: data)!
+        }
+        return nil
     }
 }

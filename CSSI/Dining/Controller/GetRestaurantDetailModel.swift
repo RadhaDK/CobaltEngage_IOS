@@ -103,9 +103,10 @@ class GetRestaurantDetailData: NSObject, Mappable {
     
     var RestaurantID              : String!
     var RestaurantName  : String!
+    var RestaurantImage : String!
     var TimeInterval : Int!
     var Timings : [DiningTimmingsData]!
-    var SelectedDate : GetRestaurantSelectedDateDetail!
+    var SelectedDate : [GetRestaurantSelectedDateDetail]!
     var OtherAvailableDates : [GetRestaurantSelectedDateDetail]!
     var RestaurantSettings : [DiningSettingData]!
     override init() {
@@ -121,6 +122,7 @@ class GetRestaurantDetailData: NSObject, Mappable {
         SelectedDate = nil
         OtherAvailableDates = []
         RestaurantSettings = []
+        RestaurantImage = ""
     }
     
     func mapping(map: Map) {
@@ -132,6 +134,7 @@ class GetRestaurantDetailData: NSObject, Mappable {
         SelectedDate <- map["SelectedDate"]
         OtherAvailableDates <- map["OtherAvailableDates"]
         RestaurantSettings <- map["RestaurantSettings"]
+        RestaurantImage <- map["RestaurantImage"]
     }
 }
 
@@ -139,7 +142,7 @@ class GetRestaurantDetailData: NSObject, Mappable {
 class GetRestaurantSelectedDateDetail: NSObject, Mappable {
     
     var Date         : String!
-    var TimeSlots       : [String]!
+    var TimeSlot       : [RestaurantDetailTimeSlots]!
     var TablePreferences              : [DiningTablePrefenceData]!
  
     
@@ -151,7 +154,7 @@ class GetRestaurantSelectedDateDetail: NSObject, Mappable {
     convenience required init?(map: Map) {
         self.init()
         Date         = ""
-        TimeSlots       = []
+        TimeSlot      = []
         TablePreferences              = []
      
         
@@ -160,8 +163,29 @@ class GetRestaurantSelectedDateDetail: NSObject, Mappable {
     func mapping(map: Map) {
         
         Date         <- map["Date"]
-        TimeSlots       <- map["TimeSlots"]
+        TimeSlot       <- map["TimeSlot"]
         TablePreferences              <- map["TablePreferences"]
         
+    }
+}
+class RestaurantDetailTimeSlots: NSObject, Mappable {
+    
+    var TimeSlot    : String!
+
+   
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience required init?(map: Map) {
+        self.init()
+        TimeSlot         = ""
+    }
+    
+    func mapping(map: Map) {
+        
+        TimeSlot         <- map["TimeSlot"]
+   
     }
 }
