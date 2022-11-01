@@ -40,6 +40,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var selectedPartySize = 0
     var showNavigationBar = true
     var diningReservation = DinningReservationFCFS()
+    var MeberInfoModel = [GetResrvationPartyDetail]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -251,6 +252,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func addMemberDelegate(selecteArray: [RequestData]) {
         print(selecteArray)
+        MeberInfoModel = selecteArray
     }
 }
 

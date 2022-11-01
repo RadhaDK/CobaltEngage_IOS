@@ -27,7 +27,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     var TablePreferenceID       : [String]!
     var PartyDetails            : [GetResrvationPartyDetail]!
     var UI                      : GetResrvationUI!
-    
+   
     override init() {
         super.init()
     }
