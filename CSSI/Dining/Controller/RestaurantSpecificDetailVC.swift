@@ -72,6 +72,9 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var arrSelectedSlotsAre = [String]()
     var arrOtherDates = [GetRestaurantSelectedDateDetail]()
     var availableTime : String?
+    var diningSetting = DiningSettingData()
+    var dinningPolicy = RequestSettings()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUiInitialization()
@@ -310,11 +313,4 @@ extension RestaurantSpecificDetailVC{
     }
 }
 
-extension RestaurantSpecificDetailVC{
-    func convertBase64StringToImage (imageBase64String:String) -> UIImage? {
-        if let url = URL(string: imageBase64String), let data = try? Data(contentsOf: url) {
-            return UIImage(data: data)!
-        }
-        return nil
-    }
-}
+

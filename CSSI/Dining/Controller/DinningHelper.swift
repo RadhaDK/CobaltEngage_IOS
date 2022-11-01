@@ -169,6 +169,15 @@ extension UIViewController{
         return resultString
     }
     
+    
+        func convertBase64StringToImage (imageBase64String:String) -> UIImage? {
+            if let url = URL(string: imageBase64String), let data = try? Data(contentsOf: url) {
+                return UIImage(data: data)!
+            }
+            return nil
+        }
+    
+    
 }
 extension Date {
 

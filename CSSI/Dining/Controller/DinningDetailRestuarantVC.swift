@@ -41,7 +41,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var restaurantName = ""
     var diningReservation = DinningReservationFCFS()
     var MeberInfoModel = [GetResrvationPartyDetail]()
-    
+    var restaurantImage  : String!
+    var arrMembers = String()
+    var a = DiningMemberInfo()
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
@@ -71,6 +73,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgRestaurantImage.frame.size.width, height: imgRestaurantImage.frame.size.height))
         overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
         imgRestaurantImage.addSubview(overlay)
+        
+        self.imgRestuarant.image = convertBase64StringToImage(imageBase64String: restaurantImage)
+        
         setUpUiInitialization()
     }
     func setUpUiInitialization(){
@@ -253,8 +258,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func addMemberDelegate(selecteArray: [RequestData]) {
-        print(selecteArray)
-//        MeberInfoModel = selecteArray
+        
+        
     }
 }
 

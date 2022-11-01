@@ -53,6 +53,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var timeString = ""
     var arrTimeSttart = [[String:Any]]()
     var availableTime : String?
+    var selectedRestaurantImage : String?
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -212,6 +213,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
         vc?.diningReservation = self.diningReservation
         vc?.restaurantName = self.restaurantsList[row].RestaurantName
+        vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
