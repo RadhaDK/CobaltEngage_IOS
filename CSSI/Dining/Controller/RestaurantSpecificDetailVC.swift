@@ -210,7 +210,7 @@ var arrSelectedSlotsAre = [String]()
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
             vc!.showNavigationBar = false
-            vc?.selectedPartySize = 4
+//            vc?.selectedPartySize = 4
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         return cell

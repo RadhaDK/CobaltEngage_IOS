@@ -30,15 +30,15 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var btnAddMultiple: UIButton!
     @IBOutlet weak var imgRestaurantImage: UIImageView!
     
+    @IBOutlet weak var lblRestaurantName: UILabel!
     @IBOutlet weak var lblCaptainName: UILabel!
     
     
     //MARK: - variables
     var arrBookedSlotMember = ["Lia Little"]
     var arrSpecialRequest = ["Behind lounge area","Close to enterance","Outside","On the Perimeter"]
-    var selectedTime : String?
-    var selectedPartySize = 0
     var showNavigationBar = true
+    var restaurantName = ""
     var diningReservation = DinningReservationFCFS()
     var MeberInfoModel = [GetResrvationPartyDetail]()
     
@@ -65,8 +65,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         btnAddMultiple.layer.borderColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1).cgColor
         btnHome.setTitle("", for: .normal)
         btnBack.setTitle("", for: .normal)
-        lblPartySize.text = String(format: "%02d", selectedPartySize)
-        lblTime.text = selectedTime
+        lblPartySize.text = String(format: "%02d", self.diningReservation.PartySize)
+        lblTime.text = self.diningReservation.SelectedTime
+        lblRestaurantName.text = self.restaurantName
         let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgRestaurantImage.frame.size.width, height: imgRestaurantImage.frame.size.height))
         overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
         imgRestaurantImage.addSubview(overlay)
@@ -105,11 +106,11 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     // MARK: - Slot Table  Height
     func configSlotMemberTblHeight(){
-        if selectedPartySize == 0{
+        if self.diningReservation.PartySize == 0{
             heightTblGuest.constant = 0
         }
         else{
-            let NumberOfSlot = selectedPartySize
+            let NumberOfSlot = self.diningReservation.PartySize
             let numberOfLines = NumberOfSlot ?? 0 + 1
             heightTblGuest.constant = CGFloat(60*numberOfLines)
         }
@@ -161,11 +162,11 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 }
                 
                 if type == .multiple {
-                    memberDirectory.totalNumberofTickets = self.selectedPartySize - 1
+                    memberDirectory.totalNumberofTickets = self.diningReservation.PartySize - 1
                     memberDirectory.shouldEnableMultiSelect = true
                     memberDirectory.shouldEnableSkipping = true
                     var partyDetailsArray :[RequestData] = []
-                    for _ in 1...selectedPartySize-1 {
+                    for _ in 1...self.diningReservation.PartySize-1 {
                         partyDetailsArray.append(RequestData())
                     }
                     memberDirectory.arrMultiSelectedMembers.append(partyDetailsArray)
@@ -181,7 +182,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return selectedPartySize
+        return self.diningReservation.PartySize
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -253,7 +254,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func addMemberDelegate(selecteArray: [RequestData]) {
         print(selecteArray)
-        MeberInfoModel = selecteArray
+//        MeberInfoModel = selecteArray
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 import DTCalendarView
 import FSCalendar
 
-class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection {
+class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate {
    
     
 
@@ -199,18 +199,31 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         self.diningReservation.SelectedDate = date
         reservationList()
     }
+    
+    func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+        vc!.showNavigationBar = false
+        self.diningReservation.SelectedTime = timeSlot
+        self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
+        vc?.diningReservation = self.diningReservation
+        vc?.restaurantName = self.restaurantsList[row].RestaurantName
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-       // return self.restaurantsList.count
+//        return 1
+        return self.restaurantsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
         let day = getDateTableCell(givenDate: selectedTime)
         cell.lblPartySize.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
-//        cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
-//        cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
+        cell.timeSlotsDelegate = self
+        cell.row = indexPath.row
+        cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
+        cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
 //        cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
         return cell
     }

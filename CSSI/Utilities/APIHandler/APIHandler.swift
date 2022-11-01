@@ -317,7 +317,7 @@ class APIHandler: NSObject
     static let validateOTP = "Member/GetValidateTwoStepAuthenticationOTP"
     //PROD0000019 -- End
     
-    static let dinningGetReservation = "GetDiningReservationDetails"
+    static let dinningGetReservation = "GetDiningDetailsFCFS"
     static let dinningGetRestaurantDetail = "GetRestaurantDetails"
     static let dinningSaveReservation = "SaveDiningReservation"
     static let dinningEditReservation = "EditDiningReservation"
@@ -7144,8 +7144,7 @@ class APIHandler: NSObject
     //MARK:- DinningReservation Listing
     func GetDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(GetDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = dinningDevURL + APIHandler.dinningGetReservation
-        print(url)
-        print(paramater)
+
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")

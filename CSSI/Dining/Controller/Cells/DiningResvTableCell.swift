@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DiningTimeSlotsDelegate {
+    func SelectedDiningTimeSlot(timeSlot : String, row: Int)
+}
+
 class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     
@@ -20,6 +24,8 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     @IBOutlet weak var heightUpcoming: NSLayoutConstraint!
     
     var timeSlots: [DiningTimeSlots] = []
+    var timeSlotsDelegate: DiningTimeSlotsDelegate?
+    var row = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,14 +49,14 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     
     //MARK: - Collectionview Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-       // return timeSlots.count
+//        return 1
+        return timeSlots.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         
-        //cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
+        cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
         
         return cell
     }
@@ -60,9 +66,8 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-        vc!.showNavigationBar = false
-        vc?.selectedPartySize = 4
-        self.parentViewController?.navigationController?.pushViewController(vc!, animated: true)
+        
+        self.timeSlotsDelegate?.SelectedDiningTimeSlot(timeSlot: self.timeSlots[indexPath.row].timeSlot, row: self.row)
+        
     }
 }
