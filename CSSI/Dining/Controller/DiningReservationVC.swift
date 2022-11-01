@@ -50,6 +50,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var dinningPolicy = RequestSettings()
     var selectedDateForTable = ""
     var currentTime = ""
+    var timeString = ""
+    var arrTimeSttart = [[String:Any]]()
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -77,12 +79,13 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         currentDate = date
         let dateString = self.getDateString(givenDate: date)
         lblSelectedDate.text = dateString
-        let timeString = self.getTimeString(givenDate: date)
+        timeString = self.getTimeString(givenDate: date)
         self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(timeString)"
         
         currentTime =  getMonthDateFromDate(dateString: currentDate)
         lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
         selectedTime = getTimeStringTable(givenDate: currentDate)
+
     }
     
     func setUpUiInitialization(){
@@ -183,6 +186,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
            lblDatePartySize.text = "Selected Date, \(dateString)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
            selectedTime = Time
            self.diningReservation.SelectedTime = Time
+           self.lblSelectedDate.text = self.getDateFromCustomDelegate(givenDate: Time)
         }
         else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
@@ -191,7 +195,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             selectedTime = Time
             self.diningReservation.PartySize = PartySize
             self.diningReservation.SelectedTime = Time
-
+            self.lblSelectedDate.text = self.getDateFromCustomDelegate(givenDate: Time)
         }
         reservationList()
     }
@@ -224,7 +228,27 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.row = indexPath.row
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
-//        cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
+   let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
+            print(timmings)
+        print(timmings.EndTime)
+        
+      // print(self.restaurantsList[indexPath.row].Timings[indexPath.row])
+       
+        
+//     timmings?.forEach{
+//         i in print(i)
+//         let startEndTime = ["StartTime" : "\(i.StartTime ?? "")", "EndTime" : "\(i.EndTime ?? "")"]
+//         arrTimeSttart.append(startEndTime)
+//
+//     }
+//        let cookieHeader = (arrTimeSttart.flatMap({ (value) -> String in
+//            return "\(value)"
+//        }) as Array).joined(separator: ";")
+//
+//        print(cookieHeader)
+       
+        
+      //  cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -232,9 +256,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let dict = restaurantsList[indexPath.row]
+        let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
-//            impVC.selectedRestaurentId = dict.RestaurantID
+            impVC.selectedRestaurentId = dict.RestaurantID
 //            print(dict.RestaurantID)
             impVC.selectedTime = lblSelectedSizeTime.text ?? ""
             impVC.selectedDate = lblSelectedDate.text ?? ""
@@ -242,6 +266,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             impVC.currentTime = currentTime
             self.navigationController?.pushViewController(impVC, animated: true)
         }
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
     }
 
 }
@@ -276,6 +303,10 @@ extension DiningReservationVC{
                 }
                 if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
                     self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
+                }
+                if let defaultPartySize = reservationDinningListing.diningSettings.DefaultPartySize{
+                    self.diningReservation.PartySize = defaultPartySize
+                    self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
                 }
                 self.updateUI()
                 

@@ -11,19 +11,19 @@ import UIKit
 class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime {
     func SelectedPartysizeTme(PartySize: Int, Time: String) {
         if PartySize != 0 {
-            lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
-            selectedPartySize = Int(PartySize) ?? 6
-            lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
+            lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime ?? "")"
+            selectedPartySize = Int(PartySize)
+            lblDatePartySize.text = "Selected Date, \(selectedTime ?? "")|  Party size \(PartySize) | Any Resturant"
         }
        else if Time != ""{
-            lblSelectedSizeTime.text = "\(selectedPartySize) * \(Time)"
-           lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize) | Any Resturant"
+           lblSelectedSizeTime.text = "\(selectedPartySize ?? 0) * \(Time)"
+           lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(selectedPartySize ?? 0) | Any Resturant"
            selectedTime = Time
         }
         else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
             lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
-            selectedPartySize = Int(PartySize) ?? 6
+            selectedPartySize = Int(PartySize)
             selectedTime = Time
         }
  
@@ -54,7 +54,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var viewTime: UIView!
     @IBOutlet weak var lblRestaurentName: UILabel!
     @IBOutlet weak var lblDefaultTime: UILabel!
-
+    @IBOutlet weak var lblAvailablePartySize: UILabel!
     
 
     //MARK: - variables
@@ -68,8 +68,9 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var currentTime : String?
     var restaurantDefaultSlots : [DiningTimmingsData]!
     var selectedTimeSlots : [DiningTimeSlots]!
-var arrSelectedSlotsAre = [String]()
+    var arrSelectedSlotsAre = [String]()
     var arrOtherDates = [DiningTimeSlots]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUiInitialization()
@@ -96,6 +97,7 @@ var arrSelectedSlotsAre = [String]()
         lblSelectedSizeTime.text = selectedTime
         lblSelectedDate.text = selectedDate
         lblDatePartySize.text = "Selected Date, \(currentTime ?? "")|  Party size \(selectedPartySize ?? 0) | Any Resturant"
+        lblAvailablePartySize.text = "Available Party Size : \(selectedPartySize ?? 0)"
         restaurentDetail()
     }
     

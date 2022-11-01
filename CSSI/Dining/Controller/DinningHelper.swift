@@ -74,6 +74,15 @@ extension UIViewController{
             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
             return dateFormatter.string(from: givenDate)
         }
+    func getDateFromCustomDelegate(givenDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
+        let showDate = inputFormatter.date(from: givenDate)
+        inputFormatter.dateFormat = "MM/dd/yyyy"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+    }
         
         func getDateTableCell(givenDate: String) -> String {
             let inputFormatter = DateFormatter()
