@@ -134,6 +134,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         if value == "Guest" {
             if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddGuestRegVC") as? AddGuestRegVC
             {
+                regGuest.memberDelegate = self
                 regGuest.screenType = .add
                 regGuest.usedForModule = .dining
                 regGuest.showExistingGuestsOption = true

@@ -351,12 +351,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         
         courceCollectionView.collectionViewLayout = layout
         
-        viewGroups.layer.cornerRadius = 18
-     
-        viewGroups.layer.shadowColor = UIColor.black.cgColor
-        viewGroups.layer.shadowOpacity = 0.23
-        viewGroups.layer.shadowOffset = CGSize(width: 2, height: 2)
-        viewGroups.layer.shadowRadius = 4
+        self.manageViewGroup()
     
         
         btnCancelRequest.backgroundColor = .clear
@@ -490,6 +485,16 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         //ENGAGE0011372 -- Start
         
         
+    }
+    
+    func manageViewGroup() {
+        viewGroups.layer.cornerRadius = 18
+//        viewGroups.backgroundColor = .lightGray
+        viewGroups.layer.shadowColor = UIColor.black.cgColor
+        viewGroups.layer.shadowOpacity = 0.28
+        viewGroups.layer.shadowOffset = CGSize(width: 2, height: 2)
+        viewGroups.layer.shadowRadius = 4
+        viewGroups.layer.masksToBounds = false
     }
     
     func getDateString(givenDate: Date) -> String {
@@ -1749,7 +1754,12 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             
                         }else{
                             cell.lblname.text = playObj.name
-                            cell.lblID.text = playObj.memberId
+                            if playObj.memberId != nil {
+                                cell.lblID.text = playObj.memberId
+                            } else {
+                                cell.lblID.text = playObj.guestType
+                            }
+                            
                             
                         }
                         
@@ -1825,7 +1835,11 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             
                         }else{
                             cell.lblname.text = playObj.name
-                            cell.lblID.text = playObj.memberId
+                            if playObj.memberId != nil {
+                                cell.lblID.text = playObj.memberId
+                            } else {
+                                cell.lblID.text = playObj.guestType
+                            }
                             
                         }
                         if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
@@ -1897,7 +1911,11 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             
                         }else{
                             cell.lblname.text = playObj.name
-                            cell.lblID.text = playObj.memberId
+                            if playObj.memberId != nil {
+                                cell.lblID.text = playObj.memberId
+                            } else {
+                                cell.lblID.text = playObj.guestType
+                            }
                             
                         }
                         if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
@@ -1968,7 +1986,11 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                             
                         }else{
                             cell.lblname.text = playObj.name
-                            cell.lblID.text = playObj.memberId
+                            if playObj.memberId != nil {
+                                cell.lblID.text = playObj.memberId
+                            } else {
+                                cell.lblID.text = playObj.guestType
+                            }
                             
                         }
                         if playObj.memberRequestHoles?.lowercased() == "9 Holes".lowercased() {
