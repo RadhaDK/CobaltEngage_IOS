@@ -40,12 +40,17 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var showNavigationBar = true
     var restaurantName = ""
     var diningReservation = DinningReservationFCFS()
-    var MeberInfoModel = [GetResrvationPartyDetail]()
+    var MeberInfoModel = [ResrvationPartyDetail]()
     var restaurantImage  : String!
     var arrMembers = String()
-    var a = DiningMemberInfo()
+    var diningRequestMode = ""
+    var selectedIndex = -1
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetup()
         setUpUi()
     }
     
@@ -55,7 +60,12 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
     }
     
-    //MARK: - setUpUI
+    //MARK: - Initial Setup
+    
+    func initialSetup() {
+        self.setupDefaultMemberValues()
+    }
+    
     func setUpUi(){
 //        imgRestuarant.layer.cornerRadius = 8
         txtReservationComment.layer.borderWidth = 1
@@ -88,9 +98,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     //MARK: - IBOutlets
     @IBAction func btnSubmit(_ sender: Any) {
-        if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as? DiningRequestConfirmedVC {
-            self.navigationController?.present(confirmDinningRequest, animated: true)
-        }
+        
     }
     
     @IBAction func btnAddMultiple(_ sender: Any) {
@@ -108,8 +116,23 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Functions
     
-    // MARK: - Slot Table  Height
+    func setupDefaultMemberValues() {
+        if diningRequestMode == "" {
+            if self.diningReservation.PartySize > 1 {
+                for _ in 0...self.diningReservation.PartySize-1 {
+                    self.diningReservation.PartyDetails.append(ResrvationPartyDetail.init())
+                }
+            } else {
+                self.diningReservation.PartyDetails.append(ResrvationPartyDetail.init())
+            }
+            self.getLoggedInUserInfo()
+        } else {
+            
+        }
+    }
+
     func configSlotMemberTblHeight(){
         if self.diningReservation.PartySize == 0{
             heightTblGuest.constant = 0
@@ -121,7 +144,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         }
         tblGuest.reloadData()
     }
-    // MARK: - Special Request Collection  Height
+
     func configSlotMemberCollectionHeight(){
         if arrSpecialRequest.count == 0{
             heightSpecialRequestCollection.constant = 0
@@ -133,6 +156,24 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             heightViewBackSpecialRequest.constant = 70 + CGFloat(35*numberOfLines)
         }
         collectionAddSpecialRequest.reloadData()
+    }
+    
+    func diningMemberInfoToResrvationPartyDetail(memberInfo: DiningMemberInfo) -> ResrvationPartyDetail {
+        let partyMemberInfo = ResrvationPartyDetail()
+        partyMemberInfo.setPartyDetails(memberID: memberInfo.id ?? "", memberName: memberInfo.name ?? "", diet: memberInfo.dietaryRestrictions ?? "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0)
+        return partyMemberInfo
+    }
+
+    func guestInfoToResrvationPartyDetail(memberInfo: GuestInfo) -> ResrvationPartyDetail {
+        let partyMemberInfo = ResrvationPartyDetail()
+        partyMemberInfo.setPartyDetails(memberID: "", memberName: memberInfo.guestName ?? "", diet: "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0)
+        return partyMemberInfo
+    }
+    
+    func setCaptainWithDefaultValues() {
+        let partyMemberInfo = ResrvationPartyDetail()
+        partyMemberInfo.setPartyDetails(memberID: UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "", memberName: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue) ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0)
+        self.diningReservation.PartyDetails[0] = partyMemberInfo
     }
     
     
@@ -170,11 +211,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                     memberDirectory.totalNumberofTickets = self.diningReservation.PartySize - 1
                     memberDirectory.shouldEnableMultiSelect = true
                     memberDirectory.shouldEnableSkipping = true
-                    var partyDetailsArray :[RequestData] = []
-                    for _ in 1...self.diningReservation.PartySize-1 {
-                        partyDetailsArray.append(RequestData())
-                    }
-                    memberDirectory.arrMultiSelectedMembers.append(partyDetailsArray)
+                    
+                    memberDirectory.arrMultiSelectedMembers.append(self.diningReservation.PartyDetails)
                 }
                 memberDirectory.categoryForBuddy = "Dining"
                 memberDirectory.isOnlyFor = "DiningRequest"
@@ -192,18 +230,25 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
-        if indexPath.row == 0{
-            cell.lblSlotMember.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!
-            self.lblCaptainName.text = "Captain: " + (cell.lblSlotMember.text ?? "")
-        } else {
+        
+        
+        if self.diningReservation.PartyDetails[indexPath.row].MemberName == "" {
             cell.lblSlotMember.text = "Reservation"
             cell.lblSlotMember.textColor = .gray
+        } else {
+            cell.lblSlotMember.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
+            cell.lblSlotMember.textColor = .systemBlue
+        }
+        
+        if indexPath.row == 0{
+            self.lblCaptainName.text = "Captain: " + (cell.lblSlotMember.text ?? "")
         }
         
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
             vc?.delegateSelectedMemberType = self
             vc?.checkPopupOpenFrom = .addSlot
+            self.selectedIndex = indexPath.row
             self.navigationController?.present(vc!, animated: false, completion: nil)
         }
         
@@ -237,8 +282,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     // MARK: - Member selection delegates
     
-    func requestMemberViewControllerResponse(selecteArray: [RequestData]) {
-        print(selecteArray)
+    func requestMemberViewControllerResponse(selecteArray: [RequestData]) { // Selecting Existing Guest & New Guest "GuestInfo" Obj
+
+        self.diningReservation.PartyDetails[self.selectedIndex] = self.guestInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! GuestInfo)
     }
     
     func memberViewControllerResponse(selecteArray: [MemberInfo]) {
@@ -253,13 +299,96 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         print(selecteArray)
     }
     
-    func multiSelectRequestMemberViewControllerResponse (selectedArray : [[RequestData]]) {
+    func multiSelectRequestMemberViewControllerResponse (selectedArray : [[RequestData]]) { // Multi select members & Buddy "DiningMemberInfo" Obj
         print(selectedArray)
     }
     
-    func addMemberDelegate(selecteArray: [RequestData]) {
-        
-        
+    func addMemberDelegate(selecteArray: [RequestData]) { // Selecting a Single member & Buddy "DiningMemberInfo" Obj
+ 
+        self.diningReservation.PartyDetails[self.selectedIndex] = self.diningMemberInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! DiningMemberInfo)
     }
+    
+    
+
+    
+    //MARK: - API Callings
+    
+    func getLoggedInUserInfo() {
+
+        var paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict],
+            APIKeys.ksearchby : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kpagecount: 1,
+            APIKeys.krecordperpage:25
+        ] as [String : Any]
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.getMemberSpouseList(paramaterDict: paramaterDict) { response in
+            
+            if(response.responseCode == InternetMessge.kSuccess)
+            {
+                if(response.memberList == nil){
+                    self.setCaptainWithDefaultValues()
+                } else {
+                    if response.memberList?.count != 0 {
+                        for i in response.memberList! {
+                            if i.id == UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "" {
+                                let captainInfo = ResrvationPartyDetail.init()
+                                captainInfo.setPartyDetails(memberID: i.id ?? "", memberName: i.memberName ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0)
+                                self.diningReservation.PartyDetails[0] = captainInfo
+                            }
+                        }
+                    } else {
+                        self.setCaptainWithDefaultValues()
+                    }
+                }
+            }
+            self.tblGuest.reloadData()
+            self.appDelegate.hideIndicator()
+        } onFailure: { error in
+            self.appDelegate.hideIndicator()
+            self.setCaptainWithDefaultValues()
+        }
+
+    }
+    
+    func saveDiningReservation() {
+        
+//        var ReqBodyJsonString = Mapper().toJSONString(self.diningReservation, prettyPrint: true)
+        var paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict],
+            APIKeys.ksearchby : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kpagecount: 1,
+            APIKeys.krecordperpage:25
+        ] as [String : Any]
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.saveDinningReservation(paramater: paramaterDict, parameterObj: self.diningReservation) { response in
+            
+            if(response.responseCode == InternetMessge.kSuccess)
+            {
+                if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as? DiningRequestConfirmedVC {
+                    self.navigationController?.present(confirmDinningRequest, animated: true)
+                }
+            } else {
+//                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+            }
+            self.appDelegate.hideIndicator()
+        } onFailure: { error in
+            self.appDelegate.hideIndicator()
+//            SharedUtlity.sharedHelper().showToast(on:
+//                self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+        }
+
+    }
+    
 }
 

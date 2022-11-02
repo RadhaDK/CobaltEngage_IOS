@@ -7182,9 +7182,9 @@ class APIHandler: NSObject
     }
     
     //MARK:-  SaveDinningReservation Listing
-    func saveDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(GetDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
+    func saveDinningReservation(paramater: [String: Any]?, parameterObj: DinningReservationFCFS, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = dinningDevURL + APIHandler.dinningSaveReservation
-        print(url)
+        
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
             APIHeader.kpassword: APIHeader.kpasswordvalue,
@@ -7192,8 +7192,7 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        print(headers)
-        print(paramater)
+
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")
@@ -7211,7 +7210,7 @@ class APIHandler: NSObject
                             SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
                         }
                         else{
-                            let dashboardDict = Mapper<GetDinningDetail>().map(JSONObject: jsonDict)
+                            let dashboardDict = Mapper<DinningReservationFCFS>().map(JSONObject: jsonDict)
                             onSuccess(dashboardDict!)
                         }
                     }

@@ -25,7 +25,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     dynamic var SelectedDate    = ""
     var Comments                : String!
     var TablePreferenceID       : [String]!
-    var PartyDetails            : [GetResrvationPartyDetail]!
+    var PartyDetails            : [ResrvationPartyDetail]! = []
     var UI                      : GetResrvationUI!
    
     override init() {
@@ -52,8 +52,8 @@ class DinningReservationFCFS : NSObject, Mappable {
     func mapping(map: Map) {
         
         
-        responseCode            <- map["ResponseCode"]
-        responseMessage         <- map["ResponseMessage"]
+        responseCode            <- map["Response"]
+        responseMessage         <- map["Message"]
         RequestID               <- map["RequestID"]
         RestaurantID            <- map["RestaurantID"]
         ConfirmationNumber      <- map["ConfirmationNumber"]
@@ -71,7 +71,7 @@ class DinningReservationFCFS : NSObject, Mappable {
 
 
 
-class GetResrvationPartyDetail: NSObject, Mappable {
+class ResrvationPartyDetail: RequestData, Mappable {
     
     var MemberID            : String!
     var MemberType          : Int!
@@ -114,6 +114,18 @@ class GetResrvationPartyDetail: NSObject, Mappable {
         OtherText           <- map["OtherText"]
         HighChair           <- map["HighChair"]
         BoosterChair        <- map["BoosterChair"]
+    }
+    
+    func setPartyDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int) {
+        self.MemberID = memberID
+        self.MemberName = memberName
+        self.DietartRestriction = diet
+        self.Anniversary = anniversary
+        self.Birthday = birthday
+        self.Other = other
+        self.OtherText = otherText
+        self.HighChair = highChair
+        self.BoosterChair = boosterChair
     }
 }
 

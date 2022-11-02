@@ -293,7 +293,7 @@ extension DiningReservationVC{
                 APIKeys.kFilterTime: self.diningReservation.SelectedTime,
                 APIKeys.kCompanyCode: "00"
              ]
-            print(paramaterDict)
+//            print(paramaterDict)
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 self.restaurantsList = reservationDinningListing.restaurants!

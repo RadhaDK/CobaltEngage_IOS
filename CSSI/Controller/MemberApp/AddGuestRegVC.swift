@@ -585,13 +585,13 @@ class AddGuestRegVC: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         //Added by kiran V2.5 11/30 -- ENGAGE0011297 -- Removing back button menus
         //ENGAGE0011297 -- Start
         //Added on 3rd July 2020 in BMS
 //        let barbutton = UIBarButtonItem.init(image : UIImage.init(named: "back_btn"), style: .plain, target: self , action: #selector(backBtnClicked(sender:)))
 //        barbutton.imageInsets = UIEdgeInsets.init(top: 0, left: -6.5, bottom: 0, right: 0)
 //        self.navigationItem.leftBarButtonItem = barbutton
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnClicked(sender:)))
         //ENGAGE0011297 -- End
          
