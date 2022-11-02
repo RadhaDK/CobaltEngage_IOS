@@ -1235,7 +1235,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             cell.clickedDinningClosure = {
                 if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
                     impVC.showNavigationBar = false
-                    impVC.enumForNavigationFrom = .modify
+                    impVC.enumForDinningMode = .modify
                     impVC.requestedId = dict.RequestID
                     self.navigationController?.pushViewController(impVC, animated: true)
                 }
