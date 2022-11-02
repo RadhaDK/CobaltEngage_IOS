@@ -17,6 +17,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var myTableView: UITableView!
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var arrEventList = [ListEvents]()
+    var arrMyDinningList = [MyDiningData]()
     var category : NSString!
     
     var strSearchText : String?
@@ -57,7 +58,8 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDiningEventApi(strSearch: strSearchText)
+                self.myDinningReservationList()
+              //  self.myDiningEventApi(strSearch: strSearchText)
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"
             {
@@ -1200,182 +1202,222 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrEventList.count
+            if(self.appDelegate.typeOfCalendar == "Dining"){
+                return arrMyDinningList.count
+                //  self.myDiningEventApi(strSearch: strSearchText)
+            }
+            else{
+                return arrEventList.count
+            }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:EventCustomTableViewCell = self.myTableView.dequeueReusableCell(withIdentifier: "eventsIdentifier") as! EventCustomTableViewCell
-        var eventobj =  ListEvents()
-        eventobj = arrEventList[indexPath.row]
-        cell.delegate = self
-        
-        cell.btnViewOnly.setTitle("", for: .normal)
-        print(eventobj.buttontextvalue)
-        
-        if (eventobj.type == "2") {
-            cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")
-            if eventobj.eventCategory?.lowercased() == "golf" || eventobj.eventCategory?.lowercased() == "dining"{
-                cell.lblLocation.text = eventobj.location ?? ""
-                
-            }else{
-                cell.lblLocation.text = ""
-            }
-            if let teeBox = eventobj.eventTeeBox {
-                if teeBox != "" {
-                    cell.lblEventTime.text = (cell.lblEventTime.text ?? "") + "(\(teeBox))"
-                }
-            }
-        }else{
+  
+        if(self.appDelegate.typeOfCalendar == "Dining"){
+           
             
-            if (self.appDelegate.selectedSegment == "0") && eventobj.eventCategory?.lowercased() == "dining"{
-                cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")
-                
-            }else{
-                //                    cell.lblEventTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "", eventobj.eventendtime ?? "")
-                if eventobj.eventendtime == "" {
-                    cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")
-                }
-                else if eventobj.eventTime == "" {
-                    cell.lblEventTime.text = String(format: "%@", eventobj.eventendtime ?? "")
-                }
-                else if eventobj.eventendtime == "" && eventobj.eventTime == "" {
-                    cell.lblEventTime.text = ""
-                }
-                else{
-                    cell.lblEventTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "", eventobj.eventendtime ?? "")
+            let cell = self.myTableView.dequeueReusableCell(withIdentifier: "eventsIdentifierDinning") as! DinningMyReservationTableCell
+            var dict = arrMyDinningList[indexPath.row]
+            print(dict.RestaurantName)
+            
+            cell.lblEventTime.text = "\(dict.SelectedTime ?? "") Party Size: \(dict.PartySize ?? 0)"
+            cell.lblEventName.text = dict.RestaurantName
+            cell.lblLocation.text = dict.ReservationType
+            cell.regStatus.text = dict.ReservationStatus
+            cell.lblEventID.text = "#\(dict.ConfirmationNumber ?? 0)"
+            if let day = dict.SelectedDate{
+                cell.lblWeekDay.text = getDayOfWeek(givenDate: day)
+            }
+            if let date = dict.SelectedDate{
+                cell.lblDate.text = getDateDinning(givenDate: date)
+            }
+            cell.clickedDinningClosure = {
+                if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
+                    impVC.showNavigationBar = false
+                    impVC.enumForNavigationFrom = .modify
+                    impVC.requestedId = dict.RequestID
+                    self.navigationController?.pushViewController(impVC, animated: true)
                 }
             }
-            cell.lblLocation.text = eventobj.eventVenue ?? ""
-            if let teeBox = eventobj.eventTeeBox {
-                if teeBox != "" {
-                    cell.lblEventTime.text = (cell.lblEventTime.text ?? "") + "(\(teeBox))"
-                }
-            }
-        }
-        if self.appDelegate.typeOfCalendar == "Golf" {
             
-        }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
-        
-        var weekDay = ""
-        var dateAndMonth = ""
-        
-        if EventDate != nil {
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "dd-MM-yyyy"
+            return cell
             
-            dateFormat.dateFormat = "dd"
-            weekDay = dateFormat.string(from: EventDate!)
-            
-            dateFormat.dateFormat = "MMM"
-            dateAndMonth = dateFormat.string(from: EventDate!)
-        }
-        
-        if eventobj.eventstatus == "" && eventobj.colorCode == "" {
-            cell.lblStatus.isHidden = true
-            cell.lblStatusColor.isHidden = true
-            // cell.btnEventStatus.isHidden = true
-            cell.regStatus.isHidden = true
-            
-            cell.statusHeight.constant = 0
-            cell.heightTopView.constant = 100
-            
-        }else{
-            cell.lblStatus.isHidden = false
-            cell.lblStatusColor.isHidden = false
-            //cell.btnEventStatus.isHidden = false
-            cell.regStatus.isHidden = false
-            
-            cell.statusHeight.constant = 20
-            cell.heightTopView.constant = 130
-        }
-        
-        if(self.appDelegate.typeOfCalendar == "Dining") && eventobj.type == "2"{
-            cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
-            cell.lblEventName.text = eventobj.eventName
-            cell.heightPartySize.constant = 18
-            
-        }else{
-            cell.lblPartySize.text = ""
-            cell.lblEventName.text = eventobj.eventName
-            cell.heightPartySize.constant = 10
-        }
-        
-        cell.lblStatus.text = self.appDelegate.masterLabeling.status
-        cell.lblDate.text = weekDay
-        cell.lblDay.text = dateAndMonth
-        cell.lblWeekDay.text = eventobj.eventDayName
-        
-        if(eventobj.buttontextvalue == "0"){
-            cell.btnRegister.isHidden = true
-        }
-        else if(eventobj.buttontextvalue == "1"){
-            cell.btnRegister.isHidden = false
-            
-            cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_request, for: UIControlState.normal)
-            
-        }
-        else if(eventobj.buttontextvalue == "2"){
-            cell.btnRegister.isHidden = false
-            
-            cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_modify, for: UIControlState.normal)
-            
-        }
-        else if(eventobj.buttontextvalue == "3"){
-            cell.btnRegister.isHidden = false
-            
-            cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_cancel, for: UIControlState.normal)
-            
-        }
-        else if(eventobj.buttontextvalue == "4"){
-            cell.btnRegister.isHidden = false
-            
-            cell.btnRegister .setTitle(self.appDelegate.masterLabeling.VIEW, for: UIControlState.normal)
-            
-        }
-        cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
-        
-        
-        if self.appDelegate.selectedSegment == "0"{
-            //  cell.btnEventStatus .setTitle(eventobj.memberEventStatus, for: UIControlState.normal)
-            cell.regStatus.text = eventobj.memberEventStatus
-            
-        }else{
-            //   cell.btnEventStatus .setTitle(eventobj.eventstatus, for: UIControlState.normal)
-            cell.regStatus.text = eventobj.eventstatus
-            
-        }
-        cell.delegate = self
-        if (self.appDelegate.selectedSegment == "0") || eventobj.eventCategory?.lowercased() == "dining"{
-            cell.lblEventID.isHidden = false
-            cell.lblEventID.text = eventobj.confirmationNumber ?? ""
         }
         else{
-            cell.lblEventID.isHidden = true
+            let cell:EventCustomTableViewCell = self.myTableView.dequeueReusableCell(withIdentifier: "eventsIdentifier") as! EventCustomTableViewCell
+            var eventobj =  ListEvents()
+            eventobj = arrEventList[indexPath.row]
+            cell.delegate = self
             
+            cell.btnViewOnly.setTitle("", for: .normal)
+            print(eventobj.buttontextvalue)
+            
+            if (eventobj.type == "2") {
+                cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                if eventobj.eventCategory?.lowercased() == "golf" || eventobj.eventCategory?.lowercased() == "dining"{
+                    cell.lblLocation.text = eventobj.location ?? ""
+                    
+                }else{
+                    cell.lblLocation.text = ""
+                }
+                if let teeBox = eventobj.eventTeeBox {
+                    if teeBox != "" {
+                        cell.lblEventTime.text = (cell.lblEventTime.text ?? "") + "(\(teeBox))"
+                    }
+                }
+            }else{
+                
+                if (self.appDelegate.selectedSegment == "0") && eventobj.eventCategory?.lowercased() == "dining"{
+                    cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                    
+                }else{
+                    //                    cell.lblEventTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "", eventobj.eventendtime ?? "")
+                    if eventobj.eventendtime == "" {
+                        cell.lblEventTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                    }
+                    else if eventobj.eventTime == "" {
+                        cell.lblEventTime.text = String(format: "%@", eventobj.eventendtime ?? "")
+                    }
+                    else if eventobj.eventendtime == "" && eventobj.eventTime == "" {
+                        cell.lblEventTime.text = ""
+                    }
+                    else{
+                        cell.lblEventTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "", eventobj.eventendtime ?? "")
+                    }
+                }
+                cell.lblLocation.text = eventobj.eventVenue ?? ""
+                if let teeBox = eventobj.eventTeeBox {
+                    if teeBox != "" {
+                        cell.lblEventTime.text = (cell.lblEventTime.text ?? "") + "(\(teeBox))"
+                    }
+                }
+            }
+            if self.appDelegate.typeOfCalendar == "Golf" {
+                
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
+            
+            var weekDay = ""
+            var dateAndMonth = ""
+            
+            if EventDate != nil {
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "dd-MM-yyyy"
+                
+                dateFormat.dateFormat = "dd"
+                weekDay = dateFormat.string(from: EventDate!)
+                
+                dateFormat.dateFormat = "MMM"
+                dateAndMonth = dateFormat.string(from: EventDate!)
+            }
+            
+            if eventobj.eventstatus == "" && eventobj.colorCode == "" {
+                cell.lblStatus.isHidden = true
+                cell.lblStatusColor.isHidden = true
+                // cell.btnEventStatus.isHidden = true
+                cell.regStatus.isHidden = true
+                
+                cell.statusHeight.constant = 0
+                cell.heightTopView.constant = 100
+                
+            }else{
+                cell.lblStatus.isHidden = false
+                cell.lblStatusColor.isHidden = false
+                //cell.btnEventStatus.isHidden = false
+                cell.regStatus.isHidden = false
+                
+                cell.statusHeight.constant = 20
+                cell.heightTopView.constant = 130
+            }
+            
+            if(self.appDelegate.typeOfCalendar == "Dining") && eventobj.type == "2"{
+                cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
+                cell.lblEventName.text = eventobj.eventName
+                cell.heightPartySize.constant = 18
+                
+            }else{
+                cell.lblPartySize.text = ""
+                cell.lblEventName.text = eventobj.eventName
+                cell.heightPartySize.constant = 10
+            }
+            
+            cell.lblStatus.text = self.appDelegate.masterLabeling.status
+            cell.lblDate.text = weekDay
+            cell.lblDay.text = dateAndMonth
+            cell.lblWeekDay.text = eventobj.eventDayName
+            
+            if(eventobj.buttontextvalue == "0"){
+                cell.btnRegister.isHidden = true
+            }
+            else if(eventobj.buttontextvalue == "1"){
+                cell.btnRegister.isHidden = false
+                
+                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_request, for: UIControlState.normal)
+                
+            }
+            else if(eventobj.buttontextvalue == "2"){
+                cell.btnRegister.isHidden = false
+                
+                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_modify, for: UIControlState.normal)
+                
+            }
+            else if(eventobj.buttontextvalue == "3"){
+                cell.btnRegister.isHidden = false
+                
+                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_cancel, for: UIControlState.normal)
+                
+            }
+            else if(eventobj.buttontextvalue == "4"){
+                cell.btnRegister.isHidden = false
+                
+                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.VIEW, for: UIControlState.normal)
+                
+            }
+            cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
+            
+            
+            if self.appDelegate.selectedSegment == "0"{
+                //  cell.btnEventStatus .setTitle(eventobj.memberEventStatus, for: UIControlState.normal)
+                cell.regStatus.text = eventobj.memberEventStatus
+                
+            }else{
+                //   cell.btnEventStatus .setTitle(eventobj.eventstatus, for: UIControlState.normal)
+                cell.regStatus.text = eventobj.eventstatus
+                
+            }
+            cell.delegate = self
+            if (self.appDelegate.selectedSegment == "0") || eventobj.eventCategory?.lowercased() == "dining"{
+                cell.lblEventID.isHidden = false
+                cell.lblEventID.text = eventobj.confirmationNumber ?? ""
+            }
+            else{
+                cell.lblEventID.isHidden = true
+                
+            }
+            
+            cell.btnViewOnly.isHidden = !(eventobj.buttontextvalue == "2")
+            cell.btnViewOnly.setTitle(self.appDelegate.masterLabeling.VIEW, for: .normal)
+            
+            //Added on 18th June 2020 BMS
+            
+            cell.btnCancel.isHidden = !(eventobj.showCancelButton ?? false)
+            //Type 3 is BMS
+            if eventobj.requestType == .BMS
+            {
+                cell.btnViewOnly.isHidden = !(eventobj.showViewButton ?? false)
+            }
+            
+            cell.btnCancel.BMSCancelBthViewSetup()
+            cell.btnCancel.setTitle(self.appDelegate.masterLabeling.cANCEL ?? "", for: .normal)
+            cell.lblDay.textColor = APPColor.MainColours.primary2
+            cell.btnCancel.setStyle(style: .outlined, type: .secondary)
+            return cell
         }
-        
-        cell.btnViewOnly.isHidden = !(eventobj.buttontextvalue == "2")
-        cell.btnViewOnly.setTitle(self.appDelegate.masterLabeling.VIEW, for: .normal)
-        
-        //Added on 18th June 2020 BMS
-        
-        cell.btnCancel.isHidden = !(eventobj.showCancelButton ?? false)
-        //Type 3 is BMS
-        if eventobj.requestType == .BMS
-        {
-            cell.btnViewOnly.isHidden = !(eventobj.showViewButton ?? false)
-        }
-        
-        cell.btnCancel.BMSCancelBthViewSetup()
-        cell.btnCancel.setTitle(self.appDelegate.masterLabeling.cANCEL ?? "", for: .normal)
-        cell.lblDay.textColor = APPColor.MainColours.primary2
-        cell.btnCancel.setStyle(style: .outlined, type: .secondary)
-        return cell
+        return UITableViewCell()
     }
     
     
@@ -1677,3 +1719,78 @@ extension GolfCalendarMYTabVC : closeUpdateSuccesPopup
     
     
 }
+// MARK: - API CALLING
+extension GolfCalendarMYTabVC{
+    func myDinningReservationList(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            var paramaterDict:[String: Any]?
+            
+             paramaterDict = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!
+             ]
+            print(paramaterDict)
+            APIHandler.sharedInstance.GetMyDinningReservation(paramater: paramaterDict, onSuccess: { myReservationDinningListing in
+                
+                if(myReservationDinningListing.ResponseCode == InternetMessge.kSuccess)
+                {
+                    if(myReservationDinningListing.DiningReservations == nil){
+                        self.arrMyDinningList.removeAll()
+                        self.myTableView.setEmptyMessage(InternetMessge.kNoData)
+                        self.myTableView.reloadData()
+                        self.appDelegate.hideIndicator()
+                    }
+                    else{
+                        
+                        if(myReservationDinningListing.DiningReservations?.count == 0)
+                        {
+                            self.arrMyDinningList.removeAll()
+                            self.myTableView.setEmptyMessage(InternetMessge.kNoData)
+                            self.myTableView.reloadData()
+                            
+                            
+                            self.appDelegate.hideIndicator()
+                            
+                        }else{
+                            self.myTableView.restore()
+                            self.arrMyDinningList = myReservationDinningListing.DiningReservations!  //eventList.listevents!
+                            self.myTableView.reloadData()
+                        }
+                        
+                    }
+                    
+                    if(!(self.arrMyDinningList.count == 0)){
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.myTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                    
+                }
+                else{
+                    self.appDelegate.hideIndicator()
+                    if(((myReservationDinningListing.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: myReservationDinningListing.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                    self.myTableView.setEmptyMessage(myReservationDinningListing.responseMessage ?? "")
+                    
+                }
+                self.appDelegate.hideIndicator()
+              
+        
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            self.appDelegate.hideIndicator()
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
+}
+
+

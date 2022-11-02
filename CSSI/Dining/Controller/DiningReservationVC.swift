@@ -10,6 +10,10 @@ import UIKit
 import DTCalendarView
 import FSCalendar
 
+enum typeComingFrom {
+    case view, modify, listing
+}
+
 class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate {
    
     
@@ -54,11 +58,26 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var arrTimeSttart = [[String:Any]]()
     var availableTime : String?
     var selectedRestaurantImage : String?
+    var firstTimeUser = 0
+    var enumForNavigationFrom : typeComingFrom?
+    var requestedId : String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         setUpUiInitialization()
-        reservationList()
+        if enumForNavigationFrom == .listing{
+            reservationList()
+        }
+        else if enumForNavigationFrom == .modify{
+            reservationListModifyView()
+        }
+        else if enumForNavigationFrom == .view{
+            
+        }
+             
+        
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -300,20 +319,50 @@ extension DiningReservationVC{
                 self.diningSetting = reservationDinningListing.diningSettings!
                 print(self.diningReservation.SelectedDate)
                 self.diningSetting.MaxPartySize = reservationDinningListing.diningSettings.MaxPartySize
-                if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
-                    self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
-                }
-                if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
-                    
-                }
-                if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
-                    self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
-                }
-                if let defaultPartySize = reservationDinningListing.diningSettings.DefaultPartySize{
-                    self.diningReservation.PartySize = defaultPartySize
-                    self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
-                }
+                if self.firstTimeUser == 0{
+                    if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
+                        self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
+                    }
+                    if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
+                        
+                    }
+                    if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
+                        self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
+                        self.timeString = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
+                    }
+                    if let defaultPartySize = reservationDinningListing.diningSettings.DefaultPartySize{
+                        self.diningReservation.PartySize = defaultPartySize
+                        self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
+                    }}
                 self.updateUI()
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            self.appDelegate.hideIndicator()
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
+    
+    
+    func reservationListModifyView(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            var paramaterDict:[String: Any]?
+            
+             paramaterDict = [
+                "Content-Type":"application/json",
+                APIKeys.kRequestID : self.requestedId ?? ""
+             ]
+            print(paramaterDict)
+            APIHandler.sharedInstance.editDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
+                self.appDelegate.hideIndicator()
+                
                 
             },onFailure: { error  in
                 print(error)
