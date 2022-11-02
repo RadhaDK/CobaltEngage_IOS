@@ -18,6 +18,8 @@
 		09506AE128EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */; };
 		09535EFD28D85A970078246E /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09535EFC28D85A970078246E /* MembershipHistoryCell.xib */; };
 		0953612528F55DCC007283DA /* RestaurantSpecificDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */; };
+		0974F0722912758200657F3D /* GetMyDinnningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0974F0712912758200657F3D /* GetMyDinnningReservationModel.swift */; };
+		0974F0742912834500657F3D /* DinningMyReservationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0974F0732912834500657F3D /* DinningMyReservationTableCell.swift */; };
 		097BAF5D28EDF40300AFDD8B /* PartySizePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */; };
 		097BAF6128EDF52300AFDD8B /* PartySizeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */; };
 		097BAF6328EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */; };
@@ -636,6 +638,8 @@
 		09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningDetailRestuarantVC.swift; sourceTree = "<group>"; };
 		09535EFC28D85A970078246E /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
 		0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSpecificDetailVC.swift; sourceTree = "<group>"; };
+		0974F0712912758200657F3D /* GetMyDinnningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyDinnningReservationModel.swift; sourceTree = "<group>"; };
+		0974F0732912834500657F3D /* DinningMyReservationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningMyReservationTableCell.swift; sourceTree = "<group>"; };
 		097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizePopUpVC.swift; sourceTree = "<group>"; };
 		097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizeCollectionCell.swift; sourceTree = "<group>"; };
 		097BAF6228EE049400AFDD8B /* DiningAddMemberGuestPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningAddMemberGuestPopUpVC.swift; sourceTree = "<group>"; };
@@ -2448,6 +2452,7 @@
 				09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */,
 				097BAF6028EDF52300AFDD8B /* PartySizeCollectionCell.swift */,
 				0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */,
+				0974F0732912834500657F3D /* DinningMyReservationTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2470,6 +2475,7 @@
 				099C851528F97BB000959E9E /* EditDinningReservationModel.swift */,
 				099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */,
 				098A3924290059B800D22855 /* getDinningReservationModel.swift */,
+				0974F0712912758200657F3D /* GetMyDinnningReservationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3432,6 +3438,7 @@
 				1800E8C5225CA9C20041E95D /* HtmlTextConverter.swift in Sources */,
 				18B603682268642E0045FAE5 /* playHistoryDetailCustomCell.swift in Sources */,
 				5F47195C20D90A25002EFBB1 /* TodayAtGlance.swift in Sources */,
+				0974F0722912758200657F3D /* GetMyDinnningReservationModel.swift in Sources */,
 				18B6036422683B310045FAE5 /* UpComingTeeTimesCustomCell.swift in Sources */,
 				187913BD215FD1B80025EC11 /* RegisterYourDeviceVC.swift in Sources */,
 				18D945CA2286DDE5008BE907 /* AddMemberVC.swift in Sources */,
@@ -3564,6 +3571,7 @@
 				5999C5D520CA90AB00B0382A /* ColorConstant.swift in Sources */,
 				1893330222FD941B00778D2D /* ImageSizeReduce.swift in Sources */,
 				5F47196020D90A89002EFBB1 /* TodayGlanceDetails.swift in Sources */,
+				0974F0742912834500657F3D /* DinningMyReservationTableCell.swift in Sources */,
 				18B6036622685D520045FAE5 /* PlayHistoryDetailVC.swift in Sources */,
 				5F713A552133D27700A56CE3 /* SDWebImageCoderHelper.m in Sources */,
 				5F79F20D21131A90008DC5D2 /* ResetPassword.swift in Sources */,

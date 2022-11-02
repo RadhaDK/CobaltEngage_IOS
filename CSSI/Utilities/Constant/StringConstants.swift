@@ -273,6 +273,11 @@ struct APIKeys
     static let kFilterDate = "FilterDate"
     static let kFilterTime = "FilterTime"
     static let kCompanyCode = "CompanyCode"
+    
+    
+    
+    //Dinning
+    static let kRequestID = "RequestID"
 }
 
 struct APIHeader

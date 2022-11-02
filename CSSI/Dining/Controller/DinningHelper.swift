@@ -94,10 +94,27 @@ extension UIViewController{
             return resultString
         }
         
-        func getDayOfWeek(givenDate: Date) -> String {
+        func getDayOfWeek(givenDate: String) -> String {
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "yyyy-MM-dd"
+            let showDate = inputFormatter.date(from: givenDate)
+            inputFormatter.dateFormat = "MMM"
+            let resultString = inputFormatter.string(from: showDate!)
+            print(resultString)
+            return resultString
             
-            return ""
         }
+    func getDateDinning(givenDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let showDate = inputFormatter.date(from: givenDate)
+        inputFormatter.dateFormat = "dd"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+        
+    }
+    
         
         func getmonthOfYear(givenDate: Date) -> String {
             
