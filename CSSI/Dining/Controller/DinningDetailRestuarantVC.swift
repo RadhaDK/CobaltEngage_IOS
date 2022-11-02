@@ -46,7 +46,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var diningRequestMode = ""
     var selectedIndex = -1
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    var isFrom: typeComingFrom = .listing
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +63,10 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     //MARK: - Initial Setup
     
     func initialSetup() {
-        self.setupDefaultMemberValues()
+        if isFrom == .listing {
+            self.setupDefaultMemberValues()
+        }
+        
     }
     
     func setUpUi(){
@@ -285,6 +288,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     func requestMemberViewControllerResponse(selecteArray: [RequestData]) { // Selecting Existing Guest & New Guest "GuestInfo" Obj
 
         self.diningReservation.PartyDetails[self.selectedIndex] = self.guestInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! GuestInfo)
+        self.tblGuest.reloadData()
     }
     
     func memberViewControllerResponse(selecteArray: [MemberInfo]) {
@@ -306,6 +310,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     func addMemberDelegate(selecteArray: [RequestData]) { // Selecting a Single member & Buddy "DiningMemberInfo" Obj
  
         self.diningReservation.PartyDetails[self.selectedIndex] = self.diningMemberInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! DiningMemberInfo)
+        self.tblGuest.reloadData()
     }
     
     

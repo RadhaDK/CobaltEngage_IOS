@@ -67,10 +67,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         super.viewDidLoad()
        
         setUpUiInitialization()
-        if enumForNavigationFrom == .listing{
-            reservationList()
-        }
-        else if enumForNavigationFrom == .modify{
+  
+        reservationList()
+       if enumForNavigationFrom == .modify{
             reservationListModifyView()
         }
         else if enumForNavigationFrom == .view{
@@ -96,17 +95,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnBack.setTitle("", for: .normal)
         btnHome.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
-        let date = Date()
-        currentDate = date
-        let dateString = self.getDateString(givenDate: date)
-        lblSelectedDate.text = dateString
-        timeString = self.getTimeString(givenDate: date)
-        self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(timeString)"
         
-        currentTime =  getMonthDateFromDate(dateString: currentDate)
-        lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
-        selectedTime = getTimeStringTable(givenDate: currentDate)
-
     }
     
     func setUpUiInitialization(){
@@ -117,6 +106,16 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     func updateUI() {
+        let date = Date()
+        currentDate = date
+        let dateString = self.getDateString(givenDate: date)
+        lblSelectedDate.text = dateString
+        timeString = self.getTimeString(givenDate: date)
+        self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(timeString)"
+        
+        currentTime =  getMonthDateFromDate(dateString: currentDate)
+        lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
+        selectedTime = getTimeStringTable(givenDate: currentDate)
         self.tblResturat.reloadData()
     }
     
@@ -250,7 +249,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.row = indexPath.row
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
-   let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
+        let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
             print(timmings)
         print(timmings.EndTime)
         
@@ -319,21 +318,24 @@ extension DiningReservationVC{
                 self.diningSetting = reservationDinningListing.diningSettings!
                 print(self.diningReservation.SelectedDate)
                 self.diningSetting.MaxPartySize = reservationDinningListing.diningSettings.MaxPartySize
-                if self.firstTimeUser == 0{
-                    if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
-                        self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
-                    }
-                    if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
-                        
-                    }
-                    if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
-                        self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
-                        self.timeString = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
-                    }
-                    if let defaultPartySize = reservationDinningListing.diningSettings.DefaultPartySize{
-                        self.diningReservation.PartySize = defaultPartySize
-                        self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
-                    }}
+                if self.enumForNavigationFrom == .modify {
+                    if self.firstTimeUser == 0{
+                        if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
+                            self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
+                        }
+                        if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
+                            
+                        }
+                        if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
+                            self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
+                            self.timeString = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
+                        }
+                        if let defaultPartySize = reservationDinningListing.diningSettings.DefaultPartySize{
+                            self.diningReservation.PartySize = defaultPartySize
+                            self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
+                        }}
+                }
+                
                 self.updateUI()
                 
             },onFailure: { error  in
@@ -360,10 +362,11 @@ extension DiningReservationVC{
                 APIKeys.kRequestID : self.requestedId ?? ""
              ]
             print(paramaterDict)
-            APIHandler.sharedInstance.editDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
+            APIHandler.sharedInstance.ModifyMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 
-                
+                self.diningReservation = reservationDinningListing
+                self.updateUI()
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()

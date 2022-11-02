@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "788"
             endingLineNumber = "788"
-            landmarkName = "getRequestTeeTimeDetails(paramaterDict:onSuccess:onFailure:)"
-            landmarkType = "7">
+            landmarkName = "APIHandler"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,8 +64,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1886"
             endingLineNumber = "1886"
-            landmarkName = "getMemberValidation(paramater:onSuccess:onFailure:)"
-            landmarkType = "7">
+            landmarkName = "APIHandler"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
