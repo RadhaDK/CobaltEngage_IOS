@@ -40,7 +40,7 @@ class CancelDinningReservationPopupVC: UIViewController {
     
     @IBAction func yesBtnTapped(sender:UIButton){
         btnYes.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
-        cancelReservationRequest()
+        deleteMyReservation()
     }
     @IBAction func noBtnTapped(sender:UIButton){
         btnNo.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
@@ -49,54 +49,37 @@ class CancelDinningReservationPopupVC: UIViewController {
 
 }
 extension CancelDinningReservationPopupVC{
-    func cancelReservationRequest(){
+    func deleteMyReservation(){
         if (Network.reachability?.isReachable) == true{
-            
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
-            
-            let paramaterDict:[String: Any] = [
+            var paramaterDict:[String: Any]?
+             paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
-                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
-                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
-                APIKeys.kdeviceInfo: [APIHandler.devicedict],
-                "UserName": UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
-                "ReservationRequestId": eventID ?? "",
-                "IsAdmin": UserDefaults.standard.string(forKey: UserDefaultsKeys.isAdmin.rawValue)!,
-            ]
-            print(paramaterDict)
+                APIKeys.kRequestID : self.eventID ?? ""
+             ]
             
-            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
-            
-            APIHandler.sharedInstance.getRequestCancel(paramater: paramaterDict , onSuccess: { response in
+            APIHandler.sharedInstance.deleteMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                if(response.responseCode == InternetMessge.kSuccess){
-                    self.appDelegate.hideIndicator()
+                if reservationDinningListing.Responsecode == InternetMessge.ksuccess{
+                    self.dismiss(animated: true, completion: nil)
 
-                    if let succesView = UIStoryboard.init(name: "GuestCard", bundle: .main).instantiateViewController(withIdentifier: "NewSuccessUpdateView") as? NewSuccessUpdateView {
-                        self.appDelegate.hideIndicator()
-                       // succesView.delegate = self
-                        //succesView.isFrom = self.isFrom
-                        //succesView.isOnlyFrom = self.isOnlyFrom
-                        succesView.imgUrl = response.imagePath ?? ""
-                        //Added by Kiran v2.7 -- ENGAGE0011631 -- Added the cancel Category to identify the where cancel is clicked from.
-                        //ENGAGE0011631 -- Start
-                   //     succesView.cancelFor = self.cancelFor
-                        //ENGAGE0011631 -- End
-                        succesView.modalTransitionStyle   = .crossDissolve;
-                        succesView.modalPresentationStyle = .overCurrentContext
-                        self.present(succesView, animated: true, completion: nil)
-                    }
                 }
+                else{
+                    self.appDelegate.hideIndicator()
+//                    if(((myReservationDinningListing.responseMessage?.count) ?? 0)>0){
+//                        SharedUtlity.sharedHelper().showToast(on:
+//                            self.view, withMeassge: myReservationDinningListing.responseMessage, withDuration: Duration.kMediumDuration)
+//                    }
+                }
+               
             },onFailure: { error  in
-                self.appDelegate.hideIndicator()
                 print(error)
+                self.appDelegate.hideIndicator()
                 SharedUtlity.sharedHelper().showToast(on:
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
             })
-            
         }else{
-            
+            self.appDelegate.hideIndicator()
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }

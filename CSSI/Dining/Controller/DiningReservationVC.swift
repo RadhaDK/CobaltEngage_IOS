@@ -71,6 +71,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     //MARK: - setUpUI
     func setUpUi(){
+        
         shadowView(viewName: viewTime)
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
@@ -80,12 +81,20 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnHome.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
         if enumForDinningMode == .create{
+           
             reservationList()
         }
       else if enumForDinningMode == .modify{
+          
             reservationListModifyView()
         }
         else if enumForDinningMode == .view{
+            tblResturat.isUserInteractionEnabled = false
+            viewTime.isUserInteractionEnabled = false
+            btnNext.isUserInteractionEnabled = false
+            btnPrevious.isUserInteractionEnabled = false
+            btnSelectedDate.isUserInteractionEnabled = false
+            reservationListModifyView()
         }
     }
     
@@ -255,8 +264,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
-        let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
-        cell.lblPartySize.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+        if enumForDinningMode == .create{
+            let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
+            cell.lblPartySize.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+        }
+        else{
+            cell.lblPartySize.text = "\(self.diningReservation.SelectedTime) - Party Size:\(self.diningReservation.PartySize)"
+
+        }
         cell.timeSlotsDelegate = self
         cell.row = indexPath.row
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
@@ -337,12 +352,13 @@ extension DiningReservationVC{
                 "Content-Type":"application/json",
                 APIKeys.kRequestID : self.requestedId ?? ""
              ]
-            print(paramaterDict)
+           
             APIHandler.sharedInstance.ModifyMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 
                 self.diningReservation = reservationDinningListing
-                self.updateUI()
+                self.reservationList()
+                
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()

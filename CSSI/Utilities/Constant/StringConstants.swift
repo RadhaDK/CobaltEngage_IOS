@@ -342,6 +342,7 @@ struct InternetMessge {
     static let kFail = "Fail"
     static let kNoupcomingVisits = "No upcoming visits"
     static var kNoData = "No data found"
+    static let ksuccess = "success"
     
 }
 

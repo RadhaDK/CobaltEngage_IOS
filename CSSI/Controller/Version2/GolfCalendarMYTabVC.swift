@@ -1215,11 +1215,28 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     {
   
         if(self.appDelegate.typeOfCalendar == "Dining"){
+    
            
             
             let cell = self.myTableView.dequeueReusableCell(withIdentifier: "eventsIdentifierDinning") as! DinningMyReservationTableCell
             var dict = arrMyDinningList[indexPath.row]
             print(dict.RestaurantName)
+           
+          
+             if dict.UI[0].Modify == 0{
+                 cell.btnModify.isHidden = true
+            }
+            
+             if dict.UI[0].Cancel == 0{
+                 cell.btnCancel.isHidden = true
+
+            }
+            else{
+                cell.btnModify.isHidden = false
+                cell.btnCancel.isHidden = false
+                
+            }
+            
             
             cell.lblEventTime.text = "\(dict.SelectedTime ?? "") Party Size: \(dict.PartySize ?? 0)"
             cell.lblEventName.text = dict.RestaurantName
@@ -1430,6 +1447,21 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             return cell
         }
         return UITableViewCell()
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(self.appDelegate.typeOfCalendar == "Dining"){
+            var dict = arrMyDinningList[indexPath.row]
+            if dict.UI[0].View == 1{
+                if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
+                    impVC.showNavigationBar = false
+                    impVC.enumForDinningMode = .view
+                    impVC.requestedId = dict.RequestID
+                    self.navigationController?.pushViewController(impVC, animated: true)
+                }
+            }
+        }
     }
     
     

@@ -15,6 +15,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     
     
     var responseCode            : String!
+    var Responsecode            : String!
     var responseMessage         : String!
     var RequestID               : String!
     var RestaurantID            : String!
@@ -35,6 +36,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     required convenience init?(map: Map) {
         self.init()
         responseCode        = ""
+        Responsecode = ""
         responseMessage     = ""
         RequestID           = ""
         RestaurantID        = ""
@@ -53,6 +55,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         
         
         responseCode            <- map["Response"]
+        Responsecode             <- map["Responsecode"]
         responseMessage         <- map["Message"]
         RequestID               <- map["RequestID"]
         RestaurantID            <- map["RestaurantID"]
