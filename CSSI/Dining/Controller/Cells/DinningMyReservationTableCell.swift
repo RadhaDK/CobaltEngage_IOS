@@ -19,9 +19,7 @@ protocol EventsCellDelegateDinning: AnyObject {
     func nameClicked(cell : DinningMyReservationTableCell)
 }
 
-protocol buttonActionDinning{
-    func clickedActionDinning(type : String)
-}
+
 
 class DinningMyReservationTableCell: UITableViewCell {
     
@@ -74,7 +72,8 @@ class DinningMyReservationTableCell: UITableViewCell {
    // weak var delegate: buttonActionDinning?
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    var clickedDinningClosure:(()->())?
+    var clickedDinningModifyClosure:(()->())?
+    var clickedDinningancelClosure:(()->())?
     
     
     override func awakeFromNib() {
@@ -174,9 +173,10 @@ class DinningMyReservationTableCell: UITableViewCell {
 
     
     @IBAction func btnCancelClicked(_ sender: Any) {
+        clickedDinningancelClosure?()
     }
     @IBAction func btnModifyClicked(_ sender: Any) {
-        clickedDinningClosure?()
+        clickedDinningModifyClosure?()
     }
     
     @IBAction func externalLinkClicked(_ sender: Any) {
