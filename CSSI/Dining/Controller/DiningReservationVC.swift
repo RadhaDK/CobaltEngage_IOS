@@ -263,6 +263,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
         let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
             print(timmings)
+        cell.collectionTimeSlot.reloadData()
         print(timmings.EndTime)
         return cell
     }

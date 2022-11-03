@@ -74,7 +74,6 @@ class DinningReservationFCFS : NSObject, Mappable {
 class ResrvationPartyDetail: RequestData, Mappable {
     
     var MemberID            : String!
-    var MemberType          : Int!
     var MemberName          : String!
     var DietartRestriction  : String!
     var Anniversary         : Int!
@@ -83,6 +82,15 @@ class ResrvationPartyDetail: RequestData, Mappable {
     var OtherText           : String!
     var HighChair           : Int!
     var BoosterChair        : Int!
+    var guestOf             : String!
+    var guestEmail          : String!
+    var guestType           : String!
+    var guestFirstName      : String!
+    var guestLastName       : String!
+    var guestDOB            : String!
+    var guestGender         : String!
+    var guestContact        : String!
+    
     
     override init() {
         super.init()
@@ -91,7 +99,6 @@ class ResrvationPartyDetail: RequestData, Mappable {
     convenience required init?(map: Map) {
         self.init()
         MemberID            = ""
-        MemberType          = 0
         MemberName          = ""
         DietartRestriction  = ""
         Anniversary         = 0
@@ -100,12 +107,19 @@ class ResrvationPartyDetail: RequestData, Mappable {
         OtherText           = ""
         HighChair           = 0
         BoosterChair        = 0
+        guestOf             = ""
+        guestContact        = ""
+        guestType           = ""
+        guestDOB            = ""
+        guestEmail          = ""
+        guestGender         = ""
+        guestLastName       = ""
+        guestFirstName      = ""
     }
     
     func mapping(map: Map) {
         
         MemberID            <- map["MemberID"]
-        MemberType          <- map["MemberType"]
         MemberName          <- map["MemberName"]
         DietartRestriction  <- map["DietartRestriction"]
         Anniversary         <- map["Anniversary"]
@@ -114,6 +128,14 @@ class ResrvationPartyDetail: RequestData, Mappable {
         OtherText           <- map["OtherText"]
         HighChair           <- map["HighChair"]
         BoosterChair        <- map["BoosterChair"]
+        guestOf             <- map["GuestMemberOf"]
+        guestContact        <- map["GuestContact"]
+        guestType           <- map["GuestType"]
+        guestDOB            <- map["GuestDOB"]
+        guestEmail          <- map["GuestEmail"]
+        guestGender         <- map["GuestGender"]
+        guestLastName       <- map["GuestLastName"]
+        guestFirstName      <- map["GuestFirstName"]
     }
     
     func setPartyDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int) {
@@ -126,6 +148,26 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.OtherText = otherText
         self.HighChair = highChair
         self.BoosterChair = boosterChair
+    }
+    
+    func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String) {
+        self.MemberID = memberID
+        self.MemberName = memberName
+        self.DietartRestriction = diet
+        self.Anniversary = anniversary
+        self.Birthday = birthday
+        self.Other = other
+        self.OtherText = otherText
+        self.HighChair = highChair
+        self.BoosterChair = boosterChair
+        self.guestFirstName = guestFirstName
+        self.guestLastName = guestLastName
+        self.guestGender = guestGender
+        self.guestOf = guestOf
+        self.guestDOB = guestDOB
+        self.guestEmail = guestEmail
+        self.guestContact = guestContact
+        self.guestType = guestType
     }
 }
 

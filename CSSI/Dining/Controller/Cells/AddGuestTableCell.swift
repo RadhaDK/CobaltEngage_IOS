@@ -13,8 +13,9 @@ class AddGuestTableCell: UITableViewCell {
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var lblSlotMember: UILabel!
     @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnRemoveMember: UIButton!
     var addToSlotClosure:(()->())?
-
+    var removeFromSlotClosure:(()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +29,9 @@ class AddGuestTableCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    @IBAction func btnRemoveMemberAction(_ sender: Any) {
+        removeFromSlotClosure?()
+    }
     @IBAction func btnAdd(_ sender: Any) {
         addToSlotClosure?()
     }

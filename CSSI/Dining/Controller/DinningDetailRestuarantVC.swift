@@ -46,9 +46,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var diningRequestMode = ""
     var selectedIndex = -1
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    var isFrom: typeComingFrom = .listing
     var tablePreferances: [DiningTablePrefenceData] = []
-
     var isFrom: dinningMode = .create
     
     override func viewDidLoad() {
@@ -172,7 +170,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 
     func guestInfoToResrvationPartyDetail(memberInfo: GuestInfo) -> ResrvationPartyDetail {
         let partyMemberInfo = ResrvationPartyDetail()
-        partyMemberInfo.setPartyDetails(memberID: "", memberName: memberInfo.guestName ?? "", diet: "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0)
+        partyMemberInfo.setPartyGuestDetails(memberID: "", memberName: memberInfo.guestName ?? "", diet: memberInfo.dietaryRestrictions ?? "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0, guestOf: memberInfo.guestMemberOf ?? "", guestContact: memberInfo.cellPhone ?? "", guestType: memberInfo.guestType ?? "", guestDOB: memberInfo.guestDOB ?? "", guestEmail: memberInfo.email ?? "", guestGender: memberInfo.guestGender ?? "", guestLastName: memberInfo.guestLastName  ?? "", guestFirstName: memberInfo.guestFirstName ?? "")
         return partyMemberInfo
     }
     
@@ -236,20 +234,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
-        
-        
-        if self.diningReservation.PartyDetails[indexPath.row].MemberName == "" {
-            cell.lblSlotMember.text = "Reservation"
-            cell.lblSlotMember.textColor = .gray
-        } else {
-            cell.lblSlotMember.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
-            cell.lblSlotMember.textColor = .systemBlue
-        }
-        
+        cell.lblSlotMember.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
         if indexPath.row == 0{
             self.lblCaptainName.text = "Captain: " + (cell.lblSlotMember.text ?? "")
         }
-        
+        cell.removeFromSlotClosure = {
+            self.diningReservation.PartyDetails[indexPath.row] = ResrvationPartyDetail.init()
+            self.tblGuest.reloadData()
+        }
         cell.addToSlotClosure = {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
             vc?.delegateSelectedMemberType = self
@@ -275,9 +267,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CheckboxCell", for: indexPath as IndexPath) as! CheckBoxCustomCell
         cell.btnCheckBox.setTitle(self.tablePreferances[indexPath.row].PreferenceName, for: .normal)
         if self.diningReservation.TablePreferenceID == self.tablePreferances[indexPath.row].TablePreferenceID {
-            cell.backgroundColor = .white
+            cell.btnCheckBox.setImage(UIImage(named: "CheckBox_check"), for: .normal)
         } else {
-            cell.backgroundColor = .lightGray
+            cell.btnCheckBox.setImage(UIImage(named: "CheckBox_uncheck"), for: .normal)
         }
         return cell
     }
@@ -423,7 +415,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             APIKeys.kdeviceInfo: [APIHandler.devicedict],
             "CompanyCode": "00",
             "RestaurantID": self.diningReservation.RestaurantID,
-            "FilterDate": "2022-11-11",
+            "FilterDate": self.diningReservation.SelectedDate,
             "FilterTime": self.diningReservation.SelectedTime
         ] as [String : Any]
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
