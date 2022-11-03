@@ -47,6 +47,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var selectedIndex = -1
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var isFrom: typeComingFrom = .listing
+    var tablePreferances: [DiningTablePrefenceData] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +68,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         if isFrom == .listing {
             self.setupDefaultMemberValues()
         }
-        
+        self.getTablePreferances()
     }
     
     func setUpUi(){
@@ -101,7 +103,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     //MARK: - IBOutlets
     @IBAction func btnSubmit(_ sender: Any) {
-        
+        self.saveDiningReservation()
     }
     
     @IBAction func btnAddMultiple(_ sender: Any) {
@@ -124,7 +126,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     func setupDefaultMemberValues() {
         if diningRequestMode == "" {
             if self.diningReservation.PartySize > 1 {
-                for _ in 0...self.diningReservation.PartySize-1 {
+                for _ in 1...self.diningReservation.PartySize {
                     self.diningReservation.PartyDetails.append(ResrvationPartyDetail.init())
                 }
             } else {
@@ -264,13 +266,18 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     // MARK: - Collection Methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrSpecialRequest.count
+        return self.tablePreferances.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CheckboxCell", for: indexPath as IndexPath) as! CheckBoxCustomCell
-        cell.btnCheckBox.setTitle("testing", for: .normal)
+        cell.btnCheckBox.setTitle(self.tablePreferances[indexPath.row].PreferenceName, for: .normal)
+        if self.diningReservation.TablePreferenceID == self.tablePreferances[indexPath.row].TablePreferenceID {
+            cell.backgroundColor = .white
+        } else {
+            cell.backgroundColor = .lightGray
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -281,6 +288,15 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         let lay = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 2 - lay.minimumInteritemSpacing
         return CGSize(width:widthPerItem, height:50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if self.diningReservation.TablePreferenceID == self.tablePreferances[indexPath.row].TablePreferenceID {
+            self.diningReservation.TablePreferenceID = ""
+        } else {
+            self.diningReservation.TablePreferenceID = self.tablePreferances[indexPath.row].TablePreferenceID
+        }
+        collectionView.reloadData()
     }
     
     // MARK: - Member selection delegates
@@ -363,34 +379,64 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func saveDiningReservation() {
         
-//        var ReqBodyJsonString = Mapper().toJSONString(self.diningReservation, prettyPrint: true)
+        var ReqBodyJson = self.diningReservation.toJSON()
+        var paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict]
+        ] as [String : Any]
+        
+        paramaterDict = paramaterDict.merging(ReqBodyJson, uniquingKeysWith: { _, new in
+            new
+        })
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.saveDinningReservation(paramater: paramaterDict, parameterObj: self.diningReservation) { response in
+            
+//            if(response.responseCode == InternetMessge.kSuccess)
+//            {
+                if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as? DiningRequestConfirmedVC {
+                    self.navigationController?.present(confirmDinningRequest, animated: true)
+                }
+//            } else {
+////                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+//            }
+            self.appDelegate.hideIndicator()
+        } onFailure: { error in
+            self.appDelegate.hideIndicator()
+//            SharedUtlity.sharedHelper().showToast(on:
+//                self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+        }
+
+    }
+    
+    func getTablePreferances() {
+
         var paramaterDict = [
             "Content-Type":"application/json",
             APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
             APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
             APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
             APIKeys.kdeviceInfo: [APIHandler.devicedict],
-            APIKeys.ksearchby : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
-            APIKeys.kpagecount: 1,
-            APIKeys.krecordperpage:25
+            "CompanyCode": "00",
+            "RestaurantID": self.diningReservation.RestaurantID,
+            "FilterDate": "2022-11-11",
+            "FilterTime": self.diningReservation.SelectedTime
         ] as [String : Any]
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
         
-        APIHandler.sharedInstance.saveDinningReservation(paramater: paramaterDict, parameterObj: self.diningReservation) { response in
+        APIHandler.sharedInstance.getTablePreferances(paramater: paramaterDict) { response in
             
             if(response.responseCode == InternetMessge.kSuccess)
             {
-                if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as? DiningRequestConfirmedVC {
-                    self.navigationController?.present(confirmDinningRequest, animated: true)
-                }
-            } else {
-//                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+                self.tablePreferances = response.tablePreferanceDetails
             }
+            self.collectionAddSpecialRequest.reloadData()
             self.appDelegate.hideIndicator()
         } onFailure: { error in
             self.appDelegate.hideIndicator()
-//            SharedUtlity.sharedHelper().showToast(on:
-//                self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
         }
 
     }

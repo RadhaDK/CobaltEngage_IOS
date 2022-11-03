@@ -24,7 +24,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     dynamic var PartySize       = 0
     dynamic var SelectedDate    = ""
     var Comments                : String!
-    var TablePreferenceID       : [String]!
+    var TablePreferenceID       : String!
     var PartyDetails            : [ResrvationPartyDetail]! = []
     var UI                      : GetResrvationUI!
    
@@ -44,7 +44,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         PartySize           = 0
         SelectedDate        = ""
         Comments            = ""
-        TablePreferenceID   = []
+        TablePreferenceID   = ""
         PartyDetails        = []
         UI                  = GetResrvationUI()
     }

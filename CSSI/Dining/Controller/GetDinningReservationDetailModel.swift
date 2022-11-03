@@ -175,7 +175,30 @@ class DiningTimeSlots: NSObject, Mappable {
     }
 }
 
-
+class GetTablePreferance: NSObject, Mappable {
+    
+    var responseCode         : String!
+    var responseMessage       : String!
+    var tablePreferanceDetails  : [DiningTablePrefenceData]!
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience required init?(map: Map) {
+        self.init()
+        responseCode         = ""
+        responseMessage       = ""
+        tablePreferanceDetails = []
+    }
+    
+    func mapping(map: Map) {
+        
+        responseCode         <- map["ResponseCode"]
+        responseMessage       <- map["ResponseMessage"]
+        tablePreferanceDetails       <- map["TablePreferanceDetails"]
+    }
+}
 
 class DiningTablePrefenceData: NSObject, Mappable {
     
