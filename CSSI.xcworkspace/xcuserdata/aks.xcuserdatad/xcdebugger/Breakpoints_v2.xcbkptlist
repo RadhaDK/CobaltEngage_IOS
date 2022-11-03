@@ -14,10 +14,10 @@
             filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
-            landmarkName = "GolfCalendarMYTabVC"
-            landmarkType = "3">
+            startingLineNumber = "404"
+            endingLineNumber = "404"
+            landmarkName = "myDiningEventApi(strSearch:filter:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,10 +30,42 @@
             filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
             landmarkName = "myDiningEventApi(strSearch:filter:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "02910BC0-6416-4EB4-B316-63423F9DA9E0 - 2555486f48e6236c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.GolfCalendarMYTabVC.myDiningEventApi(strSearch: Swift.Optional&lt;Swift.String&gt;, filter: Swift.Optional&lt;CSSI.GuestCardFilter&gt;) -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "410"
+                  endingLineNumber = "410"
+                  offsetFromSymbolStart = "3924">
+               </Location>
+               <Location
+                  uuid = "02910BC0-6416-4EB4-B316-63423F9DA9E0 - cd0159c96a11b00b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CSSI.EventsLists) -&gt; () in CSSI.GolfCalendarMYTabVC.myDiningEventApi(strSearch: Swift.Optional&lt;Swift.String&gt;, filter: Swift.Optional&lt;CSSI.GuestCardFilter&gt;) -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "411"
+                  endingLineNumber = "411"
+                  offsetFromSymbolStart = "150">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,25 +110,9 @@
             filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "388"
-            endingLineNumber = "388"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "myDiningEventApi(strSearch:filter:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C62DCB28-18D4-454A-ADB2-B24827F6CC5B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1778"
-            endingLineNumber = "1778"
-            landmarkName = "myDinningReservationList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,8 +126,8 @@
             filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1739"
-            endingLineNumber = "1739"
+            startingLineNumber = "1756"
+            endingLineNumber = "1756"
             landmarkName = "myDinningReservationList()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,25 +142,9 @@
             filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "notificationRecevied(notification:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0D0B050E-1C01-4CA6-8813-BCC2CA7F7F76"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -158,9 +158,9 @@
             filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -174,102 +174,10 @@
             filePath = "CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "buttonActionDinning"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  uuid = "2A2BC8E5-6B88-4126-ACE3-178C00BBE486 - f72f0b7b821241db"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DinningMyReservationTableCell.lblPartySize.getter : Swift.Optional&lt;__C.UILabel&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "85">
-               </Location>
-               <Location
-                  uuid = "2A2BC8E5-6B88-4126-ACE3-178C00BBE486 - 791161e8ab77a5c7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DinningMyReservationTableCell.lblPartySize.setter : Swift.Optional&lt;__C.UILabel&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "2A2BC8E5-6B88-4126-ACE3-178C00BBE486 - 3f768b8e03a6d4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DinningMyReservationTableCell.lblPartySize.modify : Swift.Optional&lt;__C.UILabel&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2A2BC8E5-6B88-4126-ACE3-178C00BBE486 - 7d4db809bf1db396"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DinningMyReservationTableCell.lblPartySize.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "26">
-               </Location>
-               <Location
-                  uuid = "2A2BC8E5-6B88-4126-ACE3-178C00BBE486 - fa70c4f4f4a80f06"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DinningMyReservationTableCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; CSSI.DinningMyReservationTableCell"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "418">
-               </Location>
-               <Location
-                  uuid = "2A2BC8E5-6B88-4126-ACE3-178C00BBE486 - e55d4889c860dcd0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.DinningMyReservationTableCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CSSI.DinningMyReservationTableCell&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "378">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -282,57 +190,9 @@
             filePath = "CSSI/Dining/Controller/Cells/DinningMyReservationTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "btnModifyClicked(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C4B8F6DD-F4B8-42E9-9EDC-9126FBC36F71"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "26146583-BEDE-4674-9F44-712A1079E209"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3AEE0F77-5419-45C6-84A3-FA3DF4025601"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1647"
-            endingLineNumber = "1647"
-            landmarkName = "diningReservationDetails(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -349,6 +209,422 @@
             startingLineNumber = "7322"
             endingLineNumber = "7322"
             landmarkName = "ModifyMyDinningReservation(paramater:onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E48950B9-D910-4368-BB68-48703CB5C751"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1082"
+            endingLineNumber = "1082"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D31382E6-0CDE-4745-89BE-67F23E847871"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1083"
+            endingLineNumber = "1083"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97E81AC0-6328-4F0D-B6B6-69B595397496"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1084"
+            endingLineNumber = "1084"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C1F74A3-9AA1-4872-AAEE-AD309C374C8C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1085"
+            endingLineNumber = "1085"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8D6E650-4145-46D8-805F-A8F2813C1A0E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1086"
+            endingLineNumber = "1086"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EA3F136-33E5-418F-804D-9694895F2170"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1087"
+            endingLineNumber = "1087"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0EA3F136-33E5-418F-804D-9694895F2170 - ce22dc159205ea4c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.GolfCalendarMYTabVC.cancelClicked(cell: CSSI.EventCustomTableViewCell) -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1088"
+                  endingLineNumber = "1088"
+                  offsetFromSymbolStart = "2159">
+               </Location>
+               <Location
+                  uuid = "0EA3F136-33E5-418F-804D-9694895F2170 - 63934e424f582227"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in CSSI.GolfCalendarMYTabVC.cancelClicked(cell: CSSI.EventCustomTableViewCell) -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1088"
+                  endingLineNumber = "1088"
+                  offsetFromSymbolStart = "117">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B33206EF-DA42-4A09-9276-022430BC38EF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1088"
+            endingLineNumber = "1088"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B33206EF-DA42-4A09-9276-022430BC38EF - ce22dc159205ea4c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.GolfCalendarMYTabVC.cancelClicked(cell: CSSI.EventCustomTableViewCell) -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1088"
+                  endingLineNumber = "1088"
+                  offsetFromSymbolStart = "2159">
+               </Location>
+               <Location
+                  uuid = "B33206EF-DA42-4A09-9276-022430BC38EF - 63934e424f582227"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in CSSI.GolfCalendarMYTabVC.cancelClicked(cell: CSSI.EventCustomTableViewCell) -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1088"
+                  endingLineNumber = "1088"
+                  offsetFromSymbolStart = "117">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D37B85E-253E-4911-9D59-833618C58A5D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1089"
+            endingLineNumber = "1089"
+            landmarkName = "cancelClicked(cell:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E888B6F4-675F-47D8-9456-F1EFFBA66038"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "GolfCalendarMYTabVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "E888B6F4-675F-47D8-9456-F1EFFBA66038 - 5d194ca1c961c5e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.GolfCalendarMYTabVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; CSSI.GolfCalendarMYTabVC"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "187">
+               </Location>
+               <Location
+                  uuid = "E888B6F4-675F-47D8-9456-F1EFFBA66038 - 8fcd505459c27026"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.GolfCalendarMYTabVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CSSI.GolfCalendarMYTabVC&gt;"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/Version2/GolfCalendarMYTabVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "147">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8783C274-2DEA-4D3C-9930-FC07EB057D19"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5238"
+            endingLineNumber = "5238"
+            landmarkName = "getRequestCancel(paramater:onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C245742-7E71-4939-B6C1-968DF4CBA21E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "reservationList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "306A3C93-BDCD-40D1-8C04-6EDCE94BC1AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "reservationListModifyView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E7EA626E-0253-4989-A5FF-AE81961C60AC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "reservationList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B99069E4-DBC7-4352-A402-CEC135603F60"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "SelectedPartysizeTme(PartySize:Time:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0B118D8-C8B2-444F-9E5A-DD9F42DD7424"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "updateUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "672E6BCB-86F6-44C8-8CB0-AD7E25D3ADFD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "SelectedPartysizeTme(PartySize:Time:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5874CA09-3788-4B63-B9AB-49338AD2AA4D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "SelectedPartysizeTme(PartySize:Time:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30F63A52-F941-4454-97BB-7B919267B55B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "SelectedPartysizeTme(PartySize:Time:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BCE786CC-29B3-46BE-96E2-29DFCFB76113"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBEF04F4-8D39-4EFE-9BAD-00D362ABF770"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DiningReservationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
+            landmarkName = "reservationList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

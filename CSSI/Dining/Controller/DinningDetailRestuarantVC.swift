@@ -49,6 +49,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var isFrom: typeComingFrom = .listing
     var tablePreferances: [DiningTablePrefenceData] = []
 
+    var isFrom: dinningMode = .create
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +66,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     //MARK: - Initial Setup
     
     func initialSetup() {
-        if isFrom == .listing {
+        if isFrom == .create {
             self.setupDefaultMemberValues()
         }
         self.getTablePreferances()

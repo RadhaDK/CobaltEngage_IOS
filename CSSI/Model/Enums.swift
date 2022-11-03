@@ -461,3 +461,6 @@ enum Storyboards : String
 
 
 
+enum dinningMode {
+    case view, modify, create
+}

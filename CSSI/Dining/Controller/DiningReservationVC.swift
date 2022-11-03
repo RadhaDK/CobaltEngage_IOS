@@ -10,15 +10,10 @@ import UIKit
 import DTCalendarView
 import FSCalendar
 
-enum typeComingFrom {
-    case view, modify, listing
-}
+
 
 class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate {
    
-    
-
-    
 //MARK:- Iboutlets
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var viewTime: UIView!
@@ -44,8 +39,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var isDateSelected : Bool?
     var myCalendar: FSCalendar!
     var currentDate = Date()
-   
-    var selectedTime = ""
+   // var selectedTime = ""
     var selectedDateString = ""
     var diningReservation = DinningReservationFCFS()
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -58,31 +52,21 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var arrTimeSttart = [[String:Any]]()
     var availableTime : String?
     var selectedRestaurantImage : String?
-    var firstTimeUser = 0
-    var enumForNavigationFrom : typeComingFrom?
+    var showDefaultData = 0
+    var enumForDinningMode : dinningMode?
     var requestedId : String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         setUpUiInitialization()
-  
-        reservationList()
-       if enumForNavigationFrom == .modify{
-            reservationListModifyView()
-        }
-        else if enumForNavigationFrom == .view{
-            
-        }
-             
-        
+
     }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
-       // self.myCalendar.reloadData()
     }
     
     //MARK: - setUpUI
@@ -95,7 +79,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnBack.setTitle("", for: .normal)
         btnHome.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
-        
+        if enumForDinningMode == .create{
+            reservationList()
+        }
+      else if enumForDinningMode == .modify{
+            reservationListModifyView()
+        }
+        else if enumForDinningMode == .view{
+        }
     }
     
     func setUpUiInitialization(){
@@ -106,16 +97,36 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     func updateUI() {
-        let date = Date()
-        currentDate = date
-        let dateString = self.getDateString(givenDate: date)
-        lblSelectedDate.text = dateString
-        timeString = self.getTimeString(givenDate: date)
-        self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(timeString)"
+
         
-        currentTime =  getMonthDateFromDate(dateString: currentDate)
-        lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
-        selectedTime = getTimeStringTable(givenDate: currentDate)
+        if self.enumForDinningMode == .create {
+            if self.showDefaultData == 0{
+                let date = Date()
+                currentDate = date
+                let dateString = self.getDateString(givenDate: date)
+                lblSelectedDate.text = dateString
+                timeString = self.getTimeString(givenDate: date)
+                self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(timeString)"
+                
+                currentTime =  getMonthDateFromDate(dateString: currentDate)
+                lblDatePartySize.text = "Selected Date, \(currentTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
+                self.diningReservation.SelectedTime = getTimeStringTable(givenDate: currentDate)
+                if diningSetting.MinDaysInAdvance != nil{
+                    self.currentDate = Calendar.current.date(byAdding: .weekday, value: diningSetting.MinDaysInAdvance, to: self.currentDate)!
+                }
+                if diningSetting.MinDaysInAdvanceTime != nil{
+                    
+                }
+                if diningSetting.MinDaysInAdvanceTime != nil{
+                    self.lblSelectedSizeTime.text = diningSetting.MinDaysInAdvanceTime
+                    self.timeString = diningSetting.MinDaysInAdvanceTime
+                }
+                if let defaultPartySize = diningSetting.DefaultPartySize{
+                    self.diningReservation.PartySize = defaultPartySize
+                    self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
+                }}
+        }
+        
         self.tblResturat.reloadData()
     }
     
@@ -142,6 +153,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
+        showDefaultData = 1
         vc?.delegateSelectedDateCalendar = self
         vc?.selectedDate = lblSelectedDate.text
         self.navigationController?.present(vc!, animated: true, completion: nil)
@@ -190,33 +202,33 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
 
     //MARK: - Custom Delgates Functions
     func SelectedPartysizeTme(PartySize: Int, Time: String) {
+        showDefaultData = 1
         if PartySize != 0 {
-            lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime)"
+            lblSelectedSizeTime.text = "\(PartySize) * \(self.diningReservation.SelectedTime)"
             self.diningReservation.PartySize = PartySize
-            lblDatePartySize.text = "Selected Date, \(selectedTime)|  Party size \(PartySize) | Any Resturant"
-            self.diningReservation.PartySize = PartySize
+            
         }
        else if Time != ""{
            self.diningReservation.SelectedDate = changeDateFormate(dateString: Time)
            let FormattedTime = changeTimeFormate(dateString: Time)
             lblSelectedSizeTime.text = "\(self.diningReservation.PartySize) * \(FormattedTime)"
-           
            let dateString = self.getMonthDate(dateString: Time)
-           
-           lblDatePartySize.text = "Selected Date, \(dateString)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
-           selectedTime = Time
            self.diningReservation.SelectedTime = Time
            self.lblSelectedDate.text = self.getDateFromCustomDelegate(givenDate: Time)
         }
         else if PartySize != 0 && Time != ""{
             lblSelectedSizeTime.text = "\(PartySize) * \(Time)"
-            lblDatePartySize.text = "Selected Date, \(Time)|  Party size \(PartySize) | Any Resturant"
             self.diningReservation.PartySize = PartySize
-            selectedTime = Time
             self.diningReservation.PartySize = PartySize
             self.diningReservation.SelectedTime = Time
             self.lblSelectedDate.text = self.getDateFromCustomDelegate(givenDate: Time)
+            
         }
+        
+        lblDatePartySize.text = "Selected Date, \(self.diningReservation.SelectedTime)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
+
+        
+         
         reservationList()
     }
     func dateSelection(date: String) {
@@ -243,7 +255,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblResturat.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
-        let day = getDateTableCell(givenDate: selectedTime)
+        let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
         cell.lblPartySize.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
         cell.timeSlotsDelegate = self
         cell.row = indexPath.row
@@ -252,24 +264,6 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
             print(timmings)
         print(timmings.EndTime)
-        
-      // print(self.restaurantsList[indexPath.row].Timings[indexPath.row])
-       
-        
-//     timmings?.forEach{
-//         i in print(i)
-//         let startEndTime = ["StartTime" : "\(i.StartTime ?? "")", "EndTime" : "\(i.EndTime ?? "")"]
-//         arrTimeSttart.append(startEndTime)
-//
-//     }
-//        let cookieHeader = (arrTimeSttart.flatMap({ (value) -> String in
-//            return "\(value)"
-//        }) as Array).joined(separator: ";")
-//
-//        print(cookieHeader)
-       
-        
-      //  cell.lblTime.text = self.restaurantsList[indexPath.row].Timings[indexPath.row].StartTime
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -280,12 +274,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
             impVC.selectedRestaurentId = dict.RestaurantID
-//            print(dict.RestaurantID)
             impVC.selectedTime = lblSelectedSizeTime.text ?? ""
             impVC.selectedDate = lblSelectedDate.text ?? ""
             impVC.selectedPartySize = self.diningReservation.PartySize
             impVC.currentTime = currentTime
-            let day = getDateTableCell(givenDate: selectedTime)
+            let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
             impVC.availableTime = "\(day) - Party Size:\(self.diningReservation.PartySize)"
             self.navigationController?.pushViewController(impVC, animated: true)
         }
@@ -318,23 +311,7 @@ extension DiningReservationVC{
                 self.diningSetting = reservationDinningListing.diningSettings!
                 print(self.diningReservation.SelectedDate)
                 self.diningSetting.MaxPartySize = reservationDinningListing.diningSettings.MaxPartySize
-                if self.enumForNavigationFrom == .modify {
-                    if self.firstTimeUser == 0{
-                        if reservationDinningListing.diningSettings.MinDaysInAdvance != nil{
-                            self.currentDate = Calendar.current.date(byAdding: .weekday, value: reservationDinningListing.diningSettings.MinDaysInAdvance, to: self.currentDate)!
-                        }
-                        if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
-                            
-                        }
-                        if reservationDinningListing.diningSettings.MinDaysInAdvanceTime != nil{
-                            self.lblSelectedSizeTime.text = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
-                            self.timeString = reservationDinningListing.diningSettings.MinDaysInAdvanceTime
-                        }
-                        if let defaultPartySize = reservationDinningListing.diningSettings.DefaultPartySize{
-                            self.diningReservation.PartySize = defaultPartySize
-                            self.lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)*\(self.timeString)"
-                        }}
-                }
+
                 
                 self.updateUI()
                 
@@ -356,7 +333,6 @@ extension DiningReservationVC{
         if (Network.reachability?.isReachable) == true{
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             var paramaterDict:[String: Any]?
-            
              paramaterDict = [
                 "Content-Type":"application/json",
                 APIKeys.kRequestID : self.requestedId ?? ""
