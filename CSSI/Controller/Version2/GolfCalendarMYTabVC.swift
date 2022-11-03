@@ -1232,7 +1232,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             if let date = dict.SelectedDate{
                 cell.lblDate.text = getDateDinning(givenDate: date)
             }
-            cell.clickedDinningClosure = {
+            cell.clickedDinningModifyClosure = {
                 if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
                     impVC.showNavigationBar = false
                     impVC.enumForDinningMode = .modify
@@ -1241,6 +1241,18 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
             
+            cell.clickedDinningancelClosure = {
+                
+                if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+                    cancelViewController.eventID = dict.RequestID
+                 //   cancelViewController.isFrom = "EventDiningCancelRequestReservation"
+                  ///  cancelViewController.eventID = dict.RequestID
+//                    cancelViewController.cancelFor = .DiningEvent
+//                    cancelViewController.numberOfTickets = eventobj.partySize ?? ""
+                    self.navigationController?.present(cancelViewController, animated: true)
+                }
+                
+            }
             return cell
             
         }

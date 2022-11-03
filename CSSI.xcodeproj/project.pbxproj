@@ -40,6 +40,7 @@
 		09A0D06028F4927500FC38F2 /* DinningHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05F28F4927500FC38F2 /* DinningHelper.swift */; };
 		09C3F81728D76F3600D307CF /* MemberBillingFrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */; };
 		09C3F81828D76F3600D307CF /* MemberBillingFrequencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */; };
+		09DEE8EE2913C558008E3473 /* CancelDinningReservationPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */; };
 		09EAAF9528EC26ED009011EF /* AddGuestTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */; };
 		1800E8C5225CA9C20041E95D /* HtmlTextConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800E8C4225CA9C10041E95D /* HtmlTextConverter.swift */; };
 		1801B39C230ED8BE00E7ECC2 /* NewSuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1801B39B230ED8BE00E7ECC2 /* NewSuccessPopupView.swift */; };
@@ -660,6 +661,7 @@
 		09A0D05F28F4927500FC38F2 /* DinningHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningHelper.swift; sourceTree = "<group>"; };
 		09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBillingFrequencyCell.swift; sourceTree = "<group>"; };
 		09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberBillingFrequencyCell.xib; sourceTree = "<group>"; };
+		09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDinningReservationPopupVC.swift; sourceTree = "<group>"; };
 		09EAAF9428EC26ED009011EF /* AddGuestTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestTableCell.swift; sourceTree = "<group>"; };
 		0C5C799CAE16FDF3A560EEF4 /* Pods-CSSITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CSSITests/Pods-CSSITests.release.xcconfig"; sourceTree = "<group>"; };
 		14421ACCD9ACF27860990504 /* Pods-CSSIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSSIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSSIUITests/Pods-CSSIUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2505,6 +2507,7 @@
 				09A0D05F28F4927500FC38F2 /* DinningHelper.swift */,
 				0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */,
 				09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */,
+				09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3527,6 +3530,7 @@
 				5FD6592520E757EF0033CD5B /* AppNavController.swift in Sources */,
 				9F6620EC24AE57EF0061BB9C /* DepartmentDetails.swift in Sources */,
 				182F410221A66DB400CDF5C2 /* DiningRS.swift in Sources */,
+				09DEE8EE2913C558008E3473 /* CancelDinningReservationPopupVC.swift in Sources */,
 				5F5EE75720FD9ED800A8DC73 /* GuestCard.swift in Sources */,
 				5F85D8AB20DCEF4E003F9477 /* ListCurrentStatement.swift in Sources */,
 				74C6BBCD20D1978700842A77 /* CheckBox.swift in Sources */,
