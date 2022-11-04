@@ -27,7 +27,7 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
     var timeSlots: [DiningTimeSlots] = []
     var timeSlotsDelegate: DiningTimeSlotsDelegate?
     var row = 0
-  
+    var selectedTimeSlot = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -60,7 +60,11 @@ class DiningResvTableCell: UITableViewCell,UICollectionViewDelegate,UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         
         cell.lblTime.text = self.timeSlots[indexPath.row].timeSlot
-     
+        if selectedTimeSlot != self.timeSlots[indexPath.row].timeSlot {
+            cell.viewTimeSlotBack.backgroundColor = UIColor(hexString: "#5773A2")
+        } else {
+            cell.viewTimeSlotBack.backgroundColor = .systemBlue
+        }
         
         return cell
     }

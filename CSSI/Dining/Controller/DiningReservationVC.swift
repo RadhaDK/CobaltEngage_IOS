@@ -82,20 +82,20 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnBack.setTitle("", for: .normal)
         btnHome.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
+        
         if enumForDinningMode == .create{
-           
             reservationList()
-        }
-      else if enumForDinningMode == .modify{
-          
-            reservationListModifyView()
-        }
-        else if enumForDinningMode == .view{
-            tblResturat.isUserInteractionEnabled = false
-            viewTime.isUserInteractionEnabled = false
-            btnNext.isUserInteractionEnabled = false
-            btnPrevious.isUserInteractionEnabled = false
-            btnSelectedDate.isUserInteractionEnabled = false
+        } else {
+            if enumForDinningMode == .modify{
+              
+            }
+            else if enumForDinningMode == .view{
+                tblResturat.isUserInteractionEnabled = false
+                viewTime.isUserInteractionEnabled = false
+                btnNext.isUserInteractionEnabled = false
+                btnPrevious.isUserInteractionEnabled = false
+                btnSelectedDate.isUserInteractionEnabled = false
+            }
             reservationListModifyView()
         }
     }
@@ -204,15 +204,17 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     func dateSelection(date: String) {
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "hh:mm:ss Z"
-        let resultString = inputFormatter.string(from: currentDate)
-        let currentDateString = date + " " + resultString
-        inputFormatter.dateFormat = "YYYY-MM-dd hh:mm:ss Z"
-        currentDate = inputFormatter.date(from: currentDateString)!
+        let timeString = getTimeString(givenDate: currentDate)
+        combainDateTime(dateString: date, timeString: timeString)
         updateUI()
         reservationList()
     }
     
+    func combainDateTime(dateString: String, timeString: String) {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "YYYY-MM-dd hh:mm a"
+        currentDate = inputFormatter.date(from: dateString + " " + timeString)!
+    }
 
     
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
@@ -241,6 +243,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
         let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
+        if self.enumForDinningMode != .create {
+            cell.selectedTimeSlot = self.diningReservation.SelectedTime
+        } else {
+            cell.selectedTimeSlot = ""
+        }
         cell.collectionTimeSlot.reloadData()
         print(timmings.EndTime)
         return cell
@@ -324,6 +331,7 @@ extension DiningReservationVC{
                 self.appDelegate.hideIndicator()
                 
                 self.diningReservation = reservationDinningListing
+                self.combainDateTime(dateString: self.diningReservation.SelectedDate, timeString: self.diningReservation.SelectedTime)
                 self.reservationList()
                 
             },onFailure: { error  in
