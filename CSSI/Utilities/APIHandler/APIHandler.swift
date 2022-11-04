@@ -324,6 +324,8 @@ class APIHandler: NSObject
     static let dinningMyReservationListing = "GetDiningReservationList"
     static let dinningViewModifyData = "GetDiningReservation"
     static let dinningTablePreferances = "GetTablePreferanceDetails"
+    static let dinningDeleteReservation = "DeleteDiningReservation"
+
     
     //Added on 17th October 2020 V2.3
     //MARK:- BASE URL Handler

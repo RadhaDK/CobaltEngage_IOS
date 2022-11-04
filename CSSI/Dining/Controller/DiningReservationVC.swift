@@ -73,6 +73,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     //MARK: - setUpUI
     func setUpUi(){
+        
         shadowView(viewName: viewTime)
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
@@ -82,13 +83,21 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnHome.setTitle("", for: .normal)
         btnPartySize.setTitle("", for: .normal)
         if enumForDinningMode == .create{
+           
             reservationList()
         }
       else if enumForDinningMode == .modify{
-          self.isInitial = false
-          reservationListModifyView()
-       
-      }
+          
+            reservationListModifyView()
+        }
+        else if enumForDinningMode == .view{
+            tblResturat.isUserInteractionEnabled = false
+            viewTime.isUserInteractionEnabled = false
+            btnNext.isUserInteractionEnabled = false
+            btnPrevious.isUserInteractionEnabled = false
+            btnSelectedDate.isUserInteractionEnabled = false
+            reservationListModifyView()
+        }
     }
     
     func setUpUiInitialization(){
@@ -310,12 +319,13 @@ extension DiningReservationVC{
                 "Content-Type":"application/json",
                 APIKeys.kRequestID : self.requestedId ?? ""
              ]
-            print(paramaterDict)
+           
             APIHandler.sharedInstance.ModifyMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 
                 self.diningReservation = reservationDinningListing
-                self.updateUI()
+                self.reservationList()
+                
             },onFailure: { error  in
                 print(error)
                 self.appDelegate.hideIndicator()
