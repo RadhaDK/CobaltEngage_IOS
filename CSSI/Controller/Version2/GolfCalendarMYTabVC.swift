@@ -8,11 +8,20 @@
 
 import UIKit
 
-class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsCellDelegate {
+class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsCellDelegate, cancelDinningPopup {
     func imgDetailViewClicked(cell: EventCustomTableViewCell) {
+        print(cell)
+    }
+    
+    func cancelDinningReservation(value: Bool) {
+        
+      self.appDelegate.selectedSegment = "0"
+        self.appDelegate.typeOfCalendar = "Dining"
+            self.myDinningReservationList()
         
     }
     
+   
 
     @IBOutlet weak var myTableView: UITableView!
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -99,7 +108,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             
         }
         else{
-            self.eventApi(strSearch: strSearchText as? String)
+            self.eventApi(strSearch: strSearchText)
         }
     }
     
@@ -1259,16 +1268,11 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             }
             
             cell.clickedDinningancelClosure = {
-                
                 if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
                     cancelViewController.eventID = dict.RequestID
-                 //   cancelViewController.isFrom = "EventDiningCancelRequestReservation"
-                  ///  cancelViewController.eventID = dict.RequestID
-//                    cancelViewController.cancelFor = .DiningEvent
-//                    cancelViewController.numberOfTickets = eventobj.partySize ?? ""
+                    cancelViewController.delegateCancelReservation = self
                     self.navigationController?.present(cancelViewController, animated: true)
                 }
-                
             }
             return cell
             
@@ -1797,6 +1801,7 @@ extension GolfCalendarMYTabVC{
                             self.appDelegate.hideIndicator()
                             
                         }else{
+                            self.arrMyDinningList.removeAll()
                             self.myTableView.restore()
                             self.arrMyDinningList = myReservationDinningListing.DiningReservations!  //eventList.listevents!
                             self.myTableView.reloadData()
