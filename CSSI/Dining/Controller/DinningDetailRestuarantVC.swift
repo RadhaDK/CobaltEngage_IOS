@@ -42,7 +42,6 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var MeberInfoModel = [ResrvationPartyDetail]()
     var restaurantImage  : String!
     var arrMembers = String()
-    var diningRequestMode = ""
     var selectedIndex = -1
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var tablePreferances: [DiningTablePrefenceData] = []
@@ -121,7 +120,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     // MARK: - Functions
     
     func setupDefaultMemberValues() {
-        if diningRequestMode == "" {
+        if isFrom == .create {
             if self.diningReservation.PartySize > 1 {
                 for _ in 1...self.diningReservation.PartySize {
                     self.diningReservation.PartyDetails.append(ResrvationPartyDetail.init())
@@ -231,24 +230,40 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
-        cell.lblSlotMember.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
-        if indexPath.row == 0{
-            self.lblCaptainName.text = "Captain: " + (cell.lblSlotMember.text ?? "")
-        }
-        cell.removeFromSlotClosure = {
-            self.diningReservation.PartyDetails[indexPath.row] = ResrvationPartyDetail.init()
-            self.tblGuest.reloadData()
-        }
-        cell.addToSlotClosure = {
-            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
-            vc?.delegateSelectedMemberType = self
-            vc?.checkPopupOpenFrom = .addSlot
-            self.selectedIndex = indexPath.row
-            self.navigationController?.present(vc!, animated: false, completion: nil)
+        if isFrom == .create {
+            let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
+            cell.lblSlotMember.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
+            if indexPath.row == 0{
+                self.lblCaptainName.text = "Captain: " + (cell.lblSlotMember.text ?? "")
+            }
+            cell.removeFromSlotClosure = {
+                self.diningReservation.PartyDetails[indexPath.row] = ResrvationPartyDetail.init()
+                self.tblGuest.reloadData()
+            }
+            cell.addToSlotClosure = {
+                let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
+                vc?.delegateSelectedMemberType = self
+                vc?.checkPopupOpenFrom = .addSlot
+                self.selectedIndex = indexPath.row
+                self.navigationController?.present(vc!, animated: false, completion: nil)
+            }
+            
+            return cell
+        } else {
+            let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestModifyTableCell", for: indexPath) as! AddGuestModifyTableCell
+            cell.lblMemberName.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
+            cell.lblConfirmationNumber.text = self.diningReservation.ConfirmationNumber
+            if indexPath.row == 0{
+                self.lblCaptainName.text = "Captain: " + (cell.lblMemberName.text ?? "")
+            }
+            cell.removeFromSlotClosure = {
+                self.diningReservation.PartyDetails[indexPath.row] = ResrvationPartyDetail.init()
+                self.tblGuest.reloadData()
+            }
+            
+            return cell
         }
         
-        return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55

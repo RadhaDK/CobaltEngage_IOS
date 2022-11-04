@@ -54,7 +54,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var availableTime : String?
     var selectedRestaurantImage : String?
     var showDefaultData = 0
-    var enumForDinningMode : dinningMode?
+    var enumForDinningMode : dinningMode = .create
     var requestedId : String?
     var isInitial = true
     
@@ -206,6 +206,12 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         return returnString
     }
     
+    func combainDateTime(dateString: String, timeString: String) {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "YYYY-MM-dd hh:mm a"
+        currentDate = inputFormatter.date(from: dateString + " " + timeString)!
+    }
+
 
     //MARK: - Custom Delgates Functions
     func SelectedPartysizeTme(PartySize: Int, Time: Date) {
@@ -224,16 +230,12 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         reservationList()
     }
     
-    func combainDateTime(dateString: String, timeString: String) {
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "YYYY-MM-dd hh:mm a"
-        currentDate = inputFormatter.date(from: dateString + " " + timeString)!
-    }
 
     
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
         vc!.showNavigationBar = false
+        vc?.isFrom = self.enumForDinningMode
         self.diningReservation.SelectedTime = timeSlot
         self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
         vc?.diningReservation = self.diningReservation
