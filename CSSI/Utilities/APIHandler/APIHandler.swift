@@ -7186,7 +7186,7 @@ class APIHandler: NSObject
     }
     
     //MARK:-  SaveDinningReservation Listing
-    func saveDinningReservation(paramater: [String: Any]?, parameterObj: DinningReservationFCFS, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
+    func saveDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = dinningDevURL + APIHandler.dinningSaveReservation
         
         let headers: HTTPHeaders = [
@@ -7196,7 +7196,6 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        print(parameterObj.toJSON())
         
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in

@@ -14,7 +14,6 @@ import ObjectMapper
 class DinningReservationFCFS : NSObject, Mappable {
     
     
-    var responseCode            : String!
     var Responsecode            : String!
     var responseMessage         : String!
     var RequestID               : String!
@@ -35,7 +34,6 @@ class DinningReservationFCFS : NSObject, Mappable {
     
     required convenience init?(map: Map) {
         self.init()
-        responseCode        = ""
         Responsecode = ""
         responseMessage     = ""
         RequestID           = ""
@@ -54,9 +52,8 @@ class DinningReservationFCFS : NSObject, Mappable {
     func mapping(map: Map) {
         
         
-        responseCode            <- map["Response"]
-        Responsecode             <- map["Responsecode"]
-        responseMessage         <- map["Message"]
+        Responsecode             <- map["ResponseCode"]
+        responseMessage         <- map["ResponseMessage"]
         RequestID               <- map["RequestID"]
         RestaurantID            <- map["RestaurantID"]
         ConfirmationNumber      <- map["ConfirmationNumber"]

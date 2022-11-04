@@ -42,10 +42,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var currentDate = Date()
    // var selectedTime = ""
     var selectedDateString = ""
-    var diningReservation = DinningReservationFCFS()
+    var diningReservation = DinningReservationFCFS.init()
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var restaurantsList: [DiningRestaurantsData] = []
-    var diningSetting = DiningSettingData()
+    var diningSetting = DiningSettingData.init()
     var dinningPolicy = RequestSettings()
     var selectedDateForTable = ""
     var currentTime = ""

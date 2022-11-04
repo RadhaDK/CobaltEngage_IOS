@@ -79,11 +79,11 @@ class DiningSettingData: NSObject, Mappable {
         MinDaysInAdvance        <- map["MinDaysInAdvance"]
         MinDaysInAdvanceTime    <- map["MinDaysInAdvanceTime"]
         MaxPartySize            <- map["MaxPartySize"]
-        DefaultPartySize <- map["DefaultPartySize"]
-        DefaultStartTime <- map["DefaultStartTime"]
-        DefaultEndTime <- map["DefaultEndTime"]
-        DefaultTimeInterval  <- map["DefaultTimeInterval"]
-        DefaultTimeSlots <- map["DefaultTimeSlots"]
+        DefaultPartySize        <- map["DefaultPartySize"]
+        DefaultStartTime        <- map["DefaultStartTime"]
+        DefaultEndTime          <- map["DefaultEndTime"]
+        DefaultTimeInterval     <- map["DefaultTimeInterval"]
+        DefaultTimeSlots        <- map["DefaultTimeSlots"]
     }
 }
 

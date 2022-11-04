@@ -76,7 +76,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var arrSelectedSlotsAre = [String]()
     var arrOtherDates = [GetRestaurantSelectedDateDetail]()
     var availableTime : String?
-    var diningSetting = DiningSettingData()
+    var diningSetting = DiningSettingData.init()
     var dinningPolicy = RequestSettings()
 
     override func viewDidLoad() {
