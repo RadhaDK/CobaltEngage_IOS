@@ -29,8 +29,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bec-9T-haZ">
                         <rect key="frame" x="8" y="8" width="411" height="112"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM to 11:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-nY-J4j">
-                                <rect key="frame" x="8" y="34" width="90.666666666666671" height="14.333333333333336"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM to 11:30 PMkciuwwbviouwbvowbeeobwiuvbiuwbvibweivbiwebviubweiuvbweiuvbiuwebv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-nY-J4j">
+                                <rect key="frame" x="8" y="34" width="273" height="14.333333333333336"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.41176470588235292" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -54,8 +54,11 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, Aug - Party Size:6" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfX-A6-vAd">
-                                <rect key="frame" x="301.66666666666669" y="33.666666666666664" width="99.333333333333314" height="14.666666666666664"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri, Aug - Party Size:6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfX-A6-vAd">
+                                <rect key="frame" x="291" y="33.666666666666664" width="110" height="14.666666666666664"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="rsl-13-XX0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="11"/>
                                 <color key="textColor" red="0.29411764705882354" green="0.31764705882352939" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -65,6 +68,7 @@
                         <constraints>
                             <constraint firstItem="e0A-MJ-Q9Z" firstAttribute="top" secondItem="ooK-nY-J4j" secondAttribute="bottom" constant="8" id="FwD-Rj-4dZ"/>
                             <constraint firstItem="e0A-MJ-Q9Z" firstAttribute="top" secondItem="nfX-A6-vAd" secondAttribute="bottom" constant="8" id="KNr-lD-gHT"/>
+                            <constraint firstItem="nfX-A6-vAd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ooK-nY-J4j" secondAttribute="trailing" constant="10" id="MQI-WR-rWD"/>
                             <constraint firstAttribute="bottom" secondItem="e0A-MJ-Q9Z" secondAttribute="bottom" constant="8" id="Ro8-4S-PGN"/>
                             <constraint firstItem="ooK-nY-J4j" firstAttribute="leading" secondItem="Bec-9T-haZ" secondAttribute="leading" constant="8" id="TsL-v3-B3x"/>
                             <constraint firstItem="ZJL-n6-ENf" firstAttribute="top" secondItem="Bec-9T-haZ" secondAttribute="top" constant="8" id="Z4t-Il-Qmt"/>

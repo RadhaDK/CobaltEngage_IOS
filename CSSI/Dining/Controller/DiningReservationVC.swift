@@ -98,6 +98,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             }
             reservationListModifyView()
         }
+        self.lblLoggedInuserInfo.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
     }
     
     func setUpUiInitialization(){
@@ -131,6 +132,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
         vc?.delegateSelectedTimePatySize = self
         vc?.maxPartySize = self.diningSetting.MaxPartySize ?? 5
+        vc?.minimumDaysInAdvance = self.diningSetting.MinDaysInAdvance
+        vc?.maximumDaysInAdvance = self.diningSetting.MaxDaysInAdvance
         vc?.selectedPartySize = self.diningReservation.PartySize
         vc?.selectedDate = currentDate
         self.navigationController?.present(vc!, animated: true, completion: nil)
@@ -182,7 +185,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     func assigenDatePartySizeDetails(yearOfMonth: String) {
-        lblDatePartySize.text = "Selected Date, \(yearOfMonth)|  Party size \(self.diningReservation.PartySize) | Any Resturant"
+        lblDatePartySize.text = "Selected Date, \(yearOfMonth) |  Party size \(self.diningReservation.PartySize) | Any Resturant"
     }
     
     func assigenSelectedDate() {
@@ -190,7 +193,18 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         lblSelectedDate.text = dateString
     }
     
-
+    func getStartAndEndTimeString(timings: [DiningTimmingsData]) -> String{
+        var returnString = ""
+        
+        for i in timings {
+            if returnString != "" {
+                returnString = returnString + ", "
+            }
+            returnString = returnString + " " + i.StartTime + " to " + i.EndTime
+        }
+        
+        return returnString
+    }
     
 
     //MARK: - Custom Delgates Functions
@@ -242,14 +256,13 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.row = indexPath.row
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
-        let timmings = self.restaurantsList[indexPath.row].Timings[indexPath.row]
+        cell.lblTime.text = self.getStartAndEndTimeString(timings: self.restaurantsList[indexPath.row].Timings)
         if self.enumForDinningMode != .create {
             cell.selectedTimeSlot = self.diningReservation.SelectedTime
         } else {
             cell.selectedTimeSlot = ""
         }
         cell.collectionTimeSlot.reloadData()
-        print(timmings.EndTime)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -298,7 +311,7 @@ extension DiningReservationVC{
                 
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
-                    self.currentDate = Date()
+                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
                     self.isInitial = false
                 }
 
