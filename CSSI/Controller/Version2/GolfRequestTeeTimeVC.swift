@@ -4793,7 +4793,9 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
 
                 }
                 let dateString = self.getDateString(givenDate: date)
-                self.selectedSlotsList.removeAll()
+                if !(isFrom == "Modify" || isFrom == "View"){
+                    self.selectedSlotsList.removeAll()
+                }
                 self.getTimeSlotsForDate(dateString: dateString)
                 
             })

@@ -30,6 +30,8 @@ class PartySizePopUpVC: UIViewController {
     var selectedDate = Date()
 //    var arrPartySize = ["1","2","3","4","5","6"]
     var maxPartySize = 0
+    var minimumDaysInAdvance = 0
+    var maximumDaysInAdvance = 90
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +55,8 @@ class PartySizePopUpVC: UIViewController {
         
         if #available(iOS 15.0, *) {
             datePicker.roundsToMinuteInterval = true
-            datePicker.minimumDate = .now
+            datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: self.minimumDaysInAdvance, to: Date())!
+            datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: self.maximumDaysInAdvance, to: Date())!
         } else {
             // Fallback on earlier versions
         }

@@ -46,8 +46,8 @@
             filePath = "CSSI/Controller/Version2/GolfRequestTeeTimeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5814"
-            endingLineNumber = "5814"
+            startingLineNumber = "5816"
+            endingLineNumber = "5816"
             landmarkName = "requestClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -65,22 +65,6 @@
             startingLineNumber = "1886"
             endingLineNumber = "1886"
             landmarkName = "getAppVersion(paramater:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "59581ABA-1ED6-4160-B789-6E1B87FD120D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/Version2/GolfRequestTeeTimeVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1790"
-            endingLineNumber = "1790"
-            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
