@@ -66,7 +66,7 @@ extension UIViewController{
         }
         func getTimeString(givenDate: Date) -> String {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "hh:mm a E"
+            dateFormatter.dateFormat = "hh:mm a"
             return dateFormatter.string(from: givenDate)
         }
         func getTimeStringTable(givenDate: Date) -> String {
@@ -84,12 +84,10 @@ extension UIViewController{
         return resultString
     }
         
-        func getDateTableCell(givenDate: String) -> String {
+        func getDateTableCell(givenDate: Date) -> String {
             let inputFormatter = DateFormatter()
-            inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-            let showDate = inputFormatter.date(from: givenDate)
             inputFormatter.dateFormat = "E, MMM"
-            let resultString = inputFormatter.string(from: showDate!)
+            let resultString = inputFormatter.string(from: givenDate)
             print(resultString)
             return resultString
         }
@@ -104,6 +102,25 @@ extension UIViewController{
             return resultString
             
         }
+    
+    func getDayOfWeek(givenDate: Date) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "E"
+        let resultString = inputFormatter.string(from: givenDate)
+        print(resultString)
+        return resultString
+        
+    }
+    func getDateDinning(givenDate: Date) -> String {
+        let inputFormatter = DateFormatter()
+
+        inputFormatter.dateFormat = "MMM dd"
+        let resultString = inputFormatter.string(from: givenDate)
+        print(resultString)
+        return resultString
+        
+    }
+    
     func getDateDinning(givenDate: String) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd"
@@ -138,12 +155,10 @@ extension UIViewController{
             print(resultString)
             return resultString
         }
-        func getMonthDate(dateString : String)-> String{
+        func getMonthDate(selectedDate : Date)-> String{
             let inputFormatter = DateFormatter()
-            inputFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-            let showDate = inputFormatter.date(from: dateString)
             inputFormatter.dateFormat = "MMM dd"
-            let resultString = inputFormatter.string(from: showDate!)
+            let resultString = inputFormatter.string(from: selectedDate)
             print(resultString)
             return resultString
             
@@ -186,6 +201,11 @@ extension UIViewController{
         return resultString
     }
     
+    func getDateStringFromDate(givenDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        return dateFormatter.string(from: givenDate)
+    }
     
         func convertBase64StringToImage (imageBase64String:String) -> UIImage? {
             if let url = URL(string: imageBase64String), let data = try? Data(contentsOf: url) {

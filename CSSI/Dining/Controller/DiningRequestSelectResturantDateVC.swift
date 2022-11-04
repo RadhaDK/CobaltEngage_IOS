@@ -53,8 +53,9 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     }
     fileprivate let now = Date()
     fileprivate let calendar = Calendar.current
-    var selectedDate : String?
+    var selectedDate = Date()
     var delegateSelectedDateCalendar : dateSelection?
+    var selectedDateString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,23 +73,24 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         self.myCalendar.appearance.titleDefaultColor = .white
         self.myCalendar.appearance.titleWeekendColor = .white
         self.myCalendar.appearance.subtitleTodayColor = .yellow
+//        self.myCalendar.
         // Do any additional setup after loading the view.
     }
     ///Chanegs the color of today based on isAvailable
 
     //MARK: - IBActions
     @IBAction func btnDone(_ sender: Any) {
-        delegateSelectedDateCalendar?.dateSelection(date: selectedDate ?? "")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        selectedDateString = dateFormatter.string(from: selectedDate)
+        delegateSelectedDateCalendar?.dateSelection(date: selectedDateString)
         self.dismiss(animated: true)
     }
     @objc func calander(sender : UITapGestureRecognizer) {
     }
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-             print(date)
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY/MM/dd"
-        selectedDate = dateFormatter.string(from: date)
+
+            selectedDate = date
     }
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         

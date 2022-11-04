@@ -8,7 +8,7 @@
 
 import UIKit
 protocol selectedPartySizeTime{
-    func SelectedPartysizeTme(PartySize : Int, Time : String)
+    func SelectedPartysizeTme(PartySize : Int, Time : Date)
 }
 
 class PartySizePopUpVC: UIViewController {
@@ -26,8 +26,8 @@ class PartySizePopUpVC: UIViewController {
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let dateFormatter = DateFormatter()
     var delegateSelectedTimePatySize : selectedPartySizeTime?
-    var selectedPartySize : Int?
-    var selectedDate : String?
+    var selectedPartySize = -1
+    var selectedDate = Date()
 //    var arrPartySize = ["1","2","3","4","5","6"]
     var maxPartySize = 0
     
@@ -63,19 +63,19 @@ class PartySizePopUpVC: UIViewController {
             // Fallback on earlier versions
         }
         datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
+        datePicker.date = selectedDate
     }
     
     @objc func dateSelected(){
-            let dateformatter = DateFormatter()
-            dateformatter.dateFormat = "yyyy-MM-dd hh:mm a"
-            selectedDate = dateformatter.string(from: datePicker.date)
-        }
+
+    }
 
     
     //MARK: - IBActions
     @IBAction func doneBtnTapped(sender:UIButton){
         self.dismiss(animated: true, completion: nil)
-        delegateSelectedTimePatySize?.SelectedPartysizeTme(PartySize: selectedPartySize ?? 0, Time: selectedDate ?? "")
+        
+        delegateSelectedTimePatySize?.SelectedPartysizeTme(PartySize: selectedPartySize, Time: datePicker.date)
     }
 }
 
@@ -88,10 +88,18 @@ extension PartySizePopUpVC : UICollectionViewDelegateFlowLayout, UICollectionVie
         let cell = partySizeCollectionView.dequeueReusableCell(withReuseIdentifier: "PartySizeCollectionCell", for: indexPath) as! PartySizeCollectionCell
 //        let dict = arrPartySize[indexPath.row]
         cell.partySizeCountLbl.text = "\(indexPath.row + 1)"
+        if selectedPartySize == indexPath.row + 1 {
+            cell.partySizeCountLbl.textColor = .white
+            cell.partySizeCountLbl.layer.backgroundColor = UIColor(red: 1/255, green: 192/255, blue: 247/255, alpha: 1).cgColor
+        } else {
+            cell.partySizeCountLbl.textColor = .darkGray
+            cell.partySizeCountLbl.layer.backgroundColor = UIColor.white.cgColor
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let dict = arrPartySize[indexPath.row]
         selectedPartySize = indexPath.row + 1
+        collectionView.reloadData()
     }
 }

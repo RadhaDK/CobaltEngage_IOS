@@ -9,6 +9,10 @@
 import UIKit
 
 class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime {
+    func SelectedPartysizeTme(PartySize: Int, Time: Date) {
+        
+    }
+    
     func SelectedPartysizeTme(PartySize: Int, Time: String) {
         if PartySize != 0 {
             lblSelectedSizeTime.text = "\(PartySize) * \(selectedTime ?? "")"

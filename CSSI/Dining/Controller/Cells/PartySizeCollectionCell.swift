@@ -11,18 +11,20 @@ import UIKit
 class PartySizeCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var partySizeCountLbl: UILabel!
-    override var isSelected: Bool {
-        didSet {
-            partySizeCountLbl.textColor = isSelected ? .white : .black
-            partySizeCountLbl.layer.backgroundColor = isSelected ? UIColor(red: 1/255, green: 192/255, blue: 247/255, alpha: 1).cgColor : UIColor.white.cgColor
-        }
-    }
+    var selectedSize: Bool!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         partySizeCountLbl.layer.cornerRadius = partySizeCountLbl.frame.width/2
         partySizeCountLbl.layer.borderColor = hexStringToUIColor(hex: "5773A2").cgColor
         partySizeCountLbl.layer.borderWidth = 1.0
+        
+        if selectedSize == true {
+            
+        } else {
+            partySizeCountLbl.textColor = .white
+            partySizeCountLbl.layer.backgroundColor = UIColor(red: 1/255, green: 192/255, blue: 247/255, alpha: 1).cgColor
+        }
     }
     
 }
