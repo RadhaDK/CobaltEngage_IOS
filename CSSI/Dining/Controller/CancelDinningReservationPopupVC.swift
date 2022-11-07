@@ -22,7 +22,7 @@ class CancelDinningReservationPopupVC: UIViewController {
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var eventID : String?
     var delegateCancelReservation : cancelDinningPopup?
-
+    var diningCancelPopupMode : diningCancelPopupMode?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,16 +66,18 @@ extension CancelDinningReservationPopupVC{
             APIHandler.sharedInstance.deleteMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 if reservationDinningListing.ResponsecodeCancel == InternetMessge.ksuccess{
-                    self.delegateCancelReservation?.cancelDinningReservation(value: true)
-                    self.dismiss(animated: true, completion: nil)
+                   // if self.diningCancelPopupMode == .listing{
+                        self.delegateCancelReservation?.cancelDinningReservation(value: true)
+                        self.dismiss(animated: true, completion: nil)
+                    //}
+//                    else{
+//
+//                    }
 
                 }
                 else{
                     self.appDelegate.hideIndicator()
-//                    if(((myReservationDinningListing.responseMessage?.count) ?? 0)>0){
-//                        SharedUtlity.sharedHelper().showToast(on:
-//                            self.view, withMeassge: myReservationDinningListing.responseMessage, withDuration: Duration.kMediumDuration)
-//                    }
+                    self.dismiss(animated: true, completion: nil)
                 }
                
             },onFailure: { error  in
@@ -92,3 +94,5 @@ extension CancelDinningReservationPopupVC{
     }
     
 }
+
+
