@@ -173,7 +173,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     }
     
     func assigenDatePartySizeDetails(yearOfMonth: String) {
-        lblDatePartySize.text = "Selected Date, \(yearOfMonth) |  Party size \(self.diningReservation.PartySize) | Any Resturant"
+        lblDatePartySize.text = "Selected Date, \(yearOfMonth) |  Party size \(self.diningReservation.PartySize) | Any Restaurant"
     }
     
     func assigenSelectedDate() {

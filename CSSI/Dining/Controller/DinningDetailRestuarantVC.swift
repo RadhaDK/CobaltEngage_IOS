@@ -80,6 +80,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         txtReservationComment.layer.borderWidth = 1
         txtReservationComment.layer.borderColor = UIColor.lightGray.cgColor
         txtReservationComment.layer.cornerRadius = 8
+        txtReservationComment.text = self.diningReservation.Comments
         btnSubmit.layer.cornerRadius = btnSubmit.layer.frame.height/2
         btnCancelReservation.layer.cornerRadius = btnCancelReservation.layer.frame.height/2
         btnAddMultiple.layer.cornerRadius = btnAddMultiple.layer.frame.height/2
@@ -96,8 +97,10 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         if isFrom == .create {
             self.btnCancelReservationHeight.constant = 0
             self.tblGuest.separatorStyle = .none
+            self.btnSubmit.setTitle("Submit", for: .normal)
         } else {
             self.tblGuest.separatorStyle = .singleLine
+            self.btnSubmit.setTitle("Save", for: .normal)
         }
         setUpUiInitialization()
     }
@@ -110,8 +113,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     //MARK: - IBOutlets
     @IBAction func btnSubmit(_ sender: Any) {
-//        self.validateReservation()
-        self.saveDiningReservation()
+        self.diningReservation.Comments = self.txtReservationComment.text ?? ""
+        self.validateReservation()
+//        self.saveDiningReservation()
     }
     
     @IBAction func btnCancelReservationAction(_ sender: Any) {
@@ -509,6 +513,12 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func validateReservation() {
+        
+        var diningDetails = self.diningReservation.PartyDetails.toJSON()
+        for i in 0...diningDetails.count - 1 {
+            diningDetails[i]["LinkedMemberID"] = self.diningReservation.PartyDetails[i].MemberID
+        }
+        
        let paramaterDict = [
             "Content-Type":"application/json",
             APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
@@ -525,24 +535,48 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             "Comments": "",
             "PreferedSpaceDetailId": "" ,
             "TablePreference": "",
-            "DiningDetails" : self.diningReservation.PartyDetails.toJSON(),
+            "DiningDetails" : diningDetails,
             "IsReservation": "1",
             "IsEvent": "0",
             "ReservationType": "Dining",
             "RegistrationID": self.diningReservation.RequestID
        ] as [String : Any]
         
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
         APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict) { response in
             
             if(response.responseCode == InternetMessge.kSuccess)
             {
-                self.saveDiningReservation()
+                if response.ValidCheck == "False" {
+                    if response.IsHardRuleEnabled == "False" {
+
+                        let refreshAlert = UIAlertController(title: "Dining Reservation", message: response.ValidationMessage, preferredStyle: UIAlertController.Style.alert)
+                        refreshAlert.view.tintColor = hexStringToUIColor(hex: "40B2E6")
+                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                            self.saveDiningReservation()
+                        }))
+
+                        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                              print("Cancel Clicked")
+                        }))
+
+                        self.present(refreshAlert, animated: true, completion: nil)
+                    } else {
+                        SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.ValidationMessage, withDuration: Duration.kMediumDuration)
+                    }
+                } else {
+                    self.saveDiningReservation()
+                }
+                
+                
             } else {
+                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
                 print(response.brokenRules?.message)
             }
             
         } onFailure: { error in
-//            self.appDelegate.hideIndicator()
+            self.appDelegate.hideIndicator()
         }
     }
     

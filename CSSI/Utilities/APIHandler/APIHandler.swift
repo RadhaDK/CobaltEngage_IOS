@@ -325,7 +325,7 @@ class APIHandler: NSObject
     static let dinningViewModifyData = "GetDiningReservation"
     static let dinningTablePreferances = "GetTablePreferanceDetails"
     static let dinningDeleteReservation = "DeleteDiningReservation"
-    static let dinningMemberValidationFCFS = "GetMemberValidation"
+    static let dinningMemberValidationFCFS = "GetFBMemberValidation"
 
     
     //Added on 17th October 2020 V2.3
