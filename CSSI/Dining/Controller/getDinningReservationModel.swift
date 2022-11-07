@@ -18,7 +18,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     var responseMessage         : String!
     var RequestID               : String!
     var RestaurantID            : String!
-    var ConfirmationNumber      : String!
+    var ConfirmationNumber      : Int!
     var ReservationStatus       : Int!
     dynamic var SelectedTime    = ""
     dynamic var PartySize       = 0
@@ -38,7 +38,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         responseMessage     = ""
         RequestID           = ""
         RestaurantID        = ""
-        ConfirmationNumber  = ""
+        ConfirmationNumber  = 0
         ReservationStatus   = 0
         SelectedTime        = ""
         PartySize           = 0

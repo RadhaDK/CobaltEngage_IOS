@@ -30,6 +30,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var btnAddMultiple: UIButton!
     @IBOutlet weak var imgRestaurantImage: UIImageView!
     
+    @IBOutlet weak var btnCancelReservationHeight: NSLayoutConstraint!
+    @IBOutlet weak var btnCancelReservation: UIButton!
     @IBOutlet weak var lblLoggedInUser: UILabel!
     @IBOutlet weak var lblRestaurantName: UILabel!
     @IBOutlet weak var lblCaptainName: UILabel!
@@ -41,7 +43,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var restaurantName = ""
     var diningReservation = DinningReservationFCFS.init()
     var MeberInfoModel = [ResrvationPartyDetail]()
-    var restaurantImage  : String!
+    var restaurantImage  = ""
     var selectedIndex = -1
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var tablePreferances: [DiningTablePrefenceData] = []
@@ -75,6 +77,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         txtReservationComment.layer.borderColor = UIColor.lightGray.cgColor
         txtReservationComment.layer.cornerRadius = 8
         btnSubmit.layer.cornerRadius = btnSubmit.layer.frame.height/2
+        btnCancelReservation.layer.cornerRadius = btnCancelReservation.layer.frame.height/2
         btnAddMultiple.layer.cornerRadius = btnAddMultiple.layer.frame.height/2
         btnAddMultiple.layer.borderWidth = 1
         btnAddMultiple.layer.borderColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1).cgColor
@@ -83,12 +86,15 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         lblPartySize.text = String(format: "%02d", self.diningReservation.PartySize)
         lblTime.text = self.diningReservation.SelectedTime
         lblRestaurantName.text = self.restaurantName
-        let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: imgRestaurantImage.frame.size.width, height: imgRestaurantImage.frame.size.height))
-        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
-        imgRestaurantImage.addSubview(overlay)
         
         self.imgRestuarant.image = convertBase64StringToImage(imageBase64String: restaurantImage)
         self.lblLoggedInUser.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
+        if isFrom == .create {
+            self.btnCancelReservationHeight.constant = 0
+            self.tblGuest.separatorStyle = .none
+        } else {
+            self.tblGuest.separatorStyle = .singleLine
+        }
         setUpUiInitialization()
     }
     func setUpUiInitialization(){
@@ -103,6 +109,11 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 //        self.validateReservation()
         self.saveDiningReservation()
     }
+    
+    @IBAction func btnCancelReservationAction(_ sender: Any) {
+        
+    }
+    
     
     @IBAction func btnAddMultiple(_ sender: Any) {
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
@@ -261,7 +272,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         } else {
             let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestModifyTableCell", for: indexPath) as! AddGuestModifyTableCell
             cell.lblMemberName.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
-            cell.lblConfirmationNumber.text = self.diningReservation.ConfirmationNumber
+            cell.lblConfirmationNumber.text = "# \(self.diningReservation.ConfirmationNumber!)"
             if indexPath.row == 0{
                 self.lblCaptainName.text = "Captain: " + (cell.lblMemberName.text ?? "")
             }

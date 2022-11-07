@@ -14,8 +14,6 @@ class DinningReservationTimeSlotCollectionCell: UICollectionViewCell {
     @IBOutlet weak var viewTimeSlotBack: UIView!
     @IBOutlet weak var btnTime: UIButton!
     @IBOutlet weak var lblTime: UILabel!
-    
-    var addToSlotClosure:(()->())?
 
     override func awakeFromNib() {
         super.awakeFromNib()

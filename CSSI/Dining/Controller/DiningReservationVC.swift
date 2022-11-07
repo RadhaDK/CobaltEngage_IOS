@@ -30,7 +30,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var lblSelectedSizeTime: UILabel!
     @IBOutlet weak var lblDatePartySize: UILabel!
     @IBOutlet weak var lblLoggedInuserInfo: UILabel!
-    
+    @IBOutlet weak var lblDiningHeading: UILabel!
+
     
     //MARK:- variables
     var showNavigationBar = true
@@ -70,12 +71,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnPartySize.setTitle("", for: .normal)
         
         if enumForDinningMode == .create{
+            lblDiningHeading.text = "Dining Reservation"
             reservationList()
         } else {
             if enumForDinningMode == .modify{
-              
+                lblDiningHeading.text = "Modify Reservation"
             }
             else if enumForDinningMode == .view{
+                lblDiningHeading.text = "Dining Reservation"
                 tblResturat.isUserInteractionEnabled = false
                 viewTime.isUserInteractionEnabled = false
                 btnNext.isUserInteractionEnabled = false
@@ -261,13 +264,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
-            impVC.selectedRestaurentId = dict.RestaurantID
-            impVC.selectedTime = lblSelectedSizeTime.text ?? ""
-//            impVC.selectedDate = lblSelectedDate.text ?? ""
-            impVC.selectedPartySize = self.diningReservation.PartySize
-//            impVC.currentTime = currentTime
-//            let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
-//            impVC.availableTime = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+            self.diningReservation.RestaurantID = dict.RestaurantID
+            impVC.diningReservation = self.diningReservation
+            impVC.dinningPolicy = self.diningPolicyURL
+            impVC.restaurantImage = dict.RestaurantImage
+            impVC.isFrom = self.enumForDinningMode
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
@@ -335,6 +336,7 @@ extension DiningReservationVC{
                 self.diningReservation = reservationDinningListing
                 self.diningReservation.RequestID = self.requestedId
                 self.combainDateTime(dateString: self.diningReservation.SelectedDate, timeString: self.diningReservation.SelectedTime)
+                print(reservationDinningListing.SelectedTime)
                 self.reservationList()
                 
             },onFailure: { error  in
