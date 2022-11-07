@@ -749,6 +749,8 @@ class GolfCalendarVC: UIViewController ,UISearchBarDelegate, DTCalendarViewDeleg
         self.calendarDidSelectDate = false
         self.eventsRangeView.selectionStartDate = nil
         self.eventsRangeView.selectionEndDate = nil
+        print(calendarRangeStartDate)
+        print(calendarRangeEndDate)
         calendarRangeStartDate = self.calendarPreviousStartDate
         calendarRangeEndDate = self.calendarPreviousEndDate
         

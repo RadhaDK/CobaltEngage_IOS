@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol cancelDinningPopup{
+    func cancelDinningReservation(value : Bool)
+}
+
 class CancelDinningReservationPopupVC: UIViewController {
     
     @IBOutlet weak var descriptionLbl: UILabel!
@@ -17,6 +21,7 @@ class CancelDinningReservationPopupVC: UIViewController {
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var eventID : String?
+    var delegateCancelReservation : cancelDinningPopup?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +65,8 @@ extension CancelDinningReservationPopupVC{
             
             APIHandler.sharedInstance.deleteMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                if reservationDinningListing.Responsecode == InternetMessge.ksuccess{
+                if reservationDinningListing.ResponsecodeCancel == InternetMessge.ksuccess{
+                    self.delegateCancelReservation?.cancelDinningReservation(value: true)
                     self.dismiss(animated: true, completion: nil)
 
                 }

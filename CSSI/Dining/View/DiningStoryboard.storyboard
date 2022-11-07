@@ -920,6 +920,7 @@
                         <outlet property="btnPrevious" destination="Ir7-zl-ow2" id="bNl-UG-Mfx"/>
                         <outlet property="btnSelectedDate" destination="2OA-5m-6k2" id="VRr-VG-6hi"/>
                         <outlet property="lblDatePartySize" destination="FOG-0V-oEX" id="Zcn-yF-qPp"/>
+                        <outlet property="lblDiningHeading" destination="kv8-HE-9bF" id="mVX-In-Nb5"/>
                         <outlet property="lblLoggedInuserInfo" destination="Gda-Oc-wIN" id="3Gl-Jv-eEU"/>
                         <outlet property="lblSelectedDate" destination="ieU-hQ-WKr" id="afZ-Kg-2NZ"/>
                         <outlet property="lblSelectedSizeTime" destination="i7O-ZO-JqY" id="qhL-cH-K36"/>
@@ -1507,17 +1508,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epi-mh-2CU">
                                                 <rect key="frame" x="10" y="135" width="362" height="386"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prime-Cut_1X" translatesAutoresizingMaskIntoConstraints="NO" id="RmT-2u-ijc">
-                                                        <rect key="frame" x="96" y="15" width="170" height="70"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 918" translatesAutoresizingMaskIntoConstraints="NO" id="RmT-2u-ijc">
+                                                        <rect key="frame" x="131" y="53.333333333333314" width="100" height="60"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="70" id="jne-qh-cEO"/>
-                                                            <constraint firstAttribute="width" constant="170" id="oXh-YQ-VYw"/>
+                                                            <constraint firstAttribute="height" constant="60" id="jne-qh-cEO"/>
+                                                            <constraint firstAttribute="width" constant="100" id="oXh-YQ-VYw"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Dining Reservation has been confirmed for Friday, August 26, 2022" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4d-jQ-y8K">
-                                                        <rect key="frame" x="40" y="125" width="282" height="79.333333333333314"/>
+                                                        <rect key="frame" x="40" y="153.33333333333331" width="282" height="79.333333333333314"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="20"/>
-                                                        <color key="textColor" red="0.2031491399" green="0.34034940600000002" blue="0.51420485969999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size (6)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ne-n6-dyW">
@@ -1574,8 +1575,8 @@
                                                     <constraint firstAttribute="bottom" secondItem="30U-Mz-dRK" secondAttribute="bottom" constant="20" id="K6k-Oe-f1r"/>
                                                     <constraint firstItem="h4d-jQ-y8K" firstAttribute="leading" secondItem="epi-mh-2CU" secondAttribute="leading" constant="40" id="NzO-li-n1E"/>
                                                     <constraint firstItem="h4d-jQ-y8K" firstAttribute="top" secondItem="RmT-2u-ijc" secondAttribute="bottom" constant="40" id="QgZ-aw-xxM"/>
+                                                    <constraint firstItem="h4d-jQ-y8K" firstAttribute="centerY" secondItem="epi-mh-2CU" secondAttribute="centerY" id="Tql-g1-uuL"/>
                                                     <constraint firstAttribute="trailing" secondItem="h4d-jQ-y8K" secondAttribute="trailing" constant="40" id="Usv-Ex-ptC"/>
-                                                    <constraint firstItem="RmT-2u-ijc" firstAttribute="top" secondItem="epi-mh-2CU" secondAttribute="top" constant="15" id="W2T-en-Aen"/>
                                                     <constraint firstAttribute="height" constant="386" id="Xub-Uf-Z4V"/>
                                                     <constraint firstItem="3Ne-n6-dyW" firstAttribute="leading" secondItem="h4d-jQ-y8K" secondAttribute="leading" id="aT2-LO-e7a"/>
                                                     <constraint firstItem="3Ne-n6-dyW" firstAttribute="top" secondItem="VCU-1Q-ocB" secondAttribute="bottom" constant="15" id="cBR-YB-Y2X"/>
@@ -1586,6 +1587,13 @@
                                                     <constraint firstItem="VCU-1Q-ocB" firstAttribute="leading" secondItem="h4d-jQ-y8K" secondAttribute="leading" id="tpt-Nk-f5F"/>
                                                     <constraint firstItem="RmT-2u-ijc" firstAttribute="centerX" secondItem="epi-mh-2CU" secondAttribute="centerX" id="yuN-2l-u9a"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="3Ne-n6-dyW"/>
+                                                        <exclude reference="VCU-1Q-ocB"/>
+                                                        <exclude reference="30U-Mz-dRK"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3111,7 +3119,7 @@
                                                     <color key="titleColor" red="0.25098039220000001" green="0.69803921570000005" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="submitClicked:" destination="7mM-H3-TnV" eventType="touchUpInside" id="jmB-kN-6Ib"/>
+                                                    <action selector="submitClicked:" destination="7mM-H3-TnV" eventType="touchUpInside" id="uGm-zb-gBT"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Vt-y3-Xbk">
@@ -3125,7 +3133,7 @@
                                                     <color key="titleColor" red="0.25098039220000001" green="0.69803921570000005" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="resetClicked:" destination="7mM-H3-TnV" eventType="touchUpInside" id="wxd-N2-yAc"/>
+                                                    <action selector="resetClicked:" destination="7mM-H3-TnV" eventType="touchUpInside" id="98h-4Z-0tw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylg-df-Cxs">
@@ -3140,7 +3148,7 @@
                                                     <color key="titleColor" red="0.25098039220000001" green="0.69803921570000005" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="closeClicked:" destination="7mM-H3-TnV" eventType="touchUpInside" id="J9L-QK-TzC"/>
+                                                    <action selector="closeClicked:" destination="7mM-H3-TnV" eventType="touchUpInside" id="Uey-Bt-rLj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -3272,9 +3280,9 @@
                     </view>
                     <connections>
                         <outlet property="baseView" destination="d2B-9G-EJo" id="fWW-as-eIb"/>
-                        <outlet property="btnClose" destination="ylg-df-Cxs" id="ci2-Sj-GbL"/>
-                        <outlet property="btnReset" destination="4Vt-y3-Xbk" id="wP7-0l-UM3"/>
-                        <outlet property="btnSubmit" destination="JlQ-OT-ibS" id="Vdr-pk-GEh"/>
+                        <outlet property="btnClose" destination="ylg-df-Cxs" id="xE5-rG-fCe"/>
+                        <outlet property="btnReset" destination="4Vt-y3-Xbk" id="XL8-nH-Zan"/>
+                        <outlet property="btnSubmit" destination="JlQ-OT-ibS" id="Jat-UR-wEJ"/>
                         <outlet property="calanderView" destination="hOM-RG-Jbm" id="MrS-kI-xyE"/>
                         <outlet property="eventsRangeView" destination="qCE-gH-RMC" id="hDF-6T-hEr"/>
                         <outlet property="heightBottomMemberNameView" destination="pIf-ZC-CbA" id="vNA-GH-zke"/>
@@ -3303,6 +3311,7 @@
         <image name="Cobalt _White Logo_1X" width="138" height="58"/>
         <image name="Group 1012" width="375" height="105.66666412353516"/>
         <image name="Group 2134" width="52" height="52"/>
+        <image name="Group 918" width="28" height="21.333333969116211"/>
         <image name="Home Blue_Icon 1x" width="21" height="20.333333969116211"/>
         <image name="Home White_Icon 1x" width="21" height="20.333333969116211"/>
         <image name="Icon_ArrowLeftActive" width="6.6666665077209473" height="11"/>
@@ -3310,7 +3319,6 @@
         <image name="Icon_MemberID" width="15" height="18"/>
         <image name="Plus_Icon_1X" width="18.666666030883789" height="18.666666030883789"/>
         <image name="Previous_Icon" width="6" height="10.333333015441895"/>
-        <image name="Prime-Cut_1X" width="150" height="86"/>
         <image name="arrowBlue" width="23" height="23"/>
         <image name="close-dark" width="9" height="9"/>
         <image name="dinningCancel" width="79" height="68"/>

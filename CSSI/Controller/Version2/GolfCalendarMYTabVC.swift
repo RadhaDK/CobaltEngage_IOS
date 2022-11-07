@@ -8,11 +8,20 @@
 
 import UIKit
 
-class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsCellDelegate {
+class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewDelegate, EventsCellDelegate, cancelDinningPopup {
     func imgDetailViewClicked(cell: EventCustomTableViewCell) {
+        print(cell)
+    }
+    
+    func cancelDinningReservation(value: Bool) {
+        
+      self.appDelegate.selectedSegment = "0"
+        self.appDelegate.typeOfCalendar = "Dining"
+        self.myDinningReservationList(strSearch: strSearchText ?? "")
         
     }
     
+   
 
     @IBOutlet weak var myTableView: UITableView!
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -58,7 +67,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDinningReservationList()
+                self.myDinningReservationList(strSearch: strSearchText ?? "")
               //  self.myDiningEventApi(strSearch: strSearchText)
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"
@@ -88,7 +97,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDiningEventApi(strSearch: strSearchText)
+                self.myDinningReservationList(strSearch: strSearchText ?? "")
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"{
                 self.getFitnessAndSpaEventsAPI(search: strSearchText)
@@ -99,7 +108,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             
         }
         else{
-            self.eventApi(strSearch: strSearchText as? String)
+            self.eventApi(strSearch: strSearchText)
         }
     }
     
@@ -1239,9 +1248,11 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             
             
             cell.lblEventTime.text = "\(dict.SelectedTime ?? "") Party Size: \(dict.PartySize ?? 0)"
-            cell.lblEventName.text = dict.RestaurantName
-            cell.lblLocation.text = dict.ReservationType
+            cell.lblEventName.text = dict.EventName
+            cell.lblLocation.text = dict.RestaurantName
             cell.regStatus.text = dict.ReservationStatus
+            cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: dict.ColorCode ?? "")
+
             cell.lblEventID.text = "#\(dict.ConfirmationNumber ?? 0)"
             if let day = dict.SelectedDate{
                 cell.lblWeekDay.text = getDayOfWeek(givenDate: day)
@@ -1259,16 +1270,11 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             }
             
             cell.clickedDinningancelClosure = {
-                
                 if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
                     cancelViewController.eventID = dict.RequestID
-                 //   cancelViewController.isFrom = "EventDiningCancelRequestReservation"
-                  ///  cancelViewController.eventID = dict.RequestID
-//                    cancelViewController.cancelFor = .DiningEvent
-//                    cancelViewController.numberOfTickets = eventobj.partySize ?? ""
+                    cancelViewController.delegateCancelReservation = self
                     self.navigationController?.present(cancelViewController, animated: true)
                 }
-                
             }
             cell.clickedDinningShareClosure = {
                 if let share = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController {
@@ -1292,10 +1298,15 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                         if (self.appDelegate.selectedSegment == "0"){
                             eventDetails.isFrom = "DiningRes"
                         }
+                    eventDetails.navigateFromDiningSync = true
+                    eventDetails.arrDiningDetails.eventName = dict.EventName
+                    eventDetails.arrDiningDetails.eventTime = dict.SelectedTime
+                   
+                    eventDetails.arrSyncDataDining.startTime = dict.SelectedTime
+                    eventDetails.arrSyncDataDining.endTime = dict.SelectedTime
+                    eventDetails.arrSyncDataDining.startDate = dict.SelectedDate
+                    eventDetails.arrSyncDataDining.endDate = dict.SelectedDate
                     
-                    
-//                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
-                    eventDetails.arrSyncData = self.arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }
@@ -1795,14 +1806,17 @@ extension GolfCalendarMYTabVC : closeUpdateSuccesPopup
 }
 // MARK: - API CALLING
 extension GolfCalendarMYTabVC{
-    func myDinningReservationList(){
+    func myDinningReservationList(strSearch :String){
         if (Network.reachability?.isReachable) == true{
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             var paramaterDict:[String: Any]?
             
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                "FilterStartDate" : self.appDelegate.dateSortToDate,
+                "FilterEndDate" : self.appDelegate.dateSortFromDate
+                
              ]
             print(paramaterDict)
             APIHandler.sharedInstance.GetMyDinningReservation(paramater: paramaterDict, onSuccess: { myReservationDinningListing in
@@ -1827,6 +1841,7 @@ extension GolfCalendarMYTabVC{
                             self.appDelegate.hideIndicator()
                             
                         }else{
+                            self.arrMyDinningList.removeAll()
                             self.myTableView.restore()
                             self.arrMyDinningList = myReservationDinningListing.DiningReservations!  //eventList.listevents!
                             self.myTableView.reloadData()

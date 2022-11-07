@@ -49,7 +49,9 @@ class MyDiningData: NSObject, Mappable {
     var SelectedTime            : String!
     var SelectedDate : String!
     var PartySize : Int!
+    var EventName : String!
     var UI : [MyDinningUI]!
+    var ColorCode : String!
  
     override init() {
         super.init()
@@ -66,6 +68,8 @@ class MyDiningData: NSObject, Mappable {
         SelectedDate = ""
         PartySize = 0
         UI = []
+        EventName = ""
+        ColorCode = ""
        
     }
     
@@ -80,7 +84,8 @@ class MyDiningData: NSObject, Mappable {
         SelectedDate <- map["SelectedDate"]
         PartySize <- map["PartySize"]
         UI <- map["UI"]
-       
+        EventName <- map["EventName"]
+        ColorCode <- map["ColorCode"]
     }
 }
 
