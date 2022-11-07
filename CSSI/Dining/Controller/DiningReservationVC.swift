@@ -30,7 +30,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var lblSelectedSizeTime: UILabel!
     @IBOutlet weak var lblDatePartySize: UILabel!
     @IBOutlet weak var lblLoggedInuserInfo: UILabel!
-    
+    @IBOutlet weak var lblDiningHeading: UILabel!
+
     
     //MARK:- variables
     var showNavigationBar = true
@@ -84,12 +85,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnPartySize.setTitle("", for: .normal)
         
         if enumForDinningMode == .create{
+            lblDiningHeading.text = "Dining Reservation"
             reservationList()
         } else {
             if enumForDinningMode == .modify{
-              
+                lblDiningHeading.text = "Modify Reservation"
             }
             else if enumForDinningMode == .view{
+                lblDiningHeading.text = "Dining Reservation"
                 tblResturat.isUserInteractionEnabled = false
                 viewTime.isUserInteractionEnabled = false
                 btnNext.isUserInteractionEnabled = false
@@ -347,6 +350,7 @@ extension DiningReservationVC{
                 
                 self.diningReservation = reservationDinningListing
                 self.combainDateTime(dateString: self.diningReservation.SelectedDate, timeString: self.diningReservation.SelectedTime)
+                print(reservationDinningListing.SelectedTime)
                 self.reservationList()
                 
             },onFailure: { error  in
