@@ -35,30 +35,16 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     //MARK:- variables
     var showNavigationBar = true
-    var nameOfMonth : String?
-    var currentMonth : Date?
-    var isDateChanged : String?
-    var isDateSelected : Bool?
     var myCalendar: FSCalendar!
     var currentDate = Date()
-   // var selectedTime = ""
-    var selectedDateString = ""
     var diningReservation = DinningReservationFCFS.init()
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var restaurantsList: [DiningRestaurantsData] = []
     var diningSetting = DiningSettingData.init()
-    var dinningPolicy = RequestSettings()
-    var selectedDateForTable = ""
-    var currentTime = ""
-    var timeString = ""
-    var arrTimeSttart = [[String:Any]]()
-    var availableTime : String?
-    var selectedRestaurantImage : String?
-    var showDefaultData = 0
     var enumForDinningMode : dinningMode = .create
     var requestedId : String?
     var isInitial = true
-    
+    var diningPolicyURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,12 +129,12 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     @IBAction func btnHome(_ sender: Any) {
-        let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-        self.navigationController?.pushViewController(homeVC, animated: true)
+//        let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+//        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
-        showDefaultData = 1
         vc?.delegateSelectedDateCalendar = self
         vc?.selectedDate = currentDate
         self.navigationController?.present(vc!, animated: true, completion: nil)
@@ -168,7 +154,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func dinningClicked(_ sender: Any) {
         
         let restarantpdfDetailsVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDfViewController") as! PDfViewController
-        restarantpdfDetailsVC.pdfUrl = self.dinningPolicy.dinningSettings?.diningURl ?? ""
+        restarantpdfDetailsVC.pdfUrl = self.diningPolicyURL
         restarantpdfDetailsVC.restarantName = self.appDelegate.masterLabeling.dining_policy!
 
         self.navigationController?.pushViewController(restarantpdfDetailsVC, animated: true)
@@ -242,6 +228,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         self.diningReservation.SelectedTime = timeSlot
         self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
         vc?.diningReservation = self.diningReservation
+        vc?.diningPolicyURL = self.diningPolicyURL
         vc?.restaurantName = self.restaurantsList[row].RestaurantName
         vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -262,7 +249,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
         cell.lblTime.text = self.getStartAndEndTimeString(timings: self.restaurantsList[indexPath.row].Timings)
-        if self.enumForDinningMode != .create {
+        if self.enumForDinningMode != .create && self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID {
             cell.selectedTimeSlot = self.diningReservation.SelectedTime
         } else {
             cell.selectedTimeSlot = ""
@@ -281,7 +268,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             impVC.selectedTime = lblSelectedSizeTime.text ?? ""
 //            impVC.selectedDate = lblSelectedDate.text ?? ""
             impVC.selectedPartySize = self.diningReservation.PartySize
-            impVC.currentTime = currentTime
+//            impVC.currentTime = currentTime
 //            let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
 //            impVC.availableTime = "\(day) - Party Size:\(self.diningReservation.PartySize)"
             self.navigationController?.pushViewController(impVC, animated: true)
@@ -349,6 +336,7 @@ extension DiningReservationVC{
                 self.appDelegate.hideIndicator()
                 
                 self.diningReservation = reservationDinningListing
+                self.diningReservation.RequestID = self.requestedId
                 self.combainDateTime(dateString: self.diningReservation.SelectedDate, timeString: self.diningReservation.SelectedTime)
                 print(reservationDinningListing.SelectedTime)
                 self.reservationList()

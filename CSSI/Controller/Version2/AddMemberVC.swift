@@ -97,6 +97,8 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
     var gustGender : String?
     //ENGAGE0011372 -- ENd
    // let ids = array.map { $0.id }
+    
+    var diningVersion: diningVersion = .lottery
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +112,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
         self.lbladdASpecialRequest.text = self.appDelegate.masterLabeling.special_request_add
         self.lblShouldWeBeaware.text = self.appDelegate.masterLabeling.dIETARY_RESTRICTIONS_INFO
 
+        
         if isFrom == "Modify"{
             
          if arrTotalList[0] is GroupDetail {
@@ -258,6 +261,73 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
             iD = memberObj.linkedMemberID
             memberName = memberObj.name
         
+        } else if arrTotalList[0] is ResrvationPartyDetail {
+            let memberObj = arrTotalList[0] as! ResrvationPartyDetail
+            searchBarAddmember.text = memberObj.MemberName
+            
+            if  memberObj.HighChair == 0 {
+                arrBooster.append("")
+            }else{
+                self.lblHighChair.text = String(format: "%02d", memberObj.HighChair)
+                btnHighChair.isSelected = true
+                btnHighChair.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                for _ in 0 ..< memberObj.HighChair {
+                    self.arrHighChair.append("")
+                }
+            }
+            
+            if  memberObj.BoosterChair == 0 {
+                
+            }else{
+                self.lblBooster.text = String(format: "%02d", memberObj.BoosterChair)
+                btnBooster.isSelected = true
+                btnBooster.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                for _ in 0 ..< memberObj.BoosterChair {
+                    self.arrBooster.append("")
+                }
+            }
+                if memberObj.Birthday == 0{
+                    birthDay = 0
+                    btnBirthday.isSelected = false
+                    btnBirthday.setImage(UIImage(named : "CheckBox_uncheck"), for: UIControlState.normal)
+                    
+                }else if memberObj.Birthday == 1{
+                    btnBirthday.isSelected = true
+                    btnBirthday.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                    birthDay = 1
+                }
+                if memberObj.Anniversary == 0{
+                    btnAnniversary.isSelected = false
+                    btnAnniversary.setImage(UIImage(named : "CheckBox_uncheck"), for: UIControlState.normal)
+                    anniversary = 0
+                }else if memberObj.Anniversary == 1{
+                    btnAnniversary.isSelected = true
+                    btnAnniversary.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                    anniversary = 1
+                }
+                if memberObj.Other == 0{
+                    btnOther.isSelected = false
+                    btnOther.setImage(UIImage(named : "CheckBox_uncheck"), for: UIControlState.normal)
+                    other = 0
+                    self.heightOtherText.constant = -117
+                    self.heightSpecialOccassionView.constant = 173
+                    self.txtOther.isHidden = true
+                }else if memberObj.Other == 1{
+                    btnOther.isSelected = true
+                    btnOther.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                    other = 1
+                    txtOther.layer.cornerRadius = 6
+                    txtOther.layer.borderWidth = 1
+                    txtOther.layer.borderWidth = 0.25
+                    txtOther.layer.borderColor = hexStringToUIColor(hex: "2D2D2D").cgColor
+                }
+                txtOther.text = memberObj.OtherText
+            
+            self.txtSpecify.text = memberObj.DietartRestriction
+            memberID = memberObj.confirmationMemberID
+            iD = memberObj.MemberID
+            memberName = memberObj.MemberName
+            
         }else {
             searchBarAddmember.text = ""
         }
@@ -400,7 +470,71 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                 
                 self.txtSpecify.text = memberObj.dietaryRestrictions ?? ""
                 
-            }else {
+            } else if arrTotalList[0] is ResrvationPartyDetail {
+                let memberObj = arrTotalList[0] as! ResrvationPartyDetail
+                searchBarAddmember.text = memberObj.MemberName
+                
+                if  memberObj.HighChair == 0 {
+                    arrBooster.append("")
+                }else{
+                    self.lblHighChair.text = String(format: "%02d", memberObj.HighChair ?? 1)
+                    btnHighChair.isSelected = true
+                    btnHighChair.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                    for _ in 0 ..< memberObj.HighChair {
+                        self.arrHighChair.append("")
+                    }
+                }
+                
+                if  memberObj.BoosterChair == 0 {
+                    
+                }else{
+                    self.lblBooster.text = String(format: "%02d", memberObj.BoosterChair ?? 1)
+                    btnBooster.isSelected = true
+                    btnBooster.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                    for _ in 0 ..< memberObj.BoosterChair {
+                        self.arrBooster.append("")
+                    }
+                }
+                    if memberObj.Birthday == 0{
+                        birthDay = 0
+                        btnBirthday.isSelected = false
+                        btnBirthday.setImage(UIImage(named : "CheckBox_uncheck"), for: UIControlState.normal)
+                        
+                    }else if memberObj.Birthday == 1{
+                        btnBirthday.isSelected = true
+                        btnBirthday.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                        birthDay = 1
+                    }
+                    if memberObj.Anniversary == 0{
+                        btnAnniversary.isSelected = false
+                        btnAnniversary.setImage(UIImage(named : "CheckBox_uncheck"), for: UIControlState.normal)
+                        anniversary = 0
+                    }else if memberObj.Anniversary == 1{
+                        btnAnniversary.isSelected = true
+                        btnAnniversary.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                        anniversary = 1
+                    }
+                    if memberObj.Other == 0{
+                        btnOther.isSelected = false
+                        btnOther.setImage(UIImage(named : "CheckBox_uncheck"), for: UIControlState.normal)
+                        other = 0
+                        self.heightOtherText.constant = -117
+                        self.heightSpecialOccassionView.constant = 173
+                        self.txtOther.isHidden = true
+                    }else if memberObj.Other == 1{
+                        btnOther.isSelected = true
+                        btnOther.setImage(UIImage(named : "Group 2130"), for: UIControlState.normal)
+                        other = 1
+                        txtOther.layer.cornerRadius = 6
+                        txtOther.layer.borderWidth = 1
+                        txtOther.layer.borderWidth = 0.25
+                        txtOther.layer.borderColor = hexStringToUIColor(hex: "2D2D2D").cgColor
+                    }
+                    txtOther.text = memberObj.OtherText
+                
+                self.txtSpecify.text = memberObj.DietartRestriction
+                
+            } else {
                 searchBarAddmember.text = ""
             }
             
@@ -472,6 +606,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
         //ENGAGE0011297 -- Start
         self.navigationItem.leftBarButtonItem = self.navBackBtnItem(target: self, action: #selector(self.backBtnAction(sender:)))
         //ENGAGE0011297 -- End
+        self.navigationController?.navigationBar.isHidden = false
         
     }
     
