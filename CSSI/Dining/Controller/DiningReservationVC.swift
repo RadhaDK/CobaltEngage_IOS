@@ -261,13 +261,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
-            impVC.selectedRestaurentId = dict.RestaurantID
-            impVC.selectedTime = lblSelectedSizeTime.text ?? ""
-//            impVC.selectedDate = lblSelectedDate.text ?? ""
-            impVC.selectedPartySize = self.diningReservation.PartySize
-//            impVC.currentTime = currentTime
-//            let day = getDateTableCell(givenDate: self.diningReservation.SelectedTime)
-//            impVC.availableTime = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+            self.diningReservation.RestaurantID = dict.RestaurantID
+            impVC.diningReservation = self.diningReservation
+            impVC.dinningPolicy = self.diningPolicyURL
+            impVC.restaurantImage = dict.RestaurantImage
+            impVC.isFrom = self.enumForDinningMode
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
