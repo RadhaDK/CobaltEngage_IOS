@@ -73,15 +73,16 @@ class DinningReservationFCFS : NSObject, Mappable {
 
 class ResrvationPartyDetail: RequestData, Mappable {
     
+    dynamic var confirmationMemberID        = ""
     var MemberID            : String!
-    var MemberName          : String!
-    var DietartRestriction  : String!
-    var Anniversary         : Int!
-    var Birthday            : Int!
-    var Other               : Int!
-    var OtherText           : String!
-    var HighChair           : Int!
-    var BoosterChair        : Int!
+    dynamic var MemberName          = ""
+    dynamic var DietartRestriction  = ""
+    dynamic var Anniversary         = 0
+    dynamic var Birthday            = 0
+    dynamic var Other               = 0
+    dynamic var OtherText           = ""
+    dynamic var HighChair           = 0
+    dynamic var BoosterChair        = 0
     var guestOf             : String!
     var guestEmail          : String!
     var guestType           : String!
@@ -98,6 +99,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
     
     convenience required init?(map: Map) {
         self.init()
+        confirmationMemberID = ""
         MemberID            = ""
         MemberName          = ""
         DietartRestriction  = ""
@@ -119,6 +121,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
     
     func mapping(map: Map) {
         
+        confirmationMemberID <- map["ConfirmedReservationDetailID"]
         MemberID            <- map["MemberID"]
         MemberName          <- map["MemberName"]
         DietartRestriction  <- map["DietartRestriction"]
@@ -138,7 +141,8 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestFirstName      <- map["GuestFirstName"]
     }
     
-    func setPartyDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int) {
+    func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int) {
+        self.confirmationMemberID = confirmationNumber
         self.MemberID = memberID
         self.MemberName = memberName
         self.DietartRestriction = diet
