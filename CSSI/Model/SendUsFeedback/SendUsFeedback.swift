@@ -24,6 +24,9 @@ class SenUsFeedback: NSObject, Mappable {
     //PROD0000121 -- Start
     var BMS_Success_Header : String?
     //PROD0000121 -- End
+    var ValidationMessage: String?
+    var ValidCheck: String?
+    var IsHardRuleEnabled: String?
     
     convenience required init?(map: Map) {
         self.init()
@@ -39,6 +42,9 @@ class SenUsFeedback: NSObject, Mappable {
         //PROD0000121 -- Start
         self.BMS_Success_Header <- map["BMS_SUCCESS_HEADER"]
         //PROD0000121 -- End
+        self.ValidationMessage <- map["ValidationMessage"]
+        self.ValidCheck <- map["ValidCheck"]
+        self.IsHardRuleEnabled <- map["IsHardRuleEnabled"]
     }
 }
 

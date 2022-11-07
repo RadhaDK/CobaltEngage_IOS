@@ -1294,8 +1294,8 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                         }
                     
                     
-                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
-                    eventDetails.arrSyncData = arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
+//                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
+                    eventDetails.arrSyncData = self.arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }
