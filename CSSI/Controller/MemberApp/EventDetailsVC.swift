@@ -24,6 +24,9 @@ class EventDetailsVC: UIViewController,UITextFieldDelegate {
     //@IBOutlet weak var viewHeight: NSLayoutConstraint!
     @IBOutlet weak var viewCalendar: UIView!
     var arrEventDetails = [ListEvents]()
+   
+
+    
     fileprivate var selectedRemainder: ReminderTime? = nil
     fileprivate var reminderPicker: UIPickerView? = nil;
 
@@ -53,6 +56,10 @@ class EventDetailsVC: UIViewController,UITextFieldDelegate {
     /// Conatins the details with which events have to by synced
     var arrSyncData = [EventSyncData]()
     
+    var arrSyncDataDining = EventSyncData()
+    var arrDiningDetails = ListEvents()
+
+
     ///Used to track the position in arrSyncData
     ///
     /// Maual iteration is used instead of Loops because events use call backs
@@ -61,6 +68,7 @@ class EventDetailsVC: UIViewController,UITextFieldDelegate {
     //Added on 15th October 2020 V2.3
     ///Indicates the screentype.default is Sync to calendar
     var screenType : SyncScreenType = .syncToCalendar
+ var navigateFromDiningSync = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,35 +107,67 @@ class EventDetailsVC: UIViewController,UITextFieldDelegate {
         viewCalendar.layer.borderWidth = 0.1
         viewCalendar.layer.borderColor = hexStringToUIColor(hex: "707070").cgColor
         
-        lblEventName.text = arrEventDetails[0].eventName
-        lblEventTitle.text = arrEventDetails[0].eventName
-        lblFromTime.text = arrEventDetails[0].eventTime
-        lblToTime.text = arrEventDetails[0].eventendtime
         
-        lblEventtime.text =  arrEventDetails[0].eventTime
-        
+        if navigateFromDiningSync == true{
+            lblEventName.text = arrDiningDetails.eventName
+            lblEventTitle.text = arrDiningDetails.eventName
+            lblFromTime.text = arrDiningDetails.eventTime
+            lblToTime.text = arrDiningDetails.eventendtime
+            
+            lblEventtime.text =  arrDiningDetails.eventTime
+            
+            let additionalDetailsAttrString : NSMutableAttributedString = NSMutableAttributedString.init(attributedString: String(format: "%@", arrDiningDetails.eventDescription ?? "").generateAttributedString(isHtml: true) ?? NSAttributedString.init(string: ""))
+            
+            let font : UIFont = UIFont.init(name: "Helvetica Neue", size: 17.0)!
+            
+            let textColor : UIColor = hexStringToUIColor(hex: "#695B5E")
+            
+            additionalDetailsAttrString.addAttributes([.foregroundColor : textColor,.font : font], range: NSMakeRange(0, additionalDetailsAttrString.length))
+            txtViewAdditionalDetailsText.attributedText = additionalDetailsAttrString
+            
+            
+            lblUrl.text = String(format: "%@%@", appDelegate.arrShareUrlList[3].url!,arrDiningDetails.eventID ?? "")
+            lblMoreInfo.text = self.appDelegate.masterLabeling.moreInfo
+            self.lblEventDay.text = arrDiningDetails.eventDate
+            
+        }
+        else{
+            
+            lblEventName.text = arrEventDetails[0].eventName
+            lblEventTitle.text = arrEventDetails[0].eventName
+            lblFromTime.text = arrEventDetails[0].eventTime
+            lblToTime.text = arrEventDetails[0].eventendtime
+            
+            lblEventtime.text =  arrEventDetails[0].eventTime
+            let additionalDetailsAttrString : NSMutableAttributedString = NSMutableAttributedString.init(attributedString: String(format: "%@", arrEventDetails[0].eventDescription ?? "").generateAttributedString(isHtml: true) ?? NSAttributedString.init(string: ""))
+            
+            let font : UIFont = UIFont.init(name: "Helvetica Neue", size: 17.0)!
+            
+            let textColor : UIColor = hexStringToUIColor(hex: "#695B5E")
+            
+            additionalDetailsAttrString.addAttributes([.foregroundColor : textColor,.font : font], range: NSMakeRange(0, additionalDetailsAttrString.length))
+            txtViewAdditionalDetailsText.attributedText = additionalDetailsAttrString
+            
+            
+            lblUrl.text = String(format: "%@%@", appDelegate.arrShareUrlList[3].url!,arrEventDetails[0].eventID ?? "")
+            lblMoreInfo.text = self.appDelegate.masterLabeling.moreInfo
+            self.lblEventDay.text = arrEventDetails[0].eventDate
+        }
         //Modified on 28th September 2020 V2.3
         //Added support for HTML text
         //txtViewAdditionalDetailsText.text = String(format: "%@", arrEventDetails[0].eventDescription ?? "")
 
-        let additionalDetailsAttrString : NSMutableAttributedString = NSMutableAttributedString.init(attributedString: String(format: "%@", arrEventDetails[0].eventDescription ?? "").generateAttributedString(isHtml: true) ?? NSAttributedString.init(string: ""))
-        
-        let font : UIFont = UIFont.init(name: "Helvetica Neue", size: 17.0)!
-        
-        let textColor : UIColor = hexStringToUIColor(hex: "#695B5E")
-        
-        additionalDetailsAttrString.addAttributes([.foregroundColor : textColor,.font : font], range: NSMakeRange(0, additionalDetailsAttrString.length))
-        txtViewAdditionalDetailsText.attributedText = additionalDetailsAttrString
-        
-        
-        lblUrl.text = String(format: "%@%@", appDelegate.arrShareUrlList[3].url!,arrEventDetails[0].eventID ?? "")
-        lblMoreInfo.text = self.appDelegate.masterLabeling.moreInfo
-        self.lblEventDay.text = arrEventDetails[0].eventDate
+       
 
         
-        if isFrom == "DiningRes"{
+        
+         if navigateFromDiningSync == true{
+            self.lblEventtime.text = arrDiningDetails.eventTime ?? ""
+        }
+       else if isFrom == "DiningRes"{
             self.lblEventtime.text = arrEventDetails[0].eventTime ?? ""
-        }else{
+        }
+            else{
             if arrEventDetails[0].eventendtime == "" {
               self.lblEventtime.text = arrEventDetails[0].eventTime ?? ""
             }else if arrEventDetails[0].eventTime == "" {
@@ -138,14 +178,14 @@ class EventDetailsVC: UIViewController,UITextFieldDelegate {
             self.lblEventtime.text = String(format: "%@ - %@", arrEventDetails[0].eventTime ?? "", arrEventDetails[0].eventendtime ?? "")
             }
         }
-        
-        if arrEventDetails[0].isScheduleEvent == 1
-        {
-            self.lblEventtime.text = ""
-            self.lblEventDay.text = arrEventDetails[0].scheduleText
+        if arrEventDetails.count != 0{
+            if arrEventDetails[0].isScheduleEvent == 1
+            {
+                self.lblEventtime.text = ""
+                self.lblEventDay.text = arrEventDetails[0].scheduleText
+            }
+            
         }
-        
-        
         //Added on 15th October 2020 V2.3
         switch self.screenType {
         case .syncToCalendar:

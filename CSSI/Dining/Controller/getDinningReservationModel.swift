@@ -27,6 +27,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     var TablePreferenceID       : String!
     var PartyDetails            : [ResrvationPartyDetail]! = []
     var UI                      : GetResrvationUI!
+    var ResponsecodeCancel : String!
    
     override init() {
         super.init()
@@ -47,6 +48,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         TablePreferenceID   = ""
         PartyDetails        = []
         UI                  = GetResrvationUI()
+        ResponsecodeCancel = ""
     }
     
     func mapping(map: Map) {
@@ -65,6 +67,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         TablePreferenceID       <- map["TablePreferenceID"]
         PartyDetails            <- map["PartyDetails"]
         UI                      <- map["UI"]
+        ResponsecodeCancel            <- map["Responsecode"]
     }
 }
 

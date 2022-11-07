@@ -812,7 +812,6 @@ class DinningCalederVC: UIViewController,UISearchBarDelegate, DTCalendarViewDele
     func calendarView(_ calendarView: DTCalendarView, viewForMonth month: Date) -> UIView {
         
         
-        
         let myview = UIView()
         let label = UILabel(frame: CGRect(x: 0, y: 40, width: 200, height: 28))
         

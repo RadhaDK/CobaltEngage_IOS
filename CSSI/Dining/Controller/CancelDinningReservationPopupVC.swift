@@ -65,7 +65,7 @@ extension CancelDinningReservationPopupVC{
             
             APIHandler.sharedInstance.deleteMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                if reservationDinningListing.Responsecode == InternetMessge.ksuccess{
+                if reservationDinningListing.ResponsecodeCancel == InternetMessge.ksuccess{
                     self.delegateCancelReservation?.cancelDinningReservation(value: true)
                     self.dismiss(animated: true, completion: nil)
 

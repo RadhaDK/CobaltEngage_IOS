@@ -17,7 +17,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
         
       self.appDelegate.selectedSegment = "0"
         self.appDelegate.typeOfCalendar = "Dining"
-            self.myDinningReservationList()
+        self.myDinningReservationList(strSearch: strSearchText ?? "")
         
     }
     
@@ -67,7 +67,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDinningReservationList()
+                self.myDinningReservationList(strSearch: strSearchText ?? "")
               //  self.myDiningEventApi(strSearch: strSearchText)
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"
@@ -97,7 +97,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDinningReservationList()
+                self.myDinningReservationList(strSearch: strSearchText ?? "")
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"{
                 self.getFitnessAndSpaEventsAPI(search: strSearchText)
@@ -1298,10 +1298,15 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                         if (self.appDelegate.selectedSegment == "0"){
                             eventDetails.isFrom = "DiningRes"
                         }
+                    eventDetails.navigateFromDiningSync = true
+                    eventDetails.arrDiningDetails.eventName = dict.EventName
+                    eventDetails.arrDiningDetails.eventTime = dict.SelectedTime
+                   
+                    eventDetails.arrSyncDataDining.startTime = dict.SelectedTime
+                    eventDetails.arrSyncDataDining.endTime = dict.SelectedTime
+                    eventDetails.arrSyncDataDining.startDate = dict.SelectedDate
+                    eventDetails.arrSyncDataDining.endDate = dict.SelectedDate
                     
-                    
-//                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
-//                    eventDetails.arrSyncData = arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }
@@ -1801,7 +1806,7 @@ extension GolfCalendarMYTabVC : closeUpdateSuccesPopup
 }
 // MARK: - API CALLING
 extension GolfCalendarMYTabVC{
-    func myDinningReservationList(){
+    func myDinningReservationList(strSearch :String){
         if (Network.reachability?.isReachable) == true{
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             var paramaterDict:[String: Any]?
