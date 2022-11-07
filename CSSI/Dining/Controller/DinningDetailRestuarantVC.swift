@@ -10,7 +10,11 @@ import UIKit
 
 
 
-class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate {
+class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, cancelDinningPopup {
+    func cancelDinningReservation(value: Bool) {
+    popBack(3)
+    }
+    
 
     
     
@@ -115,7 +119,13 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     @IBAction func btnCancelReservationAction(_ sender: Any) {
-        
+        if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+            cancelViewController.eventID = self.diningReservation.RequestID
+            cancelViewController.diningCancelPopupMode = .detail
+            cancelViewController.delegateCancelReservation = self
+            self.navigationController?.present(cancelViewController, animated: true)
+        }
+  
     }
     
     
@@ -571,3 +581,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
 }
 
+extension DinningDetailRestuarantVC{
+    /// pop back n viewcontroller
+    func popBack(_ nb: Int) {
+        if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
+            guard viewControllers.count < nb else {
+                self.navigationController?.popToViewController(viewControllers[viewControllers.count - nb], animated: true)
+                return
+            }
+        }
+    }
+}

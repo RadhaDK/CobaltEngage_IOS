@@ -1273,6 +1273,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
                     cancelViewController.eventID = dict.RequestID
                     cancelViewController.delegateCancelReservation = self
+                    cancelViewController.diningCancelPopupMode = .listing
                     self.navigationController?.present(cancelViewController, animated: true)
                 }
             }

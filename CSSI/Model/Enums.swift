@@ -468,3 +468,7 @@ enum dinningMode {
 enum diningVersion {
     case FCFS, lottery
 }
+
+enum diningCancelPopupMode{
+    case listing, detail
+}
