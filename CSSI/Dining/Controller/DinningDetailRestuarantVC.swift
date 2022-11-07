@@ -127,8 +127,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     @IBAction func btnHome(_ sender: Any) {
-        let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func btnBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

@@ -264,6 +264,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
+            if self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID {
+                impVC.isSelectedRestaurant = true
+            } else {
+                impVC.isSelectedRestaurant = false
+            }
             self.diningReservation.RestaurantID = dict.RestaurantID
             impVC.diningReservation = self.diningReservation
             impVC.dinningPolicy = self.diningPolicyURL

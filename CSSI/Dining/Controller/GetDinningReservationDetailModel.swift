@@ -42,11 +42,11 @@ class GetDinningDetail: NSObject, Mappable {
 class DiningSettingData: NSObject, Mappable {
     
     var TimeInterval            : Int!
-    var MaxDaysInAdvanceTime    : String!
-    var MaxDaysInAdvance        : Int!
-    var MinDaysInAdvance        : Int!
-    var MinDaysInAdvanceTime    : String!
-    var MaxPartySize            : Int!
+    var MaxDaysInAdvanceTime    = ""
+    var MaxDaysInAdvance        = 0
+    var MinDaysInAdvance        = 90
+    var MinDaysInAdvanceTime    = ""
+    var MaxPartySize            = 6
     var DefaultPartySize : Int!
     var DefaultStartTime : String!
     var DefaultEndTime : String!

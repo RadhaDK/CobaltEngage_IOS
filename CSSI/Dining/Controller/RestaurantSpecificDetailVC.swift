@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime {
+class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime, DiningTimeSlotsDelegate {
 
     
     
@@ -49,6 +49,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var diningReservation = DinningReservationFCFS.init()
     var isFrom: dinningMode = .create
     var restaurantDetails = GetRestaurantDetailData.init()
+    var isSelectedRestaurant = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +117,11 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBAction func btnSelectPartySize(_ sender: Any) {
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
         vc?.delegateSelectedTimePatySize = self
+        vc?.maxPartySize = self.restaurantDetails.RestaurantSettings[0].MaxPartySize ?? 5
+        vc?.minimumDaysInAdvance = self.restaurantDetails.RestaurantSettings[0].MinDaysInAdvance
+        vc?.maximumDaysInAdvance = self.restaurantDetails.RestaurantSettings[0].MaxDaysInAdvance
+        vc?.selectedPartySize = self.diningReservation.PartySize
+        vc?.selectedDate = currentDate
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
@@ -126,8 +132,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnHome(_ sender: Any) {
-        let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
@@ -198,6 +203,17 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         return returnString
     }
     
+    func moveToMemberDetailsScreen() {
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+        vc!.showNavigationBar = false
+        vc?.isFrom = self.isFrom
+        vc?.diningReservation = self.diningReservation
+        vc?.diningPolicyURL = self.dinningPolicy
+        vc?.restaurantName = self.restaurantDetails.RestaurantName
+        vc?.restaurantImage = self.restaurantDetails.RestaurantImage
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     // MARK: - Curstom Delegates
     
     func SelectedPartysizeTme(PartySize: Int, Time: Date) {
@@ -209,15 +225,9 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     }
     
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-        vc!.showNavigationBar = false
-        vc?.isFrom = self.isFrom
         self.diningReservation.SelectedTime = timeSlot
-        vc?.diningReservation = self.diningReservation
-        vc?.diningPolicyURL = self.dinningPolicy
-        vc?.restaurantName = self.restaurantDetails.RestaurantName
-        vc?.restaurantImage = self.restaurantDetails.RestaurantImage
-        self.navigationController?.pushViewController(vc!, animated: true)
+        self.diningReservation.SelectedDate = self.restaurantDetails.OtherAvailableDates[row].Date
+        self.moveToMemberDetailsScreen()
     }
     
     // MARK: - Slot Table  Height
@@ -250,13 +260,6 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         let dict = self.restaurantDetails.SelectedDate[0].TimeSlot[indexPath.row]
         cell.lblTime.text = dict.timeSlot
-        
-//        if arrSelectedSlotsAre.contains(dict.StartTime){
-//            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1)
-//        }
-//        else{
-//            cell.viewTimeSlotBack.backgroundColor = UIColor(red: 29/255, green: 66/255, blue: 122/255, alpha: 1)
-//        }
             
         return cell
     }
@@ -265,7 +268,13 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
            return CGSize(width: 80, height: 40)
        }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.diningReservation.SelectedTime = self.restaurantDetails.SelectedDate[0].TimeSlot[indexPath.row].timeSlot
+        self.moveToMemberDetailsScreen()
+    }
+    
     // MARK: - Table Methods
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.restaurantDetails.OtherAvailableDates.count
     }
@@ -273,11 +282,18 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblAvailability.dequeueReusableCell(withIdentifier: "DiningResvTableCell", for: indexPath) as! DiningResvTableCell
         let dict = self.restaurantDetails.OtherAvailableDates[indexPath.row]
+        cell.timeSlotsDelegate = self
         cell.lblPartySize.isHidden = true
         cell.lblUpcomingEvent.isHidden = true
         cell.heightUpcoming.constant = 0
         cell.timeSlots = dict.TimeSlot
+        cell.row = indexPath.row
         cell.lblTime.text = getDateFromDetailAvailability(givenDate: dict.Date)
+        if self.isFrom != .create && isSelectedRestaurant {
+            cell.selectedTimeSlot = self.diningReservation.SelectedTime
+        } else {
+            cell.selectedTimeSlot = ""
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

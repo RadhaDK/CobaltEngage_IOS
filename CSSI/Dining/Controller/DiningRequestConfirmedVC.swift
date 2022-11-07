@@ -91,8 +91,7 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
-        self.navigationController?.present(vc!, animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }
