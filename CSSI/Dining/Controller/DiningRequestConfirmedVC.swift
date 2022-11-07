@@ -25,6 +25,7 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
     
     //MARK: - Variables
     var showNavigationBar = true
+    var reservationDetails = DinningReservationFCFS.init()
     var arrBookedSlotMember = ["Lia Little"]
     
     override func viewDidLoad() {
@@ -35,14 +36,28 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
         tblReservedGuest.dataSource  = self
         btnHome.setTitle("", for: .normal)
         configSlotMemberTblHeight()
+        self.initialSetup()
+    }
+    
+    func initialSetup() {
+        self.partySizeCountLbl.text = "Party Size (\(self.reservationDetails.PartySize))"
+        self.preferredReservationTimeLbl.text = "Preferred Reservation: " + self.reservationDetails.SelectedTime
+        self.reservationConfirmedDateLbl.text = self.reservationDetails.responseMessage
     }
 
     
     //MARK: - IBActions
     @IBAction func homeBtnTapped(sender:UIButton){
-        self.dismiss(animated: true, completion: nil)
-        let homeVC = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-        self.navigationController?.pushViewController(homeVC, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
+        
+//        for controller in self.navigationController!.viewControllers as Array {
+//
+//            if controller.isKind(of: DiningReservationViewController.self) {
+//                self.navigationController!.popToViewController(controller, animated: true)
+//                break
+//            }
+//
+//        }
     }
     
     // MARK: - My order Table  Height
@@ -61,12 +76,12 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
           }
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrBookedSlotMember.count
+        return self.reservationDetails.PartyDetails.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblReservedGuest.dequeueReusableCell(withIdentifier: "DinningReservedTableViewCell", for: indexPath) as! DinningReservedTableViewCell
-        
+        cell.lblName.text = self.reservationDetails.PartyDetails[indexPath.row].MemberName
         
         return cell
     }

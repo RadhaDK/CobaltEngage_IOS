@@ -325,6 +325,7 @@ class APIHandler: NSObject
     static let dinningViewModifyData = "GetDiningReservation"
     static let dinningTablePreferances = "GetTablePreferanceDetails"
     static let dinningDeleteReservation = "DeleteDiningReservation"
+    static let dinningMemberValidationFCFS = "GetMemberValidation"
 
     
     //Added on 17th October 2020 V2.3
@@ -1894,10 +1895,10 @@ class APIHandler: NSObject
             APIHeader.kautherization: UserDefaults.standard.string(forKey: UserDefaultsKeys.apiauthtoken.rawValue) ?? "",
             APIHeader.kContentType : "application/json"
         ]
-        print("============Start Time GetMemberValidation \(Date())========")
+        print("============Start Time \(url) \(Date())========")
         print(paramater)
         Alamofire.request(url, method: .post, parameters: paramater, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            print("============End Time GetMemberValidation \(Date())========")
+            print("============End Time \(url) \(Date())========")
             switch response.result {
             case .success:
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
@@ -7186,7 +7187,7 @@ class APIHandler: NSObject
     }
     
     //MARK:-  SaveDinningReservation Listing
-    func saveDinningReservation(paramater: [String: Any]?, parameterObj: DinningReservationFCFS, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
+    func saveDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = dinningDevURL + APIHandler.dinningSaveReservation
         
         let headers: HTTPHeaders = [
@@ -7196,7 +7197,6 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
-        print(parameterObj.toJSON())
         
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7207,7 +7207,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7295,7 +7295,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7334,7 +7334,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7374,7 +7374,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7414,7 +7414,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7424,6 +7424,45 @@ class APIHandler: NSObject
                         }
                         else{
                             let dashboardDict = Mapper<DinningReservationFCFS>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+    }
+    
+    func getMemberValidationDiningFCFS(paramater: [String: Any]?, onSuccess: @escaping(SenUsFeedback) -> Void, onFailure: @escaping(Error) -> Void) {
+        let url : String = dinningDevURL + APIHandler.dinningMemberValidationFCFS
+
+        print("============Start Time -- \(url) -- \(Date())========")
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<SenUsFeedback>().map(JSONObject: jsonDict)
                             onSuccess(dashboardDict!)
                         }
                     }

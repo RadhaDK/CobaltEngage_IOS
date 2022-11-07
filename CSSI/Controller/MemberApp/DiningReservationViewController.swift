@@ -711,6 +711,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
             impVC.showNavigationBar = false
             impVC.enumForDinningMode = .create
+            impVC.diningPolicyURL = (self.ClubNewsDetails?.dressCode[0].URL) ?? ""
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
