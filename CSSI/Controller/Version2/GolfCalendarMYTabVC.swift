@@ -1270,6 +1270,36 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 }
                 
             }
+            cell.clickedDinningShareClosure = {
+                if let share = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController {
+                    share.modalTransitionStyle   = .crossDissolve;
+                    share.modalPresentationStyle = .overCurrentContext
+                    //Old logic
+                    
+                    //share.imgURl = events.eventID
+                    //share.isFrom = "Events"
+                    
+                    //Added on 19th May 2020 v2.1
+                    share.contentType = .events
+                    share.contentDetails = ContentDetails.init(id: dict.RequestID, date: nil, name: nil, link: nil)
+                    self.present(share, animated: true, completion: nil)
+                }
+            }
+            cell.clickedDinningSyncClosure = {
+                if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "EventDetailsVC") as? EventDetailsVC{
+                    
+                   
+                        if (self.appDelegate.selectedSegment == "0"){
+                            eventDetails.isFrom = "DiningRes"
+                        }
+                    
+                    
+                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
+                    eventDetails.arrSyncData = arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
+                    self.navigationController?.pushViewController(eventDetails, animated: true)
+                }
+            }
+            
             return cell
             
         }

@@ -74,7 +74,8 @@ class DinningMyReservationTableCell: UITableViewCell {
 
     var clickedDinningModifyClosure:(()->())?
     var clickedDinningancelClosure:(()->())?
-    
+    var clickedDinningShareClosure:(()->())?
+    var clickedDinningSyncClosure:(()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -184,12 +185,12 @@ class DinningMyReservationTableCell: UITableViewCell {
         
     }
     @IBAction func shareButtonClicked(_ sender: Any) {
-        
+        clickedDinningShareClosure?()
       //  delegate?.shareButtonClicked(cell: self)
 
     }
     @IBAction func synchClicked(_ sender: Any) {
-        
+        clickedDinningSyncClosure?()
        // delegate?.synchButtonClicked(cell: self)
 
     }
