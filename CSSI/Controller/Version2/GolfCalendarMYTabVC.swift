@@ -97,7 +97,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDiningEventApi(strSearch: strSearchText)
+                self.myDinningReservationList()
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"{
                 self.getFitnessAndSpaEventsAPI(search: strSearchText)
@@ -1248,9 +1248,11 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             
             
             cell.lblEventTime.text = "\(dict.SelectedTime ?? "") Party Size: \(dict.PartySize ?? 0)"
-            cell.lblEventName.text = dict.RestaurantName
-            cell.lblLocation.text = dict.ReservationType
+            cell.lblEventName.text = dict.EventName
+            cell.lblLocation.text = dict.RestaurantName
             cell.regStatus.text = dict.ReservationStatus
+            cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: dict.ColorCode ?? "")
+
             cell.lblEventID.text = "#\(dict.ConfirmationNumber ?? 0)"
             if let day = dict.SelectedDate{
                 cell.lblWeekDay.text = getDayOfWeek(givenDate: day)
@@ -1298,8 +1300,8 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                         }
                     
                     
-                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
-                    eventDetails.arrSyncData = arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
+//                    eventDetails.arrEventDetails = [arrMyDinningList[indexPath.row]]
+//                    eventDetails.arrSyncData = arrEventList[indexPath.row].eventDateList ?? [EventSyncData]()
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }
@@ -1806,7 +1808,10 @@ extension GolfCalendarMYTabVC{
             
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                "FilterStartDate" : self.appDelegate.dateSortToDate,
+                "FilterEndDate" : self.appDelegate.dateSortFromDate
+                
              ]
             print(paramaterDict)
             APIHandler.sharedInstance.GetMyDinningReservation(paramater: paramaterDict, onSuccess: { myReservationDinningListing in

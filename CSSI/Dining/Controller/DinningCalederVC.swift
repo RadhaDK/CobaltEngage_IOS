@@ -729,27 +729,6 @@ class DinningCalederVC: UIViewController,UISearchBarDelegate, DTCalendarViewDele
         calendarRangeStartDate = self.calendarPreviousStartDate
         calendarRangeEndDate = self.calendarPreviousEndDate
         
-        //Old Logic
-        
-        /*
-//        if calendarDidSelectDate == true{
-//
-//        }else{
-//            calendarRangeStartDate = SharedUtlity.sharedHelper().dateFormatter.string(from: Date())  as String
-//            calendarRangeEndDate = SharedUtlity.sharedHelper().dateFormatter.string(from: Date()) as String
-//        }
-        if calendarDidSelectDate
-        {
-            calendarDidSelectDate = false
-            if self.isResetClicked
-            {
-                calendarRangeStartDate = ""
-                calendarRangeEndDate = ""
-            }
-            
-        }
-         */
-        
         if self.appDelegate.selectedSegment == "0" {
             self.lblBottomDispalyName.isHidden = false
 
@@ -772,20 +751,7 @@ class DinningCalederVC: UIViewController,UISearchBarDelegate, DTCalendarViewDele
             NotificationCenter.default.post(name: NSNotification.Name("eventsData"), object: nil, userInfo: userInfo)
             self.isResetClicked = false
         }
-        
-        // Old Logic
-        /*
-        if calendarRangeEndDate == "" {
-            calendarRangeEndDate = calendarRangeStartDate
-        }
-        self.appDelegate.dateSortToDate = self.calendarRangeStartDate ?? ""
-        self.appDelegate.dateSortFromDate = self.calendarRangeEndDate ?? ""
     
-        
-        let userInfo = [ "searchText" : "" ]
-        NotificationCenter.default.post(name: NSNotification.Name("eventsData"), object: nil, userInfo: userInfo)
-         */
-
     }
     
     @IBAction func resetClicked(_ sender: Any)
