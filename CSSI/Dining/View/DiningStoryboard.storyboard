@@ -2117,11 +2117,11 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qph-v9-wnS">
-                                        <rect key="frame" x="24.999999999999993" y="25" width="85.333333333333314" height="23"/>
+                                        <rect key="frame" x="25" y="25" width="81" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="NuD-ch-KBQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -2173,10 +2173,10 @@
                                         </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5k2-8e-EXc">
-                                        <rect key="frame" x="25" y="116" width="340" height="294"/>
+                                        <rect key="frame" x="25" y="161" width="340" height="249"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kv5-be-Uvi">
-                                                <rect key="frame" x="0.0" y="0.0" width="340" height="294"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="340" height="249"/>
                                             </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2187,21 +2187,32 @@
                                             <constraint firstItem="kv5-be-Uvi" firstAttribute="top" secondItem="5k2-8e-EXc" secondAttribute="top" id="w5a-tK-g1e"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDz-eg-xub">
+                                        <rect key="frame" x="25.000000000000007" y="126" width="117.66666666666669" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="u9B-t6-veS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="5k2-8e-EXc" firstAttribute="leading" secondItem="WSr-Yt-x9x" secondAttribute="leading" constant="25" id="2XG-Yr-H6h"/>
                                     <constraint firstAttribute="trailing" secondItem="5k2-8e-EXc" secondAttribute="trailing" constant="25" id="4sd-8L-pTz"/>
                                     <constraint firstItem="JDM-k4-H1W" firstAttribute="centerX" secondItem="WSr-Yt-x9x" secondAttribute="centerX" id="6fJ-Mw-esE"/>
+                                    <constraint firstItem="zDz-eg-xub" firstAttribute="leading" secondItem="WSr-Yt-x9x" secondAttribute="leading" constant="25" id="AxF-dT-3qd"/>
                                     <constraint firstItem="Qph-v9-wnS" firstAttribute="top" secondItem="WSr-Yt-x9x" secondAttribute="top" constant="25" id="Fdk-6w-w75"/>
                                     <constraint firstItem="Qph-v9-wnS" firstAttribute="leading" secondItem="WSr-Yt-x9x" secondAttribute="leading" constant="25" id="HKL-vd-qVm"/>
                                     <constraint firstAttribute="trailing" secondItem="mvz-tW-3Zc" secondAttribute="trailing" constant="25" id="L5y-dM-1eC"/>
-                                    <constraint firstItem="5k2-8e-EXc" firstAttribute="top" secondItem="mvz-tW-3Zc" secondAttribute="bottom" constant="8" symbolic="YES" id="LQT-1b-5EL"/>
                                     <constraint firstItem="mvz-tW-3Zc" firstAttribute="top" secondItem="Qph-v9-wnS" secondAttribute="bottom" constant="10" id="LTi-PS-WwC"/>
+                                    <constraint firstItem="5k2-8e-EXc" firstAttribute="top" secondItem="zDz-eg-xub" secondAttribute="bottom" constant="12" id="Ofx-9Y-4D8"/>
                                     <constraint firstAttribute="bottom" secondItem="JDM-k4-H1W" secondAttribute="bottom" constant="45" id="SVs-tB-gPM"/>
                                     <constraint firstItem="mvz-tW-3Zc" firstAttribute="leading" secondItem="WSr-Yt-x9x" secondAttribute="leading" constant="25" id="Wvo-FG-rqA"/>
                                     <constraint firstItem="JDM-k4-H1W" firstAttribute="top" secondItem="5k2-8e-EXc" secondAttribute="bottom" constant="8" symbolic="YES" id="bE4-Vf-eeF"/>
                                     <constraint firstAttribute="height" constant="500" id="dDV-jh-rfd"/>
+                                    <constraint firstItem="zDz-eg-xub" firstAttribute="top" secondItem="mvz-tW-3Zc" secondAttribute="bottom" constant="18" id="z1I-LT-3n8"/>
                                 </constraints>
                             </view>
                         </subviews>

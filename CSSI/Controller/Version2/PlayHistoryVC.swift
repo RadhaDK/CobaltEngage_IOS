@@ -18,6 +18,8 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     //Added on 30th June 2020 BMS
     var arrAppointmentHistory = [AppointMentHistoryDetails]()
     
+    var arrDiningHistory = [GetHistoryResrvation]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +28,9 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
         if self.appDelegate.typeOfCalendar == "FitnessSpa"
         {
             self.getFitnessHistory(strSearch : self.appDelegate.golfEventsSearchText)
+        }
+        else if self.appDelegate.typeOfCalendar == "Dining"{
+            self.myDinningHistoryList(strSearch: self.appDelegate.golfEventsSearchText)
         }
         else
         {
@@ -224,29 +229,53 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     //Modified in 30th June 2020 BMS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory.count : self.arrPlayHistory.count
+        if self.appDelegate.typeOfCalendar == "Dining"{
+            return arrDiningHistory.count
+        }
+        else{
+            return self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory.count : self.arrPlayHistory.count
+        }
     }
     
     //Modified in 30th June 2020 BMS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell:PlayHistoryCustomCell = self.tablePlayHistory.dequeueReusableCell(withIdentifier: "PlayHistoryCell") as! PlayHistoryCustomCell
-        
-        
-        let title = self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory[indexPath.row].serviceDuration : self.arrPlayHistory[indexPath.row].coursename!
-        cell.lblTitle.text = String(format: "%@",title!)
-        
-        let date = self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory[indexPath.row].appDateTime : self.arrPlayHistory[indexPath.row].date
-        cell.lbldateAndtime.text = date
-        
-        let confirmationNumber = self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory[indexPath.row].confirmationNumber : self.arrPlayHistory[indexPath.row].confirmNumber
-        cell.lblID.text = confirmationNumber
+
+        if self.appDelegate.typeOfCalendar == "Dining"{
+            let dict = arrDiningHistory[indexPath.row]
+            
+            cell.lblTitle.text = dict.Name
+            cell.lbldateAndtime.text = dict.DateTime
+         
+            cell.lblID.text = dict.ConfirmNumber
 
 
-        cell.viewBackground.layer.shadowColor = UIColor.black.cgColor
-        cell.viewBackground.layer.shadowOpacity = 0.16
-        cell.viewBackground.layer.shadowOffset = CGSize(width: 2, height: 2)
-        cell.viewBackground.layer.shadowRadius = 4
+            cell.viewBackground.layer.shadowColor = UIColor.black.cgColor
+            cell.viewBackground.layer.shadowOpacity = 0.16
+            cell.viewBackground.layer.shadowOffset = CGSize(width: 2, height: 2)
+            cell.viewBackground.layer.shadowRadius = 4
+        }
+        else{
+            let title = self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory[indexPath.row].serviceDuration : self.arrPlayHistory[indexPath.row].coursename!
+            cell.lblTitle.text = String(format: "%@",title!)
+            
+            let date = self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory[indexPath.row].appDateTime : self.arrPlayHistory[indexPath.row].date
+            cell.lbldateAndtime.text = date
+            
+            let confirmationNumber = self.appDelegate.typeOfCalendar == "FitnessSpa" ? self.arrAppointmentHistory[indexPath.row].confirmationNumber : self.arrPlayHistory[indexPath.row].confirmNumber
+            cell.lblID.text = confirmationNumber
+
+
+            cell.viewBackground.layer.shadowColor = UIColor.black.cgColor
+            cell.viewBackground.layer.shadowOpacity = 0.16
+            cell.viewBackground.layer.shadowOffset = CGSize(width: 2, height: 2)
+            cell.viewBackground.layer.shadowRadius = 4
+        }
+        
+        
+        
+        
         return cell
     }
     
@@ -294,10 +323,13 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
         else if(self.appDelegate.typeOfCalendar == "Dining"){
             
             if let historyDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningPlayHistoryDetailVC") as? DiningPlayHistoryDetailVC {
+                
+                let dict = arrDiningHistory[indexPath.row]
+                
                 historyDetails.modalTransitionStyle   = .crossDissolve;
                 historyDetails.modalPresentationStyle = .overCurrentContext
-                historyDetails.confirmedReservationID = self.arrPlayHistory[indexPath.row].confirmedReservationID
-                historyDetails.confirmationNumber = self.arrPlayHistory[indexPath.row].confirmNumber
+                historyDetails.confirmedReservationID = dict.ConfirmedReservationID
+                historyDetails.confirmationNumber = dict.ConfirmNumber
 
                 self.present(historyDetails, animated: true, completion: nil)
             }
@@ -422,3 +454,84 @@ extension PlayHistoryVC
     }
 }
 //GATHER0000700 - End
+// MARK: - API CALLING
+extension PlayHistoryVC{
+    func myDinningHistoryList(strSearch :String){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+           
+            
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.ksearchby: strSearch ,
+                APIKeys.kCategory: "Dining",
+                "IsAdmin": "0",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict]
+                ]
+                
+            print(paramaterDict)
+            APIHandler.sharedInstance.historyMyDinningReservation(paramater: paramaterDict, onSuccess: { myReservationDinningListing in
+                
+                if(myReservationDinningListing.Responsecode == InternetMessge.kSuccess)
+                {
+                    if(myReservationDinningListing.History == nil){
+                        self.arrDiningHistory.removeAll()
+                        self.tablePlayHistory.setEmptyMessage(InternetMessge.kNoData)
+                        self.tablePlayHistory.reloadData()
+                        self.appDelegate.hideIndicator()
+                    }
+                    else{
+                        
+                        if(myReservationDinningListing.History?.count == 0)
+                        {
+                            self.arrDiningHistory.removeAll()
+                            self.tablePlayHistory.setEmptyMessage(InternetMessge.kNoData)
+                            self.tablePlayHistory.reloadData()
+                            
+                            
+                            self.appDelegate.hideIndicator()
+                            
+                        }else{
+                            self.arrDiningHistory.removeAll()
+                            self.tablePlayHistory.restore()
+                            self.arrDiningHistory = myReservationDinningListing.History!  //eventList.listevents!
+                            self.tablePlayHistory.reloadData()
+                        }
+                        
+                    }
+                    
+                    if(!(self.arrDiningHistory.count == 0)){
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.tablePlayHistory.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                    
+                }
+                else{
+                    self.appDelegate.hideIndicator()
+                    if(((myReservationDinningListing.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: myReservationDinningListing.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                    self.tablePlayHistory.setEmptyMessage(myReservationDinningListing.responseMessage ?? "")
+                    
+                }
+                self.appDelegate.hideIndicator()
+              
+        
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            self.appDelegate.hideIndicator()
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
+    }
+}

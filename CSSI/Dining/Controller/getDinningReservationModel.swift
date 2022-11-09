@@ -34,6 +34,8 @@ class DinningReservationFCFS : NSObject, Mappable {
     var Location : String!
     var RequestedLinkedMember : String!
     var UserName : String!
+    var History : [GetHistoryResrvation]! = []
+    
     override init() {
         super.init()
     }
@@ -60,6 +62,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         Location = ""
         RequestedLinkedMember = ""
         UserName = ""
+        History = []
     }
     
     func mapping(map: Map) {
@@ -85,6 +88,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         Location <- map["Location"]
         RequestedLinkedMember <- map["RequestedLinkedMember"]
         UserName <- map["UserName"]
+        History <- map["History"]
     }
 }
 
@@ -242,6 +246,47 @@ class GetResrvationUI: NSObject, Mappable {
         ReservationCommentsEditable <- map["ReservationCommentsEditable"]
         TablePreferenceEditable     <- map["TablePreferenceEditable"]
         TimeSlotEditable            <- map["TimeSlotEditable"]
+      
+    }
+}
+
+
+class GetHistoryResrvation: NSObject, Mappable {
+    
+    var ConfirmedReservationID                          : String!
+    var ReservationDate                   : String!
+    var ReservationTiming               : String!
+    var ReservationTime                    : String!
+    var DateTime               : String!
+    var Name     : String!
+    var ConfirmNumber         : String!
+    
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience required init?(map: Map) {
+        self.init()
+        ConfirmedReservationID                          = ""
+        ReservationDate                   = ""
+        ReservationTiming               = ""
+        ReservationTime                    = ""
+        DateTime               = ""
+        Name     = ""
+        ConfirmNumber         = ""
+       
+    }
+    
+    func mapping(map: Map) {
+        
+        ConfirmedReservationID                      <- map["ConfirmedReservationID"]
+        ReservationDate               <- map["ReservationDate"]
+        ReservationTiming           <- map["ReservationTiming"]
+        ReservationTime                <- map["ReservationTime"]
+        DateTime           <- map["DateTime"]
+        Name <- map["Name"]
+        ConfirmNumber     <- map["ConfirmNumber"]
       
     }
 }

@@ -349,6 +349,12 @@ extension RestaurantSpecificDetailVC{
                     self.lblRestaurentName.text = restaurntDetails.Restaurants[0].RestaurantName
                     self.diningSetting = restaurntDetails.Restaurants[0].RestaurantSettings
                     self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: self.restaurantDetails.Timings)
+                    
+                    if(self.restaurantDetails.SelectedDate.TimeSlot.count == 0)
+                    {
+                        self.collectionTimeSlot.setEmptyMessage(InternetMessge.kNoTimeSlot)
+                    }
+                    
                     self.collectionTimeSlot.reloadData()
                     self.tblAvailability.reloadData()
                 }

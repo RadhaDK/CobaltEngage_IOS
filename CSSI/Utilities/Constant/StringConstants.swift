@@ -343,6 +343,7 @@ struct InternetMessge {
     static let kNoupcomingVisits = "No upcoming visits"
     static var kNoData = "No data found"
     static let ksuccess = "success"
+    static let kNoTimeSlot = "No time slots available"
     
 }
 
