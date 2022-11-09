@@ -422,6 +422,7 @@ class DinningCalederVC: UIViewController,UISearchBarDelegate, DTCalendarViewDele
             let previousStatementVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "PlayHistoryVC")
             previousStatementVC.title =  self.appDelegate.masterLabeling.tAB_PREVIOUS
             lblUpcomingEvent.isHidden = true
+            self.appDelegate.typeOfCalendar = "Dining"
             topLabelHeight.constant = -58
             configureChildViewControllerForstatenents(childController: previousStatementVC, onView: self.baseView)
             
