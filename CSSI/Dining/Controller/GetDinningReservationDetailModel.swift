@@ -43,11 +43,11 @@ class DiningSettingData: NSObject, Mappable {
     
     var TimeInterval            : Int!
     var MaxDaysInAdvanceTime    = ""
-    var MaxDaysInAdvance        = 90
-    var MinDaysInAdvance        = 0
-    var MinDaysInAdvanceTime    = ""
-    var MaxPartySize            = 6
-    var DefaultPartySize        = 2
+    dynamic var MaxDaysInAdvance        = 90
+    dynamic var MinDaysInAdvance        = 0
+    dynamic var MinDaysInAdvanceTime    = ""
+    dynamic var MaxPartySize            = 6
+    dynamic var DefaultPartySize        = 1
     var DefaultStartTime : String!
     var DefaultEndTime : String!
     var DefaultTimeInterval : Int!
@@ -60,11 +60,11 @@ class DiningSettingData: NSObject, Mappable {
         self.init()
         TimeInterval            = 0
         MaxDaysInAdvanceTime    = ""
-        MaxDaysInAdvance        = 0
+        MaxDaysInAdvance        = 90
         MinDaysInAdvance        = 0
         MinDaysInAdvanceTime    = ""
-        MaxPartySize            = 0
-        DefaultPartySize = 0
+        MaxPartySize            = 6
+        DefaultPartySize = 1
         DefaultStartTime = ""
         DefaultEndTime = ""
         DefaultTimeInterval = 0
@@ -93,7 +93,7 @@ class DiningRestaurantsData: NSObject, Mappable {
     var RestaurantID        : String!
     var DinningPolicy       : String!
     var IsAllowGuest        : Int!
-    var RestaurantImage     : String!
+    var RestaurantImage     = ""
     var TablePreference     : [DiningTablePrefenceData]!
     var TimeSlots           : [DiningTimeSlots]!
     var Timings             : [DiningTimmingsData]!

@@ -1231,20 +1231,25 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             var dict = arrMyDinningList[indexPath.row]
             print(dict.RestaurantName)
            
-          
-             if dict.UI[0].Modify == 0{
-                 cell.btnModify.isHidden = true
-            }
-            
-             if dict.UI[0].Cancel == 0{
-                 cell.btnCancel.isHidden = true
+            if dict.UI != nil {
+                if dict.UI[0].Modify == 0{
+                    cell.btnModify.isHidden = true
+               }
+               
+                if dict.UI[0].Cancel == 0{
+                    cell.btnCancel.isHidden = true
 
-            }
-            else{
+               }
+               else{
+                   cell.btnModify.isHidden = false
+                   cell.btnCancel.isHidden = false
+                   
+               }
+            } else {
                 cell.btnModify.isHidden = false
                 cell.btnCancel.isHidden = false
-                
             }
+             
             
             
             cell.lblEventTime.text = "\(dict.SelectedTime ?? "") Party Size: \(dict.PartySize ?? 0)"

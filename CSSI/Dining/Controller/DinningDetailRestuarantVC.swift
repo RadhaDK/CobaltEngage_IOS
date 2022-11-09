@@ -200,7 +200,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         }
         else{
             let NumberOfSlot = self.diningReservation.PartyDetails.count
-            let numberOfLines = NumberOfSlot ?? 0 + 1
+            let numberOfLines = NumberOfSlot + 1
             heightTblGuest.constant = CGFloat(60*numberOfLines)
         }
         tblGuest.reloadData()
@@ -213,8 +213,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         }
         else{
             let numberOfLines = (self.tablePreferances.count/2)+1
-            heightSpecialRequestCollection.constant = CGFloat(40*numberOfLines)
-            heightViewBackSpecialRequest.constant = 70 + CGFloat(40*numberOfLines)
+            heightSpecialRequestCollection.constant = CGFloat(50*numberOfLines)
+            heightViewBackSpecialRequest.constant = 70 + CGFloat(50*numberOfLines)
         }
         collectionAddSpecialRequest.reloadData()
     }

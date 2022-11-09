@@ -144,6 +144,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
+            if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Date()) {
+                return
+            }
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
             if daysDifference >= self.diningSetting.MinDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
