@@ -324,8 +324,9 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                 txtOther.text = memberObj.OtherText
             
             self.txtSpecify.text = memberObj.DietartRestriction
-            memberID = memberObj.confirmationMemberID
+            memberID = memberObj.MemberNumber
             iD = memberObj.MemberID
+            parentID = memberObj.confirmationMemberID
             memberName = memberObj.MemberName
             
         }else {

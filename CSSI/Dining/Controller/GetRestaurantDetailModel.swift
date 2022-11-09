@@ -106,9 +106,9 @@ class GetRestaurantDetailData: NSObject, Mappable {
     var RestaurantImage : String!
     var TimeInterval : Int!
     var Timings : [DiningTimmingsData]!
-    dynamic var SelectedDate : [GetRestaurantSelectedDateDetail] = []
+    dynamic var SelectedDate : GetRestaurantSelectedDateDetail!
     dynamic var OtherAvailableDates : [GetRestaurantSelectedDateDetail] = []
-    var RestaurantSettings : [DiningSettingData]!
+    var RestaurantSettings : DiningSettingData!
     override init() {
         super.init()
     }
@@ -119,9 +119,9 @@ class GetRestaurantDetailData: NSObject, Mappable {
         RestaurantName  = ""
         TimeInterval = 0
         Timings = []
-        SelectedDate = []
+        SelectedDate = GetRestaurantSelectedDateDetail()
         OtherAvailableDates = []
-        RestaurantSettings = []
+        RestaurantSettings = DiningSettingData()
         RestaurantImage = ""
     }
     

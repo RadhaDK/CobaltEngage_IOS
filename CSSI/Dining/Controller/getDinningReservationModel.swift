@@ -18,7 +18,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     var responseMessage         : String!
     var RequestID               : String!
     var RestaurantID            : String!
-    var ConfirmationNumber      : Int!
+    var ConfirmationNumber      : String!
     var ReservationStatus       : Int!
     dynamic var SelectedTime    = ""
     dynamic var PartySize       = 0
@@ -39,7 +39,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         responseMessage     = ""
         RequestID           = ""
         RestaurantID        = ""
-        ConfirmationNumber  = 0
+        ConfirmationNumber  = ""
         ReservationStatus   = 0
         SelectedTime        = ""
         PartySize           = 0
@@ -78,6 +78,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
     
     dynamic var confirmationMemberID        = ""
     var MemberID            : String!
+    var MemberNumber        : String!
     dynamic var MemberName          = ""
     dynamic var DietartRestriction  = ""
     dynamic var Anniversary         = 0
@@ -105,6 +106,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         confirmationMemberID = ""
         MemberID            = ""
         MemberName          = ""
+        MemberName          = ""
         DietartRestriction  = ""
         Anniversary         = 0
         Birthday            = 0
@@ -125,7 +127,8 @@ class ResrvationPartyDetail: RequestData, Mappable {
     func mapping(map: Map) {
         
         confirmationMemberID <- map["ConfirmedReservationDetailID"]
-        MemberID            <- map["MemberID"]
+        MemberID            <- map["LinkedMemberID"]
+        MemberNumber        <- map["MemberID"]
         MemberName          <- map["MemberName"]
         DietartRestriction  <- map["DietartRestriction"]
         Anniversary         <- map["Anniversary"]
@@ -144,7 +147,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestFirstName      <- map["GuestFirstName"]
     }
     
-    func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int) {
+    func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, memberNumber: String) {
         self.confirmationMemberID = confirmationNumber
         self.MemberID = memberID
         self.MemberName = memberName
@@ -155,6 +158,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.OtherText = otherText
         self.HighChair = highChair
         self.BoosterChair = boosterChair
+        self.MemberNumber = memberNumber
     }
     
     func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String) {

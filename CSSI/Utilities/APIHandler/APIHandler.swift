@@ -58,8 +58,8 @@ class APIHandler: NSObject
     let engageDevURL : String = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.EngDev/api/"
     let engageTestURL : String = "https://cobaltportal.mycobaltsoftware.com/cssi.cobalt.member.wrapper.Eng.Test/api/"
     
-    let dinningDevURL : String  = "https://cobaltportal.mycobaltsoftware.com/CSSI.Cobalt.Member.Wrapper.FCFS.Dev/api/dining/"
-    
+    let  diningDevURL : String  = "https://cobaltportal.mycobaltsoftware.com/CSSI.Cobalt.Member.Wrapper.FCFS.Dev/api/dining/"
+    let diningTestURL : String = "https://cobaltportal.mycobaltsoftware.com/CSSI.Cobalt.Member.Wrapper.FCFS.Test/api/dining/TestAPI/"
     //Boca West App
     
     //let productionURL = "https://api.bocawestcc.org/app.wrapper/api/"
@@ -84,7 +84,7 @@ class APIHandler: NSObject
     //Note:- Use for internal only. User below code for production/Users/Admin/Desktop/Zeeshan/Cobalt/Code/V1.5/CSSI/AppDelegate
     //when using this comment generateBaseURL() method call in app delegate applicationWillFinishLaunching with options method.
     lazy var baseURL : String = self.engageTestURL
-    lazy var dinningBaseURL : String = self.dinningDevURL
+    lazy var diningBaseURL : String = self.diningTestURL
     
     //MARK:- API Switch Variable
     //This is only implemented only for Boca West app as of now.
@@ -7060,7 +7060,7 @@ class APIHandler: NSObject
     
     //MARK:- DinningReservationDetail Listing
     func GetDinningReservationDetail(paramater: [String: Any]?, onSuccess: @escaping(GetDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningGetReservation
+        let url : String = diningBaseURL + APIHandler.dinningGetReservation
         print(url)
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
@@ -7108,7 +7108,7 @@ class APIHandler: NSObject
     
     //MARK:- Restaurent Detail
     func GetRestaurentDetail(paramater: [String: Any]?, onSuccess: @escaping(GetRestaurantDetail) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningGetRestaurantDetail
+        let url : String = diningBaseURL + APIHandler.dinningGetRestaurantDetail
         print(url)
         print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
@@ -7148,7 +7148,7 @@ class APIHandler: NSObject
     
     //MARK:- DinningReservation Listing
     func GetDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(GetDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningGetReservation
+        let url : String = diningBaseURL + APIHandler.dinningGetReservation
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7188,7 +7188,7 @@ class APIHandler: NSObject
     
     //MARK:-  SaveDinningReservation Listing
     func saveDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningSaveReservation
+        let url : String = diningBaseURL + APIHandler.dinningSaveReservation
         
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
@@ -7236,7 +7236,7 @@ class APIHandler: NSObject
     
     //MARK:-  editDinningReservation Listing
     func editDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(EditDinningDetail) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningEditReservation
+        let url : String = diningBaseURL + APIHandler.dinningEditReservation
         print(url)
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
@@ -7284,7 +7284,7 @@ class APIHandler: NSObject
     
     //MARK:- My DinningReservation Listing
     func GetMyDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(GetMyDinningList) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningMyReservationListing
+        let url : String = diningBaseURL + APIHandler.dinningMyReservationListing
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7323,7 +7323,7 @@ class APIHandler: NSObject
     }
     //MARK:- My DinningReservation Listing Modify/View
     func ModifyMyDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningViewModifyData
+        let url : String = diningBaseURL + APIHandler.dinningViewModifyData
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7363,7 +7363,7 @@ class APIHandler: NSObject
     
     
     func getTablePreferances(paramater: [String: Any]?, onSuccess: @escaping(GetTablePreferance) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningTablePreferances
+        let url : String = diningBaseURL + APIHandler.dinningTablePreferances
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7403,7 +7403,7 @@ class APIHandler: NSObject
     
     //MARK:- My DinningReservation Listing Delete
     func deleteMyDinningReservation(paramater: [String: Any]?, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningDeleteReservation
+        let url : String = diningBaseURL + APIHandler.dinningDeleteReservation
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7442,7 +7442,7 @@ class APIHandler: NSObject
     }
     
     func getMemberValidationDiningFCFS(paramater: [String: Any]?, onSuccess: @escaping(SenUsFeedback) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = dinningDevURL + APIHandler.dinningMemberValidationFCFS
+        let url : String = diningBaseURL + APIHandler.dinningMemberValidationFCFS
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in

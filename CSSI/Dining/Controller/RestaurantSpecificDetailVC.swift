@@ -115,14 +115,16 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     // MARK: - IB Actions
     
     @IBAction func btnSelectPartySize(_ sender: Any) {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
-        vc?.delegateSelectedTimePatySize = self
-        vc?.maxPartySize = self.restaurantDetails.RestaurantSettings[0].MaxPartySize ?? 5
-        vc?.minimumDaysInAdvance = self.restaurantDetails.RestaurantSettings[0].MinDaysInAdvance
-        vc?.maximumDaysInAdvance = self.restaurantDetails.RestaurantSettings[0].MaxDaysInAdvance
-        vc?.selectedPartySize = self.diningReservation.PartySize
-        vc?.selectedDate = currentDate
-        self.navigationController?.present(vc!, animated: true, completion: nil)
+        if self.self.restaurantDetails.RestaurantSettings != nil {
+            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
+            vc?.delegateSelectedTimePatySize = self
+            vc?.maxPartySize = self.restaurantDetails.RestaurantSettings.MaxPartySize ?? 5
+            vc?.minimumDaysInAdvance = self.restaurantDetails.RestaurantSettings.MinDaysInAdvance
+            vc?.maximumDaysInAdvance = self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance
+            vc?.selectedPartySize = self.diningReservation.PartySize
+            vc?.selectedDate = currentDate
+            self.navigationController?.present(vc!, animated: true, completion: nil)
+        }
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
@@ -136,14 +138,21 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     }
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
-            currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
+            if daysDifference >= self.diningSetting.MinDaysInAdvance {
+                currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+                updateUI()
+                restaurentDetail()
+            }
         }
         else{
-            currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
+            if daysDifference < self.diningSetting.MaxDaysInAdvance {
+                currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
+                updateUI()
+                restaurentDetail()
+            }
         }
-
-        updateUI()
-        restaurentDetail()
     }
     
     
@@ -248,17 +257,23 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     
     // MARK: - Collectioniew Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.restaurantDetails.SelectedDate.count > 0 {
-            return self.restaurantDetails.SelectedDate[0].TimeSlot.count
+        if self.restaurantDetails.SelectedDate != nil {
+            return self.restaurantDetails.SelectedDate.TimeSlot.count
         } else {
             return 0
         }
+       
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
-        let dict = self.restaurantDetails.SelectedDate[0].TimeSlot[indexPath.row]
+        let dict = self.restaurantDetails.SelectedDate.TimeSlot[indexPath.row]
+        if self.diningReservation.SelectedDate == self.restaurantDetails.SelectedDate.Date && self.diningReservation.SelectedTime == dict.timeSlot {
+            cell.viewTimeSlotBack.backgroundColor = .systemBlue
+        } else {
+            cell.viewTimeSlotBack.backgroundColor = UIColor(hexString: "#5773A2")
+        }
         cell.lblTime.text = dict.timeSlot
             
         return cell
@@ -269,7 +284,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
        }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.diningReservation.SelectedTime = self.restaurantDetails.SelectedDate[0].TimeSlot[indexPath.row].timeSlot
+        self.diningReservation.SelectedTime = self.restaurantDetails.SelectedDate.TimeSlot[indexPath.row].timeSlot
         self.moveToMemberDetailsScreen()
     }
     
@@ -289,11 +304,11 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         cell.timeSlots = dict.TimeSlot
         cell.row = indexPath.row
         cell.lblTime.text = getDateFromDetailAvailability(givenDate: dict.Date)
-        if self.isFrom != .create && isSelectedRestaurant {
-            cell.selectedTimeSlot = self.diningReservation.SelectedTime
-        } else {
-            cell.selectedTimeSlot = ""
-        }
+//        if self.isFrom != .create && isSelectedRestaurant && self.din{
+//            cell.selectedTimeSlot = self.diningReservation.SelectedTime
+//        } else {
+//            cell.selectedTimeSlot = ""
+//        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

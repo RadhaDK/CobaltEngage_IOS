@@ -79,7 +79,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             }
             else if enumForDinningMode == .view{
                 lblDiningHeading.text = "Dining Reservation"
-                tblResturat.isUserInteractionEnabled = false
+//                tblResturat.isUserInteractionEnabled = false
                 viewTime.isUserInteractionEnabled = false
                 btnNext.isUserInteractionEnabled = false
                 btnPrevious.isUserInteractionEnabled = false
@@ -142,14 +142,21 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     @IBAction func btnNextPrevious(_ sender: UIButton) {
         if sender.tag == 1{
-            currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
+            if daysDifference >= self.diningSetting.MinDaysInAdvance {
+                currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+                updateUI()
+                reservationList()
+            }
         }
         else{
-            currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
+            if daysDifference <= self.diningSetting.MaxDaysInAdvance {
+                currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
+                updateUI()
+                reservationList()
+            }
         }
-        
-        updateUI()
-        reservationList()
     }
     @IBAction func dinningClicked(_ sender: Any) {
         
@@ -222,6 +229,16 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
 
     
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
+        if enumForDinningMode != .view {
+            moveToMemberDetails(timeSlot: timeSlot, row: row)
+        } else {
+            if self.diningReservation.SelectedTime == timeSlot {
+                moveToMemberDetails(timeSlot: timeSlot, row: row)
+            }
+        }
+    }
+    
+    func moveToMemberDetails(timeSlot: String, row: Int) {
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
         vc!.showNavigationBar = false
         vc?.isFrom = self.enumForDinningMode
@@ -271,6 +288,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             }
             self.diningReservation.RestaurantID = dict.RestaurantID
             impVC.diningReservation = self.diningReservation
+            impVC.currentDate = self.currentDate
             impVC.dinningPolicy = self.diningPolicyURL
             impVC.restaurantImage = dict.RestaurantImage
             impVC.isFrom = self.enumForDinningMode
