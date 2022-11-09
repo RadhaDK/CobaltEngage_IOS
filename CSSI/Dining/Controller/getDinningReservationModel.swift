@@ -95,6 +95,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
     var guestDOB            : String!
     var guestGender         : String!
     var guestContact        : String!
+    var specialOccation     : String!
     
     
     override init() {
@@ -122,6 +123,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestGender         = ""
         guestLastName       = ""
         guestFirstName      = ""
+        specialOccation     = ""
     }
     
     func mapping(map: Map) {
@@ -130,7 +132,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         MemberID            <- map["LinkedMemberID"]
         MemberNumber        <- map["MemberID"]
         MemberName          <- map["MemberName"]
-        DietartRestriction  <- map["DietartRestriction"]
+        DietartRestriction  <- map["DietaryRestriction"]
         Anniversary         <- map["Anniversary"]
         Birthday            <- map["Birthday"]
         Other               <- map["Other"]
@@ -145,6 +147,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestGender         <- map["GuestGender"]
         guestLastName       <- map["GuestLastName"]
         guestFirstName      <- map["GuestFirstName"]
+        specialOccation     <- map["D_SpecialOccasion"]
     }
     
     func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, memberNumber: String) {

@@ -45,6 +45,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var requestedId : String?
     var isInitial = true
     var diningPolicyURL = ""
+    var reservationDate = ""
+    var reservationTime = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +153,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         }
         else{
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
-            if daysDifference <= self.diningSetting.MaxDaysInAdvance {
+            if daysDifference < self.diningSetting.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
                 reservationList()
@@ -266,8 +268,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
         cell.lblTime.text = self.getStartAndEndTimeString(timings: self.restaurantsList[indexPath.row].Timings)
-        if self.enumForDinningMode != .create && self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID {
-            cell.selectedTimeSlot = self.diningReservation.SelectedTime
+        if self.enumForDinningMode != .create && self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID && self.diningReservation.SelectedDate == self.reservationDate {
+            cell.selectedTimeSlot = self.reservationTime
         } else {
             cell.selectedTimeSlot = ""
         }
@@ -292,6 +294,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             impVC.dinningPolicy = self.diningPolicyURL
             impVC.restaurantImage = dict.RestaurantImage
             impVC.isFrom = self.enumForDinningMode
+            impVC.reservationDate = self.reservationDate
+            impVC.reservationTime = self.reservationTime
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
@@ -358,6 +362,8 @@ extension DiningReservationVC{
                 
                 self.diningReservation = reservationDinningListing
                 self.diningReservation.RequestID = self.requestedId
+                self.reservationDate = reservationDinningListing.SelectedDate
+                self.reservationTime = reservationDinningListing.SelectedTime
                 self.combainDateTime(dateString: self.diningReservation.SelectedDate, timeString: self.diningReservation.SelectedTime)
                 print(reservationDinningListing.SelectedTime)
                 self.reservationList()

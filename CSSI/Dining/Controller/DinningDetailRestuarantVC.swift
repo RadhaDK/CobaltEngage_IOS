@@ -272,7 +272,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 }
                 
                 if type == .multiple {
-                    memberDirectory.totalNumberofTickets = self.diningReservation.PartySize - 1
+                    memberDirectory.totalNumberofTickets = self.diningReservation.PartySize
                     memberDirectory.shouldEnableMultiSelect = true
                     memberDirectory.shouldEnableSkipping = true
                     
@@ -476,7 +476,33 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 
     }
     
+    func getSpecialRequestOfMember(member: ResrvationPartyDetail) -> String {
+        var outputString = ""
+        if member.Birthday == 1 {
+            outputString = "Birthday"
+        }
+        if member.Anniversary == 1 {
+            if outputString == "" {
+                outputString = "Anniversary"
+            } else {
+                outputString = outputString + "^^Anniversary"
+            }
+        }
+        if member.Other == 1 {
+            if outputString == "" {
+                outputString = "Other"
+            } else {
+                outputString = outputString + "^^Other"
+            }
+        }
+        return outputString
+    }
+    
     func saveDiningReservation() {
+        
+        for i in 0...self.diningReservation.PartyDetails.count-1 {
+            self.diningReservation.PartyDetails[i].specialOccation = self.getSpecialRequestOfMember(member: self.diningReservation.PartyDetails[i])
+        }
         
         var ReqBodyJson = self.diningReservation.toJSON()
         var paramaterDict = [
@@ -495,6 +521,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         paramaterDict["UserName"] = UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue) ?? ""
         
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+
+
         print(paramaterDict)
         APIHandler.sharedInstance.saveDinningReservation(paramater: paramaterDict) { response in
             

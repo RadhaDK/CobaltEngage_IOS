@@ -103,16 +103,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ADF80858-DD62-427E-9119-DA11F320ECA5"
-            shouldBeEnabled = "No"
+            uuid = "6CB74E6F-6D61-490E-875F-EF3D6CD50A97"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
-            landmarkName = "saveDiningReservation()"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "btnNextPrevious(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B4CC3122-EADF-494C-BC69-1A2C6FACF713"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/RestaurantSpecificDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "btnNextPrevious(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
