@@ -1255,10 +1255,13 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
 
             cell.lblEventID.text = "#\(dict.ConfirmationNumber ?? 0)"
             if let day = dict.SelectedDate{
-                cell.lblWeekDay.text = getDayOfWeek(givenDate: day)
+                cell.lblWeekDay.text = getDayWeek(givenDate: day)
             }
             if let date = dict.SelectedDate{
                 cell.lblDate.text = getDateDinning(givenDate: date)
+            }
+            if let weekDay = dict.SelectedDate{
+                cell.lblDay.text = getDayOfWeek(givenDate: weekDay)
             }
             cell.clickedDinningModifyClosure = {
                 if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
