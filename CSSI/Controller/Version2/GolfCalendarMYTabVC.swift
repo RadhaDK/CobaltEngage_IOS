@@ -1309,6 +1309,9 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                             eventDetails.isFrom = "DiningRes"
                         }
                     eventDetails.requestID = dict.RequestID
+                    eventDetails.eventName = dict.EventName
+                    eventDetails.eventTime  = dict.SelectedTime
+                    eventDetails.eventCategory = dict.ReservationType
 //                    synchDetails.arrEventDetails = [eventObj]
 //                    synchDetails.isFrom = eventObj.eventCategory!
                     
@@ -1830,8 +1833,8 @@ extension GolfCalendarMYTabVC{
                 "Content-Type":"application/json",
                 "LinkedMemberID" : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
                 "FilterStartDate" : self.appDelegate.dateSortToDate,
-                "FilterEndDate" : self.appDelegate.dateSortFromDate
-                
+                "FilterEndDate" : self.appDelegate.dateSortFromDate,
+                "SearchText"  : strSearch
              ]
             print(paramaterDict)
             APIHandler.sharedInstance.GetMyDinningReservation(paramater: paramaterDict, onSuccess: { myReservationDinningListing in

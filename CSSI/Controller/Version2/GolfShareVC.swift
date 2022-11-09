@@ -47,7 +47,8 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var shareTextGolf: String?
     var eventRegistrationDetailID : String?
     var diningReservation = DinningReservationFCFS.init()
-var myDinningDetail = [ResrvationPartyDetail]()
+
+    var myDinningDetail = [ResrvationPartyDetail]()
     //Added on 26th June 2020 BMS
     var arrAppointmentDetails = [Appointment]()
     override func viewDidLoad() {
@@ -156,10 +157,7 @@ var myDinningDetail = [ResrvationPartyDetail]()
         }
         else
         {
-            
-            
             self.getEventDetailsApi()
-            
             self.lblPreferredTeetime.text = self.appDelegate.masterLabeling.preferred_tee_time
             self.lblEarliestTeeTime.text = self.appDelegate.masterLabeling.earliest_tee_time
             self.lblLinkGroups.text = self.appDelegate.masterLabeling.gROUPS_LINK_COLON
@@ -925,7 +923,9 @@ var myDinningDetail = [ResrvationPartyDetail]()
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
     }
+ 
     
+    //MARK: - UI chanages
     func setUpUI(){
         self.lblRoundLengthValue.text = self.diningReservation.Location
         self.lblPreferredTeetimeValue.text = self.diningReservation.SelectedTime
