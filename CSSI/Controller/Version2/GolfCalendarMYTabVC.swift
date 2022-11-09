@@ -1278,36 +1278,50 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
             cell.clickedDinningShareClosure = {
-                if let share = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController {
-                    share.modalTransitionStyle   = .crossDissolve;
-                    share.modalPresentationStyle = .overCurrentContext
-                    //Old logic
+//                if let share = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController {
+//                    share.modalTransitionStyle   = .crossDissolve;
+//                    share.modalPresentationStyle = .overCurrentContext
+//                    //Old logic
+//
+//                    //share.imgURl = events.eventID
+//                    //share.isFrom = "Events"
+//
+//                    //Added on 19th May 2020 v2.1
+//                    share.contentType = .events
+//                    share.contentDetails = ContentDetails.init(id: dict.RequestID, date: nil, name: nil, link: nil)
+//                    self.present(share, animated: true, completion: nil)
+//
                     
-                    //share.imgURl = events.eventID
-                    //share.isFrom = "Events"
-                    
-                    //Added on 19th May 2020 v2.1
-                    share.contentType = .events
-                    share.contentDetails = ContentDetails.init(id: dict.RequestID, date: nil, name: nil, link: nil)
-                    self.present(share, animated: true, completion: nil)
-                }
+                    if let shareDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfShareVC") as? GolfShareVC
+                    {
+                        shareDetails.requestID = dict.RequestID
+                        self.appDelegate.typeOfCalendar = "Dining"
+                       // shareDetails.arrEventDetails = [eventObjt]
+                        self.navigationController?.pushViewController(shareDetails, animated: true)
+                    }
             }
             cell.clickedDinningSyncClosure = {
-                if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "EventDetailsVC") as? EventDetailsVC{
+             
+                if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfSyncCalendarVC") as? GolfSyncCalendarVC{
                     
                    
                         if (self.appDelegate.selectedSegment == "0"){
                             eventDetails.isFrom = "DiningRes"
                         }
-                    eventDetails.navigateFromDiningSync = true
-                    eventDetails.arrDiningDetails.eventName = dict.EventName
-                    eventDetails.arrDiningDetails.eventTime = dict.SelectedTime
-                   
-                    eventDetails.arrSyncDataDining.startTime = dict.SelectedTime
-                    eventDetails.arrSyncDataDining.endTime = dict.SelectedTime
-                    eventDetails.arrSyncDataDining.startDate = dict.SelectedDate
-                    eventDetails.arrSyncDataDining.endDate = dict.SelectedDate
+                    eventDetails.requestID = dict.RequestID
+//                    synchDetails.arrEventDetails = [eventObj]
+//                    synchDetails.isFrom = eventObj.eventCategory!
                     
+                    
+                 //   eventDetails.navigateFromDiningSync = true
+//                    eventDetails.arrDiningDetails.eventName = dict.EventName
+//                    eventDetails.arrDiningDetails.eventTime = dict.SelectedTime
+//
+//                    eventDetails.arrSyncDataDining.startTime = dict.SelectedTime
+//                    eventDetails.arrSyncDataDining.endTime = dict.SelectedTime
+//                    eventDetails.arrSyncDataDining.startDate = dict.SelectedDate
+//                    eventDetails.arrSyncDataDining.endDate = dict.SelectedDate
+//
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }
