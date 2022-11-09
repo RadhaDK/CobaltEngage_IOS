@@ -103,6 +103,20 @@ extension UIViewController{
             
         }
     
+    
+    
+    func getDayWeek(givenDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let showDate = inputFormatter.date(from: givenDate)
+        inputFormatter.dateFormat = "E"
+        let resultString = inputFormatter.string(from: showDate!)
+        print(resultString)
+        return resultString
+        
+    }
+    
+    
     func getDayOfWeek(givenDate: Date) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "E"

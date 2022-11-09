@@ -28,7 +28,12 @@ class DinningReservationFCFS : NSObject, Mappable {
     var PartyDetails            : [ResrvationPartyDetail]! = []
     var UI                      : GetResrvationUI!
     var ResponsecodeCancel : String!
-   
+    var Title : String!
+    var Name : String!
+    var SyncCalendarTitle : String!
+    var Location : String!
+    var RequestedLinkedMember : String!
+    var UserName : String!
     override init() {
         super.init()
     }
@@ -49,6 +54,12 @@ class DinningReservationFCFS : NSObject, Mappable {
         PartyDetails        = []
         UI                  = GetResrvationUI()
         ResponsecodeCancel = ""
+        Title = ""
+        Name = ""
+        SyncCalendarTitle = ""
+        Location = ""
+        RequestedLinkedMember = ""
+        UserName = ""
     }
     
     func mapping(map: Map) {
@@ -68,6 +79,12 @@ class DinningReservationFCFS : NSObject, Mappable {
         PartyDetails            <- map["PartyDetails"]
         UI                      <- map["UI"]
         ResponsecodeCancel            <- map["Responsecode"]
+        Title <- map["Title"]
+        Name  <- map["Name"]
+        SyncCalendarTitle <- map["SyncCalendarTitle"]
+        Location <- map["Location"]
+        RequestedLinkedMember <- map["RequestedLinkedMember"]
+        UserName <- map["UserName"]
     }
 }
 
