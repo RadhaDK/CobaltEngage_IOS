@@ -41,6 +41,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var lblRestaurantName: UILabel!
     @IBOutlet weak var lblCaptainName: UILabel!
     
+    @IBOutlet weak var imageAddMemberWidth: NSLayoutConstraint!
     @IBOutlet weak var imageAddMember: UIImageView!
     @IBOutlet weak var lblModiftCaptainName: UILabel!
     
@@ -77,6 +78,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         if isFrom == .create {
             self.setupDefaultMemberValues()
             self.viewModifyDetailsHeight.constant = 0
+            self.imageAddMemberWidth.constant = 0
+            
             self.imageAddMember.isHidden = true
         }
         if isFrom == .view {
@@ -135,6 +138,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             cancelViewController.eventID = self.diningReservation.RequestID
             cancelViewController.diningCancelPopupMode = .detail
             cancelViewController.delegateCancelReservation = self
+            cancelViewController.cancelReservationClosure = {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
             self.navigationController?.present(cancelViewController, animated: true)
         }
   

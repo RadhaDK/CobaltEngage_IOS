@@ -23,6 +23,9 @@ class CancelDinningReservationPopupVC: UIViewController {
     var eventID : String?
     var delegateCancelReservation : cancelDinningPopup?
     var diningCancelPopupMode : diningCancelPopupMode?
+    
+    var cancelReservationClosure:(()->())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,10 +68,11 @@ extension CancelDinningReservationPopupVC{
             
             APIHandler.sharedInstance.deleteMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
-                if reservationDinningListing.ResponsecodeCancel == InternetMessge.ksuccess{
+                if reservationDinningListing.Responsecode == InternetMessge.ksuccess{
                    // if self.diningCancelPopupMode == .listing{
-                        self.delegateCancelReservation?.cancelDinningReservation(value: true)
-                        self.dismiss(animated: true, completion: nil)
+                    self.delegateCancelReservation?.cancelDinningReservation(value: true)
+                    self.cancelReservationClosure?()
+                    self.dismiss(animated: true, completion: nil)
                     //}
 //                    else{
 //

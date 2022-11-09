@@ -56,11 +56,15 @@ class PartySizePopUpVC: UIViewController {
         if #available(iOS 15.0, *) {
             datePicker.roundsToMinuteInterval = true
             var minimumDate = Calendar.current.date(byAdding: .day, value: self.minimumDaysInAdvance, to: Date())!
+            var maximumDate = Calendar.current.date(byAdding: .day, value: self.maximumDaysInAdvance, to: Date())!
             if minimumDaysInAdvance > 0 {
                 minimumDate = Calendar.current.date(bySettingHour: 5, minute: 0, second: 0, of: minimumDate)!
             }
+            if maximumDaysInAdvance == 0 {
+                maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 0, of: maximumDate)!
+            }
             datePicker.minimumDate = minimumDate
-            datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: self.maximumDaysInAdvance, to: Date())!
+            datePicker.maximumDate = maximumDate
         } else {
             // Fallback on earlier versions
         }

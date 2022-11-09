@@ -1240,8 +1240,8 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-w5-LRN">
                                                 <rect key="frame" x="8" y="491" width="374" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add  A Special Request (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waV-Uz-F3y">
-                                                        <rect key="frame" x="11.999999999999986" y="12" width="255.66666666666663" height="19"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a Special Request(Optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waV-Uz-F3y">
+                                                        <rect key="frame" x="12" y="12" width="250" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="19" id="P5B-7H-VvR"/>
                                                         </constraints>
@@ -1394,7 +1394,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catain: Lia Little" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HE-xy-JqU">
-                                                <rect key="frame" x="55" y="80" width="320" height="20.666666666666671"/>
+                                                <rect key="frame" x="55" y="80" width="315" height="20.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
                                                 <color key="textColor" red="0.29411764705882354" green="0.31764705882352939" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1409,7 +1409,7 @@
                                             <constraint firstItem="tuR-TC-bOz" firstAttribute="top" secondItem="lc6-Zv-hGv" secondAttribute="bottom" id="7zc-gj-9T0"/>
                                             <constraint firstItem="HfD-Y7-iNk" firstAttribute="leading" secondItem="dLv-cg-WLD" secondAttribute="leading" constant="15" id="A9P-E9-OV3"/>
                                             <constraint firstItem="tuR-TC-bOz" firstAttribute="leading" secondItem="dLv-cg-WLD" secondAttribute="leading" id="AAE-Ye-7fm"/>
-                                            <constraint firstAttribute="trailing" secondItem="5HE-xy-JqU" secondAttribute="trailing" constant="15" id="DwC-ai-ztP"/>
+                                            <constraint firstAttribute="trailing" secondItem="5HE-xy-JqU" secondAttribute="trailing" constant="20" id="DwC-ai-ztP"/>
                                             <constraint firstItem="k8N-Aw-QID" firstAttribute="top" secondItem="HfD-Y7-iNk" secondAttribute="bottom" constant="25" id="G0D-jI-Qaa"/>
                                             <constraint firstItem="msD-OO-Yu8" firstAttribute="centerX" secondItem="uLY-8K-Ye4" secondAttribute="centerX" id="HTG-8R-r4r"/>
                                             <constraint firstItem="HfD-Y7-iNk" firstAttribute="top" secondItem="3X4-dM-goh" secondAttribute="bottom" constant="12" id="JtG-Pc-4Xx"/>
@@ -1520,6 +1520,7 @@
                         <outlet property="heightTblGuest" destination="Sv8-20-Wls" id="qdK-86-kcT"/>
                         <outlet property="heightViewBackSpecialRequest" destination="4Zk-3F-MBD" id="KVN-OX-fTL"/>
                         <outlet property="imageAddMember" destination="KVO-d9-Rgb" id="DRi-3q-l3m"/>
+                        <outlet property="imageAddMemberWidth" destination="wFI-fM-N2f" id="wmy-6i-REw"/>
                         <outlet property="imgRestaurantImage" destination="KKl-fF-hmn" id="AAX-5z-Kjl"/>
                         <outlet property="imgRestuarant" destination="KKl-fF-hmn" id="tC8-Ai-gmy"/>
                         <outlet property="lblCaptainName" destination="5HE-xy-JqU" id="beU-i7-V3K"/>
