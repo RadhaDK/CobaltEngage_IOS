@@ -11,22 +11,25 @@ import UIKit
 import Foundation
 import ObjectMapper
 
-class GetDinningDetail: NSObject, Mappable {
+class GetDinningDetail:  Mappable {
     var result            : String!
     var responseMessage         : String!
     var restaurants             : [DiningRestaurantsData]!
     var diningSettings          : DiningSettingData!
     
-    override init() {
-        super.init()
-    }
-    
-    convenience required init?(map: Map) {
-        self.init()
+    init() {
         result            = ""
         responseMessage         = ""
         restaurants             = []
-        diningSettings          = DiningSettingData()
+        diningSettings          = DiningSettingData.init()
+    }
+    
+    required init?(map: Map) {
+        
+        result            = ""
+        responseMessage         = ""
+        restaurants             = []
+        diningSettings          = DiningSettingData.init()
     }
     
     func mapping(map: Map) {
@@ -39,25 +42,35 @@ class GetDinningDetail: NSObject, Mappable {
 
 
 
-class DiningSettingData: NSObject, Mappable {
+class DiningSettingData: Mappable {
     
     var TimeInterval            : Int!
     var MaxDaysInAdvanceTime    = ""
     dynamic var MaxDaysInAdvance        = 90
     dynamic var MinDaysInAdvance        = 0
     dynamic var MinDaysInAdvanceTime    = ""
-    dynamic var MaxPartySize            = 6
+    var MaxPartySize            = 6
     dynamic var DefaultPartySize        = 1
     var DefaultStartTime : String!
     var DefaultEndTime : String!
     var DefaultTimeInterval : Int!
     var DefaultTimeSlots : [DiningTimmingsData]!
-    override init() {
-        super.init()
+    init() {
+        TimeInterval            = 0
+        MaxDaysInAdvanceTime    = ""
+        MaxDaysInAdvance        = 90
+        MinDaysInAdvance        = 0
+        MinDaysInAdvanceTime    = ""
+        MaxPartySize            = 6
+        DefaultPartySize = 1
+        DefaultStartTime = ""
+        DefaultEndTime = ""
+        DefaultTimeInterval = 0
+        DefaultTimeSlots = []
     }
     
-    convenience required init?(map: Map) {
-        self.init()
+    required init?(map: Map) {
+    
         TimeInterval            = 0
         MaxDaysInAdvanceTime    = ""
         MaxDaysInAdvance        = 90

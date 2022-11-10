@@ -244,16 +244,21 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     func moveToMemberDetails(timeSlot: String, row: Int) {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-        vc!.showNavigationBar = false
-        vc?.isFrom = self.enumForDinningMode
-        self.diningReservation.SelectedTime = timeSlot
-        self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
-        vc?.diningReservation = self.diningReservation
-        vc?.diningPolicyURL = self.diningPolicyURL
-        vc?.restaurantName = self.restaurantsList[row].RestaurantName
-        vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if diningReservation.PartySize == 0 {
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"Please select Party Size", withDuration: Duration.kMediumDuration)
+        } else {
+            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+            vc!.showNavigationBar = false
+            vc?.isFrom = self.enumForDinningMode
+            self.diningReservation.SelectedTime = timeSlot
+            self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
+            vc?.diningReservation = self.diningReservation
+            vc?.diningPolicyURL = self.diningPolicyURL
+            vc?.restaurantName = self.restaurantsList[row].RestaurantName
+            vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        
     }
     
     // MARK: - Table Methods

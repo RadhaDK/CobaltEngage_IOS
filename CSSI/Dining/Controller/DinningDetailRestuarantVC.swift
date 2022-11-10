@@ -129,8 +129,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     //MARK: - IBOutlets
     @IBAction func btnSubmit(_ sender: Any) {
         self.diningReservation.Comments = self.txtReservationComment.text ?? ""
-//        self.validateReservation()
-        self.saveDiningReservation()
+        self.validateReservation()
+//        self.saveDiningReservation()
     }
     
     @IBAction func btnCancelReservationAction(_ sender: Any) {
@@ -213,8 +213,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         }
         else{
             let numberOfLines = (self.tablePreferances.count/2)+1
-            heightSpecialRequestCollection.constant = CGFloat(50*numberOfLines)
-            heightViewBackSpecialRequest.constant = 70 + CGFloat(50*numberOfLines)
+            heightSpecialRequestCollection.constant = CGFloat(55*numberOfLines)
+            heightViewBackSpecialRequest.constant = 70 + CGFloat(55*numberOfLines)
         }
         collectionAddSpecialRequest.reloadData()
     }

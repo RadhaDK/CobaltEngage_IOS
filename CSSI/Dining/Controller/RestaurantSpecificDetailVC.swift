@@ -218,14 +218,18 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     }
     
     func moveToMemberDetailsScreen() {
-        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-        vc!.showNavigationBar = false
-        vc?.isFrom = self.isFrom
-        vc?.diningReservation = self.diningReservation
-        vc?.diningPolicyURL = self.dinningPolicy
-        vc?.restaurantName = self.restaurantDetails.RestaurantName
-        vc?.restaurantImage = self.restaurantDetails.RestaurantImage
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if diningReservation.PartySize == 0 {
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"Please select Party Size", withDuration: Duration.kMediumDuration)
+        } else {
+            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+            vc!.showNavigationBar = false
+            vc?.isFrom = self.isFrom
+            vc?.diningReservation = self.diningReservation
+            vc?.diningPolicyURL = self.dinningPolicy
+            vc?.restaurantName = self.restaurantDetails.RestaurantName
+            vc?.restaurantImage = self.restaurantDetails.RestaurantImage
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     // MARK: - Curstom Delegates
