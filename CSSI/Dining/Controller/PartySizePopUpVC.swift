@@ -36,6 +36,9 @@ class PartySizePopUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
+        if maxPartySize == 0 {
+            maxPartySize = 6
+        }
     }
     //MARK: - setUpUI
     func setUpUi(){

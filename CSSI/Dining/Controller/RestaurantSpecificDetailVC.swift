@@ -139,9 +139,11 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func btnNextPrevious(_ sender: UIButton) {
-        var selectedDate = currentDate
         if sender.tag == 1{
-            let daysDifference = Calendar.current.dateComponents([.day], from: Date().removeTimeStamp!, to: selectedDate.removeTimeStamp!).day ?? 0
+            if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Date()) {
+                return
+            }
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
             if daysDifference >= self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
                 updateUI()
@@ -149,7 +151,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             }
         }
         else{
-            let daysDifference = Calendar.current.dateComponents([.day], from: Date().removeTimeStamp!, to: selectedDate.removeTimeStamp!).day ?? 0
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
             if daysDifference <= self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
