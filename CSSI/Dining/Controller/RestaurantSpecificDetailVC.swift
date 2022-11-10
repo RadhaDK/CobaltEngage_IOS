@@ -70,7 +70,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
       
         tblAvailability.isHidden = true
         heightTblAvailability.constant = 0
-        imgDrop.image = UIImage(named: "Icon_Down")
+        imgDrop.image = UIImage(named: "Down Arrow_Icon")
         shadowView(viewName: viewTime)
         shadowView(viewName: viewPrevious)
         shadowView(viewName: viewDate)
@@ -169,7 +169,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         else{
             dropDownIsOpen = false
             tblAvailability.isHidden = true
-            imgDrop.image = UIImage(named: "Icon_Down")
+            imgDrop.image = UIImage(named: "Down Arrow_Icon")
             heightTblAvailability.constant = 0
             
         }

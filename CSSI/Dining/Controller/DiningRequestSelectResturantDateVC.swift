@@ -20,8 +20,14 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     @IBOutlet weak var roundedBgView: UIView!
     @IBOutlet weak var btnDone: UIButton!
     @IBOutlet weak var myCalendar: FSCalendar!
+    @IBOutlet weak var datePicker: UIDatePicker!
+
+    
+    
     var calendarRangeStartDate : NSString!
     var calendarRangeEndDate : NSString!
+    
+    
     fileprivate let monthYearFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.timeStyle = .none
@@ -56,6 +62,7 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     var selectedDate = Date()
     var delegateSelectedDateCalendar : dateSelection?
     var selectedDateString = ""
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +80,7 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         self.myCalendar.appearance.titleDefaultColor = .white
         self.myCalendar.appearance.titleWeekendColor = .white
         self.myCalendar.appearance.subtitleTodayColor = .yellow
+        setUpUiInitialization()
 //        self.myCalendar.
         // Do any additional setup after loading the view.
     }
@@ -121,6 +129,29 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
           }
                  
        }
+// MARK:- picker setup
+    func setUpUiInitialization(){
+        dateFormatter.dateFormat = "MMM dd-yyyy"
+        datePicker.datePickerMode = .date
+        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
+
+//        datePicker.minuteInterval = 15
+        
+        if #available(iOS 15.0, *) {
+//            datePicker.minimumDate = minimumDate
+//            datePicker.maximumDate = maximumDate
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+          
+            // Fallback on earlier versions
+        }
+        //datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
+        datePicker.date = selectedDate
+    }
 }
 
 extension Date {
