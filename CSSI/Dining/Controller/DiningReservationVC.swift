@@ -122,7 +122,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func btnSelectPartySize(_ sender: Any) {
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "PartySizePopUpVC") as? PartySizePopUpVC
         vc?.delegateSelectedTimePatySize = self
-        vc?.maxPartySize = self.diningSetting.MaxPartySize ?? 5
+        vc?.maxPartySize = self.diningSetting.MaxPartySize
         vc?.minimumDaysInAdvance = self.diningSetting.MinDaysInAdvance
         vc?.maximumDaysInAdvance = self.diningSetting.MaxDaysInAdvance
         vc?.selectedPartySize = self.diningReservation.PartySize
@@ -331,6 +331,11 @@ extension DiningReservationVC{
 //            print(paramaterDict)
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
+                if(reservationDinningListing.restaurants.count == 0)
+                {
+                    self.tblResturat.setEmptyMessage(InternetMessge.kNoRestaurant)
+                }
+                
                 self.restaurantsList = reservationDinningListing.restaurants!
                 self.diningSetting = reservationDinningListing.diningSettings!
                 
