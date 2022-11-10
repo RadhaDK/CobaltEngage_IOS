@@ -2141,18 +2141,56 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOV-67-2hW">
+                                <rect key="frame" x="77.5" y="609" width="60" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="1Cp-Ey-Xfk"/>
+                                    <constraint firstAttribute="width" constant="60" id="Bkf-hR-J71"/>
+                                </constraints>
+                                <color key="tintColor" red="0.20392156859999999" green="0.3411764706" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Yes">
+                                    <fontDescription key="titleFontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnYesAction:" destination="gAg-pC-roE" eventType="touchUpInside" id="IQd-93-UC6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7R-TQ-23h">
+                                <rect key="frame" x="237.5" y="609" width="60" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="7dI-5O-h9U"/>
+                                    <constraint firstAttribute="width" constant="60" id="wdN-LV-b3F"/>
+                                </constraints>
+                                <color key="tintColor" red="0.20392156859999999" green="0.3411764706" blue="0.51372549020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="No">
+                                    <fontDescription key="titleFontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnNoAction:" destination="gAg-pC-roE" eventType="touchUpInside" id="3WE-8o-p3h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BeZ-qy-7h4"/>
                         <color key="backgroundColor" white="0.0" alpha="0.85999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BeZ-qy-7h4" firstAttribute="trailing" secondItem="A4T-jo-Z8Y" secondAttribute="trailing" constant="10" id="Ajg-nM-QiF"/>
                             <constraint firstItem="A4T-jo-Z8Y" firstAttribute="leading" secondItem="BeZ-qy-7h4" secondAttribute="leading" constant="10" id="ZHH-7p-SYK"/>
+                            <constraint firstItem="BeZ-qy-7h4" firstAttribute="bottom" secondItem="HOV-67-2hW" secondAttribute="bottom" constant="26" id="eVT-Yz-0D4"/>
+                            <constraint firstItem="HOV-67-2hW" firstAttribute="centerX" secondItem="TZH-VX-720" secondAttribute="centerX" constant="-80" id="k91-mc-UHp"/>
+                            <constraint firstItem="BeZ-qy-7h4" firstAttribute="bottom" secondItem="m7R-TQ-23h" secondAttribute="bottom" constant="26" id="sIp-ne-yLG"/>
                             <constraint firstItem="A4T-jo-Z8Y" firstAttribute="top" secondItem="BeZ-qy-7h4" secondAttribute="top" constant="56" id="xKD-yp-tl2"/>
+                            <constraint firstItem="m7R-TQ-23h" firstAttribute="centerX" secondItem="TZH-VX-720" secondAttribute="centerX" constant="80" id="zo6-pW-UDf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ImpPopUp" destination="N9P-Mi-fQu" id="dvP-US-RBt"/>
                         <outlet property="btnClose" destination="Jv0-VE-eDA" id="OBE-hd-Rhr"/>
+                        <outlet property="btnNo" destination="m7R-TQ-23h" id="TWS-wc-00Q"/>
+                        <outlet property="btnYes" destination="HOV-67-2hW" id="isw-SB-oTM"/>
                         <outlet property="lblImportantContacts" destination="X9g-9X-jbC" id="MS2-bJ-nIv"/>
                         <outlet property="tblImpContacts" destination="lSF-b6-Vne" id="BHz-JO-hbf"/>
                     </connections>
@@ -17382,7 +17420,7 @@
         <image name="Icon_feather_clock" width="28" height="28"/>
         <image name="Istagram_Icon" width="20" height="20"/>
         <image name="News Icon" width="19" height="21"/>
-        <image name="Next_Icon" width="6" height="10.5"/>
+        <image name="Next_Icon" width="8.5" height="15"/>
         <image name="Notification Icon" width="18.5" height="20"/>
         <image name="Path 1321" width="5.5" height="10"/>
         <image name="Path 1882" width="19" height="19"/>

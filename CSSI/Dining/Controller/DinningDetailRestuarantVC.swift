@@ -246,6 +246,23 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         }
     }
     
+    func showValidation(response: SenUsFeedback) {
+        if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ImpotantContactsVC") as? ImpotantContactsVC
+        {
+            impVC.importantContactsDisplayName = response.brokenRules?.fields?[0] ?? ""
+            impVC.isFrom = "Reservations"
+            impVC.arrList = response.details!
+            impVC.isHardRule = response.IsHardRuleEnabled ?? 0
+            impVC.modalTransitionStyle   = .crossDissolve;
+            impVC.modalPresentationStyle = .overCurrentContext
+            
+            impVC.yesClicked = {
+                self.saveDiningReservation()
+            }
+
+            self.present(impVC, animated: true, completion: nil)
+        }
+    }
     
     //MARK: - Custom delegate methods
     func addingMemberType(value: String, type: poupOpenFrom) {
@@ -611,39 +628,30 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
         
-        APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict) { response in
+        APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict, onSuccess: { (response) in
             
-            if(response.responseCode == InternetMessge.kSuccess)
-            {
-                if response.ValidCheck == "False" {
-                    if response.IsHardRuleEnabled == "False" {
-
-                        let refreshAlert = UIAlertController(title: "Dining Reservation", message: response.ValidationMessage, preferredStyle: UIAlertController.Style.alert)
-                        refreshAlert.view.tintColor = hexStringToUIColor(hex: "40B2E6")
-                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                            self.saveDiningReservation()
-                        }))
-
-                        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                              print("Cancel Clicked")
-                        }))
-
-                        self.present(refreshAlert, animated: true, completion: nil)
-                    } else {
-                        SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.ValidationMessage, withDuration: Duration.kMediumDuration)
-                    }
-                } else {
-                    self.saveDiningReservation()
-                }
-                
-                
-            } else {
-                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
-                print(response.brokenRules?.message)
-            }
             self.appDelegate.hideIndicator()
             
-        } onFailure: { error in
+            if response.details?.count == 0
+            {
+                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
+                
+            }
+            else
+            {
+                if response.responseCode == InternetMessge.kSuccess
+                {
+                    self.saveDiningReservation()
+                }
+                else
+                {
+                    self.showValidation(response: response)
+                }
+                
+            }
+            
+        }) { (error) in
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:error.localizedDescription, withDuration: Duration.kMediumDuration)
             self.appDelegate.hideIndicator()
         }
     }

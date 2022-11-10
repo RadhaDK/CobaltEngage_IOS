@@ -7456,7 +7456,7 @@ class APIHandler: NSObject
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
                         print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
-                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) < 0 ){
                             self.appDelegate.hideIndicator()
                             let currentViewController = UIApplication.topViewController()
                             let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!

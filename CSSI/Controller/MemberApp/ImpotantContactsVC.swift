@@ -23,14 +23,17 @@ class ImpotantContactsVC: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var lblImportantContacts: UILabel!
     @IBOutlet weak var tblImpContacts: UITableView!
     
+    @IBOutlet weak var btnNo: UIButton!
+    @IBOutlet weak var btnYes: UIButton!
     var arrImpNo = [ImportantNumbers]()
     var arrList = [DetailDuplicate]()
+    var isHardRule = 1
     
     //Added by kiran v2.9 -- Cobalt Pha0010644 -- To show Hard & Soft message details there is an over lap with member validation and aelrt prompt. added called back to solbe the overlap.
     //Cobalt Pha0010644 -- Start
     var closeClicked : (()->())?
     //Cobalt Pha0010644 -- End
-    
+    var yesClicked : (()->())?
 //    var arr
     
     //Added by kiran V3.2 -- ENGAGE0012667 -- Custom nav change in xcode 13
@@ -75,6 +78,20 @@ class ImpotantContactsVC: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         // Do any additional setup after loading the view.
+        
+        if (isHardRule != 0) {
+            self.btnNo.isHidden = true
+            self.btnYes.isHidden = true
+        } else {
+            self.btnNo.isHidden = false
+            self.btnYes.isHidden = false
+            btnNo.layer.cornerRadius = 15
+            btnNo.layer.borderWidth = 1
+            btnNo.layer.borderColor = hexStringToUIColor(hex: "5773A2").cgColor
+            btnYes.layer.cornerRadius = 15
+            btnYes.layer.borderWidth = 1
+            btnYes.layer.borderColor = hexStringToUIColor(hex: "5773A2").cgColor
+        }
     }
     //MARK: Lifecycle method
     override func viewWillAppear(_ animated: Bool) {
@@ -135,6 +152,16 @@ class ImpotantContactsVC: UIViewController, UITableViewDelegate, UITableViewData
         }
         
     }
+    
+    @IBAction func btnYesAction(_ sender: Any) {
+        yesClicked?()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func btnNoAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     //Mark- Scroll to First Row
     func scrollToFirstRow() {
         if(self.arrImpNo.count > 0){

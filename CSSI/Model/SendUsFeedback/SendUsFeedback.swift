@@ -26,7 +26,7 @@ class SenUsFeedback: NSObject, Mappable {
     //PROD0000121 -- End
     var ValidationMessage: String?
     var ValidCheck: String?
-    var IsHardRuleEnabled: String?
+    var IsHardRuleEnabled: Int?
     
     convenience required init?(map: Map) {
         self.init()
