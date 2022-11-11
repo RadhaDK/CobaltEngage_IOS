@@ -47,6 +47,13 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     @IBOutlet weak var viewModifyDetailsHeight: NSLayoutConstraint!
     @IBOutlet weak var lblConfirmationNumber: UILabel!
+   
+    @IBOutlet weak var lblRestaurantHeading: UILabel!
+    @IBOutlet weak var lblREquestTimeHeading: UILabel!
+    @IBOutlet weak var lblPartysizeHeading: UILabel!
+
+    
+    
     //MARK: - variables
     
     var showNavigationBar = true
