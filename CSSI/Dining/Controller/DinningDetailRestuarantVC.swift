@@ -124,6 +124,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             self.tblGuest.separatorStyle = .singleLine
             self.btnSubmit.setTitle("Save", for: .normal)
         }
+        lblCaptainName.text = self.appDelegate.masterLabeling.captain ?? ""
         setUpUiInitialization()
     }
     func setUpUiInitialization(){

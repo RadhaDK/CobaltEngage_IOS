@@ -805,7 +805,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                     }
                     else
                     {
-                        return 0
+                        return self.arrTeeTimeDetails[0].groupDetails?[section].details?.count ?? 0
                     }
                 }
                 

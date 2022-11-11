@@ -1532,6 +1532,9 @@
                         <outlet property="lblLoggedInUser" destination="msD-OO-Yu8" id="3vY-21-o9g"/>
                         <outlet property="lblModiftCaptainName" destination="nIS-ct-3wu" id="osx-Of-lnH"/>
                         <outlet property="lblPartySize" destination="9is-R9-Cyu" id="X14-0x-ROg"/>
+                        <outlet property="lblPartysizeHeading" destination="wOZ-55-BdV" id="IDd-L4-mh7"/>
+                        <outlet property="lblREquestTimeHeading" destination="NWZ-7U-ZYu" id="0Kw-mz-lgh"/>
+                        <outlet property="lblRestaurantHeading" destination="d1Q-xH-P9A" id="DjK-PR-0BT"/>
                         <outlet property="lblRestaurantName" destination="Xwy-jZ-SxU" id="Rfi-hs-Rrb"/>
                         <outlet property="lblTime" destination="6Tp-wh-jo5" id="8iq-VI-77y"/>
                         <outlet property="tblGuest" destination="tuR-TC-bOz" id="W4c-oH-UFk"/>
