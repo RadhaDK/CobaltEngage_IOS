@@ -40,6 +40,12 @@ class PartySizePopUpVC: UIViewController {
             maxPartySize = 6
         }
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+        {
+            let touch = touches.first
+            if touch?.view != self.roundedBgView
+            { self.dismiss(animated: true, completion: nil) }
+        }
     //MARK: - setUpUI
     func setUpUi(){
         roundedBgView.clipsToBounds = true

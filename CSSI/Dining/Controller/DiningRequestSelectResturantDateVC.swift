@@ -84,6 +84,13 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
 //        self.myCalendar.
         // Do any additional setup after loading the view.
     }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+        {
+            let touch = touches.first
+            if touch?.view != self.roundedBgView
+            { self.dismiss(animated: true, completion: nil) }
+        }
     ///Chanegs the color of today based on isAvailable
 
     //MARK: - IBActions
@@ -133,6 +140,7 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     func setUpUiInitialization(){
         dateFormatter.dateFormat = "MMM dd-yyyy"
         datePicker.datePickerMode = .date
+        datePicker.textColor = .white
         datePicker.setValue(UIColor.white, forKeyPath: "textColor")
 
 //        datePicker.minuteInterval = 15

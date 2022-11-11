@@ -242,3 +242,14 @@ extension Date {
 
     }
 }
+extension UIDatePicker {
+
+var textColor: UIColor? {
+    set {
+        setValue(newValue, forKeyPath: "textColor")
+    }
+    get {
+        return value(forKeyPath: "textColor") as? UIColor
+    }
+  }
+}

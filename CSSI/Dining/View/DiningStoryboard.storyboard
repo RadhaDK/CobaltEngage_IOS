@@ -918,6 +918,7 @@
                     <size key="freeformSize" width="390" height="923"/>
                     <connections>
                         <outlet property="btnBack" destination="dBF-by-kcc" id="cU2-tA-0zt"/>
+                        <outlet property="btnDinningPolicy" destination="fmN-fb-TJc" id="0iN-h6-oIZ"/>
                         <outlet property="btnHome" destination="qdR-jQ-hke" id="cy7-hy-7fm"/>
                         <outlet property="btnNext" destination="NWN-GY-753" id="WaI-gA-nqN"/>
                         <outlet property="btnPartySize" destination="a3J-zY-z9q" id="QdM-HS-YFR"/>
@@ -926,6 +927,8 @@
                         <outlet property="lblDatePartySize" destination="FOG-0V-oEX" id="Zcn-yF-qPp"/>
                         <outlet property="lblDiningHeading" destination="kv8-HE-9bF" id="mVX-In-Nb5"/>
                         <outlet property="lblLoggedInuserInfo" destination="Gda-Oc-wIN" id="3Gl-Jv-eEU"/>
+                        <outlet property="lblNext" destination="ZUX-D0-K3S" id="ZDV-4l-XEf"/>
+                        <outlet property="lblPrevious" destination="Mu1-83-pEf" id="KHK-4A-neD"/>
                         <outlet property="lblSelectedDate" destination="ieU-hQ-WKr" id="afZ-Kg-2NZ"/>
                         <outlet property="lblSelectedSizeTime" destination="i7O-ZO-JqY" id="qhL-cH-K36"/>
                         <outlet property="tblResturat" destination="XFI-0r-Yf8" id="T7z-yV-ZRt"/>
@@ -974,7 +977,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9is-R9-Cyu">
-                                <rect key="frame" x="320.66666666666669" y="161" width="20.333333333333314" height="19"/>
+                                <rect key="frame" x="320.66666666666669" y="161" width="19.333333333333314" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="2ED-Pp-2xt"/>
                                 </constraints>
@@ -2117,7 +2120,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qph-v9-wnS">
-                                        <rect key="frame" x="25" y="25" width="81" height="23"/>
+                                        <rect key="frame" x="25" y="25" width="77" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="NuD-ch-KBQ"/>
                                         </constraints>
@@ -2188,7 +2191,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDz-eg-xub">
-                                        <rect key="frame" x="25.000000000000007" y="126" width="117.66666666666669" height="23"/>
+                                        <rect key="frame" x="25" y="126" width="112" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="u9B-t6-veS"/>
                                         </constraints>
@@ -2376,11 +2379,6 @@
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JhU-1d-KEr">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="510"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2415,7 +2413,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1647058824" green="0.30588235289999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="D7X-3h-Qws" secondAttribute="trailing" id="08n-2B-V5v"/>
                                     <constraint firstAttribute="bottom" secondItem="bhN-h0-Eg2" secondAttribute="bottom" constant="30" id="0As-2h-Ykp"/>

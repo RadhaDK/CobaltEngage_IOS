@@ -31,8 +31,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var lblDatePartySize: UILabel!
     @IBOutlet weak var lblLoggedInuserInfo: UILabel!
     @IBOutlet weak var lblDiningHeading: UILabel!
+    @IBOutlet weak var lblNext: UILabel!
+    @IBOutlet weak var lblPrevious: UILabel!
+    @IBOutlet weak var btnDinningPolicy: UIButton!
 
-    
     //MARK:- variables
     var showNavigationBar = true
     var myCalendar: FSCalendar!
@@ -73,14 +75,15 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         btnPartySize.setTitle("", for: .normal)
         
         if enumForDinningMode == .create{
-            lblDiningHeading.text = "Dining Reservation"
+           
+            lblDiningHeading.text =  self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
             reservationList()
         } else {
             if enumForDinningMode == .modify{
                 lblDiningHeading.text = "Modify Reservation"
             }
             else if enumForDinningMode == .view{
-                lblDiningHeading.text = "Dining Reservation"
+                lblDiningHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
 //                tblResturat.isUserInteractionEnabled = false
                 viewTime.isUserInteractionEnabled = false
                 btnNext.isUserInteractionEnabled = false
@@ -90,6 +93,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             reservationListModifyView()
         }
         self.lblLoggedInuserInfo.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
+        lblNext.text = self.appDelegate.masterLabeling.DINING_FCFS_NEXT_DATE ?? ""
+        lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
+        btnDinningPolicy.setTitle(self.appDelegate.masterLabeling.dining_policy ?? "", for: .normal)
+        
     }
     
     func setUpUiInitialization(){
@@ -186,7 +193,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     func assigenDatePartySizeDetails(yearOfMonth: String) {
-        lblDatePartySize.text = "Selected Date, \(yearOfMonth) |  Party size \(self.diningReservation.PartySize) | Any Restaurant"
+        lblDatePartySize.text = "\(self.appDelegate.masterLabeling.DINING_FCFS_SELECTED_DATE ?? ""), \(yearOfMonth) |  \(self.appDelegate.masterLabeling.party_size ?? "") \(self.diningReservation.PartySize) | \(self.appDelegate.masterLabeling.DINING_FCFS_ANYRESTAURANT ?? "")"
     }
     
     func assigenSelectedDate() {
