@@ -8,8 +8,7 @@
 
 import UIKit
 
-class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime, DiningTimeSlotsDelegate {
-
+class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime, DiningTimeSlotsDelegate, dateSelection {
     
     
 //MARK: - IButlets
@@ -130,6 +129,10 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     }
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
+        vc?.delegateSelectedDateCalendar = self
+        vc?.minDaysInAdvance = self.restaurantDetails.RestaurantSettings.MinDaysInAdvance
+        vc?.maxDaysInAdvance = self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance
+        vc?.selectedDate = currentDate
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
     @IBAction func btnBack(_ sender: Any) {
@@ -232,6 +235,12 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         }
     }
     
+    func combainDateTime(dateString: String, timeString: String) {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "YYYY-MM-dd hh:mm a"
+        currentDate = inputFormatter.date(from: dateString + " " + timeString)!
+    }
+    
     // MARK: - Curstom Delegates
     
     func SelectedPartysizeTme(PartySize: Int, Time: Date) {
@@ -263,6 +272,12 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
 
           }
 
+    func dateSelection(date: String) {
+        let timeString = getTimeString(givenDate: currentDate)
+        combainDateTime(dateString: date, timeString: timeString)
+        updateUI()
+        restaurentDetail()
+    }
     
     // MARK: - Collectioniew Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -357,6 +372,8 @@ extension RestaurantSpecificDetailVC{
                     if(self.restaurantDetails.SelectedDate.TimeSlot.count == 0)
                     {
                         self.collectionTimeSlot.setEmptyMessage(InternetMessge.kNoTimeSlot)
+                    } else {
+                        self.collectionTimeSlot.restore()
                     }
                     
                     self.collectionTimeSlot.reloadData()

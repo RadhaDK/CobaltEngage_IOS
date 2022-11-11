@@ -1004,7 +1004,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prime Cut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xwy-jZ-SxU">
-                                <rect key="frame" x="25.000000000000007" y="161" width="78.666666666666686" height="19"/>
+                                <rect key="frame" x="25.000000000000007" y="161" width="127.66666666666669" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="SmA-b1-rQw"/>
                                 </constraints>
@@ -1036,7 +1036,7 @@
                                                                 <color key="textColor" red="0.29411764709999999" green="0.31764705879999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add Member Or Guest" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVu-aq-azS">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add Member Or Guest" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVu-aq-azS">
                                                                 <rect key="frame" x="20" y="46" width="300" height="34"/>
                                                                 <color key="textColor" red="0.29411764709999999" green="0.31764705879999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
@@ -1497,6 +1497,7 @@
                             <constraint firstItem="KKl-fF-hmn" firstAttribute="leading" secondItem="2NZ-zS-ll2" secondAttribute="leading" id="ZGl-ba-bS6"/>
                             <constraint firstItem="Vix-zP-g1v" firstAttribute="leading" secondItem="Aad-zt-MR5" secondAttribute="leading" id="ePe-Yf-sPe"/>
                             <constraint firstItem="9is-R9-Cyu" firstAttribute="leading" secondItem="wOZ-55-BdV" secondAttribute="leading" id="fdk-dD-v05"/>
+                            <constraint firstItem="6Tp-wh-jo5" firstAttribute="leading" secondItem="Xwy-jZ-SxU" secondAttribute="trailing" constant="10" id="gMP-OI-URi"/>
                             <constraint firstItem="2NZ-zS-ll2" firstAttribute="trailing" secondItem="KKl-fF-hmn" secondAttribute="trailing" id="hg7-SG-msT"/>
                             <constraint firstItem="2NZ-zS-ll2" firstAttribute="trailing" secondItem="MDl-Ku-S0y" secondAttribute="trailing" constant="12" id="hje-Pd-L0d"/>
                             <constraint firstItem="9is-R9-Cyu" firstAttribute="bottom" secondItem="KKl-fF-hmn" secondAttribute="bottom" constant="-20" id="kfR-b8-YDj"/>
