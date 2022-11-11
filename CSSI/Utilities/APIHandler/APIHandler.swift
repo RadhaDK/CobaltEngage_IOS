@@ -84,7 +84,7 @@ class APIHandler: NSObject
     //Note:- Use for internal only. User below code for production/Users/Admin/Desktop/Zeeshan/Cobalt/Code/V1.5/CSSI/AppDelegate
     //when using this comment generateBaseURL() method call in app delegate applicationWillFinishLaunching with options method.
     lazy var baseURL : String = self.engageTestURL
-    lazy var diningBaseURL : String = self.diningTestURL
+    lazy var diningBaseURL : String = self.diningDevURL
     
     //MARK:- API Switch Variable
     //This is only implemented only for Boca West app as of now.
@@ -7120,7 +7120,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7456,7 +7456,7 @@ class APIHandler: NSObject
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
                         print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
-                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) < 0 ){
                             self.appDelegate.hideIndicator()
                             let currentViewController = UIApplication.topViewController()
                             let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
