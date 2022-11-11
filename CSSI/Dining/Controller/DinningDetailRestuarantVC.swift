@@ -92,6 +92,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         if isFrom == .view {
             self.btnSubmitHeight.constant = 0
             self.btnCancelReservationHeight.constant = 0
+            self.txtReservationComment.isEditable = false
+            self.btnAddMultiple.isEnabled = false
         }
         self.lblConfirmationNumber.text = self.diningReservation.ConfirmationNumber
         self.getTablePreferances()
@@ -155,7 +157,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     @IBAction func btnAddMemberAction(_ sender: Any) {
-        if self.diningReservation.PartyDetails.count != self.diningReservation.PartySize {
+        if self.diningReservation.PartyDetails.count != self.diningReservation.PartySize && self.isFrom != .view {
             let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningAddMemberGuestPopUpVC") as? DiningAddMemberGuestPopUpVC
             vc?.delegateSelectedMemberType = self
             vc?.checkPopupOpenFrom = .addSlot
@@ -350,10 +352,12 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             if indexPath.row == 0{
                 self.assignCaptainName(name: cell.lblMemberName.text ?? "")
             }
-            cell.removeFromSlotClosure = {
-                self.diningReservation.PartyDetails.remove(at:indexPath.row)
-                self.configSlotMemberTblHeight()
-                self.tblGuest.reloadData()
+            if isFrom == .modify {
+                cell.removeFromSlotClosure = {
+                    self.diningReservation.PartyDetails.remove(at:indexPath.row)
+                    self.configSlotMemberTblHeight()
+                    self.tblGuest.reloadData()
+                }
             }
             
             return cell

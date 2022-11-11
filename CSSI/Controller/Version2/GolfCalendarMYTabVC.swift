@@ -1523,14 +1523,14 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(self.appDelegate.typeOfCalendar == "Dining"){
             var dict = arrMyDinningList[indexPath.row]
-            if dict.UI[0].View == 1{
+//            if dict.UI[0].View == 1{
                 if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
                     impVC.showNavigationBar = false
                     impVC.enumForDinningMode = .view
                     impVC.requestedId = dict.RequestID
                     self.navigationController?.pushViewController(impVC, animated: true)
                 }
-            }
+//            }
         }
     }
     

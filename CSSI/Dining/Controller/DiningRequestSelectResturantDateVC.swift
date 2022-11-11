@@ -23,7 +23,8 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     @IBOutlet weak var datePicker: UIDatePicker!
 
     
-    
+    var minDaysInAdvance = 0
+    var maxDaysInAdvance = 90
     var calendarRangeStartDate : NSString!
     var calendarRangeEndDate : NSString!
     
@@ -96,8 +97,8 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
     //MARK: - IBActions
     @IBAction func btnDone(_ sender: Any) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        selectedDateString = dateFormatter.string(from: selectedDate)
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        selectedDateString = dateFormatter.string(from: self.datePicker.date)
         delegateSelectedDateCalendar?.dateSelection(date: selectedDateString)
         self.dismiss(animated: true)
     }
@@ -159,6 +160,11 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         }
         //datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
         datePicker.date = selectedDate
+        var minimumDate = Calendar.current.date(byAdding: .day, value: self.minDaysInAdvance, to: Date())!
+        var maximumDate = Calendar.current.date(byAdding: .day, value: self.maxDaysInAdvance, to: Date())!
+        
+        datePicker.maximumDate = maximumDate
+        datePicker.minimumDate = minimumDate
     }
 }
 

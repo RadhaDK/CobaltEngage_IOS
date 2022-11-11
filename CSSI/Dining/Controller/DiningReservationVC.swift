@@ -146,6 +146,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBAction func selectDateBtnTapped(sender:UIButton){
         let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DiningRequestSelectResturantDateVC") as? DiningRequestSelectResturantDateVC
         vc?.delegateSelectedDateCalendar = self
+        vc?.minDaysInAdvance = self.diningSetting.MinDaysInAdvance
+        vc?.maxDaysInAdvance = self.diningSetting.MaxDaysInAdvance
         vc?.selectedDate = currentDate
         self.navigationController?.present(vc!, animated: true, completion: nil)
     }
@@ -232,7 +234,6 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     func dateSelection(date: String) {
-        let inputFormatter = DateFormatter()
         let timeString = getTimeString(givenDate: currentDate)
         combainDateTime(dateString: date, timeString: timeString)
         updateUI()
@@ -297,6 +298,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if enumForDinningMode == .view {
+            return
+        }
         let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
             if self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID {
