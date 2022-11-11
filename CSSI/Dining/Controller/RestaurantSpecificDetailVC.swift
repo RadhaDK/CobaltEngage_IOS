@@ -80,6 +80,10 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewNext)
         updateUI()
         restaurentDetail()
+        lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
+        lblSelectedDateRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOTWO ?? ""
+        lblDatePartySize.text = ""
+
     }
     
     func setUpUiInitialization(){
