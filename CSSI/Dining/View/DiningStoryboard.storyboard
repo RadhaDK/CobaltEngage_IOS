@@ -931,6 +931,7 @@
                         <outlet property="lblPrevious" destination="Mu1-83-pEf" id="KHK-4A-neD"/>
                         <outlet property="lblSelectedDate" destination="ieU-hQ-WKr" id="afZ-Kg-2NZ"/>
                         <outlet property="lblSelectedSizeTime" destination="i7O-ZO-JqY" id="qhL-cH-K36"/>
+                        <outlet property="lblTorequestRestaurantTime" destination="exJ-8b-vWE" id="rLg-Ls-dXj"/>
                         <outlet property="tblResturat" destination="XFI-0r-Yf8" id="T7z-yV-ZRt"/>
                         <outlet property="viewDate" destination="7vE-cc-j5f" id="KMR-k8-oNQ"/>
                         <outlet property="viewNext" destination="afv-0m-Rd1" id="BpP-ur-fEP"/>
