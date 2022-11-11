@@ -34,6 +34,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var lblNext: UILabel!
     @IBOutlet weak var lblPrevious: UILabel!
     @IBOutlet weak var btnDinningPolicy: UIButton!
+    @IBOutlet weak var lblTorequestRestaurantTime: UILabel!
 
     //MARK:- variables
     var showNavigationBar = true
@@ -96,7 +97,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         lblNext.text = self.appDelegate.masterLabeling.DINING_FCFS_NEXT_DATE ?? ""
         lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
         btnDinningPolicy.setTitle(self.appDelegate.masterLabeling.dining_policy ?? "", for: .normal)
-        
+        lblTorequestRestaurantTime.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOONE ?? ""
     }
     
     func setUpUiInitialization(){

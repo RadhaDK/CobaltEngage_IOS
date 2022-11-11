@@ -36,7 +36,12 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var lblDefaultTime: UILabel!
     @IBOutlet weak var lblAvailablePartySize: UILabel!
     @IBOutlet weak var lblAvailableTime: UILabel!
-
+    @IBOutlet weak var lblRestaurantHeading: UILabel!
+    @IBOutlet weak var lblSelectedDateRestaurent: UILabel!
+    @IBOutlet weak var lblOtherDates: UILabel!
+    @IBOutlet weak var lblNext: UILabel!
+    @IBOutlet weak var lblPrevious: UILabel!
+    @IBOutlet weak var lblToREquestRestaurent: UILabel!
 
     //MARK: - variables
     var currentDate = Date()
@@ -76,6 +81,13 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewNext)
         updateUI()
         restaurentDetail()
+        lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
+        lblSelectedDateRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOTWO ?? ""
+        lblOtherDates.text = self.appDelegate.masterLabeling.DINING_FCFS_DINING_OTHERDATE ?? ""
+        lblNext.text = self.appDelegate.masterLabeling.DINING_FCFS_NEXT_DATE ?? ""
+        lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
+        lblToREquestRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOONE ?? ""
+        
     }
     
     func setUpUiInitialization(){
@@ -195,7 +207,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     }
     
     func assigenDatePartySizeDetails(yearOfMonth: String) {
-        lblDatePartySize.text = "Selected Date, \(yearOfMonth) |  Party size \(self.diningReservation.PartySize)"
+        lblDatePartySize.text = "\(self.appDelegate.masterLabeling.DINING_FCFS_SELECTED_DATE ?? ""), \(yearOfMonth) | \(self.appDelegate.masterLabeling.party_size ?? "") \(self.diningReservation.PartySize)"
     }
     
     func assigenSelectedDate() {
