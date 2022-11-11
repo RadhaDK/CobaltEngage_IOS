@@ -37,6 +37,9 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var lblDefaultTime: UILabel!
     @IBOutlet weak var lblAvailablePartySize: UILabel!
     @IBOutlet weak var lblAvailableTime: UILabel!
+    @IBOutlet weak var lblRestaurantHeading: UILabel!
+    @IBOutlet weak var lblSelectedDateRestaurent: UILabel!
+    @IBOutlet weak var lblOtherDates: UILabel!
 
 
     //MARK: - variables
