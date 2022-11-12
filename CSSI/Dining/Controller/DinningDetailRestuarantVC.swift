@@ -48,6 +48,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var viewModifyDetailsHeight: NSLayoutConstraint!
     @IBOutlet weak var lblConfirmationNumber: UILabel!
    
+    @IBOutlet weak var btnAddMultipleHeight: NSLayoutConstraint!
     @IBOutlet weak var lblRestaurantHeading: UILabel!
     @IBOutlet weak var lblREquestTimeHeading: UILabel!
     @IBOutlet weak var lblPartysizeHeading: UILabel!
@@ -88,6 +89,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             self.imageAddMemberWidth.constant = 0
             
             self.imageAddMember.isHidden = true
+        } else {
+            self.btnAddMultipleHeight.constant = 0
         }
         if isFrom == .view {
             self.btnSubmitHeight.constant = 0
@@ -448,14 +451,24 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func multiSelectRequestMemberViewControllerResponse (selectedArray : [[RequestData]]) { // Multi select members & Buddy "DiningMemberInfo" Obj
         print(selectedArray)
+        for i in 0...selectedArray[0].count - 1 {
+            if selectedArray[0][i] is DiningMemberInfo {
+                let memberInfo = selectedArray[0][i] as! DiningMemberInfo
+                memberInfo.parentID = ""
+                self.diningReservation.PartyDetails[i] = self.diningMemberInfoToResrvationPartyDetail(memberInfo: memberInfo)
+            } else if selectedArray[0][i] is ResrvationPartyDetail {
+                self.diningReservation.PartyDetails[i] = selectedArray[0][i] as! ResrvationPartyDetail
+            }
+        }
+        self.tblGuest.reloadData()
     }
     
     func addMemberDelegate(selecteArray: [RequestData]) { // Selecting a Single member & Buddy "DiningMemberInfo" Obj
         let memberInfo = selecteArray[0] as! DiningMemberInfo
-        if self.selectedIndex == -1 {
+        if self.selectedIndex == -1 { // when selected for last index in modify
             memberInfo.parentID = ""
             self.diningReservation.PartyDetails.append(self.diningMemberInfoToResrvationPartyDetail(memberInfo: memberInfo))
-        } else {
+        } else { // When selected for specific index
             memberInfo.parentID = self.diningReservation.PartyDetails[self.selectedIndex].confirmationMemberID
             self.diningReservation.PartyDetails[self.selectedIndex] = self.diningMemberInfoToResrvationPartyDetail(memberInfo: memberInfo)
         }

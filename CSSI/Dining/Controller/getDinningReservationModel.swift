@@ -183,6 +183,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.HighChair = highChair
         self.BoosterChair = boosterChair
         self.MemberNumber = memberNumber
+        self.isEmpty = false
     }
     
     func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String) {
@@ -203,6 +204,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.guestEmail = guestEmail
         self.guestContact = guestContact
         self.guestType = guestType
+        self.isEmpty = false
     }
 }
 

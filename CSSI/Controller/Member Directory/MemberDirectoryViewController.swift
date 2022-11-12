@@ -4468,6 +4468,13 @@ extension MemberDirectoryViewController : UICollectionViewDelegate , UICollectio
             {
                 cell?.imageViewProfile.sd_setImage(with: URL.init(string: imagelink), placeholderImage: UIImage.init(named: "avtar"))
             }
+        } else if let member = member as? ResrvationPartyDetail
+        {
+            cell?.lblName.text = member.MemberName
+            
+//            if l0et imagelink = member.profilePic {
+                cell?.imageViewProfile.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "avtar"))
+//            }
         }
         else
         {
