@@ -1003,13 +1003,13 @@ class Label: NSObject, Mappable  {
     var DINING_FCFS_ELECTEDRESTAURANT : String?
     var DINING_FCFS_DININGINFOTWO : String?
     var DINING_FCFS_DINING_OTHERDATE : String?
-    var DINING_FCFS_DINING_RESTAURANT : String?
+    
     var DINING_FCFS_DININGREQUEST_TIME : String?
     var DINING_FCFS_DINING_CANCELTEXT : String?
     var DINING_FCFS_NO_RESTAURANTS : String?
     var DINING_FCFS_NO_TIMESLOTAVAILABLE : String?
     var DINING_FCFS_PARTYSIZEWARNING : String?
-    
+    var DINING_FCFS_DINING_RESTAURANT : String?
     
     convenience required init?(map: Map)
     {
@@ -1924,6 +1924,7 @@ class Label: NSObject, Mappable  {
         DINING_FCFS_NO_RESTAURANTS <- map["DINING_FCFS_NO_RESTAURANTS"]
         DINING_FCFS_NO_TIMESLOTAVAILABLE <- map["DINING_FCFS_NO_TIMESLOTAVAILABLE"]
         DINING_FCFS_PARTYSIZEWARNING <- map["DINING_FCFS_PARTYSIZEWARNING"]
+        
     }
     
     

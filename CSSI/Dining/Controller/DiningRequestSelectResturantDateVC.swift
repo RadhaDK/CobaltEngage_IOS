@@ -71,6 +71,7 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         roundedBgView.layer.cornerRadius = 15
         roundedBgView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         btnDone.layer.cornerRadius = btnDone.layer.frame.height/2
+        self.btnDone.setStyle(style: .outlined, type: .primary)
         self.myCalendar.allowsMultipleSelection = false
         self.myCalendar.weekdayHeight = 50
         self.myCalendar.delegate = self

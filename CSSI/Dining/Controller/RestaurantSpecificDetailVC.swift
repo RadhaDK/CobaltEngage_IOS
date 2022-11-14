@@ -42,7 +42,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var lblNext: UILabel!
     @IBOutlet weak var lblPrevious: UILabel!
     @IBOutlet weak var lblToREquestRestaurent: UILabel!
-
+    @IBOutlet weak var btnDiningPolicy: UIButton!
+    
     //MARK: - variables
     var currentDate = Date()
     var dropDownIsOpen = false
@@ -87,7 +88,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         lblNext.text = self.appDelegate.masterLabeling.DINING_FCFS_NEXT_DATE ?? ""
         lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
         lblToREquestRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOONE ?? ""
-        
+        btnDiningPolicy.setTitle("\(self.appDelegate.masterLabeling.dining_policy ?? "")", for: .normal)
     }
     
     func setUpUiInitialization(){
