@@ -486,7 +486,7 @@
                                                     <constraint firstAttribute="height" constant="43.5" id="Eet-HJ-ojc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="20"/>
-                                                <state key="normal" title="Dining Request">
+                                                <state key="normal" title="Dining Reservation">
                                                     <color key="titleColor" red="0.95686274510000002" green="0.49019607840000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
@@ -2386,13 +2386,24 @@
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JhU-1d-KEr">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="510"/>
                                             </datePicker>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLe-iV-Qdc">
+                                                <rect key="frame" x="20" y="12" width="40" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="9ib-As-UfG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="18"/>
+                                                <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="JhU-1d-KEr" secondAttribute="bottom" id="3hJ-Jq-wv9"/>
                                             <constraint firstItem="JhU-1d-KEr" firstAttribute="top" secondItem="D7X-3h-Qws" secondAttribute="top" id="4s6-3b-FQq"/>
                                             <constraint firstItem="JhU-1d-KEr" firstAttribute="leading" secondItem="D7X-3h-Qws" secondAttribute="leading" id="8CB-HW-aIA"/>
+                                            <constraint firstItem="SLe-iV-Qdc" firstAttribute="leading" secondItem="D7X-3h-Qws" secondAttribute="leading" constant="20" id="CaA-ZJ-4t7"/>
                                             <constraint firstAttribute="trailing" secondItem="JhU-1d-KEr" secondAttribute="trailing" id="R2l-o4-b4z"/>
+                                            <constraint firstItem="SLe-iV-Qdc" firstAttribute="top" secondItem="D7X-3h-Qws" secondAttribute="top" constant="12" id="Tuv-7m-sP6"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhN-h0-Eg2">
