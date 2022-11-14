@@ -97,7 +97,7 @@
             startingLineNumber = "358"
             endingLineNumber = "358"
             landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -113,7 +113,7 @@
             startingLineNumber = "566"
             endingLineNumber = "566"
             landmarkName = "saveDiningReservation()"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,7 +176,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "445"
             endingLineNumber = "445"
-            landmarkName = "initialSetup()"
+            landmarkName = "buddiesViewControllerResponse(selectedBuddy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -192,7 +192,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "441"
             endingLineNumber = "441"
-            landmarkName = "initialSetup()"
+            landmarkName = "memberViewControllerResponse(selecteArray:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -208,7 +208,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "449"
             endingLineNumber = "449"
-            landmarkName = "initialSetup()"
+            landmarkName = "AddGuestChildren(selecteArray:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
