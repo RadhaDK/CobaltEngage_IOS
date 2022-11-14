@@ -130,6 +130,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             self.btnSubmit.setTitle("Save", for: .normal)
         }
         lblCaptainName.text = self.appDelegate.masterLabeling.captain ?? ""
+        lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_DINING_RESTAURANT ?? ""
+        lblREquestTimeHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGREQUEST_TIME ?? ""
+        lblPartysizeHeading.text = self.appDelegate.masterLabeling.party_size ?? ""
         setUpUiInitialization()
     }
     func setUpUiInitialization(){

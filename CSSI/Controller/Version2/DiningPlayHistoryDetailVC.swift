@@ -37,7 +37,14 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
 
         // Do any additional setup after loading the view.
         diningTableview.showsVerticalScrollIndicator = false
-        loadPlayHistoryDetails()
+        if appDelegate.typeOfCalendar == "Dining"{
+            diningHistoryDetails()
+        }
+        else{
+            loadPlayHistoryDetails()
+        }
+    //
+        
         self.lblPartySize.textColor = APPColor.MainColours.primary1
         self.lblReservation.textColor = APPColor.MainColours.primary1
     }
@@ -192,6 +199,123 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
             }
             
         
+    }
+    
+    
+    
+    
+    func diningHistoryDetails() {
+
+
+        if (Network.reachability?.isReachable) == true{
+
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                "UserName ": "Admin",
+                "IsAdmin ": "1",
+                "ConfirmedReservationID": confirmedReservationID ?? "",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict]
+            ]
+
+            APIHandler.sharedInstance.historyMyDinningReservationDetail(paramater: paramaterDict, onSuccess: { (response) in
+
+                if(response.Responsecode == InternetMessge.kSuccess)
+                {
+                    if(response.historyList == nil){
+                        self.arrHistoryDetails.removeAll()
+                        self.diningTableview.reloadData()
+                        self.appDelegate.hideIndicator()
+                        self.diningTableview.setEmptyMessage(InternetMessge.kNoData)
+                        self.lblLabel1.isHidden = true
+                        self.lblLabel2.isHidden = true
+
+                    }
+                    else{
+
+                        if(response.historyList?.count == 0)
+                        {
+                            self.arrHistoryDetails.removeAll()
+                            self.diningTableview.reloadData()
+
+                            self.diningTableview.setEmptyMessage(InternetMessge.kNoData)
+                            self.lblLabel1.isHidden = true
+                            self.lblLabel2.isHidden = true
+
+                            self.appDelegate.hideIndicator()
+
+
+
+
+                        }else{
+                            self.arrHistoryDetails = response.historyList!
+                            self.diningTableview.reloadData()
+                            self.lblLabel1.isHidden = false
+                            self.lblLabel2.isHidden = false
+
+                            let inputFormatter = DateFormatter()
+                            inputFormatter.dateFormat = "MMM dd, yyyy"
+                            let showDate = inputFormatter.date(from: self.arrHistoryDetails[0].date!)
+                            inputFormatter.dateFormat = "MM/dd/yyyy"
+                            let resultString = inputFormatter.string(from: showDate!)
+
+                            self.lblDate.text = resultString
+                            self.lblReservation.text = String(format: "Reservation - %@", self.arrHistoryDetails[0].diningName ?? "")
+                            self.lblTime.text = self.arrHistoryDetails[0].time
+
+                            //Added by Kiran V2.5 -- ENGAGE0011362 -- Special requests are not displayed
+                            //Start -- ENGAGE0011362
+                            //self.lblSpecialRequest.text = String(format: "%@ %@",self.appDelegate.masterLabeling.special_request!, self.arrHistoryDetails[0].tablePreferenceName ?? "")
+                            self.lblSpecialRequest.text = String(format: "%@ %@",self.appDelegate.masterLabeling.special_request!, self.arrHistoryDetails[0].specialRequest ?? "")
+                            //End -- ENGAGE0011362
+                            self.lblComments.text = String(format: "%@ %@", self.appDelegate.masterLabeling.cOMMENTS_COLON!,self.arrHistoryDetails[0].comments ?? "")
+                            self.lblPartySize.text = String(format: "Party Size (%d)", self.arrHistoryDetails[0].partySize ??  0)
+                            self.lblCaptaine.text = String(format: "%@ %@", self.appDelegate.masterLabeling.captain!,self.arrHistoryDetails[0].captainName ?? "")
+                            self.lblConfirmationNumber.text = self.confirmationNumber
+                        }
+
+                    }
+
+                    if(!(self.arrHistoryDetails.count == 0)){
+
+                    }
+
+
+
+                }
+                else{
+                    self.appDelegate.hideIndicator()
+                    if(((response.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: response.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+
+                }
+
+                self.appDelegate.hideIndicator()
+
+            },onFailure: { error  in
+
+                self.appDelegate.hideIndicator()
+                print(error)
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+
+
+        }else{
+
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+                //  self.tableViewHeroes.setEmptyMessage(InternetMessge.kInternet_not_available)
+
+            }
+
+
     }
 
 }
