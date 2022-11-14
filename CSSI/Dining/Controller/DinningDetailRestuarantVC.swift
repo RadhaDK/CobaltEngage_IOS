@@ -351,6 +351,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         } else {
             let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestModifyTableCell", for: indexPath) as! AddGuestModifyTableCell
             cell.lblMemberName.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
+            if self.diningReservation.PartyDetails[indexPath.row].MemberNumber == "" {
+                cell.lblConfirmationNumber.text = self.diningReservation.PartyDetails[indexPath.row].guestType
+            }
             cell.lblConfirmationNumber.text = self.diningReservation.PartyDetails[indexPath.row].MemberNumber
             if indexPath.row == 0{
                 self.assignCaptainName(name: cell.lblMemberName.text ?? "")
@@ -433,7 +436,11 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func requestMemberViewControllerResponse(selecteArray: [RequestData]) { // Selecting Existing Guest & New Guest "GuestInfo" Obj
 
-        self.diningReservation.PartyDetails[self.selectedIndex] = self.guestInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! GuestInfo)
+        if selectedIndex == -1 {
+            self.diningReservation.PartyDetails.append(self.guestInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! GuestInfo))
+        } else {
+            self.diningReservation.PartyDetails[self.selectedIndex] = self.guestInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! GuestInfo)
+        }
         self.tblGuest.reloadData()
     }
     

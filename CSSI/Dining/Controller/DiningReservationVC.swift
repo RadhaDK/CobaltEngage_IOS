@@ -166,7 +166,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         }
         else{
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
-            if daysDifference < self.diningSetting.MaxDaysInAdvance {
+            if daysDifference < self.diningSetting.MaxDaysInAdvance - 1 {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
                 reservationList()
