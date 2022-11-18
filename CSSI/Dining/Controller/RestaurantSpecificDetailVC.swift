@@ -168,7 +168,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         }
         else{
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
-            if daysDifference <= self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance {
+            if daysDifference < self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
                 restaurentDetail()

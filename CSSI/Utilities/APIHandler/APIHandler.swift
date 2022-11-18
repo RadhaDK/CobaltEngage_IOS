@@ -514,7 +514,7 @@ class APIHandler: NSObject
             print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
-//                print(response)
+                print(response)
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
@@ -7524,7 +7524,7 @@ class APIHandler: NSObject
     }
     
     //MARK:- My DinningReservationHistory Listing
-    func historyMyDinningReservationDetail(paramater: [String: Any]?, onSuccess: @escaping(DinningReservationFCFS) -> Void, onFailure: @escaping(Error) -> Void) {
+    func historyMyDinningReservationDetail(paramater: [String: Any]?, onSuccess: @escaping(HistoryDetails) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = diningBaseURL + APIHandler.dinningHistoryReservationDetail
 
         print("============Start Time -- \(url) -- \(Date())========")
@@ -7545,7 +7545,7 @@ class APIHandler: NSObject
                             SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
                         }
                         else{
-                            let dashboardDict = Mapper<DinningReservationFCFS>().map(JSONObject: jsonDict)
+                            let dashboardDict = Mapper<HistoryDetails>().map(JSONObject: jsonDict)
                             onSuccess(dashboardDict!)
                         }
                     }

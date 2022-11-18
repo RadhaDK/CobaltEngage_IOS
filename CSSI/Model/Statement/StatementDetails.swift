@@ -32,7 +32,7 @@ class StatementDetails: NSObject, Mappable {
     var total: String?
 
     var tableNo: String?
-    var cover: String?
+    var cover: Int?
     
     var responseCode: String?
     var responseMessage: String?

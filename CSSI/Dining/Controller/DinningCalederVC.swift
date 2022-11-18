@@ -406,7 +406,7 @@ class DinningCalederVC: UIViewController,UISearchBarDelegate, DTCalendarViewDele
             self.heightBottomMemberNameView.constant = 0
             self.lblBottomDispalyName.isHidden = true
             
-            let previousStatementVC = storyboard!.instantiateViewController(withIdentifier: "MyBuddiesViewController")
+            let previousStatementVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "MyBuddiesViewController")
             previousStatementVC.title =  self.appDelegate.masterLabeling.tAB_PREVIOUS
             lblUpcomingEvent.isHidden = true
             topLabelHeight.constant = -58

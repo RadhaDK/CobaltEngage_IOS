@@ -81,7 +81,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
 //        self.btnDiningReq.layer.borderWidth = 1
 //        self.btnDiningReq.layer.borderColor = hexStringToUIColor(hex: "F06C42").cgColor
         self.btnDiningReq.diningBtnViewSetup()
-        self.btnDiningReq.setTitle(self.appDelegate.masterLabeling.dining_request, for: UIControlState.normal)
+        self.btnDiningReq.setTitle("Dining Resv", for: UIControlState.normal)
         self.btnDiningReq.setStyle(style: .outlined, type: .primary)
         
         self.btnMenusHours.diningBtnViewSetup()

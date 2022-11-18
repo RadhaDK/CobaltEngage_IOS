@@ -166,7 +166,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         }
         else{
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
-            if daysDifference < self.diningSetting.MaxDaysInAdvance - 1 {
+            if daysDifference < self.diningSetting.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
                 reservationList()
@@ -332,7 +332,7 @@ extension DiningReservationVC{
     func reservationList(){
         if (Network.reachability?.isReachable) == true{
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
-            var paramaterDict:[String: Any]?
+            var paramaterDict:[String: Any] = [:]
             
              paramaterDict = [
                 "Content-Type":"application/json",
@@ -341,6 +341,11 @@ extension DiningReservationVC{
                 APIKeys.kFilterTime: self.diningReservation.SelectedTime,
                 APIKeys.kCompanyCode: "00"
              ]
+            if enumForDinningMode == .view {
+                paramaterDict["IsView"] = 1
+            } else {
+                paramaterDict["IsView"] = 0
+            }
 //            print(paramaterDict)
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()

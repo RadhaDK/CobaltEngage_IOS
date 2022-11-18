@@ -257,11 +257,11 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
         self.lblMemberNo.text = strmemberno
         self.lblMemberNoValue.text = self.transactionDetailsDict.memberId ?? ""
         self.lblTableNoValue.text = self.transactionDetailsDict.tableNo ?? ""
-        self.lblCoverValue.text = self.transactionDetailsDict.cover ?? ""
+        self.lblCoverValue.text = "\(self.transactionDetailsDict.cover ?? 0)"
         self.lblTableNo.text = self.appDelegate.masterLabeling.mINIMUMS_TABLE_COLUMNTITLE ?? ""
         self.lblCover.text = self.appDelegate.masterLabeling.mINIMUMS_COVER_COLUMNTITLE ?? ""
         
-        if self.transactionDetailsDict.category == "F&B" && self.isFromMinimums == true {
+        if self.transactionDetailsDict.tableNo != nil && self.transactionDetailsDict.cover != nil && self.isFromMinimums == true {
             showTableAndCoverLbl(hidden: false)
         } else {
             showTableAndCoverLbl(hidden: true)

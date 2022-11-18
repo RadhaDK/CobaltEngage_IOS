@@ -224,7 +224,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
 
             APIHandler.sharedInstance.historyMyDinningReservationDetail(paramater: paramaterDict, onSuccess: { (response) in
 
-                if(response.Responsecode == InternetMessge.kSuccess)
+                if(response.responseCode == InternetMessge.kSuccess)
                 {
                     if(response.historyList == nil){
                         self.arrHistoryDetails.removeAll()
