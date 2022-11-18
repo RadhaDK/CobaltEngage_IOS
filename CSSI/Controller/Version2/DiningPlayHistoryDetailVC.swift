@@ -226,7 +226,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
 
                 if(response.Responsecode == InternetMessge.kSuccess)
                 {
-                    if(response.historyList == nil){
+                    if(response == nil){
                         self.arrHistoryDetails.removeAll()
                         self.diningTableview.reloadData()
                         self.appDelegate.hideIndicator()
@@ -237,7 +237,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
                     }
                     else{
 
-                        if(response.historyList?.count == 0)
+                        if(response.History?.count == 0)
                         {
                             self.arrHistoryDetails.removeAll()
                             self.diningTableview.reloadData()
@@ -252,7 +252,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
 
 
                         }else{
-                            self.arrHistoryDetails = response.historyList!
+                        //    self.arrHistoryDetails = response.History!
                             self.diningTableview.reloadData()
                             self.lblLabel1.isHidden = false
                             self.lblLabel2.isHidden = false
