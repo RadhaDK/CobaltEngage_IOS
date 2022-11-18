@@ -127,6 +127,7 @@ class ProfileViewOnlyVC: UIViewController {
     @IBOutlet weak var lblDurationHeading: UILabel!
     @IBOutlet weak var lblDueBBillHeading: UILabel!
     @IBOutlet weak var viewBack: UIView!
+    @IBOutlet weak var viewDuesHeight: NSLayoutConstraint!
     
     
     
@@ -144,6 +145,7 @@ class ProfileViewOnlyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.enableDues(isEnable: false)
         self.btnTermsOfUse.setTitleColor(APPColor.MainColours.primary2, for: .normal)
         self.btnPrivacyPolicy.setTitleColor(APPColor.MainColours.primary2, for: .normal)
         self.viewDivider.backgroundColor = APPColor.MainColours.primary2
@@ -312,6 +314,14 @@ class ProfileViewOnlyVC: UIViewController {
         if let vc = UIStoryboard.init(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CancelMembershipRequestPopUpVC") as? CancelMembershipRequestPopUpVC{
             vc.typeCancelPoppupfrombillormember = .Billing
             self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func enableDues(isEnable: Bool) {
+        if isEnable {
+            self.viewDuesHeight.constant = 215.0
+        } else {
+            self.viewDuesHeight.constant = 0.0
         }
     }
     

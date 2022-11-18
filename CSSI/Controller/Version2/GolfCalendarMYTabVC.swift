@@ -33,6 +33,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
 
 
     var isFrom : NSString!
+    var isDiningFCFSEnable = false
     
     //Added on 4th July 2020
     private let accessManager = AccessManager.shared
@@ -67,8 +68,12 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDinningReservationList(strSearch: strSearchText ?? "")
-              //  self.myDiningEventApi(strSearch: strSearchText)
+                if self.isDiningFCFSEnable {
+                    self.myDinningReservationList(strSearch: strSearchText ?? "")
+                } else {
+                    self.myDiningEventApi(strSearch: strSearchText)
+                }
+
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"
             {
@@ -97,7 +102,12 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 self.myTennisEventApi(strSearch: strSearchText)
             }
             else if(self.appDelegate.typeOfCalendar == "Dining"){
-                self.myDinningReservationList(strSearch: strSearchText ?? "")
+                if self.isDiningFCFSEnable {
+                    self.myDinningReservationList(strSearch: strSearchText ?? "")
+                } else {
+                    self.myDiningEventApi(strSearch: strSearchText)
+                }
+                
             }
             else if self.appDelegate.typeOfCalendar == "FitnessSpa"{
                 self.getFitnessAndSpaEventsAPI(search: strSearchText)
@@ -1211,7 +1221,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if(self.appDelegate.typeOfCalendar == "Dining"){
+        if(self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFSEnable){
                 return arrMyDinningList.count
                 //  self.myDiningEventApi(strSearch: strSearchText)
             }
@@ -1223,7 +1233,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
   
-        if(self.appDelegate.typeOfCalendar == "Dining"){
+        if(self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFSEnable){
     
            
             
@@ -1521,7 +1531,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(self.appDelegate.typeOfCalendar == "Dining"){
+        if(self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFSEnable){
             var dict = arrMyDinningList[indexPath.row]
 //            if dict.UI[0].View == 1{
                 if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {

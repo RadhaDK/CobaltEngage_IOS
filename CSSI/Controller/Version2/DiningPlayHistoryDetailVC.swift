@@ -237,7 +237,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
                     }
                     else{
 
-                        if(response.History?.count == 0)
+                        if(response.historyList?.count == 0)
                         {
                             self.arrHistoryDetails.removeAll()
                             self.diningTableview.reloadData()

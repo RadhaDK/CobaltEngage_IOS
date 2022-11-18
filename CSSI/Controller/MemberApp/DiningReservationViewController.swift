@@ -57,6 +57,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     //PROD0000069 -- Start
     var arrselectedEmails = [String]()
     //PROD0000069 -- End
+    var isDiningFCFSEnable = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +82,12 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
 //        self.btnDiningReq.layer.borderWidth = 1
 //        self.btnDiningReq.layer.borderColor = hexStringToUIColor(hex: "F06C42").cgColor
         self.btnDiningReq.diningBtnViewSetup()
-        self.btnDiningReq.setTitle("Dining Resv", for: UIControlState.normal)
+        if isDiningFCFSEnable {
+            self.btnDiningReq.setTitle("Dining Resv", for: UIControlState.normal)
+        } else {
+            self.btnDiningReq.setTitle(self.appDelegate.masterLabeling.dining_request, for: UIControlState.normal)
+        }
+        
         self.btnDiningReq.setStyle(style: .outlined, type: .primary)
         
         self.btnMenusHours.diningBtnViewSetup()
@@ -708,6 +714,25 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     }
     
     func diningRequestClicked(){
+        
+        if isDiningFCFSEnable {
+            self.moveToDiningFCFS()
+        } else {
+            self.moveToDiningLottery()
+        }
+    }
+    
+    func moveToDiningLottery() {
+        if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestVC") as? DiningRequestVC {
+            
+           // impVC.diningSettings = self.diningSettings
+            
+            self.navigationController?.pushViewController(impVC, animated: true)
+            
+        }
+    }
+    
+    func moveToDiningFCFS() {
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
             impVC.showNavigationBar = false
             impVC.enumForDinningMode = .create
