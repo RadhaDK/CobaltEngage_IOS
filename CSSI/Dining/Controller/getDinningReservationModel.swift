@@ -25,6 +25,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     dynamic var SelectedDate    = ""
     var Comments                : String!
     var TablePreferenceID       : String!
+    var TablePreferenceName : String!
     var PartyDetails            : [ResrvationPartyDetail]! = []
     var UI                      : GetResrvationUI!
     var ResponsecodeCancel : String!
@@ -53,6 +54,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         SelectedDate        = ""
         Comments            = ""
         TablePreferenceID   = ""
+        TablePreferenceName = ""
         PartyDetails        = []
         UI                  = GetResrvationUI()
         ResponsecodeCancel = ""
@@ -79,6 +81,7 @@ class DinningReservationFCFS : NSObject, Mappable {
         SelectedDate            <- map["SelectedDate"]
         Comments                <- map["Comments"]
         TablePreferenceID       <- map["TablePreferenceID"]
+        TablePreferenceName <- map["TablePreferenceName"]
         PartyDetails            <- map["PartyDetails"]
         UI                      <- map["UI"]
         ResponsecodeCancel            <- map["Responsecode"]

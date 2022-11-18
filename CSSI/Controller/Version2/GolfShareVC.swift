@@ -935,8 +935,9 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             self.lblLinkGroupsValue.text = " "
         }
         self.lblEarliestTeetimeValue.text = self.diningReservation
-            .TablePreferenceID
+            .TablePreferenceName
         self.lblEarliestTeeTime.text = self.appDelegate.masterLabeling.special_request
+        
         self.lblPreferredTeetime.text = self.appDelegate.masterLabeling.time_colon
         self.lblRoundLength.text = self.appDelegate.masterLabeling.rESTAURTENT_NAME_COLON
         self.lblLinkGroups.text = self.appDelegate.masterLabeling.cOMMENTS_COLON
