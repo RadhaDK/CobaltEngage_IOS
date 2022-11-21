@@ -334,7 +334,17 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isFrom == .create {
             let cell = tblGuest.dequeueReusableCell(withIdentifier: "AddGuestTableCell", for: indexPath) as! AddGuestTableCell
+            
             cell.lblSlotMember.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
+            
+            if cell.lblSlotMember.text == ""{
+                cell.lblSlotMember.text = String(format: "%@ %d", self.appDelegate.masterLabeling.rESERVATION ?? "", indexPath.row + 1)
+                cell.lblSlotMember.textColor = UIColor.lightGray
+            }
+            else{
+                cell.lblSlotMember.textColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1)
+            }
+
             if indexPath.row == 0{
                 self.assignCaptainName(name: cell.lblSlotMember.text ?? "")
             }
@@ -349,6 +359,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 self.selectedIndex = indexPath.row
                 self.navigationController?.present(vc!, animated: false, completion: nil)
             }
+            
             
             return cell
         } else {

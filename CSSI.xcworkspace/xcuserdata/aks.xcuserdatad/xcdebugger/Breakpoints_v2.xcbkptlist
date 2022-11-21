@@ -18,83 +18,6 @@
             endingLineNumber = "101"
             landmarkName = "ResrvationPartyDetail"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "FFC52CDA-07EF-428A-8F90-1C59C33CCF4D - 8686d4ba67e610e0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.ResrvationPartyDetail.MemberID.getter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "103">
-               </Location>
-               <Location
-                  uuid = "FFC52CDA-07EF-428A-8F90-1C59C33CCF4D - 482354f786fc48f4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.ResrvationPartyDetail.MemberID.setter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "139">
-               </Location>
-               <Location
-                  uuid = "FFC52CDA-07EF-428A-8F90-1C59C33CCF4D - 2d3da4d7b8b772e5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.ResrvationPartyDetail.MemberID.modify : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "FFC52CDA-07EF-428A-8F90-1C59C33CCF4D - 2de1a0edcc7d1447"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.ResrvationPartyDetail.MemberID.modify : Swift.Optional&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "FFC52CDA-07EF-428A-8F90-1C59C33CCF4D - 148081d18e4b9331"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.ResrvationPartyDetail.init() -&gt; CSSI.ResrvationPartyDetail"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "298">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -189,83 +112,6 @@
             endingLineNumber = "258"
             landmarkName = "GetHistoryResrvation"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "E1C93A5F-F890-4B16-BDED-942F90AE4045 - 6a0b80d25aa7b1b8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ConfirmedReservationID.getter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "103">
-               </Location>
-               <Location
-                  uuid = "E1C93A5F-F890-4B16-BDED-942F90AE4045 - 31856f5c89dc41c4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ConfirmedReservationID.setter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "139">
-               </Location>
-               <Location
-                  uuid = "E1C93A5F-F890-4B16-BDED-942F90AE4045 - e5c8b9dd8c7f5db7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ConfirmedReservationID.modify : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "E1C93A5F-F890-4B16-BDED-942F90AE4045 - 943a2c40ddb88787"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ConfirmedReservationID.modify : Swift.Optional&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "E1C93A5F-F890-4B16-BDED-942F90AE4045 - 4e47258dbda41358"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.init() -&gt; CSSI.GetHistoryResrvation"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "104">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -282,83 +128,6 @@
             endingLineNumber = "259"
             landmarkName = "GetHistoryResrvation"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "94793AE2-875B-46C8-AAD1-CC6266F0B96D - b3ad377863fe3f22"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ReservationDate.getter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "259"
-                  endingLineNumber = "259"
-                  offsetFromSymbolStart = "103">
-               </Location>
-               <Location
-                  uuid = "94793AE2-875B-46C8-AAD1-CC6266F0B96D - dcfee65bc56ecf36"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ReservationDate.setter : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "259"
-                  endingLineNumber = "259"
-                  offsetFromSymbolStart = "139">
-               </Location>
-               <Location
-                  uuid = "94793AE2-875B-46C8-AAD1-CC6266F0B96D - 73ea3ca73bd95b27"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ReservationDate.modify : Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "259"
-                  endingLineNumber = "259"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "94793AE2-875B-46C8-AAD1-CC6266F0B96D - 7fd821c23a0acdb6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.ReservationDate.modify : Swift.Optional&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "259"
-                  endingLineNumber = "259"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  uuid = "94793AE2-875B-46C8-AAD1-CC6266F0B96D - 4e47258dbda41377"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CSSI.GetHistoryResrvation.init() -&gt; CSSI.GetHistoryResrvation"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Dining/Controller/getDinningReservationModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "259"
-                  endingLineNumber = "259"
-                  offsetFromSymbolStart = "149">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -710,6 +479,86 @@
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "loadPlayHistoryDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89B3FD73-7C8B-4D34-ABA9-A221FE0F4B40"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/MemberApp/DiningReservationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "736"
+            endingLineNumber = "736"
+            landmarkName = "moveToDiningFCFS()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89B3FD73-7C8B-4D34-ABA9-A221FE0F4B40 - 1dfa7ad585d504a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.DiningReservationViewController.moveToDiningFCFS() -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/MemberApp/DiningReservationViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "736"
+                  endingLineNumber = "736"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "89B3FD73-7C8B-4D34-ABA9-A221FE0F4B40 - 1dfa7ad585d504a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CSSI.DiningReservationViewController.moveToDiningFCFS() -&gt; ()"
+                  moduleName = "CSSI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/MemberApp/DiningReservationViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "736"
+                  endingLineNumber = "736"
+                  offsetFromSymbolStart = "419">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F02BEF17-0EA3-4764-8AA6-3D7E705A1379"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/MemberApp/DiningReservationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "730"
+            endingLineNumber = "730"
+            landmarkName = "moveToDiningLottery()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C04CB539-FFD8-4CF0-8430-F4B4C6F2D2BC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "configSlotMemberCollectionHeight()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
