@@ -192,7 +192,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     
     
     func assigenSelectdSizeTimeDetails(dayOfWeek: String) {
-        lblSelectedSizeTime.text = "\(self.diningReservation.PartySize)  *  \(self.diningReservation.SelectedTime)  \(dayOfWeek)"
+        lblSelectedSizeTime.text = "\(self.diningReservation.PartySize) * \(self.diningReservation.SelectedTime)  \(dayOfWeek)"
     }
     
     func assigenDatePartySizeDetails(yearOfMonth: String) {
@@ -359,7 +359,7 @@ extension DiningReservationVC{
                 
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
-                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
+                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.DefaultTimeInterval, to: Date())!
                     self.isInitial = false
                 }
 
