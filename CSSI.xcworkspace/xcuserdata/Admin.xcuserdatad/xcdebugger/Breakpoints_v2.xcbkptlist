@@ -110,8 +110,8 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "573"
-            endingLineNumber = "573"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
             landmarkName = "saveDiningReservation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "memberViewControllerResponse(selecteArray:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "448"
-            endingLineNumber = "448"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
             landmarkName = "requestMemberViewControllerResponse(selecteArray:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
             landmarkName = "buddiesViewControllerResponse(selectedBuddy:)"
             landmarkType = "7">
          </BreakpointContent>

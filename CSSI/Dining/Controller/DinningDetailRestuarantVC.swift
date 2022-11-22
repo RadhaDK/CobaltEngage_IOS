@@ -379,19 +379,38 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.diningReservation.PartyDetails[indexPath.row].MemberName != ""{
-            if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC
-            {
-                regGuest.arrTotalList = [self.diningReservation.PartyDetails[indexPath.row]]
-
-                if isFrom == .view {
-                    regGuest.isFrom = "View"
-                } else {
-                    regGuest.isFrom = "Modify"
+            if self.diningReservation.PartyDetails[indexPath.row].MemberNumber == "" {
+                if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddGuestRegVC") as? AddGuestRegVC
+                {
+                    regGuest.arrTotalList = [self.diningReservation.PartyDetails[indexPath.row]]
+                    regGuest.memberDelegate = self
+                    regGuest.usedForModule = .dining
+                    regGuest.isDOBHidden = false
+                    regGuest.isGenderHidden = false
+                    
+                    if isFrom == .view {
+                        regGuest.screenType = .view
+                    }
+                    else {
+                        regGuest.screenType = .modify
+                    }
+                    
+                    self.navigationController?.pushViewController(regGuest, animated: true)
                 }
-                
-                regGuest.delegateAddMember = self
-                self.selectedIndex = indexPath.row
-                navigationController?.pushViewController(regGuest, animated: true)
+            } else {
+                if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC
+                {
+                    regGuest.arrTotalList = [self.diningReservation.PartyDetails[indexPath.row]]
+
+                    if isFrom == .view {
+                        regGuest.isFrom = "View"
+                    } else {
+                        regGuest.isFrom = "Modify"
+                    }
+                    regGuest.delegateAddMember = self
+                    self.selectedIndex = indexPath.row
+                    navigationController?.pushViewController(regGuest, animated: true)
+                }
             }
         }
         tableView.reloadData()
