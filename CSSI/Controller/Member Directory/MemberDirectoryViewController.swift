@@ -546,7 +546,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
         for i in 0 ..< self.arrEventCategory.count {
             let statementData = self.arrEventCategory[i]
             
-            self.segmentedController.insertSegment(withTitle: statementData.categoryName, image: nil, at: i)
+            self.segmentedController.insertSegment(withTitle: statementData.DisplayText, image: nil, at: i)
 
         }
         }else{

@@ -524,7 +524,7 @@ class AllClubNewsViewController: UIViewController, UITableViewDataSource, UITabl
         for i in 0 ..< self.arrEventCategory.count {
             let statementData = self.arrEventCategory[i]
             
-            self.segmentedController.insertSegment(withTitle: statementData.categoryText, image: nil, at: i)
+            self.segmentedController.insertSegment(withTitle: statementData.DisplayText, image: nil, at: i)
         }
         
         self.segmentedController.selectedSegmentIndex = 0

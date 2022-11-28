@@ -89,7 +89,7 @@ class FitnessRequestListingViewController: UIViewController
             case .none:
                 break
             }
-            self.navigationItem.title = "\(self.appDelegate.bookingAppointmentDetails.department?.departmentName ?? "") \(providerTitleSuffix)"
+            self.navigationItem.title = "\(self.appDelegate.bookingAppointmentDetails.department?.DisplayText ?? "") \(providerTitleSuffix)"
             //self.navigationItem.title = "\(self.appDelegate.bookingAppointmentDetails.department?.departmentName ?? "") \(self.appDelegate.masterLabeling.BMS_Providers ?? "")"
             //GATHER0000700 - End
              self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "Filter"), style: .plain, target: self, action: #selector(self.filterBtnClicked(sender:)))

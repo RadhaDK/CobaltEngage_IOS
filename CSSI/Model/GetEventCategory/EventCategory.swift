@@ -19,7 +19,7 @@ class ListEventCategory: NSObject, Mappable  {
     var categoryIconHover: String?
     var categoryText: String?
     var categoryValue: String?
-
+    var DisplayText : String?
     
     
     convenience required init?(map: Map) {
@@ -34,7 +34,7 @@ class ListEventCategory: NSObject, Mappable  {
         categoryIconHover <- map["CategoryIconHover"]
         categoryText <- map["AppCategoryText"]
         categoryValue <- map["CategoryValue"]
-        
+        DisplayText <- map["DisplayText"]
     }
     
 }

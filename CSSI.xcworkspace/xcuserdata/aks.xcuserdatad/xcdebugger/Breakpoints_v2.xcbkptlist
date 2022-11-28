@@ -140,8 +140,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7486"
-            endingLineNumber = "7486"
+            startingLineNumber = "7487"
+            endingLineNumber = "7487"
             landmarkName = "APIHandler"
             landmarkType = "3">
          </BreakpointContent>
@@ -156,8 +156,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7487"
-            endingLineNumber = "7487"
+            startingLineNumber = "7488"
+            endingLineNumber = "7488"
             landmarkName = "historyMyDinningReservation(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -252,8 +252,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7493"
-            endingLineNumber = "7493"
+            startingLineNumber = "7494"
+            endingLineNumber = "7494"
             landmarkName = "historyMyDinningReservation(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -268,8 +268,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7490"
-            endingLineNumber = "7490"
+            startingLineNumber = "7491"
+            endingLineNumber = "7491"
             landmarkName = "historyMyDinningReservation(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
             <Locations>
@@ -575,6 +575,22 @@
             startingLineNumber = "362"
             endingLineNumber = "362"
             landmarkName = "reservationList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BFC0BEED-6C34-47EB-9840-19DB4CCC5E51"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Controller/MemberApp/BMS/FitnessRequestLIstingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

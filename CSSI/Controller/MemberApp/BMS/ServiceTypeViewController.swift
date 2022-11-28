@@ -52,7 +52,7 @@ class ServiceTypeViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.title = self.appDelegate.bookingAppointmentDetails.department?.departmentName ?? ""
+        self.navigationItem.title = self.appDelegate.bookingAppointmentDetails.department?.DisplayText ?? ""
         
         //Added by kiran V2.5 11/30 -- ENGAGE0011297 -- Removing back button menus
         //ENGAGE0011297 -- Start

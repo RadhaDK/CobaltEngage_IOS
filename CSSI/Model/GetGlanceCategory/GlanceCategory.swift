@@ -15,6 +15,7 @@ class GlanceCategory: NSObject, Mappable  {
     var categoryName: String?
     var categorySequence: Int?
     var id: String?
+    var DisplayText : String?
 
     
     
@@ -27,7 +28,7 @@ class GlanceCategory: NSObject, Mappable  {
         categoryName <- map["CategoryName"]
         categorySequence <- map["CategorySequence"]
         id <- map["ID"] //updated on 27/07/2018 by api
-
+        DisplayText <- map["DisplayText"]
         
     }
     

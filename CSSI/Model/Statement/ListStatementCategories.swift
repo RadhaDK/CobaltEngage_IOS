@@ -16,7 +16,7 @@ class ListStatementCategories: NSObject, Mappable  {
     var categoryname: String?
     var categoryiconurl: String?
     var categoryiconhoverurl: String?
-    
+    var DisplayText : String?
   
     
     convenience required init?(map: Map) {
@@ -29,7 +29,7 @@ class ListStatementCategories: NSObject, Mappable  {
         categoryname <- map["CategoryName"]
         categoryiconurl <- map["CategoryIcon"]
         categoryiconhoverurl <- map["CategoryIconHover"]
-        
+        DisplayText <- map["DisplayText"]
         
     }
     
