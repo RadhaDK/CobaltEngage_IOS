@@ -1280,45 +1280,29 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
     
     //MARK: - UI chanages
     func setUpUI(){
-//        self.lblRoundLengthValue.text = self.diningReservation.Location
-//        self.lblPreferredTeetimeValue.text = self.diningReservation.SelectedTime
-//        self.lblEventTtle.text = self.diningReservation.SyncCalendarTitle
-//        self.lblLinkGroupsValue.text = self.diningReservation.Comments
-//        if self.lblLinkGroupsValue.text == "" {
-//            self.lblLinkGroupsValue.text = " "
-//        }
-//        self.lblEarliestTeetimeValue.text = self.diningReservation
-//            .TablePreferenceID
-//        self.lblEarliestTeeTime.text = self.appDelegate.masterLabeling.special_request
-//        self.lblPreferredTeetime.text = self.appDelegate.masterLabeling.time_colon
-//        self.lblRoundLength.text = self.appDelegate.masterLabeling.rESTAURTENT_NAME_COLON
-//        self.lblLinkGroups.text = self.appDelegate.masterLabeling.cOMMENTS_COLON
-//
-        
-        
-        
+
         
         self.groupsTableView.restore()
                                    // self.arrTeeTimeDetails = response.requestDiningDetails! //eventList.listevents!
-                                    self.groupsTableView.reloadData()
-                                    self.lblEventName.text = self.diningReservation.SyncCalendarTitle
-                                    self.lblEarlierTeeTimeValue.text = self.diningReservation.Comments
-        
-                             //       self.lblEarlierTeeTimeValue.text = self.arrTeeTimeDetails[0].tablePreferenceName ?? ""
-                                    self.lblPreferredTeetimevalue.text = self.diningReservation.SelectedTime
-                                    self.lblRoundLengthvalue.text = self.diningReservation.Location
-                                    self.lblLinkGroupvalue.text = self.diningReservation.Comments
-                                    if self.lblLinkGroupvalue.text == "" {
-                                        self.lblLinkGroupvalue.text = " "
-                                    }
+        self.groupsTableView.reloadData()
+        self.lblEventName.text = self.diningReservation.SyncCalendarTitle
+        self.lblEarlierTeeTimeValue.text = self.diningReservation.TablePreferenceName
+
+ //       self.lblEarlierTeeTimeValue.text = self.arrTeeTimeDetails[0].tablePreferenceName ?? ""
+        self.lblPreferredTeetimevalue.text = self.diningReservation.SelectedTime
+        self.lblRoundLengthvalue.text = self.diningReservation.Location
+        self.lblLinkGroupvalue.text = self.diningReservation.Comments
+        if self.lblLinkGroupvalue.text == "" {
+            self.lblLinkGroupvalue.text = " "
+        }
         self.lblConfirmedTime.text = String(format: "%@  %@", self.diningReservation.SelectedTime,self.diningReservation.Name)
-                                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
-                                    attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
-        
-                                    self.lblConfirmedTime.attributedText = attributeString
-        
-                                    //Added on 4th September 2020 V2.3
-                                    self.scrollContentView.layoutIfNeeded()
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: self.lblConfirmedTime.text!)
+        attributeString.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: NSMakeRange(0, 8))
+
+        self.lblConfirmedTime.attributedText = attributeString
+
+        //Added on 4th September 2020 V2.3
+        self.scrollContentView.layoutIfNeeded()
                                 
     }
     

@@ -243,7 +243,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 
     func guestInfoToResrvationPartyDetail(memberInfo: GuestInfo) -> ResrvationPartyDetail {
         let partyMemberInfo = ResrvationPartyDetail()
-        partyMemberInfo.setPartyGuestDetails(memberID: memberInfo.linkedMemberID ?? "", memberName: memberInfo.guestName ?? "", diet: memberInfo.dietaryRestrictions ?? "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0, guestOf: memberInfo.guestMemberOf ?? "", guestContact: memberInfo.cellPhone ?? "", guestType: memberInfo.guestType ?? "", guestDOB: memberInfo.guestDOB ?? "", guestEmail: memberInfo.email ?? "", guestGender: memberInfo.guestGender ?? "", guestLastName: memberInfo.guestLastName  ?? "", guestFirstName: memberInfo.guestFirstName ?? "")
+        partyMemberInfo.setPartyGuestDetails(memberID: memberInfo.linkedMemberID ?? "", memberName: memberInfo.guestName ?? "", diet: memberInfo.dietaryRestrictions ?? "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0, guestOf: memberInfo.guestMemberOf ?? "", guestContact: memberInfo.cellPhone ?? "", guestType: memberInfo.guestType ?? "", guestDOB: memberInfo.guestDOB ?? "", guestEmail: memberInfo.email ?? "", guestGender: memberInfo.guestGender ?? "", guestLastName: memberInfo.guestLastName  ?? "", guestFirstName: memberInfo.guestFirstName ?? "", memberNumber: memberInfo.guestMemberNo ?? "")
         return partyMemberInfo
     }
     
@@ -367,8 +367,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             cell.lblMemberName.text = self.diningReservation.PartyDetails[indexPath.row].MemberName
             if self.diningReservation.PartyDetails[indexPath.row].MemberNumber == "" {
                 cell.lblConfirmationNumber.text = self.diningReservation.PartyDetails[indexPath.row].guestType
+            } else {
+                cell.lblConfirmationNumber.text = self.diningReservation.PartyDetails[indexPath.row].MemberNumber
             }
-            cell.lblConfirmationNumber.text = self.diningReservation.PartyDetails[indexPath.row].MemberNumber
             if indexPath.row == 0{
                 self.assignCaptainName(name: cell.lblMemberName.text ?? "")
             }
@@ -390,19 +391,41 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.diningReservation.PartyDetails[indexPath.row].MemberName != ""{
-            if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC
-            {
-                regGuest.arrTotalList = [self.diningReservation.PartyDetails[indexPath.row]]
-
-                if isFrom == .view {
-                    regGuest.isFrom = "View"
-                } else {
-                    regGuest.isFrom = "Modify"
+            if self.diningReservation.PartyDetails[indexPath.row].MemberNumber == "" {
+                if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddGuestRegVC") as? AddGuestRegVC
+                {
+                    let guestMember = self.diningReservation.PartyDetails[indexPath.row]
+                    let guestinfo = GuestInfo.init()
+                    guestinfo.setGuestDetails(name: guestMember.MemberName, firstName: guestMember.guestFirstName, lastName: guestMember.guestLastName, linkedMemberID: guestMember.MemberID, guestMemberOf: "", guestMemberNo: guestMember.MemberNumber, gender: guestMember.guestGender, DOB: guestMember.guestDOB, buddyID: "", type: guestMember.guestType, phone: guestMember.guestContact, primaryemail: guestMember.guestEmail, guestLinkedMemberID: "", highChair: guestMember.HighChair, booster: guestMember.BoosterChair, dietary: guestMember.DietartRestriction, addGuestAsBuddy: 0, otherNo: guestMember.Other, otherTextInformation: guestMember.OtherText, birthdayNo: guestMember.Birthday, anniversaryNo: guestMember.Anniversary)
+                    regGuest.arrTotalList = [guestinfo]
+                    regGuest.memberDelegate = self
+                    regGuest.usedForModule = .dining
+                    regGuest.isDOBHidden = false
+                    regGuest.isGenderHidden = false
+                    
+                    if isFrom == .view {
+                        regGuest.screenType = .view
+                    }
+                    else {
+                        regGuest.screenType = .modify
+                    }
+                    self.selectedIndex = indexPath.row
+                    self.navigationController?.pushViewController(regGuest, animated: true)
                 }
-                
-                regGuest.delegateAddMember = self
-                self.selectedIndex = indexPath.row
-                navigationController?.pushViewController(regGuest, animated: true)
+            } else {
+                if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC
+                {
+                    regGuest.arrTotalList = [self.diningReservation.PartyDetails[indexPath.row]]
+
+                    if isFrom == .view {
+                        regGuest.isFrom = "View"
+                    } else {
+                        regGuest.isFrom = "Modify"
+                    }
+                    regGuest.delegateAddMember = self
+                    self.selectedIndex = indexPath.row
+                    navigationController?.pushViewController(regGuest, animated: true)
+                }
             }
         }
         tableView.reloadData()

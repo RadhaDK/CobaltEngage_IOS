@@ -2160,6 +2160,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             
             cell.delegate = self
             cell.collectionViewCourseTimes.reloadData()
+            cell.initiateScroll()
             return cell
         }
         else if tableView == self.transPopupTableView

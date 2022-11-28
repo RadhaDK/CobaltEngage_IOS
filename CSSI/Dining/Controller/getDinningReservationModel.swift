@@ -101,8 +101,8 @@ class DinningReservationFCFS : NSObject, Mappable {
 class ResrvationPartyDetail: RequestData, Mappable {
     
     dynamic var confirmationMemberID        = ""
-    var MemberID            : String!
-    var MemberNumber        : String!
+    dynamic var MemberID            = ""
+    dynamic var MemberNumber        = ""
     dynamic var MemberName          = ""
     dynamic var DietartRestriction  = ""
     dynamic var Anniversary         = 0
@@ -111,15 +111,15 @@ class ResrvationPartyDetail: RequestData, Mappable {
     dynamic var OtherText           = ""
     dynamic var HighChair           = 0
     dynamic var BoosterChair        = 0
-    var guestOf             : String!
-    var guestEmail          : String!
-    var guestType           : String!
-    var guestFirstName      : String!
-    var guestLastName       : String!
-    var guestDOB            : String!
-    var guestGender         : String!
-    var guestContact        : String!
-    var specialOccation     : String!
+    dynamic var guestOf             = ""
+    dynamic var guestEmail          = ""
+    dynamic var guestType           = ""
+    dynamic var guestFirstName      = ""
+    dynamic var guestLastName       = ""
+    dynamic var guestDOB            = ""
+    dynamic var guestGender         = ""
+    dynamic var guestContact        = ""
+    dynamic var specialOccation     = ""
     
     
     override init() {
@@ -189,7 +189,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.isEmpty = false
     }
     
-    func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String) {
+    func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String, memberNumber: String) {
         self.MemberID = memberID
         self.MemberName = memberName
         self.DietartRestriction = diet
@@ -208,6 +208,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.guestContact = guestContact
         self.guestType = guestType
         self.isEmpty = false
+        self.MemberNumber = memberNumber
     }
 }
 

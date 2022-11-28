@@ -33,7 +33,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
 
 
     var isFrom : NSString!
-    var isDiningFCFSEnable = false
+    var isDiningFCFSEnable = true
     
     //Added on 4th July 2020
     private let accessManager = AccessManager.shared
@@ -1238,8 +1238,8 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
            
             
             let cell = self.myTableView.dequeueReusableCell(withIdentifier: "eventsIdentifierDinning") as! DinningMyReservationTableCell
-            var dict = arrMyDinningList[indexPath.row]
-            print(dict.RestaurantName)
+            let dict = arrMyDinningList[indexPath.row]
+//            print(dict.RestaurantName)
            
             if dict.UI != nil {
                 if dict.UI[0].Modify == 0{
@@ -1299,19 +1299,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
             cell.clickedDinningShareClosure = {
-//                if let share = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ShareViewController") as? ShareViewController {
-//                    share.modalTransitionStyle   = .crossDissolve;
-//                    share.modalPresentationStyle = .overCurrentContext
-//                    //Old logic
-//
-//                    //share.imgURl = events.eventID
-//                    //share.isFrom = "Events"
-//
-//                    //Added on 19th May 2020 v2.1
-//                    share.contentType = .events
-//                    share.contentDetails = ContentDetails.init(id: dict.RequestID, date: nil, name: nil, link: nil)
-//                    self.present(share, animated: true, completion: nil)
-//
+
                     
                     if let shareDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfShareVC") as? GolfShareVC
                     {
@@ -1333,19 +1321,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                     eventDetails.eventName = dict.EventName
                     eventDetails.eventTime  = dict.SelectedTime
                     eventDetails.eventCategory = dict.ReservationType
-//                    synchDetails.arrEventDetails = [eventObj]
-//                    synchDetails.isFrom = eventObj.eventCategory!
-                    
-                    
-                 //   eventDetails.navigateFromDiningSync = true
-//                    eventDetails.arrDiningDetails.eventName = dict.EventName
-//                    eventDetails.arrDiningDetails.eventTime = dict.SelectedTime
-//
-//                    eventDetails.arrSyncDataDining.startTime = dict.SelectedTime
-//                    eventDetails.arrSyncDataDining.endTime = dict.SelectedTime
-//                    eventDetails.arrSyncDataDining.startDate = dict.SelectedDate
-//                    eventDetails.arrSyncDataDining.endDate = dict.SelectedDate
-//
+
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }

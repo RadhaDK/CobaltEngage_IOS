@@ -161,8 +161,8 @@ class DiningRequestSelectResturantDateVC: UIViewController, FSCalendarDelegate, 
         }
         //datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
         datePicker.date = selectedDate
-        var minimumDate = Calendar.current.date(byAdding: .day, value: self.minDaysInAdvance, to: Date())!
-        var maximumDate = Calendar.current.date(byAdding: .day, value: self.maxDaysInAdvance, to: Date())!
+        let minimumDate = Calendar.current.date(byAdding: .day, value: self.minDaysInAdvance, to: Date())!
+        let maximumDate = Calendar.current.date(byAdding: .day, value: self.maxDaysInAdvance, to: Date())!
         
         datePicker.maximumDate = maximumDate
         datePicker.minimumDate = minimumDate

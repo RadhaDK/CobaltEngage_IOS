@@ -165,6 +165,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             }
         }
         else{
+            if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Calendar.current.date(byAdding: .weekday, value: self.diningSetting.MaxDaysInAdvance, to: Date())!) {
+                return
+            }
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
             if daysDifference < self.diningSetting.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
@@ -359,7 +362,11 @@ extension DiningReservationVC{
                 
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
-                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.TimeInterval, to: Date())!
+                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
+                    let inputFormatter = DateFormatter()
+                    inputFormatter.dateFormat = "YYYY-MM-dd"
+                    let resultString = inputFormatter.string(from: self.currentDate)
+                    self.combainDateTime(dateString: resultString, timeString: self.diningSetting.DefaultTime)
                     self.isInitial = false
                 }
 

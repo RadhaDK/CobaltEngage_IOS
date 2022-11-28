@@ -349,13 +349,13 @@ class TransactionDetailsViewController: UIViewController, UITableViewDelegate,UI
 //        cell.lblDesignator.text = itemDict.designator ?? ""
 //        cell.lblAmount.text =  self.appDelegate.masterLabeling.cURRENCY!  + String(format: "%.2f",itemDict.price ?? 0.0)
         if isFromMinimums == true {
-            cell.lblQty.text = "\(itemDict.quntity ?? 0)"
+            cell.lblQty.text = itemDict.quntity ?? ""
             cell.lblQtyWidth.constant = 40.0
             cell.lblQtyRowHeight.constant = 0
             cell.lblQtyRow.isHidden = true
             cell.lblQty.isHidden = false
         } else {
-            cell.lblQtyRow.text = "\(self.appDelegate.masterLabeling.qTY ?? "") \(itemDict.quntity ?? 0)"
+            cell.lblQtyRow.text = "\(self.appDelegate.masterLabeling.qTY ?? "") \(itemDict.quntity ?? "")"
             cell.lblQtyWidth.constant = 0
             cell.lblQtyRowHeight.constant = 22.0
             cell.lblQtyRow.isHidden = false

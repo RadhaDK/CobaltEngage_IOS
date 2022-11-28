@@ -13,7 +13,7 @@ import Foundation
 class ListStatementDetails: NSObject,Mappable {
     var name: String?
     var sku: String?
-    var quntity: Int?
+    var quntity: String?
     var price: String?
     var designator: String?
     
