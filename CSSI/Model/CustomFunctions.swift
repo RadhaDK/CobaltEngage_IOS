@@ -249,6 +249,8 @@ class CustomFunctions: NSObject
                 else if !(details.linkedMemberID ?? "").isEmpty && (details.guestMemberOf ?? "").isEmpty
                 {
                     memberType = .member
+                } else {
+                    memberType = .guest
                 }
                 
                 /* Remove after v2.8 release

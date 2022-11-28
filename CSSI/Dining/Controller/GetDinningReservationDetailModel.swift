@@ -53,7 +53,7 @@ class DiningSettingData: Mappable {
     dynamic var DefaultPartySize        = 1
     var DefaultStartTime : String!
     var DefaultEndTime : String!
-    var DefaultTimeInterval : Int!
+    var DefaultTime : String!
     var DefaultTimeSlots : [DiningTimmingsData]!
     init() {
         TimeInterval            = 0
@@ -65,7 +65,7 @@ class DiningSettingData: Mappable {
         DefaultPartySize = 1
         DefaultStartTime = ""
         DefaultEndTime = ""
-        DefaultTimeInterval = 0
+        DefaultTime = ""
         DefaultTimeSlots = []
     }
     
@@ -80,7 +80,7 @@ class DiningSettingData: Mappable {
         DefaultPartySize = 1
         DefaultStartTime = ""
         DefaultEndTime = ""
-        DefaultTimeInterval = 0
+        DefaultTime = ""
         DefaultTimeSlots = []
     }
     
@@ -95,7 +95,7 @@ class DiningSettingData: Mappable {
         DefaultPartySize        <- map["DefaultPartySize"]
         DefaultStartTime        <- map["DefaultStartTime"]
         DefaultEndTime          <- map["DefaultEndTime"]
-        DefaultTimeInterval     <- map["DefaultTimeInterval"]
+        DefaultTime             <- map["DefaultTime"]
         DefaultTimeSlots        <- map["DefaultTimeSlots"]
     }
 }
