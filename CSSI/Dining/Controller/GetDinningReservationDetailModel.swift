@@ -55,7 +55,7 @@ class DiningSettingData: Mappable {
     var DefaultEndTime : String!
     var DefaultTime : String!
     var DefaultTimeSlots : [DiningTimmingsData]!
-    var DefaultTime : String!
+   
     init() {
         TimeInterval            = 0
         MaxDaysInAdvanceTime    = ""
