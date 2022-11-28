@@ -359,7 +359,7 @@ extension DiningReservationVC{
                 
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
-                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.DefaultTimeInterval, to: Date())!
+                    self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.TimeInterval, to: Date())!
                     self.isInitial = false
                 }
 
