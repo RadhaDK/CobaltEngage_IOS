@@ -55,6 +55,7 @@ class DiningSettingData: Mappable {
     var DefaultEndTime : String!
     var DefaultTime : String!
     var DefaultTimeSlots : [DiningTimmingsData]!
+   
     init() {
         TimeInterval            = 0
         MaxDaysInAdvanceTime    = ""
@@ -67,6 +68,7 @@ class DiningSettingData: Mappable {
         DefaultEndTime = ""
         DefaultTime = ""
         DefaultTimeSlots = []
+        DefaultTime = ""
     }
     
     required init?(map: Map) {
@@ -82,6 +84,7 @@ class DiningSettingData: Mappable {
         DefaultEndTime = ""
         DefaultTime = ""
         DefaultTimeSlots = []
+        DefaultTime = ""
     }
     
     func mapping(map: Map) {
@@ -97,6 +100,7 @@ class DiningSettingData: Mappable {
         DefaultEndTime          <- map["DefaultEndTime"]
         DefaultTime             <- map["DefaultTime"]
         DefaultTimeSlots        <- map["DefaultTimeSlots"]
+        DefaultTime <- map["DefaultTime"]
     }
 }
 

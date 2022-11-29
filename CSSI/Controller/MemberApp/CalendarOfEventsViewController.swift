@@ -2193,7 +2193,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
             if(!(i == 0)){
               //  self.segmentedController.segmentStyle = .textOnly
-                self.segmentedController.insertSegment(withTitle: statementData.categoryText, image: nil, at: i)
+                self.segmentedController.insertSegment(withTitle: statementData.DisplayText, image: nil, at: i)
 //                self.segmentedController.segmentStyle = .imageOnLeft
             }
             else{

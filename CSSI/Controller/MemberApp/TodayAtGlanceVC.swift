@@ -363,7 +363,7 @@ class TodayAtGlanceVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             let statementData = self.arrTodayAtGlanceCategory[i]
             
             
-            self.segmentedController.insertSegment(withTitle: statementData.categoryName, image: nil, at: i)
+            self.segmentedController.insertSegment(withTitle: statementData.DisplayText, image: nil, at: i)
         }
         
         self.segmentedController.selectedSegmentIndex = 0

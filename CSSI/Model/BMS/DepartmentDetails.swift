@@ -27,7 +27,7 @@ class Departments : NSObject, Mappable
 
 class DepartmentDetails : NSObject, Mappable
 {
-    var locationID,departmentName,icon1x,icon2x,icon3x,systemDateTime,dressCode : String?
+    var locationID,departmentName,icon1x,icon2x,icon3x,systemDateTime,dressCode, DisplayText : String?
     var settings : [BMSSettings]?
     var appointmentFlow : [FlowSequence]?
     
@@ -50,7 +50,7 @@ class DepartmentDetails : NSObject, Mappable
         self.appointmentFlow <- map["AppointmentFlow"]
         self.systemDateTime <- map["SystemDateTime"]
         self.dressCode <- map["DressCode"]
-        
+        self.DisplayText <- map["DisplayText"]
         //Added on 24th September 2020 V2.3
         self.isShowAppointmentText <- map["IsShowAppointmentText"]
         self.appointmentText <- map["AppointmentText"]

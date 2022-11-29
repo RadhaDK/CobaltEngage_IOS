@@ -505,7 +505,7 @@ class CurrentStatementViewController: UIViewController, UITableViewDelegate, UIT
         for i in 0 ..< self.arrstmtcate.count {
             let statementData = self.arrstmtcate[i]
             
-            self.segmentedController.insertSegment(withTitle: statementData.categoryname, image: nil, at: i)
+            self.segmentedController.insertSegment(withTitle: statementData.DisplayText, image: nil, at: i)
         }
         self.segmentedController.selectedSegmentIndex = 0
     }
