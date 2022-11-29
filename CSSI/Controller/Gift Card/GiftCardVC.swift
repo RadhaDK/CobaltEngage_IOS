@@ -462,7 +462,7 @@ extension GiftCardVC
         
         for (index,segment) in self.appDelegate.giftCertificateCardType.enumerated()
         {
-            self.scrollSegmentedController!.insertSegment(withTitle: segment.name ?? "", at: index)
+            self.scrollSegmentedController!.insertSegment(withTitle: "  " + (segment.name ?? "") + "  ", at: index)
         }
         
         self.scrollSegmentedController!.selectedSegmentIndex = 0
