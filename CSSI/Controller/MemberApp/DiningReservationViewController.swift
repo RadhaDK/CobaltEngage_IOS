@@ -57,7 +57,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     //PROD0000069 -- Start
     var arrselectedEmails = [String]()
     //PROD0000069 -- End
-    var isDiningFCFSEnable = true
+    var isDiningFCFSEnable = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

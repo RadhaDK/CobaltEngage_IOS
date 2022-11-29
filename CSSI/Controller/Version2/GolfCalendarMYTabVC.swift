@@ -33,7 +33,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
 
 
     var isFrom : NSString!
-    var isDiningFCFSEnable = true
+    var isDiningFCFSEnable = false
     
     //Added on 4th July 2020
     private let accessManager = AccessManager.shared
