@@ -389,7 +389,7 @@ class ProfileViewsController: UIViewController , UINavigationControllerDelegate,
         
         //Added by kiran V1.3 -- PROD0000036 -- removing place holder image set in storyboard
         //PROD0000036 -- Start
-        self.imgProfilePic.image = nil
+        self.imgProfilePic.image = UIImage(named: "avtar")
         //PROD0000036 -- End
 
     }
@@ -512,7 +512,8 @@ class ProfileViewsController: UIViewController , UINavigationControllerDelegate,
         self.imgProfilePic.layer.borderColor = UIColor.white.cgColor
         self.imgProfilePic.layer.borderWidth = 1.0
 
-        self.btnUploadPic = UIButton.init(frame: CGRect(x: self.imgProfilePic.frame.size.width - 17, y:self.imgProfilePic.frame.size.height - 8 , width: 44, height: 44))
+      //  self.btnUploadPic = UIButton.init(frame: CGRect(x: self.imgProfilePic.frame.size.width - 17, y:self.imgProfilePic.frame.size.height - 8 , width: 44, height: 44))
+        self.btnUploadPic = UIButton.init(frame: CGRect(x: self.imgProfilePic.frame.size.width - 10, y:self.imgProfilePic.frame.origin.y + 120 , width: 44, height: 44))
        
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapFunction(tapGestureRecognizer:)))
