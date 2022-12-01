@@ -1619,7 +1619,7 @@
                                                             <constraint firstAttribute="height" constant="30" id="wIo-BZ-60z"/>
                                                             <constraint firstAttribute="width" constant="30" id="xCM-wR-GyO"/>
                                                         </constraints>
-                                                        <state key="normal" image="Next_Icon"/>
+                                                        <state key="normal" image="Next_IconWhite"/>
                                                         <connections>
                                                             <action selector="nextClicked:" destination="Ps5-mG-n6g" eventType="touchUpInside" id="gC9-XP-uRn"/>
                                                         </connections>
@@ -4473,7 +4473,7 @@
                                                             <constraint firstAttribute="width" constant="30" id="PbC-5s-dJN"/>
                                                             <constraint firstAttribute="height" constant="30" id="vjy-Yg-hG5"/>
                                                         </constraints>
-                                                        <state key="normal" image="Next_Icon"/>
+                                                        <state key="normal" image="Next_IconWhite"/>
                                                         <connections>
                                                             <action selector="nextClicked:" destination="gUD-hz-Sv0" eventType="touchUpInside" id="S21-Nz-4h0"/>
                                                         </connections>
@@ -17420,7 +17420,7 @@
         <image name="Icon_feather_clock" width="28" height="28"/>
         <image name="Istagram_Icon" width="20" height="20"/>
         <image name="News Icon" width="19" height="21"/>
-        <image name="Next_Icon" width="8.5" height="15"/>
+        <image name="Next_IconWhite" width="6" height="11"/>
         <image name="Notification Icon" width="18.5" height="20"/>
         <image name="Path 1321" width="5.5" height="10"/>
         <image name="Path 1882" width="19" height="19"/>
