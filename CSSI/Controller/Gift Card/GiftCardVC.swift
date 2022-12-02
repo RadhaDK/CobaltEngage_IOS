@@ -211,7 +211,7 @@ class GiftCardVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             if let segmentController = self.scrollSegmentedController
             {
-                selectedCardType = self.appDelegate.giftCertificateCardType[segmentController.selectedSegmentIndex].name ?? ""
+                selectedCardType = self.appDelegate.giftCertificateCardType[segmentController.selectedSegmentIndex].Id ?? ""
             }
             
             // print(UserDefaultsKeys.userID.rawValue)
