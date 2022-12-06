@@ -566,6 +566,8 @@
 		9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */; };
 		9FFF66D8246EB5EA009BCA41 /* viewContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */; };
 		9FFF66D9246EB5EA009BCA41 /* viewContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */; };
+		A8510F86293F259E003A17CA /* CreditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8510F85293F259E003A17CA /* CreditBookViewController.swift */; };
+		A8510F88293F2713003A17CA /* CreditBookDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8510F87293F2713003A17CA /* CreditBookDetailCell.swift */; };
 		A863E22028C79D0700CF9993 /* ThankYouMemberShipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */; };
 		A863E22328C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */; };
 		A863E22628C7B98400CF9993 /* MemberShipHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */; };
@@ -1258,6 +1260,8 @@
 		9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = viewContentCollectionViewCell.xib; sourceTree = "<group>"; };
+		A8510F85293F259E003A17CA /* CreditBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditBookViewController.swift; sourceTree = "<group>"; };
+		A8510F87293F2713003A17CA /* CreditBookDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditBookDetailCell.swift; sourceTree = "<group>"; };
 		A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouMemberShipVC.swift; sourceTree = "<group>"; };
 		A863E22228C7A6D700CF9993 /* CancelMembershipRequestPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelMembershipRequestPopUpVC.swift; sourceTree = "<group>"; };
 		A863E22528C7B98400CF9993 /* MemberShipHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberShipHistoryVC.swift; sourceTree = "<group>"; };
@@ -1876,6 +1880,8 @@
 				849F425728AB715100941F8E /* MinimumTableViewCell.swift */,
 				84BF2E0828ACBA8400A1D692 /* TransactionHistoryViewController.swift */,
 				84BF2E0A28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift */,
+				A8510F85293F259E003A17CA /* CreditBookViewController.swift */,
+				A8510F87293F2713003A17CA /* CreditBookDetailCell.swift */,
 			);
 			path = Statement;
 			sourceTree = "<group>";
@@ -3322,6 +3328,7 @@
 			files = (
 				9F6620F724AE58550061BB9C /* AppointemntHistoryDetailsVC.swift in Sources */,
 				5FBD072620EF371500521F23 /* AddGuest.swift in Sources */,
+				A8510F86293F259E003A17CA /* CreditBookViewController.swift in Sources */,
 				9FDBB13B2472BC820099D6E9 /* URLItem.swift in Sources */,
 				09EAAF9528EC26ED009011EF /* AddGuestTableCell.swift in Sources */,
 				74874F2620ED47D400C654B7 /* SWActionSheet.m in Sources */,
@@ -3511,6 +3518,7 @@
 				9FFF66D2246D61DA009BCA41 /* ViewVideoCollectionViewCell.swift in Sources */,
 				18690C7022717DA4009263F8 /* GolfSyncCalendarVC.swift in Sources */,
 				184F5AC92226963E00240C02 /* ModifyRegCustomCell.swift in Sources */,
+				A8510F88293F2713003A17CA /* CreditBookDetailCell.swift in Sources */,
 				1805056C218C22DD00BFBA0D /* CalendarOfEventsViewController.swift in Sources */,
 				9F3D08D4242222E7001FFA5F /* FitnessEventTableViewCell.swift in Sources */,
 				18B603602268281D0045FAE5 /* MyBuddiesProfileVC.swift in Sources */,

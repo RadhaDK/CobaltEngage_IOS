@@ -36,6 +36,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBOutlet weak var btnPrevious: UIButton!
     var calendarRangeStartDate : NSString!
     var calendarRangeEndDate : NSString!
+    @IBOutlet weak var btnCreditBook: UIButton!
     @IBOutlet weak var btnMinimum: UIButton!
     @IBOutlet weak var viewBottomHeight: NSLayoutConstraint!
     @IBOutlet weak var viewMinimumIndication: UIView!
@@ -82,11 +83,20 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         btnDownloadStatement.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
         self.btnDownloadStatement.setStyle(style: .outlined, type: .primary)
         
+        btnCreditBook .setTitle("Credit Book", for: .normal)
+        btnCreditBook.titleLabel?.font = SFont.SourceSansPro_Semibold18
+        btnCreditBook.layer.borderWidth = 1.0
+        btnCreditBook.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnCreditBook.setStyle(style: .outlined, type: .primary)
+//        self.btnCreditBook.layer.cornerRadius = 18
+//        self.btnCreditBook.clipsToBounds = true
+        
         btnMinimum .setTitle(self.appDelegate.masterLabeling.mINIMUMS_TITLE, for: .normal)
         btnMinimum.titleLabel?.font = SFont.SourceSansPro_Semibold18
         btnMinimum.layer.borderWidth = 1.0
         btnMinimum.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
         self.btnMinimum.setStyle(style: .outlined, type: .primary)
+        
 //        self.btnMinimumIndication.tintColor = APPColor.MainColours.primary1
 
         self.lblMemberNameID  .text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
@@ -434,6 +444,10 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         previousStatementVC.title =  self.appDelegate.masterLabeling.tAB_PREVIOUS
         
         configureChildViewControllerForstatenents(childController: previousStatementVC, onView: self.uiContainerView)
+    }
+    @IBAction func btnCreditBookClicked(_ sender: Any) {
+        let minimumVC = self.storyboard?.instantiateViewController(withIdentifier: "CreditBookViewController") as! CreditBookViewController
+        self.navigationController?.pushViewController(minimumVC, animated: true)
     }
     
     @IBAction func btnMinimumClicked(_ sender: Any) {
