@@ -513,7 +513,7 @@ class ProfileViewsController: UIViewController , UINavigationControllerDelegate,
         self.imgProfilePic.layer.borderWidth = 1.0
 
       //  self.btnUploadPic = UIButton.init(frame: CGRect(x: self.imgProfilePic.frame.size.width - 17, y:self.imgProfilePic.frame.size.height - 8 , width: 44, height: 44))
-        self.btnUploadPic = UIButton.init(frame: CGRect(x: self.imgProfilePic.frame.size.width - 10, y:self.imgProfilePic.frame.origin.y + 120 , width: 44, height: 44))
+        self.btnUploadPic = UIButton.init(frame: CGRect(x: self.imgProfilePic.frame.size.width - 17, y:self.imgProfilePic.frame.origin.y + 97 , width: 44, height: 44))
        
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapFunction(tapGestureRecognizer:)))
@@ -556,6 +556,11 @@ class ProfileViewsController: UIViewController , UINavigationControllerDelegate,
         
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        btnUploadPic.frame = CGRect(x: self.imgProfilePic.frame.size.width - 11, y:self.imgProfilePic.frame.origin.y + 53 , width: 44, height: 44)
+    }
+    
     func mandatoryfileds(){
         
         let cellPhoneLabel: NSMutableAttributedString = NSMutableAttributedString(string: self.lblCellPhone.text!)
