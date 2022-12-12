@@ -57,7 +57,6 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     //PROD0000069 -- Start
     var arrselectedEmails = [String]()
     //PROD0000069 -- End
-    var isDiningFCFSEnable = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +81,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
 //        self.btnDiningReq.layer.borderWidth = 1
 //        self.btnDiningReq.layer.borderColor = hexStringToUIColor(hex: "F06C42").cgColor
         self.btnDiningReq.diningBtnViewSetup()
-        if isDiningFCFSEnable {
+        if self.appDelegate.isDiningFCFSEnable {
             self.btnDiningReq.setTitle("Dining Resv", for: UIControlState.normal)
         } else {
             self.btnDiningReq.setTitle(self.appDelegate.masterLabeling.dining_request, for: UIControlState.normal)
@@ -428,13 +427,21 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     
     @IBAction func calendarOfEventsClicked(_ sender: Any) {
         
-        
-        if let calendar = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningCalederVC") as? DinningCalederVC
-        {
-            self.appDelegate.buddyType = "First"
-            self.appDelegate.typeOfCalendar = "Dining"
-            self.navigationController?.pushViewController(calendar, animated: true)
+        self.appDelegate.buddyType = "First"
+        self.appDelegate.typeOfCalendar = "Dining"
+        if self.appDelegate.isDiningFCFSEnable {
+            if let calendar = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningCalederVC") as? DinningCalederVC
+            {
+                self.navigationController?.pushViewController(calendar, animated: true)
+            }
+        } else {
+            if let calendar = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfCalendarVC") as? GolfCalendarVC
+            {
+                self.navigationController?.pushViewController(calendar, animated: true)
+            }
         }
+        
+        
         
     }
     
@@ -715,7 +722,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     
     func diningRequestClicked(){
         
-        if isDiningFCFSEnable {
+        if self.appDelegate.isDiningFCFSEnable {
             self.moveToDiningFCFS()
         } else {
             self.moveToDiningLottery()

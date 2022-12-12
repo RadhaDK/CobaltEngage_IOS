@@ -1,150 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "278C5B3F-0ABC-4FFB-BAC7-AE07AE949E1C"
+   uuid = "C2F8654E-A9B3-4EB2-9E0E-F8DC23A93C16"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EE8DACBC-EE7B-45B1-BA75-293E03D0C3D2"
+            uuid = "0446A67A-29DE-4E39-8055-CF717C057377"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "3958"
+            endingLineNumber = "3958"
+            landmarkName = "getStatementDetails(paramater:onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF44A1F6-8A88-4F1F-8F22-6FCC4A27F4CF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "789"
-            endingLineNumber = "789"
-            landmarkName = "getDiningCalendarList(paramaterDict:onSuccess:onFailure:)"
+            startingLineNumber = "3953"
+            endingLineNumber = "3953"
+            landmarkName = "getStatementDetails(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F9C31F71-0909-4C0D-9DC3-3AD59456B719"
-            shouldBeEnabled = "No"
+            uuid = "6D41191C-DB46-4EB5-A79A-33F41FC8D581"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3981"
-            endingLineNumber = "3981"
-            landmarkName = "getMinimumDetails(paramater:onSuccess:onFailure:)"
+            startingLineNumber = "3952"
+            endingLineNumber = "3952"
+            landmarkName = "getStatementDetails(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B8B801B1-B315-40A6-BC31-44CA53BEA537"
+            uuid = "BE995B53-DD57-4D33-A8DF-26158854864F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
+            filePath = "CSSI/Controller/Statement/StatementViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1889"
-            endingLineNumber = "1889"
-            landmarkName = "getAppVersion(paramater:onSuccess:onFailure:)"
+            startingLineNumber = "701"
+            endingLineNumber = "701"
+            landmarkName = "updateUi()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "20D56F16-7CB6-4B79-ABD9-0966FEB358F4"
+            uuid = "4C6C3D02-9FCB-4CF7-B149-609B66004DD1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/Version2/AddMemberVC.swift"
+            filePath = "CSSI/Controller/Statement/StatementViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "847"
-            endingLineNumber = "847"
-            landmarkName = "addClicked(_:)"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
+            landmarkName = "updateUi()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0C6F3DB3-C647-4C6C-89A7-11CCD3FBFB25"
-            shouldBeEnabled = "No"
+            uuid = "E9C56EB1-639A-46FE-9751-A31692E66C4A"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
+            filePath = "CSSI/Controller/Statement/StatementViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "sendCurrentMinimumStatus(showMinimumDesignator:statementDesignator:minStatementLegend:enableMinimumTemplate:IsCreditBookEnabled:CreditIndicate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "199308C8-BFD5-471C-9898-B0A86E165FF7"
-            shouldBeEnabled = "No"
+            uuid = "7D2198F9-32CF-4A8F-A157-D6C0827184A3"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Model/Labelling/Labelling.swift"
+            filePath = "CSSI/Controller/Statement/StatementViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1915"
-            endingLineNumber = "1915"
-            landmarkName = "mapping(map:)"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "sendCurrentMinimumStatus(showMinimumDesignator:statementDesignator:minStatementLegend:enableMinimumTemplate:IsCreditBookEnabled:CreditIndicate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "63E993FC-387C-4199-9FDA-C20CA8DDCED7"
-            shouldBeEnabled = "No"
+            uuid = "9A84AA11-6359-4CBE-A479-C40E87D7BB6F"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
+            filePath = "CSSI/Controller/Statement/CurrentStatementViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "517"
-            endingLineNumber = "517"
-            landmarkName = "getReservationSettings(paramater:onSuccess:onFailure:)"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "getStatementCategoriesApi(strSearch:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FF1D7D1B-2209-4B4A-9D54-B7E330D24CEC"
-            shouldBeEnabled = "No"
+            uuid = "0C945E53-D67C-412F-B372-BDACD8A57F52"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
+            filePath = "CSSI/Controller/Statement/StatementViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7384"
-            endingLineNumber = "7384"
-            landmarkName = "getTablePreferances(paramater:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6D9259B2-288A-4004-98BC-0AF397292473"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/View/Custom Cell/FirstComeFirstServeTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "scrollToSelectedTime()"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "sendCurrentMinimumStatus(showMinimumDesignator:statementDesignator:minStatementLegend:enableMinimumTemplate:IsCreditBookEnabled:CreditIndicate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -192,6 +192,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var addRequestOpt_Tennis_MultiSelect = [BWOption]()
     //GATHER0000606 -- End
     
+    var isDiningFCFSEnable = true
+    
     // Added by Zeeshan -- Adding Trans types for Golf FCFS
     var transType_Golf = [TransTypes]()
     

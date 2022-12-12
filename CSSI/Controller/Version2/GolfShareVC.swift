@@ -51,6 +51,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var myDinningDetail = [ResrvationPartyDetail]()
     //Added on 26th June 2020 BMS
     var arrAppointmentDetails = [Appointment]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -99,7 +100,12 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
         else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame){
             
-            self.getDiningEventDetailsApi()
+            if appDelegate.isDiningFCFSEnable {
+                self.getDiningFCFSDetailsApi()
+            } else {
+                self.getDiningEventDetailsApi()
+            }
+            
             self.commentsWidth.constant = 86
             self.lblEarliestTeeTime.text = ""
             self.lblEarliestTeetimeValue.text = ""
@@ -229,28 +235,13 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     @IBAction func shareClicked(_ sender: Any) {
         partyList.removeAll()
-    if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame){
+        if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame){
 
-        let shareText = String(format: "%@ \n\nRestaurant Name: %@ \nTime: %@ \nSpecial Request: %@ \nComments: %@ \n\nCaptain: %@ \n%@\nParty Size (%d)",self.diningReservation.SyncCalendarTitle!, self.lblRoundLengthValue.text!,self.lblPreferredTeetimeValue.text!,self.lblEarliestTeetimeValue.text ?? "",self.lblLinkGroupsValue.text!,(self.myDinningDetail[0].MemberName),self.diningReservation.ConfirmationNumber!,self.diningReservation.PartySize )
-        
-
-        for i in 0 ..< (myDinningDetail.count) {
-        
-            if myDinningDetail[i].MemberName == "" {
-                let memberInfo = String(format: "\n%@", ("\(myDinningDetail[i].guestFirstName ?? "") \(myDinningDetail[i].guestLastName ?? "")"))
-                partyList.append(memberInfo)
-
-            }else{
-                let memberInfo = String(format: "\n%@", (myDinningDetail[i].MemberName))
-                partyList.append(memberInfo)
+            if appDelegate.isDiningFCFSEnable {
+                self.diningFCFSShare()
+            } else {
+                self.diningLotteryShare()
             }
-        }
-            var textToShare = [ shareText,partyList.joined(separator: "")] as [Any]
-            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-            activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
-             textToShare.removeAll()
-            self.present(activityViewController, animated: true, completion: nil)
         }
     //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Added comparioson for BMS. beacuse tennis book a leasson and Tennis reservations have same isFrom.
     //GATHER0000700 - Start
@@ -363,6 +354,52 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
        
     }
+    
+    func diningLotteryShare() {
+        let shareText = String(format: "%@ \n\nRestaurant Name: %@ \nTime: %@ \nSpecial Request: %@ \nComments: %@ \n\nCaptain: %@ \n%@\nParty Size (%d)",self.arrTeeTimeDetails[0].syncCalendarTitle!, self.lblRoundLengthValue.text!,self.lblPreferredTeetimeValue.text!,self.lblEarliestTeetimeValue.text!,self.lblLinkGroupsValue.text!,(self.arrTeeTimeDetails[0].diningDetails?[0].name)!,self.arrTeeTimeDetails[0].confirmationNumber!,self.arrTeeTimeDetails[0].partySize ?? 1)
+        
+
+        for i in 0 ..< (arrTeeTimeDetails[0].diningDetails?.count)! {
+            if self.arrTeeTimeDetails[0].diningDetails?[i].name == "" {
+                let memberInfo = String(format: "\n%@", (self.arrTeeTimeDetails[0].diningDetails?[i].guestName)!)
+                partyList.append(memberInfo)
+
+            }else{
+                let memberInfo = String(format: "\n%@", (self.arrTeeTimeDetails[0].diningDetails?[i].name)!)
+                partyList.append(memberInfo)
+            }
+        }
+            var textToShare = [ shareText,partyList.joined(separator: "")] as [Any]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+            activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+             textToShare.removeAll()
+            self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func diningFCFSShare() {
+        let shareText = String(format: "%@ \n\nRestaurant Name: %@ \nTime: %@ \nSpecial Request: %@ \nComments: %@ \n\nCaptain: %@ \n%@\nParty Size (%d)",self.diningReservation.SyncCalendarTitle!, self.lblRoundLengthValue.text!,self.lblPreferredTeetimeValue.text!,self.lblEarliestTeetimeValue.text ?? "",self.lblLinkGroupsValue.text!,(self.myDinningDetail[0].MemberName),self.diningReservation.ConfirmationNumber!,self.diningReservation.PartySize )
+        
+
+        for i in 0 ..< (myDinningDetail.count) {
+        
+            if myDinningDetail[i].MemberName == "" {
+                let memberInfo = String(format: "\n%@", ("\(myDinningDetail[i].guestFirstName ?? "") \(myDinningDetail[i].guestLastName ?? "")"))
+                partyList.append(memberInfo)
+
+            }else{
+                let memberInfo = String(format: "\n%@", (myDinningDetail[i].MemberName))
+                partyList.append(memberInfo)
+            }
+        }
+            var textToShare = [ shareText,partyList.joined(separator: "")] as [Any]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+            activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+             textToShare.removeAll()
+            self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Added comparioson for BMS. beacuse tennis book a leasson and Tennis reservations have same isFrom.
@@ -410,60 +447,35 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
         else
         {
-            
-            if self.appDelegate.typeOfCalendar == "Dining"{
-                if self.myDinningDetail.count == 0
-                {
-                    return 0
-
-                }
+            if self.arrTeeTimeDetails.count == 0
+            {
+                return 0
                 
+            }
+            else
+            {
+                //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Added comparioson for BMS. beacuse tennis book a leasson and Tennis reservations have same isFrom.
+                //GATHER0000700 - Start
+                if (self.appDelegate.typeOfCalendar == "Tennis" || ((isFrom?.caseInsensitiveCompare("Tennis")) == ComparisonResult.orderedSame)) && self.arrEventDetails.first?.requestType != .BMS
+                {//GATHER0000700 - End
+                    return self.arrTeeTimeDetails[0].tennisDetails?.count ?? 0
+                    
+                }
+                else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)
+                {
+                    if self.appDelegate.isDiningFCFSEnable {
+                        return self.myDinningDetail.count
+                    } else {
+                        return self.arrTeeTimeDetails[0].diningDetails?.count ?? 0
+                    }
+                }
                 else
                 {
-
-                     if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)
-                    {
-                        return self.myDinningDetail.count
-                        
-                    }
-                    else
-                    {
-                        return 0
-                        
-                    }
-                }
-            }
-            else{
-                if self.arrTeeTimeDetails.count == 0
-                {
-                    return 0
-
+                    return self.arrTeeTimeDetails[0].groupDetails?[section].details?.count ?? 0
+                    
                 }
                 
-                else
-                {
-                    //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Added comparioson for BMS. beacuse tennis book a leasson and Tennis reservations have same isFrom.
-                    //GATHER0000700 - Start
-                    if (self.appDelegate.typeOfCalendar == "Tennis" || ((isFrom?.caseInsensitiveCompare("Tennis")) == ComparisonResult.orderedSame)) && self.arrEventDetails.first?.requestType != .BMS
-                    {//GATHER0000700 - End
-                        return self.arrTeeTimeDetails[0].tennisDetails?.count ?? 0
-                        
-                    }
-                    else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)
-                    {
-                        return self.myDinningDetail.count
-                        
-                    }
-                    else
-                    {
-                        return self.arrTeeTimeDetails[0].groupDetails?[section].details?.count ?? 0
-                        
-                    }
-                }
             }
-
-
-            
             
         }
         
@@ -484,13 +496,22 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             
         }else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame) {
             
-            let dict = myDinningDetail[indexPath.row]
-            if dict.MemberName == ""{
-                cell.lblGroupMemberName.text =  "\(dict.guestFirstName ?? "") \(dict.guestLastName ?? "")"
-            }
-            else{
+            if self.appDelegate.isDiningFCFSEnable {
                 
-                cell.lblGroupMemberName.text = dict.MemberName
+                let dict = myDinningDetail[indexPath.row]
+                if dict.MemberName == ""{
+                    cell.lblGroupMemberName.text =  "\(dict.guestFirstName ?? "") \(dict.guestLastName ?? "")"
+                }
+                else{
+                    
+                    cell.lblGroupMemberName.text = dict.MemberName
+                }
+            } else {
+                if self.arrTeeTimeDetails[0].diningDetails?[indexPath.row].name == "" {
+                    cell.lblGroupMemberName.text = self.arrTeeTimeDetails[0].diningDetails?[indexPath.row].guestName
+                }else{
+                    cell.lblGroupMemberName.text = self.arrTeeTimeDetails[0].diningDetails?[indexPath.row].name
+                }
             }
             
 //
@@ -572,23 +593,37 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
             
           }else if(self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)) {
-            if(self.myDinningDetail.count == 0){
-                
-            }
-            else{
-                headerView.lblCaptainName.text = self.appDelegate.masterLabeling.captain
-                
-                if self.myDinningDetail[0].MemberName == "" {
-                    headerView.lblCaptainNameText.text = String(format: " %@", "\(myDinningDetail[0].guestFirstName ?? "") \(myDinningDetail[0].guestLastName ?? "")")
-                }else{
-                    headerView.lblCaptainNameText.text = String(format: " %@", myDinningDetail[0].MemberName)
-                }
 
-                headerView.lblGroup.text = String(format: "%@(%d)", self.appDelegate.masterLabeling.party_size!,self.diningReservation.PartySize )
-                headerView.lblConfirmationNumber.text = self.diningReservation.ConfirmationNumber
-            }
+                  
+                  if self.appDelegate.isDiningFCFSEnable {
+                      if(self.myDinningDetail.count != 0){
+                          if self.myDinningDetail[0].MemberName == "" {
+                              headerView.lblCaptainNameText.text = String(format: " %@", "\(myDinningDetail[0].guestFirstName ?? "") \(myDinningDetail[0].guestLastName ?? "")")
+                          }else{
+                              headerView.lblCaptainNameText.text = String(format: " %@", myDinningDetail[0].MemberName)
+                          }
+                          
+                          headerView.lblGroup.text = String(format: "%@(%d)", self.appDelegate.masterLabeling.party_size!,self.diningReservation.PartySize )
+                          headerView.lblConfirmationNumber.text = self.diningReservation.ConfirmationNumber
+                      }
+                      
+                  } else {
+                      if(self.arrTeeTimeDetails.count != 0){
+                          if self.arrTeeTimeDetails[0].diningDetails?[0].name == "" {
+                              headerView.lblCaptainNameText.text = String(format: " %@", self.arrTeeTimeDetails[0].diningDetails?[0].guestName ?? "")
+                          }else{
+                              headerView.lblCaptainNameText.text = String(format: " %@", self.arrTeeTimeDetails[0].diningDetails?[0].name ?? "")
+                          }
+
+                          headerView.lblGroup.text = String(format: "%@(%d)", self.appDelegate.masterLabeling.party_size!,self.arrTeeTimeDetails[0].partySize ?? 0)
+                          headerView.lblConfirmationNumber.text = self.arrTeeTimeDetails[0].confirmationNumber
+                      }
+                      
+                  }
+                headerView.lblCaptainName.text = self.appDelegate.masterLabeling.captain
+              
             headerView.lblGroup.textColor = APPColor.textColor.secondary
-            }//Added on 22nd June 2020 BMS
+        }//Added on 22nd June 2020 BMS
             //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Add BMS comparision as fitness & spa and tennis book a lession should work the same way and both are of BMS type.
             //GATHER0000700 - Start
             //Replace fitness & spa with only BMS when possible.
@@ -884,7 +919,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     
     
-    func getDiningEventDetailsApi(){
+    func getDiningFCFSDetailsApi(){
         if (Network.reachability?.isReachable) == true{
             self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
             var paramaterDict:[String: Any]?
@@ -945,111 +980,111 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     
     //Mark- Get Dining Event Details Api
-//    func getDiningEventDetailsApi() {
-//
-//        if (Network.reachability?.isReachable) == true{
-//
-//
-//            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
-//            let paramaterDict:[String: Any] = [
-//                "Content-Type":"application/json",
-//                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
-//                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
-//                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
-//                APIKeys.kdeviceInfo: [APIHandler.devicedict],
-//                "IsAdmin": "1",
-//                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
-//                "Role": "Admin",
-//                "RequestID": requestID ?? "",
-//                "EventRegistrationDetailID": eventRegistrationDetailID ?? ""
-//
-//            ]
-//
-//            APIHandler.sharedInstance.getRequestDiningDetails(paramaterDict: paramaterDict, onSuccess: { response in
-//                self.appDelegate.hideIndicator()
-//
-//                if(response.responseCode == InternetMessge.kSuccess)
-//                {
-//                    if(response.requestDiningDetails == nil){
-//                        self.arrTeeTimeDetails.removeAll()
-//                        self.groupsTableView.setEmptyMessage(InternetMessge.kNoData)
-//                        self.groupsTableView.reloadData()
-//                    }
-//                    else{
-//
-//                        if(response.requestDiningDetails?.count == 0)
-//                        {
-//                            self.arrTeeTimeDetails.removeAll()
-//                            self.groupsTableView.setEmptyMessage(InternetMessge.kNoData)
-//                            self.groupsTableView.reloadData()
-//
-//
-//                        }else{
-//                            self.groupsTableView.restore()
-//                            self.arrTeeTimeDetails = response.requestDiningDetails! //eventList.listevents!
-//                            self.groupsTableView.reloadData()
-//
-//
-//                            self.lblEarliestTeeTime.text = self.appDelegate.masterLabeling.special_request
-//
-//                            self.lblPreferredTeetime.text = self.appDelegate.masterLabeling.time_colon
-//
-//                            self.lblRoundLength.text = self.appDelegate.masterLabeling.rESTAURTENT_NAME_COLON
-//
-//                            self.lblLinkGroups.text = self.appDelegate.masterLabeling.cOMMENTS_COLON
-//
-//                            self.lblEventTtle.text = self.arrTeeTimeDetails[0].syncCalendarTitle ?? " "
-//
-//                            self.lblLinkGroupsValue.text = (self.arrTeeTimeDetails[0].comments ?? "")
-//                            if self.lblLinkGroupsValue.text == "" {
-//                                self.lblLinkGroupsValue.text = " "
-//                            }
-//
-//                            self.lblRoundLengthValue.text = self.arrTeeTimeDetails[0].location ?? ""
-//
-//                            self.lblPreferredTeetimeValue.text = self.arrTeeTimeDetails[0].reservationRequestTime ?? ""
-//                            self.lblEarliestTeetimeValue.text = self.arrTeeTimeDetails[0].tablePreferenceName ?? ""
-//
-//                        }
-//
-//                    }
-//
-//                    if(!(self.arrTeeTimeDetails.count == 0)){
-//                        let indexPath = IndexPath(row: 0, section: 0)
-//                        self.groupsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-//                    }
-//
-//                }
-//                else{
-//                    self.appDelegate.hideIndicator()
-//                    if(((response.responseMessage?.count) ?? 0)>0){
-//                        SharedUtlity.sharedHelper().showToast(on:
-//                            self.view, withMeassge: response.responseMessage, withDuration: Duration.kMediumDuration)
-//                    }
-//                    self.groupsTableView.setEmptyMessage(response.responseMessage ?? "")
-//
-//                }
-//
-//                self.appDelegate.hideIndicator()
-//
-//            },onFailure: { error  in
-//
-//                self.appDelegate.hideIndicator()
-//                print(error)
-//                SharedUtlity.sharedHelper().showToast(on:
-//                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
-//            })
-//
-//
-//        }else{
-//
-//            SharedUtlity.sharedHelper().showToast(on:
-//                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
-//            //  self.tableViewHeroes.setEmptyMessage(InternetMessge.kInternet_not_available)
-//
-//        }
-//
-//    }
+    func getDiningEventDetailsApi() {
+
+        if (Network.reachability?.isReachable) == true{
+
+
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            let paramaterDict:[String: Any] = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                "IsAdmin": "1",
+                APIKeys.kusername: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+                "Role": "Admin",
+                "RequestID": requestID ?? "",
+                "EventRegistrationDetailID": eventRegistrationDetailID ?? ""
+
+            ]
+
+            APIHandler.sharedInstance.getRequestDiningDetails(paramaterDict: paramaterDict, onSuccess: { response in
+                self.appDelegate.hideIndicator()
+
+                if(response.responseCode == InternetMessge.kSuccess)
+                {
+                    if(response.requestDiningDetails == nil){
+                        self.arrTeeTimeDetails.removeAll()
+                        self.groupsTableView.setEmptyMessage(InternetMessge.kNoData)
+                        self.groupsTableView.reloadData()
+                    }
+                    else{
+
+                        if(response.requestDiningDetails?.count == 0)
+                        {
+                            self.arrTeeTimeDetails.removeAll()
+                            self.groupsTableView.setEmptyMessage(InternetMessge.kNoData)
+                            self.groupsTableView.reloadData()
+
+
+                        }else{
+                            self.groupsTableView.restore()
+                            self.arrTeeTimeDetails = response.requestDiningDetails! //eventList.listevents!
+                            self.groupsTableView.reloadData()
+
+
+                            self.lblEarliestTeeTime.text = self.appDelegate.masterLabeling.special_request
+
+                            self.lblPreferredTeetime.text = self.appDelegate.masterLabeling.time_colon
+
+                            self.lblRoundLength.text = self.appDelegate.masterLabeling.rESTAURTENT_NAME_COLON
+
+                            self.lblLinkGroups.text = self.appDelegate.masterLabeling.cOMMENTS_COLON
+
+                            self.lblEventTtle.text = self.arrTeeTimeDetails[0].syncCalendarTitle ?? " "
+
+                            self.lblLinkGroupsValue.text = (self.arrTeeTimeDetails[0].comments ?? "")
+                            if self.lblLinkGroupsValue.text == "" {
+                                self.lblLinkGroupsValue.text = " "
+                            }
+
+                            self.lblRoundLengthValue.text = self.arrTeeTimeDetails[0].location ?? ""
+
+                            self.lblPreferredTeetimeValue.text = self.arrTeeTimeDetails[0].reservationRequestTime ?? ""
+                            self.lblEarliestTeetimeValue.text = self.arrTeeTimeDetails[0].tablePreferenceName ?? ""
+
+                        }
+
+                    }
+
+                    if(!(self.arrTeeTimeDetails.count == 0)){
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.groupsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+
+                }
+                else{
+                    self.appDelegate.hideIndicator()
+                    if(((response.responseMessage?.count) ?? 0)>0){
+                        SharedUtlity.sharedHelper().showToast(on:
+                            self.view, withMeassge: response.responseMessage, withDuration: Duration.kMediumDuration)
+                    }
+                    self.groupsTableView.setEmptyMessage(response.responseMessage ?? "")
+
+                }
+
+                self.appDelegate.hideIndicator()
+
+            },onFailure: { error  in
+
+                self.appDelegate.hideIndicator()
+                print(error)
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+
+
+        }else{
+
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+            //  self.tableViewHeroes.setEmptyMessage(InternetMessge.kInternet_not_available)
+
+        }
+
+    }
     
     
     //Added on 22nd June 2020 BMS

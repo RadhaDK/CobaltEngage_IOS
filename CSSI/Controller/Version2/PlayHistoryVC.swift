@@ -29,7 +29,7 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
         {
             self.getFitnessHistory(strSearch : self.appDelegate.golfEventsSearchText)
         }
-        else if self.appDelegate.typeOfCalendar == "Dining"{
+        else if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
             self.myDinningHistoryList(strSearch: self.appDelegate.golfEventsSearchText)
         }
         else

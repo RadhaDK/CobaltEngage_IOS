@@ -4973,6 +4973,7 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")
