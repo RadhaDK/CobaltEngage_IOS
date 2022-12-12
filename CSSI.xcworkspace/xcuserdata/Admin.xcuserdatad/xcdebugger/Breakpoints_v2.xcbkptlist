@@ -78,25 +78,9 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4ECD539E-01FC-4D30-AD20-093C7FDDA7A6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
-            landmarkName = "saveDiningReservation()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -142,8 +126,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7383"
-            endingLineNumber = "7383"
+            startingLineNumber = "7384"
+            endingLineNumber = "7384"
             landmarkName = "getTablePreferances(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -161,22 +145,6 @@
             startingLineNumber = "87"
             endingLineNumber = "87"
             landmarkName = "scrollToSelectedTime()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "17ADB490-0A28-47E7-81EE-A2ABA01F1569"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3246"
-            endingLineNumber = "3246"
-            landmarkName = "getMemberSpouseList(paramaterDict:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

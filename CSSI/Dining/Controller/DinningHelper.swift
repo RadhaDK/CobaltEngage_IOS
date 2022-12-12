@@ -84,6 +84,19 @@ extension UIViewController{
         return resultString
     }
         
+    func getGuestDOBFormat(givenDate: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let showDate = inputFormatter.date(from: givenDate) {
+            inputFormatter.dateFormat = "MM/dd/yyyy"
+            let resultString = inputFormatter.string(from: showDate)
+            print(resultString)
+            return resultString
+        }
+        return givenDate
+        
+    }
+    
         func getDateTableCell(givenDate: Date) -> String {
             let inputFormatter = DateFormatter()
             inputFormatter.dateFormat = "E, MMM"

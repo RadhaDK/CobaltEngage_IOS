@@ -254,8 +254,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func assignCaptainName(name: String) {
+
         if isFrom == .create {
-            self.lblCaptainName.text = "Captain: " + name
+            if name == "Reservation 1" {
+                self.lblCaptainName.text = "Captain: "
+            } else {
+                self.lblCaptainName.text = "Captain: " + name
+            }
+            
         } else {
             self.lblCaptainName.text = "Click on the icon, to select Member, Guest or My Buddies"
             self.lblModiftCaptainName.text = "Captain: " + name
@@ -278,6 +284,16 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 
             self.present(impVC, animated: true, completion: nil)
         }
+    }
+    
+    func getMembersObjectList() -> [ResrvationPartyDetail] {
+        var partyList : [ResrvationPartyDetail] = []
+        for i in self.diningReservation.PartyDetails {
+            if i.MemberName != "" {
+                partyList.append(i)
+            }
+        }
+        return partyList
     }
     
     //MARK: - Custom delegate methods
@@ -396,7 +412,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 {
                     let guestMember = self.diningReservation.PartyDetails[indexPath.row]
                     let guestinfo = GuestInfo.init()
-                    guestinfo.setGuestDetails(name: guestMember.MemberName, firstName: guestMember.guestFirstName, lastName: guestMember.guestLastName, linkedMemberID: guestMember.MemberID, guestMemberOf: "", guestMemberNo: guestMember.MemberNumber, gender: guestMember.guestGender, DOB: guestMember.guestDOB, buddyID: "", type: guestMember.guestType, phone: guestMember.guestContact, primaryemail: guestMember.guestEmail, guestLinkedMemberID: "", highChair: guestMember.HighChair, booster: guestMember.BoosterChair, dietary: guestMember.DietartRestriction, addGuestAsBuddy: 0, otherNo: guestMember.Other, otherTextInformation: guestMember.OtherText, birthdayNo: guestMember.Birthday, anniversaryNo: guestMember.Anniversary)
+                    var guestDOB = getGuestDOBFormat(givenDate: guestMember.guestDOB)
+                    guestinfo.setGuestDetails(name: guestMember.MemberName, firstName: guestMember.guestFirstName, lastName: guestMember.guestLastName, linkedMemberID: guestMember.MemberID, guestMemberOf: "", guestMemberNo: guestMember.MemberNumber, gender: guestMember.guestGender, DOB: guestDOB, buddyID: "", type: guestMember.guestType, phone: guestMember.guestContact, primaryemail: guestMember.guestEmail, guestLinkedMemberID: "", highChair: guestMember.HighChair, booster: guestMember.BoosterChair, dietary: guestMember.DietartRestriction, addGuestAsBuddy: 0, otherNo: guestMember.Other, otherTextInformation: guestMember.OtherText, birthdayNo: guestMember.Birthday, anniversaryNo: guestMember.Anniversary)
                     regGuest.arrTotalList = [guestinfo]
                     regGuest.memberDelegate = self
                     regGuest.usedForModule = .dining
@@ -595,8 +612,10 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         for i in 0...self.diningReservation.PartyDetails.count-1 {
             self.diningReservation.PartyDetails[i].specialOccation = self.getSpecialRequestOfMember(member: self.diningReservation.PartyDetails[i])
         }
-        
-        var ReqBodyJson = self.diningReservation.toJSON()
+        var reqObject = self.diningReservation
+        reqObject.PartyDetails = getMembersObjectList()
+        var ReqBodyJson = reqObject.toJSON()
+        print(ReqBodyJson)
         var paramaterDict = [
             "Content-Type":"application/json",
             APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
@@ -667,10 +686,13 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func validateReservation() {
         
-        var diningDetails = self.diningReservation.PartyDetails.toJSON()
-        for i in 0...diningDetails.count - 1 {
-            diningDetails[i]["LinkedMemberID"] = self.diningReservation.PartyDetails[i].MemberID
+        var diningDetails = self.getMembersObjectList().toJSON()
+        if diningDetails.count > 0 {
+            for i in 0...diningDetails.count - 1 {
+                diningDetails[i]["LinkedMemberID"] = self.diningReservation.PartyDetails[i].MemberID
+            }
         }
+        
         
        let paramaterDict = [
             "Content-Type":"application/json",
@@ -694,7 +716,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             "ReservationType": "Dining",
             "RegistrationID": self.diningReservation.RequestID
        ] as [String : Any]
-        
+        print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
         
         APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict, onSuccess: { (response) in
