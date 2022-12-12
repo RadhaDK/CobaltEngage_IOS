@@ -97,6 +97,7 @@ class MinimumViewController: UIViewController, UITableViewDelegate, UITableViewD
         transactionHistoryVC.minimumTamplateID = self.minimumTamplateList[indexPath.row].minimumTemplateID ?? ""
         transactionHistoryVC.parameter = self.minimumTamplateList[indexPath.row].parameter ?? ""
         transactionHistoryVC.templateName = self.minimumTamplateList[indexPath.row].templateName ?? ""
+        transactionHistoryVC.typeOfStatement = .minimum
         self.navigationController?.pushViewController(transactionHistoryVC, animated: true)
         self.minimumTableView.reloadData()
     }

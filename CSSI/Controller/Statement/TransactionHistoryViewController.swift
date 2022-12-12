@@ -24,7 +24,9 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
     var templateName = ""
     
     var transactionHistoryList: [TemplateHistory] = []
-    
+    var typeOfStatement : statementType?
+    var creditBookId : String?
+    var crediDetails : [CreditBookHistoryDetail] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,15 +73,26 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
         self.lblLocationHeader.text = self.appDelegate.masterLabeling.tRANSACTION_HISTORY_LOCATION ?? ""
         self.lblTotalHeader.text = self.appDelegate.masterLabeling.tRANSACTION_HISTORY_TOTAL ?? ""
         self.lblMinimumHeader.text = templateName
+        if typeOfStatement == .minimum{
+            self.getTranascationDetails()
+        }
+        else if typeOfStatement == .credit{
+            self.creditBookDetail()
+        }
         
-        self.getTranascationDetails()
+       
     }
     
 
     // MARK: - TableView Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if typeOfStatement == .minimum{
+            return self.transactionHistoryList.count
+        }
+        else{
+            return self.crediDetails.count
+        }
         
-        return self.transactionHistoryList.count
        
     }
     
@@ -89,23 +102,40 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.transactionDetailTableView.dequeueReusableCell(withIdentifier: "TransactionDetailTableViewCell", for: indexPath) as! TransactionDetailTableViewCell
-        
-        cell.lblDate.text = self.transactionHistoryList[indexPath.row].date ?? ""
-        cell.lblLocation.text  = self.transactionHistoryList[indexPath.row].location ?? ""
-        cell.lblReceiptID.text  = self.transactionHistoryList[indexPath.row].receiptNumber ?? ""
-        cell.lblTotal.text  = self.transactionHistoryList[indexPath.row].amount ?? ""
-        
+        if typeOfStatement == .minimum{
+            cell.lblDate.text = self.transactionHistoryList[indexPath.row].date ?? ""
+            cell.lblLocation.text  = self.transactionHistoryList[indexPath.row].location ?? ""
+            cell.lblReceiptID.text  = self.transactionHistoryList[indexPath.row].receiptNumber ?? ""
+            cell.lblTotal.text  = self.transactionHistoryList[indexPath.row].amount ?? ""
+        }
+        else{
+            
+            cell.lblDate.text = self.crediDetails[indexPath.row].Date ?? ""
+            cell.lblLocation.text  = self.crediDetails[indexPath.row].Location ?? ""
+            cell.lblReceiptID.text  = self.crediDetails[indexPath.row].ReceiptNumber ?? ""
+            cell.lblTotal.text  = "\(self.crediDetails[indexPath.row].Amount ?? 0)"
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let transactionDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "TransactionDetailsViewController") as! TransactionDetailsViewController
+        if typeOfStatement == .minimum{
         transactionDetailVC.statementID = self.transactionHistoryList[indexPath.row].ID
         transactionDetailVC.receiptno = self.transactionHistoryList[indexPath.row].receiptNumber
         transactionDetailVC.purchaseDate = self.transactionHistoryList[indexPath.row].date
         transactionDetailVC.amount = self.transactionHistoryList[indexPath.row].amount
         transactionDetailVC.isFromMinimums = true
         transactionDetailVC.category = self.transactionHistoryList[indexPath.row].category
+        }
+        else{
+            transactionDetailVC.statementID = self.crediDetails[indexPath.row].CreditBookID
+            transactionDetailVC.receiptno = self.crediDetails[indexPath.row].ReceiptNumber
+            transactionDetailVC.purchaseDate = self.crediDetails[indexPath.row].Date
+            transactionDetailVC.amount = "\(self.crediDetails[indexPath.row].Amount ?? 0)"
+            transactionDetailVC.isFromMinimums = true
+            transactionDetailVC.category = self.crediDetails[indexPath.row].Category
+        }
         self.navigationController?.pushViewController(transactionDetailVC, animated: true)
         self.transactionDetailTableView.reloadData()
     }
@@ -165,5 +195,45 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
             
         }
         
+    }
+}
+
+
+// MARK: - API CALLING
+extension TransactionHistoryViewController{
+    func creditBookDetail(){
+        if (Network.reachability?.isReachable) == true{
+            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+            var paramaterDict:[String: Any] = [:]
+            
+             paramaterDict = [
+                "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kCreditBookID: creditBookId ?? "",
+                APIKeys.kFilterDate : ""
+             ]
+
+//            print(paramaterDict)
+            APIHandler.sharedInstance.creditBookDetail(paramater: paramaterDict, onSuccess: { creditDetail in
+                self.appDelegate.hideIndicator()
+                if(creditDetail.CredtiBookTranHistoryDetails.count == 0)
+                {
+                    self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoRestaurant)
+                }
+                self.crediDetails = creditDetail.CredtiBookTranHistoryDetails!
+                self.transactionDetailTableView.reloadData()
+             
+                
+            },onFailure: { error  in
+                print(error)
+                self.appDelegate.hideIndicator()
+                SharedUtlity.sharedHelper().showToast(on:
+                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+            })
+        }else{
+            self.appDelegate.hideIndicator()
+            SharedUtlity.sharedHelper().showToast(on:
+                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+        }
     }
 }

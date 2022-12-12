@@ -84,7 +84,7 @@ class APIHandler: NSObject
     //Note:- Use for internal only. User below code for production/Users/Admin/Desktop/Zeeshan/Cobalt/Code/V1.5/CSSI/AppDelegate
     //when using this comment generateBaseURL() method call in app delegate applicationWillFinishLaunching with options method.
    // lazy var baseURL : String = self.engageTestURL
-    lazy var baseURL : String = self.preProductionURL
+    lazy var baseURL : String = self.engageDevURL
     lazy var diningBaseURL : String = self.diningDevURL
     
     //MARK:- API Switch Variable
@@ -329,7 +329,11 @@ class APIHandler: NSObject
     static let dinningMemberValidationFCFS = "GetFBMemberValidation"
     static let dinningHistoryReservation = "GetFBHistory"
     static let dinningHistoryReservationDetail = "GetFBHistoryDetails"
-
+    
+    
+    //CrediBook
+    static let creditBookList = "Member/GetMemberCreditBookList"
+    static let creditBookDetail = "Member/GetCreditBookTransactionHistory"
     
     //Added on 17th October 2020 V2.3
     //MARK:- BASE URL Handler
@@ -3833,7 +3837,7 @@ class APIHandler: NSObject
     func getStatement(paramater: [String: Any]?, onSuccess: @escaping(StatementCategories) -> Void, onFailure: @escaping(Error) -> Void) {
         
         let url : String = baseURL + APIHandler.getStatementCategory
-        
+        print(paramater)
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
             APIHeader.kpassword: APIHeader.kpasswordvalue,
@@ -3941,6 +3945,7 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")
@@ -7549,6 +7554,87 @@ class APIHandler: NSObject
                         }
                         else{
                             let dashboardDict = Mapper<HistoryDetails>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+    }
+    
+    //CreditBook APIs
+    //MARK:- CreditBook Listing
+    func creditBookListingApi(paramater: [String: Any]?, onSuccess: @escaping(CreditBookListing) -> Void, onFailure: @escaping(Error) -> Void) {
+        let url : String = engageDevURL + APIHandler.creditBookList
+
+        print("============Start Time -- \(url) -- \(Date())========")
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+//                        print(jsonDict)
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<CreditBookListing>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+    }
+    
+    //MARK:- CreditBook HistoryDetail
+    func creditBookDetail(paramater: [String: Any]?, onSuccess: @escaping(CreditBookDetails) -> Void, onFailure: @escaping(Error) -> Void) {
+        let url : String = engageDevURL + APIHandler.creditBookDetail
+
+        print("============Start Time -- \(url) -- \(Date())========")
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+//                        print(jsonDict)
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<CreditBookDetails>().map(JSONObject: jsonDict)
                             onSuccess(dashboardDict!)
                         }
                     }

@@ -22,7 +22,8 @@ class StatementCategories: NSObject, Mappable {
     var minStatementLegend: String?
     var statementDesignator: String?
     var enableMinimumTemplate: Int?
-    
+    var IsCreditBookEnabled : String?
+    var CreditIndicate : String?
     override init() {
         super.init()
     }
@@ -41,6 +42,8 @@ class StatementCategories: NSObject, Mappable {
         minStatementLegend <- map["MinStatementLegend"]
         enableMinimumTemplate <- map["EnableMinimumTemplate"]
         statementDesignator <- map["StatementDesignator"]
+        IsCreditBookEnabled <- map["IsCreditBookEnabled"]
+        CreditIndicate <- map["CreditIndicate"]
     }
 
     

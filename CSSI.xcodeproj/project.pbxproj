@@ -566,6 +566,8 @@
 		9FFF66D3246D61DA009BCA41 /* ViewVideoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */; };
 		9FFF66D8246EB5EA009BCA41 /* viewContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */; };
 		9FFF66D9246EB5EA009BCA41 /* viewContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */; };
+		A83F01BB29432EA0001666A4 /* CreditBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F01BA29432EA0001666A4 /* CreditBookModel.swift */; };
+		A83F01BE294334D6001666A4 /* CreditBookDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F01BD294334D6001666A4 /* CreditBookDetailModel.swift */; };
 		A8510F86293F259E003A17CA /* CreditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8510F85293F259E003A17CA /* CreditBookViewController.swift */; };
 		A8510F88293F2713003A17CA /* CreditBookDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8510F87293F2713003A17CA /* CreditBookDetailCell.swift */; };
 		A863E22028C79D0700CF9993 /* ThankYouMemberShipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */; };
@@ -1260,6 +1262,8 @@
 		9FFF66D1246D61D9009BCA41 /* ViewVideoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewVideoCollectionViewCell.xib; sourceTree = "<group>"; };
 		9FFF66D6246EB5EA009BCA41 /* viewContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		9FFF66D7246EB5EA009BCA41 /* viewContentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = viewContentCollectionViewCell.xib; sourceTree = "<group>"; };
+		A83F01BA29432EA0001666A4 /* CreditBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditBookModel.swift; sourceTree = "<group>"; };
+		A83F01BD294334D6001666A4 /* CreditBookDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditBookDetailModel.swift; sourceTree = "<group>"; };
 		A8510F85293F259E003A17CA /* CreditBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditBookViewController.swift; sourceTree = "<group>"; };
 		A8510F87293F2713003A17CA /* CreditBookDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditBookDetailCell.swift; sourceTree = "<group>"; };
 		A863E21F28C79D0700CF9993 /* ThankYouMemberShipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouMemberShipVC.swift; sourceTree = "<group>"; };
@@ -1648,6 +1652,7 @@
 		59FEC41320B6B72F00FF2DB0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A83F01BC29432FA5001666A4 /* CreditBook */,
 				A8DEF83B28C9BC39000DCBDF /* MembershipList */,
 				18BB25C821ABCCED00E12504 /* SendUsFeedback */,
 				5F79F20921131A30008DC5D2 /* ResetPassword */,
@@ -2798,6 +2803,15 @@
 			path = "Activity Share";
 			sourceTree = "<group>";
 		};
+		A83F01BC29432FA5001666A4 /* CreditBook */ = {
+			isa = PBXGroup;
+			children = (
+				A83F01BA29432EA0001666A4 /* CreditBookModel.swift */,
+				A83F01BD294334D6001666A4 /* CreditBookDetailModel.swift */,
+			);
+			path = CreditBook;
+			sourceTree = "<group>";
+		};
 		A863E21E28C79CC100CF9993 /* ThankYouMemberShipVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -3478,6 +3492,7 @@
 				18B60373226895E70045FAE5 /* PlayHistory.swift in Sources */,
 				18439289227847A600A15365 /* DiningPlayHistoryDetailVC.swift in Sources */,
 				5F9B839820E4A61400A20EAF /* MemberDirectoryViewController.swift in Sources */,
+				A83F01BB29432EA0001666A4 /* CreditBookModel.swift in Sources */,
 				18683783219178F3004FDB63 /* TodayAtGlanceVC.swift in Sources */,
 				84ADB50D28B8B7D500CCECD1 /* MinimumDetails.swift in Sources */,
 				5F85D8A520DCD4BA003F9477 /* ListEvents.swift in Sources */,
@@ -3773,6 +3788,7 @@
 				5F9D76F320DA58B300728446 /* GetMemberInfo.swift in Sources */,
 				099428D428D24EA000678965 /* HistoryFilterPopupVC.swift in Sources */,
 				9F4B5AF0273BC5C500FAB043 /* FirstComeFirstServeHeaderView.swift in Sources */,
+				A83F01BE294334D6001666A4 /* CreditBookDetailModel.swift in Sources */,
 				9F6620EE24AE57EF0061BB9C /* AvailableDates.swift in Sources */,
 				59FEC41B20B6B78600FF2DB0 /* MenuViewController.swift in Sources */,
 				18CEB4A5219EA4700097E28A /* ImpotantContactsVC.swift in Sources */,

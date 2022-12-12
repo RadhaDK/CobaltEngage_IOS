@@ -444,7 +444,7 @@ public enum ScrollableSegmentedControlSegmentStyle: Int {
        fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let data = segmentedControl.segmentsData[indexPath.item]
 
-            let size = (data.title! as NSString).size(withAttributes: nil)
+            let size = (data.title ?? "").size(withAttributes: nil)
         return CGSize(width:size.width  + data.widthPadding, height: 52)
 
 
