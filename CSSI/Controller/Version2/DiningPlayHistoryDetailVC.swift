@@ -37,7 +37,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
 
         // Do any additional setup after loading the view.
         diningTableview.showsVerticalScrollIndicator = false
-        if appDelegate.typeOfCalendar == "Dining"{
+        if appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
             diningHistoryDetails()
         }
         else{

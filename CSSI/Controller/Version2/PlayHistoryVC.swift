@@ -229,7 +229,7 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     //Modified in 30th June 2020 BMS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if self.appDelegate.typeOfCalendar == "Dining"{
+        if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
             return arrDiningHistory.count
         }
         else{
@@ -242,7 +242,7 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     {
         let cell:PlayHistoryCustomCell = self.tablePlayHistory.dequeueReusableCell(withIdentifier: "PlayHistoryCell") as! PlayHistoryCustomCell
 
-        if self.appDelegate.typeOfCalendar == "Dining"{
+        if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
             let dict = arrDiningHistory[indexPath.row]
             
             cell.lblTitle.text = dict.Name
@@ -320,16 +320,23 @@ class PlayHistoryVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             }
             //GATHER0000700 - End
         }
-        else if(self.appDelegate.typeOfCalendar == "Dining"){
+        else if(self.appDelegate.typeOfCalendar == "Dining")  {
             
             if let historyDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningPlayHistoryDetailVC") as? DiningPlayHistoryDetailVC {
                 
-                let dict = arrDiningHistory[indexPath.row]
+                if self.appDelegate.isDiningFCFSEnable {
+                    let dict = arrDiningHistory[indexPath.row]
+                    historyDetails.modalTransitionStyle   = .crossDissolve;
+                    historyDetails.modalPresentationStyle = .overCurrentContext
+                    historyDetails.confirmedReservationID = dict.ConfirmedReservationID
+                    historyDetails.confirmationNumber = dict.ConfirmNumber
+                } else {
+                    historyDetails.modalTransitionStyle   = .crossDissolve;
+                    historyDetails.modalPresentationStyle = .overCurrentContext
+                    historyDetails.confirmedReservationID = self.arrPlayHistory[indexPath.row].confirmedReservationID
+                    historyDetails.confirmationNumber = self.arrPlayHistory[indexPath.row].confirmNumber
+                }
                 
-                historyDetails.modalTransitionStyle   = .crossDissolve;
-                historyDetails.modalPresentationStyle = .overCurrentContext
-                historyDetails.confirmedReservationID = dict.ConfirmedReservationID
-                historyDetails.confirmationNumber = dict.ConfirmNumber
 
                 self.present(historyDetails, animated: true, completion: nil)
             }

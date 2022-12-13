@@ -450,6 +450,7 @@ class GolfCalendarVC: UIViewController ,UISearchBarDelegate, DTCalendarViewDeleg
             previousStatementVC.title =  self.appDelegate.masterLabeling.tAB_PREVIOUS
             lblUpcomingEvent.isHidden = true
             topLabelHeight.constant = -58
+            
             configureChildViewControllerForstatenents(childController: previousStatementVC, onView: self.baseView)
             
         }
