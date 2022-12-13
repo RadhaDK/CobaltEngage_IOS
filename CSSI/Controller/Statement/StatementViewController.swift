@@ -40,9 +40,12 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBOutlet weak var btnMinimum: UIButton!
     @IBOutlet weak var viewBottomHeight: NSLayoutConstraint!
     @IBOutlet weak var viewMinimumIndication: UIView!
+    @IBOutlet weak var viewCreditIndication: UIView!
     @IBOutlet weak var lblMinimumIndication: UILabel!
+    @IBOutlet weak var lblCreditIndication: UILabel!
     @IBOutlet weak var btnMinimumIndication: UIButton!
     
+    var getStatementModel : StatementCategories?
     
     @IBOutlet weak var eventDateRangeView: DTCalendarView!{
         didSet {
@@ -121,6 +124,9 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         //ENGAGE0011372 -- Start
         self.addLeftEdgeSwipeDismissAction()
         //ENGAGE0011372 -- Start
+        btnCreditBook.isHidden = true
+        btnMinimum.isHidden = true
+       
     }
     
     func initController()
@@ -174,17 +180,50 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         
     }
     
-    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int) {
-        if enableMinimumTemplate == 1 {
+    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : String, CreditIndicate : String) {
+        self.viewMinimumIndication.layer.cornerRadius = 5
+        self.viewCreditIndication.layer.cornerRadius = 5
+
+
+      if enableMinimumTemplate == 1 && IsCreditBookEnabled == "1"{
+          
+          self.btnMinimum.isHidden = false
+          self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
             self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
-            self.viewMinimumIndication.layer.cornerRadius = 5
+            self.lblCreditIndication.text = CreditIndicate
             if showMinimumDesignator == 1 {
                 self.btnMinimumIndication.isHidden = false
             } else {
                 self.btnMinimumIndication.isHidden = true
             }
-        } else {
+        }
+        
+        else if IsCreditBookEnabled == "1"{
+            self.btnMinimum.isHidden = true
+            self.btnCreditBook.isHidden = false
+           
+            self.viewBottomHeight.constant = 125.0
+            self.lblCreditIndication.text = CreditIndicate
+            if showMinimumDesignator == 1 {
+                self.btnMinimumIndication.isHidden = false
+            } else {
+                self.btnMinimumIndication.isHidden = true
+            }
+        }
+        else if enableMinimumTemplate == 1 {
+            self.btnMinimum.isHidden = false
+            self.btnCreditBook.isHidden = true
+            self.viewBottomHeight.constant = 125.0
+            self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
+            if showMinimumDesignator == 1 {
+                self.btnMinimumIndication.isHidden = false
+            } else {
+                self.btnMinimumIndication.isHidden = true
+            }
+        }
+        
+        else {
             self.viewBottomHeight.constant = 94.0
         }
     }
@@ -459,6 +498,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBAction func btnMinimumIndicationClicked(_ sender: Any) {
         
         self.viewMinimumIndication.isHidden = !self.viewMinimumIndication.isHidden
+        self.viewCreditIndication.isHidden = !self.viewCreditIndication.isHidden
     }
     
     
@@ -654,7 +694,58 @@ extension StatementViewController: DTCalendarViewDelegate {
     func calendarViewHeightForMonthView(_ calendarView: DTCalendarView) -> CGFloat {
         return 80
     }
+    
+    func updateUi(){
+        if getStatementModel?.IsCreditBookEnabled == "1"{
+            btnCreditBook.isHidden = false
+        }
+        if getStatementModel?.enableMinimumTemplate == 1{
+            btnMinimum.isHidden = false
+        }
+    }
 }
 
 
 
+//extension StatementViewController{
+//    //MARK:- Get Statement Categories
+//    func getStatementCategoriesApi() -> Void {
+//        if (Network.reachability?.isReachable) == true{
+//
+//            let paramaterDict:[String: Any] = [
+//                "Content-Type":"application/json",
+//                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+//                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+//                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+//                APIKeys.kdeviceInfo: [APIHandler.devicedict]
+//            ]
+//            self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+//
+//            APIHandler.sharedInstance.getStatement(paramater: paramaterDict, onSuccess: { categoriesList in
+//                self.appDelegate.hideIndicator()
+//                if(categoriesList.responseCode == InternetMessge.kSuccess){
+//                    self.getStatementModel = categoriesList
+//                    self.updateUi()
+//                }else{
+//                    if(((categoriesList.responseMessage?.count) ?? 0)>0){
+//                        SharedUtlity.sharedHelper().showToast(on:
+//                            self.view, withMeassge: categoriesList.responseMessage, withDuration: Duration.kMediumDuration)
+//                    }
+//                }
+//            },onFailure: { error  in
+//                self.appDelegate.hideIndicator()
+//                print(error)
+//                SharedUtlity.sharedHelper().showToast(on:
+//                    self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
+//            })
+//
+//        }else{
+//
+//            //self.tableViewStatement.setEmptyMessage(InternetMessge.kInternet_not_available)
+//
+//            SharedUtlity.sharedHelper().showToast(on:
+//                self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
+//        }
+//
+//    }
+//}

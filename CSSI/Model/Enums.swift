@@ -472,3 +472,7 @@ enum diningVersion {
 enum diningCancelPopupMode{
     case listing, detail
 }
+
+enum statementType{
+    case minimum, credit
+}
