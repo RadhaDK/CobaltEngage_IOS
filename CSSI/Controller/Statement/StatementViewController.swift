@@ -44,7 +44,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBOutlet weak var lblMinimumIndication: UILabel!
     @IBOutlet weak var lblCreditIndication: UILabel!
     @IBOutlet weak var btnMinimumIndication: UIButton!
-    
+    @IBOutlet weak var centerAlignedView: NSLayoutConstraint!
     var getStatementModel : StatementCategories?
     
     @IBOutlet weak var eventDateRangeView: DTCalendarView!{
@@ -180,12 +180,12 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         
     }
     
-    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : String, CreditIndicate : String) {
+    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : Int, CreditIndicate : String) {
         self.viewMinimumIndication.layer.cornerRadius = 5
         self.viewCreditIndication.layer.cornerRadius = 5
 
 
-      if enableMinimumTemplate == 1 && IsCreditBookEnabled == "1"{
+      if enableMinimumTemplate == 1 && IsCreditBookEnabled == 1 {
           
           self.btnMinimum.isHidden = false
           self.btnCreditBook.isHidden = false
@@ -199,7 +199,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
             }
         }
         
-        else if IsCreditBookEnabled == "1"{
+        else if IsCreditBookEnabled == 1 {
             self.btnMinimum.isHidden = true
             self.btnCreditBook.isHidden = false
            
@@ -226,6 +226,9 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         else {
             self.viewBottomHeight.constant = 94.0
         }
+//        self.btnCreditBook.isHidden = true
+//        self.viewCreditIndication.isHidden = true
+//        self.centerAlignedView.constant = 95.0
     }
     
     fileprivate func currentDate(matchesMonthAndYearOf date: Date) -> Bool {
@@ -696,7 +699,7 @@ extension StatementViewController: DTCalendarViewDelegate {
     }
     
     func updateUi(){
-        if getStatementModel?.IsCreditBookEnabled == "1"{
+        if getStatementModel?.IsCreditBookEnabled == 1 {
             btnCreditBook.isHidden = false
         }
         if getStatementModel?.enableMinimumTemplate == 1{

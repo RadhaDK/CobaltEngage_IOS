@@ -30,9 +30,9 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3981"
-            endingLineNumber = "3981"
-            landmarkName = "getMinimumDetails(paramater:onSuccess:onFailure:)"
+            startingLineNumber = "3982"
+            endingLineNumber = "3982"
+            landmarkName = "getStatementDetails(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -126,8 +126,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7384"
-            endingLineNumber = "7384"
+            startingLineNumber = "7385"
+            endingLineNumber = "7385"
             landmarkName = "getTablePreferances(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "CSSI/Utilities/APIHandler/APIHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "7504"
-            endingLineNumber = "7504"
+            startingLineNumber = "7505"
+            endingLineNumber = "7505"
             landmarkName = "historyMyDinningReservation(paramater:onSuccess:onFailure:)"
             landmarkType = "7">
          </BreakpointContent>

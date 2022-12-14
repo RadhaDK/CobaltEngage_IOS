@@ -29,8 +29,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bec-9T-haZ">
                         <rect key="frame" x="8" y="8" width="411" height="112"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM to 11:30 PMkciuwwbviouwbvowbeeobwiuvbiuwbvibweivbiwebviubweiuvbweiuvbiuwebv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-nY-J4j">
-                                <rect key="frame" x="8" y="34" width="273" height="14.333333333333336"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:00 PM to 11:30 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-nY-J4j">
+                                <rect key="frame" x="8" y="34" width="76.666666666666671" height="14.333333333333336"/>
                                 <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="11"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.41176470588235292" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>

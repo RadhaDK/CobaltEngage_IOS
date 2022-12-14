@@ -22,7 +22,7 @@ class StatementCategories: NSObject, Mappable {
     var minStatementLegend: String?
     var statementDesignator: String?
     var enableMinimumTemplate: Int?
-    var IsCreditBookEnabled : String?
+    var IsCreditBookEnabled : Int?
     var CreditIndicate : String?
     override init() {
         super.init()

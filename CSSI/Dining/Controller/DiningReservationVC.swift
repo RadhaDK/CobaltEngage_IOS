@@ -287,7 +287,10 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.row = indexPath.row
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
-        cell.lblTime.text = self.getStartAndEndTimeString(timings: self.restaurantsList[indexPath.row].Timings)
+        if let timings = self.restaurantsList[indexPath.row].Timings {
+            cell.lblTime.text = self.getStartAndEndTimeString(timings: timings)
+        }
+        
         if self.enumForDinningMode != .create && self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID && self.diningReservation.SelectedDate == self.reservationDate {
             cell.selectedTimeSlot = self.reservationTime
         } else {
