@@ -14,7 +14,7 @@ protocol AddMemberDelegate
     func addMemberDelegate(selecteArray: [RequestData])
     
 }
-class AddMemberVC: UIViewController, UISearchBarDelegate {
+class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
 
     @IBOutlet weak var viewMain: UIView!
     @IBOutlet weak var bottomView: UIView!
@@ -99,7 +99,8 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
    // let ids = array.map { $0.id }
     
     var diningVersion: diningVersion = .lottery
-
+    var dietaryRestrictions : String?
+    var modifyDietary = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,7 +112,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
         self.btnOther.setTitle(self.appDelegate.masterLabeling.oTHER, for: UIControlState.normal)
         self.lbladdASpecialRequest.text = self.appDelegate.masterLabeling.special_request_add
         self.lblShouldWeBeaware.text = self.appDelegate.masterLabeling.dIETARY_RESTRICTIONS_INFO
-
+        self.txtSpecify.delegate = self
         
         if isFrom == "Modify"{
             
@@ -535,6 +536,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                 
                 self.txtSpecify.text = memberObj.DietartRestriction
                 
+                
             } else {
                 searchBarAddmember.text = ""
             }
@@ -543,6 +545,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
             self.viewMain.isUserInteractionEnabled = false
            self.bottomView.isHidden = true
             self.heightBottom.constant = 0
+            
         }
         else{
            
@@ -560,6 +563,8 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
             self.heightOtherText.constant = -117
             self.heightSpecialOccassionView.constant = 173
             self.txtOther.isHidden = true
+            
+            self.txtSpecify.text = self.dietaryRestrictions ?? ""
         }
        
         
@@ -883,7 +888,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                         "Other":0,
                         "OtherText":""
                     ]
-                    
+                    let captain = arrTempPlayers[i] as! CaptaineInfo
                     let memberInfo:[String: Any] = [
                         "ReservationRequestDetailId": "",
                         "LinkedMemberID": UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
@@ -895,7 +900,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                         "HighChairCount": 0,
                         "BoosterChairCount": 0,
                         "SpecialOccasion": [specialOccassionInfo],
-                        "DietaryRestrictions": "",
+                        "DietaryRestrictions": captain.captainDietRestriction ?? "",
                         "DisplayOrder": 1,
                         "AddBuddy": 0
                     ]
@@ -1174,7 +1179,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                         "HighChairCount": 0,
                         "BoosterChairCount": 0,
                         "SpecialOccasion": [],
-                        "DietaryRestrictions": "",
+                        "DietaryRestrictions": playObj.captainDietRestriction ?? "",
                         "DisplayOrder": i + 1,
                         "AddBuddy": 0
                     ]
@@ -1396,6 +1401,19 @@ class AddMemberVC: UIViewController, UISearchBarDelegate {
                 self.appDelegate.hideIndicator()
             }
             
+        }
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+//        if UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "" == memberID?.replacingOccurrences(of: "#", with: "") {
+//            return true
+//        } else {
+//            return false
+//        }
+        if modifyDietary == 1 {
+            return true
+        } else {
+            return false
         }
     }
     

@@ -203,7 +203,7 @@ class GroupDetail: RequestData, Mappable  {
     
     var memberTransType: String?
     var memberRequestHoles: String?
-
+    var modifyDietary: Int?
     convenience required init?(map: Map) {
         self.init()
     }
@@ -253,6 +253,7 @@ class GroupDetail: RequestData, Mappable  {
         self.memberRequestHoles <- map["MemberRequestHoles"]
         self.teeBox <- map["TeeBox"]
         self.gameTypeTitle <- map["GameTypeTitle"]
+        self.modifyDietary <- map["ModifyDietary"]
     }
     
 }

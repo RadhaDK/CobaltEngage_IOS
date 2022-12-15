@@ -53,7 +53,7 @@ class ExistingGuest: RequestData, Mappable
     var guestPhone : String?
     var guestType : String?
     var guestIdentityID : String?
-
+    var dietaryRestrictions : String?
     convenience required init?(map: Map)
     {
         self.init()
@@ -80,6 +80,7 @@ class ExistingGuest: RequestData, Mappable
         self.guestPhone <- map["GuestPhone"]
         self.guestType <- map["GuestType"]
         self.guestIdentityID <- map["GuestIdentityID"]
+        self.dietaryRestrictions <- map["DietaryRestrictions"]
     }
     
 }
