@@ -202,8 +202,8 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         else if IsCreditBookEnabled == 1 {
             self.btnMinimum.isHidden = true
             self.btnCreditBook.isHidden = false
-           
             self.viewBottomHeight.constant = 125.0
+            self.centerAlignedView.constant = -95.0
             self.lblCreditIndication.text = CreditIndicate
             if showMinimumDesignator == 1 {
                 self.btnMinimumIndication.isHidden = false
@@ -215,6 +215,8 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
             self.btnMinimum.isHidden = false
             self.btnCreditBook.isHidden = true
             self.viewBottomHeight.constant = 125.0
+            self.viewCreditIndication.isHidden = true
+            self.centerAlignedView.constant = 95.0
             self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
             if showMinimumDesignator == 1 {
                 self.btnMinimumIndication.isHidden = false
@@ -226,9 +228,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         else {
             self.viewBottomHeight.constant = 94.0
         }
-//        self.btnCreditBook.isHidden = true
-//        self.viewCreditIndication.isHidden = true
-//        self.centerAlignedView.constant = 95.0
+        
     }
     
     fileprivate func currentDate(matchesMonthAndYearOf date: Date) -> Bool {

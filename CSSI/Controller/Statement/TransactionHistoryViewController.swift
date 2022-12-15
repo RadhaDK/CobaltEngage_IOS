@@ -121,12 +121,12 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let transactionDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "TransactionDetailsViewController") as! TransactionDetailsViewController
         if typeOfStatement == .minimum{
-        transactionDetailVC.statementID = self.transactionHistoryList[indexPath.row].ID
-        transactionDetailVC.receiptno = self.transactionHistoryList[indexPath.row].receiptNumber
-        transactionDetailVC.purchaseDate = self.transactionHistoryList[indexPath.row].date
-        transactionDetailVC.amount = self.transactionHistoryList[indexPath.row].amount
-        transactionDetailVC.isFromMinimums = true
-        transactionDetailVC.category = self.transactionHistoryList[indexPath.row].category
+            transactionDetailVC.statementID = self.transactionHistoryList[indexPath.row].ID
+            transactionDetailVC.receiptno = self.transactionHistoryList[indexPath.row].receiptNumber
+            transactionDetailVC.purchaseDate = self.transactionHistoryList[indexPath.row].date
+            transactionDetailVC.amount = self.transactionHistoryList[indexPath.row].amount
+            transactionDetailVC.isFromMinimums = true
+            transactionDetailVC.category = self.transactionHistoryList[indexPath.row].category
         }
         else{
             transactionDetailVC.statementID = self.crediDetails[indexPath.row].CreditBookID

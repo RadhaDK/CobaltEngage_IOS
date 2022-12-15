@@ -85,7 +85,8 @@ class APIHandler: NSObject
     //when using this comment generateBaseURL() method call in app delegate applicationWillFinishLaunching with options method.
    // lazy var baseURL : String = self.engageTestURL
     lazy var baseURL : String = self.engageTestURL
-    lazy var diningBaseURL : String = self.diningDevURL
+    lazy var diningBaseURL : String = self.engageTestURL + "dining/"
+//    lazy var diningBaseURL : String = self.diningDevURL
     
     //MARK:- API Switch Variable
     //This is only implemented only for Boca West app as of now.
@@ -7171,7 +7172,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7617,7 +7618,7 @@ class APIHandler: NSObject
     //MARK:- CreditBook HistoryDetail
     func creditBookDetail(paramater: [String: Any]?, onSuccess: @escaping(CreditBookDetails) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = engageDevURL + APIHandler.creditBookDetail
-
+        print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")
@@ -7627,7 +7628,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
