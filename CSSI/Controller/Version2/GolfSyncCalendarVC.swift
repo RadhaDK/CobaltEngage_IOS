@@ -797,7 +797,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         }
         else
         {
-            if self.arrTeeTimeDetails.count == 0
+            if self.arrTeeTimeDetails.count == 0 && self.myDinningDetail.count == 0
             {
                 return 0
             }

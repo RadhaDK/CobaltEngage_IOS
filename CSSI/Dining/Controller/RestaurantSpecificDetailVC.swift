@@ -89,6 +89,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
         lblToREquestRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOONE ?? ""
         btnDiningPolicy.setTitle("\(self.appDelegate.masterLabeling.dining_policy ?? "")", for: .normal)
+        let day = getDateTableCell(givenDate: self.currentDate)
+        self.lblAvailableTime.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
     }
     
     func setUpUiInitialization(){
@@ -114,6 +116,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         self.assigenSelectdSizeTimeDetails(dayOfWeek: getDayOfWeek(givenDate: currentDate))
         self.assigenDatePartySizeDetails(yearOfMonth: getDateDinning(givenDate: currentDate))
         self.assigenSelectedDate()
+        self.assignAvailableTime()
         self.assignAvailablePartySize()
         self.diningReservation.SelectedDate = getDateStringFromDate(givenDate: currentDate)
         self.tblAvailability.reloadData()
@@ -223,6 +226,11 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         lblAvailablePartySize.text = "Available Party Size : \(self.diningReservation.PartySize)"
     }
     
+    func assignAvailableTime() {
+        let day = getDateTableCell(givenDate: self.currentDate)
+        self.lblAvailableTime.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+    }
+    
     func getStartAndEndTimeString(timings: [DiningTimmingsData]) -> String{
         var returnString = ""
         
@@ -247,6 +255,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             vc?.diningPolicyURL = self.dinningPolicy
             vc?.restaurantName = self.restaurantDetails.RestaurantName
             vc?.restaurantImage = self.restaurantDetails.RestaurantImage
+            vc?.requestedDate = self.currentDate
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }

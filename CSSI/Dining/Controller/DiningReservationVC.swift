@@ -31,6 +31,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     @IBOutlet weak var lblDatePartySize: UILabel!
     @IBOutlet weak var lblLoggedInuserInfo: UILabel!
     @IBOutlet weak var lblDiningHeading: UILabel!
+    @IBOutlet weak var lblRequestDescription: UILabel!
     @IBOutlet weak var lblNext: UILabel!
     @IBOutlet weak var lblPrevious: UILabel!
     @IBOutlet weak var btnDinningPolicy: UIButton!
@@ -98,6 +99,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
         btnDinningPolicy.setTitle(self.appDelegate.masterLabeling.dining_policy ?? "", for: .normal)
         lblTorequestRestaurantTime.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOONE ?? ""
+        lblRequestDescription.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOTWO ?? ""
     }
     
     func setUpUiInitialization(){
@@ -268,6 +270,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             vc?.diningPolicyURL = self.diningPolicyURL
             vc?.restaurantName = self.restaurantsList[row].RestaurantName
             vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
+            vc?.requestedDate = self.currentDate
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         
@@ -358,6 +361,8 @@ extension DiningReservationVC{
                 if(reservationDinningListing.restaurants.count == 0)
                 {
                     self.tblResturat.setEmptyMessage(InternetMessge.kNoRestaurant)
+                } else {
+                    self.tblResturat.setEmptyMessage("")
                 }
                 
                 self.restaurantsList = reservationDinningListing.restaurants!

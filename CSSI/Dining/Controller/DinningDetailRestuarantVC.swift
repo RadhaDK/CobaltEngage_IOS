@@ -31,6 +31,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblPartySize: UILabel!
+    
+    @IBOutlet weak var lblRequestedDate: UILabel!
     @IBOutlet weak var btnAddMultiple: UIButton!
     @IBOutlet weak var imgRestaurantImage: UIImageView!
     
@@ -52,7 +54,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var lblRestaurantHeading: UILabel!
     @IBOutlet weak var lblREquestTimeHeading: UILabel!
     @IBOutlet weak var lblPartysizeHeading: UILabel!
-
+    @IBOutlet weak var lblRequestedDateHeading: UILabel!
+    
     
     
     //MARK: - variables
@@ -67,6 +70,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var tablePreferances: [DiningTablePrefenceData] = []
     var isFrom: dinningMode = .create
     var diningPolicyURL = ""
+    var requestedDate = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +119,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         btnAddMultiple.layer.borderColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1).cgColor
         btnHome.setTitle("", for: .normal)
         btnBack.setTitle("", for: .normal)
-        lblPartySize.text = String(format: "%02d", self.diningReservation.PartySize)
+//        lblPartySize.text = String(format: "%02d", self.diningReservation.PartySize)
+        lblRequestedDate.text = self.getDateString(givenDate: self.requestedDate)
         lblTime.text = self.diningReservation.SelectedTime
         lblRestaurantName.text = self.restaurantName
         
@@ -132,7 +137,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         lblCaptainName.text = self.appDelegate.masterLabeling.captain ?? ""
         lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_DINING_RESTAURANT ?? ""
         lblREquestTimeHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGREQUEST_TIME ?? ""
-        lblPartysizeHeading.text = self.appDelegate.masterLabeling.party_size ?? ""
+//        lblPartysizeHeading.text = self.appDelegate.masterLabeling.party_size ?? ""
         setUpUiInitialization()
     }
     func setUpUiInitialization(){
@@ -333,6 +338,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                     
                     memberDirectory.arrMultiSelectedMembers.append(self.diningReservation.PartyDetails)
                 }
+                memberDirectory.showSegmentController = true
                 memberDirectory.categoryForBuddy = "Dining"
                 memberDirectory.isOnlyFor = "DiningRequest"
                 memberDirectory.delegate = self

@@ -3646,7 +3646,15 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                 }
                 else if self.isOnlyFor == "DiningRequest" && self.categoryForBuddy == "Dining"
                 {
-                    self.DiningReservationDuplicate()
+                    if !self.appDelegate.isDiningFCFSEnable {
+                        self.DiningReservationDuplicate()
+                    } else {
+//                        if self.shouldEnableMultiSelect
+//                        {
+                        self.delegate?.multiSelectRequestMemberViewControllerResponse(selectedArray: self.arrMultiSelectedMembers)
+                        self.navigationController?.popViewController(animated: true)
+//                        }
+                    }
                 }
             }
         }
