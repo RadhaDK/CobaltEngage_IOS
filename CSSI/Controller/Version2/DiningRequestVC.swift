@@ -430,6 +430,9 @@ func addMemberDelegate() {
         self.myCalendar.dataSource = self
         self.myCalendar.placeholderType = .none
         self.arrTotalList.append(RequestData())
+        if isFrom != "Modify" && isFrom != "View" {
+            requestLoggedInUserDetails()
+        }
         
         let captainInfo = CaptaineInfo.init()
         captainInfo.setCaptainDetails(id: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "", name:  UserDefaults.standard.string(forKey: UserDefaultsKeys.captainName.rawValue) ?? "", firstName: UserDefaults.standard.string(forKey: UserDefaultsKeys.firstName.rawValue) ?? "" , order: 1, memberID: UserDefaults.standard.string(forKey: UserDefaultsKeys.memberID.rawValue) ?? "", parentID: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "", profilePic: UserDefaults.standard.string(forKey: UserDefaultsKeys.userProfilepic.rawValue) ?? "")
@@ -1215,6 +1218,63 @@ func addMemberDelegate() {
 
         self.partyTableview.reloadData()
         }
+    }
+    
+    func requestLoggedInUserDetails() {
+        
+        paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict],
+            APIKeys.ksearchby : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kpagecount: 1,
+            APIKeys.krecordperpage:25
+        ]
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.getMemberSpouseList(paramaterDict: paramaterDict) { response in
+            
+            if(response.responseCode == InternetMessge.kSuccess)
+            {
+                if(response.memberList == nil){
+                    self.setCaptainWithDefaultValues()
+                } else {
+                    if response.memberList?.count != 0 {
+                        for i in response.memberList! {
+                            if i.id == UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "" {
+                                let captainInfo = CaptaineInfo.init()
+                                captainInfo.setCaptainDetails(id: i.id ?? "", name:  i.memberName ?? "", firstName: i.firstName ?? "" , order: 1, memberID: i.memberID ?? "", parentID: i.parentid ?? "", profilePic: i.profilePic ?? "", dietRestriction: i.dietaryRestrictions ?? "")
+                                let selectedObject = captainInfo
+                                selectedObject.isEmpty = false
+                                self.arrTotalList.remove(at: 0)
+                                self.arrTotalList.insert(selectedObject, at: 0)
+                                self.partyTableview.reloadData()
+                            }
+                        }
+                    } else {
+                        self.setCaptainWithDefaultValues()
+                    }
+                }
+            }
+            self.appDelegate.hideIndicator()
+        } onFailure: { error in
+            self.appDelegate.hideIndicator()
+            self.setCaptainWithDefaultValues()
+        }
+
+    }
+    
+    func setCaptainWithDefaultValues() {
+        let captainInfo = CaptaineInfo.init()
+        captainInfo.setCaptainDetails(id: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "", name:  UserDefaults.standard.string(forKey: UserDefaultsKeys.captainName.rawValue) ?? "", firstName: UserDefaults.standard.string(forKey: UserDefaultsKeys.firstName.rawValue) ?? "" , order: 1, memberID: UserDefaults.standard.string(forKey: UserDefaultsKeys.memberID.rawValue) ?? "", parentID: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "", profilePic: UserDefaults.standard.string(forKey: UserDefaultsKeys.userProfilepic.rawValue) ?? "")
+
+        let selectedObject = captainInfo
+        selectedObject.isEmpty = false
+        self.arrTotalList.remove(at: 0)
+        self.arrTotalList.insert(selectedObject, at: 0)
+        self.partyTableview.reloadData()
     }
     
     //MARK:- MemberDirectory Delegates
@@ -3321,6 +3381,7 @@ func addMemberDelegate() {
                             regGuest.isFrom = "Modify"
                         }
                         regGuest.arrSpecialOccasion = (self.arrTeeTimeDetails[0].diningDetails?[indexPath.row].specialOccasion)!
+                        regGuest.modifyDietary = self.arrTeeTimeDetails[0].diningDetails?[indexPath.row].modifyDietary ?? 0
 
                         regGuest.delegateAddMember = self
                         navigationController?.pushViewController(regGuest, animated: true)
@@ -3572,7 +3633,7 @@ func addMemberDelegate() {
                         "HighChairCount": 0,
                         "BoosterChairCount": 0,
                         "SpecialOccasion": [specialOccassion],
-                        "DietaryRestrictions": "",
+                        "DietaryRestrictions": playObj.captainDietRestriction ?? "",
                         "DisplayOrder": i + 1,
                         "AddBuddy": 0
                     ]

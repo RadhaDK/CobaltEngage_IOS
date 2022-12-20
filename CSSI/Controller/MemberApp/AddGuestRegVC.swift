@@ -3660,6 +3660,8 @@ extension AddGuestRegVC : UITableViewDelegate,UITableViewDataSource
                 if self.usedForModule == .dining || self.usedForModule == .diningEvents
                 {
                     self.emptySpecialOptions()
+                    self.txtSpecify.text = self.selectedGuest?.dietaryRestrictions ?? ""
+
                     self.showDiningAdditionalOptions(bool: true)
                 }
             }

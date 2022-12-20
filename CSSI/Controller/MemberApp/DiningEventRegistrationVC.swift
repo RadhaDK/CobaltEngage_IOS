@@ -442,6 +442,9 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
             selectedObject.isEmpty = false
             arrTotalList.remove(at: 0)
             arrTotalList.insert(selectedObject, at: 0)
+            if isFrom != "Modify" && isFrom != "View" {
+                self.requestLoggedInUserDetails()
+            }
         }
         
         
@@ -646,6 +649,65 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
 //        return false
 //    }
     //ENGAGE0011419 -- End
+    
+    func requestLoggedInUserDetails() {
+        
+        paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict],
+            APIKeys.ksearchby : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kpagecount: 1,
+            APIKeys.krecordperpage:25
+        ]
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.getMemberSpouseList(paramaterDict: paramaterDict) { response in
+            
+            if(response.responseCode == InternetMessge.kSuccess)
+            {
+                if(response.memberList == nil){
+                    self.setCaptainWithDefaultValues()
+                } else {
+                    for i in response.memberList! {
+                        if i.id == UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "" {
+                            for index in 0...self.arrTotalList.count-1 {
+                                if let captain = self.arrTotalList[index] as? CaptaineInfo {
+                                    captain.captainDietRestriction = i.dietaryRestrictions ?? ""
+                                    self.arrTotalList[index] = captain
+                                }
+                            }
+//                            let captainInfo = CaptaineInfo.init()
+//                            captainInfo.setCaptainDetails(id: i.id ?? "", name:  i.memberName ?? "", firstName: i.firstName ?? "" , order: 1, memberID: i.memberID ?? "", parentID: i.parentid ?? "", profilePic: i.profilePic ?? "", dietRestriction: i.dietaryRestrictions ?? "")
+//
+//                            let selectedObject = captainInfo
+//                            selectedObject.isEmpty = false
+//                            self.arrTotalList.remove(at: 0)
+//                            self.arrTotalList.insert(selectedObject, at: 0)
+                        }
+                    }
+                }
+            }
+            self.appDelegate.hideIndicator()
+        } onFailure: { error in
+            self.appDelegate.hideIndicator()
+            self.setCaptainWithDefaultValues()
+        }
+
+    }
+    
+    func setCaptainWithDefaultValues() {
+        let captainInfo = CaptaineInfo.init()
+        captainInfo.setCaptainDetails(id: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "", name:  UserDefaults.standard.string(forKey: UserDefaultsKeys.captainName.rawValue) ?? "", firstName: UserDefaults.standard.string(forKey: UserDefaultsKeys.firstName.rawValue) ?? "" , order: 1, memberID: UserDefaults.standard.string(forKey: UserDefaultsKeys.memberID.rawValue) ?? "", parentID: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "", profilePic: UserDefaults.standard.string(forKey: UserDefaultsKeys.userProfilepic.rawValue) ?? "")
+
+        let selectedObject = captainInfo
+        selectedObject.isEmpty = false
+        arrTotalList.remove(at: 0)
+        arrTotalList.insert(selectedObject, at: 0)
+    }
+
     
     func addNewPopOverClicked(cell: CustomNewRegCell)
     {
@@ -1467,7 +1529,7 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
                         "Other":0,
                         "OtherText":""
                     ]
-                    
+                    let playObj = arrTempPlayers[i] as! CaptaineInfo
                     let memberInfo:[String: Any] = [
                         "ReservationRequestDetailId": "",
                         "LinkedMemberID": UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
@@ -1479,7 +1541,7 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
                         "HighChairCount": 0,
                         "BoosterChairCount": 0,
                         "SpecialOccasion": [specialOccassionInfo],
-                        "DietaryRestrictions": "",
+                        "DietaryRestrictions": playObj.captainDietRestriction ?? "",
                         "DisplayOrder": 1,
                         "AddBuddy": 0
                     ]
@@ -2853,7 +2915,8 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
                         regGuest.forDiningEvent = "DiningEvent"
 
                         regGuest.arrSpecialOccasion = (self.eventDetails[0].requestDiningDetails?[0].diningDetails?[indexPath.row].specialOccasion)!
-                        
+                        regGuest.modifyDietary = self.eventDetails[0].requestDiningDetails?[0].diningDetails?[indexPath.row].modifyDietary ?? 0
+
                         regGuest.delegateAddMember = self
                         navigationController?.pushViewController(regGuest, animated: true)
                     }

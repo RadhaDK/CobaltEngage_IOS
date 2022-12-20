@@ -2247,7 +2247,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                         "HighChairCount": 0,
                         "BoosterChairCount": 0,
                         "SpecialOccasion": [],
-                        "DietaryRestrictions": "",
+                        "DietaryRestrictions": playObj.captainDietRestriction ?? "",
                         "DisplayOrder": i + 1,
                         "AddBuddy": 0
                     ]
@@ -3131,7 +3131,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                             let diningMember = DiningMemberInfo()
                             diningMember.isEmpty = false
                             
-                            diningMember.setDiningMemberDetails(MemberId: contact.memberID ?? "", firstName: contact.firstName ?? "", Name: contact.memberName ?? "", profilePic: contact.profilePic ?? "", id: contact.id ?? "", parentID: contact.parentid ?? "", highChair: 0, booster: 0, dietary: "", otherNo: 0, otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0)
+                            diningMember.setDiningMemberDetails(MemberId: contact.memberID ?? "", firstName: contact.firstName ?? "", Name: contact.memberName ?? "", profilePic: contact.profilePic ?? "", id: contact.id ?? "", parentID: contact.parentid ?? "", highChair: 0, booster: 0, dietary: contact.dietaryRestrictions ?? "", otherNo: 0, otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0)
                             self.arrMultiSelectedMembers[groupIndex].insert(diningMember, at: index)
                            
                         }
@@ -3141,7 +3141,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                             guest.isEmpty = false
                             //Added by kiran V2.8 -- ENGAGE0011784 -- modified to include first and last names, linkedMemberID and guestMemberNo
                             //ENGAGE0011784 -- Start
-                            guest.setGuestDetails(name: contact.memberName ?? "", firstName: contact.guestFirstName ?? "", lastName: contact.guestLastName ?? "",linkedMemberID: "", guestMemberOf: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",guestMemberNo: "",gender : contact.guestGender ?? "",DOB: contact.guestDOB ?? "", buddyID: contact.buddyListID ?? "", type: contact.guestType ?? "", phone: contact.guestContact ?? "", primaryemail: contact.guestEmail ?? "", guestLinkedMemberID: "", highChair: 0, booster: 0, dietary: "", addGuestAsBuddy: isAddToBuddy ?? 0, otherNo: 0, otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0)
+                            guest.setGuestDetails(name: contact.memberName ?? "", firstName: contact.guestFirstName ?? "", lastName: contact.guestLastName ?? "",linkedMemberID: "", guestMemberOf: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",guestMemberNo: "",gender : contact.guestGender ?? "",DOB: contact.guestDOB ?? "", buddyID: contact.buddyListID ?? "", type: contact.guestType ?? "", phone: contact.guestContact ?? "", primaryemail: contact.guestEmail ?? "", guestLinkedMemberID: "", highChair: 0, booster: 0, dietary: contact.dietaryRestrictions ?? "", addGuestAsBuddy: isAddToBuddy ?? 0, otherNo: 0, otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0)
                             //ENGAGE0011784 -- End
                             self.arrMultiSelectedMembers[groupIndex].insert(guest, at: index)
                         }
@@ -3183,6 +3183,8 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                 if let regGuest = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC
                 {
                     regGuest.SelectedMemberInfo = [contactsWithSections[indexPath.section][indexPath.row]]
+                    regGuest.modifyDietary = contactsWithSections[indexPath.section][indexPath.row].modifyDietary ?? 0
+
                     regGuest.selectedData = String(format: "%@, %@", contactsWithSections[indexPath.section][indexPath.row].lastName!, contactsWithSections[indexPath.section][indexPath.row].firstName!)
                     regGuest.delegateAddMember = self.delegate as? AddMemberDelegate
                     regGuest.membersData = self.membersData
@@ -3238,6 +3240,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                     self.appDelegate.categoryForBuddy = self.categoryForBuddy ?? ""
                     
                     regGuest.forDiningEvent = self.forDiningEvent
+                    regGuest.dietaryRestrictions = self.contactsWithSections[indexPath.section][indexPath.row].dietaryRestrictions
                     navigationController?.pushViewController(regGuest, animated: true)
                 }
             }
@@ -3676,6 +3679,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                         regGuest.SelectedMemberInfo = [contactsWithSections[selectedSection][selectedRow]]
                         regGuest.delegateAddMember = self.delegate as? AddMemberDelegate
                         regGuest.selectedTime = self.selectedTime
+                        regGuest.modifyDietary = contactsWithSections[selectedSection][selectedRow].modifyDietary ?? 0
                         navigationController?.pushViewController(regGuest, animated: true)
                         
                     }

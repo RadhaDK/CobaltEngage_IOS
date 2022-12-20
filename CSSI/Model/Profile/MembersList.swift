@@ -182,6 +182,8 @@ class DiningMemberInfo: RequestData, Mappable{
     var id: String?
     var firstName: String?
     var profilePic: String?
+    var modifyDietary: Int?
+    
     convenience required init?(map: Map) {
         self.init()
     }
@@ -234,7 +236,7 @@ class CaptaineInfo: RequestData, Mappable{
     var captainFirstName: String?
     var memberTransType: Int?
     var memberRequestHoles: String?
-    
+    var captainDietRestriction: String?
     convenience required init?(map: Map) {
         self.init()
     }
@@ -251,7 +253,7 @@ class CaptaineInfo: RequestData, Mappable{
         self.memberRequestHoles <- map["MemberRequestHoles"]
     }
     
-    func setCaptainDetails(id: String, name: String,firstName: String, order: Int, memberID: String, parentID: String , profilePic: String) {
+    func setCaptainDetails(id: String, name: String,firstName: String, order: Int, memberID: String, parentID: String , profilePic: String, dietRestriction: String = "") {
         self.captainID = id
         self.captainName = name
         self.captainOrder = order
@@ -259,7 +261,7 @@ class CaptaineInfo: RequestData, Mappable{
         self.captainParentID = parentID
         self.captainFirstName = firstName
         self.captainProfilePic = profilePic
-        
+        self.captainDietRestriction = dietRestriction
     }
 }
 
@@ -336,7 +338,8 @@ class MemberInfo: RequestData, Mappable  {
     var guestGender : String?
     var guestDOB : String?
     //ENGAGE0011784 -- End
-    
+    var dietaryRestrictions : String?
+    var modifyDietary: Int?
     var memberTransType: Int?
     var memberRequestHoles: String?
     convenience required init?(map: Map) {
@@ -380,6 +383,8 @@ class MemberInfo: RequestData, Mappable  {
         
         self.memberTransType <- map["MemberTransType"]
         self.memberRequestHoles <- map["MemberRequestHoles"]
+        self.dietaryRestrictions <- map["DietaryRestrictions"]
+        self.modifyDietary <- map["ModifyDietary"]
     }
     
 }
