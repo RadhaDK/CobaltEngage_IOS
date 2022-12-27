@@ -849,7 +849,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
                 }
             }
         }else{
-            diningInfo.setDiningMemberDetails(MemberId:memberID ?? "", firstName: self.memberFirstName ?? "", Name: memberName ?? "", profilePic: self.memberProfilePic ?? "", id: iD ?? "", parentID: parentID ?? "", highChair: self.arrHighChair.count, booster: self.arrBooster.count, dietary: self.txtSpecify.text, otherNo: other ?? 0 , otherTextInformation: txtOther.text, birthdayNo: birthDay ?? 0, anniversaryNo: anniversary ?? 0)
+            diningInfo.setDiningMemberDetails(MemberId:memberID ?? "", firstName: self.memberFirstName ?? "", Name: memberName ?? "", profilePic: self.memberProfilePic ?? "", id: iD ?? "", parentID: parentID ?? "", highChair: self.arrHighChair.count, booster: self.arrBooster.count, dietary: self.txtSpecify.text, otherNo: other ?? 0 , otherTextInformation: txtOther.text, birthdayNo: birthDay ?? 0, anniversaryNo: anniversary ?? 0, modifyDiet: self.modifyDietary)
             
              if forDiningEvent == "DiningEvent"{
                 self.membersData.append(diningInfo)

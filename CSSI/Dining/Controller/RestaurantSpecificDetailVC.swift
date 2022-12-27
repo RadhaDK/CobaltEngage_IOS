@@ -87,7 +87,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         lblOtherDates.text = self.appDelegate.masterLabeling.DINING_FCFS_DINING_OTHERDATE ?? ""
         lblNext.text = self.appDelegate.masterLabeling.DINING_FCFS_NEXT_DATE ?? ""
         lblPrevious.text = self.appDelegate.masterLabeling.tAB_PREVIOUS ?? ""
-        lblToREquestRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOONE ?? ""
+        lblToREquestRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOTHREE ?? ""
         btnDiningPolicy.setTitle("\(self.appDelegate.masterLabeling.dining_policy ?? "")", for: .normal)
         let day = getDateTableCell(givenDate: self.currentDate)
         self.lblAvailableTime.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
@@ -165,6 +165,9 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
             if daysDifference >= self.restaurantDetails.RestaurantSettings.MinDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+                if currentDate < Date() {
+                    currentDate = Date()
+                }
                 updateUI()
                 restaurentDetail()
             }
@@ -307,8 +310,14 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     // MARK: - Collectioniew Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.restaurantDetails.SelectedDate != nil {
+            if self.restaurantDetails.SelectedDate.TimeSlot.count != 0 {
+                self.collectionTimeSlot.restore()
+            } else {
+                self.collectionTimeSlot.setEmptyMessage(InternetMessge.kNoTimeSlot)
+            }
             return self.restaurantDetails.SelectedDate.TimeSlot.count
         } else {
+            self.collectionTimeSlot.setEmptyMessage(InternetMessge.kNoTimeSlot)
             return 0
         }
        
@@ -392,7 +401,10 @@ extension RestaurantSpecificDetailVC{
                     self.restaurantDetails = restaurntDetails.Restaurants[0]
                     self.lblRestaurentName.text = restaurntDetails.Restaurants[0].RestaurantName
                     self.diningSetting = restaurntDetails.Restaurants[0].RestaurantSettings
-                    self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: self.restaurantDetails.Timings)
+                    if let timings = self.restaurantDetails.Timings {
+                        self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: timings)
+                    }
+//                    self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: self.restaurantDetails.Timings)
                     
                     if(self.restaurantDetails.SelectedDate.TimeSlot.count == 0)
                     {

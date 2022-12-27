@@ -46,7 +46,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var restaurantsList: [DiningRestaurantsData] = []
     var diningSetting = DiningSettingData.init()
     var enumForDinningMode : dinningMode = .create
-    var requestedId : String?
+    var requestedId = ""
     var isInitial = true
     var diningPolicyURL = ""
     var reservationDate = ""
@@ -162,6 +162,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
             if daysDifference >= self.diningSetting.MinDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
+                if currentDate < Date() {
+                    currentDate = Date()
+                }
                 updateUI()
                 reservationList()
             }
@@ -251,7 +254,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         if enumForDinningMode != .view {
             moveToMemberDetails(timeSlot: timeSlot, row: row)
         } else {
-            if self.diningReservation.SelectedTime == timeSlot {
+            if self.diningReservation.SelectedTime == timeSlot && self.diningReservation.RestaurantID == self.restaurantsList[row].RestaurantID{
                 moveToMemberDetails(timeSlot: timeSlot, row: row)
             }
         }
@@ -348,7 +351,8 @@ extension DiningReservationVC{
                 APIKeys.kPartySize : self.diningReservation.PartySize,
                 APIKeys.kFilterDate: self.diningReservation.SelectedDate,
                 APIKeys.kFilterTime: self.diningReservation.SelectedTime,
-                APIKeys.kCompanyCode: "00"
+                APIKeys.kCompanyCode: "00",
+                APIKeys.kRequestID : self.requestedId
              ]
             if enumForDinningMode == .view {
                 paramaterDict["IsView"] = 1
@@ -371,10 +375,12 @@ extension DiningReservationVC{
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
                     self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
-                    let inputFormatter = DateFormatter()
-                    inputFormatter.dateFormat = "YYYY-MM-dd"
-                    let resultString = inputFormatter.string(from: self.currentDate)
-                    self.combainDateTime(dateString: resultString, timeString: self.diningSetting.DefaultTime)
+                    if let defTime = self.diningSetting.DefaultTime {
+                        let inputFormatter = DateFormatter()
+                        inputFormatter.dateFormat = "YYYY-MM-dd"
+                        let resultString = inputFormatter.string(from: self.currentDate)
+                        self.combainDateTime(dateString: resultString, timeString: defTime)
+                    }
                     self.isInitial = false
                 }
 
@@ -400,7 +406,7 @@ extension DiningReservationVC{
             var paramaterDict:[String: Any]?
              paramaterDict = [
                 "Content-Type":"application/json",
-                APIKeys.kRequestID : self.requestedId ?? ""
+                APIKeys.kRequestID : self.requestedId
              ]
            
             APIHandler.sharedInstance.ModifyMyDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in

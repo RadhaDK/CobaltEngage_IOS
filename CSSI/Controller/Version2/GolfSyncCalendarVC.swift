@@ -622,7 +622,17 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                             //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Add BMS comparision as fitness & spa and tennis book a lession should work the same way and both are of BMS type.
                             //GATHER0000700 - Start
                             //Replace fitness & spa with only BMS when possible.
-                            let syncCalendarTitle = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.arrAppointmentDetails[0].syncCalendarTitle : self.arrTeeTimeDetails[0].syncCalendarTitle
+                            var syncCalendarTitle = ""
+                            
+                            if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
+                                syncCalendarTitle = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.diningReservation.SyncCalendarTitle : self.diningReservation.SyncCalendarTitle!
+                                
+                            }
+                            else{
+                                syncCalendarTitle = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.arrAppointmentDetails[0].syncCalendarTitle! : self.arrTeeTimeDetails[0].syncCalendarTitle!
+                                
+                            }
+                            
                             //GATHER0000700 - End
                             if singleEvent.title == syncCalendarTitle && singleEvent.startDate == self.startDate || existingEvents[existingEvents.count - 1].title == syncCalendarTitle && existingEvents[existingEvents.count - 1].startDate == self.startDate {
                                 if let calendarEvent_toDelete = eventStore.event(withIdentifier: singleEvent.eventIdentifier){
@@ -672,7 +682,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                                 //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Add BMS comparision as fitness & spa and tennis book a lession should work the same way and both are of BMS type.
                                 //GATHER0000700 - Start
                                 //Replace fitness & spa with only BMS when possible.
-                                let syncCalendarTitle = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.arrAppointmentDetails[0].syncCalendarTitle : self.arrTeeTimeDetails[0].syncCalendarTitle
+//                                syncCalendarTitle = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.arrAppointmentDetails[0].syncCalendarTitle : self.arrTeeTimeDetails[0].syncCalendarTitle
                                 //GATHER0000700 - End
                                 event.title = syncCalendarTitle
                                 event.startDate = self.startDate

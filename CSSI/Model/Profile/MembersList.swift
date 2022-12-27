@@ -207,7 +207,7 @@ class DiningMemberInfo: RequestData, Mappable{
         parentID <- map[""]
     }
     
-    func setDiningMemberDetails(MemberId: String,firstName:String, Name: String,profilePic: String, id: String , parentID : String, highChair: Int, booster: Int, dietary: String, otherNo: Int, otherTextInformation: String, birthdayNo: Int, anniversaryNo: Int) {
+    func setDiningMemberDetails(MemberId: String,firstName:String, Name: String,profilePic: String, id: String , parentID : String, highChair: Int, booster: Int, dietary: String, otherNo: Int, otherTextInformation: String, birthdayNo: Int, anniversaryNo: Int, modifyDiet: Int) {
         self.memberId = MemberId
         self.name = Name
         self.linkedMemberID = id
@@ -221,6 +221,7 @@ class DiningMemberInfo: RequestData, Mappable{
         self.firstName = firstName
         self.profilePic = profilePic
         self.parentID = parentID
+        self.modifyDietary = modifyDiet
     }
 }
 

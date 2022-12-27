@@ -242,7 +242,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func diningMemberInfoToResrvationPartyDetail(memberInfo: DiningMemberInfo) -> ResrvationPartyDetail {
         let partyMemberInfo = ResrvationPartyDetail()
-        partyMemberInfo.setPartyDetails(confirmationNumber: memberInfo.parentID ?? "", memberID: memberInfo.linkedMemberID ?? "", memberName: memberInfo.name ?? "", diet: memberInfo.dietaryRestrictions ?? "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0, memberNumber: memberInfo.memberId ?? "")
+        partyMemberInfo.setPartyDetails(confirmationNumber: memberInfo.parentID ?? "", memberID: memberInfo.linkedMemberID ?? "", memberName: memberInfo.name ?? "", diet: memberInfo.dietaryRestrictions ?? "", anniversary: memberInfo.anniversary ?? 0, birthday: memberInfo.birthDay ?? 0, other: memberInfo.other ?? 0, otherText: memberInfo.otherText ?? "", highChair: memberInfo.highChairCount ?? 0, boosterChair: memberInfo.boosterChairCount ?? 0, memberNumber: memberInfo.memberId ?? "", modifyDiet: memberInfo.modifyDietary ?? 0)
         return partyMemberInfo
     }
 
@@ -254,7 +254,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     func setCaptainWithDefaultValues() {
         let partyMemberInfo = ResrvationPartyDetail()
-        partyMemberInfo.setPartyDetails(confirmationNumber: "", memberID: UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "", memberName: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue) ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0, memberNumber: "")
+        partyMemberInfo.setPartyDetails(confirmationNumber: "", memberID: UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "", memberName: UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue) ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0, memberNumber: "", modifyDiet: 1)
         self.diningReservation.PartyDetails[0] = partyMemberInfo
     }
     
@@ -447,6 +447,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                     }
                     regGuest.delegateAddMember = self
                     self.selectedIndex = indexPath.row
+                    regGuest.modifyDietary = self.diningReservation.PartyDetails[indexPath.row].modifyDietary
                     navigationController?.pushViewController(regGuest, animated: true)
                 }
             }
@@ -573,7 +574,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                         for i in response.memberList! {
                             if i.id == UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "" {
                                 let captainInfo = ResrvationPartyDetail.init()
-                                captainInfo.setPartyDetails(confirmationNumber: "", memberID: i.id ?? "", memberName: i.memberName ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0, memberNumber: i.memberID ?? "")
+                                captainInfo.setPartyDetails(confirmationNumber: "", memberID: i.id ?? "", memberName: i.memberName ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0, memberNumber: i.memberID ?? "", modifyDiet: 1)
                                 self.diningReservation.PartyDetails[0] = captainInfo
                             }
                         }

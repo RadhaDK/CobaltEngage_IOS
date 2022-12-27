@@ -723,7 +723,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
     func diningRequestClicked(){
         
         if self.appDelegate.isDiningFCFSEnable {
-            self.moveToDiningLottery()
+            self.moveToDiningFCFS()
         } else {
             self.moveToDiningLottery()
         }

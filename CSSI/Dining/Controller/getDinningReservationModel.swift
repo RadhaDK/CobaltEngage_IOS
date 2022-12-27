@@ -120,6 +120,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
     dynamic var guestGender         = ""
     dynamic var guestContact        = ""
     dynamic var specialOccation     = ""
+    dynamic var modifyDietary       = 1
     
     
     override init() {
@@ -148,6 +149,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestLastName       = ""
         guestFirstName      = ""
         specialOccation     = ""
+        modifyDietary       = 1
     }
     
     func mapping(map: Map) {
@@ -174,7 +176,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         specialOccation     <- map["D_SpecialOccasion"]
     }
     
-    func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, memberNumber: String) {
+    func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, memberNumber: String, modifyDiet: Int) {
         self.confirmationMemberID = confirmationNumber
         self.MemberID = memberID
         self.MemberName = memberName
@@ -187,6 +189,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.BoosterChair = boosterChair
         self.MemberNumber = memberNumber
         self.isEmpty = false
+        self.modifyDietary = modifyDiet
     }
     
     func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String, memberNumber: String) {
@@ -209,6 +212,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.guestType = guestType
         self.isEmpty = false
         self.MemberNumber = memberNumber
+        self.modifyDietary = 1
     }
 }
 

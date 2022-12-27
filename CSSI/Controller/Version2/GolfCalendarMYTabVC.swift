@@ -1243,14 +1243,13 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             if dict.UI != nil {
                 if dict.UI[0].Modify == 0{
                     cell.btnModify.isHidden = true
-               }
+                } else {
+                    cell.btnModify.isHidden = false
+                }
                
                 if dict.UI[0].Cancel == 0{
                     cell.btnCancel.isHidden = true
-
-               }
-               else{
-                   cell.btnModify.isHidden = false
+               } else {
                    cell.btnCancel.isHidden = false
                    
                }

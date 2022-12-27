@@ -72,7 +72,7 @@ setUpUi()
             delegateSelectedMemberType?.addingMemberType(value: "Guest", type: checkPopupOpenFrom ?? .addSlot)
         }
         else {
-            delegateSelectedMemberType?.addingMemberType(value: "My Buddy", type: checkPopupOpenFrom ?? .addSlot)
+            delegateSelectedMemberType?.addingMemberType(value: "My Buddies", type: checkPopupOpenFrom ?? .addSlot)
         }
         self.dismiss(animated: true, completion: nil)
     }

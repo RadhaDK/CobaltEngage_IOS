@@ -3131,7 +3131,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                             let diningMember = DiningMemberInfo()
                             diningMember.isEmpty = false
                             
-                            diningMember.setDiningMemberDetails(MemberId: contact.memberID ?? "", firstName: contact.firstName ?? "", Name: contact.memberName ?? "", profilePic: contact.profilePic ?? "", id: contact.id ?? "", parentID: contact.parentid ?? "", highChair: 0, booster: 0, dietary: contact.dietaryRestrictions ?? "", otherNo: 0, otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0)
+                            diningMember.setDiningMemberDetails(MemberId: contact.memberID ?? "", firstName: contact.firstName ?? "", Name: contact.memberName ?? "", profilePic: contact.profilePic ?? "", id: contact.id ?? "", parentID: contact.parentid ?? "", highChair: 0, booster: 0, dietary: contact.dietaryRestrictions ?? "", otherNo: 0, otherTextInformation: "", birthdayNo: 0, anniversaryNo: 0, modifyDiet: contact.modifyDietary ?? 0)
                             self.arrMultiSelectedMembers[groupIndex].insert(diningMember, at: index)
                            
                         }

@@ -84,8 +84,8 @@ class APIHandler: NSObject
     //Note:- Use for internal only. User below code for production/Users/Admin/Desktop/Zeeshan/Cobalt/Code/V1.5/CSSI/AppDelegate
     //when using this comment generateBaseURL() method call in app delegate applicationWillFinishLaunching with options method.
    // lazy var baseURL : String = self.engageTestURL
-    lazy var baseURL : String = self.preProductionURL
-    lazy var diningBaseURL : String = self.engageTestURL + "dining/"
+    lazy var baseURL : String = self.engageTestURL
+    lazy var diningBaseURL : String = self.baseURL
 //    lazy var diningBaseURL : String = self.diningDevURL
     
     //MARK:- API Switch Variable
@@ -319,17 +319,17 @@ class APIHandler: NSObject
     static let validateOTP = "Member/GetValidateTwoStepAuthenticationOTP"
     //PROD0000019 -- End
     
-    static let dinningGetReservation = "GetDiningDetailsFCFS"
-    static let dinningGetRestaurantDetail = "GetRestaurantDetails"
-    static let dinningSaveReservation = "SaveDiningReservation"
-    static let dinningEditReservation = "EditDiningReservation"
-    static let dinningMyReservationListing = "GetDiningReservationList"
-    static let dinningViewModifyData = "GetDiningReservation"
-    static let dinningTablePreferances = "GetTablePreferanceDetails"
-    static let dinningDeleteReservation = "DeleteDiningReservation"
-    static let dinningMemberValidationFCFS = "GetFBMemberValidation"
-    static let dinningHistoryReservation = "GetFBHistory"
-    static let dinningHistoryReservationDetail = "GetFBHistoryDetails"
+    static let dinningGetReservation = "dining/GetDiningDetailsFCFS"
+    static let dinningGetRestaurantDetail = "dining/GetRestaurantDetails"
+    static let dinningSaveReservation = "dining/SaveDiningReservation"
+    static let dinningEditReservation = "dining/EditDiningReservation"
+    static let dinningMyReservationListing = "dining/GetDiningReservationList"
+    static let dinningViewModifyData = "dining/GetDiningReservation"
+    static let dinningTablePreferances = "dining/GetTablePreferanceDetails"
+    static let dinningDeleteReservation = "dining/DeleteDiningReservation"
+    static let dinningMemberValidationFCFS = "dining/GetFBMemberValidation"
+    static let dinningHistoryReservation = "dining/GetFBHistory"
+    static let dinningHistoryReservationDetail = "dining/GetFBHistoryDetails"
     
     
     //CrediBook
@@ -3253,6 +3253,7 @@ class APIHandler: NSObject
                 //print("responseStringmemberdirect = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7309,7 +7310,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
