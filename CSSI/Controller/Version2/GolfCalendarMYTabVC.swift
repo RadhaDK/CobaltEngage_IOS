@@ -1208,6 +1208,15 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    func showCancelSuccess() {
+        if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as?     DiningRequestConfirmedVC {
+            var reservationDetails = DinningReservationFCFS.init()
+            reservationDetails.responseMessage = "Your reservation request has been cancelled."
+            confirmDinningRequest.reservationDetails = reservationDetails
+            self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
+        }
+    }
+    
     func externalLinkClicked(cell: EventCustomTableViewCell) {
         let indexPath = self.myTableView.indexPath(for: cell)
         
@@ -1288,10 +1297,12 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
             cell.clickedDinningancelClosure = {
                 if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
                     cancelViewController.eventID = dict.RequestID
+                    cancelViewController.partySize = dict.PartySize
                     cancelViewController.delegateCancelReservation = self
                     cancelViewController.diningCancelPopupMode = .listing
                     cancelViewController.cancelReservationClosure  = {
-                        self.myDinningReservationList(strSearch: "")
+                        self.showCancelSuccess()
+//                        self.myDinningReservationList(strSearch: "")
                     }
                     self.navigationController?.present(cancelViewController, animated: true)
                 }

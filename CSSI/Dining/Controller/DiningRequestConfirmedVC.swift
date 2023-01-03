@@ -39,6 +39,10 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
         self.initialSetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func initialSetup() {
         self.partySizeCountLbl.text = "Party Size (\(self.reservationDetails.PartySize))"
         self.preferredReservationTimeLbl.text = "Preferred Reservation: " + self.reservationDetails.SelectedTime

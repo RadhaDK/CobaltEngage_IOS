@@ -252,7 +252,7 @@ class DiningPlayHistoryDetailVC: UIViewController, UITableViewDelegate, UITableV
 
 
                         }else{
-                        //    self.arrHistoryDetails = response.History!
+                            self.arrHistoryDetails = response.historyList!
                             self.diningTableview.reloadData()
                             self.lblLabel1.isHidden = false
                             self.lblLabel2.isHidden = false

@@ -1674,6 +1674,7 @@ class APIHandler: NSObject
                 //                print("responseString = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             let currentViewController = UIApplication.topViewController()
@@ -7549,7 +7550,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7579,7 +7580,7 @@ class APIHandler: NSObject
     //CreditBook APIs
     //MARK:- CreditBook Listing
     func creditBookListingApi(paramater: [String: Any]?, onSuccess: @escaping(CreditBookListing) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = engageDevURL + APIHandler.creditBookList
+        let url : String = self.baseURL + APIHandler.creditBookList
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7590,7 +7591,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7619,7 +7620,7 @@ class APIHandler: NSObject
     
     //MARK:- CreditBook HistoryDetail
     func creditBookDetail(paramater: [String: Any]?, onSuccess: @escaping(CreditBookDetails) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = engageDevURL + APIHandler.creditBookDetail
+        let url : String = self.baseURL + APIHandler.creditBookDetail
         print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in

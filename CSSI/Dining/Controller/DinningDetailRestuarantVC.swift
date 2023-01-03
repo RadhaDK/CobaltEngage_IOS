@@ -157,10 +157,12 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBAction func btnCancelReservationAction(_ sender: Any) {
         if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
             cancelViewController.eventID = self.diningReservation.RequestID
+            cancelViewController.partySize = self.diningReservation.PartySize
             cancelViewController.diningCancelPopupMode = .detail
             cancelViewController.delegateCancelReservation = self
             cancelViewController.cancelReservationClosure = {
-                self.navigationController?.popToRootViewController(animated: true)
+                self.showCancelSuccess()
+//                self.navigationController?.popToRootViewController(animated: true)
             }
             self.navigationController?.present(cancelViewController, animated: true)
         }
@@ -299,6 +301,15 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             }
         }
         return partyList
+    }
+    
+    func showCancelSuccess() {
+        if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as?     DiningRequestConfirmedVC {
+            var reservationDetails = DinningReservationFCFS.init()
+            reservationDetails.responseMessage = "Your reservation request has been cancelled."
+            confirmDinningRequest.reservationDetails = reservationDetails
+            self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
+        }
     }
     
     //MARK: - Custom delegate methods
@@ -502,6 +513,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         } else {
             self.diningReservation.PartyDetails[self.selectedIndex] = self.guestInfoToResrvationPartyDetail(memberInfo: selecteArray[0] as! GuestInfo)
         }
+        self.configSlotMemberTblHeight()
         self.tblGuest.reloadData()
     }
     
@@ -528,6 +540,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 self.diningReservation.PartyDetails[i] = selectedArray[0][i] as! ResrvationPartyDetail
             }
         }
+        self.configSlotMemberTblHeight()
         self.tblGuest.reloadData()
     }
     
@@ -622,7 +635,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         var reqObject = self.diningReservation
         reqObject.PartyDetails = getMembersObjectList()
         var ReqBodyJson = reqObject.toJSON()
-        print(ReqBodyJson)
+//        print(ReqBodyJson)
         var paramaterDict = [
             "Content-Type":"application/json",
             APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",

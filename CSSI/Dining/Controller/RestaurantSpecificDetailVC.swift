@@ -82,7 +82,12 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         shadowView(viewName: viewNext)
         updateUI()
         restaurentDetail()
-        lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
+        if isFrom == .modify{
+            lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_MODIFY_TITLE ?? ""
+        } else {
+            lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
+        }
+        
         lblSelectedDateRestaurent.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGINFOTWO ?? ""
         lblOtherDates.text = self.appDelegate.masterLabeling.DINING_FCFS_DINING_OTHERDATE ?? ""
         lblNext.text = self.appDelegate.masterLabeling.DINING_FCFS_NEXT_DATE ?? ""
@@ -327,7 +332,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DinningReservationTimeSlotCollectionCell", for: indexPath) as! DinningReservationTimeSlotCollectionCell
         let dict = self.restaurantDetails.SelectedDate.TimeSlot[indexPath.row]
-        if self.reservationDate == self.restaurantDetails.SelectedDate.Date && self.reservationTime == dict.timeSlot && self.isFrom == .modify {
+        if self.reservationDate == self.restaurantDetails.SelectedDate.Date && self.reservationTime == dict.timeSlot && self.isFrom == .modify && self.isSelectedRestaurant{
             cell.viewTimeSlotBack.backgroundColor = .systemBlue
         } else {
             cell.viewTimeSlotBack.backgroundColor = UIColor(hexString: "#5773A2")
@@ -392,7 +397,8 @@ extension RestaurantSpecificDetailVC{
                 APIKeys.kFilterDate: self.diningReservation.SelectedDate,
                 APIKeys.kFilterTime: self.diningReservation.SelectedTime,
                 APIKeys.krestaurentID: self.diningReservation.RestaurantID,
-                APIKeys.kOtherAvailableDate : "5"
+                APIKeys.kOtherAvailableDate : "5",
+                APIKeys.kRequestID : self.diningReservation.RequestID
              ]
             
             APIHandler.sharedInstance.GetRestaurentDetail(paramater: paramaterDict, onSuccess: { restaurntDetails in

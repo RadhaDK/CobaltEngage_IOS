@@ -23,7 +23,7 @@ class CancelDinningReservationPopupVC: UIViewController {
     var eventID : String?
     var delegateCancelReservation : cancelDinningPopup?
     var diningCancelPopupMode : diningCancelPopupMode?
-    
+    var partySize = 1
     var cancelReservationClosure:(()->())?
     
     override func viewDidLoad() {
@@ -31,15 +31,21 @@ class CancelDinningReservationPopupVC: UIViewController {
 
         btnYes.layer.cornerRadius = btnYes.bounds.size.height / 2
         btnYes.layer.borderWidth = 1.0
-        btnYes.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
-        self.btnYes.setStyle(style: .outlined, type: .primary)
+        btnYes.layer.backgroundColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnYes.setStyle(style: .contained, type: .primary)
         btnNo.layer.cornerRadius = btnNo.bounds.size.height / 2
         btnNo.layer.borderWidth = 1.0
-        btnNo.layer.borderColor = hexStringToUIColor(hex: "F47D4C").cgColor
-        self.btnNo.setStyle(style: .outlined, type: .primary)
+        btnNo.layer.backgroundColor = hexStringToUIColor(hex: "F47D4C").cgColor
+        self.btnNo.setStyle(style: .contained, type: .primary)
         btnYes.setTitle(self.appDelegate.masterLabeling.Yes ?? "", for: .normal)
         btnNo.setTitle(self.appDelegate.masterLabeling.No ?? "", for: .normal)
+        self.descriptionLbl.text = nil
+        self.descriptionLbl.attributedText = self.generateStringFrom(message: self.appDelegate.masterLabeling.DINING_CANCEL_MESSAGE, count: "\(self.partySize)")
+        self.descriptionLbl.textColor = .darkGray
+        self.descriptionLbl.font = .systemFont(ofSize: 24.0, weight: .semibold)
     }
+    
+    
     
 
     @IBAction func removePopUpBtnTapped(sender:UIButton){
@@ -48,6 +54,8 @@ class CancelDinningReservationPopupVC: UIViewController {
     
     @IBAction func yesBtnTapped(sender:UIButton){
         btnYes.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
+//        self.cancelReservationClosure?()
+//        self.dismiss(animated: true, completion: nil)
         deleteMyReservation()
     }
     @IBAction func noBtnTapped(sender:UIButton){
@@ -55,6 +63,27 @@ class CancelDinningReservationPopupVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    
+    private func generateStringFrom(message : String? , count : String) -> NSAttributedString?
+    {
+        var strMessage : NSAttributedString?
+        
+        var tempString = String()
+        
+        tempString = (message ?? "").replacingOccurrences(of: "{#Ticket}", with: count)
+        
+        if tempString.contains("<html>")
+        {
+            strMessage = tempString.htmlToAttributedString
+        }
+        else
+        {
+            strMessage = NSAttributedString.init(string: tempString)
+        }
+        
+        return strMessage
+    }
+    
 }
 extension CancelDinningReservationPopupVC{
     func deleteMyReservation(){

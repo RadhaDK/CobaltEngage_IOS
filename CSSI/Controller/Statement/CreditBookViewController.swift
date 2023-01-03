@@ -103,6 +103,8 @@ extension CreditBookViewController{
                 if(creditListing.CreditBookList.count == 0)
                 {
                     self.CreditBookDetailsTbl.setEmptyMessage(InternetMessge.kNoData)
+                } else {
+                    self.CreditBookDetailsTbl.restore()
                 }
                 self.arrCreditList = creditListing.CreditBookList!
                 self.CreditBookDetailsTbl.reloadData()

@@ -51,6 +51,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var diningPolicyURL = ""
     var reservationDate = ""
     var reservationTime = ""
+    var selectedRestaurant = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +83,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             reservationList()
         } else {
             if enumForDinningMode == .modify{
-                lblDiningHeading.text = "Modify Reservation"
+                lblDiningHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_MODIFY_TITLE ?? ""
             }
             else if enumForDinningMode == .view{
                 lblDiningHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_TITLE ?? ""
@@ -294,6 +295,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         cell.timeSlots = self.restaurantsList[indexPath.row].TimeSlots
         cell.lblUpcomingEvent.text = self.restaurantsList[indexPath.row].RestaurantName
         if let timings = self.restaurantsList[indexPath.row].Timings {
+            
             cell.lblTime.text = self.getStartAndEndTimeString(timings: timings)
         }
         
@@ -316,7 +318,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         }
         let dict = restaurantsList[indexPath.row]
         if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "RestaurantSpecificDetailVC") as? RestaurantSpecificDetailVC {
-            if self.diningReservation.RestaurantID == self.restaurantsList[indexPath.row].RestaurantID {
+            if self.selectedRestaurant == self.restaurantsList[indexPath.row].RestaurantID {
                 impVC.isSelectedRestaurant = true
             } else {
                 impVC.isSelectedRestaurant = false
@@ -416,6 +418,7 @@ extension DiningReservationVC{
                 self.diningReservation.RequestID = self.requestedId
                 self.reservationDate = reservationDinningListing.SelectedDate
                 self.reservationTime = reservationDinningListing.SelectedTime
+                self.selectedRestaurant = reservationDinningListing.RestaurantID
                 self.combainDateTime(dateString: self.diningReservation.SelectedDate, timeString: self.diningReservation.SelectedTime)
                 print(reservationDinningListing.SelectedTime)
                 self.reservationList()
