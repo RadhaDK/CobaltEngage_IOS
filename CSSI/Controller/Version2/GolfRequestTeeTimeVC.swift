@@ -374,7 +374,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
             
         }else{
         btnNineHoles.setTitle(self.appDelegate.arrGolfGame[0].name , for: UIControlState.normal)
-        btnEighteenHoles.setTitle(self.appDelegate.arrGolfGame[1].name , for: UIControlState.normal)
+//        btnEighteenHoles.setTitle(self.appDelegate.arrGolfGame[1].name , for: UIControlState.normal)
         }
         
         btnNineHoles.setImage(UIImage(named : "Rectangle 2117"), for: UIControlState.normal)

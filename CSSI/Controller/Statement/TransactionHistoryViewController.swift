@@ -218,7 +218,9 @@ extension TransactionHistoryViewController{
                 self.appDelegate.hideIndicator()
                 if(creditDetail.CredtiBookTranHistoryDetails.count == 0)
                 {
-                    self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoRestaurant)
+                    self.transactionDetailTableView.setEmptyMessage(InternetMessge.kNoData)
+                } else {
+                    self.transactionDetailTableView.restore()
                 }
                 self.crediDetails = creditDetail.CredtiBookTranHistoryDetails!
                 self.transactionDetailTableView.reloadData()

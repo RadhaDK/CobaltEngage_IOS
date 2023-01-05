@@ -587,7 +587,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                         for i in response.memberList! {
                             if i.id == UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "" {
                                 let captainInfo = ResrvationPartyDetail.init()
-                                captainInfo.setPartyDetails(confirmationNumber: "", memberID: i.id ?? "", memberName: i.memberName ?? "", diet: "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0, memberNumber: i.memberID ?? "", modifyDiet: 1)
+                                captainInfo.setPartyDetails(confirmationNumber: "", memberID: i.id ?? "", memberName: i.memberName ?? "", diet: i.dietaryRestrictions ?? "", anniversary: 0, birthday: 0, other: 0, otherText: "", highChair: 0, boosterChair: 0, memberNumber: i.memberID ?? "", modifyDiet: 1)
                                 self.diningReservation.PartyDetails[0] = captainInfo
                             }
                         }
@@ -654,7 +654,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
 
 
-        print(paramaterDict)
+//        print(paramaterDict)
         APIHandler.sharedInstance.saveDinningReservation(paramater: paramaterDict) { response in
             
             if(response.Responsecode == InternetMessge.kSuccess)
@@ -736,7 +736,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             "ReservationType": "Dining",
             "RegistrationID": self.diningReservation.RequestID
        ] as [String : Any]
-        print(paramaterDict)
+//        print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
         
         APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict, onSuccess: { (response) in
