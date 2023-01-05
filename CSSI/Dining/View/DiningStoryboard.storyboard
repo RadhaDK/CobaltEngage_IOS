@@ -1609,6 +1609,18 @@
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENf-Et-vFp">
+                                                        <rect key="frame" x="329" y="8" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="EVE-Hj-Ep8"/>
+                                                            <constraint firstAttribute="width" constant="25" id="F4G-Yu-tO2"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="close-dark"/>
+                                                        <connections>
+                                                            <action selector="crossBtnTappedWithSender:" destination="CVz-rL-zdj" eventType="touchUpInside" id="DkJ-et-6kN"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size (6)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ne-n6-dyW">
                                                         <rect key="frame" x="40" y="261.33333333333331" width="282" height="26.666666666666686"/>
                                                         <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="20"/>
@@ -1658,9 +1670,11 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="ENf-Et-vFp" firstAttribute="top" secondItem="epi-mh-2CU" secondAttribute="top" constant="8" id="8dy-4H-iyN"/>
                                                     <constraint firstItem="VCU-1Q-ocB" firstAttribute="trailing" secondItem="h4d-jQ-y8K" secondAttribute="trailing" id="Dns-LA-1m8"/>
                                                     <constraint firstItem="30U-Mz-dRK" firstAttribute="top" secondItem="3Ne-n6-dyW" secondAttribute="bottom" constant="8" symbolic="YES" id="GOH-oB-aUL"/>
                                                     <constraint firstAttribute="bottom" secondItem="30U-Mz-dRK" secondAttribute="bottom" constant="20" id="K6k-Oe-f1r"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ENf-Et-vFp" secondAttribute="trailing" constant="8" id="L3C-tM-vJS"/>
                                                     <constraint firstItem="h4d-jQ-y8K" firstAttribute="leading" secondItem="epi-mh-2CU" secondAttribute="leading" constant="40" id="NzO-li-n1E"/>
                                                     <constraint firstItem="h4d-jQ-y8K" firstAttribute="top" secondItem="RmT-2u-ijc" secondAttribute="bottom" constant="40" id="QgZ-aw-xxM"/>
                                                     <constraint firstItem="h4d-jQ-y8K" firstAttribute="centerY" secondItem="epi-mh-2CU" secondAttribute="centerY" id="Tql-g1-uuL"/>
@@ -1721,6 +1735,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnCross" destination="ENf-Et-vFp" id="7mO-yE-Snd"/>
                         <outlet property="btnHome" destination="ZA4-C9-UOl" id="lXo-Mi-JAZ"/>
                         <outlet property="heightBackReservationpopup" destination="Xub-Uf-Z4V" id="CaK-4R-axH"/>
                         <outlet property="heightTblGuest" destination="PDt-ub-So5" id="Caa-9A-ZI9"/>

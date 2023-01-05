@@ -11,6 +11,8 @@ import UIKit
 
 
 class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, cancelDinningPopup {
+    
+    
     func cancelDinningReservation(value: Bool) {
     popBack(3)
     }
@@ -661,6 +663,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             {
                 if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningRequestConfirmedVC") as?     DiningRequestConfirmedVC {
                     confirmDinningRequest.reservationDetails = response
+                    confirmDinningRequest.isFrom = self.isFrom
                     self.navigationController?.pushViewController(confirmDinningRequest, animated: true)
                 }
             } else {

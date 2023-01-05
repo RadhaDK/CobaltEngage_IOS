@@ -8,12 +8,14 @@
 
 import UIKit
 
+
 class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
     
     //MARK: - IBOutlets
     @IBOutlet weak var roundedBgView: UIView!
     @IBOutlet weak var btnHome: UIButton!
+    @IBOutlet weak var btnCross: UIButton!
     @IBOutlet weak var reservationConfirmedDateLbl: UILabel!
     @IBOutlet weak var preferredReservationTimeLbl: UILabel!
     @IBOutlet weak var partySizeCountLbl: UILabel!
@@ -27,6 +29,7 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
     var showNavigationBar = true
     var reservationDetails = DinningReservationFCFS.init()
     var arrBookedSlotMember = ["Lia Little"]
+    var isFrom : dinningMode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,8 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
         tblReservedGuest.delegate = self
         tblReservedGuest.dataSource  = self
         btnHome.setTitle("", for: .normal)
+        btnCross.setTitle("", for: .normal)
+
         configSlotMemberTblHeight()
         self.initialSetup()
     }
@@ -54,14 +59,37 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
     @IBAction func homeBtnTapped(sender:UIButton){
         self.navigationController?.popToRootViewController(animated: true)
         
-//        for controller in self.navigationController!.viewControllers as Array {
-//
-//            if controller.isKind(of: DiningReservationViewController.self) {
-//                self.navigationController!.popToViewController(controller, animated: true)
-//                break
-//            }
-//
-//        }
+
+        
+        //diningcalendar
+    }
+    
+    //MARK: - IBActions
+    @IBAction func crossBtnTapped(sender:UIButton){
+        if isFrom == .create{
+            for controller in self.navigationController!.viewControllers as Array {
+                
+                if controller.isKind(of: DiningReservationViewController.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+                
+            }
+        }
+        else if isFrom == .modify{
+            for controller in self.navigationController!.viewControllers as Array {
+                
+                if controller.isKind(of: DinningCalederVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+                
+            }
+        }
+        else{
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+
     }
     
     // MARK: - My order Table  Height
