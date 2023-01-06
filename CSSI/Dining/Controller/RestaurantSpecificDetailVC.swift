@@ -421,6 +421,10 @@ extension RestaurantSpecificDetailVC{
                     
                     self.collectionTimeSlot.reloadData()
                     self.tblAvailability.reloadData()
+                } else {
+                    self.collectionTimeSlot.setEmptyMessage(InternetMessge.kNoTimeSlot)
+                    self.collectionTimeSlot.reloadData()
+                    self.tblAvailability.reloadData()
                 }
 
             },onFailure: { error  in
