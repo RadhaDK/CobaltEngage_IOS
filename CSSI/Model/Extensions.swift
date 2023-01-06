@@ -372,3 +372,14 @@ extension UIColor {
        return String(format:"#%06x", rgb)
    }
 }
+extension UILabel {
+    func underline() {
+        if let textString = self.text {
+          let attributedString = NSMutableAttributedString(string: textString)
+            attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
+                                          value: NSUnderlineStyle.styleSingle.rawValue,
+                                          range: NSRange(location: 0, length: attributedString.length))
+          attributedText = attributedString
+        }
+    }
+}

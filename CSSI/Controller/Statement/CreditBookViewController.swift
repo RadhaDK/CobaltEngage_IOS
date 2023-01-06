@@ -61,16 +61,22 @@ extension CreditBookViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = CreditBookDetailsTbl.dequeueReusableCell(withIdentifier: "CreditBookDetailCell", for: indexPath) as! CreditBookDetailCell
         let dict = arrCreditList[indexPath.row]
         cell.lblCreditBookName.text = dict.CreditBookName
-        cell.lblCreditAmt.text = "$\(dict.CreditAmount ?? 0)"
-        cell.lblItemType.text = dict.ItemType
-        cell.lblAmtSpent.text = "$\(dict.SpentAmount ?? 0)"
-        cell.lblLocation.text = dict.Location
+        
+      //  cell.lblCreditAmt.text = "$\(dict.CreditAmount ?? 0)"
+        cell.lblCreditAmt.text = ""
+        //cell.lblItemType.text = dict.ItemType
+       // cell.lblItemType.text = ""
+       // cell.lblAmtSpent.text = "$\(dict.SpentAmount ?? 0)"
+        cell.lblAmtSpent.text = ""
+       // cell.lblLocation.text = dict.Location
+        cell.lblLocation.text = dict.EndDate
+    //    cell.lblCreditBalance.text = "$\(dict.Balance ?? 0)"
         cell.lblCreditBalance.text = "$\(dict.Balance ?? 0)"
         return cell
 }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
