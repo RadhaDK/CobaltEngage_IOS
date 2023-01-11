@@ -176,6 +176,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestFirstName      <- map["GuestFirstName"]
         specialOccation     <- map["D_SpecialOccasion"]
         addToBuddy          <- map["AddBuddy"]
+        modifyDietary       <- map["ModifyDietary"]
     }
     
     func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, memberNumber: String, modifyDiet: Int) {

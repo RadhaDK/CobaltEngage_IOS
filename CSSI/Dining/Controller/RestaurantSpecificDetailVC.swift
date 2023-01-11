@@ -287,6 +287,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
         self.diningReservation.SelectedTime = timeSlot
         self.diningReservation.SelectedDate = self.restaurantDetails.OtherAvailableDates[row].Date
+        
         self.moveToMemberDetailsScreen()
     }
     
