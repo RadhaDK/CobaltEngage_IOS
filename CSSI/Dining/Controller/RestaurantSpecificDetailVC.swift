@@ -57,10 +57,17 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var isSelectedRestaurant = false
     var reservationDate = ""
     var reservationTime = ""
+    var showNavigationBar = true
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUiInitialization()
+    }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = !self.showNavigationBar
     }
     //MARK: - setUpUI
     func setUpUi(){

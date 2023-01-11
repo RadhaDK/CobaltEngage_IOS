@@ -331,6 +331,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             impVC.isFrom = self.enumForDinningMode
             impVC.reservationDate = self.reservationDate
             impVC.reservationTime = self.reservationTime
+            impVC.showNavigationBar = false
             self.navigationController?.pushViewController(impVC, animated: true)
         }
     }
