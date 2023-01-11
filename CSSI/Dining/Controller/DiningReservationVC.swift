@@ -350,6 +350,10 @@ extension DiningReservationVC{
             
              paramaterDict = [
                 "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+                APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+                APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
                 APIKeys.kPartySize : self.diningReservation.PartySize,
                 APIKeys.kFilterDate: self.diningReservation.SelectedDate,
                 APIKeys.kFilterTime: self.diningReservation.SelectedTime,
@@ -408,6 +412,10 @@ extension DiningReservationVC{
             var paramaterDict:[String: Any]?
              paramaterDict = [
                 "Content-Type":"application/json",
+                APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+                APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+                APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
                 APIKeys.kRequestID : self.requestedId
              ]
            

@@ -96,6 +96,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             
             self.imageAddMember.isHidden = true
         } else {
+//            self.removeMembersBasedOnPartySize()
             self.btnAddMultipleHeight.constant = 0
         }
         if isFrom == .view {
@@ -219,6 +220,17 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         }
     }
 
+//    func removeMembersBasedOnPartySize() {
+//
+//        if self.diningReservation.PartySize < self.diningReservation.PartyDetails.count {
+//            for _ in self.diningReservation.PartySize+1...self.diningReservation.PartyDetails.count {
+//                self.diningReservation.PartyDetails.removeLast()
+//            }
+//        }
+//        self.tblGuest.reloadData()
+//    }
+    
+    
     func configSlotMemberTblHeight(){
         if self.diningReservation.PartySize == 0{
             heightTblGuest.constant = 0
@@ -739,7 +751,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             "ReservationType": "Dining",
             "RegistrationID": self.diningReservation.RequestID
        ] as [String : Any]
-//        print(paramaterDict)
+        print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
         
         APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict, onSuccess: { (response) in
