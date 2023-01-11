@@ -287,7 +287,6 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "YYYY-MM-dd"
         self.currentDate = inputFormatter.date(from: self.restaurantDetails.OtherAvailableDates[row].Date)!
-        
         self.diningReservation.SelectedTime = timeSlot
         self.diningReservation.SelectedDate = self.restaurantDetails.OtherAvailableDates[row].Date
         self.moveToMemberDetailsScreen()
