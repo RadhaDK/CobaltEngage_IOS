@@ -280,11 +280,14 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         self.diningReservation.PartySize = PartySize
         self.currentDate = Time
         updateUI()
-        
         restaurentDetail()
     }
     
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "YYYY-MM-dd"
+        self.currentDate = inputFormatter.date(from: self.restaurantDetails.OtherAvailableDates[row].Date)!
+        
         self.diningReservation.SelectedTime = timeSlot
         self.diningReservation.SelectedDate = self.restaurantDetails.OtherAvailableDates[row].Date
         self.moveToMemberDetailsScreen()
