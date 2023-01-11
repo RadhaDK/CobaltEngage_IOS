@@ -121,7 +121,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
     dynamic var guestContact        = ""
     dynamic var specialOccation     = ""
     dynamic var modifyDietary       = 1
-    
+    dynamic var addToBuddy          = 0
     
     override init() {
         super.init()
@@ -150,6 +150,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestFirstName      = ""
         specialOccation     = ""
         modifyDietary       = 1
+        addToBuddy          = 0
     }
     
     func mapping(map: Map) {
@@ -174,6 +175,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         guestLastName       <- map["GuestLastName"]
         guestFirstName      <- map["GuestFirstName"]
         specialOccation     <- map["D_SpecialOccasion"]
+        addToBuddy          <- map["AddBuddy"]
     }
     
     func setPartyDetails(confirmationNumber: String, memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, memberNumber: String, modifyDiet: Int) {
@@ -192,7 +194,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.modifyDietary = modifyDiet
     }
     
-    func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String, memberNumber: String) {
+    func setPartyGuestDetails(memberID: String, memberName: String, diet: String, anniversary: Int, birthday: Int, other: Int, otherText: String, highChair: Int, boosterChair: Int, guestOf: String, guestContact: String, guestType: String, guestDOB: String, guestEmail: String, guestGender: String, guestLastName: String, guestFirstName: String, memberNumber: String, addToBuddy: Int) {
         self.MemberID = memberID
         self.MemberName = memberName
         self.DietartRestriction = diet
@@ -213,6 +215,7 @@ class ResrvationPartyDetail: RequestData, Mappable {
         self.isEmpty = false
         self.MemberNumber = memberNumber
         self.modifyDietary = 1
+        self.addToBuddy = addToBuddy
     }
 }
 
