@@ -57,7 +57,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var lblREquestTimeHeading: UILabel!
     @IBOutlet weak var lblPartysizeHeading: UILabel!
     @IBOutlet weak var lblRequestedDateHeading: UILabel!
-    
+    @IBOutlet weak var lblTimer: UILabel!
+    @IBOutlet weak var viewTimer: UIView!
+
     
     
     //MARK: - variables
@@ -74,10 +76,18 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var diningPolicyURL = ""
     var requestedDate = Date()
     
+    var usedTimeInSec : Int?
+    var totalTimeInSec : Int?
+    var timer = Timer()
+    var seconds = 120
+    private var secondsRemaining = 120
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
         setUpUi()
+        
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -122,6 +132,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         btnAddMultiple.layer.borderColor = UIColor(red: 59/255, green: 135/255, blue: 193/255, alpha: 1).cgColor
         btnHome.setTitle("", for: .normal)
         btnBack.setTitle("", for: .normal)
+        viewTimer.layer.cornerRadius = 4
+        viewTimer.layer.borderColor = UIColor.white.cgColor
+        viewTimer.layer.borderWidth = 1
 //        lblPartySize.text = String(format: "%02d", self.diningReservation.PartySize)
         lblRequestedDate.text = self.getDateString(givenDate: self.requestedDate)
         lblTime.text = self.diningReservation.SelectedTime
@@ -149,7 +162,51 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         tblGuest.delegate = self
         tblGuest.dataSource  = self
         configSlotMemberTblHeight()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(DinningDetailRestuarantVC.updateTimer)), userInfo: nil, repeats: true)
+
     }
+    
+    //MARK: - imer function
+    @objc func updateTimer(){
+           seconds -= 1
+       //      print("Remaining Time is:- \(timeString(time: TimeInterval(seconds ?? 0)))")
+         
+           
+           if self.seconds > 0 {
+           
+               lblTimer.text = "\(timeString(time: TimeInterval(seconds )))"
+               
+               self.secondsRemaining -= 1
+               self.lblTimer.isHidden = false
+           }
+
+           
+           if timeString(time: TimeInterval(seconds )) == "00:00"{
+               self.timer.invalidate()
+    //            self.countDownTimer.pause()
+               
+               self.lblTimer.isHidden = true
+
+               
+           }
+           if seconds == 0{
+               self.lblTimer.isHidden = true
+               
+           }
+         
+           
+       }
+    
+    func timeString(time:TimeInterval) -> String{
+            let hours = Int(time) / 3600
+           let minutes  = Int(time) / 60 % 60
+           let seconds = Int(time) % 60 % 60
+           // print((minutes * 60) + seconds) // "3:25:45.670"
+           usedTimeInSec = hours * 60 + minutes * 60 + seconds
+           let a = CGFloat(usedTimeInSec!)
+           return String(format:"%02i:%02i", minutes, seconds)
+       }
+    
     //MARK: - IBOutlets
     @IBAction func btnSubmit(_ sender: Any) {
         self.diningReservation.Comments = self.txtReservationComment.text ?? ""

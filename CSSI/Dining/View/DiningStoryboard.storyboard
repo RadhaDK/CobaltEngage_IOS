@@ -978,6 +978,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                             </view>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2g-fF-nBA">
+                                <rect key="frame" x="294" y="81" width="80" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24H-SI-Bgj">
+                                        <rect key="frame" x="5" y="5" width="70" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="24H-SI-Bgj" firstAttribute="leading" secondItem="b2g-fF-nBA" secondAttribute="leading" constant="5" id="Rtg-2g-oDn"/>
+                                    <constraint firstAttribute="bottom" secondItem="24H-SI-Bgj" secondAttribute="bottom" constant="5" id="iTY-Xn-Rm6"/>
+                                    <constraint firstAttribute="height" constant="30" id="kqi-1i-kDh"/>
+                                    <constraint firstAttribute="width" constant="80" id="q2x-YM-Z6P"/>
+                                    <constraint firstAttribute="trailing" secondItem="24H-SI-Bgj" secondAttribute="trailing" constant="5" id="rQ3-69-93c"/>
+                                    <constraint firstItem="24H-SI-Bgj" firstAttribute="top" secondItem="b2g-fF-nBA" secondAttribute="top" constant="5" id="rtM-2I-5qz"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6Q-eI-e5l">
                                 <rect key="frame" x="12" y="42" width="40" height="40"/>
                                 <constraints>
@@ -1502,11 +1522,13 @@
                             <constraint firstItem="Xwy-jZ-SxU" firstAttribute="top" secondItem="d1Q-xH-P9A" secondAttribute="bottom" constant="3" id="3G3-wi-FvD"/>
                             <constraint firstItem="Xwy-jZ-SxU" firstAttribute="bottom" secondItem="KKl-fF-hmn" secondAttribute="bottom" constant="-20" id="43K-be-Urw"/>
                             <constraint firstItem="Vix-zP-g1v" firstAttribute="height" secondItem="KKl-fF-hmn" secondAttribute="height" id="6L8-vI-W3f"/>
+                            <constraint firstItem="b2g-fF-nBA" firstAttribute="top" secondItem="MDl-Ku-S0y" secondAttribute="bottom" constant="4" id="75a-iP-R0A"/>
                             <constraint firstItem="6Tp-wh-jo5" firstAttribute="centerX" secondItem="KKl-fF-hmn" secondAttribute="centerX" id="9X3-p6-2go"/>
                             <constraint firstItem="2NZ-zS-ll2" firstAttribute="trailing" secondItem="dQ2-RQ-Dz5" secondAttribute="trailing" id="Dpb-qj-nb7"/>
                             <constraint firstItem="v6Q-eI-e5l" firstAttribute="leading" secondItem="2NZ-zS-ll2" secondAttribute="leading" constant="12" id="Ftj-Ui-8sm"/>
                             <constraint firstItem="NWZ-7U-ZYu" firstAttribute="top" secondItem="d1Q-xH-P9A" secondAttribute="top" id="GYg-Mb-5AQ"/>
                             <constraint firstItem="Vix-zP-g1v" firstAttribute="top" secondItem="KKl-fF-hmn" secondAttribute="top" id="Jmp-Ar-IKb"/>
+                            <constraint firstItem="2NZ-zS-ll2" firstAttribute="trailing" secondItem="b2g-fF-nBA" secondAttribute="trailing" constant="16" id="Kcj-RP-5Rk"/>
                             <constraint firstItem="dQ2-RQ-Dz5" firstAttribute="top" secondItem="KKl-fF-hmn" secondAttribute="bottom" id="Px8-lj-jfA"/>
                             <constraint firstItem="d1Q-xH-P9A" firstAttribute="leading" secondItem="2NZ-zS-ll2" secondAttribute="leading" constant="25" id="T7H-d6-kEr"/>
                             <constraint firstItem="Xwy-jZ-SxU" firstAttribute="leading" secondItem="2NZ-zS-ll2" secondAttribute="leading" constant="25" id="U9P-XK-7pj"/>
@@ -1555,9 +1577,11 @@
                         <outlet property="lblRestaurantHeading" destination="d1Q-xH-P9A" id="DjK-PR-0BT"/>
                         <outlet property="lblRestaurantName" destination="Xwy-jZ-SxU" id="Rfi-hs-Rrb"/>
                         <outlet property="lblTime" destination="6Tp-wh-jo5" id="8iq-VI-77y"/>
+                        <outlet property="lblTimer" destination="24H-SI-Bgj" id="Q35-e4-WqI"/>
                         <outlet property="tblGuest" destination="tuR-TC-bOz" id="W4c-oH-UFk"/>
                         <outlet property="txtReservationComment" destination="HfD-Y7-iNk" id="ZGt-lb-oba"/>
                         <outlet property="viewModifyDetailsHeight" destination="Twp-Za-BXg" id="RkK-LE-5Lp"/>
+                        <outlet property="viewTimer" destination="b2g-fF-nBA" id="tmo-QQ-Qhx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFk-vv-XlD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1786,7 +1810,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dining Resv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omh-vy-APu">
-                                <rect key="frame" x="149" y="52.666666666666664" width="92.333333333333314" height="18.999999999999993"/>
+                                <rect key="frame" x="144.33333333333334" y="52.666666666666664" width="101.66666666666666" height="18.999999999999993"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="7B2-hd-H4s"/>
                                 </constraints>
@@ -1985,7 +2009,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Should we be aware of any dietary restrictions?Please Specify:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wd-j8-mDl">
-                                                <rect key="frame" x="15" y="303" width="275.66666666666669" height="33.333333333333314"/>
+                                                <rect key="frame" x="15" y="303" width="275.66666666666669" height="30.333333333333314"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="ELe-2m-Bv0"/>
                                                     <constraint firstAttribute="width" constant="275.67000000000002" id="H8w-fd-Aig"/>
@@ -1995,7 +2019,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uDd-xk-sFX">
-                                                <rect key="frame" x="15" y="348.33333333333331" width="360" height="120"/>
+                                                <rect key="frame" x="15" y="345.33333333333331" width="360" height="120"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="a2e-Wz-fdr"/>
@@ -2005,7 +2029,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TxA-VE-rJq">
-                                                <rect key="frame" x="30" y="498.33333333333337" width="330" height="40"/>
+                                                <rect key="frame" x="30" y="495.33333333333337" width="330" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-Nx-Ury">
                                                         <rect key="frame" x="0.0" y="0.0" width="155" height="40"/>
@@ -2157,7 +2181,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qph-v9-wnS">
-                                        <rect key="frame" x="25" y="25" width="77" height="23"/>
+                                        <rect key="frame" x="25" y="25" width="81" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="NuD-ch-KBQ"/>
                                         </constraints>
@@ -2228,7 +2252,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDz-eg-xub">
-                                        <rect key="frame" x="25" y="126" width="112" height="23"/>
+                                        <rect key="frame" x="25.000000000000007" y="126" width="117.66666666666669" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="u9B-t6-veS"/>
                                         </constraints>
@@ -2418,7 +2442,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="510"/>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLe-iV-Qdc">
-                                                <rect key="frame" x="20" y="12" width="40" height="23"/>
+                                                <rect key="frame" x="20" y="12" width="43" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="9ib-As-UfG"/>
                                                 </constraints>

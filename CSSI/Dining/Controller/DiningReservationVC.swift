@@ -238,7 +238,6 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         self.diningReservation.PartySize = PartySize
         self.currentDate = Time
         updateUI()
-        
         reservationList()
     }
     
