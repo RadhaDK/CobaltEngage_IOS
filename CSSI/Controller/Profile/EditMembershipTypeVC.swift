@@ -222,7 +222,12 @@ extension EditMembershipTypeVC{
                             thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_CANCELLED_MESSAGE
                         }
                         else if self.actionrequestButton == .save{
+                            if membershipSavedData.IsAvailableMTApprovedRequest == 1{
+                                print("test")
+                            }
+                            else{
                             thankyouMembershipViewController.thankYouDesc = self.appDelegate.masterLabeling.DUES_RENEWAL_MEMBERSHIP_TYPE_UPDATE_REQUEST_MESSAGE
+                            }
                         }
                     }
                 
