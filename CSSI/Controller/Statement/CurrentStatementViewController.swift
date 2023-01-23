@@ -322,7 +322,7 @@ class CurrentStatementViewController: UIViewController, UITableViewDelegate, UIT
                         self.getCurrentstmtApi(withType: (self.appDelegate.selectedStmtCategory.categoryname)!,strSearch: strSearch)
                         self.loadsegmentController()
                     }
-                    self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: categoriesList.showMinimumDesignator ?? 0, statementDesignator: categoriesList.statementDesignator ?? "", minStatementLegend: categoriesList.minStatementLegend ?? "", enableMinimumTemplate: categoriesList.enableMinimumTemplate ?? 0, IsCreditBookEnabled : 0, CreditIndicate : "")
+                    self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: categoriesList.showMinimumDesignator ?? 0, statementDesignator: categoriesList.statementDesignator ?? "", minStatementLegend: categoriesList.minStatementLegend ?? "", enableMinimumTemplate: categoriesList.enableMinimumTemplate ?? 0, IsCreditBookEnabled : categoriesList.IsCreditBookEnabled ?? 0, CreditIndicate : "")
                 }else{
                     if(((categoriesList.responseMessage?.count) ?? 0)>0){
                         SharedUtlity.sharedHelper().showToast(on:

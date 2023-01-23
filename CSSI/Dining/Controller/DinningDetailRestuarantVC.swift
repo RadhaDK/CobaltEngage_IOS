@@ -749,7 +749,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             "IsReservation": "1",
             "IsEvent": "0",
             "ReservationType": "Dining",
-            "RegistrationID": self.diningReservation.RequestID
+            "RegistrationID": self.diningReservation.RequestID,
+            "RestaurantID": self.diningReservation.RestaurantID
        ] as [String : Any]
         print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
