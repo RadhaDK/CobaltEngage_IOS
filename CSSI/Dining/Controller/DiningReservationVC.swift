@@ -238,7 +238,6 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         self.diningReservation.PartySize = PartySize
         self.currentDate = Time
         updateUI()
-        
         reservationList()
     }
     
@@ -271,7 +270,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             self.diningReservation.SelectedTime = timeSlot
             self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
             vc?.diningReservation = self.diningReservation
-            vc?.diningPolicyURL = self.diningPolicyURL
+            vc?.diningPolicyURL = self.restaurantsList[row].DinningPolicy
             vc?.restaurantName = self.restaurantsList[row].RestaurantName
             vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
             vc?.requestedDate = self.currentDate
@@ -366,7 +365,7 @@ extension DiningReservationVC{
             } else {
                 paramaterDict["IsView"] = 0
             }
-//            print(paramaterDict)
+            print(paramaterDict)
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 if(reservationDinningListing.restaurants.count == 0)
@@ -378,7 +377,7 @@ extension DiningReservationVC{
                 
                 self.restaurantsList = reservationDinningListing.restaurants!
                 self.diningSetting = reservationDinningListing.diningSettings!
-                
+               
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
                     self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!

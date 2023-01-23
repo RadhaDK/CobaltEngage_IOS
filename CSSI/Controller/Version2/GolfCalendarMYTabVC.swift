@@ -1299,7 +1299,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                     cancelViewController.eventID = dict.RequestID
                     cancelViewController.partySize = dict.PartySize
                     cancelViewController.delegateCancelReservation = self
-                    cancelViewController.diningCancelPopupMode = .listing
+                    cancelViewController.diningPopupMode = .cancel
                     cancelViewController.cancelReservationClosure  = {
                         self.showCancelSuccess()
 //                        self.myDinningReservationList(strSearch: "")

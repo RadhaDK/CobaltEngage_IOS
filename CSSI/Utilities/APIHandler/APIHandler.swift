@@ -330,6 +330,7 @@ class APIHandler: NSObject
     static let dinningMemberValidationFCFS = "dining/GetFBMemberValidation"
     static let dinningHistoryReservation = "dining/GetFBHistory"
     static let dinningHistoryReservationDetail = "dining/GetFBHistoryDetails"
+    static let diningTimer = "dining/GetDiningTimerDetails"
     
     
     //CrediBook
@@ -7641,6 +7642,47 @@ class APIHandler: NSObject
                         }
                         else{
                             let dashboardDict = Mapper<CreditBookDetails>().map(JSONObject: jsonDict)
+                            onSuccess(dashboardDict!)
+                        }
+                    }
+                }
+                catch let error as NSError {
+                    // print(error)
+                }
+            case .failure(let error):
+                // print(error)
+                onFailure(error)
+            default:
+                print("error")
+            }
+            
+        }
+    }
+    
+    
+    //MARK:- Dining Timer Api
+    func diningTimerApi(paramater: [String: Any]?, onSuccess: @escaping(GetTimerMdel) -> Void, onFailure: @escaping(Error) -> Void) {
+        let url : String = self.diningBaseURL + APIHandler.diningTimer
+        print(paramater)
+        print("============Start Time -- \(url) -- \(Date())========")
+        Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
+            print("============End Time -- \(url) -- \(Date())========")
+            switch response.result {
+            case.success(let result):
+                let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
+          //      print("responseStringnotification = \(String(describing: responseString))")
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
+                        print(jsonDict)
+                        let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
+                        if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
+                            self.appDelegate.hideIndicator()
+                            let currentViewController = UIApplication.topViewController()
+                            let brokenMessage = (dashboardDicterror?.brokenRules?.message)!  + (dashboardDicterror?.brokenRules?.fields?.joined(separator: ","))!
+                            SharedUtlity.sharedHelper().showToast(on:currentViewController?.view, withMeassge:brokenMessage, withDuration: Duration.kMediumDuration)
+                        }
+                        else{
+                            let dashboardDict = Mapper<GetTimerMdel>().map(JSONObject: jsonDict)
                             onSuccess(dashboardDict!)
                         }
                     }
