@@ -38,6 +38,8 @@
 		099C851628F97BB000959E9E /* EditDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851528F97BB000959E9E /* EditDinningReservationModel.swift */; };
 		099C851828F97BD900959E9E /* DeleteDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */; };
 		09A0D06028F4927500FC38F2 /* DinningHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05F28F4927500FC38F2 /* DinningHelper.swift */; };
+		09B6222A297A75CD00D993D6 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B62229297A75CD00D993D6 /* TimerModel.swift */; };
+		09B6222E297A9ADE00D993D6 /* DiningCancelTimerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B6222D297A9ADE00D993D6 /* DiningCancelTimerPopup.swift */; };
 		09C3F81728D76F3600D307CF /* MemberBillingFrequencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */; };
 		09C3F81828D76F3600D307CF /* MemberBillingFrequencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */; };
 		09DEE8EE2913C558008E3473 /* CancelDinningReservationPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */; };
@@ -664,6 +666,8 @@
 		099C851528F97BB000959E9E /* EditDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDinningReservationModel.swift; path = CSSI/Dining/Controller/EditDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
 		099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeleteDinningReservationModel.swift; path = CSSI/Dining/Controller/DeleteDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
 		09A0D05F28F4927500FC38F2 /* DinningHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningHelper.swift; sourceTree = "<group>"; };
+		09B62229297A75CD00D993D6 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		09B6222D297A9ADE00D993D6 /* DiningCancelTimerPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningCancelTimerPopup.swift; sourceTree = "<group>"; };
 		09C3F81528D76F3600D307CF /* MemberBillingFrequencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBillingFrequencyCell.swift; sourceTree = "<group>"; };
 		09C3F81628D76F3600D307CF /* MemberBillingFrequencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberBillingFrequencyCell.xib; sourceTree = "<group>"; };
 		09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDinningReservationPopupVC.swift; sourceTree = "<group>"; };
@@ -2492,6 +2496,7 @@
 				099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */,
 				098A3924290059B800D22855 /* getDinningReservationModel.swift */,
 				0974F0712912758200657F3D /* GetMyDinnningReservationModel.swift */,
+				09B62229297A75CD00D993D6 /* TimerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2522,6 +2527,7 @@
 				0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */,
 				09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */,
 				09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */,
+				09B6222D297A9ADE00D993D6 /* DiningCancelTimerPopup.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3425,6 +3431,7 @@
 				9FB84714250BC4390065DB8A /* FitnessAppSettingsViewController.swift in Sources */,
 				5F713A562133D27700A56CE3 /* SDWebImageCodersManager.m in Sources */,
 				5FCD05E52119BDCE00F42C2F /* DatabaseHandler.swift in Sources */,
+				09B6222E297A9ADE00D993D6 /* DiningCancelTimerPopup.swift in Sources */,
 				84BF2E0B28ACBAB400A1D692 /* TransactionDetailTableViewCell.swift in Sources */,
 				0985E3E228EFF73D006C3615 /* DiningRequestSelectResturantDateVC.swift in Sources */,
 				5FBFFBDC20EB7BA2004D31D9 /* Guest.swift in Sources */,
@@ -3632,6 +3639,7 @@
 				18AA4923221ED6CA005F2DE8 /* SettingsViewController.swift in Sources */,
 				5F47195620D90189002EFBB1 /* Club_news.swift in Sources */,
 				18659DC721F1925C00AEBF5D /* PopUpForCategoryVC.swift in Sources */,
+				09B6222A297A75CD00D993D6 /* TimerModel.swift in Sources */,
 				097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */,
 				A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */,
 				5F9D76F520DA59A100728446 /* AddOnType.swift in Sources */,

@@ -383,3 +383,15 @@ extension UILabel {
         }
     }
 }
+
+extension UIViewController{
+    func timeString(time:TimeInterval) -> String{
+            let hours = Int(time) / 3600
+           let minutes  = Int(time) / 60 % 60
+           let seconds = Int(time) % 60 % 60
+           // print((minutes * 60) + seconds) // "3:25:45.670"
+//           usedTimeInSec = hours * 60 + minutes * 60 + seconds
+//           let a = CGFloat(usedTimeInSec!)
+           return String(format:"%02i:%02i", minutes, seconds)
+       }
+}

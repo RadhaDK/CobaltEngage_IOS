@@ -476,3 +476,7 @@ enum diningCancelPopupMode{
 enum statementType{
     case minimum, credit
 }
+
+enum diningPopup{
+    case cancel, timeslot
+}

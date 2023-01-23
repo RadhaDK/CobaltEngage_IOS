@@ -18,14 +18,18 @@ class CancelDinningReservationPopupVC: UIViewController {
     @IBOutlet weak var btnRemovePopUp: UIButton!
     @IBOutlet weak var btnYes: UIButton!
     @IBOutlet weak var btnNo: UIButton!
+    @IBOutlet weak var centerIcon: UIImageView!
+
     
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var eventID : String?
     var delegateCancelReservation : cancelDinningPopup?
-    var diningCancelPopupMode : diningCancelPopupMode?
+   // var diningCancelPopupMode : diningCancelPopupMode?
     var partySize = 1
     var cancelReservationClosure:(()->())?
-    
+    var diningPopupMode : diningPopup?
+    var desribtionText : String?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +47,11 @@ class CancelDinningReservationPopupVC: UIViewController {
         self.descriptionLbl.attributedText = self.generateStringFrom(message: self.appDelegate.masterLabeling.DINING_CANCEL_MESSAGE, count: "\(self.partySize)")
         self.descriptionLbl.textColor = .darkGray
         self.descriptionLbl.font = .systemFont(ofSize: 24.0, weight: .semibold)
+        if diningPopupMode == .timeslot{
+            centerIcon.image = UIImage(named: "Group 918")
+            self.descriptionLbl.font = .systemFont(ofSize: 18.0, weight: .regular)
+            descriptionLbl.text = desribtionText
+        }
     }
     
     
@@ -53,14 +62,20 @@ class CancelDinningReservationPopupVC: UIViewController {
     }
     
     @IBAction func yesBtnTapped(sender:UIButton){
-        btnYes.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
-//        self.cancelReservationClosure?()
-//        self.dismiss(animated: true, completion: nil)
-        deleteMyReservation()
+        if diningPopupMode == .timeslot{}
+        else{
+            btnYes.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
+            //        self.cancelReservationClosure?()
+            //        self.dismiss(animated: true, completion: nil)
+            deleteMyReservation()
+        }
     }
     @IBAction func noBtnTapped(sender:UIButton){
-        btnNo.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
-        self.dismiss(animated: true, completion: nil)
+        if diningPopupMode == .timeslot{}
+        else{
+            btnNo.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     
