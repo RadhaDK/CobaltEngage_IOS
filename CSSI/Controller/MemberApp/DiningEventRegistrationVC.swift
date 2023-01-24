@@ -1103,7 +1103,10 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
                         }
                         else
                         {
-                            self.txtTime.text = self.eventDetails[0].timeInterval?[0].value ?? ""
+                            if self.eventDetails[0].timeInterval?.count != 0{
+                                self.txtTime.text = self.eventDetails[0].timeInterval?[0].value ?? ""
+                            }
+                            
                         }
                     //self.txtTime.text = response.requestDiningDetails![0].reservationRequestTime ?? ""
                         
