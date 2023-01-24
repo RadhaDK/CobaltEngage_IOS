@@ -209,6 +209,7 @@ extension TransactionHistoryViewController{
              paramaterDict = [
                 "Content-Type":"application/json",
                 APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
                 APIKeys.kCreditBookID: creditBookId ?? "",
                 APIKeys.kFilterDate : ""
              ]
