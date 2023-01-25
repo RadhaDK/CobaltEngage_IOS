@@ -521,7 +521,7 @@ class APIHandler: NSObject
             print("============End Time -- \(url) -- \(Date())========")
             switch response.result {
             case.success(let result):
-                print(response)
+//                print(response)
                 let responseString = NSString(data: response.data!, encoding: String.Encoding.utf8.rawValue)
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
@@ -2798,7 +2798,7 @@ class APIHandler: NSObject
                     defaults.synchronize()
                     
                     let decoded  = defaults.object(forKey: "getTabbar") as! String
-                    // print("responseString = \(String(describing: decoded))")
+                     print("responseString = \(String(describing: decoded))")
                     
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
@@ -3842,7 +3842,7 @@ class APIHandler: NSObject
     func getStatement(paramater: [String: Any]?, onSuccess: @escaping(StatementCategories) -> Void, onFailure: @escaping(Error) -> Void) {
         
         let url : String = baseURL + APIHandler.getStatementCategory
-        print(paramater)
+//        print(paramater)
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
             APIHeader.kpassword: APIHeader.kpasswordvalue,
@@ -3859,7 +3859,7 @@ class APIHandler: NSObject
 //                print("responseStringcategory = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-//                        print(jsonDict)
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -7592,7 +7592,7 @@ class APIHandler: NSObject
           //      print("responseStringnotification = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()

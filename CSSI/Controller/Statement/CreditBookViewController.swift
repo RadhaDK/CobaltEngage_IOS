@@ -71,7 +71,7 @@ extension CreditBookViewController : UITableViewDelegate, UITableViewDataSource{
        // cell.lblLocation.text = dict.Location
         cell.lblLocation.text = dict.EndDate
     //    cell.lblCreditBalance.text = "$\(dict.Balance ?? 0)"
-        cell.lblCreditBalance.text = "$\(dict.Balance ?? 0)"
+        cell.lblCreditBalance.text = String(format: "$%.2f", dict.Balance ?? 0)
         return cell
 }
     
@@ -83,6 +83,7 @@ extension CreditBookViewController : UITableViewDelegate, UITableViewDataSource{
         let transactionHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "TransactionHistoryViewController") as! TransactionHistoryViewController
         let dict = arrCreditList[indexPath.row]
         transactionHistoryVC.creditBookId = dict.CreditBookID
+        transactionHistoryVC.creditBookMemberId = dict.CreditBookMemberID
         transactionHistoryVC.typeOfStatement = .credit
         transactionHistoryVC.templateName = dict.CreditBookName ?? ""
         transactionHistoryVC.minimumTamplateID = dict.CreditBookID ?? ""
@@ -100,7 +101,9 @@ extension CreditBookViewController{
              paramaterDict = [
                 "Content-Type":"application/json",
                 APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
-                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict]
              ]
 
 //            print(paramaterDict)

@@ -281,6 +281,7 @@ struct APIKeys
     
     //CreditBook
     static let kCreditBookID = "CreditBookID"
+    static let kCreditBookMemberID = "CreditBookMemberID"
 }
 
 struct APIHeader
