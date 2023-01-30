@@ -10,7 +10,11 @@ import UIKit
 
 
 
-class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, cancelDinningPopup {
+class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, cancelDinningPopup, cancelReservationBlockedPopup {
+    func cancelBlockedReservationPopup(value: Bool) {
+        popBack(2)
+    }
+    
     
     
     func cancelDinningReservation(value: Bool) {
@@ -852,9 +856,10 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 //                    }
                     SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
 
-                    self.seconds = (response.TimerMinutes * 60)
-                    self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(DinningDetailRestuarantVC.updateTimer)), userInfo: nil, repeats: true)
-
+                    if response.TimerMinutes != nil{
+                        self.seconds = (response.TimerMinutes * 60)
+                        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(DinningDetailRestuarantVC.updateTimer)), userInfo: nil, repeats: true)
+                    }
                     //SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"", withDuration: Duration.kMediumDuration)
                 }
                 else
@@ -865,6 +870,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                             cancelViewController.partySize = self.diningReservation.PartySize
                             cancelViewController.diningPopupMode = .timeslot
                             cancelViewController.desribtionText = response.responseMessage
+                            cancelViewController.delegateBlockTimer = self
                             //  cancelViewController.hardRule = response.IsHardRuleEnabled
                             
                             //   cancelViewController.delegateCancelReservation = self
@@ -878,6 +884,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                     else{
                         if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningCancelTimerPopup") as? DiningCancelTimerPopup {
                             confirmDinningRequest.descriptionText = response.responseMessage
+                            
                             self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
                         }
                         

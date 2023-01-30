@@ -12,6 +12,10 @@ protocol cancelDinningPopup{
     func cancelDinningReservation(value : Bool)
 }
 
+protocol cancelReservationBlockedPopup{
+    func cancelBlockedReservationPopup(value : Bool)
+}
+
 class CancelDinningReservationPopupVC: UIViewController {
     
     @IBOutlet weak var descriptionLbl: UILabel!
@@ -29,7 +33,8 @@ class CancelDinningReservationPopupVC: UIViewController {
     var cancelReservationClosure:(()->())?
     var diningPopupMode : diningPopup?
     var desribtionText : String?
-   
+    var delegateBlockTimer : cancelReservationBlockedPopup?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,7 +76,10 @@ class CancelDinningReservationPopupVC: UIViewController {
         }
     }
     @IBAction func noBtnTapped(sender:UIButton){
-        if diningPopupMode == .timeslot{}
+        if diningPopupMode == .timeslot{
+            self.dismiss(animated: true, completion: nil)
+            delegateBlockTimer?.cancelBlockedReservationPopup(value: true)
+        }
         else{
             btnNo.layer.borderColor = UIColor(red: 27/255, green: 202/255, blue: 255/255, alpha: 1).cgColor
             self.dismiss(animated: true, completion: nil)
