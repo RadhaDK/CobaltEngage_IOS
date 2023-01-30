@@ -1725,6 +1725,10 @@ class DashBoardViewController: UIViewController, UICollectionViewDelegate, UICol
             self.appDelegate.giftCertificateStatus = giftCertificateStatus
         }
         
+        if let creditBookStatus = memberDirectoryInterest?.creditBookStatus {
+            self.appDelegate.creditBookStatus = creditBookStatus
+        }
+        
         //Added on 28th October 2020 V2.3 -- GATHER0000176
         
         if let fitnessSettings = memberDirectoryInterest?.fitnessSettings

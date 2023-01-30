@@ -41,6 +41,8 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     @IBOutlet weak var viewBottomHeight: NSLayoutConstraint!
     @IBOutlet weak var viewMinimumIndication: UIView!
     @IBOutlet weak var viewCreditIndication: UIView!
+    @IBOutlet weak var stackIndication: UIStackView!
+    @IBOutlet weak var stackIndicationHeight: NSLayoutConstraint!
     @IBOutlet weak var lblMinimumIndication: UILabel!
     @IBOutlet weak var lblCreditIndication: UILabel!
     @IBOutlet weak var btnMinimumIndication: UIButton!
@@ -200,6 +202,9 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
           self.btnMinimum.isHidden = false
           self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
+          self.stackIndicationHeight.constant = 54.0
+          self.viewMinimumIndication.isHidden = false
+          self.viewCreditIndication.isHidden = false
         }
         
         else if IsCreditBookEnabled == 1 {
@@ -207,17 +212,23 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
             self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
             self.centerAlignedView.constant = -95.0
-
+            self.viewMinimumIndication.isHidden = true
+            self.viewCreditIndication.isHidden = false
+            self.stackIndicationHeight.constant = 27.0
         }
         else if enableMinimumTemplate == 1 {
             self.btnMinimum.isHidden = false
             self.btnCreditBook.isHidden = true
             self.viewBottomHeight.constant = 125.0
             self.centerAlignedView.constant = 95.0
-
+            self.viewMinimumIndication.isHidden = false
+            self.viewCreditIndication.isHidden = true
+            self.stackIndicationHeight.constant = 27.0
         }
         
         else {
+            self.btnMinimum.isHidden = true
+            self.btnCreditBook.isHidden = true
             self.viewBottomHeight.constant = 94.0
         }
         
@@ -492,8 +503,8 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
     
     @IBAction func btnMinimumIndicationClicked(_ sender: Any) {
         
-        self.viewMinimumIndication.isHidden = !self.viewMinimumIndication.isHidden
-        self.viewCreditIndication.isHidden = !self.viewCreditIndication.isHidden
+        self.stackIndication.isHidden = !self.stackIndication.isHidden
+//        self.viewCreditIndication.isHidden = !self.viewCreditIndication.isHidden
     }
     
     

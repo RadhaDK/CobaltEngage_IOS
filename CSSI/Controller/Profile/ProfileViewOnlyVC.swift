@@ -145,7 +145,7 @@ class ProfileViewOnlyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.enableDues(isEnable: true)
+        self.enableDues(isEnable: false)
         self.btnTermsOfUse.setTitleColor(APPColor.MainColours.primary2, for: .normal)
         self.btnPrivacyPolicy.setTitleColor(APPColor.MainColours.primary2, for: .normal)
         self.viewDivider.backgroundColor = APPColor.MainColours.primary2

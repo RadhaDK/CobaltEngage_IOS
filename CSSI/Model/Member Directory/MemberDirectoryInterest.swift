@@ -119,6 +119,8 @@ class MemberDirectoryInterest: NSObject, Mappable {
     // Added by Zeeshan -- Adding Trans types for Golf FCFS
     var MB_TransType : [TransTypes]?
     
+    var creditBookStatus: [FilterOption]?
+    
     convenience required init?(map: Map) {
         self.init()
     }
@@ -230,6 +232,7 @@ class MemberDirectoryInterest: NSObject, Mappable {
         self.MB_AddRequestOpt_GolfLesson <- map["MB_AddRequestOpt_GolfLesson"]
         //GATHER0001167 -- End
         self.MB_TransType <- map["MB_TransType"]
+        self.creditBookStatus <- map["Status"]
     }
     
 }

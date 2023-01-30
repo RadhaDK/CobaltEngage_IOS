@@ -43,7 +43,7 @@ class CreditBookViewController: UIViewController, HorizontalFilterViewDelegate {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationItem.title = "Credit Book"
         
-        self.defaultFilter = SelectedFilter.init(type: .Status, option: self.appDelegate.giftCertificateStatus.first(where: {$0.Id == "Active"}) ?? FilterOption.init())
+        self.defaultFilter = SelectedFilter.init(type: .Status, option: self.appDelegate.creditBookStatus.first(where: {$0.Id == "Active"}) ?? FilterOption.init())
         self.selectedFilter = self.defaultFilter
         
         creditBookList()
@@ -79,7 +79,7 @@ class CreditBookViewController: UIViewController, HorizontalFilterViewDelegate {
         adjustmentView.addSubview(filterView)
         adjustmentView.backgroundColor = .clear
         
-        filterView.show(filter: Filter.init(type: .Status, options: self.appDelegate.giftCertificateStatus, displayName: self.appDelegate.masterLabeling.EVENT_STATUSFILTER ?? ""))
+        filterView.show(filter: Filter.init(type: .Status, options: self.appDelegate.creditBookStatus, displayName: self.appDelegate.masterLabeling.EVENT_STATUSFILTER ?? ""))
         filterView.delegate = self
         filterView.selectedFiter = self.selectedFilter
         //Added on 14th October 2020 V2.3
