@@ -11,12 +11,16 @@ import UIKit
 
 
 class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, cancelDinningPopup, cancelReservationBlockedPopup {
-    func cancelBlockedReservationPopup(value: Bool) {
-        popBack(2)
+    func cancelBlockedReservationPopup(value: String) {
+        if value == "No"{
+            popBack(2)
+        }
+        else{
+            
+        }
     }
     
-    
-    
+  
     func cancelDinningReservation(value: Bool) {
     popBack(3)
     }
