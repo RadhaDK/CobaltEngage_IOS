@@ -25,7 +25,8 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
     
     var transactionHistoryList: [TemplateHistory] = []
     var typeOfStatement : statementType?
-    var creditBookId : String?
+    var creditBookId = ""
+    var creditBookMemberId = ""
     var crediDetails : [CreditBookHistoryDetail] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +114,7 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
             cell.lblDate.text = self.crediDetails[indexPath.row].Date ?? ""
             cell.lblLocation.text  = self.crediDetails[indexPath.row].Location ?? ""
             cell.lblReceiptID.text  = self.crediDetails[indexPath.row].ReceiptNumber ?? ""
-            cell.lblTotal.text  = "\(self.crediDetails[indexPath.row].Amount ?? 0)"
+            cell.lblTotal.text  = "\(self.crediDetails[indexPath.row].Amount ?? "")"
         }
         return cell
     }
@@ -132,9 +133,9 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
             transactionDetailVC.statementID = self.crediDetails[indexPath.row].CreditBookID
             transactionDetailVC.receiptno = self.crediDetails[indexPath.row].ReceiptNumber
             transactionDetailVC.purchaseDate = self.crediDetails[indexPath.row].Date
-            transactionDetailVC.amount = "\(self.crediDetails[indexPath.row].Amount ?? 0)"
+            transactionDetailVC.amount = self.crediDetails[indexPath.row].Amount
             transactionDetailVC.isFromMinimums = true
-            transactionDetailVC.category = self.crediDetails[indexPath.row].Category
+//            transactionDetailVC.category = self.crediDetails[indexPath.row].Category
         }
         self.navigationController?.pushViewController(transactionDetailVC, animated: true)
         self.transactionDetailTableView.reloadData()
@@ -209,11 +210,15 @@ extension TransactionHistoryViewController{
              paramaterDict = [
                 "Content-Type":"application/json",
                 APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!,
-                APIKeys.kCreditBookID: creditBookId ?? "",
+                APIKeys.kParentId: UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue)!,
+                APIKeys.kid: UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue)!,
+                APIKeys.kdeviceInfo: [APIHandler.devicedict],
+                APIKeys.kCreditBookID: creditBookId,
+                APIKeys.kCreditBookMemberID: creditBookMemberId,
                 APIKeys.kFilterDate : ""
              ]
 
-//            print(paramaterDict)
+            print(paramaterDict)
             APIHandler.sharedInstance.creditBookDetail(paramater: paramaterDict, onSuccess: { creditDetail in
                 self.appDelegate.hideIndicator()
                 if(creditDetail.CredtiBookTranHistoryDetails.count == 0)

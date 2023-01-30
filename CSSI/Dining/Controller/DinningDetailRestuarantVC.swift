@@ -790,7 +790,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             "IsReservation": "1",
             "IsEvent": "0",
             "ReservationType": "Dining",
-            "RegistrationID": self.diningReservation.RequestID
+            "RegistrationID": self.diningReservation.RequestID,
+            "RestaurantID": self.diningReservation.RestaurantID
        ] as [String : Any]
         print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
@@ -843,6 +844,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
          
                 if response.ResponseCode == InternetMessge.kSuccess
                 {
+                    
+                    
+//                    if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningCancelTimerPopup") as? DiningCancelTimerPopup {
+//                        confirmDinningRequest.descriptionText = response.responseMessage
+//                        self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
+//                    }
+                    SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+
                     self.seconds = (response.TimerMinutes * 60)
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(DinningDetailRestuarantVC.updateTimer)), userInfo: nil, repeats: true)
 

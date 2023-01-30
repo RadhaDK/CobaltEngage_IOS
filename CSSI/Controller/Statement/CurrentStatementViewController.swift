@@ -322,21 +322,21 @@ class CurrentStatementViewController: UIViewController, UITableViewDelegate, UIT
                         self.getCurrentstmtApi(withType: (self.appDelegate.selectedStmtCategory.categoryname)!,strSearch: strSearch)
                         self.loadsegmentController()
                     }
-                    self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: categoriesList.showMinimumDesignator ?? 0, statementDesignator: categoriesList.statementDesignator ?? "", minStatementLegend: categoriesList.minStatementLegend ?? "", enableMinimumTemplate: categoriesList.enableMinimumTemplate ?? 0, IsCreditBookEnabled : 0, CreditIndicate : "")
+                    self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: categoriesList.showMinimumDesignator ?? 0, statementDesignator: categoriesList.statementDesignator ?? "", minStatementLegend: categoriesList.minStatementLegend ?? "", enableMinimumTemplate: categoriesList.enableMinimumTemplate ?? 0, IsCreditBookEnabled : categoriesList.IsCreditBookEnabled ?? 0, CreditIndicate : categoriesList.CreditIndicate ?? "", showCreditBookDesignator: categoriesList.showCreditBookDesignator ?? 0)
                 }else{
                     if(((categoriesList.responseMessage?.count) ?? 0)>0){
                         SharedUtlity.sharedHelper().showToast(on:
                             self.view, withMeassge: categoriesList.responseMessage, withDuration: Duration.kMediumDuration)
                     }
                     self.tableViewStatement.setEmptyMessage(categoriesList.responseMessage ?? "")
-                    self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: 0, statementDesignator: "", minStatementLegend: "", enableMinimumTemplate: 0, IsCreditBookEnabled : 0, CreditIndicate : "")
+                    self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: 0, statementDesignator: "", minStatementLegend: "", enableMinimumTemplate: 0, IsCreditBookEnabled : 0, CreditIndicate : "", showCreditBookDesignator: 0)
                 }
             },onFailure: { error  in
                 self.appDelegate.hideIndicator()
                 print(error)
                 SharedUtlity.sharedHelper().showToast(on:
                     self.view, withMeassge: error.localizedDescription, withDuration: Duration.kMediumDuration)
-                self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: 0, statementDesignator: "", minStatementLegend: "", enableMinimumTemplate: 0, IsCreditBookEnabled : 0, CreditIndicate : "")
+                self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: 0, statementDesignator: "", minStatementLegend: "", enableMinimumTemplate: 0, IsCreditBookEnabled : 0, CreditIndicate : "", showCreditBookDesignator: 0)
             })
             
         }else{
@@ -345,7 +345,7 @@ class CurrentStatementViewController: UIViewController, UITableViewDelegate, UIT
             
             SharedUtlity.sharedHelper().showToast(on:
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
-            self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: 0, statementDesignator: "", minStatementLegend: "", enableMinimumTemplate: 0, IsCreditBookEnabled : 0, CreditIndicate : "")
+            self.minimumDelegate?.sendCurrentMinimumStatus(showMinimumDesignator: 0, statementDesignator: "", minStatementLegend: "", enableMinimumTemplate: 0, IsCreditBookEnabled : 0, CreditIndicate : "", showCreditBookDesignator: 0)
         }
         
     }
@@ -730,6 +730,6 @@ extension CurrentStatementViewController : UIPickerViewDelegate {
 }
 
 protocol MinimumsDetailsDelegate: AnyObject {
-    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : Int, CreditIndicate : String)
+    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : Int, CreditIndicate : String, showCreditBookDesignator: Int)
 }
 

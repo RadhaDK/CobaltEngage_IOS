@@ -180,23 +180,26 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         
     }
     
-    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : Int, CreditIndicate : String) {
+    func sendCurrentMinimumStatus(showMinimumDesignator: Int, statementDesignator: String, minStatementLegend: String, enableMinimumTemplate: Int, IsCreditBookEnabled : Int, CreditIndicate : String, showCreditBookDesignator: Int) {
         self.viewMinimumIndication.layer.cornerRadius = 5
         self.viewCreditIndication.layer.cornerRadius = 5
-
+        self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
+        self.lblCreditIndication.text = CreditIndicate
+        if showCreditBookDesignator == 1 && showMinimumDesignator == 1 {
+            self.btnMinimumIndication.isHidden = false
+        } else if showCreditBookDesignator == 0 && showMinimumDesignator == 1 {
+            self.btnMinimumIndication.isHidden = false
+        } else if showCreditBookDesignator == 1 && showMinimumDesignator == 0 {
+            self.btnMinimumIndication.isHidden = false
+        } else {
+            self.btnMinimumIndication.isHidden = true
+        }
 
       if enableMinimumTemplate == 1 && IsCreditBookEnabled == 1 {
           
           self.btnMinimum.isHidden = false
           self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
-            self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
-            self.lblCreditIndication.text = CreditIndicate
-            if showMinimumDesignator == 1 {
-                self.btnMinimumIndication.isHidden = false
-            } else {
-                self.btnMinimumIndication.isHidden = true
-            }
         }
         
         else if IsCreditBookEnabled == 1 {
@@ -204,25 +207,14 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
             self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
             self.centerAlignedView.constant = -95.0
-            self.lblCreditIndication.text = CreditIndicate
-            if showMinimumDesignator == 1 {
-                self.btnMinimumIndication.isHidden = false
-            } else {
-                self.btnMinimumIndication.isHidden = true
-            }
+
         }
         else if enableMinimumTemplate == 1 {
             self.btnMinimum.isHidden = false
             self.btnCreditBook.isHidden = true
             self.viewBottomHeight.constant = 125.0
-            self.viewCreditIndication.isHidden = true
             self.centerAlignedView.constant = 95.0
-            self.lblMinimumIndication.text = statementDesignator + " " + minStatementLegend
-            if showMinimumDesignator == 1 {
-                self.btnMinimumIndication.isHidden = false
-            } else {
-                self.btnMinimumIndication.isHidden = true
-            }
+
         }
         
         else {

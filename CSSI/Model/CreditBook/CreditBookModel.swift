@@ -42,17 +42,18 @@ class CreditBookListing: NSObject, Mappable {
 
 class CreditBookTemplate: NSObject, Mappable {
     
-    var CreditBookID         : String!
-    var CreditBookName       : String!
-    var ItemType              : String!
-    var Location         : String!
-    var CreditAmount             : Int!
-    var SpentAmount       : Int!
-    var Balance   : Int!
+    var CreditBookID        : String!
+    var CreditBookName      : String!
+    var ItemType            : String!
+    var Location            : String!
+    var CreditAmount        : Int!
+    var SpentAmount         : Int!
+    var Balance             : Float!
     var StartDate           : String!
-    var EndDate        : String!
+    var EndDate                 : String!
     var Status : String!
     var CreditIndicate : String!
+    var CreditBookMemberID  : String!
    
     
     override init() {
@@ -72,7 +73,7 @@ class CreditBookTemplate: NSObject, Mappable {
         EndDate        = ""
         Status = ""
         CreditIndicate = ""
-        
+        CreditBookMemberID  = ""
     }
     
     func mapping(map: Map) {
@@ -89,6 +90,7 @@ class CreditBookTemplate: NSObject, Mappable {
         Status <- map["Status"]
         CreditIndicate <- map["CreditIndicate"]
         SpentAmount <- map["SpentAmount"]
+        CreditBookMemberID  <- map["CreditBookMemberID"]
     }
 }
 

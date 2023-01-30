@@ -111,7 +111,7 @@ class CreditBookDeviceInfo: NSObject, Mappable {
 class CreditBookHistoryDetail: NSObject, Mappable {
     
     var TansactionID         : String!
-    var Amount       : Double!
+    var Amount       : String!
     var Date              : String!
     var ReceiptNumber         : String!
     var Location             : String!
@@ -130,7 +130,7 @@ class CreditBookHistoryDetail: NSObject, Mappable {
     convenience required init?(map: Map) {
         self.init()
         TansactionID         = ""
-        Amount       = 0
+        Amount       = ""
         Date              = ""
         ReceiptNumber         = ""
         Location             = ""

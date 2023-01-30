@@ -365,7 +365,7 @@ extension DiningReservationVC{
             } else {
                 paramaterDict["IsView"] = 0
             }
-            print(paramaterDict)
+//            print(paramaterDict)
             APIHandler.sharedInstance.GetDinningReservation(paramater: paramaterDict, onSuccess: { reservationDinningListing in
                 self.appDelegate.hideIndicator()
                 if(reservationDinningListing.restaurants.count == 0)
@@ -377,7 +377,7 @@ extension DiningReservationVC{
                 
                 self.restaurantsList = reservationDinningListing.restaurants!
                 self.diningSetting = reservationDinningListing.diningSettings!
-               
+                self.diningPolicyURL = self.diningSetting.DiningPolicy
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
                     self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
