@@ -32,6 +32,8 @@ class PartySizePopUpVC: UIViewController {
     var maxPartySize = 0
     var minimumDaysInAdvance = 0
     var maximumDaysInAdvance = 90
+    var minimumTimeInAdvance = "05:00 AM"
+    var maximumTimeInAdvance = "11:45 PM"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,17 +66,19 @@ class PartySizePopUpVC: UIViewController {
         
         if #available(iOS 15.0, *) {
             datePicker.roundsToMinuteInterval = true
-//            if self.maximumDaysInAdvance != 0 {
-//                self.maximumDaysInAdvance = self.maximumDaysInAdvance + 1
-//            }
             var minimumDate = Calendar.current.date(byAdding: .day, value: self.minimumDaysInAdvance, to: Date())!
             var maximumDate = Calendar.current.date(byAdding: .day, value: self.maximumDaysInAdvance, to: Date())!
             if minimumDaysInAdvance > 0 {
-                minimumDate = Calendar.current.date(bySettingHour: 5, minute: 0, second: 0, of: minimumDate)!
+                minimumDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: minimumDate)!
             }
-//            if maximumDaysInAdvance == 0 {
-                maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 0, of: maximumDate)!
-//            }
+            maximumDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 0, of: maximumDate)!
+
+            minimumDate = self.addTimeStringToDate(givenDate: minimumDate, time: self.minimumTimeInAdvance)
+            maximumDate = self.addTimeStringToDate(givenDate: maximumDate, time: self.maximumTimeInAdvance)
+            
+            if minimumDate < Date() {
+                minimumDate = Date()
+            }
             datePicker.minimumDate = minimumDate
             datePicker.maximumDate = maximumDate
         } else {

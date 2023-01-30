@@ -150,6 +150,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             vc?.maxPartySize = self.restaurantDetails.RestaurantSettings.MaxPartySize
             vc?.minimumDaysInAdvance = self.restaurantDetails.RestaurantSettings.MinDaysInAdvance
             vc?.maximumDaysInAdvance = self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance
+            vc?.minimumTimeInAdvance = self.restaurantDetails.RestaurantSettings.MinDaysInAdvanceTime
+            vc?.maximumTimeInAdvance = self.restaurantDetails.RestaurantSettings.MaxDaysInAdvanceTime
             vc?.selectedPartySize = self.diningReservation.PartySize
             vc?.selectedDate = currentDate
             self.navigationController?.present(vc!, animated: true, completion: nil)
