@@ -12,7 +12,8 @@ import FSCalendar
 
 
 
-class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate {
+class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate, dismissResvPopup {
+   
    
 //MARK:- Iboutlets
     @IBOutlet weak var btnNext: UIButton!
@@ -52,6 +53,11 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var reservationDate = ""
     var reservationTime = ""
     var selectedRestaurant = ""
+    var selectedrestaurantsList: DiningRestaurantsData!
+    var selectedTimeSlot : String!
+    var timerSecond : Int?
+    var selectedEventId : String!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -264,17 +270,20 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         if diningReservation.PartySize == 0 {
             SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"Please select Party Size", withDuration: Duration.kMediumDuration)
         } else {
-            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-            vc!.showNavigationBar = false
-            vc?.isFrom = self.enumForDinningMode
-            self.diningReservation.SelectedTime = timeSlot
-            self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
-            vc?.diningReservation = self.diningReservation
-            vc?.diningPolicyURL = self.restaurantsList[row].DinningPolicy
-            vc?.restaurantName = self.restaurantsList[row].RestaurantName
-            vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
-            vc?.requestedDate = self.currentDate
-            self.navigationController?.pushViewController(vc!, animated: true)
+            selectedrestaurantsList = self.restaurantsList[row]
+            selectedTimeSlot = timeSlot
+            timerForSlots()
+//            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+//            vc!.showNavigationBar = false
+//            vc?.isFrom = self.enumForDinningMode
+//            self.diningReservation.SelectedTime = timeSlot
+//            self.diningReservation.RestaurantID = self.restaurantsList[row].RestaurantID
+//            vc?.diningReservation = self.diningReservation
+//            vc?.diningPolicyURL = self.restaurantsList[row].DinningPolicy
+//            vc?.restaurantName = self.restaurantsList[row].RestaurantName
+//            vc?.restaurantImage = self.restaurantsList[row].RestaurantImage
+//            vc?.requestedDate = self.currentDate
+//            self.navigationController?.pushViewController(vc!, animated: true)
         }
         
     }
@@ -443,6 +452,109 @@ extension DiningReservationVC{
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
     }
+    
+    func timerForSlots() {
+       let paramaterDict = [
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            "UserName": UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+            "SelectedDate": self.diningReservation.SelectedDate,
+            "SelectedTimeSlot": self.diningReservation.SelectedTime,
+            "PartySize": self.diningReservation.PartySize,
+            "ResturantID": selectedrestaurantsList.RestaurantID ?? ""
+       ] as [String : Any]
+        print(paramaterDict)
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.diningTimerApi(paramater: paramaterDict, onSuccess: { (response) in
+            
+            self.appDelegate.hideIndicator()
+         
+                if response.ResponseCode == InternetMessge.kSuccess
+                {
+                   // self.selectedEventId = response.EventID
+                
+                    if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningContinueResrvPopup") as? DiningContinueResrvPopup {
+                        confirmDinningRequest.desriptionText = response.responseMessage
+                        confirmDinningRequest.modalPresentationStyle = .overCurrentContext
+                        confirmDinningRequest.delegateDismissResv = self
+                        self.navigationController?.present(confirmDinningRequest, animated: true)
+                    }
+                //    SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+
+                    if response.TimerMinutes != nil{
+                        self.timerSecond = (response.TimerMinutes * 60)
+                     
+                    }
+                    //SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"", withDuration: Duration.kMediumDuration)
+                }
+                else
+                {
+                    if response.IsHardRuleEnabled == "false"{
+                        if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+                            cancelViewController.eventID = self.diningReservation.RequestID
+                            cancelViewController.partySize = self.diningReservation.PartySize
+                            cancelViewController.diningPopupMode = .timeslot
+                            cancelViewController.desribtionText = response.responseMessage
+                            //  cancelViewController.hardRule = response.IsHardRuleEnabled
+                            
+                            //   cancelViewController.delegateCancelReservation = self
+                            //                        cancelViewController.cancelReservationClosure = {
+                            //                            self.showCancelSuccess()
+                            //            //                self.navigationController?.popToRootViewController(animated: true)
+                            //                        }
+                            self.navigationController?.present(cancelViewController, animated: true)
+                        }
+                    }
+                    else{
+                        if let confirmDinningRequest = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningCancelTimerPopup") as? DiningCancelTimerPopup {
+                            confirmDinningRequest.descriptionText = response.responseMessage
+                            self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
+                        }
+                        
+                    }
+                    
+                    
+                    //SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+                }
+        }) { (error) in
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:error.localizedDescription, withDuration: Duration.kMediumDuration)
+            self.appDelegate.hideIndicator()
+        }
+    }
 }
 
 
+extension DiningReservationVC {
+    func dismmissResvPopup(value: Bool) {
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+        vc!.showNavigationBar = false
+        vc?.isFrom = self.enumForDinningMode
+        self.diningReservation.SelectedTime = selectedTimeSlot
+        self.diningReservation.RestaurantID = selectedrestaurantsList.RestaurantID
+        vc?.diningReservation = self.diningReservation
+        vc?.diningPolicyURL = selectedrestaurantsList.DinningPolicy
+        vc?.restaurantName = selectedrestaurantsList.RestaurantName
+        vc?.restaurantImage = selectedrestaurantsList.RestaurantImage
+        vc?.requestedDate = self.currentDate
+        vc?.timerMinute = timerSecond
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func cancelBlockedReservationPopup(value: String) {
+        if value == "No"{
+            popBack(2)
+        }
+        else{
+            if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
+               registerVC.eventID = selectedEventId
+                registerVC.eventCategory = ""
+                registerVC.eventType = 0
+                registerVC.requestID = diningReservation.RequestID
+                registerVC.isFrom = "EventUpdate"
+                registerVC.segmentIndex = 1
+                registerVC.eventRegistrationDetailID = ""
+                self.navigationController?.pushViewController(registerVC, animated: true)
+            }
+        }
+    }
+}

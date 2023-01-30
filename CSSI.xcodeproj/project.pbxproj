@@ -18,6 +18,7 @@
 		09506AE128EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */; };
 		09535EFD28D85A970078246E /* MembershipHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09535EFC28D85A970078246E /* MembershipHistoryCell.xib */; };
 		0953612528F55DCC007283DA /* RestaurantSpecificDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */; };
+		095480B92987F1D7000575A6 /* DiningContinueResrvPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095480B82987F1D7000575A6 /* DiningContinueResrvPopup.swift */; };
 		0974F0722912758200657F3D /* GetMyDinnningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0974F0712912758200657F3D /* GetMyDinnningReservationModel.swift */; };
 		0974F0742912834500657F3D /* DinningMyReservationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0974F0732912834500657F3D /* DinningMyReservationTableCell.swift */; };
 		097BAF5D28EDF40300AFDD8B /* PartySizePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */; };
@@ -646,6 +647,7 @@
 		09506AE028EB5BFD005BE4F7 /* DinningDetailRestuarantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningDetailRestuarantVC.swift; sourceTree = "<group>"; };
 		09535EFC28D85A970078246E /* MembershipHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MembershipHistoryCell.xib; sourceTree = "<group>"; };
 		0953612428F55DCC007283DA /* RestaurantSpecificDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSpecificDetailVC.swift; sourceTree = "<group>"; };
+		095480B82987F1D7000575A6 /* DiningContinueResrvPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningContinueResrvPopup.swift; sourceTree = "<group>"; };
 		0974F0712912758200657F3D /* GetMyDinnningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyDinnningReservationModel.swift; sourceTree = "<group>"; };
 		0974F0732912834500657F3D /* DinningMyReservationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningMyReservationTableCell.swift; sourceTree = "<group>"; };
 		097BAF5C28EDF40300AFDD8B /* PartySizePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartySizePopUpVC.swift; sourceTree = "<group>"; };
@@ -2528,6 +2530,7 @@
 				09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */,
 				09DEE8ED2913C558008E3473 /* CancelDinningReservationPopupVC.swift */,
 				09B6222D297A9ADE00D993D6 /* DiningCancelTimerPopup.swift */,
+				095480B82987F1D7000575A6 /* DiningContinueResrvPopup.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3639,6 +3642,7 @@
 				18AA4923221ED6CA005F2DE8 /* SettingsViewController.swift in Sources */,
 				5F47195620D90189002EFBB1 /* Club_news.swift in Sources */,
 				18659DC721F1925C00AEBF5D /* PopUpForCategoryVC.swift in Sources */,
+				095480B92987F1D7000575A6 /* DiningContinueResrvPopup.swift in Sources */,
 				09B6222A297A75CD00D993D6 /* TimerModel.swift in Sources */,
 				097DCAB928D36F8800389C75 /* MembershiphHistoryFilterPopUpView.swift in Sources */,
 				A869CD4128C66BC300727EA1 /* EditMembershipTypeVC.swift in Sources */,

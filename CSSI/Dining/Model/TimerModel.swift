@@ -19,6 +19,7 @@ class GetTimerMdel: NSObject, Mappable {
     var ReservationTimer : String!
     var TimerMinutes : Int!
     var IsHardRuleEnabled  : String!
+    var EventID : String!
     override init() {
         super.init()
     }
@@ -32,6 +33,7 @@ class GetTimerMdel: NSObject, Mappable {
         ReservationTimer = ""
         TimerMinutes = 0
         IsHardRuleEnabled = ""
+        EventID = ""
     }
     
     func mapping(map: Map) {
@@ -42,6 +44,7 @@ class GetTimerMdel: NSObject, Mappable {
         ReservationTimer <- map["ReservationTimer"]
         TimerMinutes <- map["TimerMinutes"]
         IsHardRuleEnabled <- map["IsHardRuleEnabled"]
+        EventID <- map["EventID"]
     }
 }
 
