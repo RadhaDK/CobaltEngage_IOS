@@ -14,6 +14,7 @@ class SaveMembership: NSObject, Mappable {
     var responseMessage: String?
     var IsMTAutoApproved: Int?
     var IsBFAutoApproved: Int?
+    var IsAvailableMTApprovedRequest : Int?
     
     convenience required init?(map: Map) {
         self.init()
@@ -23,6 +24,7 @@ class SaveMembership: NSObject, Mappable {
         responseMessage <- map["ResponseMessage"]
         IsMTAutoApproved <- map["IsMTAutoApproved"]
         IsBFAutoApproved <- map["IsBFAutoApproved"]
+        IsAvailableMTApprovedRequest <- map["IsAvailableMTApprovedRequest"]
     }
 }
 
