@@ -164,6 +164,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var giftCertificateCardType = [BWOption]()
     var giftCertificateStatus = [FilterOption]()
     
+    var creditBookStatus = [FilterOption]()
+    
     //Added on 28th October 2020 V2.3 -- GATHER0000176
     var fitnessSettings = [FitnessSetting]()
     var appFitnessMenu = [HamburgerMenu]()

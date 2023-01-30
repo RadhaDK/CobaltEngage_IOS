@@ -2922,7 +2922,7 @@
                                             <action selector="btnCreditBookClicked:" destination="4VS-pD-9BN" eventType="touchUpInside" id="Dyb-BI-lLU"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3Ae-g0-CTL">
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3Ae-g0-CTL">
                                         <rect key="frame" x="204" y="31" width="200" height="54"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qns-YN-2Q7">
@@ -3247,6 +3247,8 @@
                         <outlet property="lblMinimumIndication" destination="ts6-OU-NcC" id="5uc-v2-GQL"/>
                         <outlet property="lblMonthName" destination="B5n-ph-J57" id="EJW-AV-y3x"/>
                         <outlet property="lblyear" destination="XKp-cG-vu5" id="dfH-bi-UnV"/>
+                        <outlet property="stackIndication" destination="3Ae-g0-CTL" id="cep-B1-ycQ"/>
+                        <outlet property="stackIndicationHeight" destination="mwO-XM-x1I" id="ZUa-Cn-hJy"/>
                         <outlet property="statmentSearchBar" destination="QIP-PC-yzb" id="Iw8-6Q-ul5"/>
                         <outlet property="uiContainerView" destination="ucW-WX-lkU" id="0X5-TZ-qUt"/>
                         <outlet property="uiViewCurrent" destination="m6Z-y5-ABr" id="C88-hk-fkq"/>
@@ -3361,13 +3363,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXd-hZ-aJn">
-                                                    <rect key="frame" x="133.66666666666669" y="59" width="192.66666666666669" height="59"/>
+                                                    <rect key="frame" x="133.66666666666669" y="0.0" width="192.66666666666669" height="59"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" name="AppTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-NH-On7">
-                                                    <rect key="frame" x="326.33333333333331" y="59" width="82.666666666666686" height="59"/>
+                                                    <rect key="frame" x="326.33333333333331" y="0.0" width="82.666666666666686" height="59"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" systemColor="systemBlueColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3385,11 +3387,11 @@
                                                 <constraint firstItem="ib7-NH-On7" firstAttribute="height" secondItem="oD7-Fe-VBN" secondAttribute="height" id="TCJ-Tc-NVM"/>
                                                 <constraint firstItem="lMy-ZR-hXZ" firstAttribute="height" secondItem="vLS-cx-ku6" secondAttribute="height" multiplier="0.5" id="UAL-jw-eXx"/>
                                                 <constraint firstItem="lMy-ZR-hXZ" firstAttribute="leading" secondItem="vLS-cx-ku6" secondAttribute="leading" constant="10" id="UG9-8T-hFi"/>
+                                                <constraint firstItem="lMy-ZR-hXZ" firstAttribute="top" secondItem="ib7-NH-On7" secondAttribute="top" id="c4C-x6-sTi"/>
                                                 <constraint firstAttribute="bottom" secondItem="oD7-Fe-VBN" secondAttribute="bottom" id="ehP-7m-KER"/>
                                                 <constraint firstItem="oD7-Fe-VBN" firstAttribute="leading" secondItem="lMy-ZR-hXZ" secondAttribute="leading" id="eml-1E-apw"/>
                                                 <constraint firstItem="ib7-NH-On7" firstAttribute="width" secondItem="vLS-cx-ku6" secondAttribute="width" multiplier="0.2" id="fQs-pw-mrQ"/>
                                                 <constraint firstItem="lMy-ZR-hXZ" firstAttribute="width" secondItem="vLS-cx-ku6" secondAttribute="width" multiplier="0.25" id="gVV-jt-hcj"/>
-                                                <constraint firstItem="ib7-NH-On7" firstAttribute="top" secondItem="oD7-Fe-VBN" secondAttribute="top" id="htN-HJ-ffp"/>
                                                 <constraint firstItem="KXd-hZ-aJn" firstAttribute="height" secondItem="oD7-Fe-VBN" secondAttribute="height" id="ytS-9a-o3I"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -3688,7 +3690,7 @@
             <objects>
                 <viewController id="F4t-fu-IGg" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RAQ-Fs-Vug">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="489.66666666666669"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="490"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="jEL-7c-7Vw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
