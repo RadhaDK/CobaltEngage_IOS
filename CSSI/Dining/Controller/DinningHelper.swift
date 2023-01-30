@@ -241,6 +241,18 @@ extension UIViewController{
             return nil
         }
     
+    func addTimeStringToDate(givenDate: Date, time: String) -> Date {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "hh:mm a"
+        if let givenTime = inputFormatter.date(from: time) {
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.hour, .minute], from: givenTime)
+            return Calendar.current.date(bySettingHour: components.hour ?? 5, minute: components.minute ?? 0, second: 0, of: givenDate)!
+        } else {
+            return givenDate
+        }
+    }
+    
     
 }
 extension Date {

@@ -142,6 +142,8 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         vc?.maxPartySize = self.diningSetting.MaxPartySize
         vc?.minimumDaysInAdvance = self.diningSetting.MinDaysInAdvance
         vc?.maximumDaysInAdvance = self.diningSetting.MaxDaysInAdvance
+        vc?.minimumTimeInAdvance = self.diningSetting.MinDaysInAdvanceTime
+        vc?.maximumTimeInAdvance = self.diningSetting.MaxDaysInAdvanceTime
         vc?.selectedPartySize = self.diningReservation.PartySize
         vc?.selectedDate = currentDate
         self.navigationController?.present(vc!, animated: true, completion: nil)
