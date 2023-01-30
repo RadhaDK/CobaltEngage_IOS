@@ -135,7 +135,7 @@ class TransactionHistoryViewController: UIViewController, UITableViewDelegate, U
             transactionDetailVC.purchaseDate = self.crediDetails[indexPath.row].Date
             transactionDetailVC.amount = self.crediDetails[indexPath.row].Amount
             transactionDetailVC.isFromMinimums = true
-            transactionDetailVC.category = self.crediDetails[indexPath.row].Category
+//            transactionDetailVC.category = self.crediDetails[indexPath.row].Category
         }
         self.navigationController?.pushViewController(transactionDetailVC, animated: true)
         self.transactionDetailTableView.reloadData()

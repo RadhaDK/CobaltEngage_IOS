@@ -419,6 +419,8 @@ extension RestaurantSpecificDetailVC{
                     self.diningSetting = restaurntDetails.Restaurants[0].RestaurantSettings
                     if let timings = self.restaurantDetails.Timings {
                         self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: timings)
+                    } else {
+                        self.lblDefaultTime.text
                     }
 //                    self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: self.restaurantDetails.Timings)
                     
