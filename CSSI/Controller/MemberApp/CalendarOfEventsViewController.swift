@@ -194,6 +194,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
         self.eventsTableview.separatorColor = UIColor.clear
 
         self.eventsTableview.register(UINib(nibName: "MyCalendarXib", bundle: nil), forCellReuseIdentifier: "MyCalendarXib")
+        self.eventsTableview.register(UINib(nibName: "DiningFCFSEventCell", bundle: nil), forCellReuseIdentifier: "DiningFCFSEventCell")
         
       
         self.btnSubmit.calendarBttnViewSetup()
@@ -976,60 +977,8 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
         
         if eventCategory == "My Calendar"{
             
-            let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "MyCalendarXib") as! MyCalendarXib
-            
-            
             var eventobj =  ListEvents()
             eventobj = arrEventList[indexPath.row]
-            cell.lblEventName.text = eventobj.eventName
-            
-            cell.btnViewOnly.setTitle("", for: .normal)
-            
-            self.eventsTableview.allowsSelection = false
-            if eventobj.type == "2" {
-                if eventobj.eventTeeBox ?? "" != "" {
-                    cell.lblTime.text = String(format: "%@(%@)", eventobj.eventTime ?? "", eventobj.eventTeeBox ?? "")
-                } else {
-                    cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
-                }
-                cell.lblConfirmationID.isHidden = false
-                cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
-                cell.lblLocation.text = eventobj.location
-                
-            }else if eventobj.eventCategory?.lowercased() == "dining" {
-                    cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
-                
-                cell.lblConfirmationID.isHidden = false
-                cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
-                cell.lblLocation.text = eventobj.eventVenue
-            }//Added on 1st July 2020 BMS
-            //type 3 is BMS
-            else if eventobj.requestType == .BMS || eventobj.type == "3"
-            {
-                //Modified on 6th July 2020 v2.3
-                cell.lblTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "",eventobj.eventendtime ?? "")
-                cell.lblConfirmationID.isHidden = false
-                cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
-                cell.lblLocation.text = eventobj.location
-            }
-            else{
-                if eventobj.eventendtime == "" {
-                    cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
-                }else{
-                    cell.lblTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "", eventobj.eventendtime ?? "")
-                }
-                cell.lblConfirmationID.isHidden = true
-                cell.lblLocation.text = eventobj.eventVenue
-                
-            }
-            
-            
-            if(eventobj.eventCategory?.lowercased() == "dining") && eventobj.type == "2"{
-                cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
-                
-            }else{
-                cell.lblPartySize.text = ""
-            }
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy"
             let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
@@ -1044,74 +993,147 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
             dateFormat.dateFormat = "MMM"
             let dateAndMonth: String = dateFormat.string(from: date!)
-           
             
-            if eventobj.eventstatus == "" && eventobj.colorCode == "" {
-                cell.lblStatus.isHidden = true
-                cell.lblStatusColor.isHidden = true
-                cell.lblStatusValue.isHidden = true
+            if eventobj.eventCategory == "DiningFCFS" {
+                let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "DiningFCFSEventCell") as! DiningFCFSEventCell
+                cell.lblEventName.text = eventobj.eventName
+                cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
+                cell.lblLocation.text = eventobj.eventVenue
+                cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
+                cell.lblStatus.text = self.appDelegate.masterLabeling.status
+                cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
+                cell.lblDate.text = weekDay
+                cell.lblMonth.text = dateAndMonth
+                cell.lblWeekDay.text = eventobj.eventDayName
+                cell.lblMonth.textColor = APPColor.MainColours.primary2
+                cell.lblStatusValue.text = eventobj.memberEventStatus ?? ""
                 
-            }else{
-                cell.lblStatus.isHidden = false
-                cell.lblStatusColor.isHidden = false
-                cell.lblStatusValue.isHidden = false
+                return cell
                 
-            }
-            cell.lblStatus.text = self.appDelegate.masterLabeling.status
-            
-            cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
-            
-            cell.lblDate.text = weekDay
-            cell.lblMonth.text = dateAndMonth
-            cell.lblWeekDay.text = eventobj.eventDayName
-            
-            if(eventobj.buttontextvalue == "0"){
-                cell.btnRegister.isHidden = true
-                cell.btnRegister .setTitle("", for: UIControlState.normal)
+            } else {
+                let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "MyCalendarXib") as! MyCalendarXib
                 
-            }
-            else if(eventobj.buttontextvalue == "1") {
-                cell.btnRegister.isHidden = false
-                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_request, for: UIControlState.normal)
+                cell.lblEventName.text = eventobj.eventName
                 
-            }
-            else if(eventobj.buttontextvalue == "2"){
-                cell.btnRegister.isHidden = false
-                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_modify, for: UIControlState.normal)
+                cell.btnViewOnly.setTitle("", for: .normal)
                 
-            }
-            else if(eventobj.buttontextvalue == "3"){
-                cell.btnRegister.isHidden = false
-                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_cancel, for: UIControlState.normal)
+                self.eventsTableview.allowsSelection = false
+                if eventobj.type == "2" {
+                    if eventobj.eventTeeBox ?? "" != "" {
+                        cell.lblTime.text = String(format: "%@(%@)", eventobj.eventTime ?? "", eventobj.eventTeeBox ?? "")
+                    } else {
+                        cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                    }
+                    cell.lblConfirmationID.isHidden = false
+                    cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
+                    cell.lblLocation.text = eventobj.location
+                    
+                }else if eventobj.eventCategory?.lowercased() == "dining" {
+                        cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                    
+                    cell.lblConfirmationID.isHidden = false
+                    cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
+                    cell.lblLocation.text = eventobj.eventVenue
+                }//Added on 1st July 2020 BMS
+                //type 3 is BMS
+                else if eventobj.requestType == .BMS || eventobj.type == "3"
+                {
+                    //Modified on 6th July 2020 v2.3
+                    cell.lblTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "",eventobj.eventendtime ?? "")
+                    cell.lblConfirmationID.isHidden = false
+                    cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
+                    cell.lblLocation.text = eventobj.location
+                }
+                else{
+                    if eventobj.eventendtime == "" {
+                        cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
+                    }else{
+                        cell.lblTime.text = String(format: "%@ - %@", eventobj.eventTime ?? "", eventobj.eventendtime ?? "")
+                    }
+                    cell.lblConfirmationID.isHidden = true
+                    cell.lblLocation.text = eventobj.eventVenue
+                    
+                }
                 
-            }
-            else if(eventobj.buttontextvalue == "4"){
-                cell.btnRegister.isHidden = false
-                cell.btnRegister .setTitle(self.appDelegate.masterLabeling.VIEW, for: UIControlState.normal)
                 
+                if(eventobj.eventCategory?.lowercased() == "dining") && eventobj.type == "2"{
+                    cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
+                    
+                }else{
+                    cell.lblPartySize.text = ""
+                }
+                
+               
+                
+                if eventobj.eventstatus == "" && eventobj.colorCode == "" {
+                    cell.lblStatus.isHidden = true
+                    cell.lblStatusColor.isHidden = true
+                    cell.lblStatusValue.isHidden = true
+                    
+                }else{
+                    cell.lblStatus.isHidden = false
+                    cell.lblStatusColor.isHidden = false
+                    cell.lblStatusValue.isHidden = false
+                    
+                }
+                cell.lblStatus.text = self.appDelegate.masterLabeling.status
+                
+                cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
+                
+                cell.lblDate.text = weekDay
+                cell.lblMonth.text = dateAndMonth
+                cell.lblWeekDay.text = eventobj.eventDayName
+                
+                if(eventobj.buttontextvalue == "0"){
+                    cell.btnRegister.isHidden = true
+                    cell.btnRegister .setTitle("", for: UIControlState.normal)
+                    
+                }
+                else if(eventobj.buttontextvalue == "1") {
+                    cell.btnRegister.isHidden = false
+                    cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_request, for: UIControlState.normal)
+                    
+                }
+                else if(eventobj.buttontextvalue == "2"){
+                    cell.btnRegister.isHidden = false
+                    cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_modify, for: UIControlState.normal)
+                    
+                }
+                else if(eventobj.buttontextvalue == "3"){
+                    cell.btnRegister.isHidden = false
+                    cell.btnRegister .setTitle(self.appDelegate.masterLabeling.event_cancel, for: UIControlState.normal)
+                    
+                }
+                else if(eventobj.buttontextvalue == "4"){
+                    cell.btnRegister.isHidden = false
+                    cell.btnRegister .setTitle(self.appDelegate.masterLabeling.VIEW, for: UIControlState.normal)
+                    
+                }
+                
+                cell.btnViewOnly.setTitle(self.appDelegate.masterLabeling.VIEW, for: .normal)
+                cell.btnViewOnly.isHidden = !(eventobj.buttontextvalue == "2")
+                
+                cell.lblStatusValue.text = eventobj.memberEventStatus ?? ""
+                
+                cell.delegate = self
+                
+                //Added on 1st July 2020 BMS
+                
+                cell.btnCancel.isHidden = !(eventobj.showCancelButton ?? false)
+                
+                if eventobj.requestType == .BMS
+                {
+                    cell.btnViewOnly.isHidden = !(eventobj.showViewButton ?? false)
+                }
+                
+                cell.btnCancel.BMSCancelBthViewSetup()
+                cell.btnCancel.setTitle(self.appDelegate.masterLabeling.cANCEL ?? "", for: .normal)
+                cell.lblMonth.textColor = APPColor.MainColours.primary2
+                cell.btnCancel.setStyle(style: .outlined, type: .secondary)
+                return cell
             }
             
-            cell.btnViewOnly.setTitle(self.appDelegate.masterLabeling.VIEW, for: .normal)
-            cell.btnViewOnly.isHidden = !(eventobj.buttontextvalue == "2")
-            
-            cell.lblStatusValue.text = eventobj.memberEventStatus ?? ""
-            
-            cell.delegate = self
-            
-            //Added on 1st July 2020 BMS
-            
-            cell.btnCancel.isHidden = !(eventobj.showCancelButton ?? false)
-            
-            if eventobj.requestType == .BMS
-            {
-                cell.btnViewOnly.isHidden = !(eventobj.showViewButton ?? false)
-            }
-            
-            cell.btnCancel.BMSCancelBthViewSetup()
-            cell.btnCancel.setTitle(self.appDelegate.masterLabeling.cANCEL ?? "", for: .normal)
-            cell.lblMonth.textColor = APPColor.MainColours.primary2
-            cell.btnCancel.setStyle(style: .outlined, type: .secondary)
-            return cell
         }
         else
         {
