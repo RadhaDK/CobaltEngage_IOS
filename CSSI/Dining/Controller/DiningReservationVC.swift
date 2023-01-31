@@ -12,7 +12,7 @@ import FSCalendar
 
 
 
-class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate, dismissResvPopup {
+class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewDataSource, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, selectedPartySizeTime, dateSelection, DiningTimeSlotsDelegate, dismissResvPopup, cancelReservationBlockedPopup {
    
    
 //MARK:- Iboutlets
@@ -274,6 +274,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
         } else {
             selectedrestaurantsList = self.restaurantsList[row]
             selectedTimeSlot = timeSlot
+            self.diningReservation.SelectedTime = timeSlot
             timerForSlots()
 //            let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
 //            vc!.showNavigationBar = false
@@ -497,6 +498,7 @@ extension DiningReservationVC{
                             cancelViewController.partySize = self.diningReservation.PartySize
                             cancelViewController.diningPopupMode = .timeslot
                             cancelViewController.desribtionText = response.responseMessage
+                            cancelViewController.delegateBlockTimer = self
                             //  cancelViewController.hardRule = response.IsHardRuleEnabled
                             
                             //   cancelViewController.delegateCancelReservation = self
@@ -550,10 +552,10 @@ extension DiningReservationVC {
             if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
                registerVC.eventID = selectedEventId
                 registerVC.eventCategory = ""
-                registerVC.eventType = 0
+               // registerVC.eventType = 0
                 registerVC.requestID = diningReservation.RequestID
-                registerVC.isFrom = "EventUpdate"
-                registerVC.segmentIndex = 1
+               // registerVC.isFrom = "EventUpdate"
+               // registerVC.segmentIndex = 1
                 registerVC.eventRegistrationDetailID = ""
                 self.navigationController?.pushViewController(registerVC, animated: true)
             }
