@@ -79,6 +79,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     private var secondsRemaining : Int?
     var timerMinute : Int?
     var timerMsg : String?
+    var diningScheduleUserActivityID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -726,6 +727,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         paramaterDict["Content-Type"] = "application/json"
         paramaterDict["RequestedLinkedMemberId"] = UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? ""
         paramaterDict["UserName"] = UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue) ?? ""
+        paramaterDict["DiningScheduleUserActivityID"] = self.diningScheduleUserActivityID
         
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
 

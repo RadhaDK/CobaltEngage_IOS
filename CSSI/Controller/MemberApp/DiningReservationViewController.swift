@@ -82,7 +82,7 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
 //        self.btnDiningReq.layer.borderColor = hexStringToUIColor(hex: "F06C42").cgColor
         self.btnDiningReq.diningBtnViewSetup()
         if self.appDelegate.isDiningFCFSEnable {
-            self.btnDiningReq.setTitle("Dining Resv", for: UIControlState.normal)
+            self.btnDiningReq.setTitle(self.appDelegate.masterLabeling.DINING_FCFS_RESERVATION_BUTTON, for: UIControlState.normal)
         } else {
             self.btnDiningReq.setTitle(self.appDelegate.masterLabeling.dining_request, for: UIControlState.normal)
         }

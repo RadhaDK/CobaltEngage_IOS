@@ -478,6 +478,7 @@ extension DiningReservationVC{
                     vc?.requestedDate = self.currentDate
                     vc?.timerMinute = self.timerSecond
                     vc?.timerMsg = response.responseMessage
+                    vc?.diningScheduleUserActivityID = response.DiningScheduleUserActivityID
                     self.navigationController?.pushViewController(vc!, animated: true)
                 }
                 else
