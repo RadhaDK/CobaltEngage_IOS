@@ -26,6 +26,11 @@ class DiningFCFSEventCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblWeekDay: UILabel!
     @IBOutlet weak var btnCancel: UIButton!
+    
+    var clickedDinningModifyClosure:(()->())?
+    var clickedDinningCancelClosure:(()->())?
+    var clickedDinningShareClosure:(()->())?
+    var clickedDinningSyncClosure:(()->())?
 
     
     override func awakeFromNib() {
@@ -41,17 +46,17 @@ class DiningFCFSEventCell: UITableViewCell {
         self.lblStatusColor.layer.borderWidth = 0.5
         self.lblStatusColor.layer.borderColor = hexStringToUIColor(hex: "3D3D3D").cgColor
         
-        btnRegister.backgroundColor = .clear
-        btnRegister.layer.cornerRadius = 15
-        btnRegister.layer.borderWidth = 1
-        btnRegister.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
-        self.btnRegister.setStyle(style: .outlined, type: .primary)
+        btnModify.backgroundColor = .clear
+        btnModify.layer.cornerRadius = 15
+        btnModify.layer.borderWidth = 1
+        btnModify.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+        self.btnModify.setStyle(style: .outlined, type: .primary)
     
-        btnViewOnly.backgroundColor = .clear
-        btnViewOnly.layer.cornerRadius = 15
-        btnViewOnly.layer.borderWidth = 1
-        btnViewOnly.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
-        self.btnViewOnly.setStyle(style: .outlined, type: .primary)
+        btnCancel.backgroundColor = .clear
+        btnCancel.layer.cornerRadius = 15
+        btnCancel.layer.borderWidth = 1
+        btnCancel.layer.borderColor = hexStringToUIColor(hex: "F37D4A").cgColor
+        self.btnCancel.setStyle(style: .outlined, type: .primary)
 
         self.viewSynch.isHidden = (UserDefaults.standard.string(forKey: UserDefaultsKeys.synchCalendar.rawValue) == "0")
         self.viewShare.isHidden = (UserDefaults.standard.string(forKey: UserDefaultsKeys.shareUrl.rawValue) == "0")
@@ -64,15 +69,19 @@ class DiningFCFSEventCell: UITableViewCell {
     }
     
     @IBAction func btnModifyAction(_ sender: Any) {
+        clickedDinningModifyClosure?()
     }
     
     @IBAction func btnCancelAction(_ sender: Any) {
+        clickedDinningCancelClosure?()
     }
     
     @IBAction func btnShareAction(_ sender: Any) {
+        clickedDinningShareClosure?()
     }
     
     @IBAction func btnSyncAction(_ sender: Any) {
+        clickedDinningSyncClosure?()
     }
     
 }
