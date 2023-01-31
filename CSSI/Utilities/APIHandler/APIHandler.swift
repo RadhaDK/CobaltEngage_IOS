@@ -7459,7 +7459,7 @@ class APIHandler: NSObject
     }
     
     func getMemberValidationDiningFCFS(paramater: [String: Any]?, onSuccess: @escaping(SenUsFeedback) -> Void, onFailure: @escaping(Error) -> Void) {
-        let url : String = diningBaseURL + APIHandler.dinningMemberValidationFCFS
+        let url : String = diningBaseURL + APIHandler.getMemberValidation
 
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
@@ -7663,7 +7663,7 @@ class APIHandler: NSObject
     //MARK:- Dining Timer Api
     func diningTimerApi(paramater: [String: Any]?, onSuccess: @escaping(GetTimerMdel) -> Void, onFailure: @escaping(Error) -> Void) {
         let url : String = self.diningBaseURL + APIHandler.diningTimer
-        print(paramater)
+//        print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater,encoding: JSONEncoding.default, headers:nil).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")

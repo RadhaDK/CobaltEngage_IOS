@@ -2411,7 +2411,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
             }
             
             
-            let paramaterDict:[String: Any] = [
+            var paramaterDict:[String: Any] = [
                 "Content-Type":"application/json",
                 APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
                 APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
@@ -2437,6 +2437,10 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                 "ReservationType": "Dining",
                 "RegistrationID": requestID ?? ""
             ]
+            
+            if self.appDelegate.isDiningFCFSEnable {
+               paramaterDict["DiningFCFCReservation"] = 1
+            }
             
             
 //            print("memberdict \(paramaterDict)")
@@ -3649,15 +3653,16 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                 }
                 else if self.isOnlyFor == "DiningRequest" && self.categoryForBuddy == "Dining"
                 {
-                    if !self.appDelegate.isDiningFCFSEnable {
-                        self.DiningReservationDuplicate()
-                    } else {
-//                        if self.shouldEnableMultiSelect
-//                        {
-                        self.delegate?.multiSelectRequestMemberViewControllerResponse(selectedArray: self.arrMultiSelectedMembers)
-                        self.navigationController?.popViewController(animated: true)
-//                        }
-                    }
+                    self.DiningReservationDuplicate()
+//                    if !self.appDelegate.isDiningFCFSEnable {
+//                        self.DiningReservationDuplicate()
+//                    } else {
+////                        if self.shouldEnableMultiSelect
+////                        {
+//                        self.delegate?.multiSelectRequestMemberViewControllerResponse(selectedArray: self.arrMultiSelectedMembers)
+//                        self.navigationController?.popViewController(animated: true)
+////                        }
+//                    }
                 }
             }
         }

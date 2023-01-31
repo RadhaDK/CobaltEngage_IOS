@@ -458,7 +458,11 @@ extension DiningReservationVC{
     
     func timerForSlots() {
        let paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
             APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict],
             "UserName": UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
             "SelectedDate": self.diningReservation.SelectedDate,
             "SelectedTimeSlot": self.diningReservation.SelectedTime,
