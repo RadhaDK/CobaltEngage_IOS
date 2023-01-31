@@ -1810,7 +1810,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dining Resv" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omh-vy-APu">
-                                <rect key="frame" x="149" y="52.666666666666664" width="92.333333333333314" height="18.999999999999993"/>
+                                <rect key="frame" x="144.33333333333334" y="52.666666666666664" width="101.66666666666666" height="18.999999999999993"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="7B2-hd-H4s"/>
                                 </constraints>
@@ -2009,7 +2009,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Should we be aware of any dietary restrictions?Please Specify:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wd-j8-mDl">
-                                                <rect key="frame" x="15" y="303" width="275.66666666666669" height="33.333333333333314"/>
+                                                <rect key="frame" x="15" y="303" width="275.66666666666669" height="30.333333333333314"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="ELe-2m-Bv0"/>
                                                     <constraint firstAttribute="width" constant="275.67000000000002" id="H8w-fd-Aig"/>
@@ -2019,7 +2019,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uDd-xk-sFX">
-                                                <rect key="frame" x="15" y="348.33333333333331" width="360" height="120"/>
+                                                <rect key="frame" x="15" y="345.33333333333331" width="360" height="120"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="a2e-Wz-fdr"/>
@@ -2029,7 +2029,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TxA-VE-rJq">
-                                                <rect key="frame" x="30" y="498.33333333333337" width="330" height="40"/>
+                                                <rect key="frame" x="30" y="495.33333333333337" width="330" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-Nx-Ury">
                                                         <rect key="frame" x="0.0" y="0.0" width="155" height="40"/>
@@ -2181,7 +2181,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qph-v9-wnS">
-                                        <rect key="frame" x="25" y="25" width="77" height="23"/>
+                                        <rect key="frame" x="25" y="25" width="81" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="NuD-ch-KBQ"/>
                                         </constraints>
@@ -2252,7 +2252,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDz-eg-xub">
-                                        <rect key="frame" x="25" y="126" width="112" height="23"/>
+                                        <rect key="frame" x="25.000000000000007" y="126" width="117.66666666666669" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="u9B-t6-veS"/>
                                         </constraints>
@@ -2442,7 +2442,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="510"/>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLe-iV-Qdc">
-                                                <rect key="frame" x="20" y="12" width="40" height="23"/>
+                                                <rect key="frame" x="20" y="12" width="43" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="9ib-As-UfG"/>
                                                 </constraints>
