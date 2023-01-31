@@ -68,7 +68,8 @@ class CancelDinningReservationPopupVC: UIViewController {
     
     @IBAction func yesBtnTapped(sender:UIButton){
         if diningPopupMode == .timeslot{
-            
+            self.dismiss(animated: true, completion: nil)
+            delegateBlockTimer?.cancelBlockedReservationPopup(value: "Yes")
             
         }
         else{

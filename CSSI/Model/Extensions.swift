@@ -394,4 +394,13 @@ extension UIViewController{
 //           let a = CGFloat(usedTimeInSec!)
            return String(format:"%02i:%02i", minutes, seconds)
        }
+    
+    func popBack(_ nb: Int) {
+        if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
+            guard viewControllers.count < nb else {
+                self.navigationController?.popToViewController(viewControllers[viewControllers.count - nb], animated: true)
+                return
+            }
+        }
+    }
 }

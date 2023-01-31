@@ -60,7 +60,7 @@ class TabbarViewController: UITabBarController {
             else{
                 let tabbarmodelinfo = TabbarModel(JSONString: responseString)!
                 self.appDelegate.tabbarControllerInit = tabbarmodelinfo
-                if (self.appDelegate.tabbarControllerInit.memberApp?.footerMenus?.count)!>0 {
+                if (self.appDelegate.tabbarControllerInit.memberApp?.footerMenus?.count ?? 0)>0 {
                     self.arrfooterTabbar = (self.appDelegate.tabbarControllerInit.memberApp?.landingMenus) ?? []
                     
                     //Modified by kiran V3.2 -- ENGAGE0012667 -- Custom nav change in xcode 13
