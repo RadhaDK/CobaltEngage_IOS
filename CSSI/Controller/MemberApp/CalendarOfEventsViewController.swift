@@ -979,20 +979,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
             var eventobj =  ListEvents()
             eventobj = arrEventList[indexPath.row]
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
             
-            let date = EventDate
-            
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "dd-MM-yyyy"
-            
-            dateFormat.dateFormat = "dd"
-            let weekDay: String = dateFormat.string(from: date!)
-            
-            dateFormat.dateFormat = "MMM"
-            let dateAndMonth: String = dateFormat.string(from: date!)
             
             if eventobj.eventCategory == "DiningFCFS" {
                 let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "DiningFCFSEventCell") as! DiningFCFSEventCell
@@ -1003,8 +990,11 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
                 cell.lblStatus.text = self.appDelegate.masterLabeling.status
                 cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
-                cell.lblDate.text = weekDay
-                cell.lblMonth.text = dateAndMonth
+                if let day = eventobj.eventstartdate{
+                    cell.lblDate.text = getDayWeek(givenDate: day)
+                }
+//                cell.lblDate.text = weekDay
+//                cell.lblMonth.text = dateAndMonth
                 cell.lblWeekDay.text = eventobj.eventDayName
                 cell.lblMonth.textColor = APPColor.MainColours.primary2
                 cell.lblStatusValue.text = eventobj.memberEventStatus ?? ""
@@ -1013,6 +1003,22 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 
             } else {
                 let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "MyCalendarXib") as! MyCalendarXib
+                
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "dd MMM yyyy"
+//                let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
+//
+//                let date = EventDate
+//
+//                let dateFormat = DateFormatter()
+//                dateFormat.dateFormat = "dd-MM-yyyy"
+//
+//                dateFormat.dateFormat = "dd"
+//                let weekDay: String = dateFormat.string(from: date!)
+//
+//                dateFormat.dateFormat = "MMM"
+//                let dateAndMonth: String = dateFormat.string(from: date!)
+                
                 
                 cell.lblEventName.text = eventobj.eventName
                 
@@ -1081,8 +1087,8 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 
                 cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
                 
-                cell.lblDate.text = weekDay
-                cell.lblMonth.text = dateAndMonth
+//                cell.lblDate.text = weekDay
+//                cell.lblMonth.text = dateAndMonth
                 cell.lblWeekDay.text = eventobj.eventDayName
                 
                 if(eventobj.buttontextvalue == "0"){
