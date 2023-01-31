@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime, DiningTimeSlotsDelegate, dateSelection {
+class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UITableViewDelegate,UITableViewDataSource, selectedPartySizeTime, DiningTimeSlotsDelegate, dateSelection, cancelReservationBlockedPopup {
     
     
 //MARK: - IButlets
@@ -58,8 +58,10 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var reservationDate = ""
     var reservationTime = ""
     var showNavigationBar = true
-
-
+    var timerSecond : Int?
+    var enumForDinningMode : dinningMode = .create
+    var timerMsg : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUiInitialization()
@@ -273,6 +275,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             vc?.restaurantName = self.restaurantDetails.RestaurantName
             vc?.restaurantImage = self.restaurantDetails.RestaurantImage
             vc?.requestedDate = self.currentDate
+            vc?.timerMinute = timerSecond
+            vc?.timerMsg = timerMsg
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
@@ -298,8 +302,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         self.currentDate = inputFormatter.date(from: self.restaurantDetails.OtherAvailableDates[row].Date)!
         self.diningReservation.SelectedTime = timeSlot
         self.diningReservation.SelectedDate = self.restaurantDetails.OtherAvailableDates[row].Date
-        
-        self.moveToMemberDetailsScreen()
+        timerForSlots()
+      //  self.moveToMemberDetailsScreen()
     }
     
     // MARK: - Slot Table  Height
@@ -360,7 +364,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.diningReservation.SelectedTime = self.restaurantDetails.SelectedDate.TimeSlot[indexPath.row].timeSlot
-        self.moveToMemberDetailsScreen()
+        timerForSlots()
+       // self.moveToMemberDetailsScreen()
     }
     
     // MARK: - Table Methods
@@ -453,6 +458,81 @@ extension RestaurantSpecificDetailVC{
                 self.view, withMeassge: InternetMessge.kInternet_not_available, withDuration: Duration.kMediumDuration)
         }
     }
+    
+    func timerForSlots() {
+       let paramaterDict = [
+        "Content-Type":"application/json",
+        APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+        APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+        APIKeys.kdeviceInfo: [APIHandler.devicedict],
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            "UserName": UserDefaults.standard.string(forKey: UserDefaultsKeys.username.rawValue)!,
+            "SelectedDate": self.diningReservation.SelectedDate,
+            "SelectedTimeSlot": self.diningReservation.SelectedTime,
+            "PartySize": self.diningReservation.PartySize,
+            "ResturantID": self.diningReservation.RestaurantID ?? ""
+       ] as [String : Any]
+        print(paramaterDict)
+        self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
+        
+        APIHandler.sharedInstance.diningTimerApi(paramater: paramaterDict, onSuccess: { (response) in
+            self.appDelegate.hideIndicator()
+                if response.ResponseCode == InternetMessge.kSuccess
+                {
+                    if response.TimerMinutes != nil{
+                        self.timerSecond = (response.TimerMinutes * 60)
+                    }
+                    self.timerMsg = response.responseMessage
+                    self.moveToMemberDetailsScreen()
+                }
+                else
+                {
+                    if response.IsHardRuleEnabled == "false"{
+                        if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+                            cancelViewController.eventID = self.diningReservation.RequestID
+                            cancelViewController.partySize = self.diningReservation.PartySize
+                            cancelViewController.diningPopupMode = .timeslot
+                            cancelViewController.desribtionText = response.responseMessage
+                            cancelViewController.delegateBlockTimer = self
+                            self.navigationController?.present(cancelViewController, animated: true)
+                        }
+                    }
+                    else{
+                        if response.responseMessage != nil && response.responseMessage != ""{
+                            if let noTimeSlotPopup = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningContinueResrvPopup") as? DiningContinueResrvPopup {
+                                noTimeSlotPopup.desriptionText = response.responseMessage
+                                self.navigationController?.present(noTimeSlotPopup, animated: true)
+                            }
+                        }
+                        else{
+                        SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.responseMessage, withDuration: Duration.kMediumDuration)
+                        }
+                    }
+                }
+        }) { (error) in
+            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:error.localizedDescription, withDuration: Duration.kMediumDuration)
+            self.appDelegate.hideIndicator()
+        }
+    }
 }
 
 
+extension RestaurantSpecificDetailVC {
+    func cancelBlockedReservationPopup(value: String) {
+        if value == "No"{
+            popBack(2)
+        }
+        else{
+            if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
+               registerVC.eventID = ""
+                registerVC.eventCategory = ""
+               // registerVC.eventType = 0
+                registerVC.requestID = diningReservation.RequestID
+               // registerVC.isFrom = "EventUpdate"
+               // registerVC.segmentIndex = 1
+                registerVC.eventRegistrationDetailID = ""
+                self.navigationController?.pushViewController(registerVC, animated: true)
+            }
+        }
+    }
+}

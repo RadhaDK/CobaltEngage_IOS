@@ -10,8 +10,8 @@ import UIKit
 
 
 
-class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate {
-   
+class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, dismissResvPopup {
+    
     
     
     //MARK: - IBOutlets
@@ -53,7 +53,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var lblRequestedDateHeading: UILabel!
     @IBOutlet weak var lblTimer: UILabel!
     @IBOutlet weak var viewTimer: UIView!
-
+    @IBOutlet weak var heightTimerConstant: NSLayoutConstraint!
+    
     
     
     //MARK: - variables
@@ -77,6 +78,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     var selectedEventId : String!
     private var secondsRemaining : Int?
     var timerMinute : Int?
+    var timerMsg : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,8 +154,25 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
 //        lblPartysizeHeading.text = self.appDelegate.masterLabeling.party_size ?? ""
         secondsRemaining = timerMinute
         if timerMinute != nil && timerMinute != 0{
-            self.seconds = timerMinute ?? 0
-            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(DinningDetailRestuarantVC.updateTimer)), userInfo: nil, repeats: true)
+            heightTimerConstant.constant = 30
+            CountdownTimer().startCountdown(
+                totalTime: timerMinute ?? 0,
+                 timerEnded: {
+                     if let noTimeSlotPopup = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningContinueResrvPopup") as? DiningContinueResrvPopup {
+                         noTimeSlotPopup.desriptionText = self.timerMsg
+                         noTimeSlotPopup.delegateDismissResv = self
+                         self.navigationController?.present(noTimeSlotPopup, animated: true)
+                     }
+                     print("Countdown is over")
+                 }, timerInProgress: { elapsedTime in
+                   //  print(elapsedTime)
+                     self.hmsFrom(seconds: elapsedTime){ minutes, seconds in
+                         let minutes = self.getStringFrom(seconds: minutes)
+                         let seconds = self.getStringFrom(seconds: seconds)
+                         self.lblTimer.text = "\(minutes):\(seconds)"
+                     }
+                 }
+             )
         }
         setUpUiInitialization()
     }
@@ -802,7 +821,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         APIHandler.sharedInstance.getMemberValidationDiningFCFS(paramater: paramaterDict, onSuccess: { (response) in
             
             self.appDelegate.hideIndicator()
-            
+            CountdownTimer().stopCountdown()
             if response.details?.count == 0
             {
                 SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
@@ -828,3 +847,21 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
 }
 
+extension DinningDetailRestuarantVC{
+    
+    func hmsFrom(seconds: Int, completion: @escaping (_ minutes: Int, _ seconds: Int)->()) {
+
+            completion((seconds % 3600) / 60, (seconds % 3600) % 60)
+
+    }
+
+    func getStringFrom(seconds: Int) -> String {
+
+        return seconds < 10 ? "0\(seconds)" : "\(seconds)"
+    }
+    func dismmissResvPopup(value: Bool) {
+        popBack(3)
+    }
+    
+   
+}
