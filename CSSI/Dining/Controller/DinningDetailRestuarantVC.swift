@@ -10,29 +10,8 @@ import UIKit
 
 
 
-class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate, cancelDinningPopup, cancelReservationBlockedPopup {
+class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, selectedSlotFor, MemberViewControllerDelegate, AddMemberDelegate {
    
-    func cancelBlockedReservationPopup(value: String) {
-        if value == "No"{
-            popBack(2)
-        }
-        else{
-            if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
-               registerVC.eventID = selectedEventId
-                registerVC.eventCategory = ""
-                registerVC.eventType = 0
-                registerVC.requestID = diningReservation.RequestID
-                registerVC.isFrom = "EventUpdate"
-                registerVC.segmentIndex = 1
-                registerVC.eventRegistrationDetailID = ""
-                self.navigationController?.pushViewController(registerVC, animated: true)
-            }
-        }
-    }
-  
-    func cancelDinningReservation(value: Bool) {
-    popBack(3)
-    }
     
     
     //MARK: - IBOutlets
@@ -227,7 +206,6 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             cancelViewController.eventID = self.diningReservation.RequestID
             cancelViewController.partySize = self.diningReservation.PartySize
             cancelViewController.diningPopupMode = .cancel
-            cancelViewController.delegateCancelReservation = self
             cancelViewController.cancelReservationClosure = {
                 self.showCancelSuccess()
 //                self.navigationController?.popToRootViewController(animated: true)
