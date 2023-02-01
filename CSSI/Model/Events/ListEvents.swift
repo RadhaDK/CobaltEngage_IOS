@@ -104,6 +104,8 @@ class ListEvents: NSObject, Mappable  {
     //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes
     //GATHER0000700 - Start
     var departmentType : String?
+    var DiningFCFSReservation : String?
+    var UI : [MyDinningUI]!
     //GATHER0000700 - End
     convenience required init?(map: Map) {
         self.init()
@@ -162,6 +164,8 @@ class ListEvents: NSObject, Mappable  {
         self.departmentType <- map["Departmenttype"]
         //GATHER0000700 - End
         self.eventTeeBox <- map["EventTeeBox"]
+        self.DiningFCFSReservation <- map["DiningFCFSReservation"]
+        UI <- map["UI"]
     }
     
     

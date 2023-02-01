@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class DiningFCFSEventCell: UITableViewCell {
 
     @IBOutlet weak var baseView: UIView!
