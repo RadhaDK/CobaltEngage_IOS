@@ -189,10 +189,19 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
         self.lblCreditIndication.text = CreditIndicate
         if showCreditBookDesignator == 1 && showMinimumDesignator == 1 {
             self.btnMinimumIndication.isHidden = false
+            self.stackIndicationHeight.constant = 54.0
+            self.viewMinimumIndication.isHidden = false
+            self.viewCreditIndication.isHidden = false
         } else if showCreditBookDesignator == 0 && showMinimumDesignator == 1 {
             self.btnMinimumIndication.isHidden = false
+            self.viewMinimumIndication.isHidden = false
+            self.viewCreditIndication.isHidden = true
+            self.stackIndicationHeight.constant = 27.0
         } else if showCreditBookDesignator == 1 && showMinimumDesignator == 0 {
             self.btnMinimumIndication.isHidden = false
+            self.viewMinimumIndication.isHidden = true
+            self.viewCreditIndication.isHidden = false
+            self.stackIndicationHeight.constant = 27.0
         } else {
             self.btnMinimumIndication.isHidden = true
         }
@@ -202,9 +211,7 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
           self.btnMinimum.isHidden = false
           self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
-          self.stackIndicationHeight.constant = 54.0
-          self.viewMinimumIndication.isHidden = false
-          self.viewCreditIndication.isHidden = false
+          
         }
         
         else if IsCreditBookEnabled == 1 {
@@ -212,24 +219,24 @@ class StatementViewController: UIViewController, UISearchBarDelegate,UISearchCon
             self.btnCreditBook.isHidden = false
             self.viewBottomHeight.constant = 125.0
             self.centerAlignedView.constant = -95.0
-            self.viewMinimumIndication.isHidden = true
-            self.viewCreditIndication.isHidden = false
-            self.stackIndicationHeight.constant = 27.0
+            
         }
         else if enableMinimumTemplate == 1 {
             self.btnMinimum.isHidden = false
             self.btnCreditBook.isHidden = true
             self.viewBottomHeight.constant = 125.0
             self.centerAlignedView.constant = 95.0
-            self.viewMinimumIndication.isHidden = false
-            self.viewCreditIndication.isHidden = true
-            self.stackIndicationHeight.constant = 27.0
+            
         }
         
         else {
             self.btnMinimum.isHidden = true
             self.btnCreditBook.isHidden = true
             self.viewBottomHeight.constant = 94.0
+        }
+        
+        if CreditIndicate == "" {
+            self.viewCreditIndication.isHidden = true
         }
         
     }
