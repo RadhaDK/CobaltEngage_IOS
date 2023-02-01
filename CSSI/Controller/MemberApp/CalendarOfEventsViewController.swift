@@ -11,9 +11,14 @@ import DTCalendarView
 import EventKit
 import MessageUI
 
-class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, EventsCellDelegate {
+class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate, EventsCellDelegate, cancelDinningPopup {
     
-    
+    func cancelDinningReservation(value: Bool) {
+           self.appDelegate.selectedSegment = "0"
+           self.appDelegate.typeOfCalendar = "Dining"
+           self.eventApi(strSearch: self.eventSearchBar.text ?? "")
+       }
+
     fileprivate var now = Date()
     fileprivate var currentDate = Date()
 
@@ -983,6 +988,26 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
             if eventobj.isDiningFCFS == "1" {
                 let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "DiningFCFSEventCell") as! DiningFCFSEventCell
+                
+                if eventobj.UI != nil {
+                    if eventobj.UI[0].Modify == 0{
+                        cell.btnModify.isHidden = true
+                    } else {
+                        cell.btnModify.isHidden = false
+                    }
+                   
+                    if eventobj.UI[0].Cancel == 0{
+                        cell.btnCancel.isHidden = true
+                   } else {
+                       cell.btnCancel.isHidden = false
+                       
+                   }
+                } else {
+                    cell.btnModify.isHidden = false
+                    cell.btnCancel.isHidden = false
+                }
+                
+                
                 cell.lblEventName.text = eventobj.eventName
                 cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
                 cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
@@ -1011,48 +1036,45 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                     if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
                         impVC.showNavigationBar = false
                         impVC.enumForDinningMode = .modify
-                        impVC.requestedId = eventobj.requestID ?? ""
+                        impVC.requestedId = "\(eventobj.eventID ?? "")"
                         self.navigationController?.pushViewController(impVC, animated: true)
                     }
                 }
                 
                 cell.clickedDinningCancelClosure = {
                     if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
-                        cancelViewController.eventID = eventobj.requestID
-                        cancelViewController.partySize = 2 // Need to change to dynamic
-//                        cancelViewController.delegateCancelReservation = self
+                        cancelViewController.eventID = eventobj.eventID
+                        let partyIntSize:Int? = Int(eventobj.partySize ?? "")
+                        cancelViewController.partySize = partyIntSize ?? 0
+                        cancelViewController.delegateCancelReservation = self
                         cancelViewController.diningPopupMode = .cancel
                         cancelViewController.cancelReservationClosure  = {
-//                            self.showCancelSuccess()
+                            self.showCancelSuccess()
     //                        self.myDinningReservationList(strSearch: "")
                         }
                         self.navigationController?.present(cancelViewController, animated: true)
                     }
                 }
+                
                 cell.clickedDinningShareClosure = {
-
                         
                         if let shareDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfShareVC") as? GolfShareVC
                         {
-                            shareDetails.requestID = eventobj.requestID
+                            shareDetails.requestID = "\(eventobj.eventID ?? "")"
                             self.appDelegate.typeOfCalendar = "Dining"
                            // shareDetails.arrEventDetails = [eventObjt]
                             self.navigationController?.pushViewController(shareDetails, animated: true)
                         }
                 }
                 cell.clickedDinningSyncClosure = {
-                 
                     if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfSyncCalendarVC") as? GolfSyncCalendarVC{
-                        
-                       
                             if (self.appDelegate.selectedSegment == "0"){
                                 eventDetails.isFrom = "DiningRes"
                             }
-                        eventDetails.requestID = eventobj.requestID
+                        eventDetails.requestID = "\(eventobj.eventID ?? "")"
                         eventDetails.eventName = eventobj.eventName
                         eventDetails.eventTime  = eventobj.eventTime
                         eventDetails.eventCategory = "Dining"
-
                         self.navigationController?.pushViewController(eventDetails, animated: true)
                     }
                 }

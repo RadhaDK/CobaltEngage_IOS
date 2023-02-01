@@ -112,7 +112,6 @@ class ListEvents: NSObject, Mappable  {
     var ReservationStatus: String?
     var SelectedTime : String!
     var SelectedDate : String!
-    var UI : [MyDinningUI]!
     var isDiningFCFS: String!
     
     convenience required init?(map: Map) {
