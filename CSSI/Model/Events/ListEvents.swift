@@ -107,6 +107,14 @@ class ListEvents: NSObject, Mappable  {
     var DiningFCFSReservation : String?
     var UI : [MyDinningUI]!
     //GATHER0000700 - End
+    
+    var restaurantName: String?
+    var ReservationStatus: String?
+    var SelectedTime : String!
+    var SelectedDate : String!
+    var UI : [MyDinningUI]!
+    var isDiningFCFS: String!
+    
     convenience required init?(map: Map) {
         self.init()
     }
@@ -164,8 +172,13 @@ class ListEvents: NSObject, Mappable  {
         self.departmentType <- map["Departmenttype"]
         //GATHER0000700 - End
         self.eventTeeBox <- map["EventTeeBox"]
-        self.DiningFCFSReservation <- map["DiningFCFSReservation"]
+        
+        restaurantName <- map["RestaurantName"]
+        SelectedTime <- map["SelectedTime"]
+        SelectedDate <- map["SelectedDate"]
+        ReservationStatus <- map["ReservationStatus"]
         UI <- map["UI"]
+        isDiningFCFS <- map["DiningFCFSReservation"]
     }
     
     

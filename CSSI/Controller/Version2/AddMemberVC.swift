@@ -101,6 +101,11 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
     var diningVersion: diningVersion = .lottery
     var dietaryRestrictions : String?
     var modifyDietary = 0
+    var restaurantID = ""
+    var isFromDiningFCFS = 0
+    var totalNumberofTickets = 1
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -1207,6 +1212,29 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
                     ]
                     partyList.append(memberInfo)
                 }
+                else if arrTempPlayers[i] is ResrvationPartyDetail {
+                    let playObj = arrTempPlayers[i] as! ResrvationPartyDetail
+                    
+                    if playObj.MemberID != "" {
+                        let memberInfo:[String: Any] = [
+                            "ReservationRequestDetailId": "",
+                            "LinkedMemberID": playObj.MemberID ,
+                            "GuestMemberOf": "",
+                            "GuestType": "",
+                            "GuestName": "",
+                            "GuestEmail": "",
+                            "GuestContact": "",
+                            "HighChairCount": playObj.HighChair,
+                            "BoosterChairCount": playObj.BoosterChair,
+                            "SpecialOccasion": [],
+                            "DietaryRestrictions": playObj.DietartRestriction,
+                            "DisplayOrder": i + 1,
+                            "AddBuddy": 0
+                        ]
+                        partyList.append(memberInfo)
+                    }
+                    
+                }
                 else if arrTempPlayers[i] is GuestInfo
                 {
                     let playObj = arrTempPlayers[i] as! GuestInfo
@@ -1344,7 +1372,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
             }
             
             
-            let paramaterDict:[String: Any] = [
+            var paramaterDict:[String: Any] = [
                 "Content-Type":"application/json",
                 APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
                 APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
@@ -1359,7 +1387,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
                 //ENGAGE0011784 -- End
                 "PartySize": "",
                 "Earliest": "",
-                "Latest": "",
+                "Latest": self.selectedTime ?? "",
                 "Comments": "",
                 //Modified on 15th october 2020 V2.3
                 "PreferedSpaceDetailId": self.preferedSpaceDetailId ?? "" ,
@@ -1371,35 +1399,71 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
                 "RegistrationID": requestID ?? ""
             ]
             
+            if self.isFromDiningFCFS == 1{
+                paramaterDict["DiningFCFCReservation"] = "1"
+                paramaterDict["RestaurantID"] = self.restaurantID
+                paramaterDict["PartySize"] = self.totalNumberofTickets
+            }
+            
             print("memberdict \(paramaterDict)")
             APIHandler.sharedInstance.getMemberValidation(paramater: paramaterDict, onSuccess: { (response) in
                 
                 self.appDelegate.hideIndicator()
                
                 if response.responseCode == InternetMessge.kFail {
-                    SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
+                    if let duplicateDetails = response.details
+                    {
+//                            self.showConflictedMembers(members: duplicateDetails, message: response.brokenRules?.fields?[0])
+                        if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ImpotantContactsVC") as? ImpotantContactsVC
+                        {
+                            impVC.importantContactsDisplayName = response.brokenRules?.fields?[0]
+                            impVC.isFrom = "Reservations"
+                            impVC.arrList = duplicateDetails
+                            impVC.isHardRule = response.IsHardRuleEnabled ?? 0
+                            impVC.modalTransitionStyle   = .crossDissolve;
+                            impVC.modalPresentationStyle = .overCurrentContext
+                            self.present(impVC, animated: true, completion: nil)
+                            
+                            impVC.yesClicked = {
+                                
+                                if(self.isAddToBuddy == 1){
+                                    self.AddtoBuddyList()
+                                }
+                                self.navigateBackToReqVC()
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
+                    }
+                    
                 }else{
                     
                     if(self.isAddToBuddy == 1){
                         self.AddtoBuddyList()
                     }
-                for controller in self.navigationController!.viewControllers as Array {
-                    
-                  
-                        if controller.isKind(of: DiningRequestVC.self) || controller.isKind(of: DinningDetailRestuarantVC.self) {
-                            self.delegateAddMember?.addMemberDelegate(selecteArray: [self.diningInfo])
-                            self.navigationController!.popToViewController(controller, animated: true)
-                            break
-                        }
-                    
-                    
-                }
+                    self.navigateBackToReqVC()
                 }
                 
             }) { (error) in
                 SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:error.localizedDescription, withDuration: Duration.kMediumDuration)
                 self.appDelegate.hideIndicator()
             }
+            
+        }
+    }
+    
+    func navigateBackToReqVC() {
+        for controller in self.navigationController!.viewControllers as Array {
+            
+          
+                if controller.isKind(of: DiningRequestVC.self) || controller.isKind(of: DinningDetailRestuarantVC.self) {
+                    self.delegateAddMember?.addMemberDelegate(selecteArray: [self.diningInfo])
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
+            
             
         }
     }

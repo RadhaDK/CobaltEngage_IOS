@@ -236,6 +236,10 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
     var duration : String?
     //GATHER0000832 -- End
     
+    // For DiningFCFS Validation required Parameter
+    var restaurantId = ""
+    var isFromDiningFCFS = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initController()
@@ -2275,6 +2279,28 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                     ]
                     partyList.append(memberInfo)
                 }
+                else if arrTempPlayers[i] is ResrvationPartyDetail {
+                    let playObj = arrTempPlayers[i] as! ResrvationPartyDetail
+                    if playObj.MemberID != "" {
+                        let memberInfo:[String: Any] = [
+                            "ReservationRequestDetailId": "",
+                            "LinkedMemberID": playObj.MemberID ,
+                            "GuestMemberOf": "",
+                            "GuestType": "",
+                            "GuestName": "",
+                            "GuestEmail": "",
+                            "GuestContact": "",
+                            "HighChairCount": playObj.HighChair,
+                            "BoosterChairCount": playObj.BoosterChair,
+                            "SpecialOccasion": [],
+                            "DietaryRestrictions": playObj.DietartRestriction,
+                            "DisplayOrder": i + 1,
+                            "AddBuddy": 0
+                        ]
+                        partyList.append(memberInfo)
+                    }
+                    
+                }
                 else if arrTempPlayers[i] is GuestInfo
                 {
                     let playObj = arrTempPlayers[i] as! GuestInfo
@@ -2426,7 +2452,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                 //ENGAGE0011784 -- End
                 "PartySize": "",
                 "Earliest": "",
-                "Latest": "",
+                "Latest": self.selectedTime ?? "",
                 "Comments": "",
                 //Modified on 9th October 2020 V2.3
                 "PreferedSpaceDetailId": self.preferedSpaceDetailId ?? "" ,
@@ -2438,8 +2464,10 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                 "RegistrationID": requestID ?? ""
             ]
             
-            if self.appDelegate.isDiningFCFSEnable {
-               paramaterDict["DiningFCFCReservation"] = 1
+            if self.isFromDiningFCFS == 1{
+                paramaterDict["DiningFCFCReservation"] = "1"
+                paramaterDict["RestaurantID"] = self.restaurantId
+                paramaterDict["PartySize"] = totalNumberofTickets
             }
             
             
@@ -2454,7 +2482,30 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                     {
                         if let duplicateDetails = response.details
                         {
-                            self.showConflictedMembers(members: duplicateDetails, message: response.brokenRules?.fields?[0])
+//                            self.showConflictedMembers(members: duplicateDetails, message: response.brokenRules?.fields?[0])
+                            if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ImpotantContactsVC") as? ImpotantContactsVC
+                            {
+                                impVC.importantContactsDisplayName = response.brokenRules?.fields?[0]
+                                impVC.isFrom = "Reservations"
+                                impVC.arrList = duplicateDetails
+                                impVC.isHardRule = response.IsHardRuleEnabled ?? 0
+                                impVC.modalTransitionStyle   = .crossDissolve;
+                                impVC.modalPresentationStyle = .overCurrentContext
+                                self.present(impVC, animated: true, completion: nil)
+                                
+                                impVC.yesClicked = {
+                                    
+                                    if(self.isAddToBuddy == 1)
+                                    {
+                                        if(self.isFrom != "BuddyList")
+                                        {
+                                            self.AddtoBuddyList()
+                                        }
+                                    }
+                                    self.delegate?.multiSelectRequestMemberViewControllerResponse(selectedArray: self.arrMultiSelectedMembers)
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            }
                         }
                         else
                         {
@@ -3201,6 +3252,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                     //Added on 15th October 2020 V2.3
                     regGuest.preferedSpaceDetailId = self.preferedSpaceDetailId
                     
+                    
 
                     if(isFrom == "BuddyList")
                     {
@@ -3245,6 +3297,10 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
                     
                     regGuest.forDiningEvent = self.forDiningEvent
                     regGuest.dietaryRestrictions = self.contactsWithSections[indexPath.section][indexPath.row].dietaryRestrictions
+                    regGuest.restaurantID = self.restaurantId
+                    regGuest.isFromDiningFCFS = self.isFromDiningFCFS
+                    regGuest.totalNumberofTickets = self.totalNumberofTickets ?? 1
+//                    regGuest.selectedTime = self.selectedTime
                     navigationController?.pushViewController(regGuest, animated: true)
                 }
             }

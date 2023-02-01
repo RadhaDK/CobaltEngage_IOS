@@ -214,22 +214,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "335A8FC3-DE00-4E56-B1C7-9EB095E04134"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1098"
-            endingLineNumber = "1098"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6EF94D99-6D13-4425-9470-6ACA89450877"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -253,10 +237,10 @@
             filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2025"
-            endingLineNumber = "2025"
-            landmarkName = "shareDetails(indexPath:)"
-            landmarkType = "7">
+            startingLineNumber = "1975"
+            endingLineNumber = "1975"
+            landmarkName = "viewOnlyClickedClicked(cell:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -317,8 +301,8 @@
             filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1215"
-            endingLineNumber = "1215"
+            startingLineNumber = "1165"
+            endingLineNumber = "1165"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -515,22 +499,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C0350281-3CBD-4106-8654-ACC5AACDFB0E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1080"
-            endingLineNumber = "1080"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6FBE1CE6-B472-4DA9-A853-2ADCF5823037"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -547,22 +515,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FD064521-4D31-4FEE-9BF7-8AA8DF4AF72E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1041"
-            endingLineNumber = "1041"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "68BBE5DF-BA00-4A36-96A1-FAF0E8FEEF46"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -570,9 +522,9 @@
             filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1473"
-            endingLineNumber = "1473"
-            landmarkName = "showCancelSuccess()"
+            startingLineNumber = "1423"
+            endingLineNumber = "1423"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -638,54 +590,6 @@
             endingLineNumber = "17"
             landmarkName = "cancelDinningReservation(value:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "28B51A5D-AA15-482E-8C82-B16556E38869"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1040"
-            endingLineNumber = "1040"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "28B51A5D-AA15-482E-8C82-B16556E38869 - f1814d834b7e59da"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in CSSI.CalendarOfEventsViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1032"
-                  endingLineNumber = "1032"
-                  offsetFromSymbolStart = "1216">
-               </Location>
-               <Location
-                  uuid = "28B51A5D-AA15-482E-8C82-B16556E38869 - 770f13181ca3017a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; () in CSSI.CalendarOfEventsViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "CSSI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aks/Desktop/githubProject/CobaltEngage_IOS/CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1033"
-                  endingLineNumber = "1033"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -890,22 +794,6 @@
                   offsetFromSymbolStart = "587">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6A602C84-DCC8-4324-A0E8-08F7D13244F1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/MemberApp/CalendarOfEventsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1035"
-            endingLineNumber = "1035"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
