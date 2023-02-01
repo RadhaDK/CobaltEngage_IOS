@@ -418,18 +418,24 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 } else {
                     memberDirectory.isFrom = "BuddyList"
                 }
-                
+                memberDirectory.totalNumberofTickets = self.diningReservation.PartySize
                 if type == .multiple {
-                    memberDirectory.totalNumberofTickets = self.diningReservation.PartySize
+                    
                     memberDirectory.shouldEnableMultiSelect = true
                     memberDirectory.shouldEnableSkipping = true
                     
                     memberDirectory.arrMultiSelectedMembers.append(self.diningReservation.PartyDetails)
+                } else {
+                    memberDirectory.membersData = self.diningReservation.PartyDetails
                 }
                 memberDirectory.showSegmentController = true
                 memberDirectory.categoryForBuddy = "Dining"
                 memberDirectory.isOnlyFor = "DiningRequest"
+                memberDirectory.restaurantId = self.diningReservation.RestaurantID
+                memberDirectory.isFromDiningFCFS = 1
                 memberDirectory.delegate = self
+                memberDirectory.selectedTime = self.diningReservation.SelectedTime
+                memberDirectory.selectedDate = self.diningReservation.SelectedDate
                 navigationController?.pushViewController(memberDirectory, animated: true)
             }
         }

@@ -979,22 +979,9 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
             var eventobj =  ListEvents()
             eventobj = arrEventList[indexPath.row]
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
             
-            let date = EventDate
             
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "dd-MM-yyyy"
-            
-            dateFormat.dateFormat = "dd"
-            let weekDay: String = dateFormat.string(from: date!)
-            
-            dateFormat.dateFormat = "MMM"
-            let dateAndMonth: String = dateFormat.string(from: date!)
-            
-            if eventobj.eventCategory == "DiningFCFS" {
+            if eventobj.isDiningFCFS == "1" {
                 let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "DiningFCFSEventCell") as! DiningFCFSEventCell
                 cell.lblEventName.text = eventobj.eventName
                 cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
@@ -1003,16 +990,92 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
                 cell.lblStatus.text = self.appDelegate.masterLabeling.status
                 cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
-                cell.lblDate.text = weekDay
-                cell.lblMonth.text = dateAndMonth
-                cell.lblWeekDay.text = eventobj.eventDayName
+                
+                if let day = eventobj.eventDate{
+                    cell.lblMonth.text = getDayWeek(givenDate: day)
+                }
+                if let date = eventobj.eventDate{
+                    cell.lblDate.text = getDateDinning(givenDate: date)
+                }
+                if let weekDay = eventobj.eventDate{
+                    cell.lblWeekDay.text = getDayOfWeek(givenDate: weekDay)
+                }
+//
+//                cell.lblDate.text = weekDay
+//                cell.lblMonth.text = dateAndMonth
+//                cell.lblWeekDay.text = eventobj.eventDayName
                 cell.lblMonth.textColor = APPColor.MainColours.primary2
-                cell.lblStatusValue.text = eventobj.memberEventStatus ?? ""
+                cell.lblStatusValue.text = eventobj.eventstatus ?? ""
+                
+                cell.clickedDinningModifyClosure = {
+                    if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
+                        impVC.showNavigationBar = false
+                        impVC.enumForDinningMode = .modify
+                        impVC.requestedId = eventobj.requestID ?? ""
+                        self.navigationController?.pushViewController(impVC, animated: true)
+                    }
+                }
+                
+                cell.clickedDinningCancelClosure = {
+                    if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+                        cancelViewController.eventID = eventobj.requestID
+                        cancelViewController.partySize = 2 // Need to change to dynamic
+//                        cancelViewController.delegateCancelReservation = self
+                        cancelViewController.diningPopupMode = .cancel
+                        cancelViewController.cancelReservationClosure  = {
+//                            self.showCancelSuccess()
+    //                        self.myDinningReservationList(strSearch: "")
+                        }
+                        self.navigationController?.present(cancelViewController, animated: true)
+                    }
+                }
+                cell.clickedDinningShareClosure = {
+
+                        
+                        if let shareDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfShareVC") as? GolfShareVC
+                        {
+                            shareDetails.requestID = eventobj.requestID
+                            self.appDelegate.typeOfCalendar = "Dining"
+                           // shareDetails.arrEventDetails = [eventObjt]
+                            self.navigationController?.pushViewController(shareDetails, animated: true)
+                        }
+                }
+                cell.clickedDinningSyncClosure = {
+                 
+                    if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfSyncCalendarVC") as? GolfSyncCalendarVC{
+                        
+                       
+                            if (self.appDelegate.selectedSegment == "0"){
+                                eventDetails.isFrom = "DiningRes"
+                            }
+                        eventDetails.requestID = eventobj.requestID
+                        eventDetails.eventName = eventobj.eventName
+                        eventDetails.eventTime  = eventobj.eventTime
+                        eventDetails.eventCategory = "Dining"
+
+                        self.navigationController?.pushViewController(eventDetails, animated: true)
+                    }
+                }
                 
                 return cell
                 
             } else {
                 let cell = self.eventsTableview.dequeueReusableCell(withIdentifier: "MyCalendarXib") as! MyCalendarXib
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MMM yyyy"
+                let EventDate = dateFormatter.date(from: eventobj.eventstartdate ?? "")
+                
+                let date = EventDate
+                
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "dd-MM-yyyy"
+                
+                dateFormat.dateFormat = "dd"
+                let weekDay: String = dateFormat.string(from: date!)
+                
+                dateFormat.dateFormat = "MMM"
+                let dateAndMonth: String = dateFormat.string(from: date!)
                 
                 cell.lblEventName.text = eventobj.eventName
                 

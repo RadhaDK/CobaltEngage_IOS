@@ -1301,7 +1301,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                     cancelViewController.delegateCancelReservation = self
                     cancelViewController.diningPopupMode = .cancel
                     cancelViewController.cancelReservationClosure  = {
-                        self.showCancelSuccess()
+//                        self.showCancelSuccess()
 //                        self.myDinningReservationList(strSearch: "")
                     }
                     self.navigationController?.present(cancelViewController, animated: true)

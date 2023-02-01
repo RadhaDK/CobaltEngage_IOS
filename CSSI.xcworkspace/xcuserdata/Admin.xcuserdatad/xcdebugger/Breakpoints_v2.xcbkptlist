@@ -126,25 +126,9 @@
             filePath = "CSSI/Controller/Version2/AddMemberVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1413"
-            endingLineNumber = "1413"
+            startingLineNumber = "1477"
+            endingLineNumber = "1477"
             landmarkName = "textViewShouldBeginEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "451D6872-1E70-4EC1-8F24-4B237A897981"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Controller/Version2/AddMemberVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1390"
-            endingLineNumber = "1390"
-            landmarkName = "DiningReservationDuplicate()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -174,8 +158,8 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +174,8 @@
             filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -225,22 +209,6 @@
             startingLineNumber = "626"
             endingLineNumber = "626"
             landmarkName = "getEventsList(paramaterDict:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "307BECE6-98F0-4830-8130-01E6181850E4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CSSI/Dining/Controller/DinningDetailRestuarantVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "590"
-            endingLineNumber = "590"
-            landmarkName = "requestMemberViewControllerResponse(selecteArray:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
