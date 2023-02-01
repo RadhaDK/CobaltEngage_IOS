@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -208,7 +208,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ku3-kA-ZUt">
-                                <rect key="frame" x="50" y="146" width="50" height="50"/>
+                                <rect key="frame" x="30" y="146" width="50" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hkp-0q-v1G">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -233,7 +233,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6G-g3-YCJ">
-                                <rect key="frame" x="100" y="146" width="50" height="50"/>
+                                <rect key="frame" x="80" y="146" width="50" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOe-mH-X2a">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -313,7 +313,7 @@
                             <constraint firstItem="d6G-g3-YCJ" firstAttribute="leading" secondItem="Ku3-kA-ZUt" secondAttribute="trailing" id="JRU-lu-KoH"/>
                             <constraint firstAttribute="trailing" secondItem="YVD-8D-8yg" secondAttribute="trailing" id="ZPY-H6-Wa0"/>
                             <constraint firstAttribute="trailing" secondItem="5TH-lx-gyD" secondAttribute="trailing" constant="20" id="bvd-5b-xL5"/>
-                            <constraint firstItem="Ku3-kA-ZUt" firstAttribute="leading" secondItem="BrX-7Q-y7M" secondAttribute="leading" constant="50" id="hZ6-qk-p6e"/>
+                            <constraint firstItem="Ku3-kA-ZUt" firstAttribute="leading" secondItem="BrX-7Q-y7M" secondAttribute="leading" constant="30" id="hZ6-qk-p6e"/>
                             <constraint firstAttribute="trailing" secondItem="fVI-hV-3YA" secondAttribute="trailing" constant="35" id="kSr-Pm-Ile"/>
                             <constraint firstItem="fVI-hV-3YA" firstAttribute="top" secondItem="YVD-8D-8yg" secondAttribute="bottom" id="wXW-qJ-Cma"/>
                             <constraint firstAttribute="height" constant="203" id="yg9-2i-gGY"/>

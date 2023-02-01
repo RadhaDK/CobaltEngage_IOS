@@ -104,13 +104,14 @@ class ListEvents: NSObject, Mappable  {
     //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes
     //GATHER0000700 - Start
     var departmentType : String?
+    var DiningFCFSReservation : String?
+    var UI : [MyDinningUI]!
     //GATHER0000700 - End
     
     var restaurantName: String?
     var ReservationStatus: String?
     var SelectedTime : String!
     var SelectedDate : String!
-    var UI : [MyDinningUI]!
     var isDiningFCFS: String!
     
     convenience required init?(map: Map) {
