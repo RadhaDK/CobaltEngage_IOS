@@ -1081,6 +1081,16 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                     }
                 }
                 
+                cell.clickedDinningNameClosure = {
+                    var eventobj = self.arrEventList[indexPath.row]
+                            if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
+                                impVC.showNavigationBar = false
+                                impVC.enumForDinningMode = .view
+                                impVC.requestedId = eventobj.eventID ?? ""
+                                self.navigationController?.pushViewController(impVC, animated: true)
+                            }
+                }
+                
                 return cell
                 
             } else {
@@ -1220,7 +1230,6 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 cell.btnCancel.setStyle(style: .outlined, type: .secondary)
                 return cell
             }
-            
             
             
             
@@ -1410,6 +1419,25 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
         }
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if eventCategory == "My Calendar"{
+           
+            var eventobj = arrEventList[indexPath.row]
+            if eventobj.isDiningFCFS == "1" {
+                if let impVC = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DiningReservationVC") as? DiningReservationVC {
+                    impVC.showNavigationBar = false
+                    impVC.enumForDinningMode = .view
+                    impVC.requestedId = eventobj.requestID ?? ""
+                    self.navigationController?.pushViewController(impVC, animated: true)
+                }
+            }
+        }
+    }
+        
+
+    
+
     
     func synchButtonClicked(cell: EventCustomTableViewCell) {
         

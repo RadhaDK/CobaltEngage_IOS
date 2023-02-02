@@ -132,7 +132,7 @@ class EventDetailsVC: UIViewController,UITextFieldDelegate {
             
         }
         else{
-            
+            print(arrEventDetails[0].eventendtime)
             lblEventName.text = arrEventDetails[0].eventName
             lblEventTitle.text = arrEventDetails[0].eventName
             lblFromTime.text = arrEventDetails[0].eventTime

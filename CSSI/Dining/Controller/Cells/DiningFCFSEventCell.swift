@@ -32,6 +32,7 @@ class DiningFCFSEventCell: UITableViewCell {
     var clickedDinningCancelClosure:(()->())?
     var clickedDinningShareClosure:(()->())?
     var clickedDinningSyncClosure:(()->())?
+    var clickedDinningNameClosure:(()->())?
 
     
     override func awakeFromNib() {
@@ -84,5 +85,9 @@ class DiningFCFSEventCell: UITableViewCell {
     @IBAction func btnSyncAction(_ sender: Any) {
         clickedDinningSyncClosure?()
     }
-    
+    //Added on 15th October 2020 V2.3
+    @IBAction func nameClicked(_ sender: UIButton)
+    {
+        clickedDinningNameClosure?()
+    }
 }

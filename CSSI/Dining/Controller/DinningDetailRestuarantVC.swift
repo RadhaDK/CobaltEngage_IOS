@@ -868,8 +868,18 @@ extension DinningDetailRestuarantVC{
         return seconds < 10 ? "0\(seconds)" : "\(seconds)"
     }
     func dismmissResvPopup(value: Bool) {
-        popBack(3)
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers
+        for popToViewController in viewControllers {
+                // self.appDelegate.requestFrom = ""
+                if popToViewController is DiningReservationViewController {
+                    //Modified by kiran -- ENGAGE0011177 -- V2.5 -- commented as its causing black bar issue on nav bar.
+                    //self.navigationController?.navigationBar.isHidden = true
+                    self.navigationController!.popToViewController(popToViewController, animated: true)
+                    
+                }
+                //popBack(4)
+            
+        }
     }
-    
    
 }
