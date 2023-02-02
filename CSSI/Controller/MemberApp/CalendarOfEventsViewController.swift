@@ -1007,7 +1007,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                     cell.btnCancel.isHidden = false
                 }
                 
-                
+                cell.lblMyConfirmationNo.text = "\(eventobj.confirmMessageFcfs ?? 0)"
                 cell.lblEventName.text = eventobj.eventName
                 cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
                 cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
@@ -1077,6 +1077,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                         eventDetails.eventTime  = eventobj.eventTime
                         eventDetails.eventCategory = "Dining"
                         eventDetails.isDiningFCFS = 1
+                        eventDetails.arrEventDetails = [self.arrEventList[indexPath.row]]
                         self.navigationController?.pushViewController(eventDetails, animated: true)
                     }
                 }

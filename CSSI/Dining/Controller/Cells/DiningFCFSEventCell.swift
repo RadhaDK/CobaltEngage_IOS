@@ -27,6 +27,8 @@ class DiningFCFSEventCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblWeekDay: UILabel!
     @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var lblMyConfirmationNo: UILabel!
+
     
     var clickedDinningModifyClosure:(()->())?
     var clickedDinningCancelClosure:(()->())?
