@@ -52,8 +52,15 @@ class DiningEventRegistrationVC: UIViewController,UITableViewDataSource,UITableV
                 //PROD0000069 -- Start
                 else
                 {
-                    self.navigationController!.popViewController(animated: true)
-                    break
+                    if self.appDelegate.requestFromTimer == "TimerPopup" {
+                        popBack(3)
+                    }
+                    else{
+                        
+                        self.navigationController!.popViewController(animated: true)
+                    }
+                        break
+                    
                 }
                 //PROD0000069 -- End
             }
