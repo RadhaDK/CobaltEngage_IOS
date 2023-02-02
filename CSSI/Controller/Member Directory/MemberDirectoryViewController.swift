@@ -2465,7 +2465,7 @@ class MemberDirectoryViewController: UIViewController,UITableViewDataSource, UIT
             ]
             
             if self.isFromDiningFCFS == 1{
-                paramaterDict["DiningFCFCReservation"] = "1"
+                paramaterDict["DiningFCFSReservation"] = "1"
                 paramaterDict["RestaurantID"] = self.restaurantId
                 paramaterDict["PartySize"] = totalNumberofTickets
             }

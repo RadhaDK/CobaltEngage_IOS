@@ -1315,6 +1315,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                         shareDetails.requestID = dict.RequestID
                         self.appDelegate.typeOfCalendar = "Dining"
                        // shareDetails.arrEventDetails = [eventObjt]
+                        shareDetails.isDiningFCFS = 1
                         self.navigationController?.pushViewController(shareDetails, animated: true)
                     }
             }
@@ -1330,7 +1331,7 @@ class GolfCalendarMYTabVC: UIViewController, UITableViewDataSource, UITableViewD
                     eventDetails.eventName = dict.EventName
                     eventDetails.eventTime  = dict.SelectedTime
                     eventDetails.eventCategory = dict.ReservationType
-
+                    eventDetails.isDiningFCFS = 1
                     self.navigationController?.pushViewController(eventDetails, animated: true)
                 }
             }

@@ -112,7 +112,8 @@ class ListEvents: NSObject, Mappable  {
     var ReservationStatus: String?
     var SelectedTime : String!
     var SelectedDate : String!
-    var isDiningFCFS: String!
+    var isDiningFCFS : String!
+    var partySizeFCFS : Int?
     
     convenience required init?(map: Map) {
         self.init()
@@ -178,6 +179,7 @@ class ListEvents: NSObject, Mappable  {
         ReservationStatus <- map["ReservationStatus"]
         UI <- map["UI"]
         isDiningFCFS <- map["DiningFCFSReservation"]
+        partySizeFCFS <- map["PartySize"]
     }
     
     

@@ -82,6 +82,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
     private var arrAppointmentDetails = [Appointment]()
     var diningReservation = DinningReservationFCFS.init()
     var myDinningDetail = [ResrvationPartyDetail]()
+    var isDiningFCFS = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +135,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         else if(self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)){
 //            lblLinkGroup.isHidden = true
 //            lblLinkGroupvalue.isHidden = true
-            if self.appDelegate.isDiningFCFSEnable {
+            if self.isDiningFCFS == 1 {
                 self.getDiningFCFSDetailsApi()
                 self.lblConfirmedTime.text = String(format: "%@  %@", self.eventTime ?? "",self.eventName ?? "")
             } else {
@@ -303,7 +304,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         
        // lblEventName.text = arrEventDetails[0].eventName
       
-        if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
+        if self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFS == 1 {
             lblEventTitle.text = eventName
             lblFromTime.text = eventTime
             lblToTime.text = eventTime
@@ -391,7 +392,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
     @IBAction func addToCalendarClicked(_ sender: Any) {
         partyList.removeAll()
         if self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame){
-            if self.appDelegate.isDiningFCFSEnable {
+            if self.isDiningFCFS == 1 {
                 self.diningFCFSSync()
             } else {
                 self.diningLotterySync()
@@ -477,7 +478,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
             }
         }
         let dateFormatter = DateFormatter()
-        if self.appDelegate.typeOfCalendar == "Dining" && appDelegate.isDiningFCFSEnable{
+        if self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFS == 1{
       
             
             let df = DateFormatter()
@@ -502,7 +503,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         }
         else
         {
-            if self.appDelegate.typeOfCalendar == "Dining" && appDelegate.isDiningFCFSEnable{
+            if self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFS == 1{
                 let df = DateFormatter()
                 df.dateFormat = "yyyy-MM-d HH:mm a"
                 let date = df.date(from: self.diningReservation.SelectedDate + " " + self.diningReservation.SelectedTime)
@@ -569,7 +570,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                         //Added by Kiran V2.7 -- GATHER0000700 - Book a lesson changes. Add BMS comparision as fitness & spa and tennis book a lession should work the same way and both are of BMS type.
                         //GATHER0000700 - Start
                         //Replace fitness & spa with only BMS when possible.
-                        if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
+                        if self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFS == 1 {
                             event.title = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.diningReservation.SyncCalendarTitle : self.diningReservation.SyncCalendarTitle!
                             
                         }
@@ -624,7 +625,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                             //Replace fitness & spa with only BMS when possible.
                             var syncCalendarTitle = ""
                             
-                            if self.appDelegate.typeOfCalendar == "Dining" && self.appDelegate.isDiningFCFSEnable {
+                            if self.appDelegate.typeOfCalendar == "Dining" && self.isDiningFCFS == 1 {
                                 syncCalendarTitle = (self.appDelegate.typeOfCalendar == "FitnessSpa" || ((self.isFrom?.caseInsensitiveCompare("FitnessSpa")) == ComparisonResult.orderedSame) || self.arrEventDetails.first?.requestType == .BMS) ? self.diningReservation.SyncCalendarTitle : self.diningReservation.SyncCalendarTitle!
                                 
                             }
@@ -821,7 +822,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
                 }
                 else if(self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame))
                 {
-                    if appDelegate.isDiningFCFSEnable {
+                    if self.isDiningFCFS == 1 {
                         return self.myDinningDetail.count
                     } else {
                         return self.arrTeeTimeDetails[0].diningDetails?.count ?? 0
@@ -852,7 +853,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
             }
         }else if(self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)){
             
-            if appDelegate.isDiningFCFSEnable {
+            if self.isDiningFCFS == 1 {
                 let dict = myDinningDetail[indexPath.row]
                 if dict.MemberName == ""{
                     cell.lblGroupMemberName.text =  "\(dict.guestFirstName ?? "") \(dict.guestLastName ?? "")"
@@ -926,7 +927,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
             
                 headerView.lblGroup.isHidden = false
                 
-                if self.appDelegate.isDiningFCFSEnable {
+                if self.isDiningFCFS == 1 {
                     
                     if(self.myDinningDetail.count != 0){
                         

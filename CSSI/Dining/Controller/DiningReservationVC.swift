@@ -454,7 +454,8 @@ extension DiningReservationVC{
             "SelectedDate": self.diningReservation.SelectedDate,
             "SelectedTimeSlot": self.diningReservation.SelectedTime,
             "PartySize": self.diningReservation.PartySize,
-            "ResturantID": selectedrestaurantsList.RestaurantID ?? ""
+            "ResturantID": selectedrestaurantsList.RestaurantID ?? "",
+            APIKeys.kRequestID : self.requestedId
        ] as [String : Any]
         print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
@@ -485,6 +486,7 @@ extension DiningReservationVC{
                 {
                     if response.IsHardRuleEnabled == "false"{
                         if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+                            self.selectedEventId = response.EventID
                             cancelViewController.eventID = self.diningReservation.RequestID
                             cancelViewController.partySize = self.diningReservation.PartySize
                             cancelViewController.diningPopupMode = .timeslot

@@ -47,6 +47,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var shareTextGolf: String?
     var eventRegistrationDetailID : String?
     var diningReservation = DinningReservationFCFS.init()
+    var isDiningFCFS = 0
 
     var myDinningDetail = [ResrvationPartyDetail]()
     //Added on 26th June 2020 BMS
@@ -100,7 +101,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
         else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame){
             
-            if appDelegate.isDiningFCFSEnable {
+            if self.isDiningFCFS == 1 {
                 self.getDiningFCFSDetailsApi()
             } else {
                 self.getDiningEventDetailsApi()
@@ -237,7 +238,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         partyList.removeAll()
         if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame){
 
-            if appDelegate.isDiningFCFSEnable {
+            if self.isDiningFCFS == 1 {
                 self.diningFCFSShare()
             } else {
                 self.diningLotteryShare()
@@ -463,7 +464,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 }
                 else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)
                 {
-                    if self.appDelegate.isDiningFCFSEnable {
+                    if self.isDiningFCFS == 1 {
                         return self.myDinningDetail.count
                     } else {
                         return self.arrTeeTimeDetails[0].diningDetails?.count ?? 0
@@ -496,7 +497,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             
         }else if(self.appDelegate.typeOfCalendar == "Dining") || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame) {
             
-            if self.appDelegate.isDiningFCFSEnable {
+            if self.isDiningFCFS == 1 {
                 
                 let dict = myDinningDetail[indexPath.row]
                 if dict.MemberName == ""{
@@ -595,7 +596,7 @@ class GolfShareVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
           }else if(self.appDelegate.typeOfCalendar == "Dining" || ((isFrom?.caseInsensitiveCompare("Dining")) == ComparisonResult.orderedSame)) {
 
                   
-                  if self.appDelegate.isDiningFCFSEnable {
+                  if self.isDiningFCFS == 1 {
                       if(self.myDinningDetail.count != 0){
                           if self.myDinningDetail[0].MemberName == "" {
                               headerView.lblCaptainNameText.text = String(format: " %@", "\(myDinningDetail[0].guestFirstName ?? "") \(myDinningDetail[0].guestLastName ?? "")")

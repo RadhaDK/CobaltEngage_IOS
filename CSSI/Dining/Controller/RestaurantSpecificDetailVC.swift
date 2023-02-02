@@ -61,6 +61,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     var timerSecond : Int?
     var enumForDinningMode : dinningMode = .create
     var timerMsg : String?
+    var selectedEventId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -470,7 +471,8 @@ extension RestaurantSpecificDetailVC{
             "SelectedDate": self.diningReservation.SelectedDate,
             "SelectedTimeSlot": self.diningReservation.SelectedTime,
             "PartySize": self.diningReservation.PartySize,
-            "ResturantID": self.diningReservation.RestaurantID ?? ""
+            "ResturantID": self.diningReservation.RestaurantID ?? "",
+            APIKeys.kRequestID : self.diningReservation.RequestID
        ] as [String : Any]
         print(paramaterDict)
         self.appDelegate.showIndicator(withTitle: "", intoView: self.view)
@@ -489,6 +491,7 @@ extension RestaurantSpecificDetailVC{
                 {
                     if response.IsHardRuleEnabled == "false"{
                         if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+                            self.selectedEventId = response.EventID
                             cancelViewController.eventID = self.diningReservation.RequestID
                             cancelViewController.partySize = self.diningReservation.PartySize
                             cancelViewController.diningPopupMode = .timeslot
@@ -524,7 +527,7 @@ extension RestaurantSpecificDetailVC {
         }
         else{
             if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
-               registerVC.eventID = ""
+               registerVC.eventID = selectedEventId
                 registerVC.eventCategory = ""
                // registerVC.eventType = 0
                 registerVC.requestID = diningReservation.RequestID

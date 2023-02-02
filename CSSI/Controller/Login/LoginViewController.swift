@@ -747,7 +747,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
                 {
                     //Modified by kiran V1.3 -- PROD0000019 -- Added 2 step verification
                     //PROD0000019 -- Start
-                    if parentMemberinfo.authenticationEnable == 0
+                    if parentMemberinfo.authenticationEnable == 1
                     {
                         var emailView : OTPEmailView? = OTPEmailView.init(frame: self.view.bounds)
                         emailView?.memberID = parentMemberinfo.memberID

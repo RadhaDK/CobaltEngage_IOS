@@ -1400,7 +1400,7 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
             ]
             
             if self.isFromDiningFCFS == 1{
-                paramaterDict["DiningFCFCReservation"] = "1"
+                paramaterDict["DiningFCFSReservation"] = "1"
                 paramaterDict["RestaurantID"] = self.restaurantID
                 paramaterDict["PartySize"] = self.totalNumberofTickets
             }

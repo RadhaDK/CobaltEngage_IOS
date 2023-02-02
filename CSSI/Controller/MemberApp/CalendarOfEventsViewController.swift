@@ -1012,7 +1012,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
                 cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
                 cell.lblLocation.text = eventobj.eventVenue
-                cell.lblPartySize.text = String(format: "%@ %@", self.appDelegate.masterLabeling.party_size_colon ?? "",eventobj.partySize ?? "")
+                cell.lblPartySize.text = String(format: "%@ \(eventobj.partySizeFCFS ?? 0)", self.appDelegate.masterLabeling.party_size_colon ?? "")
                 cell.lblStatus.text = self.appDelegate.masterLabeling.status
                 cell.lblStatusColor.backgroundColor = hexStringToUIColor(hex: eventobj.colorCode ?? "")
                 
@@ -1063,6 +1063,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                             shareDetails.requestID = "\(eventobj.eventID ?? "")"
                             self.appDelegate.typeOfCalendar = "Dining"
                            // shareDetails.arrEventDetails = [eventObjt]
+                            shareDetails.isDiningFCFS = 1
                             self.navigationController?.pushViewController(shareDetails, animated: true)
                         }
                 }
@@ -1075,6 +1076,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                         eventDetails.eventName = eventobj.eventName
                         eventDetails.eventTime  = eventobj.eventTime
                         eventDetails.eventCategory = "Dining"
+                        eventDetails.isDiningFCFS = 1
                         self.navigationController?.pushViewController(eventDetails, animated: true)
                     }
                 }

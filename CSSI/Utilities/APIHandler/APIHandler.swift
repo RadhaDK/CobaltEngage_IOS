@@ -3238,7 +3238,7 @@ class APIHandler: NSObject
         
         
         let url : String = baseURL + APIHandler.getMemberSpouseList
-        print(paramaterDict)
+//        print(paramaterDict)
         let headers: HTTPHeaders = [
             APIHeader.kusername: APIHeader.kusernamevalue,
             APIHeader.kpassword: APIHeader.kpasswordvalue,
@@ -3255,7 +3255,7 @@ class APIHandler: NSObject
                 //print("responseStringmemberdirect = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        print(jsonDict)
+//                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
@@ -5075,6 +5075,7 @@ class APIHandler: NSObject
             APIHeader.kculturecode: UserDefaults.standard.string(forKey: UserDefaultsKeys.culturecode.rawValue) ?? ""
             
         ]
+        print(paramater)
         print("============Start Time -- \(url) -- \(Date())========")
         Alamofire.request(url,method:.post, parameters:paramater, encoding: JSONEncoding.default, headers:headers).responseJSON { response  in
             print("============End Time -- \(url) -- \(Date())========")
@@ -5085,7 +5086,7 @@ class APIHandler: NSObject
                 //                print("responseString = \(String(describing: responseString))")
                 do {
                     if let jsonDict = try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: AnyObject] {
-                        
+                        print(jsonDict)
                         let dashboardDicterror = Mapper<BrokenRulesModel>().map(JSONObject: jsonDict)
                         if(((dashboardDicterror?.brokenRules?.fields?.count) ?? 0) > 0 ){
                             self.appDelegate.hideIndicator()
