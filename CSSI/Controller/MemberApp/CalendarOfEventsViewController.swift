@@ -1042,14 +1042,26 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 }
                 
                 cell.clickedDinningCancelClosure = {
+//                    if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
+//                        cancelViewController.eventID = eventobj.eventID
+//                        let partyIntSize:Int? = Int(eventobj.partySize ?? "")
+//                        cancelViewController.partySize = partyIntSize ?? 0
+//                        cancelViewController.delegateCancelReservation = self
+//                        cancelViewController.diningPopupMode = .cancel
+//                        cancelViewController.cancelReservationClosure  = {
+//                            self.showCancelSuccess()
+//    //                        self.myDinningReservationList(strSearch: "")
+//                        }
+//                        self.navigationController?.present(cancelViewController, animated: true)
+//                    }
+                    
                     if let cancelViewController = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "CancelDinningReservationPopupVC") as? CancelDinningReservationPopupVC {
                         cancelViewController.eventID = eventobj.eventID
-                        let partyIntSize:Int? = Int(eventobj.partySize ?? "")
-                        cancelViewController.partySize = partyIntSize ?? 0
+                        cancelViewController.partySize = eventobj.partySizeFCFS ?? 0
                         cancelViewController.delegateCancelReservation = self
                         cancelViewController.diningPopupMode = .cancel
                         cancelViewController.cancelReservationClosure  = {
-                            self.showCancelSuccess()
+    //                        self.showCancelSuccess()
     //                        self.myDinningReservationList(strSearch: "")
                         }
                         self.navigationController?.present(cancelViewController, animated: true)
@@ -1069,9 +1081,9 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                 }
                 cell.clickedDinningSyncClosure = {
                     if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfSyncCalendarVC") as? GolfSyncCalendarVC{
-                            if (self.appDelegate.selectedSegment == "0"){
+                          
                                 eventDetails.isFrom = "DiningRes"
-                            }
+                        self.appDelegate.typeOfCalendar = "Dining"
                         eventDetails.requestID = "\(eventobj.eventID ?? "")"
                         eventDetails.eventName = eventobj.eventName
                         eventDetails.eventTime  = eventobj.eventTime
@@ -1080,6 +1092,21 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                         eventDetails.arrEventDetails = [self.arrEventList[indexPath.row]]
                         self.navigationController?.pushViewController(eventDetails, animated: true)
                     }
+                    
+                    
+                    
+//                    if let eventDetails = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfSyncCalendarVC") as? GolfSyncCalendarVC{
+//                            if (self.appDelegate.selectedSegment == "0"){
+//                                eventDetails.isFrom = "DiningRes"
+//                            }
+//                        eventDetails.requestID = "\(eventobj.eventID ?? "")"
+//                        eventDetails.eventName = eventobj.eventName
+//                        eventDetails.eventTime  = eventobj.eventTime
+//                        eventDetails.eventCategory = "Dining"
+//                        eventDetails.isDiningFCFS = 1
+//                        eventDetails.arrEventDetails = [self.arrEventList[indexPath.row]]
+//                        self.navigationController?.pushViewController(eventDetails, animated: true)
+//                    }
                 }
                 
                 cell.clickedDinningNameClosure = {

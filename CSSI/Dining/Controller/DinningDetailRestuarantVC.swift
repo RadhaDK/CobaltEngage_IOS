@@ -226,6 +226,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             cancelViewController.eventID = self.diningReservation.RequestID
             cancelViewController.partySize = self.diningReservation.PartySize
             cancelViewController.diningPopupMode = .cancel
+            cancelViewController.isFrom = isFrom
             cancelViewController.cancelReservationClosure = {
                 self.showCancelSuccess()
 //                self.navigationController?.popToRootViewController(animated: true)
@@ -256,6 +257,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func btnBack(_ sender: Any) {
+        CountdownTimer().stopCountdown()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -385,6 +387,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             var reservationDetails = DinningReservationFCFS.init()
             reservationDetails.responseMessage = "Your reservation request has been cancelled."
             confirmDinningRequest.reservationDetails = reservationDetails
+            confirmDinningRequest.isFrom = isFrom
             self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
         }
     }
