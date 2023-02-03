@@ -22,6 +22,9 @@ class ImpotantContactsVC: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var lblImportantContacts: UILabel!
     @IBOutlet weak var tblImpContacts: UITableView!
+    @IBOutlet weak var viewBack: UIView!
+    @IBOutlet weak var viewButtons: UIView!
+
     
     @IBOutlet weak var btnNo: UIButton!
     @IBOutlet weak var btnYes: UIButton!
@@ -46,6 +49,10 @@ class ImpotantContactsVC: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewBack.layer.cornerRadius = 20
+        viewBack.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner] // Top right corner, Top left corner respectively
+        viewButtons.layer.cornerRadius = 20
+        viewButtons.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
 
         lblImportantContacts.text = importantContactsDisplayName as String?
         self.refreshControls()
