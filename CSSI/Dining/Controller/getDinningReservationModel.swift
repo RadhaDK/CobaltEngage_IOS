@@ -16,7 +16,7 @@ class DinningReservationFCFS : NSObject, Mappable {
     
     var Responsecode            : String!
     var responseMessage         : String!
-    var RequestID               : String!
+    dynamic var RequestID       = ""
     var RestaurantID            : String!
     var ConfirmationNumber      : String!
     var ReservationStatus       : Int!

@@ -278,6 +278,9 @@ class AddGuestRegVC: UIViewController
     private var existingGuestSelectedIndex : IndexPath?
     //ENGAGE0011784 -- End
     
+    var restaurantId = ""
+    var isFromDiningFCFS = 0
+    var totalNumberofTickets = 0
     
     override func viewDidLoad()
     {
@@ -2739,7 +2742,7 @@ extension AddGuestRegVC
             
             let selectedDate = self.requestDates.first ?? ""
             
-            let paramaterDict:[String: Any] = [
+            var paramaterDict:[String: Any] = [
                 "Content-Type":"application/json",
                 APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
                 APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
@@ -2761,6 +2764,12 @@ extension AddGuestRegVC
                 "ReservationType": AppModuleKeys.dining,
                 "RegistrationID": self.requestID
             ]
+            
+            if isFromDiningFCFS == 1 {
+                paramaterDict["DiningFCFSReservation"] = "1"
+                paramaterDict["RestaurantID"] = self.restaurantId
+                paramaterDict["PartySize"] = totalNumberofTickets
+            }
             
             return paramaterDict
             

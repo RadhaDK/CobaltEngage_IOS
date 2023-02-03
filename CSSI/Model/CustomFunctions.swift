@@ -406,6 +406,16 @@ class CustomFunctions: NSObject
                         arrMembers.append(groupDetailDict)
                     }
                 }
+                else if let member = member as? ResrvationPartyDetail
+                {
+                    if member.MemberID != "" {
+                        if let diningMemberInfoDict = self.generateReservationPartyDetailsDict(groupNo: playerGroup, positionNo: playerOrder, details: member, module: module)
+                        {
+                            arrMembers.append(diningMemberInfoDict)
+                        }
+                    }
+                }
+                
                 
             }
             
@@ -1288,6 +1298,56 @@ class CustomFunctions: NSObject
                 "BoosterChairCount": details.boosterChairCount ?? 0,
                 "SpecialOccasion": [specialOccassionInfo],
                 "DietaryRestrictions": details.dietaryRestrictions ?? 0,
+                "DisplayOrder": positionNo,
+                "AddBuddy": 0
+            ]
+            
+            return memberInfo
+            
+        case .events:
+            break
+        //Modified by kiran V2.9 -- GATHER0001167 -- Added support for Golf BAL
+        //GATHER0001167 -- Start
+        case .BMS,.bookALessonTennis,.fitnessSpa,.bookALessonGolf:
+            //GATHER0001167 -- End
+            break
+        }
+
+        
+        return nil
+    }
+    
+    ///Returns a dictonary of member details for ResrvationPartyDetail object based on module.
+    private func generateReservationPartyDetailsDict(groupNo : Int, positionNo : Int, details : ResrvationPartyDetail, module : AppModules) -> [String : Any]?
+    {
+        
+        switch module
+        {
+        case .golf:
+            break
+        case .tennis:
+            break
+        case .dining,.diningEvents:
+            
+            let specialOccassionInfo:[String: Any] = [
+                "Birthday": details.Birthday,
+                "Anniversary": details.Anniversary,
+                "Other": details.Other,
+                "OtherText": details.OtherText
+            ]
+            
+            let memberInfo:[String: Any] = [
+                "ReservationRequestDetailId": "",
+                "LinkedMemberID": details.MemberID,
+                "GuestMemberOf": "",
+                "GuestType": "",
+                "GuestName": "",
+                "GuestEmail": "",
+                "GuestContact": "",
+                "HighChairCount": details.HighChair,
+                "BoosterChairCount": details.BoosterChair ,
+                "SpecialOccasion": [specialOccassionInfo],
+                "DietaryRestrictions": details.DietartRestriction,
                 "DisplayOrder": positionNo,
                 "AddBuddy": 0
             ]

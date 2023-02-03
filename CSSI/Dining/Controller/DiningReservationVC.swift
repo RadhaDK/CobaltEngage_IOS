@@ -54,9 +54,9 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     var reservationTime = ""
     var selectedRestaurant = ""
     var selectedrestaurantsList: DiningRestaurantsData!
-    var selectedTimeSlot : String!
-    var timerSecond : Int?
-    var selectedEventId : String!
+    var selectedTimeSlot = ""
+    var timerSecond = 0
+    var selectedEventId = ""
 
     
     override func viewDidLoad() {
@@ -259,25 +259,39 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
 
     
     func SelectedDiningTimeSlot(timeSlot: String, row: Int) {
+        selectedrestaurantsList = self.restaurantsList[row]
+        selectedTimeSlot = timeSlot
+        self.diningReservation.SelectedTime = timeSlot
         if enumForDinningMode != .view {
-            moveToMemberDetails(timeSlot: timeSlot, row: row)
+            if diningReservation.PartySize == 0 {
+                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"Please select Party Size", withDuration: Duration.kMediumDuration)
+            } else {    
+                timerForSlots()
+            }
         } else {
             if self.diningReservation.SelectedTime == timeSlot && self.diningReservation.RestaurantID == self.restaurantsList[row].RestaurantID{
-                moveToMemberDetails(timeSlot: timeSlot, row: row)
+                moveToMemberDetails(message: "", userActivityID: "")
             }
         }
     }
     
-    func moveToMemberDetails(timeSlot: String, row: Int) {
-        if diningReservation.PartySize == 0 {
-            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:"Please select Party Size", withDuration: Duration.kMediumDuration)
-        } else {
-            selectedrestaurantsList = self.restaurantsList[row]
-            selectedTimeSlot = timeSlot
-            self.diningReservation.SelectedTime = timeSlot
-            timerForSlots()
-        }
+    func moveToMemberDetails(message: String, userActivityID: String) {
         
+        let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
+        vc!.showNavigationBar = false
+        vc?.isFrom = self.enumForDinningMode
+        self.diningReservation.SelectedTime = self.selectedTimeSlot
+        self.diningReservation.RestaurantID = self.selectedrestaurantsList.RestaurantID
+        vc?.diningReservation = self.diningReservation
+        vc?.diningPolicyURL = self.diningPolicyURL
+        vc?.restaurantName = self.selectedrestaurantsList.RestaurantName
+        vc?.restaurantImage = self.selectedrestaurantsList.RestaurantImage
+        vc?.requestedDate = self.currentDate
+        vc?.timerMinute = self.timerSecond
+
+        vc?.timerMsg = message
+        vc?.diningScheduleUserActivityID = userActivityID
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     // MARK: - Table Methods
@@ -467,20 +481,8 @@ extension DiningReservationVC{
                     if response.TimerMinutes != nil{
                         self.timerSecond = (response.TimerMinutes * 60)
                     }
-                    let vc = UIStoryboard(name: "DiningStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DinningDetailRestuarantVC") as? DinningDetailRestuarantVC
-                    vc!.showNavigationBar = false
-                    vc?.isFrom = self.enumForDinningMode
-                    self.diningReservation.SelectedTime = self.selectedTimeSlot
-                    self.diningReservation.RestaurantID = self.selectedrestaurantsList.RestaurantID
-                    vc?.diningReservation = self.diningReservation
-                    vc?.diningPolicyURL = self.selectedrestaurantsList.DinningPolicy
-                    vc?.restaurantName = self.selectedrestaurantsList.RestaurantName
-                    vc?.restaurantImage = self.selectedrestaurantsList.RestaurantImage
-                    vc?.requestedDate = self.currentDate
-                    vc?.timerMinute = self.timerSecond
-                    vc?.timerMsg = response.responseMessage
-                    vc?.diningScheduleUserActivityID = response.DiningScheduleUserActivityID
-                    self.navigationController?.pushViewController(vc!, animated: true)
+                    self.moveToMemberDetails(message: response.responseMessage, userActivityID: response.DiningScheduleUserActivityID)
+                   
                 }
                 else
                 {

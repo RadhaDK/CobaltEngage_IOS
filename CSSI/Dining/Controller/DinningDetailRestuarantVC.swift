@@ -403,11 +403,14 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 regGuest.enableGuestNameSuggestions = true
                 regGuest.hideAddtoBuddy = false
                 regGuest.hideExistingGuestAddToBuddy = false
-//                regGuest.requestTime = self.txtReservationtime.text ?? ""
-//                regGuest.requestDates = [self.reservationRequestDate ?? ""]
+                regGuest.requestTime = self.diningReservation.SelectedTime
+                regGuest.requestDates = [self.diningReservation.SelectedDate]
 //                regGuest.preferedSpaceDetailId = self.preferedSpaceDetailID ?? ""
-//                regGuest.requestID = self.requestID ?? ""
-//                regGuest.arrAddedMembers = [self.arrTotalList]
+                regGuest.requestID = self.diningReservation.RequestID
+                regGuest.arrAddedMembers = [self.diningReservation.PartyDetails]
+                regGuest.restaurantId = self.diningReservation.RestaurantID
+                regGuest.isFromDiningFCFS = 1
+                regGuest.totalNumberofTickets = self.diningReservation.PartySize
                 navigationController?.pushViewController(regGuest, animated: true)
             }
         } else {
@@ -434,6 +437,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
                 memberDirectory.restaurantId = self.diningReservation.RestaurantID
                 memberDirectory.isFromDiningFCFS = 1
                 memberDirectory.delegate = self
+                memberDirectory.requestID = self.diningReservation.RequestID
                 memberDirectory.selectedTime = self.diningReservation.SelectedTime
                 memberDirectory.selectedDate = self.diningReservation.SelectedDate
                 navigationController?.pushViewController(memberDirectory, animated: true)
