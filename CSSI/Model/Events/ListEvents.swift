@@ -85,6 +85,8 @@ class ListEvents: NSObject, Mappable  {
     var eventDateList: [EventSyncData]?
     var isScheduleEvent : Int?
     var scheduleText : String?
+    var confirmMessageFcfs: Int?
+
     
     //Added on 18th June 2020
     var appointmentFlow : [FlowSequence]?
@@ -180,6 +182,7 @@ class ListEvents: NSObject, Mappable  {
         UI <- map["UI"]
         isDiningFCFS <- map["DiningFCFSReservation"]
         partySizeFCFS <- map["PartySize"]
+        confirmMessageFcfs <- map["ConfirmationNumber"]
     }
     
     

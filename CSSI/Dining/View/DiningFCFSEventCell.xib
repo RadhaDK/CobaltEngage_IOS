@@ -136,7 +136,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entertainment " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRB-Ui-e8c">
                                         <rect key="frame" x="82" y="35" width="107" height="22"/>
                                         <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.3411764705882353" green="0.45098039215686275" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqN-QU-ok2">
@@ -163,7 +163,19 @@
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HwZ-Nv-fiF">
                                         <rect key="frame" x="82" y="10" width="327" height="20"/>
+                                        <connections>
+                                            <action selector="nameClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7FV-2k-1ka"/>
+                                        </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# 6767655" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-ky-YW6">
+                                        <rect key="frame" x="342" y="10" width="67" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Wxk-O4-jzJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -182,6 +194,7 @@
                                     <constraint firstItem="KqN-QU-ok2" firstAttribute="height" secondItem="uaz-29-86G" secondAttribute="height" multiplier="1.16667" id="Kwp-Fh-WBh"/>
                                     <constraint firstItem="C4Y-ew-eKb" firstAttribute="top" secondItem="Z9A-EG-VXz" secondAttribute="bottom" constant="4" id="LIP-yx-fbg"/>
                                     <constraint firstItem="HwZ-Nv-fiF" firstAttribute="top" secondItem="4C5-w7-tdg" secondAttribute="top" id="MCu-ed-uts"/>
+                                    <constraint firstItem="2CS-Mk-euC" firstAttribute="leading" secondItem="LaT-ky-YW6" secondAttribute="trailing" constant="5" id="Qd5-bn-HAc"/>
                                     <constraint firstItem="2CS-Mk-euC" firstAttribute="leading" secondItem="4C5-w7-tdg" secondAttribute="trailing" constant="5" id="RKd-LW-v1G"/>
                                     <constraint firstItem="jvY-9D-sIr" firstAttribute="leading" secondItem="6uI-jj-5Sl" secondAttribute="trailing" id="SMf-xJ-UXh"/>
                                     <constraint firstItem="C4Y-ew-eKb" firstAttribute="leading" secondItem="6uI-jj-5Sl" secondAttribute="trailing" id="VhP-Bb-eTZ"/>
@@ -189,6 +202,7 @@
                                     <constraint firstItem="HwZ-Nv-fiF" firstAttribute="trailing" secondItem="4C5-w7-tdg" secondAttribute="trailing" id="YcE-Hi-wzW"/>
                                     <constraint firstItem="uaz-29-86G" firstAttribute="top" secondItem="U3F-6F-5Qf" secondAttribute="bottom" id="ZRC-ac-8Rm"/>
                                     <constraint firstItem="KqN-QU-ok2" firstAttribute="width" secondItem="uaz-29-86G" secondAttribute="width" multiplier="1.05" id="Zdd-O1-bVP"/>
+                                    <constraint firstItem="LaT-ky-YW6" firstAttribute="centerY" secondItem="HwZ-Nv-fiF" secondAttribute="centerY" id="bks-ds-JTL"/>
                                     <constraint firstItem="1mx-nW-uwT" firstAttribute="leading" secondItem="C4Y-ew-eKb" secondAttribute="trailing" constant="25" id="dYh-JT-KSM"/>
                                     <constraint firstItem="Z9A-EG-VXz" firstAttribute="leading" secondItem="6uI-jj-5Sl" secondAttribute="trailing" id="g97-gM-590"/>
                                     <constraint firstAttribute="trailing" secondItem="k5k-rh-2ac" secondAttribute="trailing" constant="22.23" id="hBa-Xn-2U5"/>
@@ -337,6 +351,7 @@
                 <outlet property="lblEventName" destination="4C5-w7-tdg" id="NHR-A9-8CN"/>
                 <outlet property="lblLocation" destination="kRB-Ui-e8c" id="aEz-81-mG4"/>
                 <outlet property="lblMonth" destination="uaz-29-86G" id="sPT-gi-bzx"/>
+                <outlet property="lblMyConfirmationNo" destination="LaT-ky-YW6" id="0gg-Kz-Udo"/>
                 <outlet property="lblPartySize" destination="Z9A-EG-VXz" id="zVe-am-opr"/>
                 <outlet property="lblStatus" destination="C4Y-ew-eKb" id="9eE-nx-94I"/>
                 <outlet property="lblStatusColor" destination="Au6-zm-xS9" id="8Hy-Jj-J0e"/>

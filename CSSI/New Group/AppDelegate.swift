@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var groupID = String()
     
     var requestFrom = String()
-
+    var requestFromTimer = String()
     var golfEventsSearchText = String()
     
     var typeOfCalendar = String()

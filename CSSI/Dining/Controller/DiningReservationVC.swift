@@ -529,6 +529,7 @@ extension DiningReservationVC {
                registerVC.eventID = selectedEventId
                 registerVC.eventCategory = ""
                // registerVC.eventType = 0
+                self.appDelegate.requestFromTimer = "TimerPopup"
                 registerVC.requestID = diningReservation.RequestID
                // registerVC.isFrom = "EventUpdate"
                // registerVC.segmentIndex = 1

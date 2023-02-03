@@ -83,7 +83,10 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
                     self.navigationController!.popToViewController(controller, animated: true)
                     break
                 }
-                
+                else if controller.isKind(of: CalendarOfEventsViewController.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }
             }
         }
         else{

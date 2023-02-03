@@ -27,11 +27,14 @@ class DiningFCFSEventCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblWeekDay: UILabel!
     @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var lblMyConfirmationNo: UILabel!
+
     
     var clickedDinningModifyClosure:(()->())?
     var clickedDinningCancelClosure:(()->())?
     var clickedDinningShareClosure:(()->())?
     var clickedDinningSyncClosure:(()->())?
+    var clickedDinningNameClosure:(()->())?
 
     
     override func awakeFromNib() {
@@ -84,5 +87,9 @@ class DiningFCFSEventCell: UITableViewCell {
     @IBAction func btnSyncAction(_ sender: Any) {
         clickedDinningSyncClosure?()
     }
-    
+    //Added on 15th October 2020 V2.3
+    @IBAction func nameClicked(_ sender: UIButton)
+    {
+        clickedDinningNameClosure?()
+    }
 }

@@ -244,7 +244,7 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
 //            lblNotPrefferedValue.isHidden = false
             self.viewPreferredCourse.isHidden = false
             self.viewNotPreferredCource.isHidden = false
-            
+            print(self.arrEventDetails)
             self.lblConfirmedTime.text = String(format: "%@  %@", self.arrEventDetails[0].eventTime ?? "",self.arrEventDetails[0].eventName!)
             lblRoundlength.font = SFont.SFProText_Regular17
             lblPreferredteetime.font = SFont.SFProText_Regular17

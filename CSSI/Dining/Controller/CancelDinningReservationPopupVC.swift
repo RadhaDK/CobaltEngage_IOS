@@ -34,7 +34,8 @@ class CancelDinningReservationPopupVC: UIViewController {
     var diningPopupMode : diningPopup?
     var desribtionText : String?
     var delegateBlockTimer : cancelReservationBlockedPopup?
-    
+    var isFrom: dinningMode = .create
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

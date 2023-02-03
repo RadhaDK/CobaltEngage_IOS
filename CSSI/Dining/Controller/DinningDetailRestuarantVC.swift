@@ -226,6 +226,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             cancelViewController.eventID = self.diningReservation.RequestID
             cancelViewController.partySize = self.diningReservation.PartySize
             cancelViewController.diningPopupMode = .cancel
+            cancelViewController.isFrom = isFrom
             cancelViewController.cancelReservationClosure = {
                 self.showCancelSuccess()
 //                self.navigationController?.popToRootViewController(animated: true)
@@ -256,6 +257,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func btnBack(_ sender: Any) {
+        CountdownTimer().stopCountdown()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -385,6 +387,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             var reservationDetails = DinningReservationFCFS.init()
             reservationDetails.responseMessage = "Your reservation request has been cancelled."
             confirmDinningRequest.reservationDetails = reservationDetails
+            confirmDinningRequest.isFrom = isFrom
             self.navigationController?.pushViewController(confirmDinningRequest, animated: false)
         }
     }
@@ -872,8 +875,18 @@ extension DinningDetailRestuarantVC{
         return seconds < 10 ? "0\(seconds)" : "\(seconds)"
     }
     func dismmissResvPopup(value: Bool) {
-        popBack(3)
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers
+        for popToViewController in viewControllers {
+                // self.appDelegate.requestFrom = ""
+                if popToViewController is DiningReservationViewController {
+                    //Modified by kiran -- ENGAGE0011177 -- V2.5 -- commented as its causing black bar issue on nav bar.
+                    //self.navigationController?.navigationBar.isHidden = true
+                    self.navigationController!.popToViewController(popToViewController, animated: true)
+                    
+                }
+                //popBack(4)
+            
+        }
     }
-    
    
 }
