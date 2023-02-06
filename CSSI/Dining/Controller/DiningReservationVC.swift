@@ -395,6 +395,16 @@ extension DiningReservationVC{
                 self.diningPolicyURL = self.diningSetting.DiningPolicy
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
+                    let currentTime = Date()
+                    let maxTime = self.addTimeStringToDate(givenDate: currentTime, time: self.diningSetting.MaxDaysInAdvanceTime)
+                    let minTime = self.addTimeStringToDate(givenDate: currentTime, time: self.diningSetting.MinDaysInAdvanceTime)
+                    if minTime < currentTime {
+                        self.diningSetting.MinDaysInAdvance += 1
+                    }
+                    if maxTime < currentTime {
+                        self.diningSetting.MaxDaysInAdvance += 1
+                    }
+                    
                     self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
                     if let defTime = self.diningSetting.DefaultTime {
                         let inputFormatter = DateFormatter()

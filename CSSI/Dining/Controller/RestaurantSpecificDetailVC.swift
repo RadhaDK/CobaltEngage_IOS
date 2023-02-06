@@ -428,7 +428,7 @@ extension RestaurantSpecificDetailVC{
                     if let timings = self.restaurantDetails.Timings {
                         self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: timings)
                     } else {
-                        self.lblDefaultTime.text
+                        self.lblDefaultTime.text = ""
                     }
 //                    self.lblDefaultTime.text = self.getStartAndEndTimeString(timings: self.restaurantDetails.Timings)
                     
@@ -437,6 +437,15 @@ extension RestaurantSpecificDetailVC{
                         self.collectionTimeSlot.setEmptyMessage(InternetMessge.kNoTimeSlot)
                     } else {
                         self.collectionTimeSlot.restore()
+                    }
+                    let currentTime = Date()
+                    let maxTime = self.addTimeStringToDate(givenDate: currentTime, time: self.restaurantDetails.RestaurantSettings.MaxDaysInAdvanceTime)
+                    let minTime = self.addTimeStringToDate(givenDate: currentTime, time: self.restaurantDetails.RestaurantSettings.MinDaysInAdvanceTime)
+                    if minTime < currentTime {
+                        self.restaurantDetails.RestaurantSettings.MinDaysInAdvance += 1
+                    }
+                    if maxTime < currentTime {
+                        self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance += 1
                     }
                     
                     self.collectionTimeSlot.reloadData()

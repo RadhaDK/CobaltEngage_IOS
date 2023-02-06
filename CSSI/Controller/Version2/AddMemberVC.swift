@@ -1413,25 +1413,29 @@ class AddMemberVC: UIViewController, UISearchBarDelegate, UITextViewDelegate {
                 if response.responseCode == InternetMessge.kFail {
                     if let duplicateDetails = response.details
                     {
-//                            self.showConflictedMembers(members: duplicateDetails, message: response.brokenRules?.fields?[0])
-                        if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ImpotantContactsVC") as? ImpotantContactsVC
-                        {
-                            impVC.importantContactsDisplayName = response.brokenRules?.fields?[0]
-                            impVC.isFrom = "Reservations"
-                            impVC.arrList = duplicateDetails
-                            impVC.isHardRule = response.IsHardRuleEnabled ?? 0
-                            impVC.modalTransitionStyle   = .crossDissolve;
-                            impVC.modalPresentationStyle = .overCurrentContext
-                            self.present(impVC, animated: true, completion: nil)
-                            
-                            impVC.yesClicked = {
+                        if duplicateDetails.count != 0 {
+                            if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ImpotantContactsVC") as? ImpotantContactsVC
+                            {
+                                impVC.importantContactsDisplayName = response.brokenRules?.fields?[0]
+                                impVC.isFrom = "Reservations"
+                                impVC.arrList = duplicateDetails
+                                impVC.isHardRule = response.IsHardRuleEnabled ?? 0
+                                impVC.modalTransitionStyle   = .crossDissolve;
+                                impVC.modalPresentationStyle = .overCurrentContext
+                                self.present(impVC, animated: true, completion: nil)
                                 
-                                if(self.isAddToBuddy == 1){
-                                    self.AddtoBuddyList()
+                                impVC.yesClicked = {
+                                    
+                                    if(self.isAddToBuddy == 1){
+                                        self.AddtoBuddyList()
+                                    }
+                                    self.navigateBackToReqVC()
                                 }
-                                self.navigateBackToReqVC()
                             }
+                        } else {
+                            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
                         }
+                        
                     }
                     else
                     {

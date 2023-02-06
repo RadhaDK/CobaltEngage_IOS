@@ -3112,7 +3112,37 @@ extension AddGuestRegVC
                     
                     if response.responseCode == InternetMessge.kFail
                     {
-                        SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
+                        if let duplicateDetails = response.details
+                        {
+    //                            self.showConflictedMembers(members: duplicateDetails, message: response.brokenRules?.fields?[0])
+                            if duplicateDetails.count != 0 {
+                                if let impVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "ImpotantContactsVC") as? ImpotantContactsVC
+                                {
+                                    impVC.importantContactsDisplayName = response.brokenRules?.fields?[0]
+                                    impVC.isFrom = "Reservations"
+                                    impVC.arrList = duplicateDetails
+                                    impVC.isHardRule = response.IsHardRuleEnabled ?? 0
+                                    impVC.modalTransitionStyle   = .crossDissolve;
+                                    impVC.modalPresentationStyle = .overCurrentContext
+                                    self.present(impVC, animated: true, completion: nil)
+                                    
+                                    impVC.yesClicked = {
+                                        
+                                        if(self.isAddToBuddy == 1){
+                                            self.AddtoBuddyList()
+                                        }
+                                        self.sendResponce()
+                                    }
+                                }
+                            } else {
+                                SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
+                            }
+                        }
+                        else
+                        {
+                            SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
+                        }
+//                        SharedUtlity.sharedHelper().showToast(on:self.view, withMeassge:response.brokenRules?.fields?[0], withDuration: Duration.kMediumDuration)
                         
                     }
                     else
