@@ -10,6 +10,10 @@
 		0917089928EE80370033B925 /* DiningRequestConfirmedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */; };
 		0917089B28EF13DE0033B925 /* DinningReservedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */; };
 		0917089D28EF70820033B925 /* DinningAddSpecialRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */; };
+		094A4962299373890034CE48 /* GolfStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 094A4961299373890034CE48 /* GolfStoryBoard.storyboard */; };
+		094A4964299373B00034CE48 /* GolfReservationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4963299373B00034CE48 /* GolfReservationVC.swift */; };
+		094A4966299381D40034CE48 /* GolfHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A4965299381D40034CE48 /* GolfHelper.swift */; };
+		094A49682993886C0034CE48 /* DaySlotCollectioncell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A49672993886C0034CE48 /* DaySlotCollectioncell.swift */; };
 		09506AD728EAFF3C005BE4F7 /* DiningResvTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */; };
 		09506AD828EAFF3C005BE4F7 /* DiningResvTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09506AD628EAFF3C005BE4F7 /* DiningResvTableCell.xib */; };
 		09506ADB28EB3DD7005BE4F7 /* DiningReservationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09506ADA28EB3DD7005BE4F7 /* DiningReservationVC.swift */; };
@@ -35,6 +39,10 @@
 		099428D728D252CF00678965 /* FilterHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */; };
 		099428D828D252CF00678965 /* FilterHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */; };
 		09995A0E28FEFA57007FFCEB /* DinningCalederVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */; };
+		099BA8702993FDCE00F5B247 /* AvailableCoursesGolfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099BA86F2993FDCE00F5B247 /* AvailableCoursesGolfCell.swift */; };
+		099BA8722994007D00F5B247 /* OpenSlotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099BA8712994007D00F5B247 /* OpenSlotCollectionCell.swift */; };
+		099BA874299419B800F5B247 /* PlayerSizePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099BA873299419B800F5B247 /* PlayerSizePopUp.swift */; };
+		099BA87629941D0500F5B247 /* CoursesSelectionCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099BA87529941D0500F5B247 /* CoursesSelectionCollectionCell.swift */; };
 		099C851028F97ADB00959E9E /* GetDinningReservationDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C850F28F97ADB00959E9E /* GetDinningReservationDetailModel.swift */; };
 		099C851228F97B2200959E9E /* GetRestaurantDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851128F97B2200959E9E /* GetRestaurantDetailModel.swift */; };
 		099C851628F97BB000959E9E /* EditDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851528F97BB000959E9E /* EditDinningReservationModel.swift */; };
@@ -642,6 +650,10 @@
 		0917089828EE80370033B925 /* DiningRequestConfirmedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningRequestConfirmedVC.swift; sourceTree = "<group>"; };
 		0917089A28EF13DE0033B925 /* DinningReservedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningReservedTableViewCell.swift; sourceTree = "<group>"; };
 		0917089C28EF70820033B925 /* DinningAddSpecialRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningAddSpecialRequestVC.swift; sourceTree = "<group>"; };
+		094A4961299373890034CE48 /* GolfStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GolfStoryBoard.storyboard; sourceTree = "<group>"; };
+		094A4963299373B00034CE48 /* GolfReservationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfReservationVC.swift; sourceTree = "<group>"; };
+		094A4965299381D40034CE48 /* GolfHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfHelper.swift; sourceTree = "<group>"; };
+		094A49672993886C0034CE48 /* DaySlotCollectioncell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySlotCollectioncell.swift; sourceTree = "<group>"; };
 		09506AD528EAFF3C005BE4F7 /* DiningResvTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningResvTableCell.swift; sourceTree = "<group>"; };
 		09506AD628EAFF3C005BE4F7 /* DiningResvTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiningResvTableCell.xib; sourceTree = "<group>"; };
 		09506ADA28EB3DD7005BE4F7 /* DiningReservationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningReservationVC.swift; sourceTree = "<group>"; };
@@ -667,6 +679,10 @@
 		099428D528D252CF00678965 /* FilterHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		099428D628D252CF00678965 /* FilterHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		09995A0D28FEFA57007FFCEB /* DinningCalederVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningCalederVC.swift; sourceTree = "<group>"; };
+		099BA86F2993FDCE00F5B247 /* AvailableCoursesGolfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCoursesGolfCell.swift; sourceTree = "<group>"; };
+		099BA8712994007D00F5B247 /* OpenSlotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSlotCollectionCell.swift; sourceTree = "<group>"; };
+		099BA873299419B800F5B247 /* PlayerSizePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSizePopUp.swift; sourceTree = "<group>"; };
+		099BA87529941D0500F5B247 /* CoursesSelectionCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesSelectionCollectionCell.swift; sourceTree = "<group>"; };
 		099C850F28F97ADB00959E9E /* GetDinningReservationDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetDinningReservationDetailModel.swift; path = CSSI/Dining/Controller/GetDinningReservationDetailModel.swift; sourceTree = SOURCE_ROOT; };
 		099C851128F97B2200959E9E /* GetRestaurantDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetRestaurantDetailModel.swift; path = CSSI/Dining/Controller/GetRestaurantDetailModel.swift; sourceTree = SOURCE_ROOT; };
 		099C851528F97BB000959E9E /* EditDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDinningReservationModel.swift; path = CSSI/Dining/Controller/EditDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
@@ -1344,6 +1360,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		094A495D2993734C0034CE48 /* Golf */ = {
+			isa = PBXGroup;
+			children = (
+				094A4960299373680034CE48 /* Controller */,
+				094A495F299373610034CE48 /* View */,
+				094A495E299373580034CE48 /* Model */,
+			);
+			path = Golf;
+			sourceTree = "<group>";
+		};
+		094A495E299373580034CE48 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		094A495F299373610034CE48 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				094A4961299373890034CE48 /* GolfStoryBoard.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		094A4960299373680034CE48 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				094A4963299373B00034CE48 /* GolfReservationVC.swift */,
+				094A4965299381D40034CE48 /* GolfHelper.swift */,
+				094A49672993886C0034CE48 /* DaySlotCollectioncell.swift */,
+				099BA86F2993FDCE00F5B247 /* AvailableCoursesGolfCell.swift */,
+				099BA8712994007D00F5B247 /* OpenSlotCollectionCell.swift */,
+				099BA873299419B800F5B247 /* PlayerSizePopUp.swift */,
+				099BA87529941D0500F5B247 /* CoursesSelectionCollectionCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		09506AD928EB3DB6005BE4F7 /* Dinning */ = {
 			isa = PBXGroup;
 			children = (
@@ -1571,6 +1626,7 @@
 				59FEC41220B6B71D00FF2DB0 /* View */,
 				59FEC41120B6B71400FF2DB0 /* Controller */,
 				84BE13AC28E6A46000110324 /* Dining */,
+				094A495D2993734C0034CE48 /* Golf */,
 				59FEC3E720B6A64F00FF2DB0 /* Main.storyboard */,
 				59FEC3EA20B6A65100FF2DB0 /* Assets.xcassets */,
 				59FEC3EC20B6A65100FF2DB0 /* LaunchScreen.storyboard */,
@@ -3100,6 +3156,7 @@
 				598DE06120D3E7A1009AFEF0 /* SFUIDisplay-Regular.otf in Resources */,
 				9F5A1A18250B7EF200AADE80 /* SourceSansPro-It.otf in Resources */,
 				18FA22032382AA6A002B82DB /* MyCalendarXib.xib in Resources */,
+				094A4962299373890034CE48 /* GolfStoryBoard.storyboard in Resources */,
 				9FCCE2962508F7D40080C559 /* FitnessApp.storyboard in Resources */,
 				9F4B5AEC273BAF7100FAB043 /* FirstComeFirstServeTableViewCell.xib in Resources */,
 				097DCAB528D36E2200389C75 /* ¸ in Resources */,
@@ -3409,6 +3466,7 @@
 				5FD6593020E757EF0033CD5B /* ModalViewController.swift in Sources */,
 				9F6620E924AE57EF0061BB9C /* ProductionClassDetails.swift in Sources */,
 				18F7B067238589070060A257 /* LeagueFiles.swift in Sources */,
+				094A49682993886C0034CE48 /* DaySlotCollectioncell.swift in Sources */,
 				9F33B5B0250E438400FE31CD /* FitnessVideoFilterFooter.swift in Sources */,
 				5FE537F220EA410200CC3FBF /* TagButton.swift in Sources */,
 				5FE967FA212AA7ED00D7B281 /* ProfileUplodSuccessfull.swift in Sources */,
@@ -3458,6 +3516,7 @@
 				A8DEF83F28CA7255000DCBDF /* membershipHistoryModal.swift in Sources */,
 				5FD6592920E757EF0033CD5B /* HalfModalTransitioningDelegate.swift in Sources */,
 				9F612251250F7EF800506A8B /* FitnessGroupsViewController.swift in Sources */,
+				099BA8702993FDCE00F5B247 /* AvailableCoursesGolfCell.swift in Sources */,
 				1834D1FA235F385E007E0FF9 /* GuestOrChildrenVC.swift in Sources */,
 				18ACDB14222544FA00D13903 /* EventDetail.swift in Sources */,
 				84BF2E0928ACBA8400A1D692 /* TransactionHistoryViewController.swift in Sources */,
@@ -3470,6 +3529,7 @@
 				18FB815A219D5640006F0F78 /* RecentNewsCustomCell.swift in Sources */,
 				5F713A4F2133D27700A56CE3 /* NSData+ImageContentType.m in Sources */,
 				09A0D06028F4927500FC38F2 /* DinningHelper.swift in Sources */,
+				099BA87629941D0500F5B247 /* CoursesSelectionCollectionCell.swift in Sources */,
 				9FB960BF264C2D4D000626F7 /* MobileConfig.swift in Sources */,
 				9F6620EB24AE57EF0061BB9C /* BMSAppointmentDetails.swift in Sources */,
 				74C6BBCE20D1978700842A77 /* FormValidation.swift in Sources */,
@@ -3584,6 +3644,7 @@
 				18161A6F22855ED000F254E1 /* DiningRequestVC.swift in Sources */,
 				5FBFFBE020EBC7C3004D31D9 /* MemberDirectory.swift in Sources */,
 				5F70BBB020ED08C000A950BE /* CustomUIButton.swift in Sources */,
+				099BA8722994007D00F5B247 /* OpenSlotCollectionCell.swift in Sources */,
 				C79EA8DD2160FDF9008AB18C /* GuestListFilterView.swift in Sources */,
 				5FD6592E20E757EF0033CD5B /* VBHeader.swift in Sources */,
 				59244E7D20D22E9800657B54 /* PreviousStatementDetailsViewController.swift in Sources */,
@@ -3696,6 +3757,7 @@
 				5F06DC1520E62E00007137C7 /* YLCollectionReusableView.m in Sources */,
 				9F6620C424AE573F0061BB9C /* FitnessProvidersTableViewCell.swift in Sources */,
 				A8DEF83D28CA4F10000DCBDF /* saveMembershipModel.swift in Sources */,
+				099BA874299419B800F5B247 /* PlayerSizePopUp.swift in Sources */,
 				5F713A642133D27700A56CE3 /* UIImage+MultiFormat.m in Sources */,
 				9FDBB1372472BA9E0099D6E9 /* BodyStringItem.swift in Sources */,
 				18D2ED2A215D128900EDFF9C /* File.swift in Sources */,
@@ -3728,10 +3790,12 @@
 				74C6BBCF20D1978700842A77 /* EventList.swift in Sources */,
 				5F05D02220E2249C00037BFE /* ImportantNumberViewController.swift in Sources */,
 				5F713A662133D27700A56CE3 /* UIImageView+HighlightedWebCache.m in Sources */,
+				094A4966299381D40034CE48 /* GolfHelper.swift in Sources */,
 				5F713A5C2133D27700A56CE3 /* SDWebImageImageIOCoder.m in Sources */,
 				5F713A5E2133D27700A56CE3 /* SDWebImagePrefetcher.m in Sources */,
 				9F3D08D02421EE99001FFA5F /* RecentNewsTableViewCell.swift in Sources */,
 				18FA22052382D140002B82DB /* GetIPAddres.swift in Sources */,
+				094A4964299373B00034CE48 /* GolfReservationVC.swift in Sources */,
 				9F6620F924AE58550061BB9C /* SpaAndFitnessRequestVC.swift in Sources */,
 				9FB176D0251A398700C0D752 /* FitnessProfile.swift in Sources */,
 				9F6CD6F42548341E00906846 /* CheckinViewController.swift in Sources */,

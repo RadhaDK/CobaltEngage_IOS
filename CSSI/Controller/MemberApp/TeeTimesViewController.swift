@@ -1107,8 +1107,12 @@ class TeeTimesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func gotoGolfRequest(){
-        let golfRequest = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "GolfRequestTeeTimeVC") as! GolfRequestTeeTimeVC
+        let golfRequest = UIStoryboard.init(name: "GolfStoryBoard", bundle: nil).instantiateViewController(withIdentifier: "GolfReservationVC") as! GolfReservationVC
+
+        golfRequest.showNavigationBar = false
+
         
+      // let golfRequest = UIStoryboard.init(name: "MemberApp", bundle: nil).instantiateViewController(withIdentifier: "GolfRequestTeeTimeVC") as! GolfRequestTeeTimeVC
         self.navigationController?.pushViewController(golfRequest, animated: true)
     }
     @IBAction func RulesClicked(_ sender: Any) {
