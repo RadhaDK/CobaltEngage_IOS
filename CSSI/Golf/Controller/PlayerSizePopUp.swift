@@ -18,6 +18,7 @@ class PlayerSizePopUp: UIViewController {
     @IBOutlet weak var DateTimeDinningResrvation: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var collectionCourse: UICollectionView!
+    @IBOutlet weak var heightCollection: NSLayoutConstraint!
 
     
     //MARK: - variables
@@ -34,6 +35,8 @@ class PlayerSizePopUp: UIViewController {
     var maximumTimeInAdvance = "11:45 PM"
     var size:CGFloat!
     var sizeh:CGFloat!
+    var arrCourses = ["test1","test2","test3","test4","test5"]
+    var numberForCoursese = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,6 +61,8 @@ class PlayerSizePopUp: UIViewController {
         self.btnDone.diningBtnViewSetup()
         self.btnDone.setTitle("Done", for: UIControlState.normal)
         self.btnDone.setStyle(style: .outlined, type: .primary)
+        //heightCollection.constant = 30
+        configCourseCollectionHeight()
         setUpUiInitialization()
     }
     func setUpUiInitialization(){
@@ -106,13 +111,26 @@ class PlayerSizePopUp: UIViewController {
         delegateSelectedTimePatySize?.SelectedPartysizeTme(PartySize: selectedPartySize, Time: datePicker.date)
     }
 
+    func configCourseCollectionHeight(){
+        if arrCourses.count == 0{
+            heightCollection.constant = 0
+        }
+        else{
+            
+            let NumberOfSlot = (arrCourses.count/2)+1
+            let numberOfLines = NumberOfSlot + 1
+            numberForCoursese = Double(numberOfLines)
+            heightCollection.constant = CGFloat(30*numberOfLines)
+        }
+        collectionCourse.reloadData()
+    }
 }
 
 //MARK: - Collectionview methods
 extension PlayerSizePopUp : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionCourse{
-            return 4
+            return arrCourses.count
         }
         else{
             return maxPartySize
@@ -150,7 +168,7 @@ extension PlayerSizePopUp : UICollectionViewDelegateFlowLayout, UICollectionView
             let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
             let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
              size = (collectionCourse.frame.size.width - space) / 2.0
-             sizeh = (collectionCourse.frame.size.height - space) / 2.0
+             sizeh = (collectionCourse.frame.size.height - space) / numberForCoursese
             return CGSize(width: size, height: sizeh)
 
         }

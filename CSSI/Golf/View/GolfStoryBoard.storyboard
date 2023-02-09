@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SourceSansPro-Bold.otf">
+            <string>SourceSansPro-Bold</string>
+        </array>
         <array key="SourceSansPro-Regular.otf">
             <string>SourceSansPro-Regular</string>
         </array>
@@ -54,7 +57,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yae-DI-Ygf">
-                                <rect key="frame" x="16" y="94" width="358" height="35"/>
+                                <rect key="frame" x="16" y="112" width="358" height="35"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="aHD-S2-PVV">
                                         <rect key="frame" x="4" y="7.6666666666666714" width="20" height="20"/>
@@ -89,7 +92,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5O-EB-bTb">
-                                <rect key="frame" x="8" y="137" width="374" height="110"/>
+                                <rect key="frame" x="8" y="155" width="374" height="110"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rDG-tI-eIf">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
@@ -116,14 +119,14 @@
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea0-X6-x5I">
-                                                            <rect key="frame" x="62.000000000000007" y="10" width="22.333333333333336" height="15.666666666666664"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <rect key="frame" x="62.666666666666664" y="10.000000000000002" width="20.666666666666664" height="16.666666666666671"/>
+                                                            <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="13"/>
                                                             <color key="textColor" red="0.72172856330000001" green="0.71766251329999997" blue="0.7176216245" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHf-Qb-6xh">
-                                                            <rect key="frame" x="52" y="29.666666666666671" width="42" height="20.333333333333329"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="54" y="30.666666666666671" width="38" height="22"/>
+                                                            <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -150,8 +153,8 @@
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legends (F) Front 9 (B) Block 9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xE-1q-Dzu">
-                                        <rect key="frame" x="85.666666666666686" y="85" width="203" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="99.333333333333329" y="85" width="175.33333333333337" height="18"/>
+                                        <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="14"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -167,7 +170,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-uP-tre">
-                                <rect key="frame" x="0.0" y="247" width="390" height="597"/>
+                                <rect key="frame" x="0.0" y="265" width="390" height="579"/>
                                 <color key="backgroundColor" red="0.94699567559999998" green="0.97334200140000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableCoursesGolfCell" rowHeight="215" id="AO0-1M-jxM" customClass="AvailableCoursesGolfCell" customModule="CSSI" customModuleProvider="target">
@@ -194,7 +197,7 @@
                                                         <constraint firstAttribute="height" constant="40" id="cu0-hF-MAF"/>
                                                         <constraint firstAttribute="width" constant="120" id="gYW-Bb-170"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Bold" family="Source Sans Pro" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -219,8 +222,8 @@
                                                                         <rect key="frame" x="2" y="2" width="124" height="124"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brook Hugo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snW-NY-jZa">
-                                                                                <rect key="frame" x="19" y="52.333333333333336" width="86" height="19.333333333333336"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                                <rect key="frame" x="22.666666666666671" y="51.666666666666664" width="79" height="20.666666666666664"/>
+                                                                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="16"/>
                                                                                 <color key="textColor" red="0.41913723949999998" green="0.4275452495" blue="0.43153628710000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -247,8 +250,8 @@
                                                     </cells>
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fazio ||" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhD-1c-TRd">
-                                                    <rect key="frame" x="325.66666666666669" y="21.666666666666671" width="52.333333333333314" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="329" y="21" width="49" height="22"/>
+                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                     <color key="textColor" red="0.37437134979999998" green="0.39704287049999998" blue="0.42843824629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -283,7 +286,7 @@
                             <constraint firstItem="E5O-EB-bTb" firstAttribute="top" secondItem="Yae-DI-Ygf" secondAttribute="bottom" constant="8" id="L9W-Av-bMb"/>
                             <constraint firstItem="Sex-Dt-f4j" firstAttribute="leading" secondItem="tQr-Uy-cw7" secondAttribute="trailing" constant="8" id="Mt8-dm-HHP"/>
                             <constraint firstItem="Sex-Dt-f4j" firstAttribute="centerY" secondItem="tQr-Uy-cw7" secondAttribute="centerY" id="Oc6-DO-GhF"/>
-                            <constraint firstItem="Yae-DI-Ygf" firstAttribute="top" secondItem="KhV-iX-OIC" secondAttribute="bottom" constant="12" id="VX2-oP-4X4"/>
+                            <constraint firstItem="Yae-DI-Ygf" firstAttribute="top" secondItem="KhV-iX-OIC" secondAttribute="bottom" constant="30" id="VX2-oP-4X4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="E5O-EB-bTb" secondAttribute="trailing" constant="8" id="Wok-mM-50W"/>
                             <constraint firstItem="4wH-uP-tre" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="WzB-cX-ba1"/>
                             <constraint firstItem="tQr-Uy-cw7" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="8" id="X4C-FH-9aW"/>
@@ -433,9 +436,9 @@
                                         <color key="textColor" red="0.41176470590000003" green="0.35686274509999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9ba-z0-qe2">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9ba-z0-qe2">
                                         <rect key="frame" x="25" y="159" width="340" height="90"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="Vse-G7-Gil"/>
                                         </constraints>
@@ -464,8 +467,8 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1we-x4-cVe">
-                                                                    <rect key="frame" x="35" y="51.666666666666664" width="42" height="20.999999999999993"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <rect key="frame" x="35" y="51" width="39.333333333333343" height="22"/>
+                                                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -531,6 +534,7 @@
                         <outlet property="btnDone" destination="5cn-mz-Oxt" id="AwX-hx-NfS"/>
                         <outlet property="collectionCourse" destination="9ba-z0-qe2" id="Pjd-r4-L90"/>
                         <outlet property="datePicker" destination="4Ih-mO-aGM" id="zeS-Ok-btz"/>
+                        <outlet property="heightCollection" destination="Vse-G7-Gil" id="8j2-7g-PiJ"/>
                         <outlet property="partySizeLbl" destination="tRo-tt-HAJ" id="KXU-Ru-GEG"/>
                         <outlet property="playerCollectionView" destination="Cwv-OP-E7a" id="5Vs-ut-rEC"/>
                         <outlet property="roundedBgView" destination="9Vg-lW-WqW" id="dUL-EW-jVC"/>
