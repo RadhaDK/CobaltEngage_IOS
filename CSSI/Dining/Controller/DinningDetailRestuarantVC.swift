@@ -141,6 +141,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         lblRequestedDate.text = self.getDateString(givenDate: self.requestedDate)
         lblTime.text = self.diningReservation.SelectedTime
         lblRestaurantName.text = self.restaurantName
+        viewTimer.layer.cornerRadius = 5
+        viewTimer.layer.borderWidth = 2
+        viewTimer.layer.borderColor = UIColor(hexString: "#5773A2").cgColor
         
         self.imgRestuarant.image = convertBase64StringToImage(imageBase64String: restaurantImage)
         self.lblLoggedInUser.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
