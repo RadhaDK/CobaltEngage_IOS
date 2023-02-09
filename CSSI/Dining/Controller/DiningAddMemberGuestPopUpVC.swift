@@ -29,6 +29,7 @@ class DiningAddMemberGuestPopUpVC: UIViewController {
     //MARK: - Variables
     var delegateSelectedMemberType : selectedSlotFor?
     var checkPopupOpenFrom : poupOpenFrom?
+    var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,10 @@ setUpUi()
             btnGuest.isHidden = true
             heightBottomPopup.constant = 170
         }
+        btnMember.setTitle(self.appDelegate.masterLabeling.BMS_Member ?? "", for: .normal)
+//        btnGuest.setTitle(self.appDelegate.masterLabeling.aDD_GUEST ?? "", for: .normal)
+//        btnMyBuddy.setTitle(self.appDelegate.masterLabeling.add_mybuddy ?? "", for: .normal)
+
     }
 
     

@@ -43,6 +43,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     @IBOutlet weak var lblPrevious: UILabel!
     @IBOutlet weak var lblToREquestRestaurent: UILabel!
     @IBOutlet weak var btnDiningPolicy: UIButton!
+    @IBOutlet weak var lblLoggedInuserInfo: UILabel!
+
     
     //MARK: - variables
     var currentDate = Date()
@@ -106,6 +108,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         btnDiningPolicy.setTitle("\(self.appDelegate.masterLabeling.dining_policy ?? "")", for: .normal)
         let day = getDateTableCell(givenDate: self.currentDate)
         self.lblAvailableTime.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+        self.lblLoggedInuserInfo.text = String(format: "%@ | %@", UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue)!, self.appDelegate.masterLabeling.hASH! + UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue)!)
     }
     
     func setUpUiInitialization(){
@@ -248,7 +251,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
     
     func assignAvailableTime() {
         let day = getDateTableCell(givenDate: self.currentDate)
-        self.lblAvailableTime.text = "\(day) - Party Size:\(self.diningReservation.PartySize)"
+        self.lblAvailableTime.text = "\(day) - \(self.appDelegate.masterLabeling.party_size ?? ""):\(self.diningReservation.PartySize)"
     }
     
     func getStartAndEndTimeString(timings: [DiningTimmingsData]) -> String{

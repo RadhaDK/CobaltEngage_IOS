@@ -1556,6 +1556,7 @@
                         <outlet property="btnBack" destination="v6Q-eI-e5l" id="aDv-az-a0d"/>
                         <outlet property="btnCancelReservation" destination="J8G-gb-Y6c" id="2uw-Dd-vxI"/>
                         <outlet property="btnCancelReservationHeight" destination="gVq-bu-iZW" id="X3l-vt-LZF"/>
+                        <outlet property="btnDinningPolicy" destination="uLY-8K-Ye4" id="J3Z-By-ABj"/>
                         <outlet property="btnHome" destination="MDl-Ku-S0y" id="v1x-88-Z55"/>
                         <outlet property="btnSubmit" destination="k8N-Aw-QID" id="PUC-c5-lkf"/>
                         <outlet property="btnSubmitHeight" destination="0aX-fM-xuc" id="Jwb-rK-Ca7"/>
@@ -1568,6 +1569,7 @@
                         <outlet property="imageAddMemberWidth" destination="wFI-fM-N2f" id="wmy-6i-REw"/>
                         <outlet property="imgRestaurantImage" destination="KKl-fF-hmn" id="AAX-5z-Kjl"/>
                         <outlet property="imgRestuarant" destination="KKl-fF-hmn" id="tC8-Ai-gmy"/>
+                        <outlet property="lblAddSpecialRequest" destination="waV-Uz-F3y" id="ljm-Ma-Gqa"/>
                         <outlet property="lblCaptainName" destination="5HE-xy-JqU" id="beU-i7-V3K"/>
                         <outlet property="lblConfirmationNumber" destination="Oe5-eN-5Yr" id="WFT-mr-w2L"/>
                         <outlet property="lblLoggedInUser" destination="msD-OO-Yu8" id="3vY-21-o9g"/>
@@ -1575,6 +1577,7 @@
                         <outlet property="lblREquestTimeHeading" destination="NWZ-7U-ZYu" id="0Kw-mz-lgh"/>
                         <outlet property="lblRequestedDate" destination="9is-R9-Cyu" id="Wn0-ng-SCh"/>
                         <outlet property="lblRequestedDateHeading" destination="wOZ-55-BdV" id="ynI-oq-r1P"/>
+                        <outlet property="lblReservationComent" destination="3X4-dM-goh" id="LJU-mv-6Q9"/>
                         <outlet property="lblRestaurantHeading" destination="d1Q-xH-P9A" id="DjK-PR-0BT"/>
                         <outlet property="lblRestaurantName" destination="Xwy-jZ-SxU" id="Rfi-hs-Rrb"/>
                         <outlet property="lblTime" destination="6Tp-wh-jo5" id="8iq-VI-77y"/>
@@ -2293,6 +2296,7 @@
                         <outlet property="DateTimeDinningResrvation" destination="5k2-8e-EXc" id="UMj-BO-OU0"/>
                         <outlet property="btnDone" destination="JDM-k4-H1W" id="Nrg-hY-gij"/>
                         <outlet property="datePicker" destination="kv5-be-Uvi" id="egF-Zq-BXA"/>
+                        <outlet property="lblDateTime" destination="zDz-eg-xub" id="I2k-nI-L5I"/>
                         <outlet property="partySizeCollectionView" destination="mvz-tW-3Zc" id="Zb8-xZ-xup"/>
                         <outlet property="partySizeLbl" destination="Qph-v9-wnS" id="dhT-9g-XrT"/>
                         <outlet property="roundedBgView" destination="WSr-Yt-x9x" id="whh-a9-mYO"/>
@@ -3017,6 +3021,7 @@
                         <outlet property="lblAvailableTime" destination="woB-oF-r5i" id="LiY-hh-2Wg"/>
                         <outlet property="lblDatePartySize" destination="exm-EL-IKx" id="w9b-aY-9cN"/>
                         <outlet property="lblDefaultTime" destination="LkN-5F-fTY" id="QLW-ns-gij"/>
+                        <outlet property="lblLoggedInuserInfo" destination="quK-cC-WDZ" id="hXa-ah-Bic"/>
                         <outlet property="lblNext" destination="lh5-Sw-o6I" id="QjV-W4-TbU"/>
                         <outlet property="lblOtherDates" destination="q03-7v-c32" id="H3p-WR-3Vh"/>
                         <outlet property="lblPrevious" destination="3Jd-1M-UZc" id="ZXi-Ps-g16"/>

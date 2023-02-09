@@ -54,7 +54,10 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var lblTimer: UILabel!
     @IBOutlet weak var viewTimer: UIView!
     @IBOutlet weak var heightTimerConstant: NSLayoutConstraint!
-    
+    @IBOutlet weak var lblAddSpecialRequest: UILabel!
+    @IBOutlet weak var lblReservationComent: UILabel!
+    @IBOutlet weak var btnDinningPolicy: UIButton!
+
     
     
     //MARK: - variables
@@ -147,8 +150,20 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             self.btnSubmit.setTitle("Submit", for: .normal)
         } else {
             self.tblGuest.separatorStyle = .singleLine
-            self.btnSubmit.setTitle("Save", for: .normal)
+            self.btnSubmit.setTitle(self.appDelegate.masterLabeling.Save ?? "", for: .normal)
         }
+        btnDinningPolicy.setTitle(self.appDelegate.masterLabeling.dining_policy ?? "", for: .normal)
+
+        btnCancelReservation.setTitle(self.appDelegate.masterLabeling.cancel_reservation ?? "", for: .normal)
+
+        lblReservationComent.text = self.appDelegate.masterLabeling.reservation_comments ?? ""
+
+        
+        lblAddSpecialRequest.text = self.appDelegate.masterLabeling.special_request ?? ""
+        btnAddMultiple.setTitle(self.appDelegate.masterLabeling.MULTI_SELECT ?? "", for: .normal)
+
+        lblRequestedDateHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_REQUESTEDDATE ?? ""
+
         lblCaptainName.text = self.appDelegate.masterLabeling.captain ?? ""
         lblRestaurantHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_DINING_RESTAURANT ?? ""
         lblREquestTimeHeading.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGREQUEST_TIME ?? ""

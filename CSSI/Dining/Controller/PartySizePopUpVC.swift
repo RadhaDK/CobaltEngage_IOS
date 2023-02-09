@@ -17,6 +17,8 @@ class PartySizePopUpVC: UIViewController {
     //MARK: - IBActions
     @IBOutlet weak var roundedBgView: UIView!
     @IBOutlet weak var partySizeLbl: UILabel!
+    @IBOutlet weak var lblDateTime: UILabel!
+
     @IBOutlet weak var partySizeCollectionView: UICollectionView!
     @IBOutlet weak var btnDone: UIButton!
     @IBOutlet weak var DateTimeDinningResrvation: UIView!
@@ -55,8 +57,10 @@ class PartySizePopUpVC: UIViewController {
         roundedBgView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         btnDone.layer.cornerRadius = btnDone.frame.height/2
         self.btnDone.diningBtnViewSetup()
-        self.btnDone.setTitle("Done", for: UIControlState.normal)
+        self.btnDone.setTitle(self.appDelegate.masterLabeling.done ?? "", for: UIControlState.normal)
         self.btnDone.setStyle(style: .outlined, type: .primary)
+        partySizeLbl.text = self.appDelegate.masterLabeling.party_size ?? ""
+        lblDateTime.text = self.appDelegate.masterLabeling.DINING_FCFS_DININGDATETIME ?? ""
         setUpUiInitialization()
     }
     func setUpUiInitialization(){
