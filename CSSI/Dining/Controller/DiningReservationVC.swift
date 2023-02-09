@@ -164,12 +164,14 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     }
     
     @IBAction func btnNextPrevious(_ sender: UIButton) {
+//        print("currect Date \(Date().removeTimeStamp!)")
+//        print("SelectedTime \(currentDate.removeTimeStamp!)")
         if sender.tag == 1{
             if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Date()) {
                 return
             }
-            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
-            if daysDifference >= self.diningSetting.MinDaysInAdvance {
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date().removeTimeStamp!, to: currentDate.removeTimeStamp!).day ?? 0
+            if daysDifference > self.diningSetting.MinDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
                 if currentDate < Date() {
                     currentDate = Date()
@@ -182,7 +184,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
             if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Calendar.current.date(byAdding: .weekday, value: self.diningSetting.MaxDaysInAdvance, to: Date())!) {
                 return
             }
-            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date().removeTimeStamp!, to: currentDate.removeTimeStamp!).day ?? 0
             if daysDifference < self.diningSetting.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
@@ -393,17 +395,18 @@ extension DiningReservationVC{
                 self.restaurantsList = reservationDinningListing.restaurants!
                 self.diningSetting = reservationDinningListing.diningSettings!
                 self.diningPolicyURL = self.diningSetting.DiningPolicy
+                let currentTime = Date()
+                let maxTime = self.addTimeStringToDate(givenDate: currentTime, time: self.diningSetting.MaxDaysInAdvanceTime)
+                let minTime = self.addTimeStringToDate(givenDate: currentTime, time: self.diningSetting.MinDaysInAdvanceTime)
+                if minTime < currentTime {
+                    self.diningSetting.MinDaysInAdvance += 1
+                }
+                if maxTime < currentTime {
+                    self.diningSetting.MaxDaysInAdvance += 1
+                }
                 if self.enumForDinningMode == .create && self.isInitial {
                     self.diningReservation.PartySize = self.diningSetting.DefaultPartySize
-                    let currentTime = Date()
-                    let maxTime = self.addTimeStringToDate(givenDate: currentTime, time: self.diningSetting.MaxDaysInAdvanceTime)
-                    let minTime = self.addTimeStringToDate(givenDate: currentTime, time: self.diningSetting.MinDaysInAdvanceTime)
-                    if minTime < currentTime {
-                        self.diningSetting.MinDaysInAdvance += 1
-                    }
-                    if maxTime < currentTime {
-                        self.diningSetting.MaxDaysInAdvance += 1
-                    }
+                    
                     
                     self.currentDate = Calendar.current.date(byAdding: .day, value: self.diningSetting.MinDaysInAdvance, to: Date())!
                     if let defTime = self.diningSetting.DefaultTime {
@@ -537,7 +540,7 @@ extension DiningReservationVC {
         else{
             if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
                registerVC.eventID = selectedEventId
-                registerVC.eventCategory = ""
+                registerVC.eventCategory = "Dining"
                // registerVC.eventType = 0
                 self.appDelegate.requestFromTimer = "TimerPopup"
                 registerVC.requestID = diningReservation.RequestID

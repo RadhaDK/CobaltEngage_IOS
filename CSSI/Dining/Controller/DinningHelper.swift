@@ -253,6 +253,20 @@ extension UIViewController{
         }
     }
     
+    func getDateFromUTCString(givenString: String) -> Date {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let returnDate = inputFormatter.date(from: givenString) ?? Date()
+        return returnDate
+    }
+    
+    func getDateFromEventString(givenString: String) -> Date {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd MMM yyyy hh:mm a"
+        let returnDate = inputFormatter.date(from: givenString) ?? Date()
+        return returnDate
+    }
+    
     
 }
 extension Date {

@@ -460,7 +460,7 @@ class GolfCalendarVC: UIViewController ,UISearchBarDelegate, DTCalendarViewDeleg
             self.lblBottomDispalyName.isHidden = false
             
             self.calanderView.isHidden = false
-            let previousStatementVC = storyboard!.instantiateViewController(withIdentifier: "GolfCalendarMYMYTabVC")
+            let previousStatementVC = storyboard!.instantiateViewController(withIdentifier: "GolfCalendarMYTabVC")
             previousStatementVC.title =  self.appDelegate.masterLabeling.tAB_PREVIOUS
             lblUpcomingEvent.isHidden = true
             topLabelHeight.constant = -58

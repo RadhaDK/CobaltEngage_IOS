@@ -283,6 +283,7 @@ class PDfViewController: UIViewController,UIWebViewDelegate, WKNavigationDelegat
                                 
                                 
                                 self.downloadStatementURL = URL(string: downloadStatementDetails.downloadStatement![0].filePath ?? "")
+                                print(self.downloadStatementURL)
                                 self.pdfView.load(URLRequest(url: self.downloadStatementURL!))
                                 self.navigationItem.title = self.appDelegate.masterLabeling.download_statement
                                 

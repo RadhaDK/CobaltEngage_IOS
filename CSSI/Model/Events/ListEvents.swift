@@ -116,6 +116,7 @@ class ListEvents: NSObject, Mappable  {
     var SelectedDate : String!
     var isDiningFCFS : String!
     var partySizeFCFS : Int?
+    var filterDate: Date!
     
     convenience required init?(map: Map) {
         self.init()

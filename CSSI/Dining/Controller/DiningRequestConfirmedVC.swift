@@ -79,7 +79,7 @@ class DiningRequestConfirmedVC: UIViewController, UITableViewDelegate,UITableVie
         else if isFrom == .modify{
             for controller in self.navigationController!.viewControllers as Array {
                 
-                if controller.isKind(of: DinningCalederVC.self) {
+                if controller.isKind(of: GolfCalendarVC.self) {
                     self.navigationController!.popToViewController(controller, animated: true)
                     break
                 }

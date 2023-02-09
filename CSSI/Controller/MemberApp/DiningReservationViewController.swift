@@ -429,17 +429,17 @@ class DiningReservationViewController: UIViewController, UICollectionViewDataSou
         
         self.appDelegate.buddyType = "First"
         self.appDelegate.typeOfCalendar = "Dining"
-        if self.appDelegate.isDiningFCFSEnable {
-            if let calendar = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningCalederVC") as? DinningCalederVC
-            {
-                self.navigationController?.pushViewController(calendar, animated: true)
-            }
-        } else {
+//        if self.appDelegate.isDiningFCFSEnable {
+//            if let calendar = UIStoryboard.init(name: "DiningStoryboard", bundle: .main).instantiateViewController(withIdentifier: "DinningCalederVC") as? DinningCalederVC
+//            {
+//                self.navigationController?.pushViewController(calendar, animated: true)
+//            }
+//        } else {
             if let calendar = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "GolfCalendarVC") as? GolfCalendarVC
             {
                 self.navigationController?.pushViewController(calendar, animated: true)
             }
-        }
+//        }
         
         
         

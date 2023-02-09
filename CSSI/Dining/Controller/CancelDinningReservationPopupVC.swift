@@ -138,7 +138,9 @@ extension CancelDinningReservationPopupVC{
                 }
                 else{
                     self.appDelegate.hideIndicator()
-                    self.dismiss(animated: true, completion: nil)
+                    SharedUtlity.sharedHelper().showToast(on:
+                                                            self.view, withMeassge: reservationDinningListing.responseMessage, withDuration: Duration.kMediumDuration)
+//                    self.dismiss(animated: true, completion: nil)
                 }
                
             },onFailure: { error  in

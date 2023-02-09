@@ -2751,7 +2751,7 @@ extension AddGuestRegVC
                 APIKeys.kdeviceInfo: [APIHandler.devicedict],
                 "RequestId": self.requestID,
                 "ReservationRequestDate": selectedDate,
-                "ReservationRequestTime": "",
+                "ReservationRequestTime": requestTime,
                 "PartySize": "",
                 "Earliest": "",
                 "Latest": "",

@@ -179,8 +179,8 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Date()) {
                 return
             }
-            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
-            if daysDifference >= self.restaurantDetails.RestaurantSettings.MinDaysInAdvance {
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date().removeTimeStamp!, to: currentDate.removeTimeStamp!).day ?? 0
+            if daysDifference > self.restaurantDetails.RestaurantSettings.MinDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday , value: -1, to: currentDate)!
                 if currentDate < Date() {
                     currentDate = Date()
@@ -193,7 +193,7 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
             if getDateDinning(givenDate: currentDate) == getDateDinning(givenDate: Calendar.current.date(byAdding: .weekday, value: self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance, to: Date())!) {
                 return
             }
-            let daysDifference = Calendar.current.dateComponents([.day], from: Date(), to: currentDate).day ?? 0
+            let daysDifference = Calendar.current.dateComponents([.day], from: Date().removeTimeStamp!, to: currentDate.removeTimeStamp!).day ?? 0
             if daysDifference < self.restaurantDetails.RestaurantSettings.MaxDaysInAdvance {
                 currentDate = Calendar.current.date(byAdding: .weekday, value: 1, to: currentDate)!
                 updateUI()
@@ -384,8 +384,11 @@ class RestaurantSpecificDetailVC: UIViewController, UICollectionViewDelegate,UIC
         cell.heightUpcoming.constant = 0
         cell.timeSlots = dict.TimeSlot
         cell.row = indexPath.row
-        cell.lblTime.text = getDateFromDetailAvailability(givenDate: dict.Date)
-
+        if dict.TimeSlot.count != 0 {
+            cell.lblTime.text = getDateFromDetailAvailability(givenDate: dict.Date)
+        } else {
+            cell.lblTime.text = ""
+        }
         if self.isFrom != .create && self.isSelectedRestaurant && dict.Date == self.reservationDate {
             cell.selectedTimeSlot = self.reservationTime
         } else {
@@ -537,7 +540,7 @@ extension RestaurantSpecificDetailVC {
         else{
             if let registerVC = UIStoryboard.init(name: "MemberApp", bundle: .main).instantiateViewController(withIdentifier: "DiningEventRegistrationVC") as? DiningEventRegistrationVC {
                registerVC.eventID = selectedEventId
-                registerVC.eventCategory = ""
+                registerVC.eventCategory = "Dining"
                // registerVC.eventType = 0
                 registerVC.requestID = diningReservation.RequestID
                // registerVC.isFrom = "EventUpdate"

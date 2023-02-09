@@ -258,6 +258,7 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     }
     @IBAction func btnBack(_ sender: Any) {
         CountdownTimer().stopCountdown()
+        deleteBlockedTimeSlot()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -268,6 +269,8 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
         self.navigationController?.pushViewController(restarantpdfDetailsVC, animated: true)
     }
     // MARK: - Functions
+    
+    
     
     func setupDefaultMemberValues() {
         if isFrom == .create {
@@ -450,7 +453,9 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
     
     // MARK: - Table Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        if self.diningReservation.PartyDetails.count == 0 {
+            self.assignCaptainName(name:"")
+        }
         return self.diningReservation.PartyDetails.count
     }
     
@@ -860,6 +865,29 @@ class DinningDetailRestuarantVC: UIViewController, UITableViewDelegate,UITableVi
             self.appDelegate.hideIndicator()
         }
     }
+    
+    func deleteBlockedTimeSlot() {
+        var paramaterDict = [
+            "Content-Type":"application/json",
+            APIKeys.kMemberId : UserDefaults.standard.string(forKey: UserDefaultsKeys.userID.rawValue) ?? "",
+            APIKeys.kid : UserDefaults.standard.string(forKey: UserDefaultsKeys.id.rawValue) ?? "",
+            APIKeys.kParentId : UserDefaults.standard.string(forKey: UserDefaultsKeys.parentID.rawValue) ?? "",
+            APIKeys.kdeviceInfo: [APIHandler.devicedict],
+            "UserName": UserDefaults.standard.string(forKey: UserDefaultsKeys.fullName.rawValue) ?? "",
+            "CompanyCode": "00",
+            "DiningScheduleUserActivityID": self.diningScheduleUserActivityID
+        ] as [String : Any]
+        
+        APIHandler.sharedInstance.removeDiningSchedule(paramater: paramaterDict) { response in
+            
+            if response.ResponseCode == InternetMessge.kSuccess
+            {
+//
+            }
+            self.collectionAddSpecialRequest.reloadData()
+        } onFailure: { error in
+        }
+    }
 }
 
 extension DinningDetailRestuarantVC{
@@ -878,7 +906,7 @@ extension DinningDetailRestuarantVC{
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers
         for popToViewController in viewControllers {
                 // self.appDelegate.requestFrom = ""
-                if popToViewController is DiningReservationViewController {
+                if popToViewController is DiningReservationVC {
                     //Modified by kiran -- ENGAGE0011177 -- V2.5 -- commented as its causing black bar issue on nav bar.
                     //self.navigationController?.navigationBar.isHidden = true
                     self.navigationController!.popToViewController(popToViewController, animated: true)

@@ -822,6 +822,9 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                                 self.arrEventList = eventList.eventsList!
                             }
                             self.viewLoadMore.isHidden = eventList.isLoadMore == 0
+                            if self.eventCategory == "My Calendar"{
+                                self.sortReservationList()
+                            }
                             self.eventsTableview.reloadData()
                             
                         }
@@ -870,6 +873,28 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
             
         }
         
+    }
+    
+    func sortReservationList() {
+        
+        for i in 0...arrEventList.count-1 {
+            var eventobj =  ListEvents()
+            eventobj = arrEventList[i]
+            
+            if eventobj.isDiningFCFS == "1" {
+                arrEventList[i].filterDate = getDateFromUTCString(givenString: eventobj.eventstartdatetime ?? "")
+            } else {
+                arrEventList[i].filterDate = getDateFromEventString(givenString: "\(eventobj.eventstartdate ?? "") \(eventobj.eventTime ?? "")")
+            }
+            print(arrEventList[i].filterDate)
+        }
+        var comparisonRes: ComparisonResult = .orderedAscending
+        if filterBy != "OldToNew" {
+            comparisonRes = .orderedDescending
+        }
+        arrEventList = arrEventList.sorted(by: {
+            $0.filterDate.compare($1.filterDate) == comparisonRes
+        })
     }
     
     
@@ -1007,7 +1032,7 @@ class CalendarOfEventsViewController: UIViewController, UITableViewDataSource, U
                     cell.btnCancel.isHidden = false
                 }
                 
-                cell.lblMyConfirmationNo.text = "\(eventobj.confirmMessageFcfs ?? 0)"
+                cell.lblMyConfirmationNo.text = "# \(eventobj.confirmMessageFcfs ?? 0)"
                 cell.lblEventName.text = eventobj.eventName
                 cell.lblTime.text = String(format: "%@", eventobj.eventTime ?? "")
                 cell.lblConfirmationID.text = eventobj.confirmationNumber ?? ""
