@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol GolfSlotsDelegate {
+    func SelectedGolfSlotSlot(timeSlot : String, row: Int)
+}
 
 class AvailableCoursesGolfCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     //MARK: - IBOutlets
@@ -17,6 +20,7 @@ class AvailableCoursesGolfCell: UITableViewCell,UICollectionViewDelegate,UIColle
 
     var row = 0
     var selectedTimeSlot = ""
+    var golfSlotsDelegate : GolfSlotsDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionSlot.delegate = self
@@ -57,5 +61,10 @@ class AvailableCoursesGolfCell: UITableViewCell,UICollectionViewDelegate,UIColle
         let sizeh:CGFloat = (collectionSlot.frame.size.height - space) / 2.0
 
         return CGSize(width: size, height: sizeh)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.golfSlotsDelegate?.SelectedGolfSlotSlot(timeSlot: "test", row: 1)
+        
     }
 }

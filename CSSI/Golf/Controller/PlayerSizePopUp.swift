@@ -35,7 +35,7 @@ class PlayerSizePopUp: UIViewController {
     var maximumTimeInAdvance = "11:45 PM"
     var size:CGFloat!
     var sizeh:CGFloat!
-    var arrCourses = ["test1","test2","test3","test4","test5"]
+    var arrCourses = ["test1","test2"]
     var numberForCoursese = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()

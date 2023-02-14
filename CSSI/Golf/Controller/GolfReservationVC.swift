@@ -8,7 +8,14 @@
 
 import UIKit
 
-class GolfReservationVC: UIViewController {
+class GolfReservationVC: UIViewController,  GolfSlotsDelegate {
+    func SelectedGolfSlotSlot(timeSlot: String, row: Int) {
+        let vc = UIStoryboard(name: "GolfStoryBoard", bundle: nil).instantiateViewController(withIdentifier: "GolfSubmitRequestVCViewController") as? GolfSubmitRequestVCViewController
+
+        self.navigationController?.pushViewController(vc!, animated: true)
+
+    }
+    
     
     //MARK: - Iboutlet
     @IBOutlet weak var btnBack: UIButton!
@@ -22,6 +29,7 @@ class GolfReservationVC: UIViewController {
     //MARK:- variables
     var showNavigationBar = true
     var appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    private var transPopupTableView : UITableView?
 
 
     override func viewDidLoad() {
@@ -113,11 +121,18 @@ extension GolfReservationVC : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
         let cell = tblAvailableSlot.dequeueReusableCell(withIdentifier: "AvailableCoursesGolfCell", for: indexPath) as! AvailableCoursesGolfCell
+        cell.golfSlotsDelegate = self
+
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
         
     }
+    
+    
+    
+
 }

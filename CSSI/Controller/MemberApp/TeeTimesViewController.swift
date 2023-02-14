@@ -1108,7 +1108,6 @@ class TeeTimesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func gotoGolfRequest(){
         let golfRequest = UIStoryboard.init(name: "GolfStoryBoard", bundle: nil).instantiateViewController(withIdentifier: "GolfReservationVC") as! GolfReservationVC
-
         golfRequest.showNavigationBar = false
 
         
