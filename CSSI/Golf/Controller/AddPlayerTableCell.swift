@@ -1,45 +1,36 @@
 //
 //  AddPlayerTableCell.swift
-//  CSSI
+//  CobaltUI
 //
-//  Created by EBS Admin on 14/02/23.
-//  Copyright © 2023 yujdesigns. All rights reserved.
+//  Created by Megha  on 15/02/23.
 //
 
 import UIKit
-//protocol ModifyRegistrationGolf: AnyObject {
-//    func ModifyClicked(cell: ModifyRegCustomGolfCell)
-//    func ModifyThreeDotsClicked(cell: ModifyRegCustomGolfCell)
-//    func transTextFieldSelected(textField : UITextField , cell : ModifyRegCustomGolfCell)
-//    func selectedNineHoles(status : Bool , cell : ModifyRegCustomGolfCell) -> Bool
-//}
-//extension ModifyRegistrationGolf {
-//    func transTextFieldSelected(textField : UITextField , cell : ModifyRegCustomGolfCell) {
-//
-//    }
-//    func selectedNineHoles(status : Bool , cell : ModifyRegCustomGolfCell) -> Bool {
-//
-//        return false
-//    }
-//}
-class AddPlayerTableCell: UITableViewCell {
 
-    @IBOutlet weak var btnThreeDots: UIButton!
-    @IBOutlet weak var btnClose: UIButton!
-    @IBOutlet weak var lblname: UILabel!
-    @IBOutlet weak var lblID: UILabel!
-    @IBOutlet weak var btnNineHoles: UIButton!
-    @IBOutlet weak var textFieldTrans: UITextField!
-    @IBOutlet weak var viewTransDetailsWidth: NSLayoutConstraint!
-    @IBOutlet weak var lblIDWidth: NSLayoutConstraint!
+class AddPlayerTableCell: UITableViewCell {
     
+    @IBOutlet weak var playerBackgroundView:UIView!
+    @IBOutlet weak var txtPlayer:UITextField!
+    @IBOutlet weak var btnDelete:UIButton!
+    @IBOutlet weak var transBackgroundView:UIView!
+    @IBOutlet weak var txtTrans:UITextField!
+    @IBOutlet weak var imgCheckbox:UIImageView!
+    @IBOutlet weak var btnCheckbox:UIButton!
+    @IBOutlet weak var btnAdd:UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.btnNineHoles.setTitle("", for: .normal)
-        self.btnNineHoles.setImage(UIImage.init(named: "CheckBox_check"), for: .selected)
-        self.btnNineHoles.setImage(UIImage.init(named: "CheckBox_uncheck"), for: .normal)
-        self.textFieldTrans.setRightIcon(imageName: "Path 1847",width: 30)
-        self.textFieldTrans.delegate = self
+        playerBackgroundView.layer.cornerRadius = 6
+        transBackgroundView.layer.cornerRadius = 6
+        playerBackgroundView.layer.borderColor = UIColor.darkGray.cgColor
+        transBackgroundView.layer.borderColor = UIColor.darkGray.cgColor
+        playerBackgroundView.layer.borderWidth = 1
+        transBackgroundView.layer.borderWidth = 1
+        btnCheckbox.setTitle("", for: .normal)
+        btnDelete.setTitle("", for: .normal)
+        btnAdd.setTitle("", for: .normal)
+
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,31 +39,25 @@ class AddPlayerTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func threeDotsClicked(_ sender: Any) {
-      //  delegate?.ModifyThreeDotsClicked(cell: self)
+    @IBAction func btnAddMember(_ sender: Any) {
+        
     }
     
-    @IBAction func closeClicked(_ sender: Any) {
-       // delegate?.ModifyClicked(cell: self)
+    @IBAction func btnRemoveMember(_ sender: Any) {
+        
     }
     
-    @IBAction func nineHolesClicked(_ sender: UIButton) {
+    @IBAction func btnTrans(_ sender: Any) {
         
-//        if self.delegate?.selectedNineHoles(status: !sender.isSelected, cell: self) == true {
-//            sender.isSelected = !sender.isSelected
-//        }
     }
-
-}
-extension AddPlayerTableCell : UITextFieldDelegate
-{
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    
+    @IBAction func btnNineHole(_ sender: Any) {
         
-        if textField == self.textFieldTrans
-        {
-         //   self.delegate?.transTextFieldSelected(textField: textField, cell: self)
-            return false
-        }
-        return true
     }
+    
+    
+    
+    
+    
+    
 }
