@@ -47,6 +47,7 @@
 		099C851628F97BB000959E9E /* EditDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851528F97BB000959E9E /* EditDinningReservationModel.swift */; };
 		099C851828F97BD900959E9E /* DeleteDinningReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */; };
 		099E6E55299B8B0500C3474F /* GolfSubmitRequestVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099E6E54299B8B0500C3474F /* GolfSubmitRequestVCViewController.swift */; };
+		099EDAEE299DD3860030F638 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 099EDAED299DD3860030F638 /* data.json */; };
 		09A0D06028F4927500FC38F2 /* DinningHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A0D05F28F4927500FC38F2 /* DinningHelper.swift */; };
 		09B6222A297A75CD00D993D6 /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B62229297A75CD00D993D6 /* TimerModel.swift */; };
 		09B6222E297A9ADE00D993D6 /* DiningCancelTimerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B6222D297A9ADE00D993D6 /* DiningCancelTimerPopup.swift */; };
@@ -691,6 +692,7 @@
 		099C851528F97BB000959E9E /* EditDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDinningReservationModel.swift; path = CSSI/Dining/Controller/EditDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
 		099C851728F97BD900959E9E /* DeleteDinningReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeleteDinningReservationModel.swift; path = CSSI/Dining/Controller/DeleteDinningReservationModel.swift; sourceTree = SOURCE_ROOT; };
 		099E6E54299B8B0500C3474F /* GolfSubmitRequestVCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GolfSubmitRequestVCViewController.swift; sourceTree = "<group>"; };
+		099EDAED299DD3860030F638 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		09A0D05F28F4927500FC38F2 /* DinningHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinningHelper.swift; sourceTree = "<group>"; };
 		09B62229297A75CD00D993D6 /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		09B6222D297A9ADE00D993D6 /* DiningCancelTimerPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiningCancelTimerPopup.swift; sourceTree = "<group>"; };
@@ -1399,6 +1401,7 @@
 			isa = PBXGroup;
 			children = (
 				094A4963299373B00034CE48 /* GolfReservationVC.swift */,
+				099EDAED299DD3860030F638 /* data.json */,
 				094A4965299381D40034CE48 /* GolfHelper.swift */,
 				099BA86F2993FDCE00F5B247 /* AvailableCoursesGolfCell.swift */,
 				8448EF352994BF6100C61132 /* DaySlotCollectioncell.swift */,
@@ -3212,6 +3215,7 @@
 				9F662B88255157D100E8EE98 /* SourceSansPro-SemiboldItalic.otf in Resources */,
 				9F6620BF24AE573F0061BB9C /* FitnessDepartmentsTableViewCell.xib in Resources */,
 				9F62E8742549AA44000307DB /* CheckinRecordTableViewCell.xib in Resources */,
+				099EDAEE299DD3860030F638 /* data.json in Resources */,
 				9FEC524F243C6369006298CC /* TimePickerView.xib in Resources */,
 				9FB78764250CB6070067004F /* FitnessVideoFilterCollectionViewCell.xib in Resources */,
 				186B49B822CCB3B00024F105 /* BW_iOS-Loader-1.gif in Resources */,

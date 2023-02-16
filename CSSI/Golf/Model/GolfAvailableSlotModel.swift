@@ -15,23 +15,30 @@ class GetGolfSlots:  Mappable {
     var responseMessage         : String!
     var ResponseCode : Int!
     var TeeTimeSettings             : TeeTimeSettingsData!
-    
+    var AvailableTimeSlots : [GolfAvailableTimeSlotData]!
+
     init() {
         responseMessage         = ""
         ResponseCode = 0
         TeeTimeSettings             = nil
+        AvailableTimeSlots = []
+
     }
     
     required init?(map: Map) {
         responseMessage         = ""
         ResponseCode = 0
         TeeTimeSettings             = nil
+        AvailableTimeSlots = []
+
     }
     
     func mapping(map: Map) {
         responseMessage         <- map["ResponseMessage"]
         TeeTimeSettings          <- map["TeeTimeSettings"]
         ResponseCode <- map["ResponseCode"]
+        AvailableTimeSlots <- map["AvailableTimeSlots"]
+
     }
 }
 
@@ -53,8 +60,6 @@ class TeeTimeSettingsData: Mappable {
     var TimeIntervals : [GolfEnhancementTimeInterval]!
     var AvailableDates : [GetAvailableDate]!
     dynamic var DiningPolicy    = ""
-    var AvailableTimeSlots : [GolfAvailableTimeSlotData]!
-    var PlayersList : [PlayersListData]!
     init() {
         TimeInterval            = 0
         MaxDaysInAdvanceTime    = ""
@@ -72,8 +77,6 @@ class TeeTimeSettingsData: Mappable {
         ShowAll = 0
         TimeIntervals = []
         AvailableDates = []
-        AvailableTimeSlots = []
-        PlayersList = []
     }
     
     required init?(map: Map) {
@@ -93,8 +96,6 @@ class TeeTimeSettingsData: Mappable {
         ShowAll = 0
         TimeIntervals = []
         AvailableDates = []
-        AvailableTimeSlots = []
-        PlayersList = []
     }
     
     func mapping(map: Map) {
@@ -114,8 +115,6 @@ class TeeTimeSettingsData: Mappable {
         ShowAll <- map["ShowAll"]
         TimeIntervals <- map["TimeIntervals"]
         AvailableDates <- map["AvailableDates"]
-        AvailableTimeSlots <- map["AvailableTimeSlots"]
-        PlayersList <- map["PlayersList"]
     }
 }
 
@@ -141,7 +140,7 @@ class GolfCourseData: NSObject, Mappable {
 }
 
 class GolfEnhancementTimeInterval: NSObject, Mappable {
-    var timeSlot    : String!
+    var time    : String!
 
     override init() {
         super.init()
@@ -149,11 +148,11 @@ class GolfEnhancementTimeInterval: NSObject, Mappable {
 
     convenience required init?(map: Map) {
         self.init()
-        timeSlot         = ""
+        time        = ""
     }
 
     func mapping(map: Map) {
-        timeSlot         <- map["TimeSlot"]
+        time        <- map["Time"]
     }
 }
 
@@ -182,7 +181,8 @@ class GolfAvailableTimeSlotData: NSObject, Mappable {
     var CourseID : String!
     var CourseName : String!
     var IsEnable : Int!
-    
+    var PlayersList : [PlayersListData]!
+
     override init() {
         super.init()
     }
@@ -194,6 +194,8 @@ class GolfAvailableTimeSlotData: NSObject, Mappable {
         CourseID = ""
         CourseName = ""
         IsEnable = 0
+        PlayersList = []
+
     }
     
     func mapping(map: Map) {
@@ -203,6 +205,8 @@ class GolfAvailableTimeSlotData: NSObject, Mappable {
         CourseID <- map["CourseID"]
         CourseName <- map["CourseName"]
         IsEnable <- map["IsEnable"]
+        PlayersList <- map["PlayersList"]
+
     }
 }
 

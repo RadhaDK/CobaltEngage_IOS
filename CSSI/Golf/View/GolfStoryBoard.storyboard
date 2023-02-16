@@ -306,6 +306,7 @@
                         <outlet property="btnHome" destination="KhV-iX-OIC" id="nD9-Nk-hS1"/>
                         <outlet property="btnTime" destination="S0v-me-Tvb" id="7kx-v0-olH"/>
                         <outlet property="collectionDaySlot" destination="rDG-tI-eIf" id="RM3-8X-abE"/>
+                        <outlet property="lblSelectedSizeTime" destination="1oC-52-MYY" id="cpa-Pn-1Is"/>
                         <outlet property="tblAvailableSlot" destination="4wH-uP-tre" id="Usg-u0-It7"/>
                         <outlet property="viewTime" destination="Yae-DI-Ygf" id="YMg-dw-Xbp"/>
                     </connections>
@@ -489,6 +490,9 @@
                                                         <constraint firstItem="ps0-6S-8Mi" firstAttribute="leading" secondItem="CyR-jf-QRX" secondAttribute="leading" constant="2" id="Wit-ux-lIl"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
+                                                <connections>
+                                                    <outlet property="lblCouseName" destination="1we-x4-cVe" id="QdU-I9-xcO"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
@@ -556,7 +560,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umN-nO-Uw4">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="841.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="845.33333333333337"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1012" translatesAutoresizingMaskIntoConstraints="NO" id="A8Q-Gi-rfe">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
@@ -594,7 +598,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requested Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTv-j0-Drh">
-                                                <rect key="frame" x="151.66666666666666" y="139" width="87" height="19"/>
+                                                <rect key="frame" x="155.33333333333334" y="139" width="79.666666666666657" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="Izp-7h-yBg"/>
                                                 </constraints>
@@ -603,7 +607,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11/05/2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXh-eY-SPq">
-                                                <rect key="frame" x="149" y="161" width="92.333333333333314" height="19"/>
+                                                <rect key="frame" x="151" y="161" width="88.333333333333314" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="sht-0B-lY4"/>
                                                 </constraints>
@@ -612,7 +616,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Tee Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3F-OR-zC2">
-                                                <rect key="frame" x="268.66666666666669" y="139" width="96.333333333333314" height="19"/>
+                                                <rect key="frame" x="276" y="139" width="89" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="yvF-vH-I4T"/>
                                                 </constraints>
@@ -621,7 +625,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&amp;:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKk-kQ-KJs">
-                                                <rect key="frame" x="268.66666666666669" y="161" width="69" height="19"/>
+                                                <rect key="frame" x="276" y="161" width="64.666666666666686" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="nDX-us-icQ"/>
                                                 </constraints>
@@ -630,7 +634,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prime Cut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9r-Qe-Odb">
-                                                <rect key="frame" x="25" y="161" width="114" height="19"/>
+                                                <rect key="frame" x="25" y="161" width="116" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="ome-AV-rFd"/>
                                                 </constraints>
@@ -639,7 +643,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmO-g8-6DS">
-                                                <rect key="frame" x="24.999999999999996" y="139" width="38.666666666666657" height="19"/>
+                                                <rect key="frame" x="25" y="139" width="35" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="vYH-lL-FpW"/>
                                                 </constraints>
@@ -678,13 +682,13 @@
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please click on &quot;+&quot; to select Members, Guests or My Buddies Legends: WLK(Walk), MCT(Member Cart), CT(Cart)" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eM-1O-4BO">
-                                                <rect key="frame" x="12" y="285" width="366" height="30.333333333333314"/>
+                                                <rect key="frame" x="12" y="285" width="366" height="34.333333333333314"/>
                                                 <fontDescription key="fontDescription" name="SourceSansPro-Semibold" family="Source Sans Pro" pointSize="13"/>
                                                 <color key="textColor" red="0.29411764709999999" green="0.31764705879999999" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfq-W2-MOZ">
-                                                <rect key="frame" x="0.0" y="345.33333333333331" width="390" height="319.99999999999994"/>
+                                                <rect key="frame" x="0.0" y="349.33333333333331" width="390" height="319.99999999999994"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u81-vQ-sMh">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="320"/>
@@ -703,7 +707,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-18-oQF">
-                                                <rect key="frame" x="139.66666666666666" y="762.33333333333337" width="111" height="24"/>
+                                                <rect key="frame" x="139.66666666666666" y="766.33333333333337" width="111" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="111" id="70S-p0-pUp"/>
                                                     <constraint firstAttribute="height" constant="24" id="KGX-P9-sds"/>
@@ -714,7 +718,7 @@
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Annatte Landers | #133310-00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utA-ay-vmK">
-                                                <rect key="frame" x="100.33333333333333" y="791.33333333333337" width="189.66666666666669" height="20"/>
+                                                <rect key="frame" x="109.00000000000001" y="795.33333333333337" width="172.33333333333337" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="xyc-mf-bUe"/>
                                                 </constraints>
@@ -723,7 +727,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyr-ZP-l6N">
-                                                <rect key="frame" x="125" y="695.33333333333337" width="140" height="37"/>
+                                                <rect key="frame" x="125" y="699.33333333333337" width="140" height="37"/>
                                                 <color key="backgroundColor" red="0.3411764706" green="0.45098039220000002" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="COZ-jy-TWO"/>

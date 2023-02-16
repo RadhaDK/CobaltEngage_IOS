@@ -1,0 +1,79 @@
+{
+    "ResponseCode": 200,
+    "ResponseMessage": "Success",
+    "TeeTimeSettings": {
+        "TimeInterval": 30,
+        "MaxDaysInAdvanceTime": "10:30 PM",
+        "MaxDaysInAdvance": 10,
+        "MinDaysInAdvance": 0,
+        "MinDaysInAdvanceTime": "1:00 PM",
+        "MaxPlayersSize": 5,
+        "DefaultTime": "04:30 PM",
+        "DefaultPlayersSize": 2,
+        "ShowAll": 0,
+        "Courses": [{
+            "CourseID": "16 digits Unique character",
+            "CourseName": "Palmar I"
+        }, {
+            "CourseID": "16 digits Unique character",
+            "CourseName": "Palmar III"
+        }],
+        "TimeIntervals": [{
+            "Time": "06:00 PM"
+        }, {
+            "Time": "06:30 PM"
+        }, {
+            "Time": "07:00 PM"
+        }],
+        "AvailableDates": [{
+            "Date": "2023-02-25"
+        }, {
+            "Date": "2023-02-26"
+        }, {
+            "Date": "2023-02-27"
+        }, {
+            "Date": "2023-02-28"
+        },{
+            "Date": "2023-03-01"
+        },
+        {
+            "Date": "2023-03-02"
+        }]
+    },
+    "AvailableTimeSlots": [{
+        "TimeSlot": "10:00 AM",
+        "Type": "F",
+        "CourseID": "16 digits Unique character",
+        "CourseName": "Palmar I",
+        "IsEnable": 1,
+        "PlayersList": [{
+                "PlayerName": "Byrne, Mike",
+                "ConfirmationID": "16 digits Unique character",
+                "TransType": "WLK",
+                "IsEnable": 0,
+                "NineHoles" : 1
+            },
+            {
+                "PlayerName": "Booked",
+                "ConfirmationID": "",
+                
+                "TransType": "WLK ",
+                "IsEnable ": 0,
+                "NineHoles": 1
+            },
+            {
+                "PlayerName": "",
+                "ConfirmationID": "",
+                "TransType": "WLK",
+                "IsEnable": 1,
+                "NineHoles": 0 },
+                 {
+                     "PlayerName": "Byrne",
+                     "ConfirmationID ": "",
+                     "TransType ": "WLK ",
+                     "IsEnable": 1,
+                     "NineHoles": 0
+            }
+        ]
+    }]
+}

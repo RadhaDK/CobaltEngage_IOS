@@ -9,5 +9,6 @@
 import UIKit
 
 class CoursesSelectionCollectionCell: UICollectionViewCell {
-    
+    @IBOutlet weak var lblCouseName: UILabel!
+
 }

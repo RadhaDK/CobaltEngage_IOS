@@ -35,15 +35,18 @@ class PlayerSizePopUp: UIViewController {
     var maximumTimeInAdvance = "11:45 PM"
     var size:CGFloat!
     var sizeh:CGFloat!
-    var arrCourses = ["test1","test2"]
+    var arrCourses = ["test1","test2","test3","test4","test5"]
     var numberForCoursese = 0.0
+    var teeTimeSetting : GetGolfSlots?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpUi()
         if maxPartySize == 0 {
             maxPartySize = 6
         }
+        selectedPartySize = teeTimeSetting?.TeeTimeSettings.DefaultPlayersSize ?? 0
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
         {
@@ -100,7 +103,6 @@ class PlayerSizePopUp: UIViewController {
     }
     
     @objc func dateSelected(){
-
     }
 
     
@@ -112,15 +114,14 @@ class PlayerSizePopUp: UIViewController {
     }
 
     func configCourseCollectionHeight(){
-        if arrCourses.count == 0{
+        if teeTimeSetting?.TeeTimeSettings.Courses.count == 0{
             heightCollection.constant = 0
         }
         else{
-            
-            let NumberOfSlot = (arrCourses.count/2)+1
-            let numberOfLines = NumberOfSlot + 1
+            let NumberOfSlot = ((teeTimeSetting?.TeeTimeSettings.Courses.count ?? 0)/2)+1
+            let numberOfLines = NumberOfSlot
             numberForCoursese = Double(numberOfLines)
-            heightCollection.constant = CGFloat(30*numberOfLines)
+            heightCollection.constant = CGFloat(25*numberOfLines)
         }
         collectionCourse.reloadData()
     }
@@ -130,22 +131,22 @@ class PlayerSizePopUp: UIViewController {
 extension PlayerSizePopUp : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionCourse{
-            return arrCourses.count
+            return teeTimeSetting?.TeeTimeSettings.Courses.count ?? 0
         }
         else{
-            return maxPartySize
+            return teeTimeSetting?.TeeTimeSettings.MaxPlayersSize ?? 0
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == collectionCourse{
             let cell = collectionCourse.dequeueReusableCell(withReuseIdentifier: "CoursesSelectionCollectionCell", for: indexPath) as! CoursesSelectionCollectionCell
-         
+            let dict = teeTimeSetting?.TeeTimeSettings.Courses[indexPath.row]
+            cell.lblCouseName.text = dict?.CourseName
             return cell
             
         }
         else{
             let cell = playerCollectionView.dequeueReusableCell(withReuseIdentifier: "PartySizeCollectionCell", for: indexPath) as! PartySizeCollectionCell
-            //        let dict = arrPartySize[indexPath.row]
             cell.partySizeCountLbl.text = "\(indexPath.row + 1)"
             if selectedPartySize == indexPath.row + 1 {
                 cell.partySizeCountLbl.textColor = .white
@@ -178,8 +179,6 @@ extension PlayerSizePopUp : UICollectionViewDelegateFlowLayout, UICollectionView
              size = (playerCollectionView.frame.size.width - space) / 6.0
              sizeh = (playerCollectionView.frame.size.height)
             return CGSize(width: size, height: sizeh)
-
         }
-
     }
 }
