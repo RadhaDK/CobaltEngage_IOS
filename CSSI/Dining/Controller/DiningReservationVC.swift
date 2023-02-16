@@ -239,6 +239,7 @@ class DiningReservationVC: UIViewController, UITableViewDelegate,UITableViewData
     func combainDateTime(dateString: String, timeString: String) {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "YYYY-MM-dd hh:mm a"
+        inputFormatter.locale = Locale(identifier: NSLocale.current.identifier)
         currentDate = inputFormatter.date(from: dateString + " " + timeString)!
     }
 

@@ -57,6 +57,8 @@ extension String
     {
         let formatter = DateFormatter()
         formatter.dateFormat = format
+        formatter.locale = Locale(identifier: NSLocale.current.identifier)
+
         if let locale = locale
         {
             formatter.locale = locale

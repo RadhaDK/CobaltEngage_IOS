@@ -585,7 +585,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         let dateAsStringMin = self.golfSettings?.fromTime
         let dateFormatterMin = DateFormatter()
         dateFormatterMin.dateFormat = "hh:mm a"
-        
+        dateFormatterMin.locale = Locale(identifier: NSLocale.current.identifier)
+
         let dateMin = dateFormatterMin.date(from: dateAsStringMin!)
         dateFormatterMin.dateFormat = "HH:mm"
         
@@ -594,7 +595,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         let dateAsStringMax = self.txtPreferredTeeTime.text
         let dateFormatterMax = DateFormatter()
         dateFormatterMax.dateFormat = "hh:mm a"
-        
+        dateFormatterMax.locale = Locale(identifier: NSLocale.current.identifier)
+
         let dateMax = dateFormatterMax.date(from: dateAsStringMax!)
         dateFormatterMax.dateFormat = "HH:mm"
         
@@ -884,19 +886,23 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         let dateAsStringMin = self.golfSettings?.fromTime
         let dateFormatterMin = DateFormatter()
         dateFormatterMin.dateFormat = "hh:mm a"
-        
+        dateFormatterMin.locale = Locale(identifier: NSLocale.current.identifier)
+
         let dateMin = dateFormatterMin.date(from: dateAsStringMin!)
         dateFormatterMin.dateFormat = "HH:mm"
-        
+        dateFormatterMin.locale = Locale(identifier: NSLocale.current.identifier)
+
         let DateMin = dateFormatterMin.string(from: dateMin!)
         
         let dateAsStringMax = self.golfSettings?.toTime
         let dateFormatterMax = DateFormatter()
         dateFormatterMax.dateFormat = "hh:mm a"
-        
+        dateFormatterMax.locale = Locale(identifier: NSLocale.current.identifier)
+
         let dateMax = dateFormatterMax.date(from: dateAsStringMax!)
         dateFormatterMax.dateFormat = "HH:mm"
-        
+        dateFormatterMax.locale = Locale(identifier: NSLocale.current.identifier)
+
         let DateMax = dateFormatterMax.string(from: dateMax!)
         
         
@@ -938,7 +944,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         
         let dateFormatterMinFromTime = DateFormatter()
         dateFormatterMinFromTime.dateFormat = "hh:mm a"
-        
+        dateFormatterMinFromTime.locale = Locale(identifier: NSLocale.current.identifier)
+
         let dateMinFromTime = dateFormatterMinFromTime.date(from: self.txtPreferredTeeTime.text ?? "")
         dateFormatterMinFromTime.dateFormat = "HH:mm"
         
@@ -954,6 +961,7 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
         
         let dateFormatterEarlierFromTime = DateFormatter()
         dateFormatterEarlierFromTime.dateFormat = "hh:mm a"
+        dateFormatterEarlierFromTime.locale = Locale(identifier: NSLocale.current.identifier)
 
         let dateEarlierFromTime = dateFormatterEarlierFromTime.date(from: self.txtEarliestTeeTime.text ?? "")
         dateFormatterEarlierFromTime.dateFormat = "HH:mm"
@@ -1277,7 +1285,8 @@ class GolfRequestTeeTimeVC: UIViewController, UITableViewDelegate, UITableViewDa
                                 self.PreferenceTimeChanged()
                                 let dateFormatterMin = DateFormatter()
                                 dateFormatterMin.dateFormat = "hh:mm a"
-                                
+                                dateFormatterMin.locale = Locale(identifier: NSLocale.current.identifier)
+
                                 let dateMin = dateFormatterMin.date(from: self.txtPreferredTeeTime.text!)
                                 dateFormatterMin.dateFormat = "HH:mm"
                                 

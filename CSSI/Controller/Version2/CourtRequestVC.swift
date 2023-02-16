@@ -2518,10 +2518,10 @@ class CourtRequestVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 
                                 let dateFormatterMin = DateFormatter()
                                 dateFormatterMin.dateFormat = "hh:mm a"
-                                
+                                dateFormatterMin.locale = Locale(identifier: NSLocale.current.identifier)
+
                                 let dateMin = dateFormatterMin.date(from: self.txtCourtTime.text!)
                                 dateFormatterMin.dateFormat = "HH:mm"
-                                
                                 let DateMin = dateFormatterMin.string(from: dateMin!)
                                 
                                 let dateFormatter = DateFormatter()
@@ -2795,21 +2795,23 @@ class CourtRequestVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             let dateAsStringMax = self.tennisSettings?.toTime
             let dateFormatterMax = DateFormatter()
             dateFormatterMax.dateFormat = "hh:mm a"
-            
+            dateFormatterMax.locale = Locale(identifier: NSLocale.current.identifier)
+
             let dateMax = dateFormatterMax.date(from: dateAsStringMax!)
             dateFormatterMax.dateFormat = "HH:mm"
-            
+            dateFormatterMax.locale = Locale(identifier: NSLocale.current.identifier)
+
             let DateMax = dateFormatterMax.string(from: dateMax!)
             
            
             let dateAsStringMin = self.tennisSettings?.fromTime
             let dateFormatterMin = DateFormatter()
             dateFormatterMin.dateFormat = "hh:mm a"
-    
+            dateFormatterMin.locale = Locale(identifier: NSLocale.current.identifier)
+
             let dateMin = dateFormatterMin.date(from: dateAsStringMin!)
             dateFormatterMin.dateFormat = "HH:mm"
-    
-            let DateMin = dateFormatterMin.string(from: dateMin!)
+                let DateMin = dateFormatterMin.string(from: dateMin!)
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat =  "HH:mm"
@@ -2930,10 +2932,11 @@ class CourtRequestVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
                 let dateFormatterMinFromTime = DateFormatter()
                 dateFormatterMinFromTime.dateFormat = "hh:mm a"
-                
+            dateFormatterMinFromTime.locale = Locale(identifier: NSLocale.current.identifier)
+
                 let dateMinFromTime = dateFormatterMinFromTime.date(from: self.txtCourtTime.text!)
                 dateFormatterMinFromTime.dateFormat = "HH:mm"
-                
+
                 let DateMinFromTime = dateFormatterMin.string(from: dateMinFromTime!)
                 
                 let dateFormatterFromTime = DateFormatter()

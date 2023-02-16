@@ -491,6 +491,8 @@ class GolfSyncCalendarVC: UIViewController, UITextFieldDelegate, UITableViewData
         else{
            
             dateFormatter.dateFormat = "dd MMM yyyy hh:mm a"
+            dateFormatter.locale = Locale(identifier: NSLocale.current.identifier)
+
             startDate = dateFormatter.date(from: String(format: "%@ %@", self.arrEventDetails[0].eventstartdate ?? "",self.arrEventDetails[0].eventTime ?? ""))!
         }
         //Modified on 26th June 2020 BMS

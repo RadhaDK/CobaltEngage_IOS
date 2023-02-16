@@ -1022,6 +1022,7 @@ extension Date {
     func toString(format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: NSLocale.current.identifier)
         return dateFormatter.string(from: self)
     }
 }

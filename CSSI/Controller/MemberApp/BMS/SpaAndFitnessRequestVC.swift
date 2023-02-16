@@ -1505,9 +1505,11 @@ extension SpaAndFitnessRequestVC
     ///Identifies if the days should be increased for date range based on min or max time.
     private func shouldIncreaseDay(time : String) -> Bool
     {
+        
         let minDate = time.date(format: "hh:mm a")
         //Note : The time is calculated using timeintervalform value. so converting the date to string and then back to date. If this is not done the interval value for current date will be higher beacuse the min date is generated form time string "hh:mm a"
         let currentTime = self.currentDate!.toString(format: "hh:mm a")
+
         let currentDate = currentTime.date(format: "hh:mm a")
         let result = self.findTimeDiff(time1: minDate!, time2: currentDate!)
         //+ indicates time2 is grateer than time1. hours and mintues comparision
